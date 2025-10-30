@@ -24,8 +24,8 @@ La repository è organizzata in modo logico e modulare, seguendo una struttura c
 | Directory            | Contenuto                                           | 
 |----------------------|-----------------------------------------------------|
 | `Candidatura`        | Documenti di candidatura                            | 
-| `sito`               | File richiesti per la visualizzazione del sito web  | 
-| `diari_di_bordo`     | Slide inerenti ai diari di bordo presentati in aula |
+| `Sito`               | File richiesti per la visualizzazione del sito web  | 
+| `Diari_di_bordo`     | Slide inerenti ai diari di bordo presentati in aula |
 
 ---
 

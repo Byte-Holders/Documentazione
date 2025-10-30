@@ -1,13 +1,13 @@
 <div align="center">
 
-# 🔥 Byte Holders — Documentazione del Progetto di Ingegneria del Software  
-### 🧠 Università degli Studi di Padova · A.A. 2025/2026  
+# Byte Holders — Documentazione del Progetto di Ingegneria del Software  
+### Università degli Studi di Padova · A.A. 2025/2026  
 
 ---
 
 </div>
 
-## 🚀 Introduzione
+## Introduzione
 
 Questo repository contiene **tutta la documentazione ufficiale** del progetto sviluppato dal gruppo **Byte Holders** per il corso di **Ingegneria del Software**.
 
@@ -15,12 +15,12 @@ L’obiettivo è mantenere una **struttura ordinata, automatizzata e facilmente 
 
 ---
 
-## 🗂️ Struttura della Repository
+## Struttura della Repository
 
 La repository è organizzata in modo logico e modulare, seguendo una struttura chiara:
 
 
-### ⚙️ Descrizione delle directory  
+### Descrizione delle directory  
 | Directory            | Contenuto                                           | 
 |----------------------|-----------------------------------------------------|
 | `Candidatura`        | Documenti di candidatura                            | 
@@ -29,7 +29,7 @@ La repository è organizzata in modo logico e modulare, seguendo una struttura c
 
 ---
 
-## 👩🏼‍💻🧑🏻‍💻 Il team di Byte Holders  
+## Il team di Byte Holders  
 | Cognome   | Nome         | Matricola |
 |-----------|--------------|-----------|
 | Berti     | Damiano      |  2103117  |
@@ -42,14 +42,14 @@ La repository è organizzata in modo logico e modulare, seguendo una struttura c
 
 ---
 
-## 📬 Contatti  
+## Contatti  
 📧 Email ufficiale del gruppo: [byteholdersgroup@gmail.com](byteholdersgroup@gmail.com)
 
 ---
 
 <div align="center">
  
-🖋️ A cura del team **Byte Holders**
+A cura del team **Byte Holders**
 
 </div>
 

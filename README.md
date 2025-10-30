@@ -21,10 +21,11 @@ La repository è organizzata in modo logico e modulare, seguendo una struttura c
 
 
 ### ⚙️ Descrizione delle directory  
-| Directory            | Contenuto                            | Scopo                                                 |
-|----------------------|--------------------------------------|-------------------------------------------------------|
-| `src`                | Sorgenti `.tex`                      | Codice sorgente dei documenti                         |
-| `Candidatura`        | Documenti di candidatura             | Fase iniziale del progetto                            |
+| Directory            | Contenuto                                           | 
+|----------------------|-----------------------------------------------------|
+| `Candidatura`        | Documenti di candidatura                            | 
+| `sito`               | File richiesti per la visualizzazione del sito web  | 
+| `diari_di_bordo`     | Slide inerenti ai diari di bordo presentati in aula |
 
 ---
 
@@ -38,11 +39,6 @@ La repository è organizzata in modo logico e modulare, seguendo una struttura c
 | Morabito  | Alessandro   |  2137991  |
 | Nalotto   | Giacomo      |  2067755  |
 | Romanato  | Giulia       |  2104060  |
-
----
-
-## ⚙️ Automazioni & Build  
-Grazie alle GitHub Actions (in `.github/workflows`) i documenti vengono **automaticamente compilati** da LaTeX in PDF ad ogni push o pull request. Questo garantisce che tutte le versioni siano aggiornate, coerenti e pronte per la revisione.
 
 ---
 

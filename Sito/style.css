@@ -303,7 +303,6 @@ nav ul li a:hover::after {
     }
     
     .container {
-        flex-direction: column;
         gap: 1em;
     }
     
@@ -358,8 +357,16 @@ nav ul li a:hover::after {
 @media screen and (max-width: 600px) {
     nav ul {
         flex-direction: column;
-        gap: 0.8em;
+        gap: 0.1em;
         align-items: center;
+    }
+
+    nav ul li a {
+        padding: 0.2em 0;
+    }
+
+    :root {
+        --header-height: 6.5em;
     }
     
     #candidatura-container, 

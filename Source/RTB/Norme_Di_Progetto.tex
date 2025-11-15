@@ -1,0 +1,271 @@
+\documentclass[a4paper, 11pt]{article}
+
+% ====== PACCHETTI NECESSARI ======
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{lipsum}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc} % Specifica la codifica del file (necessaria per le accentate)
+\usepackage[T1]{fontenc}    % Migliora l'output dei font per le lingue europee
+
+% ====== IMPOSTAZIONI GLOBALI DI STILE ======
+
+% 1. DEFINIZIONE COLORI BLU-VIOLA
+\definecolor{AccentColor}{RGB}{80, 90, 180} % Blu-viola principale
+\definecolor{AccentLight}{RGB}{80, 90, 180} % Versione più chiara
+\definecolor{AccentDark}{RGB}{50, 60, 140} % Versione più scura
+\definecolor{LightGray}{RGB}{245, 245, 250}
+\definecolor{MediumGray}{RGB}{200, 200, 210}
+
+% 2. IMPOSTAZIONE MARGINI
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=3.5cm, bottom=3.5cm}
+
+% 3. STILE DEI TITOLI DI SEZIONE
+\titleformat{\section}
+  {\normalfont\sffamily\Large\bfseries\color{AccentColor}}
+  {\thesection}
+  {1em}
+  {}
+\titleformat{\subsection}
+  {\normalfont\sffamily\large\bfseries\color{AccentDark}}
+  {\thesubsection}
+  {1em}
+  {}
+
+% 4. IMPOSTAZIONE HEADER E FOOTER
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\sffamily\bfseries\color{AccentColor}\@BYTE HOLDERS}
+\fancyhead[R]{\sffamily\color{AccentColor}\thepage}
+\renewcommand{\headrulewidth}{0.8pt}
+\renewcommand{\headrule}{\color{AccentColor}\hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}
+
+% 5. IMPOSTAZIONE LINK
+\hypersetup{
+    colorlinks=true,
+    linkcolor=AccentColor,
+    urlcolor=AccentLight,
+    citecolor=AccentDark,
+}
+
+% 6. PERSONALIZZAZIONE ELENCHI
+\setlist[itemize]{itemsep=2pt, topsep=4pt}
+\setlist[enumerate]{itemsep=2pt, topsep=4pt}
+
+% ====== COMANDI PERSONALIZZATI ======
+\makeatletter
+\newcommand{\NomeGruppo}[1]{\def\@NomeGruppo{#1}}
+\newcommand{\TitoloVerbale}[1]{\def\@TitoloVerbale{#1}}
+\newcommand{\Sommario}[1]{\def\@Sommario{#1}}
+\newcommand{\Autore}[1]{\def\@Autore{#1}}
+\newcommand{\Verificatore}[1]{\def\@Verificatore{#1}}
+\makeatother
+
+% ====== STILE TABELLE MIGLIORATO ======
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X} % Colonna giustificata a sinistra
+\setlength{\arrayrulewidth}{0.4pt} % Linee più sottili
+\setlength{\tabcolsep}{10pt} % Spaziatura interna celle
+\renewcommand{\arraystretch}{1.4} % Altezza righe
+
+% ====== INIZIO DEL DOCUMENTO ======
+\begin{document}
+
+% ====== INFORMAZIONI PER LA PAGINA DI TITOLO ======
+\NomeGruppo{BYTE HOLDERS}
+\TitoloVerbale{Verbale Riunione Interna}
+\Sommario{Questo verbale documenta la riunione interna avvenuta il 23/10/2025 per la discussione dei capitolati e la definizione degli strumenti di lavoro del team.}
+\Autore{}
+\Verificatore{}
+
+\pagestyle{empty}
+
+% ====== PAGINA DI TITOLO ======
+\begin{titlepage}
+    \centering
+    
+    \includegraphics[width=0.55\textwidth]{../Assets/ByteHolders1.png}\par\vspace{1.5cm}
+\begin{figure}
+        \centering
+        \label{fig:placeholder}
+    \end{figure}
+        
+    {\LARGE \sffamily \color{AccentColor}\bfseries Verbale esterno}\par
+    \vspace{0.5cm}
+    {\large \color{AccentColor}\sffamily 23 Ottobre 2025}\par
+    
+    \vfill
+    
+    \noindent\color{AccentColor}\rule{\textwidth}{1pt}\par
+    \vspace{0.5cm}
+    
+    \begin{tabularx}{0.9\textwidth}{@{}>{\bfseries\sffamily}l X@{}}
+    Autore & \sffamily Giacomo Nalotto\\
+    \arrayrulecolor{MediumGray}\hline \\[-1.5ex]
+    Verificatore & \sffamily Giulia Romanato\\
+    \arrayrulecolor{MediumGray}\hline \\[-1.5ex] 
+    Approvazione & \sffamily Nicolò Lattanzio\\ 
+    \arrayrulecolor{MediumGray}\hline 
+\end{tabularx}
+    
+    \vfill
+\end{titlepage}
+
+% ====== INDICE ======
+\pagestyle{fancy}
+\newpage
+\tableofcontents
+\newpage
+
+% ====== TABELLA DI VERSIONAMENTO ======
+\section{Registro delle versioni}
+\begin{center}
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{>{\centering\arraybackslash}m{1.5cm} >{\centering\arraybackslash}m{2cm} >{\raggedright\arraybackslash}m{2.5cm} >{\raggedright\arraybackslash}m{6.5cm}}
+        \rowcolor{AccentColor}
+          \textcolor{white}{\textbf{Versione}} & 
+          \textcolor{white}{\textbf{Data}} & 
+          \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} & 
+          \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
+        
+        1.0 & 26/10/2025 & Giacomo Nalotto & Creazione e compilazione del primo verbale esterno. \\
+        1.1 & 26/10/2025 & Giulia Romanato & Integrazione delle risposte riguardo al capitolato discusso.\\
+        2.0 & 28/10/2025 & Nicolò Lattanzio & Revisione e approvazione del verbale. \\
+    \end{tabular}
+\end{center}
+
+%\vspace{1cm}
+
+% ====== SEZIONE INFORMAZIONI INTRODUTTIVE ======
+\section{Informazioni introduttive}
+
+\subsection{Durata e luogo}
+\begin{itemize}
+    \item \textbf{Inizio:} 15:10
+    \item \textbf{Fine:} 18:00
+    \item \textbf{Luogo:} Google Meet e chiamata Discord
+\end{itemize}
+
+% ====== TABELLA PRESENZE ======
+\subsection{Partecipanti}
+\begin{center}
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{>{\raggedright\arraybackslash}p{6cm} c c}
+        \rowcolor{AccentColor}
+        \textcolor{white}{\textbf{Nome e Cognome}} & 
+        \textcolor{white}{\textbf{Presente}} & 
+        \textcolor{white}{\textbf{Assente}} \\
+        
+        Damiano Berti     & \textcolor{AccentColor}{$\blacksquare$}    & $\square$        \\
+        Alessandro Frison     &$\square$    & \textcolor{AccentColor}{$\blacksquare$}       \\
+        Lorenzo Grolla     & \textcolor{AccentColor}{$\blacksquare$}    & $\square$        \\
+        Nicolò Lattanzio    & \textcolor{AccentColor}{$\blacksquare$}    & $\square$        \\
+        Alessandro Morabito   & \textcolor{AccentColor}{$\blacksquare$}    & $\square$        \\
+        Giacomo Nalotto   & \textcolor{AccentColor}{$\blacksquare$}    & $\square$        \\
+        Giulia Romanato   & \textcolor{AccentColor}{$\blacksquare$}    & $\square$        \\
+    \end{tabular}
+\end{center}
+
+% ====== SEZIONE PRINCIPALE DEL VERBALE ======
+\section{Contenuto della riunione}
+
+\subsection{Ordine del giorno}
+\begin{enumerate}
+    \item Affinamento domande da porre al referente dell'azienda Miriade
+    \item Svolgimento dell'incontro con Emanuele Righetto di Miriade
+    \item Analisi delle risposte fornite sul capitolato discusso
+    \item Confronto con gli altri capitolati 
+\end{enumerate}
+
+
+\clearpage
+\subsection{Riassunto}
+L'incontro è stato in prima parte dedicato al perfezionamento delle \textbf{domande} da porre al referente di \textbf{Miriade}, il tutto si è svolto su piattaforma Discord. 
+In seguito, il gruppo si è spostato su Google Meet per l'incontro con Miriade; sono state poste le domande preparate e a tutte è stata data una risposta chiara ed esaustiva.
+Nella terza e ultima parte della riunione tenutasi su server Discord, il gruppo ha discusso sulle risposte ricevute da Miriade riscontrando un aumento di interesse nei confronti del capitolato.
+\\
+La decisione definitiva sul capitolato a cui candidarsi non è stata ancora presa, in quanto il gruppo ha in programma un ulteriore incontro di delucidazioni con l'azienda Var Group.
+
+\subsection{Domande e risposte}
+\begin{enumerate}
+    \item\textcolor{AccentColor} {Quali sono i requisiti minimi che l’app dovrà soddisfare per considerarla completa?}
+    \begin{itemize}
+    \item Risposta: Non ci sono requisiti obbligatori anche se le funzioni di supporto e di allarme sono fortemente consigliate, ma l'azienda è aperta ad accogliere le proposte del team, in base alla propria sensibilità, riguardo alle funzioni da sviluppare. Viene ritenuta più importante la qualità piuttosto che la quantità delle funzionalità.
+    \end{itemize}
+    
+    \item\textcolor{AccentColor} {Il servizio richiesto include tutte le fasi del ciclo di vita dello sviluppo software inclusi "formazione degli utenti e supporto post-lancio per un periodo definito"?}
+    \begin{itemize}
+    \item Risposta: È importante che l'utente finale abbia la possibilità di capire come funziona l'app, possibilmente in modo automatico, ad esempio tramite chatbot, oppure creando un canale con Miriade, ad esempio con invio di email per richiedere informazioni all'uso.
+    \end{itemize}
+    
+    \item\textcolor{AccentColor} {Quali strumenti di sviluppo consigliate? }
+    \begin{itemize}
+    \item Risposta: È consigliato Flutter in quanto permette di sviluppare sia per Android che per iOS.
+    \end{itemize}
+
+    \item\textcolor{AccentColor} {Quali strumenti usare per testare l’applicazione? È richiesto un iPhone per testare l’app su Ios? }
+    \begin{itemize}
+    \item Risposta: Basta un MAC su cui si può usare un emulatore, ma confida che, usando Flutter, quello che funziona su Android funziona anche su iOS. Siamo comunque disponibili a fare loro il test in caso di funzioni particolari.
+    \end{itemize}
+    
+    \item\textcolor{AccentColor} {Sono previste sessioni di confronto tecnico o revisione delle scelte progettuali durante le fasi di sviluppo?}
+    \begin{itemize}
+    \item Risposta: Sì, queste potranno essere svolte sia in modalità da remoto che in presenza in quanto l'azienda Miriade ha una sede staccata a Padova.
+    \end{itemize}
+
+    \item\textcolor{AccentColor} {Come pensate di implementare il motore di regole per il Detective delle Relazioni? Come dovranno essere raccolti i dati, nel capitolato si parlava di messaggi, e questo apre dei problemi di privacy? Che output ci si aspetta?}
+    \begin{itemize}
+    \item Risposta: Si potrebbe fare attivando il microfono del cellulare e usando un LLM, ma per approfondimenti rinvia ad una collega; inoltre se abbiamo dubbi su problemi di privacy possiamo richiedere una consulenza di un loro esperto in materia GDPR.
+    \end{itemize}
+    
+    \item\textcolor{AccentColor} {Come bisogna gestire l'addestramento dell'AI visto il tema delicato dell'app?}
+    \begin{itemize}
+    \item Risposta: Non è previsto il training di alcun modello, ma l'utilizzo di modelli già esistenti; il focus è sulla costruzione dei corretti prompt e delle modalità con cui vengono invocati i modelli (uso di framework come langchain e langgraph), inoltre bisogna predisporre dei paletti per impedire all'AI di essere troppo generativa.
+    \end{itemize}
+    
+    \item\textcolor{AccentColor} {Viene fornita la banca dati dei centri antiviolenza e tutte le informazioni necessarie per la Guida al Coraggio?}
+    \begin{itemize}
+    \item Risposta: L'azienda è in contatto con delle associazioni, per cui i dati saranno caricati nel database, anche se inizialmente saranno dati simulati. Quindi l'app deve prevedere l'aggiornamento dei dati.
+    \end{itemize}
+
+\end{enumerate}
+
+
+% ====== SEZIONE DECISIONI E AZIONI ======
+\section{Decisioni e azioni}
+\begin{center}
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{>{\centering\arraybackslash}m{2cm} >{\raggedright\arraybackslash}p{8cm} >{\centering\arraybackslash}p{2.5cm}}
+        \rowcolor{AccentColor}
+        \textcolor{white}{\textbf{ID Decisione}} & 
+        \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione}}} & 
+        \textcolor{white}{\textbf{Assegnatario}} \\
+
+        DEC-001 & Attendere di aver svolto tutti gli incontri con le aziende per decretare il capitolato per il quale candidarsi  & Tutti \\
+        DEC-002 & Redazione della presentazione per il diario di bordo  & Nicolò Lattanzio \\
+        DEC-003 & Revisione dell'analisi dei pro e contro di ogni capitolato  & Giulia Romanato \\
+    \end{tabular}
+
+
+
+\end{center}
+
+\vspace{1cm}
+\begin{center}
+\rule{6cm}{0.4pt}\\
+\textit{Firma del proponente Emanuele Righetto}
+\end{center}
+
+\end{document}

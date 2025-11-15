@@ -1,0 +1,9 @@
+#Ignora tutti i file relativi alla compilazione dei latex
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+

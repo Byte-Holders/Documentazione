@@ -1,0 +1,61 @@
+name: 'Sposta File PDF Automaticamente'
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  sposta_e_committa:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Permette al token di scrivere e pushare i commit
+      pull-requests: write # Utile se l'Action deve anche interagire con la PR
+    steps:
+      - name: Checkout del codice
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ github.event.pull_request.head.ref }}
+          
+      - name: Configurazione Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+      - name: Spostamento Incondizionato e Sovrascrittura
+        run: |
+          echo "Inizio l'analisi per gli spostamenti di PDF con sovrascrittura..."
+
+          # 1. Configurazione Git (se in questo step)
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # 2. Ciclo di Spostamento
+          find Source/ -type f -name "*.pdf" | while read -r SOURCE_PATH; do
+
+            DEST_PATH="${SOURCE_PATH/Source\//}"
+            DEST_DIR=$(dirname "$DEST_PATH")
+
+            # PASSO CHIAVE: Controlla e rimuovi il file di destinazione esistente
+            if [ -f "$DEST_PATH" ]; then
+              echo "ATTENZIONE: File di destinazione esistente. Sovrascrittura in corso di: $DEST_PATH"
+              # Rimuove il file da Git e dal filesystem
+              git rm -f "$DEST_PATH"
+            fi
+
+            # 3. Crea le directory di destinazione se non esistono
+            if [ ! -d "$DEST_DIR" ]; then
+              mkdir -p "$DEST_DIR"
+            fi
+
+            # 4. Esegui lo spostamento effettivo con git mv
+            # Questo ora funziona perché la destinazione è stata rimossa (se esistente)
+            echo "Spostamento: $SOURCE_PATH -> $DEST_PATH"
+            git mv "$SOURCE_PATH" "$DEST_PATH"
+          done
+          
+      - name: Commit e Push delle Modifiche
+        run: |
+          echo "Commit in corso per gli spostamenti automatici..."
+          git commit --allow-empty -m "chore: Spostamento automatico dei PDF da Source/ (GitHub Action)"
+          git push

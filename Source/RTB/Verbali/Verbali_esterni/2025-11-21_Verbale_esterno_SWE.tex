@@ -111,9 +111,9 @@
     \begin{tabularx}{0.9\textwidth}{@{}>{\bfseries\sffamily}l X@{}}
     Autore & \sffamily Alessandro Frison\\
     \arrayrulecolor{MediumGray}\hline \\[-1.5ex]
-    Verificatore & \sffamily Nicolò Lattanzio\\
+    Verificatore & \sffamily Giacomo Nalotto\\
     \arrayrulecolor{MediumGray}\hline \\[-1.5ex] 
-    Approvazione & \sffamily Giacomo Nalotto\\ 
+    Approvatore & \sffamily Giacomo Nalotto\\ 
     \arrayrulecolor{MediumGray}\hline 
 \end{tabularx}
     
@@ -137,7 +137,8 @@
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} & 
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
         
-        1.0 & 25/11/2025 & Alessandro Frison & Creazione e compilazione del verbale della riunione con Var Group. \\
+        0.2 & 27/11/2025 & Giacomo Nalotto & Verifica del verbale e controllo della tabella delle decisioni ed azioni. \\
+        0.1 & 25/11/2025 & Alessandro Frison & Creazione e compilazione del verbale della riunione con Var Group. \\
     \end{tabular}
 \end{center}
 
@@ -187,17 +188,17 @@
 
 \clearpage
 \subsection{Definizione delle modalità di contatto}
-Abbiamo discusso le modalità di contatto con l'azienda Var Group, concordando che il canale principale sarà tramite \textbf{Slack}, con \textbf{incontri bisettimanali} per aggiornamenti e chiarimenti. 
+Abbiamo discusso le modalità di contatto con l'azienda Var Group, concordando che il canale principale per la comunicazione asincrona sarà tramite \textbf{Slack}, con \textbf{incontri bisettimanali} per aggiornamenti e chiarimenti. 
 
 
 \subsection{Definizione degli attori}
 In modo individuale ci siamo chiesti chi fossero gli attori principali del progetto e li abbiamo appuntati su dei blocchi note. Successivamente, in gruppo, abbiamo discusso le nostre idee e siamo giunti a una lista di attori candidati per il progetto:
 \begin{enumerate}
-    \item \textbf{Tech Lead} (Supervisore tecnico del progetto)
-    \item \textbf{Project Manager} (Responsabile dei progetti a lui assegnati)
-    \item \textbf{Developer} (Sviluppatore software)
-    \item \textbf{Security Analyst} (Analista della sicurezza informatica)
-    \item \textbf{End User} (Utente finale)
+    \item \textbf{Tech Lead} (supervisore tecnico del progetto)
+    \item \textbf{Project Manager} (responsabile dei progetti a lui assegnati)
+    \item \textbf{Developer} (sviluppatore software)
+    \item \textbf{Security Analyst} (analista della sicurezza informatica)
+    \item \textbf{End User} (utente finale)
 \end{enumerate}
 Dopo un'attenta analisi, anche grazie al supporto di Var Group, abbiamo deciso che gli attori principali del progetto saranno:
 \begin{enumerate}
@@ -211,29 +212,29 @@ Successivamente, abbiamo discusso le differenze tra ciascun attore, arrivando al
 \begin{itemize}
     \item \textbf{Tech Lead}
         \begin{itemize}
-            \item Supervisione tecnica di tutti i progetti (con filtri per una maggiore leggibilità)
-            \item Visione delle criticità OWASP
-            \item Analisi delle repository
-            \item Visualizzazione dei problermi di documentazione (con suggerimenti per il miglioramento)
-            \item Verifica lo stato delle repo in base ai risultati dei test sulla repository
+            \item supervisione tecnica di tutti i progetti (con filtri per una maggiore leggibilità)
+            \item visione delle criticità OWASP
+            \item analisi delle repository
+            \item visualizzazione dei problermi di documentazione (con suggerimenti per il miglioramento)
+            \item verifica lo stato delle repo in base ai risultati dei test sulla repository
         \end{itemize}
     \item \textbf{Project Manager}
         \begin{itemize}
-            \item Visione d'insieme dei suoi progetti (con filtri per una maggiore leggibilità)
-            \item Assegna issue / task ai developer
-            \item Visualizzazione delle criticità OWASP nei progetti assegnati
-            \item Monitoraggio dello stato di avanzamento dei suoi progetti
-            \item Lancia analisi sulle sue repository
-            \item Gestione della struttura della documentazione
-            \item Ha l'accesso ai suoi repository
+            \item visione d'insieme dei progetti assegnati (con filtri per una maggiore leggibilità)
+            \item assegnazione issue / task ai developer
+            \item visualizzazione delle criticità OWASP nei progetti assegnati
+            \item monitoraggio dello stato di avanzamento dei suoi progetti
+            \item possibilità di lanciare analisi sulle repository
+            \item gestione della struttura della documentazione
+            \item ha l'accesso completo alle repository dei progetti posti sotto la sua supervisione
         \end{itemize}
     \item \textbf{Developer}
         \begin{itemize}
-            \item Accesso alle repository assegnategli dal Project Manager
-            \item Vede le issue a suo carico (assegnategli dal Project Manager)
-            \item Vede i risultati dei test sui suoi push
-            \item Vede lo stato della documentazione delle sue repository
-            \item Vede la situazione delle repo a cui è assegnato
+            \item accesso alle repository assegnategli dal Project Manager
+            \item vede le issue a suo carico (assegnategli dal Project Manager)
+            \item vede i risultati dei test sui suoi push
+            \item vede lo stato della documentazione delle sue repository
+            \item vede la situazione delle repo a cui deve lavorare
         \end{itemize} 
 \end{itemize}
 
@@ -270,10 +271,10 @@ Abbiamo discusso le possibili tipologie di agenti da implementare per il progett
             \end{itemize}
         \end{itemize}
 \end{itemize}
-Dopo aver valutato le opzioni, abbiamo deciso di optare per un'architettura autocratica
+Dopo aver valutato le opzioni, il gruppo ha deciso di optare per un'architettura autocratica.
 
 \subsection{Design Thinking}
-Infine dopo la prima fase di brainstorming individuale, abbiamo discusso in gruppo le idee emerse e siamo giunti al diagramma di flusso riportato in Figura \ref{fig:diagramma}.
+Infine dopo la prima fase di brainstorming individuale, abbiamo discusso le idee emerse e siamo giunti al diagramma di flusso riportato in Figura \ref{fig:diagramma}.
 \\
 In particolare, il sistema prevede l'analisi delle repository tramite \textbf{agenti software} che eseguono \textbf{test automatici} per valutare la \textbf{qualità del codice}, la \textbf{sicurezza} e la \textbf{documentazione}. 
 \\
@@ -291,21 +292,27 @@ I risultati vengono poi aggregati e presentati agli utenti in base al loro ruolo
     \rowcolors{2}{LightGray}{white}
     \begin{tabular}{>{\centering\arraybackslash}m{2cm} >{\raggedright\arraybackslash}p{8cm} >{\centering\arraybackslash}p{2.5cm}}
         \rowcolor{AccentColor}
-        \textcolor{white}{\textbf{ID Decisione}} & 
+        \textcolor{white}{\textbf{codice}} & 
         \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione}}} & 
         \textcolor{white}{\textbf{Assegnatario}} \\
         
-        DEC-005 & Decisione degli attori & Tutti \\
-        DEC-006 & Definizione a grandi linee dei ruoli degli attori &  Tutti \\
-        DEC-007 & Decisione dei metodi di contatto con l'azienda & Tutti \\
-        DEC-007 & Scelta del tipo di Agenti & Tutti \\
-        AZ-003  & Decisione sulla modalità di svolgimento degli incontri bisettimanali & Tutti \\
-        AZ-004  & Creazione di un account Slack e iscrizione al canale creato da Var Group & Tutti \\
-        AZ-005  & Definizione più dettagliata dei ruoli degli attori & Tutti \\
-        AZ-006  & Sviluppo del diagramma di Figura \ref{fig:diagramma} & Tutti \\
-        AZ-007  & Inizio Analisi dei Requisiti & Tutti \\
-        & & \\
+        DEC-RTB-005 & Decisione degli attori & Tutti \\
+        DEC-RTB-006 & Definizione a grandi linee dei ruoli degli attori &  Tutti \\
+        DEC-RTB-007 & Decisione delle modalità di contatto con l'azienda & Tutti \\
+        DEC-RTB-007 & Scelta del tipo di Agenti & Tutti \\
+        DEC-RTB-008  & Decisione sulla modalità di svolgimento degli incontri bisettimanali & Tutti \\
+        
+        \midrule
+        
+        AZ-RTB-003  & Creazione di un account Slack e iscrizione al canale creato da Var Group & Tutti \\
+        AZ-RTB-004  & Definizione più dettagliata dei ruoli degli attori & Tutti \\
+        AZ-RTB-005  & Sviluppo del diagramma di Figura \ref{fig:diagramma} & Tutti \\
+        AZ-RTB-006  & Inizio Analisi dei Requisiti & Tutti \\
     \end{tabular}
+
+    \vspace{2cm}
+    \rule{6cm}{0.4pt}\\
+    \textit{Firma del proponente Stefano Dindo}
 
 \end{center}
 

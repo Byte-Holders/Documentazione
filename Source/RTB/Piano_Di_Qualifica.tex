@@ -1,0 +1,161 @@
+\documentclass[a4paper, 11pt]{article}
+
+% ====== PACCHETTI NECESSARI ======
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\setlength{\headheight}{14pt}
+\usepackage{titlesec}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{lipsum}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc} % Specifica la codifica del file (necessaria per le accentate)
+\usepackage[T1]{fontenc}    % Migliora l'output dei font per le lingue europee
+
+% ====== IMPOSTAZIONI GLOBALI DI STILE ======
+
+% 1. DEFINIZIONE COLORI BLU-VIOLA
+\definecolor{AccentColor}{RGB}{80, 90, 180} % Blu-viola principale
+\definecolor{AccentLight}{RGB}{80, 90, 180} % Versione più chiara
+\definecolor{AccentDark}{RGB}{50, 60, 140} % Versione più scura
+\definecolor{LightGray}{RGB}{245, 245, 250}
+\definecolor{MediumGray}{RGB}{200, 200, 210}
+
+% 2. IMPOSTAZIONE MARGINI
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=3.5cm, bottom=3.5cm}
+
+% 3. STILE DEI TITOLI DI SEZIONE
+\titleformat{\section}
+  {\normalfont\sffamily\Large\bfseries\color{AccentColor}}
+  {\thesection}
+  {1em}
+  {}
+\titleformat{\subsection}
+  {\normalfont\sffamily\large\bfseries\color{AccentDark}}
+  {\thesubsection}
+  {1em}
+  {}
+
+% 4. IMPOSTAZIONE HEADER E FOOTER
+\pagestyle{fancy}
+\fancyhf{} 
+\fancyhead[L]{\sffamily\bfseries\color{AccentColor}\@BYTE HOLDERS}
+\fancyhead[R]{\sffamily\color{AccentColor}\thepage}
+\renewcommand{\headrulewidth}{0.8pt}
+\renewcommand{\headrule}{\color{AccentColor}\hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}
+
+% 5. IMPOSTAZIONE LINK
+\hypersetup{
+    colorlinks=true,
+    linkcolor=AccentColor,
+    urlcolor=AccentLight,
+    citecolor=AccentDark,
+}
+
+% 6. PERSONALIZZAZIONE ELENCHI
+\setlist[itemize]{itemsep=2pt, topsep=4pt}
+\setlist[enumerate]{itemsep=2pt, topsep=4pt}
+
+% ====== COMANDI PERSONALIZZATI ======
+\makeatletter
+\newcommand{\NomeGruppo}[1]{\def\@NomeGruppo{#1}}
+\newcommand{\Sommario}[1]{\def\@Sommario{#1}}
+\newcommand{\Autore}[1]{\def\@Autore{#1}}
+\newcommand{\Verificatore}[1]{\def\@Verificatore{#1}}
+\makeatother
+
+% ====== STILE TABELLE MIGLIORATO ======
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X} % Colonna giustificata a sinistra
+\setlength{\arrayrulewidth}{0.4pt} % Linee più sottili
+\setlength{\tabcolsep}{10pt} % Spaziatura interna celle
+\renewcommand{\arraystretch}{1.4} % Altezza righe
+
+% ====== INIZIO DEL DOCUMENTO ======
+\begin{document}
+
+% ====== INFORMAZIONI PER LA PAGINA DI TITOLO ======
+\NomeGruppo{BYTE HOLDERS}
+\Sommario{Questo documento descrive il piano di qualifica del progetto, delineando le strategie e le metodologie che verranno adottate per garantire la qualità del prodotto finale.}
+\Autore{}
+\Verificatore{}
+
+\pagestyle{empty}
+
+% ====== PAGINA DI TITOLO ======
+\begin{titlepage}
+    \centering
+    
+    \includegraphics[width=0.55\textwidth]{../Assets/ByteHolders1.png}\par\vspace{1.5cm}
+    
+    {\LARGE \sffamily \color{AccentColor}\bfseries Piano di Qualifica}\par
+    
+    \vfill
+    
+    \noindent\color{AccentColor}\rule{\textwidth}{1pt}\par
+    \vspace{0.5cm}
+    
+    \begin{tabularx}{0.9\textwidth}{@{}>{\bfseries\sffamily}l X@{}}
+    Autori & \sffamily Alessandro Frison, Lorenzo Grolla\\
+    \arrayrulecolor{MediumGray}\hline \\[-1.5ex]
+    Verificatori & \sffamily XXX\\
+    \arrayrulecolor{MediumGray}\hline \\[-1.5ex] 
+    Approvazione & \sffamily YYY\\ 
+    \arrayrulecolor{MediumGray}\hline 
+\end{tabularx}
+    
+    \vfill
+\end{titlepage}
+
+\newpage
+
+% ====== TABELLA DI VERSIONAMENTO ======
+{\normalfont\sffamily\huge\bfseries\color{AccentColor} Registro delle versioni}
+\vspace{1cm}
+
+\begin{center}
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{>{\centering\arraybackslash}m{2cm} >{\centering\arraybackslash}m{2cm} >{\raggedright\arraybackslash}m{2.5cm} >{\raggedright\arraybackslash}m{6.5cm}}
+        \rowcolor{AccentColor}
+          \textcolor{white}{\textbf{Versione}} & 
+          \textcolor{white}{\textbf{Data}} & 
+          \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} & 
+          \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
+        0.0.1 & 01/12/2025 & Alessandro Frison & Inizio stesura \\ 
+    \end{tabular}
+\end{center}
+
+
+% ====== INDICE ======
+\pagestyle{fancy}
+\newpage
+\tableofcontents
+\newpage
+
+\section{Introduzione}
+
+\subsection{Scopo del documento}
+\subsection{Glossario}
+\subsection{Maturià e miglioramenti}
+\subsection{Riferimenti}
+\subsubsection{Riferimenti normativi}
+\subsubsection{Riferimenti informativi}
+
+\section{Piano di qualità}
+
+\section{Strategie di test}
+
+\section{Cruscotto di qualità}
+
+\section{Valutazioni per il miglioramento}
+
+\end{document}

@@ -44,6 +44,11 @@
   {\thesubsection}
   {1em}
   {}
+  \titleformat{\subsubsection}
+  {\normalfont\sffamily\large\bfseries\color{AccentDark}} % Cambiare colore dellle subsubsection
+  {\thesubsection}
+  {1em}
+  {}
 
 % 4. IMPOSTAZIONE HEADER E FOOTER
 \pagestyle{fancy}
@@ -160,4 +165,59 @@ Il gruppo si è posto l'obiettivo di completare l'MVP di questo progetto entro i
         \item \href{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C2.pdf} {Capitolato C2 - Code Guardian}
         \item \href{https://byte-holders.github.io/Documentazione/} {Documentazione del progetto}
 \end{itemize}
+
+
+\section{Gestione del progetto}
+Per la gestione del progetto sono necessari vari strumenti e pratiche che permettano di mantenere l'organizzazione e la produttività del team.
+Tra le pratiche in supporto al progetto vi sono:
+\begin{itemize}
+    \item Documentazione
+    \item Accertamento qualità
+    \item Verifica e validazione
+\end{itemize}
+
+\subsection{Strumenti di supporto}
+Per la gestione del progetto, il gruppo \textbf{\textit{BYTE HOLDERS}} utilizza i seguenti strumenti:
+\begin{itemize}
+  \item \textbf{GitHub}: per il versionamento del codice e la gestione delle issue.
+  \item \textbf{Discord}: per la comunicazione interna tra i membri del team.
+  \item \textbf{Latex}: per la redazione della documentazione di progetto.
+  \item \textbf{Github Actions}: Per la gestione dei latex e la generazione automatica della documentazione.
+  \item \textbf{Slack}: Per la comunicazione con il proponente.
+\end{itemize}
+
+\subsection{Documentazione}
+La documentazione del progetto viene gestita utilizzando \textbf{Latex} e viene archiviata in un repository dedicato su \textbf{GitHub}. 
+\\Ogni documento segue una struttura standardizzata per garantire coerenza e facilità di lettura.
+
+\subsubsection{Struttura dei documenti}
+
+\subsubsection{Versionamento}
+Il versionamento di ogni documento viene raccolto in una tabella ad inizio documento, che ne traccia le modifiche e la loro data, gli autori e una breve descrizione.
+La tabella deve essere di tipo LIFO(Last in First Out), ovvero le versioni più recenti devono essere in cima alla tabella.
+\\
+In questo modo è possibile vedere fin da subito lo stato di un documento senza dover leggere tutta la tabella fino alla fine; 
+inoltre i documenti con la versione più aggiornata sono gli unici documento validi per la consultazione.
+
+Il versionamento di un documento e' composto da due cifre separate da un punto: a.b, se a=1 allora il documento e' stato verificato e approvato, 
+se a=0 allora il documento e' in fase di stesura e non e' stato ancora verificato.
+
+Un documento che e' stato verificato e approvato puo' essere modificato anche se nella sua versione 1.0, in questo caso la cifra a viene incrementata di 1 e la cifra b viene azzerata.
+
+
+
+\subsubsection{Tabella Decisioni e Azioni}
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}

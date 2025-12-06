@@ -46,7 +46,7 @@
   {}
   \titleformat{\subsubsection}
   {\normalfont\sffamily\large\bfseries\color{AccentDark}} % Cambiare colore dellle subsubsection
-  {\thesubsection}
+  {\thesubsubsection}
   {1em}
   {}
 
@@ -90,8 +90,7 @@
 
 % ====== INFORMAZIONI PER LA PAGINA DI TITOLO ======
 \NomeGruppo{BYTE HOLDERS}
-\TitoloVerbale{Verbale Riunione Interna}
-\Sommario{Questo verbale documenta la riunione interna avvenuta il 23/10/2025 per la discussione dei capitolati e la definizione degli strumenti di lavoro del team.}
+\TitoloVerbale{Norme di Progetto}
 \Autore{}
 \Verificatore{}
 
@@ -144,8 +143,10 @@
           \textcolor{white}{\textbf{Data}} & 
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} & 
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
+
+        0.2 & 06/12/2025 & Nicolò Lattanzio & Aggiunta sezione Processi Primari, con relative sottosezioni, e prima redazione della sezione Processi di Supporto. \\
+        0.1 & 30/11/2025 & Nicolò Lattanzio & Creazione e prima redazione del documento.  \\
         
-        0.1 & 30/11/2025 & Nicolò Lattanzio & Creazione e prima redazione del documento.   \\
     \end{tabular}
 \end{center}
 
@@ -155,8 +156,30 @@
 \section{Informazioni introduttive}
 \subsection{Scopo del documento}
 Questo documento definisce le norme di progetto adottate dal gruppo \textbf{\textit{BYTE HOLDERS}} per la gestione e lo sviluppo del progetto. Esso stabilisce le linee guida per la documentazione, la comunicazione, la gestione delle versioni e le responsabilità dei membri del team.
+\\
+Per la realizzazione del documento, e' stato deciso di prendere come riferimento lo standard ISO/IEC 12207, 
+che definisce i processi di ciclo di vita del software e fornisce una struttura per la gestione del progetto.
+Le tipologie di processi sono le seguenti:
+\\
+\begin{itemize}
+    \item \textbf{Processi Primari} : Consiste nelle attività principali che portano alla creazione, consegna e mantenimento del prodotto finale.
+    \item \textbf{Processi di Supporto}: Processi che forniscono supporto alle attività principali, possono essere utilizzato da qualsiasi processo e ne garantiscono la qualità e la correttezza
+    \item \textbf{Processi Organizzativi}: Processi necessari a creare l'ambiente e le risorse necessarie affinché i processi primari possano esistere.
+\end{itemize}
+
+
 \subsection{Scopo del prodotto}
-Il prodotto sviluppato dal gruppo \textbf{\textit{BYTE HOLDERS}} è un'applicazione web che mira a fornire una piattaforma intuitiva per la gestione delle repository GitHub, fornendo informazioni utili in base alle varie necessità.
+Il prodotto sviluppato dal gruppo \textbf{\textit{BYTE HOLDERS}} è un'applicazione web che mira a fornire una piattaforma intuitiva per la gestione delle repository GitHub, 
+fornendo informazioni utili in base alle varie necessità.
+Tra queste funzionalità vi sono:
+\begin{itemize}
+    \item Analisi statica della qualità del codice
+    \item Analisi della qualità della documentazione
+    \item Analisi OWASP per la verifica delle vulnerabilità di sicurezza tramite l'integrazione di strumenti di terze parti
+    \item Integrazione con API di GitHub per fornire statistiche dettagliate sulle repository
+    \item Analisi specifica sulle pull request per valutare la qualità del codice proposto
+    \item Proposte di remedation per migliorare la qualità del codice e della documentazione
+\end{itemize}
 Il prodotto segue la proposta del \textbf{capitolato C2 - Code Guardian} fornito dal proponente \textbf{\textit{VarGroup S.r.l.}}
 \\
 Il gruppo si è posto l'obiettivo di completare l'MVP di questo progetto entro il \textbf{20 Marzo 2026}, con un costo totale di \textbf{13.290 Euro.}
@@ -167,14 +190,53 @@ Il gruppo si è posto l'obiettivo di completare l'MVP di questo progetto entro i
 \end{itemize}
 
 
-\section{Gestione del progetto}
-Per la gestione del progetto sono necessari vari strumenti e pratiche che permettano di mantenere l'organizzazione e la produttività del team.
-Tra le pratiche in supporto al progetto vi sono:
+\section{Processi Primari}
+Questa sezione descrive i processi del ciclo di vita primari, definiti dallo standard ISO/IEC 12207, che sono direttamente coinvolti nella creazione, fornitura e manutenzione del prodotto software. 
+Essi costituiscono il cuore operativo del progetto, governando le attività principali dall'acquisizione delle esigenze alla consegna e al supporto del prodotto finale.
+\\
+Possiamo distinguere due macro processi:
 \begin{itemize}
-    \item Documentazione
-    \item Accertamento qualità
-    \item Verifica e validazione
+    \item \textbf{Processo di Fornitura:} Si occupa della gestione delle relazioni con il committente, dalla risposta alla richiesta iniziale fino alla consegna del prodotto.
+    \item \textbf{Processo di Sviluppo:} Copre tutte le attività ingegneristiche necessarie per trasformare i requisiti in un prodotto software funzionante, includendo analisi, progettazione, implementazione, testing e rilascio.
 \end{itemize}
+
+\subsection{Processo di Fornitura}
+Questo processo definisce le attività che il gruppo Byte Holders, in qualità di fornitore, implementa per garantire la corretta fornitura del prodotto software a VarGroup S.r.l., committente del progetto. 
+Esso disciplina l'intero ciclo, dall'aggiudicazione del capitolato alla consegna finale.
+\\
+Vediamo ora le attività principali coinvolte in questo processo:
+\begin{enumerate}
+    \item \textbf{Risposta al Bando:} Analisi del capitolato e preparazione dell'offerta (documento \textit{Candidatura}).
+    \item \textbf{Negoziazione Requisiti:} Realizzazione di una controproposta per il proponente, definendo i requisiti funzionali e non funzionali che il gruppo Byte Holders, come fornitore, prevede di riuscire a realizzare.
+    \item \textbf{Pianificazione della Fornitura:} Creazione del \textit{Piano di Progetto} che dettaglia come verranno eseguiti i processi di sviluppo e gestione.
+    \item \textbf{Esecuzione e Controllo:} Realizzazione del progetto conforme al piano, con reporting periodico allo stakeholder.
+    \item \textbf{Revisione e Valutazione:} Condotta di revisioni tecniche e attività di verifica e validazione.
+    \item \textbf{Consegna e Completamento:} Consegna del prodotto finale insieme alla relativa documentazione.
+\end{enumerate}
+\subsubsection{Documenti Principali:} 
+Per questo progetto saranno prodotti i seguenti documenti chiave:
+
+\subsection{Processo di Sviluppo}
+Il processo di sviluppo definisce il ciclo di vita ingegneristico attraverso il quale i requisiti del committente vengono trasformati nel prodotto software finale. 
+Questo processo organizza in fasi strutturate le attività di analisi, progettazione, implementazione e validazione, garantendo un approccio sistematico e tracciabile alla realizzazione del sistema.\\
+
+\begin{itemize}
+    \item \textbf{Attività Chiave (Fasi del Ciclo di Vita):}
+    \begin{enumerate}
+        \item \textbf{Analisi dei Requisiti:} Raccolta, analisi, specifica e validazione dei requisiti con gli stakeholder. Prodotto: \textit{Documento di Analisi dei Requisiti}.
+        \item \textbf{Progettazione dell'Architettura:} Definizione dell'architettura di sistema e software ad alto livello.
+        \item \textbf{Progettazione di Dettaglio:} Definizione dettagliata dei componenti e delle interfacce.
+        \item \textbf{Costruzione (Implementazione e Codifica):} Scrittura del codice secondo gli standard di progetto e utilizzo di un sistema di versioning (Git). Prodotto: Codice sorgente e repository.
+        \item \textbf{Integrazione e Testing:}
+        \begin{itemize}
+            \item Testing delle unità (sviluppatori)
+            \item Testing d'integrazione (team di integrazione)
+            \item Testing di sistema (team di qualità)
+        \end{itemize}
+    \end{enumerate}
+    \item \textbf{Metodologia:} Adotteremo pratiche ibride Agile, con sprint per lo sviluppo e milestone formali per le revisioni.
+\end{itemize}
+
 
 \subsection{Strumenti di supporto}
 Per la gestione del progetto, il gruppo \textbf{\textit{BYTE HOLDERS}} utilizza i seguenti strumenti:
@@ -184,7 +246,12 @@ Per la gestione del progetto, il gruppo \textbf{\textit{BYTE HOLDERS}} utilizza 
   \item \textbf{Latex}: per la redazione della documentazione di progetto.
   \item \textbf{Github Actions}: Per la gestione dei latex e la generazione automatica della documentazione.
   \item \textbf{Slack}: Per la comunicazione con il proponente.
-\end{itemize}
+\end{itemize}%
+
+
+
+
+\section{Processi Di Supporto}
 
 \subsection{Documentazione}
 La documentazione del progetto viene gestita utilizzando \textbf{Latex} e viene archiviata in un repository dedicato su \textbf{GitHub}. 
@@ -199,15 +266,22 @@ La tabella deve essere di tipo LIFO(Last in First Out), ovvero le versioni più 
 In questo modo è possibile vedere fin da subito lo stato di un documento senza dover leggere tutta la tabella fino alla fine; 
 inoltre i documenti con la versione più aggiornata sono gli unici documento validi per la consultazione.
 
-Il versionamento di un documento e' composto da due cifre separate da un punto: a.b, se a=1 allora il documento e' stato verificato e approvato, 
-se a=0 allora il documento e' in fase di stesura e non e' stato ancora verificato.
+Il versionamento di un documento e' composto da tre cifre separate da un punto: a.b.c, se a=1 allora il documento e' stato verificato e approvato, 
+se a=0 allora il documento si trova in una fase di redazione e non e' stato ancora verificato.
+La cifra c viene incrementata di 1 ad ogni modifica del documento, la cifra b invece viene incrementata di 1 quando avviene una modifica sostanziale del documento.
 
-Un documento che e' stato verificato e approvato puo' essere modificato anche se nella sua versione 1.0, in questo caso la cifra a viene incrementata di 1 e la cifra b viene azzerata.
-
-
+Un documento che e' stato verificato e approvato puo' essere modificato anche se nella sua versione 1.0.0.
 
 \subsubsection{Tabella Decisioni e Azioni}
 
+
+\section{Processi Organizzativi}
+
+\subsection{Riunioni}
+
+\subsection{Strumenti a supporto}
+
+\subsection{Gestione dei processi}
 
 
 

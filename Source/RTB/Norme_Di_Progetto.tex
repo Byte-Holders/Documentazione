@@ -144,6 +144,7 @@
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} & 
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
 
+        0.3 & 07/12/2025 & Nicolò Lattanzio & Aggiunta sottosezione 4.1.1 per la Struttura dei documenti, 4.1.2 per il loro versionamento e 4.1.3 per la tabella Decisioni e Azioni.\\
         0.2 & 06/12/2025 & Nicolò Lattanzio & Aggiunta sezione Processi Primari, con relative sottosezioni, e prima redazione della sezione Processi di Supporto. \\
         0.1 & 30/11/2025 & Nicolò Lattanzio & Creazione e prima redazione del documento.  \\
         
@@ -239,41 +240,94 @@ Questo processo organizza in fasi strutturate le attività di analisi, progettaz
 
 
 \subsection{Strumenti di supporto}
-Per la gestione del progetto, il gruppo \textbf{\textit{BYTE HOLDERS}} utilizza i seguenti strumenti:
+Per i processi primari il gruppo \textbf{\textit{BYTE HOLDERS}} utilizza i seguenti strumenti:
 \begin{itemize}
   \item \textbf{GitHub}: per il versionamento del codice e la gestione delle issue.
   \item \textbf{Discord}: per la comunicazione interna tra i membri del team.
-  \item \textbf{Latex}: per la redazione della documentazione di progetto.
-  \item \textbf{Github Actions}: Per la gestione dei latex e la generazione automatica della documentazione.
-  \item \textbf{Slack}: Per la comunicazione con il proponente.
-\end{itemize}%
-
-
-
+  \item \textbf{Slack}: Per la comunicazione con il proponente, in modo da concordare eventuali riunioni e per richiedere supporto tecnico se necessario.
+  \item \textbf{Teams}: Per le riunioni virtuali con il proponente, dando la possibilità di condividere lo schermo e mostrare il lavoro svolto.
+\end{itemize}
 
 \section{Processi Di Supporto}
-
+Questa sezione descrive i processi di supporto secondo lo standard ISO/IEC 12207, che forniscono l'infrastruttura tecnica e metodologica necessaria per garantire qualità e coerenza nell'esecuzione dei processi primari. Tali processi, di natura trasversale, abilitano e migliorano le attività di sviluppo, gestione e verifica attraverso strumenti, procedure e controlli dedicati.
 \subsection{Documentazione}
 La documentazione del progetto viene gestita utilizzando \textbf{Latex} e viene archiviata in un repository dedicato su \textbf{GitHub}. 
 \\Ogni documento segue una struttura standardizzata per garantire coerenza e facilità di lettura.
 
 \subsubsection{Struttura dei documenti}
 
+Tutti i documenti formali prodotti dal gruppo seguono una struttura standardizzata per garantire coerenza, professionalità e facilità di consultazione. Il template \textbf{Latex} utilizzato definisce chiaramente gli elementi che compongono ciascun documento:
+
+\begin{itemize}[itemsep=6pt]
+    \item \textbf{Frontespizio:}
+    \begin{itemize}[itemsep=4pt]
+        \item Logo del gruppo Byte Holders e titolo del progetto
+        \item Nome del documento (es. "Norme di Progetto", "Verbale Interno")
+        \item Informazioni di identificazione: data, autore, verificatore e approvatore
+    \end{itemize}
+    
+    \item \textbf{Registro delle Versioni:}
+    \begin{itemize}[itemsep=4pt]
+        \item Tabella posizionata dopo l'indice
+        \item Tracciamento cronologico inverso (LIFO) di tutte le modifiche
+        \item Colonne per versione, data, autore e descrizione delle modifiche
+    \end{itemize}
+    
+    \item \textbf{Indice:}
+    \begin{itemize}[itemsep=4pt]
+        \item Elenca tutte le sezioni, sottosezioni e relative pagine
+        \item Fornisce una mappa navigabile del documento
+    \end{itemize}
+    
+    \item \textbf{Contenuto Principale:}
+    \begin{itemize}[itemsep=4pt]
+        \item Organizzato gerarchicamente in sezioni, sottosezioni e sotto-sottosezioni
+    \end{itemize}
+
+    \item \textbf{Stile Grafico Uniforme:}
+    \begin{itemize}[itemsep=4pt]
+        \item Palette di colori definita dal gruppo (blu-viola in diverse tonalità)
+        \item Font sans-serif (Helvetica) per migliorare la leggibilità
+        \item Margini standardizzati
+    \end{itemize}
+\end{itemize}
+Questa struttura si applica a tutti i tipi di documenti prodotti, tra cui: Verbali(interni ed esterni), Norme di Progetto, Analisi dei Requisiti\dots
+
 \subsubsection{Versionamento}
-Il versionamento di ogni documento viene raccolto in una tabella ad inizio documento, che ne traccia le modifiche e la loro data, gli autori e una breve descrizione.
-La tabella deve essere di tipo LIFO(Last in First Out), ovvero le versioni più recenti devono essere in cima alla tabella.
+Il versionamento dei documenti è un processo fondamentale per garantire la tracciabilità delle modifiche, la collaborazione ordinata tra i membri del team e la chiara identificazione dello stato corrente di ciascun documento. 
 \\
-In questo modo è possibile vedere fin da subito lo stato di un documento senza dover leggere tutta la tabella fino alla fine; 
-inoltre i documenti con la versione più aggiornata sono gli unici documento validi per la consultazione.
-
-Il versionamento di un documento e' composto da tre cifre separate da un punto: a.b.c, se a=1 allora il documento e' stato verificato e approvato, 
-se a=0 allora il documento si trova in una fase di redazione e non e' stato ancora verificato.
-La cifra c viene incrementata di 1 ad ogni modifica del documento, la cifra b invece viene incrementata di 1 quando avviene una modifica sostanziale del documento.
-
-Un documento che e' stato verificato e approvato puo' essere modificato anche se nella sua versione 1.0.0.
-
+Per questo motivo, il gruppo \textbf{Byte Holders} adotta un sistema di numerazione semantica e un registro strutturato delle modifiche.
+\\
+\\
+Per la gestione del versionamento, abbiamo deciso di usare uno schema a tre livelli, X.Y.Z, dove:
+\begin{itemize} 
+    \item \textbf{X (Approvazione):} Incrementato per cambiamenti significativi che richiedono l'approvazione formale. E quindi il raggiungimento di un documento stabile e definitivo.
+    \item \textbf{Y (Major Update):} Incrementato per l'aggiunta di nuove sezioni o modifiche sostanziali che alterano la struttura complessiva del documento. Il documento non è ancora definitivo.
+    \item \textbf{Z (Minor Update):} Incrementato per correzioni minori, come errori di battitura o aggiornamenti di dettaglio.
+\end{itemize}
 \subsubsection{Tabella Decisioni e Azioni}
-
+Ogni verbale relativo al progetto conterrà una tabella decisioni e azioni, che riassume le decisioni prese durante la riunione e le azioni assegnate ai membri del team.
+Anche in questo caso, per garantire la tracciabilità, ogni decisione o azione avrà un proprio codice di identificazione,
+composto da un prefisso che ne indica la natura (DEC per decisione, AZ per azione); seguito dalla fase del progetto in cui è stata presa (RTB o PB); e infine un numero progressivo che identifica univocamente la decisione o l'azione all'interno di quella fase.
+\\
+Tutto ciò ci permette di tenere traccia delle decisioni e delle azioni in modo chiaro e organizzato, facilitando il monitoraggio del progresso del progetto e la responsabilizzazione dei membri del team.
+\\
+Qui sotto è riportato un esempio di tabella decisioni e azioni:
+\begin{center}
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{>{\centering\arraybackslash}m{2cm} >{\raggedright\arraybackslash}p{8cm} >{\centering\arraybackslash}p{2.5cm}}
+        \rowcolor{AccentColor}
+        \textcolor{white}{\textbf{Codice}} & 
+        \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione}}} & 
+        \textcolor{white}{\textbf{Assegnatario}} \\
+        
+        DEC-RTB-001 & Scelta del capitolato & Tutti \\
+        DEC-PB-003 & Delineamento dell'analisi dei requisiti & Tutti \\
+        \midrule
+        AZ-RTB-001 & Brainstorming Analisi dei requisiti & Tutti \\
+        AZ-PB-004 & Miglioramento struttura dei documenti & Tutti \\
+    \end{tabular}
+\end{center}
 
 \section{Processi Organizzativi}
 

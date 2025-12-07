@@ -105,9 +105,9 @@
     \vspace{0.5cm}
     
     \begin{tabularx}{0.9\textwidth}{@{}>{\bfseries\sffamily}l X@{}}
-    Autori & \sffamily Alessandro Frison, Lorenzo Grolla\\
+    Autori & \sffamily Alessandro Frison \\
     \arrayrulecolor{MediumGray}\hline \\[-1.5ex]
-    Verificatori & \sffamily XXX\\
+    Verificatori & \sffamily Lorenzo Grolla\\
     \arrayrulecolor{MediumGray}\hline \\[-1.5ex] 
     Approvazione & \sffamily YYY\\ 
     \arrayrulecolor{MediumGray}\hline 
@@ -124,13 +124,14 @@
 
 \begin{center}
     \rowcolors{2}{LightGray}{white}
-    \begin{tabular}{>{\centering\arraybackslash}m{2cm} >{\centering\arraybackslash}m{2cm} >{\raggedright\arraybackslash}m{2.5cm} >{\raggedright\arraybackslash}m{6.5cm}}
+    \begin{tabular}{>{\centering\arraybackslash}m{2cm} >{\centering\arraybackslash}m{2cm} >{\raggedright\arraybackslash}m{2.5cm} >{\raggedright\arraybackslash}m{2.5cm} >{\raggedright\arraybackslash}m{6.5cm}}
         \rowcolor{AccentColor}
           \textcolor{white}{\textbf{Versione}} & 
           \textcolor{white}{\textbf{Data}} & 
-          \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} & 
+          \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} &
+          \multicolumn{1}{c}{\textcolor{white}{\textbf{Verificatore}}} & 
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
-        0.0.1 & 01/12/2025 & Alessandro Frison & Inizio stesura \\ 
+        0.0.1 & 01/12/2025 & Alessandro Frison & Lorenzo Grolla & Inizio stesura \\ 
     \end{tabular}
 \end{center}
 
@@ -141,21 +142,57 @@
 \tableofcontents
 \newpage
 
+% ====== INTRODUZIONE ======
 \section{Introduzione}
 
 \subsection{Scopo del documento}
+Il Piano di Qualifica\textsuperscript{G} costituisce il riferimento principale per la gestione e il monitoraggio continuo della qualità del progetto software e dei processi coinvolti nel suo ciclo di vita. Esso definisce le strategie, gli standard e le metriche necessarie per assicurare che il software prodotto soddisfi pienamente i requisiti concordati e le aspettative dei committenti.
+
+L'obiettivo del documento è stabilire un approccio sistematico che si sviluppa attraverso tre dimensioni interconnesse:
+
+\begin{itemize}
+    \item \textbf{Piano della Qualità}: definisce gli obiettivi qualitativi da perseguire, stabilisce gli standard di riferimento e delinea le politiche e le strategie necessarie per raggiungere l'eccellenza nel prodotto finale.
+    \item \textbf{Controllo di Qualità}: implementa meccanismi di misurazione oggettivi per verificare la conformità ai requisiti. Attraverso l'uso di metriche predefinite, il gruppo monitora costantemente le prestazioni e lo stato di avanzamento, assicurando che le attività svolte siano allineate con quanto pianificato.
+    \item \textbf{Miglioramento Continuo}: si basa sull'analisi periodica dei risultati ottenuti per identificare opportunità di ottimizzazione. Questo processo prevede l'adattamento costante dei processi e degli obiettivi per correggere eventuali deviazioni e migliorare l'efficienza complessiva.
+\end{itemize}
+
+Attraverso questo strumento strategico, il gruppo si assicura che il progetto rispetti integralmente i requisiti definiti, consegua gli obiettivi prefissati e mantenga elevati standard qualitativi. L'approccio metodologico adottato non configura la qualità come un elemento statico, bensì come un processo dinamico di apprendimento e perfezionamento continuo.
+
 \subsection{Glossario}
-\subsection{Maturià e miglioramenti}
+Al fine di prevenire ambiguità e garantire una comunicazione uniforme e precisa tra i membri del gruppo e i committenti, è stato redatto un Glossario apposito.
+Per facilitare la lettura del presente documento, i termini tecnici o dotati di un significato specifico all'interno del dominio di progetto sono contrassegnati da una lettera «G» posta in apice (es. Parola\textsuperscript{G}). La definizione estesa di tali termini è reperibile nel documento citato tra i riferimenti informativi.
+
+\subsection{Maturità e miglioramenti}
+La gestione della qualità adottata dal gruppo Byte Holders non è intesa come una verifica statica, bensì come un processo dinamico ed evolutivo.
+La maturità del progetto viene monitorata attraverso l'analisi periodica delle metriche di processo e di prodotto; i dati raccolti permettono di individuare eventuali criticità organizzative o tecniche e di applicare tempestivamente contromisure mirate. Questo approccio iterativo garantisce un costante affinamento del \textit{Way of Working}, elevando progressivamente gli standard qualitativi con l'avanzare degli sprint.
 \subsection{Riferimenti}
+
 \subsubsection{Riferimenti normativi}
+\begin{itemize}
+    \item \textbf{Norme di Progetto ver. 1.0.0}\textsuperscript{G}: \\ \url{https://github.com/Byte-Holders/Documentazione/blob/main/RTB/Norme_Di_Progetto.pdf}.
+    \item \textbf{Capitolato d'appalto C2 - Code Guardian}: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C2.pdf}.
+\end{itemize}
+
 \subsubsection{Riferimenti informativi}
+\begin{itemize}
+    \item \textbf{Glossario}: \\ \url{https://github.com/Byte-Holders/Documentazione/blob/main/RTB/Glossario.pdf}.
+    \item \textbf{Standard ISO/IEC 9126}: \\ \url{https://it.wikipedia.org/wiki/ISO/IEC_9126}.
+    \item \textbf{Standard ISO/IEC 12207:1995}: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf}.
+\end{itemize}
 
-\section{Piano di qualità}
+% ====== QUALITÀ DI PROCESSO ======
+\section{Qualità di processo}
 
-\section{Strategie di test}
+% ====== QUALITÀ DI PRODOTTO ======
+\section{Qualità di prodotto}
 
-\section{Cruscotto di qualità}
+% ====== METODI DI TESTING ======
+\section{Metodi di testing}
 
-\section{Valutazioni per il miglioramento}
+% ====== CRUSCOTTO DI VALUTAZIONE ======
+\section{Cruscotto di Valutazione}
+
+% ====== INIZIATIVE DI AUTOMIGLIORAMENTO ======
+\section{Iniziative di automiglioramento}
 
 \end{document}

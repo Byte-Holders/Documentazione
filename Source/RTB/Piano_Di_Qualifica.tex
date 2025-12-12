@@ -180,9 +180,66 @@ La maturità del progetto viene monitorata attraverso l'analisi periodica delle 
     \item \textbf{Standard ISO/IEC 12207:1995}: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf}.
 \end{itemize}
 
-% ====== QUALITÀ DI PROCESSO ======
-\section{Qualità di processo}
 
+% ====== QUALITÀ DI PROCESSO ======
+\newpage
+\section{Qualità di processo}
+La qualità di processo costituisce un requisito fondamentale per il successo di un progetto software. Essa garantisce che i processi adottati siano efficaci, efficienti e conformi agli standard di qualità stabiliti.  
+Per assicurare tale qualità, il progetto si avvale dei seguenti strumenti e metodologie:
+
+\begin{itemize}
+    \item \textbf{Modelli di riferimento:} vengono utilizzati il \textit{Capability Maturity Model Integration (CMMI)} e la norma \textit{ISO/IEC 12207}, che forniscono linee guida per la definizione, la gestione e il miglioramento dei processi software;
+    
+    \item \textbf{Metriche di processo:} consentono di valutare le prestazioni e l’efficienza dei processi adottati. Per ciascuna metrica sono definite soglie quantitative che rappresentano i livelli minimi accettabili di qualità;
+    
+    \item \textbf{Revisioni periodiche:} comprendono sessioni di verifica e controllo mirate ad analizzare i risultati ottenuti, confrontandoli con gli obiettivi predefiniti, al fine di individuare eventuali deviazioni e applicare azioni correttive.
+\end{itemize}
+
+
+\subsection{Processi Primari}
+
+\begin{table}[h!] % [h!] cerca di mantenere la tabella "qui"
+    \centering
+    \label{tab:processi_primari} % Etichetta per citare la tabella nel testo
+    
+    \rowcolors{2}{LightGray}{white} % Colori alternati dalla riga 2 in poi
+    \begin{tabular}{c >{\raggedright\arraybackslash}p{7cm} c c}
+        
+        \rowcolor{AccentColor} % Colore dell'intestazione
+        \textcolor{white}{\textbf{Codice}} & 
+        \textcolor{white}{\textbf{Nome}} & 
+        \textcolor{white}{\textbf{Accettabile}} & 
+        \textcolor{white}{\textbf{Preferibile}} \\
+        
+        MPC-01 & Percentuale di completamento requisiti         & 90\%       & 100\% \\
+        MPC-02 & Numero medio di revisioni per processo         & 2          & 3     \\
+        MPC-03 & Tasso di difetti per KLOC                      & $\leq$ 5   & $\leq$ 2 \\
+        MPC-04 & Percentuale di processi conformi agli standard & 95\%       & 100\% \\
+        MPC-05 & Tempo medio di risposta alle anomalie          & $\leq$ 48h & $\leq$ 24h \\
+
+    \end{tabular}
+    \caption{Metriche di Qualità - Processi Primari} % Didascalia per l'indice delle tabelle
+
+\end{table}
+
+
+
+\subsubsection{Fornitura}
+
+
+\subsubsection{Sviluppo}
+
+\subsection{Processi di supporto}
+
+\subsubsection{Documentazione}
+
+\subsubsection{Gestione configurazione}
+
+\subsubsection{Verifica}
+
+\subsubsection{Validazione}
+
+\subsection{Parametri del progetto}
 % ====== QUALITÀ DI PRODOTTO ======
 \section{Qualità di prodotto}
 

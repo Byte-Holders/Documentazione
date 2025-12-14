@@ -143,7 +143,8 @@
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} & 
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
         
-        0.0.1 & 12/12/2025 & Damiano Berti & Prima stesura del verbale \\        
+        0.0.1 & 12/12/2025 & Damiano Berti & Prima stesura del verbale \\ 
+        0.1.0 & 14/12/2025 & Alessandro Frison & Verifica del verbale \\        
     \end{tabular}
 \end{center}
 
@@ -155,7 +156,7 @@
 \subsection{Durata e luogo}
 \begin{itemize}
     \item \textbf{Inizio:} 17:00
-    \item \textbf{Fine:} 17:45
+    \item \textbf{Fine:} 17:55
     \item \textbf{Luogo:} Meeting Microsoft Teams
 \end{itemize}
 
@@ -184,45 +185,67 @@
 
 \subsection{Ordine del giorno}
 \begin{enumerate}
-    \item Discussione con l'azienda proponente sulle funzionalità del programma Code Guardian
+    \item Discussione con l'azienda proponente in merito alle funzionalità del programma Code Guardian
 \end{enumerate}
 
 \newpage
 
 \subsection{Riassunto della discussione}
-La riunione si è concentrata sull'esposizione all'azienda proponente delle funzionalità e del flusso di utilizzo del programma che il gruppo ha pensato dopo una prima analisi dei requisiti. I punti di discussione principale sono riportati \hyperref[punti-discussione]{qui}, e tra questi si segnala un  \hyperref[problema]{punto più problematico} che ha reso necessario ripensare una parte del programma.
+La riunione si è da subito focalizzata sull'esposizione all'azienda proponente delle funzionalità e del flusso di utilizzo del programma che il gruppo ha definito dopo una prima fase di analisi dei requisiti. I punti di discussione principale sono riportati nella sezione: \hyperref[punti-discussione]{Altri punti di discussione}, e tra questi si è distinto un \hyperref[problema]{punto problematico} che ha reso necessario ripensare una parte del programma.
 
-\subsection{Il problema più grande} \label{problema}
+\subsection{Gestione degli accessi e delle repo} \label{problema}
 L'utilizzo delle \textbf{organizzazioni} di GitHub per gestire gruppi di repo, ruoli e permessi è troppo limitante, inoltre i ruoli delle organizzazioni interni al programma potrebbero andare in conflitto con quelli delle organizzazioni di GitHub.
 \\[0.5cm]
-La soluzione trovata è utilizzare dei \textbf{workspace} gestiti all'interno del programma, questo permette di non essere limitati dai ruoli presenti su GitHub, semplificandone la gestione. E permette al primo utente che crea il workspace di diventarne l'owner.
-
+La soluzione trovata è quella di utilizzare dei \textbf{workspace} creati e gestiti all'interno del programma. Questo comporta diversi vantaggi tra cui:
+\begin{itemize}
+    \item non essere più limitati dai ruoli presenti su GitHub;
+    \item semplificazione della gestione dei ruoli e dei permessi;
+    \item la possibilità per chi crea il workspace di diventarne l'owner.
+\end{itemize}
 \subsection{Altri punti di discussione} \label{punti-discussione}
 
 \subsubsection{Scansioni parziali e storico}
-Discussione sulla gestione delle scansioni in particolare sulle scansioni parziali, ovvero scansioni dedicate solo a una o più sezioni (es: sicurezza, test...) e su come gestirne lo storico.
+Discussione in merito alla gestione delle scansioni, con particolare attenzione alle scansioni parziali, ovvero scansioni dedicate solo a una o più sezioni (es: sicurezza, test...) e su come gestirne lo storico.
 
 \subsubsection{Pull request} 
-Discussione su come l'inclusione di una sezione pull request posso complicare l'alberatura del programma.
+È stata presentata all'azienda l'idea di includere nel programma una sezione dedicata alla visione e/o gestione delle pull request.
+A seguito di discussione abbiamo concluso che questa funzionalità potrebbe portare alla complicazione dell'alberatura del programma.
 
 \subsubsection{Gestione branch} 
-Discussione su come il programma debba gestire i vari branch di una repo: deve essere in grado di gestirli tutti.
+Si è discusso di come il programma debba gestire i vari branch di una repo. La conclusione è che il programma debba permettere di selezionare il branch su cui eseguire la scansione per ogni repo.
 
 \subsubsection{Ruoli di un workspace}
-Discussione sulle differenze dei vari ruoli, e su come una personalizzazione complessa per ogni ruolo possa complicare il progetto.
+Si è discusso sulle differenze dei vari ruoli, e su come una personalizzazione complessa per ogni ruolo possa complicare il progetto.
 
 \subsubsection{Qualità del codice}
-Discussione sulla sezione qualità del codice di un report di una scansione.
+Abbiamo esposto come si presenterà la sezione: "qualità del codice" relativa ad un report di una scansione a cui è seguita una discussione per aggiungere dati significativi andando a toglierne altri meno utili.
 
 \subsubsection{Visione aggregata} 
-Discussione su come gestire la visione aggregata: non deve essere una visuale molto specifica, ma che sia piuttosto facile da leggere e che comunichi al volo l'andamento della repo mediante grafici.
+Dopo un'attenta analisi su come gestire la visione aggregata, abbiamo concluso che: 
+\begin{itemize}
+    \item non deve essere una visuale molto specifica;
+    \item sia piuttosto facile da leggere;
+    \item che comunichi al volo l'andamento della repo mediante grafici.
+\end{itemize}
 
-\subsubsection{Valutazione documentazione} 
-Discussione su come effettuare la valutazione della documentazione, sono state individuate 2 importanti punti di valutazione: valutazione tramite LLM della coerenza della documentazione con il codice, e analisi di quante funzioni pubbliche hanno la documentazione nel codice. \label{metriche-docuementazione}
+\subsubsection{Valutazione documentazione} \label{metriche-documentazione}
+Si è discusso su come effettuare la valutazione della documentazione. Sono stati individuati 2 importanti punti di valutazione: 
+\begin{itemize}
+    \item valutazione tramite LLM della coerenza tra la documentazione e il codice sorgente;
+    \item analisi di quante funzioni pubbliche hanno la documentazione nel codice.
+\end{itemize}
 
-\subsubsection{Tag delle repo} Discussione sul sistema di tag delle repo: 2 tipi di tag individuati, il primo gestito dall'utente per categorizzare le raccolte arbitrariamente, ed il secondo preso in automatico da GitHub per taggare le repo in base al linguaggio\label{tags}
+\subsubsection{Tag delle repo} \label{tags}
+Durante una precedente analisi abbiamo pensato di utilizzare un sistema di tag delle repo per raggrupparle secondo una specifica semantica.
+Dopo averne parlato con Var Group abbiamo individuato 2 tipologie di tag:
+\begin{enumerate}
+    \item tag gestito dall'utente per categorizzare le raccolte arbitrariamente;
+    \item tag preso in automatico da GitHub per taggare le repo in base al linguaggio.
+\end{enumerate}
 
-\subsubsection{Login} Discussione su come gestire il login nel programma, se tramite GitHub o senza l'appoggio di strumenti esterni.
+\subsubsection{Login} 
+Si è infine discusso in merito al modo ottimale di gestire il login nel programma. 
+In particolare abbiamo vagliato la possibilità di eseguire il login tramite GitHub, senza l'appoggio di strumenti esterni o con un'approccio misto.
 
 
 
@@ -235,13 +258,13 @@ Discussione su come effettuare la valutazione della documentazione, sono state i
         \textcolor{white}{\textbf{Codice}} & 
         \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione}}} & 
         \textcolor{white}{\textbf{Assegnatario}} \\
-        DEC-RTB-016 & abbandonata l'idea di utilizzare l'importazione automatica e le organizzazioni di GitHub e sistituita con dei workspace &  \\
-        DEC-RTB-017 & il programma non prevedrà scansioni parziali &  \\
-        DEC-RTB-018 & rimandata la discussione su come trattare le pull request &  \\
-        DEC-RTB-019 & la visione aggregata non prevedrà informazioni troppo specifiche e sarà tenuta semplice  &  \\
-        DEC-RTB-020 & verranno usati \hyperref[metriche-docuementazione]{questi 2 punti} per la valutazione della documentazione &  \\
-        DEC-RTB-021 & verrano utilizzati \hyperref[tags]{2 tipi di tag} per le repo &  \\
-        DEC-RTB-022 & il programma dovrà permettere di selezionare il branch su cui eseguire la scansione per ogni repo &  \\
+        DEC-RTB-016 & Abbandonata l'idea di utilizzare l'importazione automatica e le organizzazioni di GitHub e sistituita con dei workspace &  \\
+        DEC-RTB-017 & Il programma non prevedrà scansioni parziali &  \\
+        DEC-RTB-018 & Rimandata la discussione su come trattare le pull request &  \\
+        DEC-RTB-019 & La visione aggregata non prevedrà informazioni troppo specifiche e sarà tenuta semplice  &  \\
+        DEC-RTB-020 & Verranno usati \hyperref[metriche-documentazione]{questi 2 punti} per la valutazione della documentazione &  \\
+        DEC-RTB-021 & Verrano utilizzati \hyperref[tags]{2 tipi di tag} per le repo &  \\
+        DEC-RTB-022 & Il programma dovrà permettere di selezionare il branch su cui eseguire la scansione per ogni repo &  \\
 
         
         \midrule

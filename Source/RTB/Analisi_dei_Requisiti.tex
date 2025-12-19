@@ -1,0 +1,211 @@
+\documentclass[a4paper, 11pt]{article}
+
+% ====== PACCHETTI NECESSARI ======
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\setlength{\headheight}{14pt}
+\usepackage{titlesec}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{lipsum}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{titlecaps}
+\usepackage[utf8]{inputenc} % Specifica la codifica del file (necessaria per le accentate)
+\usepackage[T1]{fontenc}    % Migliora l'output dei font per le lingue europee
+
+% ====== IMPOSTAZIONI GLOBALI DI STILE ======
+
+% 1. DEFINIZIONE COLORI BLU-VIOLA
+\definecolor{AccentColor}{RGB}{80, 90, 180} % Blu-viola principale
+\definecolor{AccentLight}{RGB}{80, 90, 180} % Versione più chiara
+\definecolor{AccentDark}{RGB}{50, 60, 140} % Versione più scura
+\definecolor{LightGray}{RGB}{245, 245, 250}
+\definecolor{MediumGray}{RGB}{200, 200, 210}
+
+% 2. IMPOSTAZIONE MARGINI
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=3.5cm, bottom=3.5cm}
+
+% 3. STILE DEI TITOLI DI SEZIONE
+\titleformat{\section}
+  {\normalfont\sffamily\Large\bfseries\color{AccentColor}}
+  {\thesection}
+  {1em}
+  {}
+\titleformat{\subsection}
+  {\normalfont\sffamily\large\bfseries\color{AccentDark}}
+  {\thesubsection}
+  {1em}
+  {}
+
+% 4. IMPOSTAZIONE HEADER E FOOTER
+\pagestyle{fancy}
+\fancyhf{} 
+\fancyhead[L]{\sffamily\bfseries\color{AccentColor}\@BYTE HOLDERS}
+\fancyhead[R]{\sffamily\color{AccentColor}\thepage}
+\renewcommand{\headrulewidth}{0.8pt}
+\renewcommand{\headrule}{\color{AccentColor}\hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}
+
+% 5. IMPOSTAZIONE LINK
+\hypersetup{
+    colorlinks=true,
+    linkcolor=AccentColor,
+    urlcolor=AccentLight,
+    citecolor=AccentDark,
+}
+
+% 6. PERSONALIZZAZIONE ELENCHI
+\setlist[itemize]{itemsep=2pt, topsep=4pt}
+\setlist[enumerate]{itemsep=2pt, topsep=4pt}
+
+% ====== COMANDI PERSONALIZZATI ======
+\newcommand{\gloss}[1]{\titlecap{\textit{#1}}\textsuperscript{G}}
+\newcommand{\nuovogloss}[1]{\subsection{\gloss{#1}}\label{#1}}
+
+% ====== STILE TABELLE MIGLIORATO ======
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X} % Colonna giustificata a sinistra
+\setlength{\arrayrulewidth}{0.4pt} % Linee più sottili
+\setlength{\tabcolsep}{10pt} % Spaziatura interna celle
+\renewcommand{\arraystretch}{1.4} % Altezza righe
+
+% ====== INIZIO DEL DOCUMENTO ======
+\begin{document}
+
+
+\pagestyle{empty}
+
+% ====== PAGINA DI TITOLO ======
+\begin{titlepage}
+    \begin{center}
+    	\includegraphics[width=0.55\textwidth]{../Assets/ByteHolders1.png}\vspace{1.5cm}
+    	
+    	{\LARGE \sffamily \color{AccentColor}\bfseries Analisi dei Requisiti}
+    \end{center}
+    
+    \vfill
+    \rule{\textwidth}{1pt}\par
+   	\textit{Versione: 0.1.0}
+\end{titlepage}
+
+\newpage
+
+% ====== TABELLA DI VERSIONAMENTO ======
+{\normalfont\sffamily\huge\bfseries\color{AccentColor} Registro delle versioni}
+\vspace{1cm}
+
+\begin{center}
+    \rowcolors{2}{LightGray}{white}
+     \begin{tabular}{>{\centering\arraybackslash}m{1.5cm} >{\centering\arraybackslash}m{2cm} >{\raggedright\arraybackslash}m{2.5cm} >{\raggedright\arraybackslash}m{6.5cm}}
+        \rowcolor{AccentColor}
+          \textcolor{white}{\textbf{Versione}} & 
+          \textcolor{white}{\textbf{Data}} & 
+          \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} &
+          \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
+        0.1.0 & 19/12/2025 & Alessandro Morabito & Inizio stesura\\ 
+    \end{tabular}
+\end{center}
+
+
+% ====== INDICE ======
+\pagestyle{fancy}
+\newpage
+\tableofcontents
+\newpage
+
+% ====== INTRODUZIONE ======
+\section{Scopo del documento}
+Con il presente documento il gruppo \gloss{byte holders} definisce i \gloss{requisiti} dell'applicazione \gloss{Code Guardian} che si impegna a sviluppare per l'\gloss{Azienda}.
+
+\section{Glossario}
+Per evitare ambiguità, nel corso del documento si farà riferimento a termini indicati nel \href{https://byte-holders.github.io/Documentazione/RTB/Glossario.pdf}{\gloss{Glossario}}\footnote{\url{https://byte-holders.github.io/Documentazione/RTB/Glossario.pdf}} utilizzando la lettera \textit{G} ad apice della formula corrispondente, che viene indicata in corsivo e con iniziali maiuscole (ad es. \gloss{formula in glossario}). La corrispondenza di termini è a meno di coniugazioni e declinazioni.
+
+\section{Riferimenti}
+\subsection{Riferimenti normativi}
+\begin{itemize}
+	\item 
+		\gloss{Norme Di Progetto}\\
+		\url{https://byte-holders.github.io/Documentazione/RTB/Glossario.pdf}
+	\item
+		\gloss{Capitolato}\\
+		\url{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C2.pdf}
+\end{itemize}
+\subsection{Riferimenti informativi}
+\begin{itemize}
+	\item
+		\gloss{Glossario}\\
+		\url{https://byte-holders.github.io/Documentazione/RTB/Glossario.pdf}
+	\item
+		Specifica \gloss{UML} 2.5.1\\
+		\url{https://www.omg.org/spec/UML/2.5.1/PDF}
+\end{itemize}
+\newpage
+
+\section{Termini aggiunti al \gloss{Glossario}}
+\nuovogloss{Caso d'uso}
+Un \gloss{Caso d'uso} è un insieme di \gloss{scenari} che hanno in comune uno scopo finale per un \gloss{utente}.
+
+\nuovogloss{Scenario}
+
+\nuovogloss{Attore}
+
+\newpage
+
+\section{\gloss{Casi d'uso}}
+\subsection{Struttura generale di un \gloss{caso d'uso}}
+Si è deciso di descrivere ciascun \gloss{caso d'uso} seguendo la seguente struttura (\underline{sottolineati} i campi sempre popolati):
+
+\begin{tabular}{|p{.25\linewidth} p{.6\linewidth}|}
+	\hline
+	\textbf{\underline{Codice}} 
+	&
+	Codice identificativo utilizzato per far riferimento al \gloss{caso d'uso} corrente\\
+	
+	\textbf{\underline{Titolo}} 
+	&
+	Titolo del \gloss{caso d'uso} corrente\\
+	
+	\textbf{\underline{Attori principali}} 
+	&
+	Attori che agiscono sul sistema dando inizio allo scenario\\
+	
+	\textbf{Attori secondari} 
+	&
+	Attori di supporto che agiscono in risposta a stimoli del sistema\\
+	
+	\textbf{\underline{Precondizioni}}
+	&
+	  Condizioni necessarie per l'esecuzione del \gloss{caso d'uso} corrente\\
+	
+	\textbf{\underline{Postcondizioni}} 
+	&
+	Condizioni in cui viene lasciato il sistema al termine dello \gloss{scenario principale}\\
+	
+	\textbf{\underline{Scenario principale}}
+	&
+	  Descrizione degli eventi che avvengono all'interno dello \gloss{scenario principale}\\
+	
+	\textbf{Inclusioni} 
+	&
+	Lista dei riferimenti a \gloss{casi d'uso} terzi \gloss{inclusi} dal \gloss{caso d'uso} corrente e al quale si fa riferimento nella sezione \textit{Scenario principale}\\
+	
+	\textbf{Scenari alternativi} 
+	&
+	Descrizione delle situazione che portano a \gloss{scenari alternativi}\\
+	
+	\textbf{Eredita da} 
+	&
+	Codice del \gloss{caso d'uso} terzo da cui eredita il \gloss{caso d'uso} corrente (non ammettiamo ereditarietà multipla)\\
+	
+	\hline
+\end{tabular}
+\subsection{Lista dei \gloss{casi d'uso}}
+\end{document}

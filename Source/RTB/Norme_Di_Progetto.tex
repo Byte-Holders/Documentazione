@@ -20,6 +20,7 @@
 \usepackage{enumitem}
 \usepackage[utf8]{inputenc} % Specifica la codifica del file (necessaria per le accentate)
 \usepackage[T1]{fontenc}    % Migliora l'output dei font per le lingue europee
+\usepackage{tcolorbox}      % Per creare box colorati dei documenti
 
 % ====== IMPOSTAZIONI GLOBALI DI STILE ======
 
@@ -144,6 +145,10 @@
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} & 
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
 
+        
+
+        0.5 & 22/12/2025 & Nicolò Lattanzio & Aggiunta sezione Strumenti di supporto e sezione Produzione e archiviazione. \\
+        0.4 & 15/12/2025 & Nicolò Lattanzio & Aggiunta sezione Documenti Principali, insieme ai primi documenti chiave del progetto. \\
         0.3 & 07/12/2025 & Nicolò Lattanzio & Aggiunta sottosezione 4.1.1 per la Struttura dei documenti, 4.1.2 per il loro versionamento e 4.1.3 per la tabella Decisioni e Azioni.\\
         0.2 & 06/12/2025 & Nicolò Lattanzio & Aggiunta sezione Processi Primari, con relative sottosezioni, e prima redazione della sezione Processi di Supporto. \\
         0.1 & 30/11/2025 & Nicolò Lattanzio & Creazione e prima redazione del documento.  \\
@@ -193,7 +198,7 @@ Il gruppo si è posto l'obiettivo di completare l'MVP di questo progetto entro i
 
 \section{Processi Primari}
 Questa sezione descrive i processi del ciclo di vita primari, definiti dallo standard ISO/IEC 12207, che sono direttamente coinvolti nella creazione, fornitura e manutenzione del prodotto software. 
-Essi costituiscono il cuore operativo del progetto, governando le attività principali dall'acquisizione delle esigenze alla consegna e al supporto del prodotto finale.
+Essi costituiscono il cuore operativo del progetto, governando le attività principali dall'acquisizione delle esigenze alla consegna.
 \\
 Possiamo distinguere due macro processi:
 \begin{itemize}
@@ -216,6 +221,128 @@ Vediamo ora le attività principali coinvolte in questo processo:
 \end{enumerate}
 \subsubsection{Documenti Principali:} 
 Per questo progetto saranno prodotti i seguenti documenti chiave:
+
+% ======== Elenco di documenti con box colorati ================
+
+
+% ======== Analisi dei requisiti ================
+\begin{tcolorbox}[
+    colback=LightGray,       % Sfondo interno
+    colframe=AccentColor,    % Colore bordo e barra del titolo
+    coltitle=white,          % Colore del testo del titolo
+    fonttitle=\bfseries\large,
+    boxrule=0.5mm,           % Spessore bordo
+    arc=2mm,                 % Angoli leggermente arrotondati
+    title={Analisi Dei Requisiti} % Titolo del box
+]
+    \textbf{\textcolor{AccentDark}{Autore:}} Analista  %Ruolo che scrive il documento
+    
+    \vspace{0.2cm} % Spazio tra le righe
+    \textbf{\textcolor{AccentDark}{Destinatari:}} VarGroup S.r.l., ByteHolders, Professori Tullio Vardanega e Riccardo Cardin
+
+    \vspace{0.2cm} % Spazio tra le righe
+
+    \textbf{\textcolor{AccentDark}{Scopo:}} \\
+    Nell'analisi dei requisiti il gruppo Byte Holders si impegna a raccogliere, analizzare e documentare i requisiti funzionali e non funzionali del sistema richiesto dal committente VarGroup S.r.l.
+    In particolare saranno descritti i vari casi d'uso, le specifiche di interfaccia e i vincoli tecnici.
+\end{tcolorbox}
+
+
+% ======== Glossario ================
+
+\begin{tcolorbox}[
+    colback=LightGray,       % Sfondo interno
+    colframe=AccentColor,    % Colore bordo e barra del titolo
+    coltitle=white,          % Colore del testo del titolo
+    fonttitle=\bfseries\large,
+    boxrule=0.5mm,           % Spessore bordo
+    arc=2mm,                 % Angoli leggermente arrotondati
+    title={Glossario} % Titolo del box
+]
+    \textbf{\textcolor{AccentDark}{Autore:}} Amministratore  %Ruolo che scrive il documento
+    
+    \vspace{0.2cm} % Spazio tra le righe
+    \textbf{\textcolor{AccentDark}{Destinatari:}} VarGroup S.r.l., ByteHolders, Professori Tullio Vardanega e Riccardo Cardin
+
+    \vspace{0.2cm} % Spazio tra le righe
+
+    \textbf{\textcolor{AccentDark}{Scopo:}} \\
+    Nel glossario il gruppo Byte Holders si impegna a definire e spiegare i termini tecnici, acronimi e abbreviazioni utilizzati nel contesto del progetto richiesto dal committente VarGroup S.r.l., al fine di garantire una comprensione comune tra tutti gli stakeholder coinvolti.
+\end{tcolorbox}
+
+
+% ======== Lettera di Candidatura ================
+
+
+\begin{tcolorbox}[
+    colback=LightGray,       % Sfondo interno
+    colframe=AccentColor,    % Colore bordo e barra del titolo
+    coltitle=white,          % Colore del testo del titolo
+    fonttitle=\bfseries\large,
+    boxrule=0.5mm,           % Spessore bordo
+    arc=2mm,                 % Angoli leggermente arrotondati
+    title={Lettera di Candidatura} % Titolo del box
+]
+    \textbf{\textcolor{AccentDark}{Autore:}} Responsabile  %Ruolo che scrive il documento
+    
+    \vspace{0.2cm} % Spazio tra le righe
+    \textbf{\textcolor{AccentDark}{Destinatari:}} VarGroup S.r.l., Professori Tullio Vardanega e Riccardo Cardin
+
+    \vspace{0.2cm} % Spazio tra le righe
+
+    \textbf{\textcolor{AccentDark}{Scopo:}} \\
+    Con la lettera di candidatura il gruppo Byte Holders si propone come fornitore per la realizzazione del progetto descritto nel capitolato C2 - Code Guardian, presentando le proprie competenze, esperienze e motivazioni per intraprendere questa collaborazione con il committente VarGroup S.r.l.
+\end{tcolorbox}
+
+% ======== Piano di Progetto ================
+
+\begin{tcolorbox}[
+    colback=LightGray,       % Sfondo interno
+    colframe=AccentColor,    % Colore bordo e barra del titolo
+    coltitle=white,          % Colore del testo del titolo
+    fonttitle=\bfseries\large,
+    boxrule=0.5mm,           % Spessore bordo
+    arc=2mm,                 % Angoli leggermente arrotondati
+    title={Piano di Progetto} % Titolo del box
+]
+    \textbf{\textcolor{AccentDark}{Autore:}} Responsabile  %Ruolo che scrive il documento
+    
+    \vspace{0.2cm} % Spazio tra le righe
+    \textbf{\textcolor{AccentDark}{Destinatari:}} VarGroup S.r.l., Professori Tullio Vardanega e Riccardo Cardin
+
+    \vspace{0.2cm} % Spazio tra le righe
+
+    \textbf{\textcolor{AccentDark}{Scopo:}} \\
+    Nel Piano di Progetto il gruppo Byte Holders si impegna a definire le strategie, le risorse e le tempistiche necessarie per la realizzazione del progetto richiesto dal committente VarGroup S.r.l. garantendo il rispetto degli standard qualitativi e dei vincoli contrattuali.
+
+\end{tcolorbox}
+
+% ======== Piano di Qualifica ================
+
+\begin{tcolorbox}[
+    colback=LightGray,       % Sfondo interno
+    colframe=AccentColor,    % Colore bordo e barra del titolo
+    coltitle=white,          % Colore del testo del titolo
+    fonttitle=\bfseries\large,
+    boxrule=0.5mm,           % Spessore bordo
+    arc=2mm,                 % Angoli leggermente arrotondati
+    title={Piano di Qualifica} % Titolo del box
+]
+    \textbf{\textcolor{AccentDark}{Autore:}} Responsabile  %Ruolo che scrive il documento
+    
+    \vspace{0.2cm} % Spazio tra le righe
+    \textbf{\textcolor{AccentDark}{Destinatari:}} VarGroup S.r.l., Professori Tullio Vardanega e Riccardo Cardin
+
+    \vspace{0.2cm} % Spazio tra le righe
+
+    \textbf{\textcolor{AccentDark}{Scopo:}} \\
+    Nel Piano di Qualifica il gruppo Byte Holders si impegna a definire le strategie, i criteri e le procedure di verifica e validazione che garantiranno che il prodotto software sviluppato soddisfi i requisiti specificati dal committente VarGroup S.r.l. e rispetti gli standard di qualità concordati.
+
+\end{tcolorbox}
+
+
+
+
 
 \subsection{Processo di Sviluppo}
 Il processo di sviluppo definisce il ciclo di vita ingegneristico attraverso il quale i requisiti del committente vengono trasformati nel prodotto software finale. 
@@ -328,6 +455,36 @@ Qui sotto è riportato un esempio di tabella decisioni e azioni:
         AZ-PB-004 & Miglioramento struttura dei documenti & Tutti \\
     \end{tabular}
 \end{center}
+
+\subsubsection{Strumenti a supporto}
+Per la documentazione del progetto il gruppo \textbf{\textit{BYTE HOLDERS}} utilizza i seguenti strumenti:
+
+\begin{itemize}
+    \item \textbf{Linguaggio \LaTeX}: adottato come standard per la stesura di documentazione tecnica; garantisce un'alta qualità tipografica, uniformità stilistica e una gestione avanzata di riferimenti incrociati e bibliografia, separando il contenuto dalla formattazione.
+    \item \textbf{Visual Studio Code}: IDE (Integrated Development Environment) utilizzato come editor principale per la scrittura del codice sorgente LaTeX, scelto per la sua leggerezza, estensibilità e integrazione nativa con i sistemi di controllo versione.
+    \item \textbf{LaTeX Workshop}: estensione per Visual Studio Code che automatizza il processo di compilazione e build dei documenti; fornisce funzionalità di linting (controllo sintattico), intellisense e anteprima PDF sincronizzata (SyncTeX) per un feedback visivo immediato durante la stesura.
+    \item \textbf{GitHub}: piattaforma di hosting per il controllo di versione distribuito; utilizzata per centralizzare il repository della documentazione, mantenere la cronologia delle modifiche e coordinare il lavoro asincrono del team tramite funzionalità di branching e pull request.
+\end{itemize}
+
+
+\subsubsection{Produzione e archiviazione}
+Il gruppo \textbf{\textit{BYTE HOLDERS}} adotta una strategia ben definita per la produzione e l'archiviazione della documentazione di progetto, al fine di garantire accessibilità, tracciabilità e sicurezza delle informazioni.
+La produzione di un documento segue questi passaggi:
+
+\begin{enumerate}
+    \item \textbf{Creazione Issue e Branch dedicato:} 
+    A seguito dell'apertura di una Issue su GitHub, viene creato un branch di lavorazione dedicato che si distacca dal ramo principale (\textit{main}). La nomenclatura del branch deve seguire rigorosamente la convenzione: \texttt{azione\_nome\_documento\_data} (es. \texttt{aggiunta\_verbale\_interno\_11\_12\_2025}).
+
+    \item \textbf{Assegnazione e Stesura:} 
+    Il membro assegnato alla Issue lavora localmente sul file \texttt{.tex}. Durante questa fase vengono effettuati commit frequenti sul branch dedicato per salvare i progressi, utilizzando Visual Studio Code e LaTeX Workshop per la scrittura e il controllo sintattico in tempo reale.
+
+    \item \textbf{Verifica (Pull Request):} 
+    Completata la stesura, viene aperta una \textit{Pull Request} su GitHub. In questa fase, i verificatori controllano il contenuto (accuratezza e completezza) e la forma (corretta compilazione LaTeX), segnalando eventuali correzioni direttamente nel codice o nei commenti.
+
+    \item \textbf{Approvazione e Merge:} 
+    Superata la fase di verifica, il Responsabile o un membro designato approva il documento e di seguito la Pull Request ed esegue il \textit{merge} (unione) del branch dedicato nel ramo \textit{main}. A questo punto, il documento aggiornato è considerato ufficiale e viene compilata la versione PDF definitiva per il rilascio.
+\end{enumerate}
+
 
 \section{Processi Organizzativi}
 

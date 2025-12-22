@@ -21,6 +21,19 @@
 \usepackage{enumitem}
 \usepackage[utf8]{inputenc} % Specifica la codifica del file (necessaria per le accentate)
 \usepackage[T1]{fontenc}    % Migliora l'output dei font per le lingue europee
+\usepackage{graphicx} % Necessario per \rotatebox
+\usepackage{multirow}
+\usepackage{float}
+
+% Comando rapido per ruotare il testo di 45 gradi
+\newcommand{\rot}[1]{%
+  \multicolumn{1}{c}{%
+    \makebox[0pt][l]{%
+      \rotatebox[origin=bl]{45}{#1}%
+    }%
+  }%
+}
+
 
 % ====== IMPOSTAZIONI GLOBALI DI STILE ======
 
@@ -45,6 +58,43 @@
   {\thesubsection}
   {1em}
   {}
+\titleformat{\subsubsection}
+  {\normalfont\sffamily\large\bfseries\color{AccentDark}}
+  {\thesubsubsection}
+  {1em}
+  {}
+
+% --- CONFIGURAZIONE LIVELLI AGGIUNTIVI (4 e 5) ---
+\setcounter{secnumdepth}{5} 
+\setcounter{tocdepth}{5}
+
+\titleformat{\paragraph}
+  {\normalfont\sffamily\normalsize\bfseries\color{AccentDark}}
+  {\theparagraph}
+  {1em}
+  {}
+\titlespacing*{\paragraph}
+  {0pt}
+  {3.25ex plus 1ex minus .2ex}
+  {1.5ex plus .2ex}
+
+% Alias comando
+\newcommand{\subsubsubsection}[1]{\paragraph{#1}}
+
+\titleformat{\subparagraph}
+  {\normalfont\sffamily\normalsize\bfseries\color{AccentDark}} % Stile
+  {\thesubparagraph}
+  {1em}
+  {}
+\titlespacing*{\subparagraph}
+  {0pt}
+  {3.25ex plus 1ex minus .2ex}
+  {1.5ex plus .2ex}
+
+% Alias comando
+\newcommand{\subsubsubsubsection}[1]{\subparagraph{#1}}
+
+
 
 % 4. IMPOSTAZIONE HEADER E FOOTER
 \pagestyle{fancy}
@@ -126,13 +176,20 @@
 
 \begin{center}
     \rowcolors{2}{LightGray}{white}
-    \begin{tabular}{>{\centering\arraybackslash}m{2cm} >{\centering\arraybackslash}m{2cm} >{\raggedright\arraybackslash}m{2.5cm} >{\raggedright\arraybackslash}m{6.5cm}}
+    \begin{tabular}{>{\centering\arraybackslash}m{1.6cm} >{\centering\arraybackslash}m{2cm} >{\raggedright\arraybackslash}m{1.7cm} >{\raggedright\arraybackslash}m{1.7cm} >{\raggedright\arraybackslash}m{5cm}}
         \rowcolor{AccentColor}
           \textcolor{white}{\textbf{Versione}} & 
           \textcolor{white}{\textbf{Data}} & 
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} & 
-          \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
-        0.0.1 & 01/12/2025 & Damiano Berti & Inizio stesura \\ 
+          \multicolumn{1}{c}{\textcolor{white}{\textbf{verificatore}}} &
+          {\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
+
+        0.2.1 & 21/12/2025 & Damiano Berti &  & creazione tabelle tracciamento sprint \\ 
+        \hline
+        0.2.0 & 20/12/2025 & Damiano Berti &  & Inserita introduzione generale, sezione "analisi e gestione dei rischi" e prima lista di rischi\\ 
+        \hline
+        0.1.0 & 01/12/2025 & Damiano Berti & & Inizio stesura \\ 
+        
     \end{tabular}
 \end{center}
 
@@ -144,5 +201,316 @@
 \newpage
 
 \section{Introduzione}
+
+\subsection{informazioni generali}
+Il presente documento costituisce il \textbf{Piano di Progetto} ufficiale per lo sviluppo del software Code Guardian. Esso definisce la pianificazione temporale, l'allocazione delle risorse e la metodologia di gestione adottata per garantire il rispetto degli standard qualitativi e dei vincoli contrattuali. \\[0.5cm]
+Lo scopo primario è fornire una guida strutturata per il monitoraggio dell'avanzamento lavori e la mitigazione dei rischi nell'intero ciclo di vita del progetto, il presente piano sarà quindi soggetto ad aggiornamenti progressivi.
+
+\subsection{Glossario}
+Data la natura tecnica del progetto è naturale l'utilizzo di termini settoriali e talvolta anche definiti dal gruppo, per questo è stato appositamente creato un glossario presente su un documento separato, ogni parola che rimanda al glossario sarà contrassegnata come segue:
+\begin{center}
+  termine\textsuperscript{G}
+\end{center}
+
+\subsection{Riferimenti}
+\subsubsection{Riferimenti normativi}
+\begin{itemize}
+  \item \href{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C2p.pdf}{Capitolato d'appalto C2: Code Guardian - Var Group}
+  \item norme di progetto
+\end{itemize}
+\subsubsection{Riferimenti informativi}
+\begin{itemize}
+  \item \href{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T02.pdf}{T2: i processi di ciclo di vita del software}
+  \item \href{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T04.pdf}{T4: Gestione di progetto}
+  \item glossario
+\end{itemize}
+
+\newpage
+
+\section{Analisi e gestione dei rischi}
+\subsection{Introduzione}
+L'analisi e la gestione dei rischi rappresentano il processo strategico volto a identificare, valutare e mitigare i potenziali eventi avversi che potrebbero compromettere gli obiettivi del gruppo. \\[0.4cm]
+Identificare ed analizzare i rischi in anticipo è essenziale per guidare lo sviluppo del progetto con maggiore controllo, così da poter anticipare le criticità anziché subirle e poter meglio pianificare. Inoltre permette stimare più accuratamente il tempo necessario per le attività così da poter meglio calibrare il backlog degli sprint. \\[0.4cm]
+Il processo di gestione dei rischi si articola in quattro fasi essenziali:
+\begin{itemize}
+  \item \textbf{Identificazione}: consiste nel rintracciare e scrivere un elenco di tutti i possibili problemi o imprevisti che potrebbero ostacolare il progetto
+  \item \textbf{Analisi}: serve a capire quanto ogni rischio sia , valutando quante probabilità ha di accadere e quanti danni potrebbe causare.
+  \item \textbf{Pianificazione}: Rappresenta l’insieme delle azioni di mitigazione pianificate per ridurre la probabilità che un rischio si manifesti o per limitarne i possibili effetti dannosi.
+  \item \textbf{Constrollo}È l’attività di monitoraggio continuo che verifica nel tempo l'efficacia delle misure di prevenzione adottate. Il controllo serve a garantire che i rischi restino entro livelli accettabili, a rilevare l'insorgenza di nuove minacce e ad aggiornare dinamicamente le startegie di mitigazione in base all'evoluzione del progetto.
+\end{itemize}
+\vspace{0.4cm}
+Il gruppo Byte Holders indivudua la seguente lista di possibili rischi, suddividendoli per tipo con annesso codice identificativo:
+\begin{itemize}
+  \item \textbf{T} rischi teconologici
+  \item \textbf{I} rischi individuali
+  \item \textbf{O} rischi organizzativi
+\end{itemize}
+\vspace{0.4cm}
+Ogni rischio è quindi contrassegnato con un codice composto da un prefisso indicante il tipo ed una cifra univoca.
+
+\newpage
+
+\subsection{Rischi tecnologici}
+\subsubsection{T1 - Inesperienza con le nuove tecnologie}
+\begin{center}
+  \rowcolors{2}{LightGray}{white}
+  \begin{tabular}{|m{5cm}|m{8cm}|}
+      \hline
+      \multicolumn{2}{|>{\centering\arraybackslash}m{14cm}|}{\cellcolor{AccentColor}\textcolor{white}{\textbf{T1 - Inesperienza con le nuove tecnologie}}} \\ 
+      \hline
+      Descrizione &  \\ 
+      \hline
+      Mitigazione &  \\ 
+      \hline
+      Probabilità di occorrenza &  \\
+      \hline
+      Pericolosità &  \\
+      \hline
+  \end{tabular}
+\end{center}
+
+\subsubsection{T2 - Mancanza della documentazione necessaria}
+\begin{center}
+  \rowcolors{2}{LightGray}{white}
+  \begin{tabular}{|m{5cm}|m{8cm}|}
+      \hline
+      \multicolumn{2}{|>{\centering\arraybackslash}m{14cm}|}{\cellcolor{AccentColor}\textcolor{white}{\textbf{T2 - Guasti tecnici hardware o software}}} \\ 
+      \hline
+      Descrizione &  \\ 
+      \hline
+      Mitigazione &  \\ 
+      \hline
+      Probabilità di occorrenza &  \\
+      \hline
+      Pericolosità &  \\
+      \hline
+  \end{tabular}
+\end{center}
+
+\subsubsection{T2 - Guasti tecnici hardware o software}
+\begin{center}
+  \rowcolors{2}{LightGray}{white}
+  \begin{tabular}{|m{5cm}|m{8cm}|}
+      \hline
+      \multicolumn{2}{|>{\centering\arraybackslash}m{14cm}|}{\cellcolor{AccentColor}\textcolor{white}{\textbf{T2 - Guasti tecnici hardware o software}}} \\ 
+      \hline
+      Descrizione &  \\ 
+      \hline
+      Mitigazione &  \\ 
+      \hline
+      Probabilità di occorrenza &  \\
+      \hline
+      Pericolosità &  \\
+      \hline
+  \end{tabular}
+\end{center}
+
+\subsection{Rischi individuali}
+\subsubsection{I1 - Impegno personale imprevisto}
+\begin{center}
+  \rowcolors{2}{LightGray}{white}
+  \begin{tabular}{|m{5cm}|m{8cm}|}
+      \hline
+      \multicolumn{2}{|>{\centering\arraybackslash}m{14cm}|}{\cellcolor{AccentColor}\textcolor{white}{\textbf{I1 - Impegno personale imprevisto}}} \\ 
+      \hline
+      Descrizione &  \\ 
+      \hline
+      Mitigazione &  \\ 
+      \hline
+      Probabilità di occorrenza &  \\
+      \hline
+      Pericolosità &  \\
+      \hline
+  \end{tabular}
+\end{center}
+
+\subsubsection{I2 - Mancanza di tempo dovuto ad altre attività universitarie}
+\begin{center}
+  \rowcolors{2}{LightGray}{white}
+  \begin{tabular}{|m{5cm}|m{8cm}|}
+      \hline
+      \multicolumn{2}{|>{\centering\arraybackslash}m{14cm}|}{\cellcolor{AccentColor}\textcolor{white}{\textbf{I2 - Mancanza di tempo dovuto ad atre attività universitarie}}} \\ 
+      \hline
+      Descrizione &  \\ 
+      \hline
+      Mitigazione &  \\ 
+      \hline
+      Probabilità di occorrenza &  \\
+      \hline
+      Pericolosità &  \\
+      \hline
+  \end{tabular}
+\end{center}
+
+
+\subsection{Rischi organizzativi}
+\subsubsection{O1 - Sottostima del tempo necessario per una task}
+\begin{center}
+  \rowcolors{2}{LightGray}{white}
+  \begin{tabular}{|m{5cm}|m{8cm}|}
+      \hline
+      \multicolumn{2}{|>{\centering\arraybackslash}m{14cm}|}{\cellcolor{AccentColor}\textcolor{white}{\textbf{O1 - Sottostima del tempo necessario per una task}}} \\ 
+      \hline
+      Descrizione &  \\ 
+      \hline
+      Mitigazione &  \\ 
+      \hline
+      Probabilità di occorrenza &  \\
+      \hline
+      Pericolosità &  \\
+      \hline
+  \end{tabular}
+\end{center}
+
+\subsubsection{O2 - Sovrastima del tempo necessario per una task}
+\begin{center}
+  \rowcolors{2}{LightGray}{white}
+  \begin{tabular}{|m{5cm}|m{8cm}|}
+      \hline
+      \multicolumn{2}{|>{\centering\arraybackslash}m{14cm}|}{\cellcolor{AccentColor}\textcolor{white}{\textbf{O2 - Sovrastima del tempo necessario per una task}}} \\ 
+      \hline
+      Descrizione &  \\ 
+      \hline
+      Mitigazione &  \\ 
+      \hline
+      Probabilità di occorrenza &  \\
+      \hline
+      Pericolosità &  \\
+      \hline
+  \end{tabular}
+\end{center}
+
+\subsubsection{O3 - Problemi comunicativi interni al gruppo o con la proponente}
+\begin{center}
+  \rowcolors{2}{LightGray}{white}
+  \begin{tabular}{|m{5cm}|m{8cm}|}
+      \hline
+      \multicolumn{2}{|>{\centering\arraybackslash}m{14cm}|}{\cellcolor{AccentColor}\textcolor{white}{\textbf{O3 - Problemi comunicativi interni al gruppo o con la proponente}}} \\ 
+      \hline
+      Descrizione &  \\ 
+      \hline
+      Mitigazione &  \\ 
+      \hline
+      Probabilità di occorrenza &  \\
+      \hline
+      Pericolosità &  \\
+      \hline
+  \end{tabular}
+\end{center}
+
+\subsubsection{O4 - Gestione errata dei tempi e del budget}
+\begin{center}
+  \rowcolors{2}{LightGray}{white}
+  \begin{tabular}{|m{5cm}|m{8cm}|}
+      \hline
+      \multicolumn{2}{|>{\centering\arraybackslash}m{14cm}|}{\cellcolor{AccentColor}\textcolor{white}{\textbf{O4 - Gestione errata dei tempi e del budget}}} \\ 
+      \hline
+      Descrizione &  \\ 
+      \hline
+      Mitigazione &  \\ 
+      \hline
+      Probabilità di occorrenza &  \\
+      \hline
+      Pericolosità &  \\
+      \hline
+  \end{tabular}
+\end{center}
+
+
+
+\newpage
+
+
+
+
+\section{Pianificazione nel lungo termine}
+\section{Pianificazione nel breve termine}
+\subsection{Introduzione}
+\subsection{Requirements and Technology Baseline (RTB)}
+\subsubsection{Sprint1}
+\subsubsubsection{informazioni generali e attività da svolgere}
+\subsubsubsection{rischi attesi}
+\subsubsubsection{Preventivo}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    
+    \begin{tabular}{|m{3.5cm}|*{6}{>{\centering\arraybackslash}m{1.2cm}|}}
+        
+        \multicolumn{1}{c}{} & 
+        \multicolumn{1}{c}{\rule{0pt}{2cm}\makebox[0pt][l]{\rotatebox[origin=bl]{45}{\textcolor{AccentColor}{\textbf{Responsabile}}}}} & 
+        
+        \rot{\textcolor{AccentColor}{\textbf{Amministratore}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Analista}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Progettista}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Programmatore}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Verificatore}}} \\ \hline 
+        
+        Giacomo Nalotto     & - & 2 & - & - & - & - \\ \hline
+        Damiano Berti       & - & 3 & 2 & - & - & 1 \\ \hline
+        Alessandro Morabito & - & - & - & - & - & - \\ \hline
+        Alessandro Frison   & - & 1 & - & - & - & - \\ \hline
+        Giulia Romanato     & - & - & 2 & - & - & 1 \\ \hline
+        Nicolò Lattanzio    & 2 & 2 & - & - & - & - \\ \hline
+        Lorenzo Grolla      & - & 2 & - & - & - & 1 \\ \hline
+    \end{tabular}
+\end{table}
+\subsubsubsection{Consuntivo}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    
+    \begin{tabular}{|m{3.5cm}|*{6}{>{\centering\arraybackslash}m{1.2cm}|}}
+        
+        \multicolumn{1}{c}{} & 
+        \multicolumn{1}{c}{\rule{0pt}{2.5cm}\makebox[0pt][l]{\rotatebox[origin=bl]{45}{\textcolor{AccentColor}{\textbf{Responsabile}}}}} & 
+        
+        \rot{\textcolor{AccentColor}{\textbf{Amministratore}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Analista}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Progettista}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Programmatore}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Verificatore}}} \\ \hline 
+        
+        Giacomo Nalotto     & - & 2 & - & - & - & - \\ \hline
+        Damiano Berti       & - & 3 & 2 & - & - & 1 \\ \hline
+        Alessandro Morabito & - & - & - & - & - & - \\ \hline
+        Alessandro Frison   & - & 2 \textcolor{red}{(+1)} & - & - & - & - \\ \hline
+        Giulia Romanato     & - & - & 2 & - & - & 1 \\ \hline
+        Nicolò Lattanzio    & 3 \textcolor{red}{(+1)} & 2 & - & - & - & - \\ \hline
+        Lorenzo Grolla      & - & 2 & - & - & - & 1 \\ \hline
+    \end{tabular}
+\end{table}
+\subsubsubsection{Aggiornamento delle risorse rimanenti}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        \textcolor{AccentColor}{\textbf{Ruolo}} &
+        \textcolor{AccentColor}{\textbf{Costo}} &
+        \textcolor{AccentColor}{\textbf{Ore}} &
+        \textcolor{AccentColor}{\textbf{Costo}} &
+        \textcolor{AccentColor}{\textbf{Ore rimanenti}} &
+        \textcolor{AccentColor}{\textbf{Budget Rimanente}} \\ \hline
+        
+        Responsabile & 30€/h & 3 & 90€ &  63 \textcolor{red}{(-3)} &  1.890€ \textcolor{red}{(-90€)}\\ \hline
+        
+        Amministratore & 20€/h & 11 & 220€ & 39 \textcolor{red}{(-11)} &  780€ \textcolor{red}{(-220€)} \\ \hline
+        
+        Analista & 25€/h & 4 & 100€ &  96 \textcolor{red}{(-4)} &  2.400€ \textcolor{red}{(-100€)}\\ \hline
+        
+        Progettista & 25€/h & 0 & 0€ & 160 &  4.000€ \\ \hline
+        
+        Programmatore & 15€/h & 0 & 0€ &  127 &  1.905€ \\ \hline
+        
+        Verificatore & 15€/h & 3 & 45€ &  124 \textcolor{red}{(-3)}&  1.860€ \textcolor{red}{(-45€)} \\ \hline
+        
+        \textbf{Totale} & - & 21 & \textbf{455€} & \textbf{609} \textcolor{red}{(-21)} & \textbf{12.835€} \textcolor{red}{(-455€)}\\ \hline
+        
+    \end{tabular}
+\end{table}
+\subsubsubsection{Rischi incontrati}
+\subsubsubsection{Retrospettiva}
 
 \end{document}

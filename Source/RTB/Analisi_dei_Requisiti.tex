@@ -20,6 +20,7 @@
 \usepackage{booktabs}
 \usepackage{enumitem}
 \usepackage{titlecaps}
+\usepackage{longtable}
 \usepackage[utf8]{inputenc} % Specifica la codifica del file (necessaria per le accentate)
 \usepackage[T1]{fontenc}    % Migliora l'output dei font per le lingue europee
 
@@ -147,7 +148,6 @@ Per evitare ambiguità, nel corso del documento si farà riferimento a termini i
 		Specifica \gloss{UML} 2.5.1\\
 		\url{https://www.omg.org/spec/UML/2.5.1/PDF}
 \end{itemize}
-\newpage
 
 \section{Termini aggiunti al \gloss{Glossario}}
 \nuovogloss{Caso d'uso}
@@ -160,10 +160,41 @@ Un \gloss{Caso d'uso} è un insieme di \gloss{scenari} che hanno in comune uno s
 \newpage
 
 \section{\gloss{Casi d'uso}}
+\subsection{Lista degli \gloss{Attori}}
+Nella creazione dei \gloss{casi d'uso} sono stati individuati i seguenti \gloss{attori}:
+\begin{itemize}
+	\item 
+		\textbf{Utente non Autenticato}\\
+		Un utente non riconosciuto dal sistema
+	\item 
+		\textbf{Utente Autenticato}\\
+		Utente generico riconosciuto dal sistema
+	\item 
+		\textbf{Utente Permesso OWASP}  (eredita da \textit{Utente autenticato})\\
+		Utente Autenticato con il permesso per la visione completa delle informazioni su \gloss{OWASP}
+	\item
+		\textbf{Utente Permesso Utenti/Ruoli} (eredita da \textit{Utente autenticato})\\
+	 	Utente Autenticato con il permesso per la gestione degli utenti e dei ruoli
+	\item 
+		\textbf{Utente Permesso Test} (eredita da \textit{Utente autenticato})\\
+		Utente Autenticato con il permesso per la visione completa delle informazioni sui test
+	\item
+		\textbf{Utente Permesso Documentazione} (eredita da \textit{Utente autenticato})\\
+		Utente Autenticato con il permesso per la visione completa delle informazioni sulla documentazione
+	\item
+		\textbf{Utente Permesso Scansione} (eredita da \textit{Utente autenticato})\\
+		Utente Autenticato con il permesso per il lancio di una scansione
+	\item
+		\textbf{Utente Permesso Qualità Codice} (eredita da \textit{Utente autenticato})\\
+		Utente Autenticato con il permesso per la visione completa delle informazioni sulla qualità del codice
+	\item
+		\textbf{Utente Permesso Informazioni Tecniche} (eredita da \textit{Utente autenticato})\\
+		Utente Autenticato con il permesso per la visione completa delle informazioni tecniche di una repository
+\end{itemize}
 \subsection{Struttura generale di un \gloss{caso d'uso}}
 Si è deciso di descrivere ciascun \gloss{caso d'uso} seguendo la seguente struttura (\underline{sottolineati} i campi sempre popolati):
 
-\begin{tabular}{|p{.25\linewidth} p{.6\linewidth}|}
+\begin{longtable}{|p{.25\linewidth} p{.6\linewidth}|}
 	\hline
 	\textbf{\underline{Codice}} 
 	&
@@ -191,7 +222,7 @@ Si è deciso di descrivere ciascun \gloss{caso d'uso} seguendo la seguente strut
 	
 	\textbf{\underline{Scenario principale}}
 	&
-	  Descrizione degli eventi che avvengono all'interno dello \gloss{scenario principale}\\
+	Descrizione degli eventi che avvengono all'interno dello \gloss{scenario principale}\\
 	
 	\textbf{Inclusioni} 
 	&
@@ -199,13 +230,13 @@ Si è deciso di descrivere ciascun \gloss{caso d'uso} seguendo la seguente strut
 	
 	\textbf{Scenari alternativi} 
 	&
-	Descrizione delle situazione che portano a \gloss{scenari alternativi}\\
+	Descrizione delle situazioni che portano a \gloss{scenari alternativi}\\
 	
 	\textbf{Eredita da} 
 	&
 	Codice del \gloss{caso d'uso} terzo da cui eredita il \gloss{caso d'uso} corrente (non ammettiamo ereditarietà multipla)\\
 	
 	\hline
-\end{tabular}
+\end{longtable}
 \subsection{Lista dei \gloss{casi d'uso}}
 \end{document}

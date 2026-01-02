@@ -19,6 +19,7 @@
 \usepackage{hyperref}
 \usepackage{booktabs}
 \usepackage{enumitem}
+\usepackage{amsmath}
 \usepackage[utf8]{inputenc} % Specifica la codifica del file (necessaria per le accentate)
 \usepackage[T1]{fontenc}    % Migliora l'output dei font per le lingue europee
 
@@ -131,7 +132,9 @@
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} &
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Verificatore}}} & 
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
-        0.0.1 & 01/12/2025 & Alessandro Frison & Lorenzo Grolla & Inizio stesura \\ 
+        0.0.1 & 01/12/2025 & Alessandro Frison & Lorenzo Grolla & Inizio stesura \\
+        0.0.2 & 21/12/2025 & Lorenzo Grolla & Alessandro Frison & Aggiunta metriche processi \\ 
+ 
     \end{tabular}
 \end{center}
 
@@ -195,51 +198,114 @@ Per assicurare tale qualità, il progetto si avvale dei seguenti strumenti e met
     \item \textbf{Revisioni periodiche:} comprendono sessioni di verifica e controllo mirate ad analizzare i risultati ottenuti, confrontandoli con gli obiettivi predefiniti, al fine di individuare eventuali deviazioni e applicare azioni correttive.
 \end{itemize}
 
-
 \subsection{Processi Primari}
 
-\begin{table}[h!] % [h!] cerca di mantenere la tabella "qui"
+\subsubsection{Fornitura}
+In questa sezione vengono descritte le metriche utilizzate per monitorare l'efficienza economica e temporale del progetto.
+
+\begin{table}[h!]
     \centering
-    \label{tab:processi_primari} % Etichetta per citare la tabella nel testo
-    
-    \rowcolors{2}{LightGray}{white} % Colori alternati dalla riga 2 in poi
-    \begin{tabular}{c >{\raggedright\arraybackslash}p{7cm} c c}
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{c p{7cm} c c}
+        \rowcolor{AccentColor}
+        \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
         
-        \rowcolor{AccentColor} % Colore dell'intestazione
-        \textcolor{white}{\textbf{Codice}} & 
-        \textcolor{white}{\textbf{Nome}} & 
-        \textcolor{white}{\textbf{Accettabile}} & 
-        \textcolor{white}{\textbf{Preferibile}} \\
-        
-        MPC-01 & Percentuale di completamento requisiti         & 90\%       & 100\% \\
-        MPC-02 & Numero medio di revisioni per processo         & 2          & 3     \\
-        MPC-03 & Tasso di difetti per KLOC                      & $\leq$ 5   & $\leq$ 2 \\
-        MPC-04 & Percentuale di processi conformi agli standard & 95\%       & 100\% \\
-        MPC-05 & Tempo medio di risposta alle anomalie          & $\leq$ 48h & $\leq$ 24h \\
+        MPC-01 & \textbf{Earned Value (EV)} & $\geq 0$ & $\leq EAC$ \\
+        MPC-02 & \textbf{Planned Value (PV)} & $\geq 0$ & $\leq BAC$ \\
+        MPC-03 & \textbf{Actual Cost (AC)} & $\geq 0$ & $\leq EAC$ \\
+        MPC-04 & \textbf{Cost Performance Index (CPI)} & $\geq 0.90$ & $\geq 1.00$ \\
+        MPC-05 & \textbf{Schedule Performance Index (SPI)} & $\geq 0.90$ & $\geq 1.00$ \\
+        MPC-06 & \textbf{Estimate At Completion (EAC)} & $\geq 0$ & $\leq BAC$ \\
+        MPC-07 & \textbf{Estimate To Complete (ETC)} & $\geq 0$ & $\leq BAC$ \\
 
     \end{tabular}
-    \caption{Metriche di Qualità - Processi Primari} % Didascalia per l'indice delle tabelle
+    \caption{Metriche di Processo - Fornitura}
+\end{table}
 
+\subsubsection{Sviluppo}
+Queste metriche mirano a monitorare la stabilità dei requisiti durante la fase di analisi e progettazione.
+
+\begin{table}[h!]
+    \centering
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{c p{7cm} c c}
+        \rowcolor{AccentColor}
+        \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
+        
+        MPC-08 & \textbf{Requirements Stability Index (RSI)} & $\geq 70\%$ & $100\%$ \\
+    \end{tabular}
+    \caption{Metriche di Processo - Sviluppo}
+\end{table}
+
+\subsection{Processi di Supporto}
+\subsubsection{Documentazione}
+Metriche volte a garantire la leggibilità e la correttezza formale della documentazione prodotta.
+
+\begin{table}[h!]
+    \centering
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{c p{7cm} c c}
+        \rowcolor{AccentColor}
+        \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
+        
+        MPC-09 & \textbf{Indice di Gulpease} & $\geq 40$ & $\geq 60$ \\
+        MPC-10 & \textbf{Correttezza ortografica (Errori)} & 0 & 0 \\
+    \end{tabular}
+    \caption{Metriche di Processo - Documentazione}
+\end{table}
+
+\subsubsection{Verifica}
+
+\begin{table}[h!]
+    \centering
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{c p{7cm} c c}
+        \rowcolor{AccentColor}
+        \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
+        
+        MPC-11 & \textbf{Code Coverage} & $\geq 70\%$ & $\geq 80\%$ \\
+        MPC-12 & \textbf{Test Success Rate} & $100\%$ & $100\%$ \\
+    \end{tabular}
+    \caption{Metriche di Processo - Verifica}
+\end{table}
+
+\subsubsection{Gestione della qualità}
+\begin{table}[h!]
+    \centering
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{c p{7cm} c c}
+        \rowcolor{AccentColor}
+        \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
+        
+        MPC-13 & \textbf{Quality metrics satisfied} & $\geq 80\%$ & $\geq 100\%$ \\
+    \end{tabular}
+    \caption{Metriche di Processo - Gestione della qualità}
+\end{table}
+
+\subsection{Processi Organizzativi}
+Attività per gestire l'infrastruttura e le risorse umane
+\begin{table}[h!]
+    \centering
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{c p{7cm} c c}
+        \rowcolor{AccentColor}
+        \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
+        
+        MPC-14 & \textbf{Time Efficency} & $\geq 60\%$ & $\geq 100\%$ \\
+        MPC-15 & \textbf{Sprint Goal Achievement} & $\geq 80\%$ & $\geq 100\%$ \\
+
+
+    \end{tabular}
+    \caption{Processi Organizzativi - Gestione dei processi}
 \end{table}
 
 
 
-\subsubsection{Fornitura}
+
+\newpage 
 
 
-\subsubsection{Sviluppo}
 
-\subsection{Processi di supporto}
-
-\subsubsection{Documentazione}
-
-\subsubsection{Gestione configurazione}
-
-\subsubsection{Verifica}
-
-\subsubsection{Validazione}
-
-\subsection{Parametri del progetto}
 % ====== QUALITÀ DI PRODOTTO ======
 \section{Qualità di prodotto}
 

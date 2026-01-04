@@ -132,9 +132,9 @@
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} &
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Verificatore}}} & 
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
-        0.0.1 & 01/12/2025 & Alessandro Frison & Lorenzo Grolla & Inizio stesura \\
+        0.0.3 & 04/01/2025 & Alessandro Frison & Lorenzo Grolla & Aggiunta metriche di prodotto \\
         0.0.2 & 21/12/2025 & Lorenzo Grolla & Alessandro Frison & Aggiunta metriche processi \\ 
- 
+        0.0.1 & 01/12/2025 & Alessandro Frison & Lorenzo Grolla & Inizio stesura \\
     \end{tabular}
 \end{center}
 
@@ -142,7 +142,11 @@
 % ====== INDICE ======
 \pagestyle{fancy}
 \newpage
-\tableofcontents
+\tableofcontents    % Elenco dei contenuti
+\newpage
+\listoftables       % Elenco delle tabelle
+\newpage
+\listoffigures      % Elenco delle immagini
 \newpage
 
 % ====== INTRODUZIONE ======
@@ -299,15 +303,95 @@ Attività per gestire l'infrastruttura e le risorse umane
     \caption{Processi Organizzativi - Gestione dei processi}
 \end{table}
 
-
-
-
 \newpage 
-
-
 
 % ====== QUALITÀ DI PRODOTTO ======
 \section{Qualità di prodotto}
+L'obiettivo cardine dello sviluppo software risiede nella qualità di prodotto, intesa come l'attitudine del sistema a conformarsi ai requisiti e alle aspettative di utenti e stakeholder. Tale proprietà non è un attributo isolato, ma deriva direttamente dal rigore e dalla qualità dei processi implementati lungo l'intero ciclo di vita del progetto. \\
+Un software si definisce di elevata qualità quando soddisfa i seguenti pilastri metodologici:
+\begin{itemize}
+    \item \textbf{Conformità Funzionale}: il prodotto aderisce rigorosamente ai requisiti funzionali e non funzionali specificati nel documento di Analisi dei Requisiti v1.1.0.
+    \item \textbf{Affidabilità}: il sistema è in grado di operare in modo costante e resiliente, minimizzando i guasti e garantendo l'integrità dei dati nel tempo.
+    \item \textbf{Usabilità}: l'interfaccia e l'esperienza d'uso sono progettate per essere intuitive, permettendo all'utente di raggiungere i propri obiettivi con il minimo sforzo cognitivo.
+    \item \textbf{Efficienza}: le risorse computazionali sono ottimizzate per garantire tempi di risposta rapidi e un consumo energetico o di memoria proporzionato al carico di lavoro.
+    \item \textbf{Manutenibilità}: l'architettura è modulare e ben documentata, facilitando interventi correttivi o evolutivi senza introdurre instabilità nel sistema.
+\end{itemize}
+
+\subsection{Funzionalità}
+\begin{table}[h!]
+    \centering
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{c p{7cm} c c}
+        \rowcolor{AccentColor}
+        \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
+        MPD-01 & \textbf{Requisiti Obbligatori Soddisfatti} & $\geq 100\%$ & $100\%$ \\
+        MPD-02 & \textbf{Requisiti Desiderabili Soddisfatti} & $\geq 0\%$ & $100\%$ \\
+        MPD-03 & \textbf{Requisiti Opzionali Soddisfatti} & $\geq 0\%$ & $100\%$ \\
+        MPD-04 & \textbf{Function Point} & da determinare & da determinare \\
+    \end{tabular}
+    \caption{Metriche di Prodotto - Funzionalità}
+\end{table}
+
+\subsection{Affidabilità}
+\begin{table}[h!]
+    \centering
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{c p{7cm} c c}
+        \rowcolor{AccentColor}
+        \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
+        MPD-05 & \textbf{Code Coverage} & $\geq 80\%$ & $100\%$ \\
+        MPD-06 & \textbf{Statement Coverage} & $\geq 80\%$ & $100\%$ \\
+        MPD-07 & \textbf{Branch Coverage} & $\geq 70\%$ & $100\%$ \\
+        MPD-08 & \textbf{Condition Coverage } & $\geq 60\%$ & $100\%$ \\
+    \end{tabular}
+    \caption{Metriche di Prodotto - Affidabilità}
+\end{table}
+
+\newpage
+
+\subsection{Efficienza}
+\begin{table}[h!]
+    \centering
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{c p{7cm} c c}
+        \rowcolor{AccentColor}
+        \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
+        MPD-09 & \textbf{Response Time} & $\leq 10s$ & $\leq 4s$ \\
+    \end{tabular}
+    \caption{Metriche di Prodotto - Efficienza}
+\end{table}
+
+\subsection{Usabilità}
+\begin{table}[h!]
+    \centering
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{c p{7cm} c c}
+        \rowcolor{AccentColor}
+        \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
+        MPD-10 & \textbf{Facilità di utilizzo} & $\geq 7$ click & $\geq 5$ click\\
+        MPD-11 & \textbf{Tempo medio di apprendimento} & $\geq 5$ minuti & $\geq 2$ minuti\\
+    \end{tabular}
+    \caption{Metriche di Prodotto - Usabilità}
+\end{table}
+
+\subsection{Manutenibilità}
+\begin{table}[h!]
+    \centering
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{c p{7cm} c c}
+        \rowcolor{AccentColor}
+        \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
+        MPD-12 & \textbf{Accoppiamento Moduli} & $\leq 4$ & $\leq 2$ \\
+        MPD-13 & \textbf{Linee per Metodo} & $\leq 30$ & $\leq 15$ \\
+        MPD-14 & \textbf{Parametri per Metodo} & $\leq 4$ & $\leq 2$ \\
+        MPD-15 & \textbf{Attributi per Classe} & $\leq 7$ & $\leq 5$ \\
+        MPD-16 & \textbf{Structure Fan-In} & - & massimizzato \\
+        MPD-17 & \textbf{Structure Fan-Out} & - & minimizzato \\
+    \end{tabular}
+    \caption{Metriche di Prodotto - Manutenibilità}
+\end{table}
+
+\newpage
 
 % ====== METODI DI TESTING ======
 \section{Metodi di testing}

@@ -39,7 +39,7 @@
 
 \titleformat{\subsection}
   {\normalfont\sffamily\large\bfseries\color{AccentDark}}
-  {\thesubsection}{1em}{}
+  {}{0em}{}
 
 % 4. IMPOSTAZIONE HEADER E FOOTER
 \pagestyle{fancy}
@@ -85,6 +85,9 @@
     \addcontentsline{toc}{section}{#1}
     \textcolor{AccentColor}{\rule{\textwidth}{0.4pt}}
 }
+\newcommand{\nocontentsline}[3]{}
+\newcommand{\term}[1]{\bgroup\let\addcontentsline=\nocontentsline\subsection{#1}\label{term:#1}\egroup}
+\newcommand{\refterm}[1]{\nameref{term:#1}}
 
 % ====== INIZIO DEL DOCUMENTO ======
 \begin{document}
@@ -117,37 +120,59 @@
 
 % ====== SEZIONE PRINCIPALE ======
 \GlossarioLettera{A}
-\subsection*{API}
-Un'API (Application Programming Interface) è un insieme di regole e protocolli che consente a diverse applicazioni software di comunicare tra loro. Fornisce un'interfaccia standardizzata per accedere a funzionalit\'a o dati specifici di un'applicazione, servizio o piattaforma, facilitando l'integrazione e l'interoperabilit\'a tra sistemi diversi.
-\subsection*{Agente}
-Un agente è un'entit\'a autonoma in grado di: ragionare, pianificare, interagire con API e strumenti esterni, modificando l'ambiente esterno in cui opera per raggiungere obiettivi specifici.\\
+\term{Agente}
+Un agente è un'entità autonoma in grado di: ragionare, pianificare, interagire con API e strumenti esterni, modificando l'ambiente esterno in cui opera per raggiungere obiettivi specifici.\\
 I principali componenti di un agente sono:
 \begin{itemize}
-    \item \textbf{Model}: modello generativo (es. LLM) usato dall'agente. La sua efficacia dipende dalla qualit\'a e quantit\'a dei dati su cui è stato addestrato.\\
+    \item \textbf{Model}: modello generativo (es. \refterm{LLM}) usato dall'agente. La sua efficacia dipende dalla qualità e quantità dei dati su cui è stato addestrato.\\
      Diversamente dal modello puro, l'agente può ampliare le proprie capacità tramite interazioni con strumenti esterni.
-    \item \textbf{Reasoning Loop} (es. orchestratore): processo iterativo di pensiero e decisione dell'agente., in cui distingue i passaggi necessari e decide quali azioni eseguire.\\
+    \item \textbf{Reasoning Loop}: processo iterativo di pensiero e decisione dell'agente., in cui distingue i passaggi necessari e decide quali azioni eseguire.\\
     Può essere implementato con framework come ReAct.
-    \item \textbf{Tools}: strumenti esterni con cui l'agente interagisce con l'ambiente esterno per ottenere informazioni o eseguire azioni.Si dividono in:
-    \begin{itemize}
-      \item \textbf{Extensions}: collegano l'agente ad API esterne in modo autonomo, definendo quando, come e cosa aspettarsi dalla risposta.
-      \item \textbf{Function calling}: usata quando l'API è “segreta”; guida gli input, ma la chiamata vera la fa un sistema esterno.
-      \item \textbf{Data store / Vector database}: permette all'agente di cercare informazioni in database, documenti o siti.
-    \end{itemize}
+    \item \textbf{Tools}: strumenti esterni con cui l'agente interagisce con l'ambiente esterno per ottenere informazioni o eseguire azioni. Vedi \refterm{Tool}.
 \end{itemize}
-\subsection*{Analisi dei Requisiti}
+
+\term{Amazon Web Services}
+
+\term{Ambiente}
+
+\term{Analisi dei Requisiti}
+
+\term{API}
+Un'API (Application Programming Interface) è un insieme di regole e protocolli che consente a diverse applicazioni software di comunicare tra loro. Fornisce un'interfaccia standardizzata per accedere a funzionalità o dati specifici di un'applicazione, servizio o piattaforma, facilitando l'integrazione e l'interoperabilità tra sistemi diversi.
+
+\term{API Token}
+
+\term{AWS}
 
 \GlossarioLettera{B}
-\subsection*{Board}
+\term{Bedrock}
+\term{Board}
 Una Board è una bacheca in stile Kanban che permette di monitorare lo stato di avanzamento del progetto, attraverso l'organizzazione visuale delle attività (issue) da svolgere (Backlog, se non è ancora da prendere in carico - Ready, quando la issue è pronta per essere svolta), in corso (In Progress), in revisione (in Review, in attesa di verifica e approvazione) e terminate (Done).
-\subsection*{Branch}
-Un branch (ramo) è una linea di sviluppo indipendente (una copia separata del codice sorgente) all'interno di un sistema di controllo versione (VCS), come Git. Permette agli sviluppatori di lavorare su funzionalit\'a, correzioni di bug o esperimenti senza influenzare direttamente il ramo principale.
+
+\term{Branch}
+Un branch (ramo) è una linea di sviluppo indipendente (una copia separata del codice sorgente) all'interno di un sistema di controllo versione (VCS), come Git. Permette agli sviluppatori di lavorare su funzionalità, correzioni di bug o esperimenti senza influenzare direttamente il ramo principale.
 
 \GlossarioLettera{C}
+\term{Chain-of-thought prompting}
+
+\term{Cognito}
+
+\term{Container}
+
+\term{Context Prompt}
 
 \GlossarioLettera{D}
-\subsection*{Developer}
-Il Developer (Dev) è la figura responsabile di progettare, scrivere, testare e mantenere il codice necessario a realizzare le funzionalit\'a di un progetto software. Traduce i requisiti forniti da Project Manager e Tech Lead in soluzioni tecniche concrete, contribuendo allo sviluppo, all'evoluzione e alla qualit\'a del prodotto.\\
-Le sue principali responsabilità sono:ù
+\term{Database non relazionale}
+
+\term{Database relazionale}
+
+\term{Database vettoriale}
+
+\term{Dev}
+
+\term{Developer}
+Il Developer (Dev) è la figura responsabile di progettare, scrivere, testare e mantenere il codice necessario a realizzare le funzionalità di un progetto software. Traduce i requisiti forniti da Project Manager e Tech Lead in soluzioni tecniche concrete, contribuendo allo sviluppo, all'evoluzione e alla qualità del prodotto.\\
+Le sue principali responsabilità sono:
 \begin{itemize}
   \item \textbf{Sviluppo del codice}: implementa nuove funzionalità, corregge bug e realizza le componenti software richieste.
   \item  \textbf{Collaborazione tecnica}: interagisce con Tech Lead e altri sviluppatori per garantire coerenza e qualità.
@@ -155,13 +180,25 @@ Le sue principali responsabilità sono:ù
   \item \textbf{Documentazione}: documenta funzionalità, API, processi e soluzioni implementate.
   \item \textbf{Manutenzione}: aggiorna, ottimizza e riorganizza il codice esistente quando necessario.
 \end{itemize}
-\subsection*{Documentazione}
+
+\term{Docker}
+
+\term{Dockerfile}
+
+\term{Documentazione}
 \GlossarioLettera{E}
 
 \GlossarioLettera{F}
+\term{Few-shot prompting}
+
+\term{FM}
+
+\term{Foundation Model}
+
+\term{Framework}
 
 \GlossarioLettera{G}
-\subsection*{Git}
+\term{Git}
 Git è un sistema di controllo versione distribuito che consente di tracciare le modifiche apportate ai file e coordinare il lavoro tra più sviluppatori.\\
 I principali comandi di git sono:
 \begin{itemize}
@@ -181,127 +218,236 @@ I principali comandi di git sono:
     \item \textbf{git merge $<$branch$>$}: Unisce un branch specifico nel branch corrente.
     \item \textbf{git rebase $<$branch$>$}: Integra le modifiche di un branch specifico riscrivendo la cronologia dei commit.
 \end{itemize}
-\subsection*{GitHub}
+
+\term{GitHub}
 GitHub è una piattaforma di hosting per lo sviluppo software e il versionamento basato su Git che permette di:
 \begin{itemize}
     \item collaborare allo sviluppo di software in modo distribuito,
     \item gestire issue, pull request, documentazione
     \item automatizzare processi tramite GitHub Actions
 \end{itemize}
-È ampiamente utilizzata per progetti open-source e collaborativi.\\
-\subsection*{Gitflow}
+È ampiamente utilizzata per progetti open-source e collaborativi.
+
+\term{Gitflow}
 Gitflow è un workflow per Git basato su branch multipli con ruoli specifici. Permette una chiara separazione tra sviluppo, rilascio e manutenzione.\\
 La struttura principale include:
 \begin{itemize}
     \item \textbf{master}:contiene solo versioni pronte al rilascio
     \item \textbf{develop}: rappresenta lo stato corrente dello sviluppo
-    \item \textbf{feature branches}: uno per ogni nuova funzionalit\'a
+    \item \textbf{feature branches}: uno per ogni nuova funzionalità
     \item \textbf{release branches}: preparazione della versione
     \item \textbf{hotfix branches}: correzioni urgenti sul master
 \end{itemize}
 I principali comandi di gitflow sono:
 \begin{itemize}
   \item \textbf{git flow init}: Inizializza un repository Gitflow.
-  \item \textbf{git flow feature start $<$nome-feature$>$}: Crea e passa a un nuovo branch di funzionalit\'a.
-  \item \textbf{git flow feature finish $<$nome-feature$>$}: Unisce il branch di funzionalit\'a nel branch develop e lo elimina.
-  \item \textbf{git flow feature publish $<$nome-feature$>$}: Pubblica il branch di funzionalit\'a sul repository remoto.
-  \item \textbf{git flow feature pull origin $<$nome-feature$>$}: Recupera e integra le modifiche dal branch di funzionalit\'a remoto.
-  \item \textbf{git flow feature track $<$nome-feature$>$}: Crea un branch di funzionalit\'a locale che traccia il branch remoto.
+  \item \textbf{git flow feature start $<$nome-feature$>$}: Crea e passa a un nuovo branch di funzionalità.
+  \item \textbf{git flow feature finish $<$nome-feature$>$}: Unisce il branch di funzionalità nel branch develop e lo elimina.
+  \item \textbf{git flow feature publish $<$nome-feature$>$}: Pubblica il branch di funzionalità sul repository remoto.
+  \item \textbf{git flow feature pull origin $<$nome-feature$>$}: Recupera e integra le modifiche dal branch di funzionalità remoto.
+  \item \textbf{git flow feature track $<$nome-feature$>$}: Crea un branch di funzionalità locale che traccia il branch remoto.
   \item \textbf{git flow release start release $[$BASE$]$ $<$versione$>$}: Crea un nuovo branch di release a partire dal branch specificato (di default develop).
   \item \textbf{git flow feature release publish $<$versione$>$}: Pubblica il branch di release sul repository remoto.
   \item \textbf{git flow release finish $<$versione$>$}: Unisce il branch di release nei branch master e develop, crea un tag per la versione e elimina il branch di release.
   \item \textbf{git flow hotfix start $<$nome-hotfix$>$ $[$BASE$]$}: Crea un nuovo branch di hotfix a partire dal branch specificato (di default master).
   \item \textbf{git flow hotfix finish $<$nome-hotfix$>$}: Unisce il branch di hotfix nei branch master e develop, crea un tag per la versione e elimina il branch di hotfix.
 \end{itemize}
-\subsection*{GitHub Actions}
-GitHub Actions è il sistema di automazione di GitHub che consente di eseguire workflow automatizzati direttamente all'interno del repository. Permette di creare processi personalizzati per la compilazione, il test, il rilascio e la distribuzione del codice, nonché per altre attività legate allo sviluppo software, in risposta ad eventi del repository, come push o pull request.\\
+
+\term{GitHub Actions}
+GitHub Actions è il sistema di automazione di GitHub che consente di eseguire workflow automatizzati direttamente all'interno del repository. Permette di creare processi personalizzati per la compilazione, il test, il rilascio e la distribuzione del codice, nonché per altre attività legate allo sviluppo software, in risposta ad eventi del repository, come push o pull request.
+
+\term{GitHub Linguist}
+
 \GlossarioLettera{H}
+\term{Human Prompt}
 
 \GlossarioLettera{I}
-\subsection*{Issue}
-Un’issue è uno strumento di GitHub utilizzato per segnalare bug, proporre nuove funzionalit\'a, discutere idee o tracciare attivit\'a.
+\term{IaaS}
+
+\term{IAM}
+
+\term{Identity and Access Management}
+
+\term{Infrastructure as a Service}
+
+\term{Issue}
+Un’issue è uno strumento di GitHub utilizzato per segnalare bug, proporre nuove funzionalità, discutere idee o tracciare attività.
 
 \GlossarioLettera{J}
+\term{JavaScript}
+
+\term{JSON}
 
 \GlossarioLettera{K}
 
 \GlossarioLettera{L}
-\subsection*{LaTeX}
+\term{Langchain}
+
+\term{Langgraph}
+
+\term{Large Language Model}
+
+\term{LaTeX}
 LaTeX Linguaggio di marcatura (mark-down) compilato per la realizzazione di documenti.
 
+\term{Linguist}
+
+\term{LLM}
+
 \GlossarioLettera{M}
-\subsection*{Milestone}
+\term{Milestone}
 Una milestone è un contenitore che raggruppa issue e pull request sotto un obiettivo comune, di solito legato a una versione, uno sprint o una fase del progetto.\\
 Permette di:
 \begin{itemize}
     \item monitorare i progressi verso obiettivi specifici (percentuale di completamento),
-    \item organizzare le attivit\'a verso una scadenza condivisa,
+    \item organizzare le attività verso una scadenza condivisa,
     \item facilitare la pianificazione e la comunicazione all'interno del team.
 \end{itemize}
 
+\term{MongoDB}
+
+\term{MongoDB Atlas}
+
 \GlossarioLettera{N}
-\subsection*{Norme di Progetto}
+\term{NestJS}
+
+\term{NodeJS}
+
+\term{NoSQL}
+
+\term{Norme di Progetto}
+
+\term{npm}
 
 \GlossarioLettera{O}
-\subsection*{Orchestratore Autocratico} %RIGUARDARE
+\term{One-shot prompting}
+
+\term{Orchestratore Autocratico} %RIGUARDARE
 L'orchestratore è il componente centrale di un sistema ad agenti che coordina e gestisce le operazioni degli agenti per raggiungere obiettivi specifici in modo efficiente.\\
 In un sistema ad agenti con orchestratore autocratico, l'orchestratore prende decisioni centralizzate e dirige le azioni degli agenti senza consultare o coinvolgere gli agenti stessi nel processo decisionale. In questo sistema gli agenti svolgono compiti molto specifici.\\
 
 
 \GlossarioLettera{P}
-\subsection*{Project Manager}
-Il Project Manager (PM) è la figura responsabile della gestione completa del ciclo di vita di uno o più progetti, garantendone la realizzazione nel rispetto di tempi, costi, qualità e obiettivi stabiliti. Pur non essendo necessariamente un esperto tecnico di sviluppo software, coordina persone, attivit\'a e risorse, fungendo da punto di contatto tra team di sviluppo, organizzazione e cliente.\\
+\term{PaaS}
+
+\term{Platform as a Service}
+
+\term{Project Manager}
+Il Project Manager (PM) è la figura responsabile della gestione completa del ciclo di vita di uno o più progetti, garantendone la realizzazione nel rispetto di tempi, costi, qualità e obiettivi stabiliti. Pur non essendo necessariamente un esperto tecnico di sviluppo software, coordina persone, attività e risorse, fungendo da punto di contatto tra team di sviluppo, organizzazione e cliente.\\
 Le sue principali responsabilità sono:
 \begin{itemize}
   \item \textbf{Gestione del Progetto}: Definire obiettivi, scope, tempistiche e budget del progetto, assicurando che vengano rispettati durante tutto il ciclo di vita del progetto
-  \item \textbf{Pianificazione e Organizzazione}: Definisce il piano di progetto, stabilisce scadenze, milestones e priorit\'a operative.
+  \item \textbf{Pianificazione e Organizzazione}: Definisce il piano di progetto, stabilisce scadenze, milestones e priorità operative.
   \item \textbf{Comunicazione con il Cliente}: Raccoglie requisiti, chiarisce aspettative, condivide stato avanzamento e gestisce richieste o modifiche.
   \item \textbf{Assegnazione delle Risorse/Assegnazioni (chi fa cosa)}: Decide a quali Developer assegnare i vari progetti di cui è responsabile.
   \item \textbf{Monitoraggio dell'Avanzamento}: Controlla lo stato dei lavori, interviene in caso di rischi o ritardi, assicura il rispetto degli standard.
   \item \textbf{Qualità e Conformità}: Definisce standard e requisiti per documentazione e deliverable.
 \end{itemize}
-\subsection*{Piano di Progetto}
-\subsection*{Piano di Qualifica}
-\subsection*{PoC (Proof of Concept)}
+
+\term{Piano di Progetto}
+
+\term{Piano di Qualifica}
+
+\term{PMD}
+
+\term{PoC}
+
+\term{Proof of Concept}
 
 \GlossarioLettera{Q}
+\term{Query}
 
 \GlossarioLettera{R}
+\term{Raccolta}
+
+\term{React}
+
+\term{Report}
+
+\term{REST}
+
+\term{Role Prompt}
 
 \GlossarioLettera{S}
-\subsection*{Sistema ad agenti}
-Un sistema ad agenti è un insieme di entità autonome, chiamate agenti, che interagiscono tra loro per raggiungere obiettivi specifici all'interno di un ambiente condiviso. Ogni agente possiede capacità di percezione, decisione e azione, permettendo loro di adattarsi e collaborare in modo dinamico.\\
-\subsection*{Sprint}
+\term{SaaS}
+
+\term{Sarif}
+
+\term{Schema}
+
+\term{semgrep}
+
+\term{Serverless}
+
+\term{Sistema ad agenti}
+Un sistema ad agenti è un insieme di entità autonome, chiamate agenti, che interagiscono tra loro per raggiungere obiettivi specifici all'interno di un ambiente condiviso. Ogni agente possiede capacità di percezione, decisione e azione, permettendo loro di adattarsi e collaborare in modo dinamico.
+
+\term{Software as a Service}
+
+\term{SonarQube}
+
+\term{Sprint}
+Uno sprint è una piccola porzione di tempo (due settimane nel nostro caso) durante il quale un team porta a termine una determinata quantità di lavoro. Gli sprint prevedono
+\begin{itemize}
+	\item una riunione iniziale, per pianificare gli obbiettivi e lo svolgimento dello sprint
+	\item check-in giornalieri, per controllare l'andamento dello sprint e reagire tempestivamente a eventuali problematiche
+	\item una riunione retrospettiva al termine dello sprint, per pianificare e migliorare gli sprint futuri
+\end{itemize}
+
+\term{Swagger}
+
+\term{System Prompt}
 
 \GlossarioLettera{T}
-\subsection*{Tec Lead}
-Un tec lead (o technical lead) è il supervisore tecnico di più progetti. È la figura che unisce visione tecnica e capacità di coordinamento, fungendo da ponte tra il Project Manager e il team di sviluppo.\\
-Garantisce la solidit\'a dell'architettura, la qualit\'a del codice e la corretta applicazione delle tecnologie, supportando il team nella risoluzione dei problemi più complessi.\\
+\term{Tag}
+
+\term{Tag raccolta}
+
+\term{Tech Lead}
+Un tech lead (o technical lead) è il supervisore tecnico di più progetti. È la figura che unisce visione tecnica e capacità di coordinamento, fungendo da ponte tra il Project Manager e il team di sviluppo.\\
+Garantisce la solidità dell'architettura, la qualità del codice e la corretta applicazione delle tecnologie, supportando il team nella risoluzione dei problemi più complessi.\\
 Le sue principali responsabilità sono:
 \begin{itemize}
   \item \textbf{Supporto e Mentoring}: fornire supporto tecnico al team di sviluppo e al Project Manager, aiutando a risolvere problemi complessi e guidando le decisioni tecniche riguardo alle tecnologie di cui si occupa.
-  \item \textbf{Standard Tecnici}:  Assicurare che il codice e le pratiche di sviluppo rispettino gli standard di qualit\'a (guarda i risultati dei test e il test coverage, per valutare la qualit\'a complessiva del codice prodotto), sicurezza (identifica le vulnerabilit\'a o criticit\'a del prodotto) e performance definiti. Mantiene aggiornate librerie e dipendenze e monitora i rischi legati alle tecnologie adottate.
+  \item \textbf{Standard Tecnici}:  Assicurare che il codice e le pratiche di sviluppo rispettino gli standard di qualità (guarda i risultati dei test e il test coverage, per valutare la qualità complessiva del codice prodotto), sicurezza (identifica le vulnerabilità o criticità del prodotto) e performance definiti. Mantiene aggiornate librerie e dipendenze e monitora i rischi legati alle tecnologie adottate.
   \item \textbf{Architettura e Design}: Revisionare e approvare le decisioni architetturali, contribuendo alla definizione della direzione tecnica dei progetti.
-  \item \textbf{Monitoraggio Aggregato}: Analizza dati provenienti da più repository e progetti (test results, test coverage, stato di sicurezza, indicatori di qualit\'a) per identificare trend, criticit\'a e colli di bottiglia.
+  \item \textbf{Monitoraggio Aggregato}: Analizza dati provenienti da più repository e progetti (test results, test coverage, stato di sicurezza, indicatori di qualità) per identificare trend, criticità e colli di bottiglia.
 \end{itemize}
+
+\term{Test coverage}
+
+\term{Tool}
+Un tool è uno strumento esterno che estende le capacità di un \refterm{Agente}, permettendo ad esempio l'esecuzione di codice e recuperare informazioni aggiornate\footnote{\url{https://docs.langchain.com/oss/python/langchain/tools}}.
+
+I tool si dividono in:
+\begin{itemize}
+	\item \textbf{Extensions}: collegano l'\refterm{Agente} a \refterm{API} esterne in modo autonomo, definendo quando, come e cosa aspettarsi dalla risposta.
+	\item \textbf{Function calling}: usata quando l'\refterm{API} è “segreta”; guida gli input, ma la chiamata vera la fa un sistema esterno.
+	\item \textbf{Data store / \refterm{Database vettoriale}}: permette all'agente di cercare informazioni in database, documenti o siti.
+\end{itemize}
+\term{Trivy}
+
+\term{TypeScript}
 
 \GlossarioLettera{U}
 
 \GlossarioLettera{V}
-\subsection*{VCS}
+\term{VCS}
 Un Version Control System (VCS) è un sistema software che gestisce e traccia tutte le modifiche effettuate a un insieme di file, come documenti, programmi o siti web. Ogni modifica viene registrata come una revisione identificata da un numero o codice, accompagnata da timestamp e autore.\\
 Un VCS permette di confrontare versioni, ripristinare stati precedenti, condividere cambiamenti tra più utenti e gestire attività collaborative tramite funzionalità come branching, merging e tracciamento delle modifiche.
 
 \GlossarioLettera{W}
-\subsection*{Workflow}
+\term{Workflow}
 Il workflow è il processo o modello che stabilisce come vengono gestite le modifiche nello sviluppo del codice all'interno di un'organizzazione o di un progetto.\\
 Ogni workflow definisce come si creano i branch, come si integrano le modifiche e come si collabora.\\
 Il tipo di workflow dipende dal VCS utilizzato e dalle esigenze del team di sviluppo.
-\subsection*{Way of Working}
+\term{Way of Working}
 \GlossarioLettera{X}
 
 \GlossarioLettera{Y}
+\term{YAML}
 
 \GlossarioLettera{Z}
+\term{Zero-short prompting}
 
 \end{document}

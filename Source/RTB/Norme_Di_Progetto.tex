@@ -31,6 +31,11 @@
 \definecolor{LightGray}{RGB}{245, 245, 250}
 \definecolor{MediumGray}{RGB}{200, 200, 210}
 
+% --- 2. Mostra il livello 4 anche nell'Indice Es. 1.1.1.1 --- 
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+
 % 2. IMPOSTAZIONE MARGINI
 \geometry{a4paper, left=2.5cm, right=2.5cm, top=3.5cm, bottom=3.5cm}
 
@@ -48,6 +53,11 @@
   \titleformat{\subsubsection}
   {\normalfont\sffamily\large\bfseries\color{AccentDark}} % Cambiare colore dellle subsubsection
   {\thesubsubsection}
+  {1em}
+  {}
+  \titleformat{\paragraph}
+  {\normalfont\sffamily\large\bfseries\color{AccentDark}} % Cambiare colore delle paragraph
+  {\theparagraph}
   {1em}
   {}
 
@@ -145,7 +155,9 @@
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} & 
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
 
-        0.6 & 5/01/2026 & Giulia Romanato & Aggiunta sezione processi organizzativi \\
+
+        0.7 & 08/01/2026 & Nicolò Lattanzio & Aggiunta sotto sezione diari di bordo e sezione Gestione della configurazione\\
+        0.6 & 05/01/2026 & Giulia Romanato & Aggiunta sezione processi organizzativi \\
         0.5 & 22/12/2025 & Nicolò Lattanzio & Aggiunta sezione Strumenti di supporto e sezione Produzione e archiviazione. \\
         0.4 & 15/12/2025 & Nicolò Lattanzio & Aggiunta sezione Documenti Principali, insieme ai primi documenti chiave del progetto. \\
         0.3 & 07/12/2025 & Nicolò Lattanzio & Aggiunta sottosezione 4.1.1 per la Struttura dei documenti, 4.1.2 per il loro versionamento e 4.1.3 per la tabella Decisioni e Azioni.\\
@@ -419,18 +431,6 @@ Tutti i documenti formali prodotti dal gruppo seguono una struttura standardizza
 \end{itemize}
 Questa struttura si applica a tutti i tipi di documenti prodotti, tra cui: Verbali(interni ed esterni), Norme di Progetto, Analisi dei Requisiti\dots
 
-\subsubsection{Versionamento}
-Il versionamento dei documenti è un processo fondamentale per garantire la tracciabilità delle modifiche, la collaborazione ordinata tra i membri del team e la chiara identificazione dello stato corrente di ciascun documento. 
-\\
-Per questo motivo, il gruppo \textbf{Byte Holders} adotta un sistema di numerazione semantica e un registro strutturato delle modifiche.
-\\
-\\
-Per la gestione del versionamento, abbiamo deciso di usare uno schema a tre livelli, X.Y.Z, dove:
-\begin{itemize} 
-    \item \textbf{X (Approvazione):} Incrementato per cambiamenti significativi che richiedono l'approvazione formale. E quindi il raggiungimento di un documento stabile e definitivo.
-    \item \textbf{Y (Major Update):} Incrementato per l'aggiunta di nuove sezioni o modifiche sostanziali che alterano la struttura complessiva del documento. Il documento non è ancora definitivo.
-    \item \textbf{Z (Minor Update):} Incrementato per correzioni minori, come errori di battitura o aggiornamenti di dettaglio.
-\end{itemize}
 \subsubsection{Tabella Decisioni e Azioni}
 Ogni verbale relativo al progetto conterrà una tabella decisioni e azioni, che riassume le decisioni prese durante la riunione e le azioni assegnate ai membri del team.
 Anche in questo caso, per garantire la tracciabilità, ogni decisione o azione avrà un proprio codice di identificazione,
@@ -455,7 +455,18 @@ Qui sotto è riportato un esempio di tabella decisioni e azioni:
     \end{tabular}
 \end{center}
 
+\subsubsection{Diari di bordo}
+Nell'ambito delle lezioni di \textbf{Ingegneria del Software}, il prof. Tullio Vardanega ha organizzato, tramite il calendario delle lezioni, delle date per l'attività denominata "Diario di bordo".
+Questa attività prevede che per ogni gruppo ci sia un membro designato che rediga un breve resoconto dei progressi fatti fino alla data di presentazione del diario di bordo.
+Il diario di bordo deve includere:
+\begin{itemize}
+    \item Risultati raggiunti e confronto con previsioni all'inizio dello sprint.
+    \item Obiettivi e attività previste per il periodo successivo, fino al diario di bordo seguente.
+    \item Difficoltà riscontrate e problemi ancora da risolvere.
+\end{itemize}
+
 \subsubsection{Strumenti a supporto}
+
 Per la documentazione del progetto il gruppo \textbf{\textit{BYTE HOLDERS}} utilizza i seguenti strumenti:
 
 \begin{itemize}
@@ -465,8 +476,18 @@ Per la documentazione del progetto il gruppo \textbf{\textit{BYTE HOLDERS}} util
     \item \textbf{GitHub}: piattaforma di hosting per il controllo di versione distribuito; utilizzata per centralizzare il repository della documentazione, mantenere la cronologia delle modifiche e coordinare il lavoro asincrono del team tramite funzionalità di branching e pull request.
 \end{itemize}
 
+\subsubsection{Gestione della configurazione}
 
-\subsubsection{Produzione e archiviazione}
+L'obiettivo di questa sezione è definire l'approccio del gruppo \textbf{\textit{BYTE HOLDERS}} per la gestione della configurazione della documentazione di progetto, al fine di garantire coerenza, tracciabilità e controllo delle modifiche.
+In questo caso, come specificato nella sezione degli strumenti di supporto, il gruppo utilizza \textbf{GitHub} come piattaforma principale per il versionamento e la gestione della configurazione dei documenti.
+\\
+In particolare e' stato deciso di realizzare due repository distinte per l'RTB:
+\begin{itemize}
+    \item \textbf{Repository Documentazione:} Contiene tutti i documenti formali del progetto, come Norme di Progetto, Verbali, Analisi dei Requisiti, Piano di Progetto e altri documenti chiave. Ogni documento è organizzato in cartelle specifiche per facilitarne la navigazione. 
+    \item \textbf{Repository Codice Sorgente PoC:} Contiene il codice sorgente della Proof of Concept (PoC) sviluppata durante l'RTB. Questa repository include il codice, gli script di build, i file di configurazione e la documentazione tecnica correlata alla PoC.
+\end{itemize}
+
+\paragraph{Produzione e archiviazione}
 Il gruppo \textbf{\textit{BYTE HOLDERS}} adotta una strategia ben definita per la produzione e l'archiviazione della documentazione di progetto, al fine di garantire accessibilità, tracciabilità e sicurezza delle informazioni.
 La produzione di un documento segue questi passaggi:
 
@@ -483,6 +504,64 @@ La produzione di un documento segue questi passaggi:
     \item \textbf{Approvazione e Merge:} 
     Superata la fase di verifica, il Responsabile o un membro designato approva il documento e di seguito la Pull Request ed esegue il \textit{merge} (unione) del branch dedicato nel ramo \textit{main}. A questo punto, il documento aggiornato è considerato ufficiale e viene compilata la versione PDF definitiva per il rilascio.
 \end{enumerate}
+
+\paragraph{Versionamento}
+Il versionamento dei documenti è un processo fondamentale per garantire la tracciabilità delle modifiche, la collaborazione ordinata tra i membri del team e la chiara identificazione dello stato corrente di ciascun documento. 
+\\
+Per questo motivo, il gruppo \textbf{Byte Holders} adotta un sistema di numerazione semantica e un registro strutturato delle modifiche.
+\\
+\\
+Per la gestione del versionamento, abbiamo deciso di usare uno schema a tre livelli, X.Y.Z, dove:
+\begin{itemize} 
+    \item \textbf{X (Approvazione):} Incrementato per cambiamenti significativi che richiedono l'approvazione formale. E quindi il raggiungimento di un documento stabile e definitivo.
+    \item \textbf{Y (Major Update):} Incrementato per l'aggiunta di nuove sezioni o modifiche sostanziali che alterano la struttura complessiva del documento. Il documento non è ancora definitivo.
+    \item \textbf{Z (Minor Update):} Incrementato per correzioni minori, come errori di battitura o aggiornamenti di dettaglio.
+\end{itemize}
+
+\paragraph{Visualizzazione della documentazione}
+Per facilitare la consultazione e la fruizione della documentazione di progetto, il gruppo \textbf{\textit{BYTE HOLDERS}} ha implementato un sistema di visualizzazione basato su GitHub Pages.
+Questo sistema, inserito nella repository dedicata alla documentazione, consente di visualizzare tutta la documentazione presente nel branch main della repository, sotto forma di pdf.
+Il sito web e' suddiviso in 4 sezioni principali:
+\begin{itemize}
+    \item \textbf{Candidatura:} Contiene tutti i documenti relativi alla fase di candidatura e risposta al capitolato.
+    \item \textbf{RTB:} Contiene tutti i documenti prodotti durante la fase di RTB.
+    \item \textbf{PB:} Contiene tutti i documenti prodotti durante la fase di PB, alcuni di questi documenti sono versioni aggiornate di documenti gia presenti durante la fase di RTB.
+    \item \textbf{Diari di bordo:} Contiene tutti i diari di bordo prodotti durante il corso del progetto.
+\end{itemize}
+Oltre alle 4 sezioni elencate sono presenti dettagli relativi ai membri del gruppo e email per eventuali comunicazioni.
+
+\subsection{Garanzia della Qualità (Quality Assurance)}
+
+Il gruppo \textbf{Byte Holders} implementa il processo di Garanzia della Qualità in conformità con il processo 6.3 dello standard ISO/IEC 12207:1995. Questo processo ha l'obiettivo di fornire un'assicurazione oggettiva che i prodotti software e i processi del ciclo di vita siano conformi ai requisiti specificati e ai piani stabiliti. Le attività includono:
+
+\begin{itemize}
+    \item \textbf{Controllo di Processo:} Verifica periodica che le attività svolte dai membri del team siano conformi alle procedure descritte nel Piano di Progetto e nel Piano di Qualifica.
+    \item \textbf{Verifica degli Standard:} Ogni documento e artefatto viene controllato per assicurare il rispetto delle convenzioni di formattazione, nomenclatura e versionamento.
+    \item \textbf{Indipendenza della valutazione:} Per garantire l'oggettività, l'attività di \textbf{Quality Assurance} è svolta, se possibile, da membri non direttamente coinvolti nella creazione del documento o sezione di codice.
+\end{itemize}
+
+\subsection{Verifica}
+
+In accordo con il processo 6.4 dello standard ISO/IEC 12207:1995, il processo di Verifica ha lo scopo di determinare se i prodotti di una determinata fase dello sviluppo soddisfano le condizioni imposte all'inizio di quella fase.
+
+Le attività di verifica adottate dal gruppo \textbf{Byte Holders} comprendono:
+\begin{itemize}
+    \item \textbf{Walkthrough e Inspection:} Revisioni interne approfondite sui documenti (Analisi dei Requisiti, Specifica Tecnica) e sul codice sorgente per identificare anomalie, discrepanze o errori logici prima di procedere alla fase successiva.
+    \item \textbf{Analisi Statica:} Utilizzo di strumenti automatici per la verifica della qualità del codice (es. controllo dello stile, rilevamento di potenziali bug) senza l'esecuzione del programma.
+    \item \textbf{Tracciabilità:} Verifica che ogni requisito software sia correttamente tracciato e coperto nelle fasi di progettazione e implementazione.
+\end{itemize}
+
+\subsection{Validazione}
+
+Il processo di Validazione, conforme al processo 6.5 dello standard ISO/IEC 12207:1995, assicura che il prodotto finale soddisfi l'uso specifico previsto e le esigenze dell'utente.
+
+Le attività di validazione includono:
+\begin{itemize}
+    \item \textbf{Test di Sistema:} Esecuzione del software completo per verificare che rispetti i requisiti funzionali e non funzionali specificati nel documento di Analisi dei Requisiti.
+    \item \textbf{Test di Accettazione (UAT):} Coinvolgimento del committente per dimostrare che il sistema è pronto per l'uso operativo. Questa fase corrisponde all'acquisizione del feedback formale da parte del proponente.
+    \item \textbf{Validazione Documentale:} Conferma che la documentazione prodotta (Manuali Utente, Manuali Sviluppatore) sia comprensibile, completa e utilizzabile dal pubblico di destinazione.
+\end{itemize}
+
 
 
 \section{Processi Organizzativi}

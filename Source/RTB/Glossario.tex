@@ -86,7 +86,7 @@
     \textcolor{AccentColor}{\rule{\textwidth}{0.4pt}}
 }
 \newcommand{\nocontentsline}[3]{}
-\newcommand{\term}[1]{\bgroup\let\addcontentsline=\nocontentsline\subsection{#1}\label{term:#1}\egroup}
+\newcommand{\term}[1]{\vspace*{.5cm}\bgroup\let\addcontentsline=\nocontentsline\subsection{#1}\label{term:#1}\egroup}
 \newcommand{\refterm}[1]{\nameref{term:#1}}
 
 % ====== INIZIO DEL DOCUMENTO ======
@@ -134,13 +134,15 @@ I principali componenti di un agente sono:
 \term{Amazon Web Services}
 
 \term{Ambiente}
+Vedi \refterm{Variabili d'Ambiente}
 
 \term{Analisi dei Requisiti}
 
 \term{API}
-Un'API (Application Programming Interface) è un insieme di regole e protocolli che consente a diverse applicazioni software di comunicare tra loro. Fornisce un'interfaccia standardizzata per accedere a funzionalità o dati specifici di un'applicazione, servizio o piattaforma, facilitando l'integrazione e l'interoperabilità tra sistemi diversi.
+Un'API (Application Programming Interface) è un insieme di regole e protocolli che consente a diverse applicazioni software di comunicare tra loro. È un'interfaccia per accedere a funzionalità o dati specifici di un'applicazione, servizio o piattaforma, facilitando l'integrazione e l'interoperabilità tra sistemi diversi.
 
 \term{API Token}
+Chiave unica talvolta necessaria per accedere a una \refterm{API}.
 
 \term{AWS}
 
@@ -158,6 +160,15 @@ Un branch (ramo) è una linea di sviluppo indipendente (una copia separata del c
 \term{Cognito}
 
 \term{Container}
+Processo isolato per le componenti di un'applicazione. Un container è:
+\begin{itemize}
+	\item autocontenuto, nel senso che non si appoggia su dipendenze della macchina su cui corre
+	\item isolato, garantendo maggiore sicurezza per le applicazioni. A differenza di una macchina virtuale la separazione non avviene a livello kernel.
+	\item gestito indipendentemente dagli altri container
+	\item portatile, nel senso che lo stesso container può correre allo stesso modo su macchine diverse
+\end{itemize}
+
+ Si ottiene eseguendo una \refterm{Immagine (Docker)} tramite \refterm{Docker}.
 
 \term{Context Prompt}
 
@@ -175,9 +186,11 @@ Un branch (ramo) è una linea di sviluppo indipendente (una copia separata del c
 \term{Database vettoriale}
 
 \term{Dev}
+Vedi \refterm{Developer}.
 
 \term{Developer}
-Il Developer (Dev) è la figura responsabile di progettare, scrivere, testare e mantenere il codice necessario a realizzare le funzionalità di un progetto software. Traduce i requisiti forniti da Project Manager e Tech Lead in soluzioni tecniche concrete, contribuendo allo sviluppo, all'evoluzione e alla qualità del prodotto.\\
+Il Developer è la figura responsabile di progettare, scrivere, testare e mantenere il codice necessario a realizzare le funzionalità di un progetto software. Traduce i requisiti forniti da Project Manager e Tech Lead in soluzioni tecniche concrete, contribuendo allo sviluppo, all'evoluzione e alla qualità del prodotto.
+
 Le sue principali responsabilità sono:
 \begin{itemize}
   \item \textbf{Sviluppo del codice}: implementa nuove funzionalità, corregge bug e realizza le componenti software richieste.
@@ -188,8 +201,29 @@ Le sue principali responsabilità sono:
 \end{itemize}
 
 \term{Docker}
+Piattaforma per sviluppare e condividere applicazioni in modo che siano separate dalla loro infrastruttura (vedi \refterm{Container}). Facilita la riproducibilità della costruzione di software nonché il loro sviluppo e la scalabilità.
+
+Utilizza un'architettura client-server, dove il demone \texttt{dockerd} (locale o remoto) e il client (ad es. \refterm{docker compose}) comunicano tramite \refterm{API} \refterm{REST} tramite socket o rete.
+
+\term{docker compose}
+Comando che permette di eseguire \refterm{Container} multipli secondo una configurazione specificata in un file \refterm{YAML}, permettendo la configurazione ad esempio di reti, volumi e variabili d'ambiente.
 
 \term{Dockerfile}
+File contenente le istruzioni per la costruzione di un'\refterm{Immagine (Docker)}. A seguire istruzioni comuni\footnote{\url{https://docs.docker.com/reference/dockerfile}}:
+\begin{itemize}
+	\item \texttt{FROM}: definisce l'immagine di partenza
+	\item \texttt{WORKDIR}: definisce la \textit{working directory} all'interno del filesystem dummy dell'immagine
+	\item \texttt{COPY <host-path> <image-path>}: copia tutti i file/directory presenti a \texttt{<host-path>} (dell'utente) in \texttt{<wd>/<image-path>} (dell'immagine). Qui, \texttt{<wd>} è definita dal comando \texttt{WORKDIR}
+	\item \texttt{RUN <cmd>}: esegue \texttt{<cmd>} da riga di comando. Si noti che
+	\begin{enumerate}
+		\item la cache non viene invalidata in build successive, salvo l'esecuzione di \texttt{docker build --no-cache} in fase di build
+		\item dal momento che \texttt{RUN} genera un nuovo layer, effettuare un'operazione che influenza(ad esempio) solamente la shell corrente non influenzerà i comandi successivi. Ad esempio, se entro attivo un \texttt{virtualenv} di python con un comando \texttt{RUN}, e successivamente eseguo \texttt{RUN pip install...}, il pacchetto non verrà installato all'interno dell'ambiente virtuale.
+	\end{enumerate}
+	\item \texttt{ENV <name> <value>}: assegna \texttt{<name>=<value>} a livello di \refterm{Ambiente}
+	\item \texttt{EXPOSE <port>}: indica la porta che vorresti esporre. In realtà è solo documentativa: il comando in sé non espone la porta, ma lo comunica a chi eseguirà poi il container. Starà a quella persona poi pubblicare la porta ad esempio utilizzando la flag \texttt{-p} in \texttt{docker run -p<host>:<container>/<protocol>}. In tal caso, il comando specifica che avviene port-forwarding dalla porta \texttt{<host>} dell'host a quella \texttt{<container>} del container, utilizzando protocollo \texttt{<protocol>} che può essere \texttt{udp} o \texttt{tcp}.
+	\item \texttt{USER <user/uuid>}: specifica l'utente per le istruzioni successive
+	\item \texttt{CMD ["<command>", "<arg1>"]}: specifica il comando che il container eseguirà ogni volta che viene fatto correre. Ce ne può essere solamente uno per container e deve essere l'ultima istruzione presente nel file.
+\end{itemize}
 
 \term{Documentazione}
 \GlossarioLettera{E}
@@ -273,6 +307,11 @@ GitHub Actions è il sistema di automazione di GitHub che consente di eseguire w
 \term{IAM}
 
 \term{Identity and Access Management}
+
+\term{Immagine (Docker)}
+Un pacchetto in sola lettura che contiene tutti i file, le librerie e le configurazioni per eseguire un \refterm{Container}. Un'immagine è composta da vari strati (\textit{layer}) che rappresentano le modifiche applicate a un'immagine di partenza. La composizioni in strati permette una costruzione di container più rapida e il risparmio di spazio, dal momento che sono condivisibili.
+
+Immagini docker possono essere trovate su \url{https://hub.docker.com/}.
 
 \term{Infrastructure as a Service}
 
@@ -441,6 +480,9 @@ I tool si dividono in:
 \GlossarioLettera{U}
 
 \GlossarioLettera{V}
+\term{Variabili d'Ambiente}
+Un insieme di variabili di sistema (\texttt{NAME=VALUE}) che un processo può leggere, modificando il proprio comportamento. Una variabile d'ambiente nota è \texttt{PATH}, che fa riferimento a una lista di cartelle contenenti file eseguibili (che quindi possono essere eseguiti per nome da riga di comando). Nel nostro caso, tramite \refterm{Docker} si possono indicare dei file che andranno a definire l'ambiente di un container. In questo modo si può facilmente (utilizzando la libreria \texttt{dotenv}) evitare di scrivere dei segreti all'interno di file che saranno caricati e condivisi pubblicamente. Mai condividere un \texttt{.env} file.
+
 \term{VCS}
 Un Version Control System (VCS) è un sistema software che gestisce e traccia tutte le modifiche effettuate a un insieme di file, come documenti, programmi o siti web. Ogni modifica viene registrata come una revisione identificata da un numero o codice, accompagnata da timestamp e autore.\\
 Un VCS permette di confrontare versioni, ripristinare stati precedenti, condividere cambiamenti tra più utenti e gestire attività collaborative tramite funzionalità come branching, merging e tracciamento delle modifiche.

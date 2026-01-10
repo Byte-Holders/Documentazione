@@ -128,7 +128,7 @@ I principali componenti di un agente sono:
      Diversamente dal modello puro, l'agente può ampliare le proprie capacità tramite interazioni con strumenti esterni.
     \item \textbf{Reasoning Loop}: processo iterativo di pensiero e decisione dell'agente., in cui distingue i passaggi necessari e decide quali azioni eseguire.\\
     Può essere implementato con framework come ReAct.
-    \item \textbf{Tools}: strumenti esterni con cui l'agente interagisce con l'ambiente esterno per ottenere informazioni o eseguire azioni. Vedi \refterm{Tool}.
+    \item \textbf{Tool}: strumenti esterni con cui l'agente interagisce con l'ambiente esterno per ottenere informazioni o eseguire azioni. Vedi \refterm{Tool}.
 \end{itemize}
 
 \term{Amazon Web Services}
@@ -137,6 +137,10 @@ I principali componenti di un agente sono:
 Vedi \refterm{Variabili d'Ambiente}
 
 \term{Analisi dei Requisiti}
+Documento contenente i requisiti (vedi \refterm{Requisito}) individuati dal gruppo Byte Holders, redatto facendo riferimento allo standard IEEE 830-1998.
+
+\term{Analisi dei Requisiti (Processo)}
+Processo di studio dei bisogni degli utenti per definire un \refterm{Requisito}.
 
 \term{API}
 Un'API (Application Programming Interface) è un insieme di regole e protocolli che consente a diverse applicazioni software di comunicare tra loro. È un'interfaccia per accedere a funzionalità o dati specifici di un'applicazione, servizio o piattaforma, facilitando l'integrazione e l'interoperabilità tra sistemi diversi.
@@ -209,7 +213,7 @@ Utilizza un'architettura client-server, dove il demone \texttt{dockerd} (locale 
 Comando che permette di eseguire \refterm{Container} multipli secondo una configurazione specificata in un file \refterm{YAML}, permettendo la configurazione ad esempio di reti, volumi e variabili d'ambiente.
 
 \term{Dockerfile}
-File contenente le istruzioni per la costruzione di un'\refterm{Immagine (Docker)}. A seguire istruzioni comuni\footnote{\url{https://docs.docker.com/reference/dockerfile}}:
+File contenente le istruzioni per la costruzione di un'\refterm{Immagine (Docker)}. A seguire istruzioni comuni\footnote{Documentazione: \url{https://docs.docker.com/reference/dockerfile}}:
 \begin{itemize}
 	\item \texttt{FROM}: definisce l'immagine di partenza
 	\item \texttt{WORKDIR}: definisce la \textit{working directory} all'interno del filesystem dummy dell'immagine
@@ -226,6 +230,21 @@ File contenente le istruzioni per la costruzione di un'\refterm{Immagine (Docker
 \end{itemize}
 
 \term{Documentazione}
+Repository, con sito accessibile al link \url{https://byte-holders.github.io/Documentazione/}, contenente tutti i documenti formali prodotti dal gruppo \textbf{Byte Holders}.
+
+I documenti pubblicati:
+\begin{itemize}
+	\item \refterm{Analisi dei Requisiti}
+	\item \refterm{Norme di Progetto}
+	\item \refterm{Piano di Progetto}
+	\item \refterm{Piano di Qualifica}
+	\item \refterm{Glossario}
+	\item Verbali esterni
+	\item Vebali interni
+	\item Diari di bordo
+\end{itemize}
+
+
 \GlossarioLettera{E}
 
 \GlossarioLettera{F}
@@ -297,6 +316,9 @@ I principali comandi di gitflow sono:
 GitHub Actions è il sistema di automazione di GitHub che consente di eseguire workflow automatizzati direttamente all'interno del repository. Permette di creare processi personalizzati per la compilazione, il test, il rilascio e la distribuzione del codice, nonché per altre attività legate allo sviluppo software, in risposta ad eventi del repository, come push o pull request.
 
 \term{GitHub Linguist}
+
+\term{Glossario}
+Questo documento, che ha lo scopo di disambiguare ed essere un riferimento condiviso all'interno del gruppo.
 
 \GlossarioLettera{H}
 \term{Human Prompt}
@@ -411,6 +433,9 @@ Le sue principali responsabilità sono:
 \term{React}
 
 \term{Report}
+
+\term{Requisito}
+Una condizione che un sistema o componente deve rispettare, soddisfacendo una specifica definita nella \refterm{Documentazione}.
 
 \term{REST}
 

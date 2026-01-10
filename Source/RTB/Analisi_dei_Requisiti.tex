@@ -20,7 +20,6 @@
 \usepackage{booktabs}
 \usepackage{enumitem}
 \usepackage{titlecaps}
-\usepackage{longtable}
 \usepackage[utf8]{inputenc} % Specifica la codifica del file (necessaria per le accentate)
 \usepackage[T1]{fontenc}    % Migliora l'output dei font per le lingue europee
 
@@ -58,10 +57,10 @@
 
 % 5. IMPOSTAZIONE LINK
 \hypersetup{
-    colorlinks=true,
-    linkcolor=AccentColor,
-    urlcolor=AccentLight,
-    citecolor=AccentDark,
+	colorlinks=true,
+	linkcolor=AccentColor,
+	urlcolor=AccentLight,
+	citecolor=AccentDark,
 }
 
 % 6. PERSONALIZZAZIONE ELENCHI
@@ -69,8 +68,8 @@
 \setlist[enumerate]{itemsep=2pt, topsep=4pt}
 
 % ====== COMANDI PERSONALIZZATI ======
-\newcommand{\gloss}[1]{\titlecap{\textit{#1}}\textsuperscript{G}}
-\newcommand{\nuovogloss}[1]{\subsection{\gloss{#1}}\label{#1}}
+\newcommand{\refterm}[1]{\textit{#1}\textsuperscript{G}}
+\newcommand{\term}[1]{\subsubsection{\refterm{#1}}}
 
 % ====== STILE TABELLE MIGLIORATO ======
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X} % Colonna giustificata a sinistra
@@ -80,21 +79,21 @@
 
 % ====== INIZIO DEL DOCUMENTO ======
 \begin{document}
-
+	
 
 \pagestyle{empty}
 
 % ====== PAGINA DI TITOLO ======
 \begin{titlepage}
-    \begin{center}
-    	\includegraphics[width=0.55\textwidth]{../Assets/ByteHolders1.png}\vspace{1.5cm}
-    	
-    	{\LARGE \sffamily \color{AccentColor}\bfseries Analisi dei Requisiti}
-    \end{center}
-    
-    \vfill
-    \rule{\textwidth}{1pt}\par
-   	\textit{Versione: 0.1.0}
+	\begin{center}
+		\includegraphics[width=0.55\textwidth]{../Assets/ByteHolders1.png}\vspace{1.5cm}
+
+		{\LARGE \sffamily \color{AccentColor}\bfseries Analisi dei Requisiti}
+	\end{center}
+	
+	\vfill
+	\rule{\textwidth}{1pt}\par
+	\textit{Versione: 0.1.0}
 \end{titlepage}
 
 \newpage
@@ -104,15 +103,15 @@
 \vspace{1cm}
 
 \begin{center}
-    \rowcolors{2}{LightGray}{white}
-     \begin{tabular}{>{\centering\arraybackslash}m{1.5cm} >{\centering\arraybackslash}m{2cm} >{\raggedright\arraybackslash}m{2.5cm} >{\raggedright\arraybackslash}m{6.5cm}}
-        \rowcolor{AccentColor}
-          \textcolor{white}{\textbf{Versione}} & 
-          \textcolor{white}{\textbf{Data}} & 
-          \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} &
-          \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
-        0.1.0 & 19/12/2025 & Alessandro Morabito & Inizio stesura\\ 
-    \end{tabular}
+	\rowcolors{2}{LightGray}{white}
+	\begin{tabular}{>{\centering\arraybackslash}m{1.5cm} >{\centering\arraybackslash}m{2cm} >{\raggedright\arraybackslash}m{2.5cm} >{\raggedright\arraybackslash}m{6.5cm}}
+		\rowcolor{AccentColor}
+		\textcolor{white}{\textbf{Versione}} & 
+		\textcolor{white}{\textbf{Data}} & 
+		\multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} &
+		\multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
+		0.1.0 & 19/12/2025 & Alessandro Morabito & Inizio stesura\\ 
+	\end{tabular}
 \end{center}
 
 
@@ -123,45 +122,79 @@
 \newpage
 
 % ====== INTRODUZIONE ======
-\section{Scopo del documento}
-Con il presente documento il gruppo \gloss{byte holders} definisce i \gloss{requisiti} dell'applicazione \gloss{Code Guardian} che si impegna a sviluppare per l'\gloss{Azienda}.
+\section{Introduzione}
+\subsection{Scopo del documento}
+Con il presente documento il gruppo Byte Holders stabilisce i requisiti funzionali e non funzionali del software CodeGuardian.
 
-\section{Glossario}
-Per evitare ambiguità, nel corso del documento si farà riferimento a termini indicati nel \href{https://byte-holders.github.io/Documentazione/RTB/Glossario.pdf}{\gloss{Glossario}}\footnote{\url{https://byte-holders.github.io/Documentazione/RTB/Glossario.pdf}} utilizzando la lettera \textit{G} ad apice della formula corrispondente, che viene indicata in corsivo e con iniziali maiuscole (ad es. \gloss{formula in glossario}). La corrispondenza di termini è a meno di coniugazioni e declinazioni.
+Questo documento è rivolto:
+\begin{itemize}
+	\item all'Azienda Var Group, destinatari anche del software sviluppato
+	\item al gruppo Byte Holders, che farà riferimento a questo documento nel corso del progetto
+	\item ai professori Tullio Vardanega e Riccardo Cardin
+\end{itemize}
 
-\section{Riferimenti}
-\subsection{Riferimenti normativi}
+All'interno del documento si proponge una visione generale del software proposto nella Sezione \ref{sec:descrizione generale}, per poi passare in rassegna i casi d'uso individuati nella Sezione \ref{sec:casi d'uso}.
+
+Per la redazione del documento si è fatto riferimento allo standard IEEE 830-1998.
+
+\subsection{Scopo del prodotto}
+Il prodotto CodeGuardian permetterà di effettuare analisi della qualità di repository GitHub, con una particolare attenzione in merito ai permessi di visualizzazione delle informazioni e lancio delle stesse analisi.
+
+CodeGuardian si propone come soluzione per team di sviluppo eterogenei che vogliono poter monitorare lo stato di repository GitHub e ottenere informazioni aggregate su insemi di progetti analizzati.
+
+\subsection{Glossario}
+Per evitare ambiguità, nel corso del documento si farà riferimento a termini indicati nel \href{https://byte-holders.github.io/Documentazione/RTB/Glossario.pdf}{\refterm{Glossario}} utilizzando la lettera \textit{G} ad apice della formula corrispondente, che viene indicata in corsivo (ad es. \refterm{formula in glossario}). La corrispondenza di termini è a meno di coniugazioni e declinazioni.
+
+% Dal momento che il glossario è un documento interno, possiamo mettere qua dentro tutti i termini che ci servono
+\subsection{Definizioni, acronimi e abbreviazioni}
+\term{Caso d'uso}
+Un Caso d'uso è un insieme di scenari che hanno in comune uno scopo finale per un utente.
+
+\term{Scenario}
+
+\term{Attore}
+
+
+\subsection{Riferimenti}
+\subsubsection{Riferimenti normativi}
 \begin{itemize}
 	\item 
-		\gloss{Norme Di Progetto}\\
-		\url{https://byte-holders.github.io/Documentazione/RTB/Glossario.pdf}
+		Norme Di Progetto\\
+		\url{https://byte-holders.github.io/Documentazione/RTB/Norme_Di_Progetto.pdf}
 	\item
-		\gloss{Capitolato}\\
+		830-1998 - IEEE Recommended Practice for Software Requirements Specifications\\
+		\url{https://ieeexplore.ieee.org/document/720574}
+	\item
+		Capitolato\\
 		\url{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C2.pdf}
 \end{itemize}
-\subsection{Riferimenti informativi}
+\subsubsection{Riferimenti informativi}
 \begin{itemize}
 	\item
-		\gloss{Glossario}\\
+		\refterm{Glossario}\\
 		\url{https://byte-holders.github.io/Documentazione/RTB/Glossario.pdf}
 	\item
-		Specifica \gloss{UML} 2.5.1\\
+		Specifica UML 2.5.1\\
 		\url{https://www.omg.org/spec/UML/2.5.1/PDF}
 \end{itemize}
 
-\section{Termini aggiunti al \gloss{Glossario}}
-\nuovogloss{Caso d'uso}
-Un \gloss{Caso d'uso} è un insieme di \gloss{scenari} che hanno in comune uno scopo finale per un \gloss{utente}.
+\section{Descrizione generale} \label{sec:descrizione generale}
+\subsection{Prospettiva del prodotto}
+Il gruppo Byte Holders propone il software CodeGuardian, un sistema ad agenti che permette di analizzare la qualità del codice, il livello di sicurezza e di manutenzione per una repository GitHub. L'esito dell'analisi sarà disponibile sotto forma di report agli utenti, ai quali sono proposte eventuali soluzioni alle problematiche individuate.
 
-\nuovogloss{Scenario}
+Il gruppo Byte Holders ha offerto particolare attenzione alla rolistica all'interno dell'applicazione, che si è tradotta nella distinzione di tipologie di utenti in base ai loro permessi.
 
-\nuovogloss{Attore}
+A tutti gli utenti sarà comune la presenza di una dashboard che comprenderà vari workspace, nonché la capacità di effettuare ricerche avanzate al loro interno.
 
-\newpage
+Il prodotto si propone quindi come soluzione per diverse tipologie di utenti, come quelle individuate in prima sessione di \textit{Design Thinking}, che condividono gli stessi progetti.
 
-\section{\gloss{Casi d'uso}}
-\subsection{Lista degli \gloss{Attori}}
-Nella creazione dei \gloss{casi d'uso} sono stati individuati i seguenti \gloss{attori}:
+\subsection{Funzioni del prodotto}
+
+\subsection{Caratteristiche dell'utente}
+
+\section{Casi d'uso} \label{sec:casi d'uso}
+\subsection{Lista degli Attori}
+Nella creazione dei casi d'uso sono stati individuati i seguenti attori:
 \begin{itemize}
 	\item 
 		\textbf{Utente non Autenticato}\\
@@ -171,7 +204,7 @@ Nella creazione dei \gloss{casi d'uso} sono stati individuati i seguenti \gloss{
 		Utente generico riconosciuto dal sistema
 	\item 
 		\textbf{Utente Permesso OWASP}  (eredita da \textit{Utente autenticato})\\
-		Utente Autenticato con il permesso per la visione completa delle informazioni su \gloss{OWASP}
+		Utente Autenticato con il permesso per la visione completa delle informazioni su OWASP
 	\item
 		\textbf{Utente Permesso Utenti/Ruoli} (eredita da \textit{Utente autenticato})\\
 	 	Utente Autenticato con il permesso per la gestione degli utenti e dei ruoli
@@ -191,18 +224,18 @@ Nella creazione dei \gloss{casi d'uso} sono stati individuati i seguenti \gloss{
 		\textbf{Utente Permesso Informazioni Tecniche} (eredita da \textit{Utente autenticato})\\
 		Utente Autenticato con il permesso per la visione completa delle informazioni tecniche di una repository
 \end{itemize}
-\subsection{Struttura generale di un \gloss{caso d'uso}}
-Si è deciso di descrivere ciascun \gloss{caso d'uso} seguendo la seguente struttura (\underline{sottolineati} i campi sempre popolati):
+\subsection{Struttura generale di un caso d'uso}
+Si è deciso di descrivere ciascun \refterm{caso d'uso} seguendo la seguente struttura (\underline{sottolineati} i campi sempre popolati):
 
-\begin{longtable}{|p{.25\linewidth} p{.6\linewidth}|}
+\begin{tabular}{|p{.25\linewidth} p{.6\linewidth}|}
 	\hline
 	\textbf{\underline{Codice}} 
 	&
-	Codice identificativo utilizzato per far riferimento al \gloss{caso d'uso} corrente\\
+	Codice identificativo utilizzato per far riferimento al \refterm{caso d'uso} corrente\\
 	
 	\textbf{\underline{Titolo}} 
 	&
-	Titolo del \gloss{caso d'uso} corrente\\
+	Titolo del \refterm{caso d'uso} corrente\\
 	
 	\textbf{\underline{Attori principali}} 
 	&
@@ -214,29 +247,29 @@ Si è deciso di descrivere ciascun \gloss{caso d'uso} seguendo la seguente strut
 	
 	\textbf{\underline{Precondizioni}}
 	&
-	  Condizioni necessarie per l'esecuzione del \gloss{caso d'uso} corrente\\
+	Condizioni necessarie per l'esecuzione del \refterm{caso d'uso} corrente\\
 	
 	\textbf{\underline{Postcondizioni}} 
 	&
-	Condizioni in cui viene lasciato il sistema al termine dello \gloss{scenario principale}\\
+	Condizioni in cui viene lasciato il sistema al termine dello \refterm{scenario principale}\\
 	
 	\textbf{\underline{Scenario principale}}
 	&
-	Descrizione degli eventi che avvengono all'interno dello \gloss{scenario principale}\\
+	Descrizione degli eventi che avvengono all'interno dello \refterm{scenario principale}\\
 	
 	\textbf{Inclusioni} 
 	&
-	Lista dei riferimenti a \gloss{casi d'uso} terzi \gloss{inclusi} dal \gloss{caso d'uso} corrente e al quale si fa riferimento nella sezione \textit{Scenario principale}\\
+	Lista dei riferimenti a \refterm{casi d'uso} terzi \refterm{inclusi} dal \refterm{caso d'uso} corrente e al quale si fa riferimento nella sezione \textit{Scenario principale}\\
 	
 	\textbf{Scenari alternativi} 
 	&
-	Descrizione delle situazioni che portano a \gloss{scenari alternativi}\\
+	Descrizione delle situazione che portano a \refterm{scenari alternativi}\\
 	
 	\textbf{Eredita da} 
 	&
-	Codice del \gloss{caso d'uso} terzo da cui eredita il \gloss{caso d'uso} corrente (non ammettiamo ereditarietà multipla)\\
+	Codice del \refterm{caso d'uso} terzo da cui eredita il \refterm{caso d'uso} corrente (non ammettiamo ereditarietà multipla)\\
 	
 	\hline
-\end{longtable}
-\subsection{Lista dei \gloss{casi d'uso}}
+\end{tabular}
+\subsection{Lista dei \refterm{casi d'uso}}
 \end{document}

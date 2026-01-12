@@ -155,14 +155,14 @@
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} & 
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
 
-
-        0.7 & 08/01/2026 & Nicolò Lattanzio & Aggiunta sotto sezione diari di bordo e sezione Gestione della configurazione\\
-        0.6 & 05/01/2026 & Giulia Romanato & Aggiunta sezione processi organizzativi \\
-        0.5 & 22/12/2025 & Nicolò Lattanzio & Aggiunta sezione Strumenti di supporto e sezione Produzione e archiviazione. \\
-        0.4 & 15/12/2025 & Nicolò Lattanzio & Aggiunta sezione Documenti Principali, insieme ai primi documenti chiave del progetto. \\
-        0.3 & 07/12/2025 & Nicolò Lattanzio & Aggiunta sottosezione 4.1.1 per la Struttura dei documenti, 4.1.2 per il loro versionamento e 4.1.3 per la tabella Decisioni e Azioni.\\
-        0.2 & 06/12/2025 & Nicolò Lattanzio & Aggiunta sezione Processi Primari, con relative sottosezioni, e prima redazione della sezione Processi di Supporto. \\
-        0.1 & 30/11/2025 & Nicolò Lattanzio & Creazione e prima redazione del documento.  \\
+        0.0.8 & 12/01/2026 & Nicolò Lattanzio & Aggiunta sezione Metriche di Qualità del processo e prodotto, e completamento sezione 3.2 Processi di Sviluppo.\\
+        0.0.7 & 08/01/2026 & Nicolò Lattanzio & Aggiunta sotto sezione diari di bordo e sezione Gestione della configurazione\\
+        0.0.6 & 05/01/2026 & Giulia Romanato & Aggiunta sezione processi organizzativi \\
+        0.0.5 & 22/12/2025 & Nicolò Lattanzio & Aggiunta sezione Strumenti di supporto e sezione Produzione e archiviazione. \\
+        0.0.4 & 15/12/2025 & Nicolò Lattanzio & Aggiunta sezione Documenti Principali, insieme ai primi documenti chiave del progetto. \\
+        0.0.3 & 07/12/2025 & Nicolò Lattanzio & Aggiunta sottosezione 4.1.1 per la Struttura dei documenti, 4.1.2 per il loro versionamento e 4.1.3 per la tabella Decisioni e Azioni.\\
+        0.0.2 & 06/12/2025 & Nicolò Lattanzio & Aggiunta sezione Processi Primari, con relative sottosezioni, e prima redazione della sezione Processi di Supporto. \\
+        0.0.1 & 30/11/2025 & Nicolò Lattanzio & Creazione e prima redazione del documento.  \\
         
     \end{tabular}
 \end{center}
@@ -351,6 +351,19 @@ Per questo progetto saranno prodotti i seguenti documenti chiave:
 
 \end{tcolorbox}
 
+\subsubsection{Strumenti a supporto}
+Per il processo di fornitura il gruppo \textbf{\textit{BYTE HOLDERS}} ha deciso di utilizzare i seguenti strumenti, suddivisi in due parti, una per la comunicazione interna al gruppo:
+\begin{itemize}
+  \item \textbf{Discord}: Per riunioni principalmente vocali tra i membri del gruppo. Grazie alla possibilità di creare canali testuali specifici per ogni attività, viene utilizzato per tenere traccia di file e link utili allo sviluppo del progetto.
+  \item \textbf{WhatsApp}: Per comunicazioni rapide e asincrone tra i membri del gruppo, utilizzato in oltre per tenere traccia degli appuntamenti previsti e per inviare promemoria.
+\end{itemize}
+
+La seconda sezione degli strumenti a supporto riguarda la comunicazione verso l'azienda proponente:
+\begin{itemize}
+  \item \textbf{Teams}: Per riunioni vocali e video con il proponente VarGroup S.r.l., grazie alla sua integrazione con Outlook si ha anche la possibilità di pianificare riunioni direttamente dal calendario.
+  \item \textbf{Slack}: Per la comunicazione rapida con l'azienda proponente, utilizzato principalmente per concordare riunioni.
+\end{itemize}
+
 
 
 
@@ -376,14 +389,97 @@ Questo processo organizza in fasi strutturate le attività di analisi, progettaz
     \item \textbf{Metodologia:} Adotteremo pratiche ibride Agile, con sprint per lo sviluppo e milestone formali per le revisioni.
 \end{itemize}
 
-
-\subsection{Strumenti di supporto}
-Per i processi primari il gruppo \textbf{\textit{BYTE HOLDERS}} utilizza i seguenti strumenti:
+\subsubsection{Analisi dei Requisiti}
+L'analisi dei requisiti è una fase cruciale del processo di sviluppo, in cui il gruppo \textbf{\textit{BYTE HOLDERS}} si impegna a comprendere e documentare le esigenze del committente VarGroup S.r.l.
+Tale analisi e' reperibile nel documento \textit{Analisi Dei Requisiti}, che include:
 \begin{itemize}
-  \item \textbf{GitHub}: per il versionamento del codice e la gestione delle issue.
-  \item \textbf{Discord}: per la comunicazione interna tra i membri del team.
-  \item \textbf{Slack}: Per la comunicazione con il proponente, in modo da concordare eventuali riunioni e per richiedere supporto tecnico se necessario.
-  \item \textbf{Teams}: Per le riunioni virtuali con il proponente, dando la possibilità di condividere lo schermo e mostrare il lavoro svolto.
+    \item Requisiti funzionali e non funzionali
+    \item Casi d'uso dettagliati
+    \item Specifiche di interfaccia
+    \item Vincoli tecnici e di progetto
+\end{itemize}
+\subsubsection{Nomenclatura Casi d'Uso}
+Per garantire l'univocità e la facile identificazione delle funzionalità offerte dal sistema, ogni caso d'uso è identificato da un codice alfanumerico strutturato secondo la seguente sintassi:
+
+\begin{center}
+    \textbf{UC[CodicePadre].[CodiceFiglio]}
+\end{center}
+
+Dove:
+\begin{itemize}
+    \item \textbf{UC}: Acronimo fisso che sta per \textit{Use Case};
+    \item \textbf{CodicePadre}: Numero intero progressivo che identifica il caso d'uso principale (o padre);
+    \item \textbf{CodiceFiglio} (Opzionale): Numero intero progressivo che identifica un sotto-caso d'uso (o figlio) incluso o esteso dal padre.
+\end{itemize}
+
+\textbf{Esempi:}
+\begin{itemize}
+    \item \textit{UC1}: Login (Caso d'uso principale);
+    \item \textit{UC1.1}: Recupero Password (Sotto-caso d'uso del Login).
+\end{itemize}
+
+
+
+\subsubsection{Nomenclatura Requisiti}
+In conformità con la necessità di tracciabilità dei requisiti (processo di sviluppo software ISO/IEC 12207), ogni requisito è classificato e identificato tramite un codice univoco che ne esplicita la tipologia e la priorità.
+
+La sintassi adottata è la seguente:
+
+\begin{center}
+    \textbf{R[Tipologia][Importanza][Codice]}
+\end{center}
+
+Dove le singole voci assumono i seguenti significati:
+
+\paragraph{Tipologia}
+Indica la natura del requisito:
+\begin{itemize}
+    \item \textbf{F}: \textit{Funzionale} - Descrive una funzionalità o un comportamento del sistema;
+    \item \textbf{Q}: \textit{Qualitativo} (o Non Funzionale) - Descrive attributi di qualità come performance, affidabilità o sicurezza;
+    \item \textbf{V}: \textit{Vincolo} - Descrive limitazioni tecniche, normative o progettuali imposte dal committente o dall'ambiente;
+    \item \textbf{P}: \textit{Prestazionale} - Sottocategoria specifica per requisiti legati alle performance (opzionale, spesso accorpato in Q).
+\end{itemize}
+
+\paragraph{Importanza}
+Definisce la priorità di implementazione del requisito:
+\begin{itemize}
+    \item \textbf{O}: \textit{Obbligatorio} (Must have) - Requisito indispensabile per il funzionamento del sistema o richiesto esplicitamente dal vincolo contrattuale;
+    \item \textbf{D}: \textit{Desiderabile} (Should have) - Requisito che porta valore aggiunto ma la cui assenza non compromette le funzionalità base;
+    \item \textbf{F}: \textit{Facoltativo} (Could have/Nice to have) - Requisito opzionale da implementare solo se le risorse e le tempistiche lo permettono.
+\end{itemize}
+
+\paragraph{Codice}
+Un numero intero progressivo univoco che identifica il requisito (spesso gerarchico).
+
+\textbf{Esempi:}
+\begin{itemize}
+    \item \textit{RFO1}: Requisito Funzionale Obbligatorio numero 1;
+    \item \textit{RQD12}: Requisito Qualitativo Desiderabile numero 12.
+\end{itemize}
+
+
+
+\subsubsection{Codifica del codice sorgente}
+Questa sezione ha l'obiettivo di definire le linee guida per la scrittura di codice sorgente in maniera chiara, mantenibile e coerente all'interno del progetto sviluppato dal gruppo \textbf{\textit{BYTE HOLDERS}}.
+\\
+Le seguenti convenzioni di codifica sono adottate per garantire uniformità e qualità del codice:
+\begin{itemize}
+    \item \textbf{Lingua}: I nomi delle variabili, funzioni ed eventuali classi devono essere scritti in inglese.
+    \item \textbf{Funzioni}: Realizzare funzioni con una singola responsabilità, evitando funzioni troppo lunghe o complesse, l'utilizzo di funzioni specifiche per ogni compito le rende riutilizzabili e facilmente testabili.
+    \item \textbf{Commenti}: Utilizzare commenti per spiegare il funzionamento del codice, specialmente in sezioni complesse o non intuitive. I commenti devono essere chiari e concisi, evitando di commentare cose facilmente interpretabili dal codice.
+    \item \textbf{Indentazione e Spaziatura}: Utilizzare un'indentazione coerente (ad esempio 2 o 4 spazi) per migliorare la leggibilità del codice. Mantenere una spaziatura adeguata tra le sezioni di codice per separare logicamente i blocchi.\\
+\end{itemize}
+Relativamente al posizionamento dei file all'interno della repository GitHub, il gruppo \textbf{\textit{BYTE HOLDERS}} ha deciso di adottare la seguente struttura:
+\begin{itemize}
+    \item \textbf{Cartelle}: Ogni macro funzionalità del progetto avrà una propria cartella dedicata, contenente tutti i file correlati a quella funzionalità. (Es. Cartelle per Frontend e backend separate)
+    \item DA FINIRE
+\end{itemize}
+
+\subsubsection{Strumenti di supporto}
+Per il processo di sviluppo il gruppo \textbf{\textit{BYTE HOLDERS}} ha deciso di utilizzare i seguenti strumenti:
+\begin{itemize}
+  \item \textbf{Visual Studio Code}: per la scrittura del codice sorgente, scelto per la sua versatilità e supporto a numerose estensioni.
+  \item \textbf{Draw.io}: per la realizzazione dei diagrammi UML e altre rappresentazioni grafiche necessarie per la realizzazione degli use-case pubblicati nel documento di Analisi Dei Requisiti e per progettazione del software finale.
 \end{itemize}
 
 \section{Processi Di Supporto}
@@ -473,10 +569,9 @@ Per la documentazione del progetto il gruppo \textbf{\textit{BYTE HOLDERS}} util
     \item \textbf{Linguaggio \LaTeX}: adottato come standard per la stesura di documentazione tecnica; garantisce un'alta qualità tipografica, uniformità stilistica e una gestione avanzata di riferimenti incrociati e bibliografia, separando il contenuto dalla formattazione.
     \item \textbf{Visual Studio Code}: IDE (Integrated Development Environment) utilizzato come editor principale per la scrittura del codice sorgente LaTeX, scelto per la sua leggerezza, estensibilità e integrazione nativa con i sistemi di controllo versione.
     \item \textbf{LaTeX Workshop}: estensione per Visual Studio Code che automatizza il processo di compilazione e build dei documenti; fornisce funzionalità di linting (controllo sintattico), intellisense e anteprima PDF sincronizzata (SyncTeX) per un feedback visivo immediato durante la stesura.
-    \item \textbf{GitHub}: piattaforma di hosting per il controllo di versione distribuito; utilizzata per centralizzare il repository della documentazione, mantenere la cronologia delle modifiche e coordinare il lavoro asincrono del team tramite funzionalità di branching e pull request.
 \end{itemize}
 
-\subsubsection{Gestione della configurazione}
+\subsection{Gestione della configurazione}
 
 L'obiettivo di questa sezione è definire l'approccio del gruppo \textbf{\textit{BYTE HOLDERS}} per la gestione della configurazione della documentazione di progetto, al fine di garantire coerenza, tracciabilità e controllo delle modifiche.
 In questo caso, come specificato nella sezione degli strumenti di supporto, il gruppo utilizza \textbf{GitHub} come piattaforma principale per il versionamento e la gestione della configurazione dei documenti.
@@ -487,7 +582,7 @@ In particolare e' stato deciso di realizzare due repository distinte per l'RTB:
     \item \textbf{Repository Codice Sorgente PoC:} Contiene il codice sorgente della Proof of Concept (PoC) sviluppata durante l'RTB. Questa repository include il codice, gli script di build, i file di configurazione e la documentazione tecnica correlata alla PoC.
 \end{itemize}
 
-\paragraph{Produzione e archiviazione}
+\subsubsection{Produzione e archiviazione}
 Il gruppo \textbf{\textit{BYTE HOLDERS}} adotta una strategia ben definita per la produzione e l'archiviazione della documentazione di progetto, al fine di garantire accessibilità, tracciabilità e sicurezza delle informazioni.
 La produzione di un documento segue questi passaggi:
 
@@ -505,7 +600,7 @@ La produzione di un documento segue questi passaggi:
     Superata la fase di verifica, il Responsabile o un membro designato approva il documento e di seguito la Pull Request ed esegue il \textit{merge} (unione) del branch dedicato nel ramo \textit{main}. A questo punto, il documento aggiornato è considerato ufficiale e viene compilata la versione PDF definitiva per il rilascio.
 \end{enumerate}
 
-\paragraph{Versionamento}
+\subsubsection{Versionamento della documentazione}
 Il versionamento dei documenti è un processo fondamentale per garantire la tracciabilità delle modifiche, la collaborazione ordinata tra i membri del team e la chiara identificazione dello stato corrente di ciascun documento. 
 \\
 Per questo motivo, il gruppo \textbf{Byte Holders} adotta un sistema di numerazione semantica e un registro strutturato delle modifiche.
@@ -518,10 +613,10 @@ Per la gestione del versionamento, abbiamo deciso di usare uno schema a tre live
     \item \textbf{Z (Minor Update):} Incrementato per correzioni minori, come errori di battitura o aggiornamenti di dettaglio.
 \end{itemize}
 
-\paragraph{Visualizzazione della documentazione}
+\subsubsection{Visualizzazione della documentazione}
 Per facilitare la consultazione e la fruizione della documentazione di progetto, il gruppo \textbf{\textit{BYTE HOLDERS}} ha implementato un sistema di visualizzazione basato su GitHub Pages.
 Questo sistema, inserito nella repository dedicata alla documentazione, consente di visualizzare tutta la documentazione presente nel branch main della repository, sotto forma di pdf.
-Il sito web e' suddiviso in 4 sezioni principali:
+Il sito web è suddiviso in 4 sezioni principali:
 \begin{itemize}
     \item \textbf{Candidatura:} Contiene tutti i documenti relativi alla fase di candidatura e risposta al capitolato.
     \item \textbf{RTB:} Contiene tutti i documenti prodotti durante la fase di RTB.
@@ -529,6 +624,17 @@ Il sito web e' suddiviso in 4 sezioni principali:
     \item \textbf{Diari di bordo:} Contiene tutti i diari di bordo prodotti durante il corso del progetto.
 \end{itemize}
 Oltre alle 4 sezioni elencate sono presenti dettagli relativi ai membri del gruppo e email per eventuali comunicazioni.
+
+\subsubsection{Strumenti a supporto}
+
+Per la documentazione del progetto il gruppo \textbf{\textit{BYTE HOLDERS}} utilizza i seguenti strumenti:
+
+\begin{itemize}
+    \item \textbf{GitHub}: Piattaforma per il versionamento e collaborazione, utilizzata per la gestione del codice sorgente e della documentazione..
+    \item \textbf{GitHub Pages}: Servizio che permette di pubblicare il contenuto della repository su un sito web statico, utilizzato per visualizzare i documenti in formato PDF, come descritto nel punto 4.2.3.
+\end{itemize}
+
+
 
 \subsection{Garanzia della Qualità (Quality Assurance)}
 
@@ -710,6 +816,214 @@ Il processo adottato segue il ciclo di miglioramento continuo definito dal model
 \subsection{Formazione}
 Prima formazione fornita dall'azienda proponente VarGroup S.r.l. seguita poi da uno studio personale in cui si predilige l'apprendimento pratico attraverso piccoli esempi giocattolo.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\section{Metriche e standard per la Qualità}
+Per garantire la massima qualità del prodotto e del processo, il gruppo ha deciso di adottare lo standard \textbf{ISO/IEC 25010:2023} (System and software quality models), l'ultima iterazione della serie SQuaRE (Systems and software Quality Requirements and Evaluation).
+
+Questo standard scompone la qualità del prodotto software in otto caratteristiche principali:
+\begin{itemize}
+    \item \textbf{Adeguatezza Funzionale} (Functional Suitability);
+    \item \textbf{Efficienza Prestazionale} (Performance Efficiency);
+    \item \textbf{Compatibilità} (Compatibility);
+    \item \textbf{Usabilità} (Usability);
+    \item \textbf{Affidabilità} (Reliability);
+    \item \textbf{Sicurezza} (Security);
+    \item \textbf{Manutenibilità} (Maintainability);
+    \item \textbf{Portabilità} (Portability).
+\end{itemize}
+
+Ogni metrica è identificata dal codice \textbf{M[Tipo][ID]}, dove \textit{Tipo} è \textbf{PC} (Processo) o \textbf{PD} (Prodotto).
+
+\section{Metriche di Qualità del Processo}
+Le metriche di processo mirano a monitorare l'andamento delle attività, i costi e la stabilità dei requisiti durante il ciclo di vita (rif. ISO/IEC 12207).
+
+\subsection{Processi Primari}
+
+\subsubsection{Schedule Performance Index (SPI)}
+\textbf{Codice:} MPC01
+\begin{itemize}
+    \item \textbf{Formula:} $$SPI = \frac{EV}{PV}$$
+    Dove:
+    \begin{itemize}
+        \item $EV$ (Earned Value): Valore monetario/orario del lavoro realizzato;
+        \item $PV$ (Planned Value): Valore monetario/orario del lavoro pianificato.
+    \end{itemize}
+    \item \textbf{Descrizione:} Indica l'efficienza della pianificazione temporale.
+    \item \textbf{Soglie:}
+    \begin{itemize}
+        \item $SPI \ge 1$: Progetto in pari o in anticipo (Ottimo);
+        \item $0.9 \le SPI < 1$: Ritardo gestibile (Accettabile);
+        \item $SPI < 0.9$: Ritardo grave (Critico).
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Cost Performance Index (CPI)}
+\textbf{Codice:} MPC02
+\begin{itemize}
+    \item \textbf{Formula:} $$CPI = \frac{EV}{AC}$$
+    Dove $AC$ (Actual Cost) è il costo reale sostenuto (ore spese).
+    \item \textbf{Descrizione:} Indica l'efficienza dei costi rispetto al budget preventivato. Un valore $<1$ indica che si stanno spendendo più risorse del previsto.
+\end{itemize}
+
+\subsubsection{Requirements Stability Index (RSI)}
+\textbf{Codice:} MPC03
+\begin{itemize}
+    \item \textbf{Formula:} $$RSI = \left( 1 - \frac{R_{var}}{R_{tot}} \right) \times 100$$
+    Dove $R_{var}$ è il numero di requisiti aggiunti, modificati o cancellati e $R_{tot}$ il totale iniziale.
+    \item \textbf{Descrizione:} Misura la stabilità dei requisiti. Variazioni frequenti impattano negativamente sulla progettazione.
+\end{itemize}
+
+\subsection{Processi di Supporto}
+
+\subsubsection{Code Coverage (Test di Unità)}
+\textbf{Codice:} MPC04
+\begin{itemize}
+    \item \textbf{Formula:} $$Coverage = \frac{LOC_{covered}}{LOC_{total}} \times 100$$
+    \item \textbf{Descrizione:} Percentuale di linee di codice (LOC) eseguite durante i test automatizzati.
+    \item \textbf{Obiettivo:} $\ge 80\%$.
+\end{itemize}
+
+\subsubsection{Indice di Gulpease (Leggibilità Documenti)}
+\textbf{Codice:} MPC05
+\begin{itemize}
+    \item \textbf{Formula:} $$G = 89 + \frac{300 \times Frasi - 10 \times Lettere}{Parole}$$
+    \item \textbf{Descrizione:} Valuta la leggibilità di un testo in lingua italiana.
+    \item \textbf{Obiettivo:} $G \ge 40$ (Leggibilità media/buona per testi tecnici).
+\end{itemize}
+
+\section{Metriche di Qualità del Prodotto (ISO/IEC 25010:2023)}
+
+\subsection{Adeguatezza Funzionale}
+Capacità del prodotto di fornire funzioni che soddisfano le esigenze dichiarate e implicite quando utilizzato in condizioni specificate.
+
+\subsubsection{Copertura Funzionale}
+\textbf{Codice:} MPD01
+\begin{itemize}
+    \item \textbf{Formula:} $$CF = \frac{Requisiti_{impl}}{Requisiti_{tot}} \times 100$$
+    \item \textbf{Descrizione:} Percentuale di requisiti funzionali (Obbligatori/Desiderabili) effettivamente implementati e superati nei test di sistema.
+    \item \textbf{Obiettivo:} $100\%$ per i requisiti Obbligatori alla release finale.
+\end{itemize}
+
+\subsection{Affidabilità}
+Grado in cui un sistema, prodotto o componente svolge le funzioni specificate sotto condizioni determinate per un periodo di tempo stabilito.
+
+\subsubsection{Mean Time To Repair (MTTR)}
+\textbf{Codice:} MPD02
+\begin{itemize}
+    \item \textbf{Formula:} Media del tempo trascorso tra la rilevazione di un guasto e la sua risoluzione (fix + deploy).
+    \item \textbf{Descrizione:} Indica la capacità del team e del sistema di ripristinare il servizio (Recoverability).
+\end{itemize}
+
+\subsection{Efficienza Prestazionale}
+Prestazioni relative alla quantità di risorse utilizzate sotto condizioni determinate.
+
+\subsubsection{Average Response Time}
+\textbf{Codice:} MPD03
+\begin{itemize}
+    \item \textbf{Formula:} $$\frac{\sum Tempi\_risposta}{N\_richieste}$$
+    \item \textbf{Descrizione:} Tempo medio che intercorre tra l'invio della richiesta e la ricezione della risposta completa.
+    \item \textbf{Obiettivo:} $< 0.5s$ per API standard; $< 2s$ per operazioni complesse.
+\end{itemize}
+
+\subsection{Compatibilità}
+Grado in cui un prodotto, sistema o componente può scambiare informazioni con altri prodotti (Interoperabilità) e svolgere le sue funzioni condividendo lo stesso ambiente hardware/software (Coesistenza).
+
+\subsubsection{Browser Compatibility Rate}
+\textbf{Codice:} MPD04
+\begin{itemize}
+    \item \textbf{Formula:} $$BCR = \frac{Browser_{supportati}}{Browser_{testati}} \times 100$$
+    \item \textbf{Descrizione:} Percentuale di browser (Chrome, Firefox, Safari, Edge) in cui il software non presenta anomalie grafiche o funzionali.
+\end{itemize}
+
+\subsection{Usabilità}
+Grado in cui un prodotto o sistema può essere utilizzato da specifici utenti per raggiungere specifici obiettivi con efficacia, efficienza e soddisfazione.
+
+\subsubsection{Average Error Rate (AER)}
+\textbf{Codice:} MPD05
+\begin{itemize}
+    \item \textbf{Formula:} $$AER = \frac{N_{errori\_utente}}{N_{azioni\_totali}} \times 100$$
+    \item \textbf{Descrizione:} Percentuale di errori commessi dall'utente durante l'esecuzione di un task specifico (misura l'intuitività dell'interfaccia).
+\end{itemize}
+
+\subsection{Sicurezza}
+Grado in cui il prodotto protegge informazioni e dati in modo che persone o altri sistemi abbiano il grado di accesso ai dati appropriato al loro livello di autorizzazione.
+
+\subsubsection{Vulnerability Density}
+\textbf{Codice:} MPD06
+\begin{itemize}
+    \item \textbf{Formula:} $$VD = \frac{Vulnerabilita\_rilevate}{KLOC}$$
+    \item \textbf{Descrizione:} Numero di vulnerabilità di sicurezza (secondo OWASP Top 10) rilevate tramite analisi statica per 1000 righe di codice.
+    \item \textbf{Obiettivo:} 0 Vulnerabilità di livello High/Critical.
+\end{itemize}
+
+\subsection{Manutenibilità}
+Grado di efficacia ed efficienza con cui il prodotto può essere modificato dagli sviluppatori.
+
+\subsubsection{Cyclomatic Complexity (Complessità Ciclomatica)}
+\textbf{Codice:} MPD07
+\begin{itemize}
+    \item \textbf{Formula:} $$V(G) = E - N + 2P$$
+    \item \textbf{Descrizione:} Misura la complessità logica del codice. Funzioni con $V(G) > 10$ sono considerate difficili da mantenere e testare.
+    \item \textbf{Obiettivo:} Mantenere la complessità media $< 10$.
+\end{itemize}
+
+\subsection{Portabilità}
+Grado di efficacia ed efficienza con cui un sistema, prodotto o componente può essere trasferito da un ambiente operativo ad un altro (es. Docker deploy).
+
+\subsubsection{Environment Deployment Success}
+\textbf{Codice:} MPD08
+\begin{itemize}
+    \item \textbf{Formula:} $$EDS = \frac{Deploy\_riusciti}{Deploy\_tentati} \times 100$$
+    \item \textbf{Descrizione:} Percentuale di installazioni/deploy andati a buon fine al primo tentativo su diversi ambienti (Locale, CI/CD, Produzione).
+\end{itemize}
 
 
 

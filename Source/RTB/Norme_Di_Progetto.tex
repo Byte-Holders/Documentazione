@@ -996,4 +996,171 @@ In particolare per lo studio delle tecnologie da usare nel progetto il gruppo ha
     \item \textbf{studio individuale:} studiato individuale delle tecnologie proposte dall'azienda
     \item \textbf{creazione di un prototipo:} apprendimento delle tecnologie tramite la realizzazione di un prototipo più o meno complesso in cui principalmente si esplora l'utilizzo di agenti, il linguaggio TypeScript, il framework React
     \item \textbf{condivisione dei risultati:} discussione tra i membri del gruppo riguardo le competenze apprese, le difficoltà incontrate e gli eventuali dubbi emersi
+\end{itemize}
+
+
+
+
+
+\section{Metriche e standard per la Qualità}
+Per garantire la massima qualità del prodotto e del processo, il gruppo ha deciso di adottare lo standard \textbf{ISO/IEC 25010:2023} (System and software quality models), l'ultima iterazione della serie SQuaRE (Systems and software Quality Requirements and Evaluation).
+
+Questo standard scompone la qualità del prodotto software in otto caratteristiche principali:
+\begin{itemize}
+    \item \textbf{Adeguatezza Funzionale} (Functional Suitability);
+    \item \textbf{Efficienza Prestazionale} (Performance Efficiency);
+    \item \textbf{Compatibilità} (Compatibility);
+    \item \textbf{Usabilità} (Usability);
+    \item \textbf{Affidabilità} (Reliability);
+    \item \textbf{Sicurezza} (Security);
+    \item \textbf{Manutenibilità} (Maintainability);
+    \item \textbf{Portabilità} (Portability).
+\end{itemize}
+
+Ogni metrica è identificata dal codice \textbf{M[Tipo][ID]}, dove \textit{Tipo} è \textbf{PC} (Processo) o \textbf{PD} (Prodotto).
+
+\section{Metriche di Qualità del Processo}
+Le metriche di processo mirano a monitorare l'andamento delle attività, i costi e la stabilità dei requisiti durante il ciclo di vita (rif. ISO/IEC 12207).
+
+\subsection{Processi Primari}
+
+\subsubsection{Schedule Performance Index (SPI)}
+\textbf{Codice:} MPC01
+\begin{itemize}
+    \item \textbf{Formula:} $$SPI = \frac{EV}{PV}$$
+    Dove:
+    \begin{itemize}
+        \item $EV$ (Earned Value): Valore monetario/orario del lavoro realizzato;
+        \item $PV$ (Planned Value): Valore monetario/orario del lavoro pianificato.
+    \end{itemize}
+    \item \textbf{Descrizione:} Indica l'efficienza della pianificazione temporale.
+    \item \textbf{Soglie:}
+    \begin{itemize}
+        \item $SPI \ge 1$: Progetto in pari o in anticipo (Ottimo);
+        \item $0.9 \le SPI < 1$: Ritardo gestibile (Accettabile);
+        \item $SPI < 0.9$: Ritardo grave (Critico).
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{Cost Performance Index (CPI)}
+\textbf{Codice:} MPC02
+\begin{itemize}
+    \item \textbf{Formula:} $$CPI = \frac{EV}{AC}$$
+    Dove $AC$ (Actual Cost) è il costo reale sostenuto (ore spese).
+    \item \textbf{Descrizione:} Indica l'efficienza dei costi rispetto al budget preventivato. Un valore $<1$ indica che si stanno spendendo più risorse del previsto.
+\end{itemize}
+
+\subsubsection{Requirements Stability Index (RSI)}
+\textbf{Codice:} MPC03
+\begin{itemize}
+    \item \textbf{Formula:} $$RSI = \left( 1 - \frac{R_{var}}{R_{tot}} \right) \times 100$$
+    Dove $R_{var}$ è il numero di requisiti aggiunti, modificati o cancellati e $R_{tot}$ il totale iniziale.
+    \item \textbf{Descrizione:} Misura la stabilità dei requisiti. Variazioni frequenti impattano negativamente sulla progettazione.
+\end{itemize}
+
+\subsection{Processi di Supporto}
+
+\subsubsection{Code Coverage (Test di Unità)}
+\textbf{Codice:} MPC04
+\begin{itemize}
+    \item \textbf{Formula:} $$Coverage = \frac{LOC_{covered}}{LOC_{total}} \times 100$$
+    \item \textbf{Descrizione:} Percentuale di linee di codice (LOC) eseguite durante i test automatizzati.
+    \item \textbf{Obiettivo:} $\ge 80\%$.
+\end{itemize}
+
+\subsubsection{Indice di Gulpease (Leggibilità Documenti)}
+\textbf{Codice:} MPC05
+\begin{itemize}
+    \item \textbf{Formula:} $$G = 89 + \frac{300 \times Frasi - 10 \times Lettere}{Parole}$$
+    \item \textbf{Descrizione:} Valuta la leggibilità di un testo in lingua italiana.
+    \item \textbf{Obiettivo:} $G \ge 40$ (Leggibilità media/buona per testi tecnici).
+\end{itemize}
+
+\section{Metriche di Qualità del Prodotto (ISO/IEC 25010:2023)}
+
+\subsection{Adeguatezza Funzionale}
+Capacità del prodotto di fornire funzioni che soddisfano le esigenze dichiarate e implicite quando utilizzato in condizioni specificate.
+
+\subsubsection{Copertura Funzionale}
+\textbf{Codice:} MPD01
+\begin{itemize}
+    \item \textbf{Formula:} $$CF = \frac{Requisiti_{impl}}{Requisiti_{tot}} \times 100$$
+    \item \textbf{Descrizione:} Percentuale di requisiti funzionali (Obbligatori/Desiderabili) effettivamente implementati e superati nei test di sistema.
+    \item \textbf{Obiettivo:} $100\%$ per i requisiti Obbligatori alla release finale.
+\end{itemize}
+
+\subsection{Affidabilità}
+Grado in cui un sistema, prodotto o componente svolge le funzioni specificate sotto condizioni determinate per un periodo di tempo stabilito.
+
+\subsubsection{Mean Time To Repair (MTTR)}
+\textbf{Codice:} MPD02
+\begin{itemize}
+    \item \textbf{Formula:} Media del tempo trascorso tra la rilevazione di un guasto e la sua risoluzione (fix + deploy).
+    \item \textbf{Descrizione:} Indica la capacità del team e del sistema di ripristinare il servizio (Recoverability).
+\end{itemize}
+
+\subsection{Efficienza Prestazionale}
+Prestazioni relative alla quantità di risorse utilizzate sotto condizioni determinate.
+
+\subsubsection{Average Response Time}
+\textbf{Codice:} MPD03
+\begin{itemize}
+    \item \textbf{Formula:} $$\frac{\sum Tempi\_risposta}{N\_richieste}$$
+    \item \textbf{Descrizione:} Tempo medio che intercorre tra l'invio della richiesta e la ricezione della risposta completa.
+    \item \textbf{Obiettivo:} $< 0.5s$ per API standard; $< 2s$ per operazioni complesse.
+\end{itemize}
+
+\subsection{Compatibilità}
+Grado in cui un prodotto, sistema o componente può scambiare informazioni con altri prodotti (Interoperabilità) e svolgere le sue funzioni condividendo lo stesso ambiente hardware/software (Coesistenza).
+
+\subsubsection{Browser Compatibility Rate}
+\textbf{Codice:} MPD04
+\begin{itemize}
+    \item \textbf{Formula:} $$BCR = \frac{Browser_{supportati}}{Browser_{testati}} \times 100$$
+    \item \textbf{Descrizione:} Percentuale di browser (Chrome, Firefox, Safari, Edge) in cui il software non presenta anomalie grafiche o funzionali.
+\end{itemize}
+
+\subsection{Usabilità}
+Grado in cui un prodotto o sistema può essere utilizzato da specifici utenti per raggiungere specifici obiettivi con efficacia, efficienza e soddisfazione.
+
+\subsubsection{Average Error Rate (AER)}
+\textbf{Codice:} MPD05
+\begin{itemize}
+    \item \textbf{Formula:} $$AER = \frac{N_{errori\_utente}}{N_{azioni\_totali}} \times 100$$
+    \item \textbf{Descrizione:} Percentuale di errori commessi dall'utente durante l'esecuzione di un task specifico (misura l'intuitività dell'interfaccia).
+\end{itemize}
+
+\subsection{Sicurezza}
+Grado in cui il prodotto protegge informazioni e dati in modo che persone o altri sistemi abbiano il grado di accesso ai dati appropriato al loro livello di autorizzazione.
+
+\subsubsection{Vulnerability Density}
+\textbf{Codice:} MPD06
+\begin{itemize}
+    \item \textbf{Formula:} $$VD = \frac{Vulnerabilita\_rilevate}{KLOC}$$
+    \item \textbf{Descrizione:} Numero di vulnerabilità di sicurezza (secondo OWASP Top 10) rilevate tramite analisi statica per 1000 righe di codice.
+    \item \textbf{Obiettivo:} 0 Vulnerabilità di livello High/Critical.
+\end{itemize}
+
+\subsection{Manutenibilità}
+Grado di efficacia ed efficienza con cui il prodotto può essere modificato dagli sviluppatori.
+
+\subsubsection{Cyclomatic Complexity (Complessità Ciclomatica)}
+\textbf{Codice:} MPD07
+\begin{itemize}
+    \item \textbf{Formula:} $$V(G) = E - N + 2P$$
+    \item \textbf{Descrizione:} Misura la complessità logica del codice. Funzioni con $V(G) > 10$ sono considerate difficili da mantenere e testare.
+    \item \textbf{Obiettivo:} Mantenere la complessità media $< 10$.
+\end{itemize}
+
+\subsection{Portabilità}
+Grado di efficacia ed efficienza con cui un sistema, prodotto o componente può essere trasferito da un ambiente operativo ad un altro (es. Docker deploy).
+
+\subsubsection{Environment Deployment Success}
+\textbf{Codice:} MPD08
+\begin{itemize}
+    \item \textbf{Formula:} $$EDS = \frac{Deploy\_riusciti}{Deploy\_tentati} \times 100$$
+    \item \textbf{Descrizione:} Percentuale di installazioni/deploy andati a buon fine al primo tentativo su diversi ambienti (Locale, CI/CD, Produzione).
+\end{itemize}
+
+
 \end{document}

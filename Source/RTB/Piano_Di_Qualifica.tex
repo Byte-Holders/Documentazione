@@ -20,8 +20,7 @@
 \usepackage{booktabs}
 \usepackage{enumitem}
 \usepackage{amsmath}
-\usepackage[utf8]{inputenc} % Specifica la codifica del file (necessaria per le accentate)
-\usepackage[T1]{fontenc}    % Migliora l'output dei font per le lingue europee
+\usepackage{longtable} % Aggiunto per tabelle lunghe (Test di Sistema)
 
 % ====== IMPOSTAZIONI GLOBALI DI STILE ======
 
@@ -96,6 +95,7 @@
 \begin{titlepage}
     \centering
     
+    % Assicurati che il percorso dell'immagine sia corretto
     \includegraphics[width=0.55\textwidth]{../Assets/ByteHolders1.png}\par\vspace{1.5cm}
     
     {\LARGE \sffamily \color{AccentColor}\bfseries Piano di Qualifica}\par
@@ -153,8 +153,8 @@
 \section{Introduzione}
 
 \subsection{Scopo del documento}
-Il Piano di Qualifica\textsuperscript{G} costituisce il riferimento principale per la gestione e il monitoraggio continuo della qualità del progetto software e dei processi coinvolti nel suo ciclo di vita. Esso definisce le strategie, gli standard e le metriche necessarie per assicurare che il software prodotto soddisfi pienamente i requisiti concordati e le aspettative dei committenti.
-
+Il Piano di Qualifica\textsuperscript{G} costituisce il riferimento principale per la gestione e il monitoraggio continuo della qualità del progetto software e dei processi coinvolti nel suo ciclo di vita.
+Esso definisce le strategie, gli standard e le metriche necessarie per assicurare che il software prodotto soddisfi pienamente i requisiti concordati e le aspettative dei committenti.
 L'obiettivo del documento è stabilire un approccio sistematico che si sviluppa attraverso tre dimensioni interconnesse:
 
 \begin{itemize}
@@ -163,15 +163,19 @@ L'obiettivo del documento è stabilire un approccio sistematico che si sviluppa 
     \item \textbf{Miglioramento Continuo}: si basa sull'analisi periodica dei risultati ottenuti per identificare opportunità di ottimizzazione. Questo processo prevede l'adattamento costante dei processi e degli obiettivi per correggere eventuali deviazioni e migliorare l'efficienza complessiva.
 \end{itemize}
 
-Attraverso questo strumento strategico, il gruppo si assicura che il progetto rispetti integralmente i requisiti definiti, consegua gli obiettivi prefissati e mantenga elevati standard qualitativi. L'approccio metodologico adottato non configura la qualità come un elemento statico, bensì come un processo dinamico di apprendimento e perfezionamento continuo.
+Attraverso questo strumento strategico, il gruppo si assicura che il progetto rispetti integralmente i requisiti definiti, consegua gli obiettivi prefissati e mantenga elevati standard qualitativi.
+L'approccio metodologico adottato non configura la qualità come un elemento statico, bensì come un processo dinamico di apprendimento e perfezionamento continuo.
 
 \subsection{Glossario}
 Al fine di prevenire ambiguità e garantire una comunicazione uniforme e precisa tra i membri del gruppo e i committenti, è stato redatto un Glossario apposito.
-Per facilitare la lettura del presente documento, i termini tecnici o dotati di un significato specifico all'interno del dominio di progetto sono contrassegnati da una lettera «G» posta in apice (es. Parola\textsuperscript{G}). La definizione estesa di tali termini è reperibile nel documento citato tra i riferimenti informativi.
+Per facilitare la lettura del presente documento, i termini tecnici o dotati di un significato specifico all'interno del dominio di progetto sono contrassegnati da una lettera «G» posta in apice (es. Parola\textsuperscript{G}).
+La definizione estesa di tali termini è reperibile nel documento citato tra i riferimenti informativi.
 
 \subsection{Maturità e miglioramenti}
 La gestione della qualità adottata dal gruppo Byte Holders non è intesa come una verifica statica, bensì come un processo dinamico ed evolutivo.
-La maturità del progetto viene monitorata attraverso l'analisi periodica delle metriche di processo e di prodotto; i dati raccolti permettono di individuare eventuali criticità organizzative o tecniche e di applicare tempestivamente contromisure mirate. Questo approccio iterativo garantisce un costante affinamento del \textit{Way of Working}, elevando progressivamente gli standard qualitativi con l'avanzare degli sprint.
+La maturità del progetto viene monitorata attraverso l'analisi periodica delle metriche di processo e di prodotto; i dati raccolti permettono di individuare eventuali criticità organizzative o tecniche e di applicare tempestivamente contromisure mirate.
+Questo approccio iterativo garantisce un costante affinamento del \textit{Way of Working}, elevando progressivamente gli standard qualitativi con l'avanzare degli sprint.
+
 \subsection{Riferimenti}
 
 \subsubsection{Riferimenti normativi}
@@ -191,14 +195,13 @@ La maturità del progetto viene monitorata attraverso l'analisi periodica delle 
 % ====== QUALITÀ DI PROCESSO ======
 \newpage
 \section{Qualità di processo}
-La qualità di processo costituisce un requisito fondamentale per il successo di un progetto software. Essa garantisce che i processi adottati siano efficaci, efficienti e conformi agli standard di qualità stabiliti.  
+La qualità di processo costituisce un requisito fondamentale per il successo di un progetto software.
+Essa garantisce che i processi adottati siano efficaci, efficienti e conformi agli standard di qualità stabiliti.
 Per assicurare tale qualità, il progetto si avvale dei seguenti strumenti e metodologie:
 
 \begin{itemize}
     \item \textbf{Modelli di riferimento:} vengono utilizzati il \textit{Capability Maturity Model Integration (CMMI)} e la norma \textit{ISO/IEC 12207}, che forniscono linee guida per la definizione, la gestione e il miglioramento dei processi software;
-    
     \item \textbf{Metriche di processo:} consentono di valutare le prestazioni e l’efficienza dei processi adottati. Per ciascuna metrica sono definite soglie quantitative che rappresentano i livelli minimi accettabili di qualità;
-    
     \item \textbf{Revisioni periodiche:} comprendono sessioni di verifica e controllo mirate ad analizzare i risultati ottenuti, confrontandoli con gli obiettivi predefiniti, al fine di individuare eventuali deviazioni e applicare azioni correttive.
 \end{itemize}
 
@@ -206,7 +209,6 @@ Per assicurare tale qualità, il progetto si avvale dei seguenti strumenti e met
 
 \subsubsection{Fornitura}
 In questa sezione vengono descritte le metriche utilizzate per monitorare l'efficienza economica e temporale del progetto.
-
 \begin{table}[h!]
     \centering
     \rowcolors{2}{LightGray}{white}
@@ -228,7 +230,6 @@ In questa sezione vengono descritte le metriche utilizzate per monitorare l'effi
 
 \subsubsection{Sviluppo}
 Queste metriche mirano a monitorare la stabilità dei requisiti durante la fase di analisi e progettazione.
-
 \begin{table}[h!]
     \centering
     \rowcolors{2}{LightGray}{white}
@@ -244,7 +245,6 @@ Queste metriche mirano a monitorare la stabilità dei requisiti durante la fase 
 \subsection{Processi di Supporto}
 \subsubsection{Documentazione}
 Metriche volte a garantire la leggibilità e la correttezza formale della documentazione prodotta.
-
 \begin{table}[h!]
     \centering
     \rowcolors{2}{LightGray}{white}
@@ -259,7 +259,6 @@ Metriche volte a garantire la leggibilità e la correttezza formale della docume
 \end{table}
 
 \subsubsection{Verifica}
-
 \begin{table}[h!]
     \centering
     \rowcolors{2}{LightGray}{white}
@@ -281,7 +280,7 @@ Metriche volte a garantire la leggibilità e la correttezza formale della docume
         \rowcolor{AccentColor}
         \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
         
-        MPC-13 & \textbf{Quality metrics satisfied} & $\geq 80\%$ & $\geq 100\%$ \\
+        MPC-13 & \textbf{Quality metrics satisfied} & $\geq 80\%$ & $100\%$ \\
     \end{tabular}
     \caption{Metriche di Processo - Gestione della qualità}
 \end{table}
@@ -295,10 +294,8 @@ Attività per gestire l'infrastruttura e le risorse umane
         \rowcolor{AccentColor}
         \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
         
-        MPC-14 & \textbf{Time Efficency} & $\geq 60\%$ & $\geq 100\%$ \\
-        MPC-15 & \textbf{Sprint Goal Achievement} & $\geq 80\%$ & $\geq 100\%$ \\
-
-
+        MPC-14 & \textbf{Time Efficiency} & $\geq 60\%$ & $100\%$ \\
+        MPC-15 & \textbf{Sprint Goal Achievement} & $\geq 80\%$ & $100\%$ \\
     \end{tabular}
     \caption{Processi Organizzativi - Gestione dei processi}
 \end{table}
@@ -307,7 +304,8 @@ Attività per gestire l'infrastruttura e le risorse umane
 
 % ====== QUALITÀ DI PRODOTTO ======
 \section{Qualità di prodotto}
-L'obiettivo cardine dello sviluppo software risiede nella qualità di prodotto, intesa come l'attitudine del sistema a conformarsi ai requisiti e alle aspettative di utenti e stakeholder. Tale proprietà non è un attributo isolato, ma deriva direttamente dal rigore e dalla qualità dei processi implementati lungo l'intero ciclo di vita del progetto. \\
+L'obiettivo cardine dello sviluppo software risiede nella qualità di prodotto, intesa come l'attitudine del sistema a conformarsi ai requisiti e alle aspettative di utenti e stakeholder. Tale proprietà non è un attributo isolato, ma deriva direttamente dal rigore e dalla qualità dei processi implementati lungo l'intero ciclo di vita del progetto.
+\\
 Un software si definisce di elevata qualità quando soddisfa i seguenti pilastri metodologici:
 \begin{itemize}
     \item \textbf{Conformità Funzionale}: il prodotto aderisce rigorosamente ai requisiti funzionali e non funzionali specificati nel documento di Analisi dei Requisiti v1.1.0.
@@ -339,7 +337,7 @@ Un software si definisce di elevata qualità quando soddisfa i seguenti pilastri
     \begin{tabular}{c p{7cm} c c}
         \rowcolor{AccentColor}
         \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
-        MPD-05 & \textbf{Code Coverage} & $\geq 80\%$ & $100\%$ \\
+        MPD-05 & \textbf{Code Coverage} & $\geq 70\%$ & $\geq 80\%$ \\
         MPD-06 & \textbf{Statement Coverage} & $\geq 80\%$ & $100\%$ \\
         MPD-07 & \textbf{Branch Coverage} & $\geq 70\%$ & $100\%$ \\
         MPD-08 & \textbf{Condition Coverage } & $\geq 60\%$ & $100\%$ \\
@@ -368,8 +366,8 @@ Un software si definisce di elevata qualità quando soddisfa i seguenti pilastri
     \begin{tabular}{c p{7cm} c c}
         \rowcolor{AccentColor}
         \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
-        MPD-10 & \textbf{Facilità di utilizzo} & $\geq 7$ click & $\geq 5$ click\\
-        MPD-11 & \textbf{Tempo medio di apprendimento} & $\geq 5$ minuti & $\geq 2$ minuti\\
+        MPD-10 & \textbf{Facilità di utilizzo} & $\leq 7$ click & $\leq 5$ click\\
+        MPD-11 & \textbf{Tempo medio di apprendimento} & $\leq 5$ minuti & $\leq 2$ minuti\\
     \end{tabular}
     \caption{Metriche di Prodotto - Usabilità}
 \end{table}
@@ -395,11 +393,105 @@ Un software si definisce di elevata qualità quando soddisfa i seguenti pilastri
 
 % ====== METODI DI TESTING ======
 \section{Metodi di testing}
+La strategia di verifica adottata dal gruppo \textit{Byte Holders} segue il \textbf{Modello a V}, garantendo che ogni fase di sviluppo abbia una corrispettiva fase di test. L'obiettivo è rilevare i difetti il prima possibile per minimizzare i costi di correzione e garantire la stabilità del prodotto \textit{Code Guardian}.
+
+\subsection{Classificazione dei Test}
+\begin{itemize}
+    \item \textbf{Test di Unità:} Verificano il corretto funzionamento delle singole unità software (funzioni, metodi). Supportano il raggiungimento del Code Coverage.
+    \item \textbf{Test di Integrazione:} Verificano il flusso di dati tra moduli o sottosistemi (es. Agenti e Orchestratore).
+    \item \textbf{Test di Sistema:} Validano il comportamento dell'intero sistema rispetto ai requisiti funzionali.
+    \item \textbf{Test di Accettazione:} Validazione finale per dimostrare che il software soddisfa le aspettative d'uso del committente.
+\end{itemize}
+
+\subsection{Test di Sistema}
+Di seguito sono riportati i test di sistema definiti per verificare la copertura dei requisiti funzionali, derivati direttamente dai casi d'uso descritti nel documento di Analisi dei Requisiti.
+
+\begin{center}
+\rowcolors{2}{LightGray}{white}
+\renewcommand{\arraystretch}{1.5} % Spaziatura righe come nel tuo esempio
+\begin{longtable}{|>{\centering\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{9cm}|>{\centering\arraybackslash}p{2.5cm}|>{\centering\arraybackslash}p{1.5cm}|}
+\hline
+\rowcolor{AccentColor}
+\textcolor{white}{\textbf{ID Test}} & \textcolor{white}{\textbf{Descrizione}} & \textcolor{white}{\textbf{Requisito}} & \textcolor{white}{\textbf{Stato}} \\
+\hline
+\endhead
+
+% --- GESTIONE UTENTE ---
+TS-01 & Verificare che un utente non autenticato possa effettuare il Login inserendo email e password corrette. (UC1) & R-1-F & NI \\
+\hline
+TS-02 & Verificare che il sistema restituisca un errore in caso di Login con credenziali errate. (UC1) & R-1-F & NI \\
+\hline
+TS-03 & Verificare che un nuovo utente possa completare la procedura di Registrazione inserendo i dati richiesti. (UC2) & R-2-F & NI \\
+\hline
+TS-04 & Verificare che un utente autenticato possa effettuare il Logout e venga reindirizzato alla pagina di benvenuto. (UC3) & R-3-F & NI \\
+\hline
+TS-05 & Verificare che un utente autenticato possa visualizzare i propri dati nella pagina Profilo. (UC4) & R-4-F & NI \\
+\hline
+TS-06 & Verificare che un utente possa modificare la propria password dalla sezione di gestione profilo. (UC5) & R-5-F & NI \\
+\hline
+
+% --- GESTIONE REPOSITORY ---
+TS-07 & Verificare che l'utente possa inserire l'URL di un nuovo repository GitHub per avviarne l'analisi. (UC6) & R-6-F & NI \\
+\hline
+
+
+
+
+
+\end{longtable}
+\end{center}
 
 % ====== CRUSCOTTO DI VALUTAZIONE ======
+\newpage
 \section{Cruscotto di Valutazione}
+In questa sezione vengono esposte le misurazioni effettuate durante il periodo corrente. L'analisi dei grafici permette di valutare l'andamento del progetto rispetto alle previsioni.
+
+\subsection{Earned Value e Planned Value (MPC-01/02)}
+Il confronto tra EV e PV permette di capire se il progetto è in linea con i tempi previsti.
+\begin{figure}[h!]
+    \centering
+    % Placeholder per il grafico
+    \fbox{\begin{minipage}{0.8\textwidth}
+        \centering
+        \vspace{4cm}
+        \textit{Grafico dell'andamento EV vs PV (Dati non ancora disponibili per questo sprint)}
+        \vspace{4cm}
+    \end{minipage}}
+    \caption{Andamento di Earned Value e Planned Value}
+\end{figure}
+
+\subsection{Requirements Stability Index (MPC-08)}
+Questo indice monitora la stabilità dei requisiti nel tempo. Variazioni significative indicano scoperte tardive di nuovi requisiti.
+\begin{figure}[h!]
+    \centering
+    % Placeholder per il grafico
+    \fbox{\begin{minipage}{0.8\textwidth}
+        \centering
+        \vspace{3cm}
+        \textit{Grafico dell'andamento RSI}
+        \vspace{3cm}
+    \end{minipage}}
+    \caption{Andamento della stabilità dei requisiti}
+\end{figure}
+
+\subsection{Indice di Gulpease (MPC-09)}
+Monitoraggio della leggibilità della documentazione prodotta (Manuale Utente, Analisi dei Requisiti, ecc.).
+\begin{figure}[h!]
+    \centering
+    % Placeholder per il grafico
+    \fbox{\begin{minipage}{0.8\textwidth}
+        \centering
+        \vspace{3cm}
+        \textit{Grafico dell'andamento dell'Indice di Gulpease per documento}
+        \vspace{3cm}
+    \end{minipage}}
+    \caption{Andamento della leggibilità dei documenti}
+\end{figure}
 
 % ====== INIZIATIVE DI AUTOMIGLIORAMENTO ======
+\newpage
 \section{Iniziative di automiglioramento}
+Il miglioramento continuo è essenziale per risolvere le criticità emerse durante gli sprint. Di seguito sono riportati i problemi principali riscontrati e le contromisure adottate.
+
 
 \end{document}

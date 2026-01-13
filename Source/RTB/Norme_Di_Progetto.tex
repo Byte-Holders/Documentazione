@@ -155,7 +155,7 @@
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} & 
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
 
-
+        0.0.11 & 13/01/2026 & Giulia Romanato & Aggiunta sotto sezione 5.1.1 Metodologia, aggiornamento 5.4 Formazione e aggiornamento sezione 4.1.2 Verbali (definizione struttura interna dei verbali, sezione tabella decisioni e azioni diventa sottosezione 4.1.2.1) \\
         0.0.10 & 12/01/2026 & Giulia Romanato & Aggiunta sotto sezione 5.7 Formazione e 5.5 Gestione delle infrastutture e degli strumenti \\
         0.0.9 & 12/01/2026 & Nicolò Lattanzio & Aggiunta sezione Metriche di Qualità del processo e prodotto, e completamento sezione 3.2 Processi di Sviluppo.\\
         0.0.8 & 11/01/2026 & Giulia Romanato & Aggiunta sotto sezione 3.4 rapporto con proponente e 3.5 rapporto col committente e aggiunta del norme di progetto, verbale, dichiarazione di impegni e dichiarazione degli impegni nella sezione 3.1.1 Documenti Principali\\ 
@@ -639,8 +639,23 @@ Tutti i documenti formali prodotti dal gruppo seguono una struttura standardizza
     \end{itemize}
 \end{itemize}
 Questa struttura si applica a tutti i tipi di documenti prodotti, tra cui: Verbali(interni ed esterni), Norme di Progetto, Analisi dei Requisiti\dots
+\subsubsection{Verbali}
+Oltre alle caratteristiche generali applicate a qualsiasi documento di progetto, i verbali presentano una struttura interna standardizzata, articolata nelle seguenti sezioni:
 
-\subsubsection{Tabella Decisioni e Azioni}
+\begin{itemize}
+    \item \textbf{Informazioni introduttive}: suddivise nelle seguenti sottosezioni:
+    \begin{itemize}
+        \item \textbf{Durata e luogo}: indicazione dell'orario di inizio e di fine e del luogo e modalità con cui si è tenuta (in presenza oppure da remoto tramite strumenti quali Discord o Microsoft Teams)
+        \item \textbf{Partecipanti}: tabella riportante l'elenco dei membri del gruppo presenti alla riunione
+    \end{itemize}
+    \item \textbf{Contenuto della riunione}: suddiviso nelle seguenti sottosezioni:
+    \begin{itemize}
+        \item \textbf{Ordine del giorno}: elenco degli argomenti da discutere e trattati durante la riunione
+        \item \textbf{Resoconto della discussione}: sintesi delle principali discussioni e considerazioni emerse durante la riunione; tale sezione può essere ulteriormente articolata in sottosezioni, a discrezione dell'autore del verbale
+    \end{itemize}
+    \item \textbf{Tabella delle decisioni e delle azioni}: riepilogo strutturato delle decisioni prese e delle azioni concordate, con eventuale indicazione dei responsabili.
+\end{itemize}
+\paragraph{Tabella Decisioni e Azioni}
 Ogni verbale relativo al progetto conterrà una tabella decisioni e azioni, che riassume le decisioni prese durante la riunione e le azioni assegnate ai membri del team.
 Anche in questo caso, per garantire la tracciabilità, ogni decisione o azione avrà un proprio codice di identificazione,
 composto da un prefisso che ne indica la natura (DEC per decisione, AZ per azione); seguito dalla fase del progetto in cui è stata presa (RTB o PB); e infine un numero progressivo che identifica univocamente la decisione o l'azione all'interno di quella fase.
@@ -789,16 +804,24 @@ utilizzati dal gruppo, ovvero come vengono gestite le persone, i ruoli, le comun
 di questa sezione è anche quello di stabilire procedure e metodologie che il team seguirà durante il ciclo di vita del progetto e il processo di 
 sezione è anche quello di stabilire procedure e metodologie che il team seguirà durante il ciclo di vita del progetto e il processo di 
 miglioramento continuo dei processi.
-\subsection{Gestione dei processi}
-Il gruppo adotta una metodologia Agile, organizzando il lavoro in Sprint della durata di due settimane.
-Ogni Sprint inizia con una riunione di pianificazione, in cui vengono definiti gli obiettivi e le attività da svolgere durante lo Sprint e finisce con una rinuone in cui viene fatta una retrospettiva.
 
-\subsection{Gestione dei ruoli}
+\subsection{Gestione dei processi}
+La Gestione dei Processi ha l'obiettivo di definire le attività da svolgere e i ruoli responsabili della loro esecuzione, favorendo una comunicazione interna ed esterna efficace e garantendo lo svolgimento ordinato ed efficiente delle attività attraverso un'adeguata pianificazione.
+
+\subsubsection{Metodologia}
+Il gruppo ha deciso di adottare un metodo di sviluppo Agile per l'organizzazione e la pianificazione delle attività progettuali.\\
+Le attività vengono organizzate secondo le seguenti modalità operative:
+\begin{itemize}
+    \item \textbf{Suddivisione in sprint:} il lavoro è diviso in cicli di durata pari a due settimane, ciascuno caratterizzato da obiettivi definiti e misurabili decisi all'inizio dello sprit
+    \item \textbf{Gestione delle attività:} i task vengono definiti, pianificati e assegnati tramite le issue di GitHub, organizzate all'interno di una dashboard Kanban, che funge da sistema di issue tracking, supporta la distribuzione delle responsabilità tra i membri del gruppo e aiuta a monitorare l'avanzamento delle attività
+    \item \textbf{Revisione iterativa e migliorativa:} al termine di ogni sprint viene svolta un'attività di retrospettiva finalizzata all'analisi dei risultati, all'individuazione di possibili miglioramenti dei processi adottati e alla pianificazione di eventuali azioni correttive o migliorative da applicare nel sprint successivo
+L'adozione di tale modalità di gestione consente di assicurare un elevato grado di adattabilità ai cambiamenti dei requisiti e contribuisce al miglioramento continuo dei processi organizzativi del progetto.
+\subsubsection{Gestione dei ruoli} 
 Ogni membro del gruppo in ogni Sprint può assumere diversi ruoli, in base alle attività che dovrà svolgere durante quel periodo. 
 L'unico ruolo unico all'interno di uno Sprint è quello di Responsabile, che viene assegnato ad un membro diverso ad ogni Sprint.
 Gli altri ruoli possono essere assegnati a più membri contemporaneamente, in base alle necessità del progetto.
 I ruoli sono ruotati in modo che per fine del progetto ogni membro abbia ricoperto tutti i ruoli almeno una volta.
-\subsubsection{Responsabile}
+\paragraph{Responsabile}
     Il responsabile analizzando lo stato di avanzamento del progetto ha il compito di pianificare ed individuare le attività da svolgere 
     per raggiungere gli obiettivi di progetto e organizzare le risorse in modo da rispettare tempi e costi preventivati. \\
     Ha il compito di verificare che tutti i componenti del gruppo portino a termine le attività a loro assegnate nei tempi previsti. \\
@@ -818,7 +841,7 @@ I ruoli sono ruotati in modo che per fine del progetto ogni membro abbia ricoper
         OPPURE approvare i verbali e verificare il glossario e le norme di progetto 
     \end{itemize}
 
-\subsubsection{Amministratore}
+\paragraph{Amministratore}
     L'Amministratore si occupa di gestire e migliorare l'ambiente di lavoro, overro si occupa tenere aggiornati e migliorare l'infrastruttura tecnologica e organizzativa 
     (gli strumenti di sviluppo, verifica e validazione, i sistemi di archiviazione e versionamento della documentazione e del codice). \\
     Le attività che l'amministratore svolge sono:
@@ -829,7 +852,7 @@ I ruoli sono ruotati in modo che per fine del progetto ogni membro abbia ricoper
         \item \textbf{Automazione e Miglioramento dei Processi:} si occupa di automatizzare i processi, individuare punti di miglioramento nei processi e mettere in opera risorse per migliorare l'ambiente di lavoro
         \item \textbf{Gestione delle Infrastrutture:} si occupa di gestire l'infrastruttura e gli strumenti utilizzati, mantenere efficiente l'ambiente di sviluppo e fornire strumenti adeguati ai membri del gruppo e gestire errori e segnalazioni di malfunzionamenti con gli strumenti tecnologici
     \end{itemize}
-\subsubsection{Analista} 
+\paragraph{Analista} 
     L'analista si occupa della raccolta e dell'analisi dei requisiti, interagendo con il proponente per chiarimenti.
     Le attività che l'analista svolge sono:
     \begin{itemize}
@@ -838,7 +861,7 @@ I ruoli sono ruotati in modo che per fine del progetto ogni membro abbia ricoper
          assicurando chiarezza e completezza. Valutare la fattibilità tecnica e le implicazioni dei requisiti raccolti Collaborare con il team di verifica per assicurare che i requisiti siano testabili e verificati correttamente
         \item \textbf{Redazione Glossario:} redigere e aggiornare il glossario del progetto, definendo i termini tecnici e le abbreviazioni utilizzate nel contesto del progetto
     \end{itemize}
-\subsubsection{Progettista}
+\paragraph{Progettista}
 Il progettista, partendo dai requisiti definiti nel documento di analisi dei requisiti, definisce il design architetturale del sistema.
     Le attività che il progettista svolge sono:
     \begin{itemize}
@@ -846,7 +869,7 @@ Il progettista, partendo dai requisiti definiti nel documento di analisi dei req
         \item \textbf{Progettazione di Dettaglio:} sviluppare specifiche dettagliate per ciascun componente, incluse le interfacce e i protocolli di comunicazione
         \item \textbf{Redazione Specifiche tecniche:} redigere il documento di specifiche tecniche in cui si riportano le scelte architetturali e tecnologiche (design pattern adottati, schema UML delle classi, tecnologie usate)
     \end{itemize}
-\subsubsection{Sviluppatore}
+\paragraph{Sviluppatore}
 Lo sviluppatore si occupa di sviluppare il software/implementa le funzionalità del software secondo le specifiche progettuali.
     Le attività che lo sviluppatore svolge sono:
     \begin{itemize}
@@ -854,7 +877,7 @@ Lo sviluppatore si occupa di sviluppare il software/implementa le funzionalità 
         \item \textbf{Test delle Unità:} sviluppare e eseguire test unitari per garantire che ogni componente funzioni correttamente in isolamento (NON SONO SICURA se sia il programmatore o il verificatore)
         \item \textbf{Documentazione del Codice:} mantenere una documentazione aggiornata del codice, per facilitarne la comprensione e la manutenzione
     \end{itemize}
-\subsubsection{Verificatore}
+\paragraph{Verificatore}
 Il verificatore si assicura che i documenti siano corretti, verifica il corretto funzionamento del software attraverso la scrittura di test e verifica della qualità del prodotto, assicurandosi che soddisfi i requisiti.
     Le attività che il verificatore svolgere sono:
     \begin{itemize}
@@ -862,9 +885,9 @@ Il verificatore si assicura che i documenti siano corretti, verifica il corretto
         \item \textbf{Bug reporting:} registrare e tracciare i difetti riscontrati durante i test        
         \item \textbf{Verifica dei Documenti:} verifica i verbali delle riunioni interne ed esterne, il piano di progetto (?oppure amministratore) e il piano di qualifica
     \end{itemize}
-\subsection{Riunioni}
+\subsubsection{Riunioni}
 Le riunioni si dividono in interne ed esterne. A fine delle quali l'amministratore (scelto a giro tra i membri del gruppo che non svolgono attualmente la carica di repsonsabile) redige un verbale in cui vengono documentate le decisioni prese, le azioni assegnate e i punti discussi. Tale verbale viene in seguito verificato da un verificatore e approvato dal responsabile; se si tratta di un verbale esterno viene mandato all'azienda proponente per la firma e l'approvazione.
-\subsubsection{Riunioni interne}
+\paragraph{Riunioni interne}
 Le riunioni interne sono incontri tra i membri del gruppo che avvengono almeno una volta a settimana, solitamente il martedì pomeriggio. 
 Una riunione interna nella maggior parte dei casi si svolge a distanza in modalità virtuale e si svolge nel seguente modo:
 \begin{itemize}
@@ -874,19 +897,19 @@ Una riunione interna nella maggior parte dei casi si svolge a distanza in modali
     \item \textbf{Pianificazione delle attività future:} si pianificano le attività da svolgere fino alla prossima riunione, assegnando compiti specifici ai membri del gruppo
     \item \textbf{Chiusura:} si chiude la riunione, riassumendo le decisioni prese e le azioni da intraprendere
 \end{itemize}
-\subsubsection{Riunioni esterne DA RIVEDERE}
-Le riunioni esterne sono incontri tra i membri del gruppo e l'azienda proponente (VarGroup S.r.l.) che avvengono su richiesta del gruppo o dell'azienda e dal 7 gennaio 2026 avvengono bisettimanalmente.
+\paragraph{Riunioni esterne}
+Le riunioni esterne sono incontri tra i membri del gruppo e l'azienda proponente (VarGroup S.r.l.) che avvengono su richiesta del gruppo o dell'azienda.
 Una riunione esterna si svolge solitamente in modalità virtuale tramite Microsoft Teams oppure in presenza presso la sede di VarGroup e serve per presentare il lavoro svolto, i dubbi riacontrati e ricevere feedback e consigli tecnici dall'azienda proponente.
 
-\subsection{Gestione delle comunicazioni}
+\subsubsection{Gestione delle comunicazioni}
 I canali di comunicazione usati per la comunicazione interna tra membri del gruppo e la comunicazione con l'azienda proponente sono diversi.
-\subsubsection{Comunicazioni interne}
+\paragraph{Comunicazioni interne}
 Per la comunicazione interna tra i membri del gruppo vengono utilizzati principalmente due canali:
 \begin{itemize}
     \item \textbf{Discord}: utilizzato per la comunicazione sincrona tra i membri del gruppo (riunioni interne) e la condivisione di materiale di riferimento 
     \item \textbf{WhatsApp}: utilizzato per comunicazioni asincrona tra i membri del gruppo, soprattutto per questioni organizzative e logistiche (organizzazzione delle riunioni, aggiornamento sullo stato del verbale, messaggi per esterni).
 \end{itemize}
-\subsubsection{Comunicazioni esterne}
+\paragraph{Comunicazioni esterne}
 Per la comunicazione con l'azienda proponente (VarGroup S.r.l.) vengono utilizzati principalmente due canali:
 \begin{itemize}
     \item \textbf{Slack}: utilizzato per la comunicazione asincrona con l'azienda proponente, per concordare riunioni, chiarire dei dubbi, scambiare materiale
@@ -993,6 +1016,12 @@ Il processo di formazione è un processo continuo che si attiva ogni qualvolta v
 In particolare per lo studio delle tecnologie da usare nel progetto il gruppo ha seguito il seguente processo:
 \begin{itemize}
     \item \textbf{incontri di formazione:} partecipazione ai 4 incontri di formazione organizzati dall'azienda proponente:
+    \begin{itemize}
+        \item \textbf{Backend} (9/12/1015): containers e docker, REST, NestJS
+        \item \textbf{AWS} (16/12/2025): panoramica sui vari servizi offerti da AWS
+        \item \textbf{Frontend} (17/12/2025): framework React, uso degli Hooks
+        \item \textbf{Introduzione su AI} (18/12/2025): AI generativa, LLM, tecniche di prompting e customization, agenti (framework langchain o langgraph), demo
+    \end{itemize}
     \item \textbf{studio individuale:} studiato individuale delle tecnologie proposte dall'azienda
     \item \textbf{creazione di un prototipo:} apprendimento delle tecnologie tramite la realizzazione di un prototipo più o meno complesso in cui principalmente si esplora l'utilizzo di agenti, il linguaggio TypeScript, il framework React
     \item \textbf{condivisione dei risultati:} discussione tra i membri del gruppo riguardo le competenze apprese, le difficoltà incontrate e gli eventuali dubbi emersi

@@ -127,13 +127,14 @@
     \centering
     \makebox[\textwidth][c]{ 
         \rowcolors{2}{LightGray}{white}
-        \begin{tabular}{>{\centering\arraybackslash}m{2cm} >{\centering\arraybackslash}m{2cm} >{\raggedright\arraybackslash}m{2.5cm} >{\raggedright\arraybackslash}m{2.5cm} >{\raggedright\arraybackslash}m{6.5cm}}
+        \begin{tabular}{>{\centering\arraybackslash}m{1,4cm} >{\centering\arraybackslash}m{2cm} >{\raggedright\arraybackslash}m{2.2cm} >{\raggedright\arraybackslash}m{2.2cm} >{\raggedright\arraybackslash}m{6cm}}
             \rowcolor{AccentColor}
               \textcolor{white}{\textbf{Versione}} & 
               \textcolor{white}{\textbf{Data}} & 
               \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} &
               \multicolumn{1}{c}{\textcolor{white}{\textbf{Verificatore}}} & 
               \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
+            0.4.0 & 13/01/2026 & Lorenzo Grolla & Alessandro Frison & Aggiunta sezione cruscotto e test \\
             0.3.1 & 13/01/2026 & Alessandro Frison & Lorenzo Grolla & Correzione errori e refusi vari \\
             0.3.0 & 04/01/2025 & Alessandro Frison & Lorenzo Grolla & Aggiunta metriche di prodotto \\
             0.2.0 & 21/12/2025 & Lorenzo Grolla & Alessandro Frison & Aggiunta metriche processi \\ 
@@ -408,39 +409,31 @@ La strategia di verifica adottata dal gruppo \textit{Byte Holders} segue il \tex
 \end{itemize}
 
 \subsection{Test di Sistema}
-Di seguito sono riportati i test di sistema definiti per verificare la copertura dei requisiti funzionali, derivati direttamente dai casi d'uso descritti nel documento di Analisi dei Requisiti.
-
-\begin{center}
+In questa sezione elenchiamo i test necessari per verificare che il software funzioni correttamente nel suo insieme. L'obiettivo è dimostrare che tutti i requisiti (funzionali e prestazionali) definiti nell'Analisi dei Requisiti sono stati soddisfatti prima della consegna.\begin{center}
 \rowcolors{2}{LightGray}{white}
-\renewcommand{\arraystretch}{1.5} % Spaziatura righe come nel tuo esempio
+\renewcommand{\arraystretch}{1.5} 
+\begin{longtable}{|>{\centering\arraybackslash}p{1,2cm}|>{\raggedright\arraybackslash}p{9cm}|>{\centering\arraybackslash}p{2.5cm}|>{\centering\arraybackslash}p{1.2cm}|}
+\hline
+\rowcolor{AccentColor}
+\textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Descrizione}} & \textcolor{white}{\textbf{Requisito}} & \textcolor{white}{\textbf{Stato}} \\
+\hline
+\endhead
+TS-01 & Test di sistema 1(placeholder) & R-1-F & NI \\ \hline
+
+\end{longtable}
+\end{center}
+
+\subsection{Test di Accettazione}
+Questi test servono a confermare che il prodotto soddisfi le aspettative del cliente e degli utenti finali. Superare questi test garantisce che il software è pronto per l'uso reale e può essere rilasciato ufficialmente.\begin{center}
+\rowcolors{2}{LightGray}{white}
+\renewcommand{\arraystretch}{1.5} 
 \begin{longtable}{|>{\centering\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{9cm}|>{\centering\arraybackslash}p{2.5cm}|>{\centering\arraybackslash}p{1.5cm}|}
 \hline
 \rowcolor{AccentColor}
-\textcolor{white}{\textbf{ID Test}} & \textcolor{white}{\textbf{Descrizione}} & \textcolor{white}{\textbf{Requisito}} & \textcolor{white}{\textbf{Stato}} \\
+\textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Descrizione}} & \textcolor{white}{\textbf{Stato}} \\
 \hline
 \endhead
-
-% --- GESTIONE UTENTE ---
-TS-01 & Verificare che un utente non autenticato possa effettuare il Login inserendo email e password corrette. (UC1) & R-1-F & NI \\
-\hline
-TS-02 & Verificare che il sistema restituisca un errore in caso di Login con credenziali errate. (UC1) & R-1-F & NI \\
-\hline
-TS-03 & Verificare che un nuovo utente possa completare la procedura di Registrazione inserendo i dati richiesti. (UC2) & R-2-F & NI \\
-\hline
-TS-04 & Verificare che un utente autenticato possa effettuare il Logout e venga reindirizzato alla pagina di benvenuto. (UC3) & R-3-F & NI \\
-\hline
-TS-05 & Verificare che un utente autenticato possa visualizzare i propri dati nella pagina Profilo. (UC4) & R-4-F & NI \\
-\hline
-TS-06 & Verificare che un utente possa modificare la propria password dalla sezione di gestione profilo. (UC5) & R-5-F & NI \\
-\hline
-
-% --- GESTIONE REPOSITORY ---
-TS-07 & Verificare che l'utente possa inserire l'URL di un nuovo repository GitHub per avviarne l'analisi. (UC6) & R-6-F & NI \\
-\hline
-
-
-
-
+TA-01 & Test di accettazione 1(placeholder) & NI \\ \hline
 
 \end{longtable}
 \end{center}
@@ -448,8 +441,11 @@ TS-07 & Verificare che l'utente possa inserire l'URL di un nuovo repository GitH
 % ====== CRUSCOTTO DI VALUTAZIONE ======
 \newpage
 \section{Cruscotto di Valutazione}
-In questa sezione vengono esposte le misurazioni effettuate durante il periodo corrente. L'analisi dei grafici permette di valutare l'andamento del progetto rispetto alle previsioni.
-
+In questa sezione vengono riportati i risultati delle misurazioni effettuate tramite le metriche definite nei capitoli precedenti (Qualità di Processo e di Prodotto).
+\\
+L'obiettivo del cruscotto è fornire una visione chiara e immediata dell'andamento del progetto. Attraverso l'analisi dei grafici, è possibile valutare se il team sta rispettando gli obiettivi di efficienza pianificati e se il livello qualitativo del software prodotto è conforme alle aspettative.
+\\
+I dati raccolti permettono di individuare eventuali criticità e di intervenire con azioni correttive mirate.
 \subsection{Earned Value e Planned Value (MPC-01/02)}
 Il confronto tra EV e PV permette di capire se il progetto è in linea con i tempi previsti.
 \begin{figure}[h!]
@@ -463,23 +459,71 @@ Il confronto tra EV e PV permette di capire se il progetto è in linea con i tem
     \end{minipage}}
     \caption{Andamento di Earned Value e Planned Value}
 \end{figure}
+\newpage
 
-\subsection{Requirements Stability Index (MPC-08)}
-Questo indice monitora la stabilità dei requisiti nel tempo. Variazioni significative indicano scoperte tardive di nuovi requisiti.
+\subsection{Actual Cost e Estimate to Complete(MPC-03/07)}
 \begin{figure}[h!]
     \centering
     % Placeholder per il grafico
     \fbox{\begin{minipage}{0.8\textwidth}
         \centering
         \vspace{3cm}
-        \textit{Grafico dell'andamento RSI}
+        \textit{Grafico dell'andamento di AC-ETC(Dati non ancora disponibili)}
         \vspace{3cm}
     \end{minipage}}
-    \caption{Andamento della stabilità dei requisiti}
+    \caption{Andamento di AC-ETC}
 \end{figure}
 
+\newpage
+
+\subsection{Cost Performace Index e Schedule Performance Index(MPC-04/05)}
+\begin{figure}[h!]
+    \centering
+    % Placeholder per il grafico
+    \fbox{\begin{minipage}{0.8\textwidth}
+        \centering
+        \vspace{3cm}
+        \textit{Grafico dell'andamento di CSI-SPI(Dati non ancora disponibili)}
+        \vspace{3cm}
+    \end{minipage}}
+    \caption{Andamento di CSI-SPI}
+\end{figure}
+
+\newpage
+
+\subsection{Estimate At Completion(MPC-06)}
+\begin{figure}[h!]
+    \centering
+    % Placeholder per il grafico
+    \fbox{\begin{minipage}{0.8\textwidth}
+        \centering
+        \vspace{3cm}
+        \textit{Grafico dell'andamento di EAC(Dati non ancora disponibili)}
+        \vspace{3cm}
+    \end{minipage}}
+    \caption{Andamento di EAC}
+\end{figure}
+
+\newpage
+
+\subsection{Requirements Stability Index(MPC-08)}
+\begin{figure}[h!]
+    \centering
+    % Placeholder per il grafico
+    \fbox{\begin{minipage}{0.8\textwidth}
+        \centering
+        \vspace{3cm}
+        \textit{Grafico dell'andamento di RSI(Dati non ancora disponibili)}
+        \vspace{3cm}
+    \end{minipage}}
+    \caption{Andamento di RSI}
+\end{figure}
+
+\newpage
+
+
 \subsection{Indice di Gulpease (MPC-09)}
-Monitoraggio della leggibilità della documentazione prodotta (Manuale Utente, Analisi dei Requisiti, ecc.).
+Monitoraggio della leggibilità della documentazione prodotta (Piano Qualifica, Analisi dei Requisiti, ecc.).
 \begin{figure}[h!]
     \centering
     % Placeholder per il grafico
@@ -492,6 +536,21 @@ Monitoraggio della leggibilità della documentazione prodotta (Manuale Utente, A
     \caption{Andamento della leggibilità dei documenti}
 \end{figure}
 
+\newpage
+\subsection{Correttezza Ortografica (MPC-10)}
+Monitoraggio degli errori ortografici presenti nella documentazione prodotta (Piano Qualifica, Analisi dei Requisiti, ecc.).
+\begin{figure}[h!]
+    \centering
+    % Placeholder per il grafico
+    \fbox{\begin{minipage}{0.8\textwidth}
+        \centering
+        \vspace{3cm}
+        \textit{Grafico degli errori ortografici per documento}
+        \vspace{3cm}
+    \end{minipage}}
+    \caption{Andamento degli errori ortografici presenti nei documenti}
+\end{figure}
+\newpage
 % ====== INIZIATIVE DI AUTOMIGLIORAMENTO ======
 \newpage
 \section{Iniziative di automiglioramento}

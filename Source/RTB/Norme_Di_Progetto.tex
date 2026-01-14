@@ -21,6 +21,7 @@
 \usepackage[utf8]{inputenc} % Specifica la codifica del file (necessaria per le accentate)
 \usepackage[T1]{fontenc}    % Migliora l'output dei font per le lingue europee
 \usepackage{tcolorbox}      % Per creare box colorati dei documenti
+\usepackage{amsmath}         % Per formule matematiche avanzate
 
 % ====== IMPOSTAZIONI GLOBALI DI STILE ======
 
@@ -51,7 +52,7 @@
   {1em}
   {}
   \titleformat{\subsubsection}
-  {\normalfont\sffamily\large\bfseries\color{AccentDark}} % Cambiare colore dellle subsubsection
+  {\normalfont\sffamily\large\bfseries\color{AccentDark}} % Cambiare colore delle subsubsection
   {\thesubsubsection}
   {1em}
   {}
@@ -142,7 +143,7 @@
 \pagestyle{fancy}
 \newpage
 \tableofcontents
-\newpage
+%\newpage
 
 % ====== TABELLA DI VERSIONAMENTO ======
 \section{Registro delle versioni}
@@ -155,6 +156,7 @@
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} & 
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
 
+        0.0.12 & 15/01/2026 & Alessandro Frison & Sistemata sezione Metriche e standard di Qualità e Metriche di Qualità del Prodotto \\
         0.0.11 & 13/01/2026 & Giulia Romanato & Aggiunta sotto sezione 5.1.1 Metodologia, aggiornamento 5.4 Formazione e aggiornamento sezione 4.1.2 Verbali (definizione struttura interna dei verbali, sezione tabella decisioni e azioni diventa sottosezione 4.1.2.1) \\
         0.0.10 & 12/01/2026 & Giulia Romanato & Aggiunta sotto sezione 5.7 Formazione e 5.5 Gestione delle infrastutture e degli strumenti \\
         0.0.9 & 12/01/2026 & Nicolò Lattanzio & Aggiunta sezione Metriche di Qualità del processo e prodotto, e completamento sezione 3.2 Processi di Sviluppo.\\
@@ -815,6 +817,7 @@ Le attività vengono organizzate secondo le seguenti modalità operative:
     \item \textbf{Suddivisione in sprint:} il lavoro è diviso in cicli di durata pari a due settimane, ciascuno caratterizzato da obiettivi definiti e misurabili decisi all'inizio dello sprit
     \item \textbf{Gestione delle attività:} i task vengono definiti, pianificati e assegnati tramite le issue di GitHub, organizzate all'interno di una dashboard Kanban, che funge da sistema di issue tracking, supporta la distribuzione delle responsabilità tra i membri del gruppo e aiuta a monitorare l'avanzamento delle attività
     \item \textbf{Revisione iterativa e migliorativa:} al termine di ogni sprint viene svolta un'attività di retrospettiva finalizzata all'analisi dei risultati, all'individuazione di possibili miglioramenti dei processi adottati e alla pianificazione di eventuali azioni correttive o migliorative da applicare nel sprint successivo
+\end{itemize}
 L'adozione di tale modalità di gestione consente di assicurare un elevato grado di adattabilità ai cambiamenti dei requisiti e contribuisce al miglioramento continuo dei processi organizzativi del progetto.
 \subsubsection{Gestione dei ruoli} 
 Ogni membro del gruppo in ogni Sprint può assumere diversi ruoli, in base alle attività che dovrà svolgere durante quel periodo. 
@@ -1027,26 +1030,82 @@ In particolare per lo studio delle tecnologie da usare nel progetto il gruppo ha
     \item \textbf{condivisione dei risultati:} discussione tra i membri del gruppo riguardo le competenze apprese, le difficoltà incontrate e gli eventuali dubbi emersi
 \end{itemize}
 
-
-
-
-
-\section{Metriche e standard per la Qualità}
-Per garantire la massima qualità del prodotto e del processo, il gruppo ha deciso di adottare lo standard \textbf{ISO/IEC 25010:2023} (System and software quality models), l'ultima iterazione della serie SQuaRE (Systems and software Quality Requirements and Evaluation).
-
-Questo standard scompone la qualità del prodotto software in otto caratteristiche principali:
+\section{Metriche e Standard di Qualità}
+Le metriche e i parametri per definire la qualità del prodotto e del processo si basano sugli standard ISO/IEC 9126.
+Questo standard definisce 6 caratteristiche generali di qualità del software, ognuna delle quali viene misurata attraverso specifiche metriche.
+\subsection{Funzionalità}
+La \textbf{funzionalità} si riferisce alla capacità del software di soddisfare i requisiti specificati e le esigenze degli utenti.
+In particolare descrive:
 \begin{itemize}
-    \item \textbf{Adeguatezza Funzionale} (Functional Suitability);
-    \item \textbf{Efficienza Prestazionale} (Performance Efficiency);
-    \item \textbf{Compatibilità} (Compatibility);
-    \item \textbf{Usabilità} (Usability);
-    \item \textbf{Affidabilità} (Reliability);
-    \item \textbf{Sicurezza} (Security);
-    \item \textbf{Manutenibilità} (Maintainability);
-    \item \textbf{Portabilità} (Portability).
+    \item \textbf{Adeguatezza}: il grado in cui le funzioni del software soddisfano i requisiti specificati.
+    \item \textbf{Accuratezza}: la capacità del software di fornire risultati corretti e precisi.
+    \item \textbf{Interoperabilità}: la capacità del software di interagire con altri sistemi o componenti.
+    \item \textbf{Sicurezza}: la capacità del software di proteggere i dati e le risorse da accessi non autorizzati.
+    \item \textbf{Conformità}: il grado in cui il software aderisce a standard, regolamenti e linee guida pertinenti.
 \end{itemize}
+\subsection{Affidabilità}
+L'\textbf{affidabilità} si riferisce alla capacità del software di mantenere le sue prestazioni nel tempo e in condizioni specifiche.
+In particolare descrive:
+\begin{itemize}
+    \item \textbf{Maturità}: la capacità del software di evitare guasti in condizioni operative normali.
+    \item \textbf{Tolleranza agli errori}: la capacità del software di continuare a funzionare correttamente anche in presenza di errori o guasti.
+    \item \textbf{Recuperabilità}: la capacità del software di riprendersi rapidamente dopo un guasto o un errore.
+    \item \textbf{Conformità}: il grado in cui il software aderisce a standard e regolamenti pertinenti relativi all'affidabilità.
+\end{itemize}
+\subsection{Efficienza}
+L'\textbf{efficienza} si riferisce alla capacità del software di utilizzare le risorse in modo ottimale per fornire le prestazioni richieste.
+In particolare descrive:
+\begin{itemize}
+    \item \textbf{Comportamento in relazione al tempo}: la capacità del software di rispondere rapidamente alle richieste degli utenti.
+    \item \textbf{Utilizzo delle risorse}: la capacità del software di utilizzare in modo efficiente le risorse di sistema, come la memoria e la CPU.
+    \item \textbf{Conformità}: il grado in cui il software aderisce a standard e regolamenti pertinenti relativi all'efficienza.
+\end{itemize}
+\subsection{Usabilità}
+L'\textbf{usabilità} si riferisce alla facilità con cui gli utenti possono utilizzare il software per raggiungere i loro obiettivi.
+In particolare descrive:
+\begin{itemize}
+    \item \textbf{Comprensibilità}: la facilità con cui gli utenti possono comprendere come utilizzare il software.
+    \item \textbf{Apprendibilità}: la facilità con cui gli utenti possono imparare a utilizzare il software.
+    \item \textbf{Operabilità}: la facilità con cui gli utenti possono operare il software per raggiungere i loro obiettivi.
+    \item \textbf{Attrattività}: il grado in cui il software è attraente e piacevole da usare.
+    \item \textbf{Conformità}: il grado in cui il software aderisce a standard e linee guida pertinenti relativi all'usabilità.
+\end{itemize}
+\subsection{Manutenibilità}
+La \textbf{manutenibilità} si riferisce alla facilità con cui il software può essere modificato per correggere difetti, migliorare le prestazioni o adattarsi a nuovi requisiti.
+In particolare descrive:
+\begin{itemize}
+    \item \textbf{Analizzabilità}: la facilità con cui il software può essere analizzato per identificare difetti o aree di miglioramento.
+    \item \textbf{Modificabilità}: la facilità con cui il software può essere modificato per correggere difetti o migliorare le prestazioni.
+    \item \textbf{Stabilità}: la capacità del software di resistere a modifiche senza introdurre nuovi difetti.
+    \item \textbf{Testabilità}: la facilità con cui il software può essere testato per verificare la correttezza delle modifiche apportate.
+\end{itemize}
+\subsection{Portabilità}
+La \textbf{portabilità} si riferisce alla facilità con cui il software può essere trasferito da un ambiente a un altro.
+In particolare descrive:
+\begin{itemize}
+    \item \textbf{Adattabilità}: la facilità con cui il software può essere adattato a nuovi ambienti o piattaforme.
+    \item \textbf{Installabilità}: la facilità con cui il software può essere installato in un nuovo ambiente.
+    \item \textbf{Sostituibilità}: la facilità con cui il software può essere sostituito da un altro software con funzionalità simili.
+    \item \textbf{Conformità}: il grado in cui il software aderisce a standard e regolamenti pertinenti relativi alla portabilità.
+\end{itemize}
+\subsection{Nomenclatura delle metriche}
+La \textbf{nomenclatura delle metriche} si riferisce alla definizione e all'uso di termini specifici per descrivere le metriche utilizzate nel processo di sviluppo del software. È fondamentale per garantire una comunicazione chiara e coerente tra i membri del team e con le parti interessate.
+In particolare è stata adottata la seguente nomenclatura:
 
-Ogni metrica è identificata dal codice \textbf{M[Tipo][ID]}, dove \textit{Tipo} è \textbf{PC} (Processo) o \textbf{PD} (Prodotto).
+\begin{center}
+    \textbf{M[Tipologia][Codice]}
+\end{center}
+
+dove:
+\begin{itemize}
+    \item \textbf{M}: indica che si tratta di una metrica
+    \item \textbf{Tipologia}: indica il tipo di metrica, che può essere:
+    \begin{itemize}
+        \item \textbf{PC} (Processo): per le metriche che misurano la qualità del processo di sviluppo
+        \item \textbf{PD} (Prodotto): per le metriche che misurano la qualità del prodotto software
+    \end{itemize}
+    \item \textbf{Codice}: un numero progressivo che identifica univocamente la metrica all'interno del tipo
+\end{itemize}
 
 \section{Metriche di Qualità del Processo}
 Le metriche di processo mirano a monitorare l'andamento delle attività, i costi e la stabilità dei requisiti durante il ciclo di vita (rif. ISO/IEC 12207).
@@ -1105,90 +1164,106 @@ Le metriche di processo mirano a monitorare l'andamento delle attività, i costi
     \item \textbf{Obiettivo:} $G \ge 40$ (Leggibilità media/buona per testi tecnici).
 \end{itemize}
 
-\section{Metriche di Qualità del Prodotto (ISO/IEC 25010:2023)}
+\section{Metriche di Qualità del Prodotto}
 
-\subsection{Adeguatezza Funzionale}
-Capacità del prodotto di fornire funzioni che soddisfano le esigenze dichiarate e implicite quando utilizzato in condizioni specificate.
-
-\subsubsection{Copertura Funzionale}
-\textbf{Codice:} MPD01
+\subsection{Funzionalità}
+\subsubsection{Requisiti obbbligatori soddisfatti}
 \begin{itemize}
-    \item \textbf{Formula:} $$CF = \frac{Requisiti_{impl}}{Requisiti_{tot}} \times 100$$
-    \item \textbf{Descrizione:} Percentuale di requisiti funzionali (Obbligatori/Desiderabili) effettivamente implementati e superati nei test di sistema.
-    \item \textbf{Obiettivo:} $100\%$ per i requisiti Obbligatori alla release finale.
+    \item \textbf{Codice}: MPD01
+    \item \textbf{Formula}: $\displaystyle \text{Requisiti obbbligatori soddisfatti} = \frac{\text{Requisiti obbligatori soddisfatti}}{\text{Totale requisiti obbligatori}} \times 100$
+    \item \textbf{Descrizione}: Questa metrica misura la percentuale di requisiti obbligatori che sono stati soddisfatti dal prodotto software rispetto al totale dei requisiti obbligatori definiti nell'analisi dei requisiti.
+\end{itemize}
+\subsubsection{Requisiti desiderabili soddisfatti}
+\begin{itemize}
+    \item \textbf{Codice}: MPD02
+    \item \textbf{Formula}: $\displaystyle \text{Requisiti desiderabili soddisfatti} = \frac{\text{Requisiti desiderabili soddisfatti}}{\text{Totale requisiti desiderabili}} \times 100$
+    \item \textbf{Descrizione}: Questa metrica misura la percentuale di requisiti desiderabili che sono stati soddisfatti dal prodotto software rispetto al totale dei requisiti desiderabili definiti nell'analisi dei requisiti.
+\end{itemize}
+\subsubsection{Requisiti opzionali soddisfatti}
+\begin{itemize}
+    \item \textbf{Codice}: MPD03
+    \item \textbf{Formula}: $\displaystyle \text{Requisiti opzionali soddisfatti} = \frac{\text{Requisiti opzionali soddisfatti}}{\text{Totale requisiti opzionali}} \times 100$
+    \item \textbf{Descrizione}: Questa metrica misura la percentuale di requisiti opzionali che sono stati soddisfatti dal prodotto software rispetto al totale dei requisiti opzionali definiti nell'analisi dei requisiti.
 \end{itemize}
 
 \subsection{Affidabilità}
-Grado in cui un sistema, prodotto o componente svolge le funzioni specificate sotto condizioni determinate per un periodo di tempo stabilito.
-
-\subsubsection{Mean Time To Repair (MTTR)}
-\textbf{Codice:} MPD02
+\subsubsection{Statement Coverage}
 \begin{itemize}
-    \item \textbf{Formula:} Media del tempo trascorso tra la rilevazione di un guasto e la sua risoluzione (fix + deploy).
-    \item \textbf{Descrizione:} Indica la capacità del team e del sistema di ripristinare il servizio (Recoverability).
+    \item \textbf{Codice}: MPD04
+    \item \textbf{Formula}: $\displaystyle \text{Statement Coverage} = \frac{\text{Numero di statement eseguiti}}{\text{Totale numero di statement}} \times 100$
+    \item \textbf{Descrizione}: Questa metrica misura la percentuale di istruzioni del codice sorgente che sono state eseguite durante i test rispetto al totale delle istruzioni presenti nel codice.
+\end{itemize}
+\subsubsection{Branch Coverage}
+\begin{itemize}
+    \item \textbf{Codice}: MPD05
+    \item \textbf{Formula}: $\displaystyle \text{Branch Coverage} = \frac{\text{Numero di rami eseguiti}}{\text{Totale numero di rami}} \times 100$
+    \item \textbf{Descrizione}: Questa metrica misura la percentuale di rami di controllo (come quelli derivanti da istruzioni condizionali) che sono stati eseguiti durante i test rispetto al totale dei rami presenti nel codice.
+\end{itemize}
+\subsubsection{Condition Coverage}
+\begin{itemize}
+    \item \textbf{Codice}: MPD06
+    \item \textbf{Formula}: $\displaystyle \text{Condition Coverage} = \frac{\text{Numero di condizioni valutate a vero e falso}}{\text{Totale numero di condizioni}} \times 100$
+    \item \textbf{Descrizione}: Questa metrica misura la percentuale di condizioni logiche che sono state valutate sia a vero che a falso durante i test rispetto al totale delle condizioni presenti nel codice.
 \end{itemize}
 
-\subsection{Efficienza Prestazionale}
-Prestazioni relative alla quantità di risorse utilizzate sotto condizioni determinate.
-
-\subsubsection{Average Response Time}
-\textbf{Codice:} MPD03
+\subsection{Efficienza}
+\subsubsection{Response Time}
 \begin{itemize}
-    \item \textbf{Formula:} $$\frac{\sum Tempi\_risposta}{N\_richieste}$$
-    \item \textbf{Descrizione:} Tempo medio che intercorre tra l'invio della richiesta e la ricezione della risposta completa.
-    \item \textbf{Obiettivo:} $< 0.5s$ per API standard; $< 2s$ per operazioni complesse.
-\end{itemize}
-
-\subsection{Compatibilità}
-Grado in cui un prodotto, sistema o componente può scambiare informazioni con altri prodotti (Interoperabilità) e svolgere le sue funzioni condividendo lo stesso ambiente hardware/software (Coesistenza).
-
-\subsubsection{Browser Compatibility Rate}
-\textbf{Codice:} MPD04
-\begin{itemize}
-    \item \textbf{Formula:} $$BCR = \frac{Browser_{supportati}}{Browser_{testati}} \times 100$$
-    \item \textbf{Descrizione:} Percentuale di browser (Chrome, Firefox, Safari, Edge) in cui il software non presenta anomalie grafiche o funzionali.
+    \item \textbf{Codice}: MPD07
+    \item \textbf{Formula}: $\displaystyle \text{Response Time} = \frac{\sum \text{Tempo di risposta}}{\text{Numero di richieste}}$
+    \item \textbf{Descrizione}: Questa metrica misura il tempo medio di risposta del sistema alle richieste degli utenti.
 \end{itemize}
 
 \subsection{Usabilità}
-Grado in cui un prodotto o sistema può essere utilizzato da specifici utenti per raggiungere specifici obiettivi con efficacia, efficienza e soddisfazione.
-
-\subsubsection{Average Error Rate (AER)}
-\textbf{Codice:} MPD05
+\subsubsection{Facilità di utilizzo}
 \begin{itemize}
-    \item \textbf{Formula:} $$AER = \frac{N_{errori\_utente}}{N_{azioni\_totali}} \times 100$$
-    \item \textbf{Descrizione:} Percentuale di errori commessi dall'utente durante l'esecuzione di un task specifico (misura l'intuitività dell'interfaccia).
+    \item \textbf{Codice}: MPD08
+    \item \textbf{Formula}: $\displaystyle \text{Facilità di utilizzo} = \frac{\sum \text{Punteggio di facilità di utilizzo}}{\text{Numero di utenti}}$
+    \item \textbf{Descrizione}: Questa metrica misura il punteggio medio di facilità di utilizzo del software, basato su feedback
 \end{itemize}
-
-\subsection{Sicurezza}
-Grado in cui il prodotto protegge informazioni e dati in modo che persone o altri sistemi abbiano il grado di accesso ai dati appropriato al loro livello di autorizzazione.
-
-\subsubsection{Vulnerability Density}
-\textbf{Codice:} MPD06
+\subsubsection{Tempo medio di apprendimento}
 \begin{itemize}
-    \item \textbf{Formula:} $$VD = \frac{Vulnerabilita\_rilevate}{KLOC}$$
-    \item \textbf{Descrizione:} Numero di vulnerabilità di sicurezza (secondo OWASP Top 10) rilevate tramite analisi statica per 1000 righe di codice.
-    \item \textbf{Obiettivo:} 0 Vulnerabilità di livello High/Critical.
+    \item \textbf{Codice}: MPD09
+    \item \textbf{Formula}: $\displaystyle \text{Tempo medio di apprendimento} = \frac{\sum \text{Tempo di apprendimento}}{\text{Numero di utenti}}$
+    \item \textbf{Descrizione}: Questa metrica misura il tempo medio necessario agli utenti per imparare a utilizzare il software in modo efficace.
 \end{itemize}
 
 \subsection{Manutenibilità}
-Grado di efficacia ed efficienza con cui il prodotto può essere modificato dagli sviluppatori.
-
-\subsubsection{Cyclomatic Complexity (Complessità Ciclomatica)}
-\textbf{Codice:} MPD07
+\subsubsection{Accoppiamento Moduli}
 \begin{itemize}
-    \item \textbf{Formula:} $$V(G) = E - N + 2P$$
-    \item \textbf{Descrizione:} Misura la complessità logica del codice. Funzioni con $V(G) > 10$ sono considerate difficili da mantenere e testare.
-    \item \textbf{Obiettivo:} Mantenere la complessità media $< 10$.
+    \item \textbf{Codice}: MPD10
+    \item \textbf{Formula}: $\displaystyle \text{Accoppiamento Moduli} = \frac{\sum \text{Numero di dipendenze tra moduli}}{\text{Numero totale di moduli}}$
+    \item \textbf{Descrizione}: Questa metrica misura il grado di dipendenza tra i moduli del software, indicando quanto un modulo dipende da altri moduli.
 \end{itemize}
-
-\subsection{Portabilità}
-Grado di efficacia ed efficienza con cui un sistema, prodotto o componente può essere trasferito da un ambiente operativo ad un altro (es. Docker deploy).
-
-\subsubsection{Environment Deployment Success}
-\textbf{Codice:} MPD08
+\subsubsection{Linee per Metodo}
 \begin{itemize}
-    \item \textbf{Formula:} $$EDS = \frac{Deploy\_riusciti}{Deploy\_tentati} \times 100$$
-    \item \textbf{Descrizione:} Percentuale di installazioni/deploy andati a buon fine al primo tentativo su diversi ambienti (Locale, CI/CD, Produzione).
+    \item \textbf{Codice}: MPD11
+    \item \textbf{Formula}: $\displaystyle \text{Linee per Metodo} = \frac{\sum \text{Numero di linee di codice per metodo}}{\text{Numero totale di metodi}}$
+    \item \textbf{Descrizione}: Questa metrica misura il numero medio di linee di codice per metodo, indicando la   complessità dei metodi nel software.
+\end{itemize}
+\subsubsection{Parametri per Metodo}
+\begin{itemize}
+    \item \textbf{Codice}: MPD12
+    \item \textbf{Formula}: $\displaystyle \text{Parametri per Metodo} = \frac{\sum \text{Numero di parametri per metodo}}{\text{Numero totale di metodi}}$
+    \item \textbf{Descrizione}: Questa metrica misura il numero medio di parametri per metodo, indicando la complessità e la flessibilità dei metodi nel software.
+\end{itemize}
+\subsubsection{Attributi per Classe}
+\begin{itemize}
+    \item \textbf{Codice}: MPD13
+    \item \textbf{Formula}: $\displaystyle \text{Attributi per Classe} = \frac{\sum \text{Numero di attributi per classe}}{\text{Numero totale di classi}}$
+    \item \textbf{Descrizione}: Questa metrica misura il numero medio di attributi per classe, indicando la complessità e la capacità di rappresentazione delle classi nel software.
+\end{itemize}
+\subsubsection{Structure Fan-In}
+\begin{itemize}
+    \item \textbf{Codice}: MPD14
+    \item \textbf{Formula}: $\displaystyle \text{Structure Fan-In} = \frac{\sum \text{Numero di moduli che utilizzano un modulo}}{\text{Numero totale di moduli}}$
+    \item \textbf{Descrizione}: Questa metrica misura il numero medio di moduli che utilizzano un modulo specifico, indicando la centralità e l'importanza di quel modulo nel sistema.
+\end{itemize}
+\subsubsection{Structure Fan-Out}
+\begin{itemize}
+    \item \textbf{Codice}: MPD15
+    \item \textbf{Formula}: $\displaystyle \text{Structure Fan-Out} = \frac{\sum \text{Numero di moduli utilizzati da un modulo}}{\text{Numero totale di moduli}}$
+    \item \textbf{Descrizione}: Questa metrica misura il numero medio di moduli utilizzati da un modulo specifico, indicando la dipendenza e l'interazione di quel modulo con altri moduli nel sistema.
 \end{itemize}
 
 

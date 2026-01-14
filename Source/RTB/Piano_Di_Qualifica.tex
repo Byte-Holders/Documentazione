@@ -123,20 +123,24 @@
 {\normalfont\sffamily\huge\bfseries\color{AccentColor} Registro delle versioni}
 \vspace{1cm}
 
-\begin{center}
-    \rowcolors{2}{LightGray}{white}
-    \begin{tabular}{>{\centering\arraybackslash}m{2cm} >{\centering\arraybackslash}m{2cm} >{\raggedright\arraybackslash}m{2.5cm} >{\raggedright\arraybackslash}m{2.5cm} >{\raggedright\arraybackslash}m{6.5cm}}
-        \rowcolor{AccentColor}
-          \textcolor{white}{\textbf{Versione}} & 
-          \textcolor{white}{\textbf{Data}} & 
-          \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} &
-          \multicolumn{1}{c}{\textcolor{white}{\textbf{Verificatore}}} & 
-          \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
-        0.0.3 & 04/01/2025 & Alessandro Frison & Lorenzo Grolla & Aggiunta metriche di prodotto \\
-        0.0.2 & 21/12/2025 & Lorenzo Grolla & Alessandro Frison & Aggiunta metriche processi \\ 
-        0.0.1 & 01/12/2025 & Alessandro Frison & Lorenzo Grolla & Inizio stesura \\
-    \end{tabular}
-\end{center}
+\begin{table}[h]
+    \centering
+    \makebox[\textwidth][c]{ 
+        \rowcolors{2}{LightGray}{white}
+        \begin{tabular}{>{\centering\arraybackslash}m{2cm} >{\centering\arraybackslash}m{2cm} >{\raggedright\arraybackslash}m{2.5cm} >{\raggedright\arraybackslash}m{2.5cm} >{\raggedright\arraybackslash}m{6.5cm}}
+            \rowcolor{AccentColor}
+              \textcolor{white}{\textbf{Versione}} & 
+              \textcolor{white}{\textbf{Data}} & 
+              \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} &
+              \multicolumn{1}{c}{\textcolor{white}{\textbf{Verificatore}}} & 
+              \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
+            0.3.1 & 13/01/2026 & Alessandro Frison & Lorenzo Grolla & Correzione errori e refusi vari \\
+            0.3.0 & 04/01/2025 & Alessandro Frison & Lorenzo Grolla & Aggiunta metriche di prodotto \\
+            0.2.0 & 21/12/2025 & Lorenzo Grolla & Alessandro Frison & Aggiunta metriche processi \\ 
+            0.1.0 & 01/12/2025 & Alessandro Frison & Lorenzo Grolla & Inizio stesura \\
+        \end{tabular}
+    }
+\end{table}
 
 
 % ====== INDICE ======

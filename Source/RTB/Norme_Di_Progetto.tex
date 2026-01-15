@@ -155,7 +155,7 @@
           \textcolor{white}{\textbf{Data}} & 
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} & 
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
-
+        0.0.13 & 15/01/2026 & Lorenzo Grolla & Sistemata sezione Metriche di Qualità del Processo \\
         0.0.12 & 15/01/2026 & Alessandro Frison & Sistemata sezione Metriche e standard di Qualità e Metriche di Qualità del Prodotto \\
         0.0.11 & 13/01/2026 & Giulia Romanato & Aggiunta sotto sezione 5.1.1 Metodologia, aggiornamento 5.4 Formazione e aggiornamento sezione 4.1.2 Verbali (definizione struttura interna dei verbali, sezione tabella decisioni e azioni diventa sottosezione 4.1.2.1) \\
         0.0.10 & 12/01/2026 & Giulia Romanato & Aggiunta sotto sezione 5.7 Formazione e 5.5 Gestione delle infrastutture e degli strumenti \\
@@ -1108,61 +1108,143 @@ dove:
 \end{itemize}
 
 \section{Metriche di Qualità del Processo}
-Le metriche di processo mirano a monitorare l'andamento delle attività, i costi e la stabilità dei requisiti durante il ciclo di vita (rif. ISO/IEC 12207).
+Le metriche di qualità del processo hanno l'obiettivo di monitorare l'andamento delle attività, l'efficienza economica e temporale, e la stabilità dei requisiti durante l'intero ciclo di vita del software.
+Di seguito sono elencate le metriche adottate dal gruppo, suddivise per tipologia di processo, con i relativi codici identificativi definiti nel Piano di Qualifica.
 
 \subsection{Processi Primari}
 
-\subsubsection{Schedule Performance Index (SPI)}
-\textbf{Codice:} MPC01
+\subsubsection{Fornitura}
+
+\paragraph{Earned Value (EV)}
 \begin{itemize}
-    \item \textbf{Formula:} $$SPI = \frac{EV}{PV}$$
-    Dove:
-    \begin{itemize}
-        \item $EV$ (Earned Value): Valore monetario/orario del lavoro realizzato;
-        \item $PV$ (Planned Value): Valore monetario/orario del lavoro pianificato.
-    \end{itemize}
-    \item \textbf{Descrizione:} Indica l'efficienza della pianificazione temporale.
-    \item \textbf{Soglie:}
-    \begin{itemize}
-        \item $SPI \ge 1$: Progetto in pari o in anticipo (Ottimo);
-        \item $0.9 \le SPI < 1$: Ritardo gestibile (Accettabile);
-        \item $SPI < 0.9$: Ritardo grave (Critico).
-    \end{itemize}
+    \item \textbf{Codice:} MPC-01 
+    \item \textbf{Formula:} $$EV = BAC \times \%C$$
+    Dove $BAC$ è il Budget At Completion e $\%C$ è la percentuale di lavoro completato.
+    \item \textbf{Descrizione:} Rappresenta il valore del lavoro effettivamente completato rispetto al budget totale previsto. È utile per valutare se il lavoro svolto è in linea con le aspettative.
 \end{itemize}
 
-\subsubsection{Cost Performance Index (CPI)}
-\textbf{Codice:} MPC02
+\paragraph{Planned Value (PV)}
 \begin{itemize}
+    \item \textbf{Codice:} MPC-02 
+    \item \textbf{Formula:} $$PV = BAC \times \%P$$
+    Dove $\%P$ è la percentuale di lavoro pianificato alla data corrente.
+    \item \textbf{Descrizione:} Rappresenta il valore del lavoro che si era pianificato di completare entro la data corrente. Il valore pianificato deve essere inferiore al BAC.
+\end{itemize}
+
+\paragraph{Actual Cost (AC)}
+\begin{itemize}
+    \item \textbf{Codice:} MPC-03 
+    \item \textbf{Formula:} $$AC = \text{Costo effettivo sostenuto}$$
+    \item \textbf{Descrizione:} Rappresenta il costo reale sostenuto per il lavoro svolto fino al momento della misurazione. È fondamentale per valutare se i costi sono in linea con le aspettative.
+\end{itemize}
+
+\paragraph{Cost Performance Index (CPI)}
+\begin{itemize}
+    \item \textbf{Codice:} MPC-04 
     \item \textbf{Formula:} $$CPI = \frac{EV}{AC}$$
-    Dove $AC$ (Actual Cost) è il costo reale sostenuto (ore spese).
-    \item \textbf{Descrizione:} Indica l'efficienza dei costi rispetto al budget preventivato. Un valore $<1$ indica che si stanno spendendo più risorse del previsto.
+    \item \textbf{Descrizione:} Rapporto tra il valore del lavoro completato e il costo effettivo sostenuto. Un valore $\ge 1$ indica che il progetto sta rispettando il budget.
 \end{itemize}
 
-\subsubsection{Requirements Stability Index (RSI)}
-\textbf{Codice:} MPC03
+\paragraph{Schedule Performance Index (SPI)}
 \begin{itemize}
+    \item \textbf{Codice:} MPC-05 
+    \item \textbf{Formula:} $$SPI = \frac{EV}{PV}$$
+    \item \textbf{Descrizione:} Rapporto tra il valore del lavoro completato e il valore del lavoro pianificato. Un valore $\ge 1$ indica che il progetto sta rispettando la pianificazione temporale.
+\end{itemize}
+
+\paragraph{Estimate At Completion (EAC)}
+\begin{itemize}
+    \item \textbf{Codice:} MPC-06 
+    \item \textbf{Formula:} $$EAC = \frac{BAC}{CPI}$$
+    \item \textbf{Descrizione:} Stima del costo totale del progetto alla fine dei lavori, basata sulla performance attuale. Se $CPI < 1$, l'EAC sarà maggiore del budget iniziale, indicando un probabile sforamento.
+\end{itemize}
+
+\paragraph{Estimate To Complete (ETC)}
+\begin{itemize}
+    \item \textbf{Codice:} MPC-07 
+    \item \textbf{Formula:} $$ETC = EAC - AC$$
+    \item \textbf{Descrizione:} Stima dei costi necessari per completare le attività rimanenti del progetto.
+\end{itemize}
+
+\paragraph{Time Estimate At Completion (TEAC)}
+\begin{itemize}
+    \item \textbf{Codice:} MPC-08 
+    \item \textbf{Formula:} $$TEAC = \frac{\text{Durata Pianificata}}{SPI}$$
+    \item \textbf{Descrizione:} Proiezione della durata finale del progetto basata sulla performance temporale attuale. Se $SPI < 1$, il TEAC sarà maggiore della durata pianificata.
+\end{itemize}
+
+\subsubsection{Sviluppo}
+
+\paragraph{Requirements Stability Index (RSI)}
+\begin{itemize}
+    \item \textbf{Codice:} MPC-09 
     \item \textbf{Formula:} $$RSI = \left( 1 - \frac{R_{var}}{R_{tot}} \right) \times 100$$
-    Dove $R_{var}$ è il numero di requisiti aggiunti, modificati o cancellati e $R_{tot}$ il totale iniziale.
-    \item \textbf{Descrizione:} Misura la stabilità dei requisiti. Variazioni frequenti impattano negativamente sulla progettazione.
+    Dove $R_{var}$ è il numero di requisiti aggiunti, modificati o cancellati e $R_{tot}$ è il numero totale dei requisiti iniziali.
+    \item \textbf{Descrizione:} Misura la stabilità dei requisiti nel tempo. Variazioni frequenti impattano negativamente sulla progettazione e sullo sviluppo.
 \end{itemize}
 
 \subsection{Processi di Supporto}
 
-\subsubsection{Code Coverage (Test di Unità)}
-\textbf{Codice:} MPC04
+\subsubsection{Documentazione}
+
+\paragraph{Indice di Gulpease}
 \begin{itemize}
-    \item \textbf{Formula:} $$Coverage = \frac{LOC_{covered}}{LOC_{total}} \times 100$$
-    \item \textbf{Descrizione:} Percentuale di linee di codice (LOC) eseguite durante i test automatizzati.
-    \item \textbf{Obiettivo:} $\ge 80\%$.
+    \item \textbf{Codice:} MPC-10 
+    \item \textbf{Formula:} $$G = 89 + \frac{300 \times \text{Frasi} - 10 \times \text{Lettere}}{\text{Parole}}$$
+    \item \textbf{Descrizione:} Indice di leggibilità per la lingua italiana. Un valore superiore a 40 indica un testo comprensibile per chi ha un'istruzione di scuola superiore.
 \end{itemize}
 
-\subsubsection{Indice di Gulpease (Leggibilità Documenti)}
-\textbf{Codice:} MPC05
+\paragraph{Correttezza Ortografica}
 \begin{itemize}
-    \item \textbf{Formula:} $$G = 89 + \frac{300 \times Frasi - 10 \times Lettere}{Parole}$$
-    \item \textbf{Descrizione:} Valuta la leggibilità di un testo in lingua italiana.
-    \item \textbf{Obiettivo:} $G \ge 40$ (Leggibilità media/buona per testi tecnici).
+    \item \textbf{Codice:} MPC-11 
+    \item \textbf{Formula:} $$C_{ort} = \text{Numero di errori ortografici}$$
+    \item \textbf{Descrizione:} Indicatore della qualità formale della documentazione. L'obiettivo è mantenere questo valore a 0 per ogni documento rilasciato.
 \end{itemize}
+
+\subsubsection{Verifica}
+
+\paragraph{Code Coverage}
+\begin{itemize}
+    \item \textbf{Codice:} MPC-12 
+    \item \textbf{Formula:} $$Coverage = \frac{\text{Linee di codice testate}}{\text{Linee di codice totali}} \times 100$$
+    \item \textbf{Descrizione:} Percentuale di codice sorgente coperto da test automatizzati. Si raccomanda un coverage minimo del 70\%.
+\end{itemize}
+
+\paragraph{Test Success Rate}
+\begin{itemize}
+    \item \textbf{Codice:} MPC-13 
+    \item \textbf{Formula:} $$TSR = \frac{\text{Test superati}}{\text{Test totali}} \times 100$$
+    \item \textbf{Descrizione:} Percentuale di test eseguiti con successo. Dovrebbe mantenersi al 100\% per garantire che non vi siano regressioni o funzionalità non conformi.
+\end{itemize}
+
+\subsubsection{Gestione della Qualità}
+
+\paragraph{Quality Metrics Satisfied}
+\begin{itemize}
+    \item \textbf{Codice:} MPC-14 
+    \item \textbf{Formula:} $$QMS = \frac{\text{Metriche soddisfatte}}{\text{Metriche totali}} \times 100$$
+    \item \textbf{Descrizione:} Percentuale di metriche di qualità che rispettano le soglie di accettabilità definite nel Piano di Qualifica.
+\end{itemize}
+
+\subsection{Processi Organizzativi}
+
+\subsubsection{Gestione dei Processi}
+
+\paragraph{Time Efficiency}
+\begin{itemize}
+    \item \textbf{Codice:} MPC-15 
+    \item \textbf{Formula:} $$TE = \frac{\text{Ore produttive}}{\text{Ore totali}} \times 100$$
+    \item \textbf{Descrizione:} Valutazione del rapporto tra le ore effettivamente utilizzate per attività produttive e le ore totali dedicate al progetto.
+\end{itemize}
+
+\paragraph{Sprint Goal Achievement}
+\begin{itemize}
+    \item \textbf{Codice:} MPC-16 
+    \item \textbf{Formula:} $$SGA = \frac{\text{Obiettivi raggiunti}}{\text{Obiettivi pianificati}} \times 100$$
+    \item \textbf{Descrizione:} Misura la percentuale di obiettivi dello Sprint (Issue completate o milestone raggiunte) che sono stati soddisfatti al termine dell'iterazione rispetto a quelli pianificati.
+\end{itemize}
+
+
 
 \section{Metriche di Qualità del Prodotto}
 

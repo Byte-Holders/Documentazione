@@ -161,6 +161,14 @@ Un branch (ramo) è una linea di sviluppo indipendente (una copia separata del c
 \GlossarioLettera{C}
 \term{Chain-of-thought prompting}
 
+\term{CIA}
+\textit{Confidentiality, Integrity, Availability}. Triade che rappresenta i principi chiave della sicurezza informatica.
+\begin{itemize}
+	\item \textbf{Confidentiality}: limita l'accesso a informazioni sensibili
+	\item \textbf{Integrity}: assicura l'accuratezza e l'affidabilità di dati e ed equipaggiamenti
+	\item \textbf{Availability}: assicura accesso tempestivo a dati ed equipaggiamenti
+\end{itemize}
+
 \term{Cognito}
 
 \term{Container}
@@ -177,10 +185,33 @@ Processo isolato per le componenti di un'applicazione. Un container è:
 \term{Context Prompt}
 
 \term{CVE}
+\textit{Common Vulnerabilities and Exposures}. Un glossario di \refterm{Vulnerabilità} formalmente identificate. Utilizziamo il termine per fare riferimento più in particolare ai \textit{CVE Record}: una entry di tale glossario, ovvero dati strutturati riguardanti una certa vulnerabilità. Ciascun record possiede un identificatore univoco, e può essere in uno dei seguenti stati:
+\begin{itemize}
+	\item \textbf{Reserved}: il codice associato è riservato e non può essere utilizzato
+	\item \textbf{Published}: i dati relativi al record sono stati popolati, e il record è stato pubblicato
+	\item \textbf{Rejected}: il record non deve essere più considerato, e non viene rimosso per comunicarne lo stato
+\end{itemize}
+A ciascun record è inoltre associato un punteggio \refterm{CVSS}.\\
+Dopo che un record viene aggiunto alle CVE, diventa rapidamente disponibile anche nel \refterm{NVD}, che provvederà ad arricchirlo.
 
 \term{CVSS}
+\textit{Common Vulnerability Scoring System}. Una metrica che associa un valore numerico compreso tra 0 (bassa gravità) e 10 (alta gravità) a una determinata vulnerabilità. A un valore numerico è associata anche una stringa (\textit{CVSS vector string}) che specifica i valori utilizzati per ottenerlo. Attualmente in versione \texttt{4.0}\footnote{\url{https://www.first.org/cvss/v4.0/specification-document}}. Non è ancora stato determinato che versione utilizzerà CodeGuardian.
 
 \term{CWE}
+\textit{Common Weaknesses Enumeration}. Una lista di debolezze software e hardware. A ciascuna \refterm{Debolezza} in CWE è associato:
+\begin{itemize}
+	\item \textbf{Nome} descrittivo
+	\item \textbf{Descrizione breve} riassuntiva
+	\item \textbf{Descrizione lunga}, destinata a chi può non comprendere per quale motivo possa essere un problema
+	\item \textbf{Modalità di introduzione}
+	\item \textbf{Potenziali mitigazioni} del problema
+	\item \textbf{Consequenze comuni} che si verificano quando un attaccante sfrutta la debolezza
+	\item \textbf{Piattaforme applicabili}: linguaggi di programmazione, sistemi operativi, architetture e tecnologie
+	\item \textbf{Esempi dimostrativi} che illustrano la vulnerabilità tramite codice, testo e, talvolta, diagrammi
+	\item \textbf{Esempi osservati}, ad es. record \refterm{CVE}
+	\item \textbf{Relazioni} con altre CWE
+	\item \textbf{Riferimenti}, nel senso di citazioni sotto forma di URL, documenti, slide o video
+\end{itemize}
 
 \GlossarioLettera{D}
 \term{Database non relazionale}
@@ -188,6 +219,9 @@ Processo isolato per le componenti di un'applicazione. Un container è:
 \term{Database relazionale}
 
 \term{Database vettoriale}
+
+\term{Debolezza}
+Condizione in un software o componente che può contribuire all'introduzione di \refterm{Vulnerabilità}.
 
 \term{Dev}
 Vedi \refterm{Developer}.
@@ -387,6 +421,7 @@ Permette di:
 \term{npm}
 
 \term{NVD}
+\textit{National Vulnerability Database}. Un database americano che raccoglie e aggiunge informazioni (\refterm{CVSS}, \refterm{CWE}) alle \refterm{CVE} tramite i riferimenti e altri dati pubblici. I dati possono variare se vengono pubblicate informazioni rilevanti.
 
 \GlossarioLettera{O}
 \term{One-shot prompting}
@@ -512,6 +547,9 @@ Un insieme di variabili di sistema (\texttt{NAME=VALUE}) che un processo può le
 Un Version Control System (VCS) è un sistema software che gestisce e traccia tutte le modifiche effettuate a un insieme di file, come documenti, programmi o siti web. Ogni modifica viene registrata come una revisione identificata da un numero o codice, accompagnata da timestamp e autore.\\
 Un VCS permette di confrontare versioni, ripristinare stati precedenti, condividere cambiamenti tra più utenti e gestire attività collaborative tramite funzionalità come branching, merging e tracciamento delle modifiche.
 
+\term{Vulnerabilità}
+Istanza di una \refterm{Debolezza} che può essere sfruttata, impattando negativamente la \refterm{CIA}.
+
 \GlossarioLettera{W}
 \term{Workflow}
 Il workflow è il processo o modello che stabilisce come vengono gestite le modifiche nello sviluppo del codice all'interno di un'organizzazione o di un progetto.\\
@@ -524,6 +562,6 @@ Il tipo di workflow dipende dal VCS utilizzato e dalle esigenze del team di svil
 \term{YAML}
 
 \GlossarioLettera{Z}
-\term{Zero-short prompting}
+\term{Zero-shot prompting}
 
 \end{document}

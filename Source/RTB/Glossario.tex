@@ -169,6 +169,8 @@ Un branch (ramo) è una linea di sviluppo indipendente (una copia separata del c
 	\item \textbf{Availability}: assicura accesso tempestivo a dati ed equipaggiamenti
 \end{itemize}
 
+\term{CodeQL}
+
 \term{Cognito}
 
 \term{Container}
@@ -215,10 +217,20 @@ Dopo che un record viene aggiunto alle CVE, diventa rapidamente disponibile anch
 
 \GlossarioLettera{D}
 \term{Database non relazionale}
+Tipologia di base di dati che permette il salvataggio di dati strutturati, non strutturati e semi strutturati. Possono assumere varie forme come grafi oppure documenti. I database non relazionali sono anche detti \refterm{NoSQL}.
+
+A differenza di un \refterm{Database relazionale} sono facilmente scalabili orizzontalmente, ma non possiedono un linguaggio di interrogazione standard e hanno un supporto limitato per le transazioni (non aderiscono, generalmente, alle proprietà ACID\footnote{ACID: \url{https://database.guide/what-is-acid-in-databases/}}).
 
 \term{Database relazionale}
+Base di dati basata sul modello relazionale. Salva i dati in formato strutturato all'interno di tabelle (relazioni) composte da righe (tuple) e colonne (attributi) ben definite. La comunicazione con un database relazionale avviene tramite R\refterm{DBMS} (\textit{Relational DataBase Management System}) che aderiscono alle proprietà ACID per garantire l'affidabilità delle transazioni. La comunicazione avviene tramite \refterm{SQL}.
+
+I database relazionali permettono un'ottimizzazione formale della ridondanza e dipendenza dei dati e di effettuare interrogazioni complesse tra tabelle sfruttando la proprietà di integrità referenziale. Sono però complessi da scalare orizzontalmente, sono poco flessibili e inadatti a gestire dati non strutturati o gerarchici.
 
 \term{Database vettoriale}
+Base di dati che permette il salvataggio di dati sotto forma di vettori (\textit{embedding}), che vengono raggruppati in base alla similarità. Le interrogazioni effettuate non si basano sulle corrispondenze esatte per recuperare i risultati rilevanti, bensì sulla somiglianza dei dati.
+
+\term{DBMS}
+\textit{DataBase Management System}. Sistema software progettato per consentire la creazione, la manipolazione e l'interrogazione di una o più basi di dati in modo corretto ed efficiente.
 
 \term{Debolezza}
 Condizione in un software o componente che può contribuire all'introduzione di \refterm{Vulnerabilità}.
@@ -415,6 +427,7 @@ Permette di:
 \term{NodeJS}
 
 \term{NoSQL}
+Altro nome per \refterm{Database non relazionale}.
 
 \term{Norme di Progetto}
 
@@ -434,13 +447,13 @@ In un sistema ad agenti con orchestratore autocratico, l'orchestratore prende de
 Documento che contiene le 10 categorie di maggior rischio per le applicazioni web. È redatto da OWASP, un’organizzazione non profit, aperta e non affiliata ad aziende tecnologiche. La OWASP Top 10 viene utilizzata dalle organizzazioni come standard per la sicurezza di applicazioni ed è basata sull'analisi di dati e sondaggi comunitari. A ciascuna categoria è associato:
 \begin{itemize}
 	\item \textbf{CWE}: numero di \refterm{CWE} mappate alla categoria. È stato impostato dal team OWASP un limite di circa 40 \refterm{CWE} per ciascuna categoria per questione di praticità.
-	\item \textbf{Tasso di incidenza ($inc\%$)}: percentuale di applicazioni con \refterm{Vulnerabilità} associate ad almeno una \refterm{CWE} mappata alla categoria, tra le applicazioni testate
-	\item \textbf{Sfruttabilità (pesata) ($expl$)}: media pesata del campo \textit{exploitability} del punteggio \refterm{CVSS} (v2 o v3) di \refterm{CVE} associato alle \refterm{CWE} della categoria, normalizzato in una scala da 0 a 10
-	\item \textbf{Impatto (pesato) ($imp$)}:  media pesata del campo \textit{impact} del punteggio \refterm{CVSS} (v2 o v3) di \refterm{CVE} associato alle \refterm{CWE} della categoria, normalizzato in una scala da 0 a 10
-	\item \textbf{Copertura ($cov\%$)}: percentuale di applicazioni testate contro cui sono stati effettuati test per una specifica \refterm{CWE} di categoria, rispetto al numero totale di applicazioni testate
-	\item \textbf{Occorrenze totali ($\sum occ$)}: numero di applicazioni che hanno presentato una o più \refterm{CWE} di categoria
+	\item \textbf{Tasso di incidenza}: percentuale di applicazioni con \refterm{Vulnerabilità} associate ad almeno una \refterm{CWE} mappata alla categoria, tra le applicazioni testate
+	\item \textbf{Sfruttabilità (pesata)}: media pesata del campo \textit{exploitability} del punteggio \refterm{CVSS} (v2 o v3) di \refterm{CVE} associato alle \refterm{CWE} della categoria, normalizzato in una scala da 0 a 10
+	\item \textbf{Impatto (pesato)}:  media pesata del campo \textit{impact} del punteggio \refterm{CVSS} (v2 o v3) di \refterm{CVE} associato alle \refterm{CWE} della categoria, normalizzato in una scala da 0 a 10
+	\item \textbf{Copertura}: percentuale di applicazioni testate contro cui sono stati effettuati test per una specifica \refterm{CWE} di categoria, rispetto al numero totale di applicazioni testate
+	\item \textbf{Occorrenze totali}: numero di applicazioni che hanno presentato una o più \refterm{CWE} di categoria
 	\item \textbf{CVE}: numero di \refterm{CVE} con un punteggio calcolato con \refterm{CVSS}v2 o \refterm{CVSS}v3 nel \refterm{NVD} mappate a \refterm{CWE} di categoria
-	\item \textbf{Punteggio di rischio ($risk$)\footnote{Formula per il calcolo del punteggio del rischio OWASP: \url{https://owasp.org/Top10/2025/0x02_2025-What_are_Application_Security_Risks/}}}: calcolato utilizzando i dati soprastanti. Definisce la posizione nel ranking della Top 10
+	\item \textbf{Punteggio di rischio\footnote{Formula per il calcolo del punteggio del rischio OWASP: \url{https://owasp.org/Top10/2025/0x02_2025-What_are_Application_Security_Risks/}}}: calcolato utilizzando i dati soprastanti. Definisce la posizione nel ranking della Top 10
 \end{itemize}
 
 \GlossarioLettera{P}
@@ -464,14 +477,11 @@ Le sue principali responsabilità sono:
 
 \term{Piano di Qualifica}
 
-\term{PMD}
-
 \term{PoC}
 
 \term{Proof of Concept}
 
 \GlossarioLettera{Q}
-\term{Query}
 
 \GlossarioLettera{R}
 \term{Raccolta}
@@ -501,6 +511,8 @@ Una condizione che un sistema o componente deve rispettare, soddisfacendo una sp
 \term{Sistema ad agenti}
 Un sistema ad agenti è un insieme di entità autonome, chiamate agenti, che interagiscono tra loro per raggiungere obiettivi specifici all'interno di un ambiente condiviso. Ogni agente possiede capacità di percezione, decisione e azione, permettendo loro di adattarsi e collaborare in modo dinamico.
 
+\term{Snyk}
+
 \term{Software as a Service}
 
 \term{SonarQube}
@@ -512,6 +524,9 @@ Uno sprint è una piccola porzione di tempo (due settimane nel nostro caso) dura
 	\item check-in giornalieri, per controllare l'andamento dello sprint e reagire tempestivamente a eventuali problematiche
 	\item una riunione retrospettiva al termine dello sprint, per pianificare e migliorare gli sprint futuri
 \end{itemize}
+
+\term{SQL}
+\textit{Structured Query Language}. Linguaggio utilizzato per interrogare un R\refterm{DBMS} (\textit{Relational DataBase Management System}).
 
 \term{Swagger}
 

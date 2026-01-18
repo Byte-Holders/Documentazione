@@ -431,6 +431,17 @@ L'orchestratore è il componente centrale di un sistema ad agenti che coordina e
 In un sistema ad agenti con orchestratore autocratico, l'orchestratore prende decisioni centralizzate e dirige le azioni degli agenti senza consultare o coinvolgere gli agenti stessi nel processo decisionale. In questo sistema gli agenti svolgono compiti molto specifici.\\
 
 \term{OWASP Top 10}
+Documento che contiene le 10 categorie di maggior rischio per le applicazioni web. È redatto da OWASP, un’organizzazione non profit, aperta e non affiliata ad aziende tecnologiche. La OWASP Top 10 viene utilizzata dalle organizzazioni come standard per la sicurezza di applicazioni ed è basata sull'analisi di dati e sondaggi comunitari. A ciascuna categoria è associato:
+\begin{itemize}
+	\item \textbf{CWE}: numero di \refterm{CWE} mappate alla categoria. È stato impostato dal team OWASP un limite di circa 40 \refterm{CWE} per ciascuna categoria per questione di praticità.
+	\item \textbf{Tasso di incidenza ($inc\%$)}: percentuale di applicazioni con \refterm{Vulnerabilità} associate ad almeno una \refterm{CWE} mappata alla categoria, tra le applicazioni testate
+	\item \textbf{Sfruttabilità (pesata) ($expl$)}: media pesata del campo \textit{exploitability} del punteggio \refterm{CVSS} (v2 o v3) di \refterm{CVE} associato alle \refterm{CWE} della categoria, normalizzato in una scala da 0 a 10
+	\item \textbf{Impatto (pesato) ($imp$)}:  media pesata del campo \textit{impact} del punteggio \refterm{CVSS} (v2 o v3) di \refterm{CVE} associato alle \refterm{CWE} della categoria, normalizzato in una scala da 0 a 10
+	\item \textbf{Copertura ($cov\%$)}: percentuale di applicazioni testate contro cui sono stati effettuati test per una specifica \refterm{CWE} di categoria, rispetto al numero totale di applicazioni testate
+	\item \textbf{Occorrenze totali ($\sum occ$)}: numero di applicazioni che hanno presentato una o più \refterm{CWE} di categoria
+	\item \textbf{CVE}: numero di \refterm{CVE} con un punteggio calcolato con \refterm{CVSS}v2 o \refterm{CVSS}v3 nel \refterm{NVD} mappate a \refterm{CWE} di categoria
+	\item \textbf{Punteggio di rischio ($risk$)\footnote{Formula per il calcolo del punteggio del rischio OWASP: \url{https://owasp.org/Top10/2025/0x02_2025-What_are_Application_Security_Risks/}}}: calcolato utilizzando i dati soprastanti. Definisce la posizione nel ranking della Top 10
+\end{itemize}
 
 \GlossarioLettera{P}
 \term{PaaS}

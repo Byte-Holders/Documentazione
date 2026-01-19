@@ -643,4 +643,673 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	\item \textbf{Postcondizioni:} La password rimane invariata.
 \end{itemize}
 
+
+\subsubsection{UC19 - Visualizza lista tag raccolta}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+	\end{itemize}
+	\item \textbf{Postcondizioni:} Il sistema mostra a schermo l'elenco dei tag raccolta definiti nel workspace corrente
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'utente seleziona l'opzione per visualizzare i tag raccolta del workspace corrente
+		\item Il sistema recupera l'elenco dei tag raccolta associati al workspace selezionato
+		\item Il sistema mostra a schermo la lista dei tag raccolta
+	\end{enumerate}
+	\item \textbf{Scenario alternativo:}
+	\begin{enumerate}
+		\item Il workspace non contiene alcun tag raccolta configurato ->Vedi [UC Nessun tag raccolta presente oppure elenco vuoto], il sistema mostra un messaggio informativo: "Nessun tag raccolta presente nel workspace corrente"
+	\end{enumerate}
+	\item \textbf{Inclusioni:}
+	\begin{enumerate}
+		\item UC19.1 - Visualizza elemento lista tag raccolta repository
+	\end{enumerate}
+\end{itemize}
+
+
+\subsubsection{UC19.1 - Visualizza elemento lista tag raccolta}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente sta visualizzando la lista dei tag raccolta del workspace
+	\end{itemize}
+	\item \textbf{Postcondizioni:} Viene visualizzato, nel singolo elemento della lista dei tag raccolta, il nome del tag raccolta
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item Il sistema recupera le informazioni relative a un singolo tag raccolta presente nella lista
+		\item Il sistema mostra il nome identificativo del tag raccolta per la visualizzazione nella lista
+	\end{enumerate}
+	\item \textbf{Inclusioni:}
+	\begin{enumerate}
+		\item UC19.1.1 - Visualizza Nome tag raccolta
+	\end{enumerate}
+\end{itemize}
+
+\subsubsection{UC19.1.1 - Visualizza Nome tag raccolta}
+
+\subsubsection{UC20 - Crea tag raccolta}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Un nuovo tag raccolta è stato creato nel sistema
+		\item Il tag raccolta è associato al workspace corrente
+		\item Il nuovo tag raccolta è disponibile nell'elenco dei tag del workspace
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'utente seleziona l'opzione per creare un nuovo tag raccolta
+		\item Il sistema richiede l'inserimento del nome del tag raccolta
+		\item L'utente inserisce il nome del tag raccolta
+		\item L'utente conferma la creazione
+		\item Il sistema verifica che il nome inserito sia valido e non già esistente nel workspace
+		\item Il sistema crea il nuovo tag raccolta e lo associa al workspace corrente
+		\item Il sistema mostra un messaggio di conferma dell'avvenuta creazione del tag raccolta
+	\end{enumerate}
+	\item \textbf{Inclusioni:}
+	\begin{itemize}
+		\item UC 20.1 - Inserisci nome tag raccolta
+	\end{itemize}
+		\item \textbf{Scenario alternativo:}
+	\begin{enumerate}
+		\item Il tag raccolta non viene creato perchè il nome del tag raccolta inserito è già esistente nel workspace o non è valido (vuoto, caratteri non ammessi) ->[vedi UC21 - Creazione tag raccolta non riuscita]
+	\end{enumerate}
+\end{itemize}
+
+\subsubsection{UC 20.1 - Inserisci nome tag raccolta}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Il nome del tag raccolta è stato acquisito dal sistema ed è disponibile per la validazione e la creazione del tag
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item Il sistema richiede l'inserimento del nome del tag raccolta
+		\item L'utente inserisce il nome del tag raccolta
+		\item Il sistema acquisisce il valore inserito
+	\end{enumerate}
+\end{itemize}
+
+\subsubsection{UC21 - Creazione tag raccolta non riuscita}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item L'utente ha avviato la procedura di creazione di un nuovo tag raccolta (UC20)
+		\item L'utente ha tentato di confermare la creazione del tag raccolta
+		\item Si è verificata una delle seguenti condizioni:
+		\begin{itemize}
+			\item il nome del tag raccolta inserito è già esistente nel workspace
+			\item il nome del tag raccolta inserito non è valido (vuoto, contiene solo spazi, contiene caratteri non ammessi)
+		\end{itemize}
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item La creazione del tag raccolta viene annullata
+		\item Nessun nuovo tag raccolta viene aggiunto al workspace corrente
+		\item Il sistemafornisce all'utente un messaggio di errore esplicativo
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item Il sistema rileva un errore di validazione sul nome del tag (nome non valido o è già esistente nel workspace)
+		\item Il sistema annulla l'operazione di creazione
+		\item Il sistema mostra un messaggio di errore all'utente specificando la causa del fallimento
+		\item Il sistema consente all'utente di correggere il nome inserito o annullare l'operazione	
+	\end{enumerate}
+\end{itemize}
+
+\subsubsection{UC22 - Eliminazione tag raccolta dal workspace}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+		\item Esiste almeno un tag raccolta nel workspace
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Il tag raccolta selezionato è stato rimosso dal workspace
+		\item Il tag raccolta è stato dissociato da tutte le repository a cui era associato
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'utente visualizza la lista dei tag raccolta del workspace
+		\item L'utente seleziona il tag raccolta da eliminare
+		\item Il sistema mostra un messaggio di avvertimento indicando il numero di repository coinvolte
+		\item Il sistema richiede la conferma dell'operazione
+		\item L'utente conferma l'eliminazione
+		\item Il sistema rimuove il tag raccolta dal workspace
+		\item Il sistema dissocia il tag raccolta da tutte le repository a cui era associato
+		\item Il sistema aggiorna la visualizzazione e mostra un messaggio di conferma dell'avvenuta eliminazione
+	\end{enumerate}
+		\item \textbf{Scenario alternativo:}
+	\begin{itemize}
+		\item \textbf{Annullamento dell'operazione:} 
+			\begin{enumerate}
+				\item \textbf{Condizione:}l'utente annulla l'operazione nella fase di conferma
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema interrompe il processo di eliminazione del tag
+					\item Il tag raccolta rimane invariato 
+				\end{enumerate}
+			\end{enumerate}
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{UC23 - Assegnazione tag raccolta a repository}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+		\item Esiste almeno una repository nel workspace
+		\item Esiste almeno un tag raccolta nel workspace
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Il tag raccolta selezionato è associato alla repository selezionata
+		\item L'associazione è persistita dal sistema
+		\item La repository riflette l'insieme aggiornato dei tag raccolta associati
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'utente visualizza i dettagli di una repository o la lista delle repository
+		\item L'utente seleziona l'opzione per gestire i tag raccolta della repository
+		\item Il sistema recupera e mostra l'elenco dei tag raccolta disponibili nel workspace
+		\item L'utente seleziona uno o più tag raccolta da associare alla repository
+		\item L'utente conferma l'operazione
+		\item Il sistema associa i tag selezionati alla repository
+		\item Il sistema aggiorna i tag assegnati alla repository e conferma l'operazione
+	\end{enumerate}
+		\item \textbf{Scenario alternativo:}
+	\begin{enumerate}
+		\item \textbf{Tag già associato alla repository:} 
+			\begin{itemize}
+				\item \textbf{Condizione:}uno o più tag selezionati risultano già associati alla repository
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema ignora l'associazione duplicata
+					\item Il sistema mostra il messaggio: “Uno o più tag selezionati sono già associati alla repository”
+				\end{enumerate}
+			\end{itemize}
+			\item \textbf{Nessun tag raccolta disponibile nel workspace:} 
+			\begin{itemize}
+				\item \textbf{Condizione:}il workspace non contiene alcun tag raccolta
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema interrompe l'operazione di assegnazione
+					\item Il sistema mostra il messaggio: “Nessun tag raccolta disponibile. Creare un tag prima di procedere”
+				\end{enumerate}
+			\end{itemize}
+	\end{enumerate}
+\end{itemize}
+
+\subsubsection{UC24 -Rimozione tag raccolta da repository}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+		\item L'utente ha selezionato una repository del workspace
+		\item La repository selezionata ha almeno un tag raccolta associatoe
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Il tag raccolta selezionato viene dissociato dalla repository selezionata
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'utente visualizza i dettagli di una repository tra cui i tag raccolta assegnati
+		\item L'utente seleziona l'opzione per gestire i tag raccolta della repository
+		\item Il sistema mostra la lista dei tag raccolta attualmente assegnati alla repository
+		\item L'utente seleziona uno o più tag raccolta da rimuovere dalla repository
+		\item L'utente conferma la rimozione
+		\item Il sistema dissocia i tag selezionati dalla repository
+		\item Il sistema aggiorna la repository e mostra i tag rimanenti
+	\end{enumerate}
+		\item \textbf{Scenario alternativo:}
+	\begin{enumerate}
+		\item \textbf{Nessun tag raccolta associato:} 
+			\begin{itemize}
+				\item \textbf{Condizione:}la repository non ha alcun tag raccolta associato
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema interrompe l'operazione
+					\item Il sistema mostra un messaggio informativo: "Nessun tag assegnato a questa repository"
+				\end{enumerate}
+			\end{itemize}
+			\item \textbf{Annullamento dell'operazione:} 
+			\begin{itemize}
+				\item \textbf{Condizione:}l'utente annulla la rimozione nella fase di conferma
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema interrompe l'operazione
+					\item Le associazioni dei tag raccolta alla repository rimangono invariate
+				\end{enumerate}
+			\end{itemize}
+	\end{enumerate}
+\end{itemize}
+
+\subsubsection{UC25 - Visualizza lista repository del workspace}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Il sistema presenta all'utente l'elenco delle repository associate al workspace corrente
+		\item Per ciascuna repository sono visualizzate delle informazioni sintetiche
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'utente seleziona l'opzione per visualizzare l'elenco delle repository del workspace corrente
+		\item Il sistema recupera l'elenco delle repository associate al workspace 
+		\item Il sistema mostra la lista delle repository
+		\item Per ciascuna repository, il sistema visualizza delle informazioni sintetiche
+	\end{enumerate}
+	\item \textbf{Inclusioni:}
+	\begin{itemize}
+		\item UC 25.1 - Visualizza nome repository
+		\item UC 25.2 - Visualizza data ultima scansione
+		\item UC 25.3 - Visualizza presenza criticità
+		\item UC 25.4 - Visualizza voto documentazione
+		\item UC 25.5 - Visualizza percentuale test coverage
+	\end{itemize}
+	\item \textbf{Scenario alternativo:}
+	\begin{enumerate}
+		\item \textbf{Nessuna repository presente nel workspace:} 
+			\begin{itemize}
+				\item \textbf{Condizione:}il workspace corrente non contiene repository associate
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema mostra un messaggio informativo:“Nessuna repository presente nel workspace corrente”
+				\end{enumerate}
+			\end{itemize}
+			\item \textbf{Annullamento dell'operazione:} 
+			\begin{itemize}
+				\item \textbf{Condizione:}l'utente annulla la rimozione nella fase di conferma
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema interrompe l'operazione
+					\item Le associazioni dei tag raccolta alla repository rimangono invariate
+				\end{enumerate}
+			\end{itemize}
+	\end{enumerate}
+\end{itemize}
+
+\subsubsection{UC 25.1 - Visualizza nome repository}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace 
+		\item L'utente sta visualizzando la lista delle repository del workspace corrente
+		\item La repository di riferimento esiste nel sistema
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Viene visualizzato il nome identificativo della repository
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item Il sistema recupera il nome identificativo della repository
+		\item Il sistema mostra il nome della repository nella lista
+	\end{enumerate}
+\end{itemize}
+
+\subsubsection{UC 25.2 - Visualizza data ultima scansione}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace 
+		\item L'utente sta visualizzando la lista delle repository del workspace corrente
+		\item La repository di riferimento esiste nel sistema
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Viene visualizzata la data e l'ora dell'ultima scansione effettuata sulla repository
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item Il sistema recupera la data e l'ora dell'ultima analisi completata sulla repository
+		\item Il sistema mostra la data e l'ora dell'ultima scansione nella lista
+	\end{enumerate}
+	\item \textbf{Scenario alternativo:}
+	\begin{enumerate}
+		\item \textbf{Nessuna repository presente nel workspace:} 
+			\begin{itemize}
+				\item \textbf{Condizione:}La repository non ha mai subito una scansione
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema mostra il messaggio:“Nessuna scansione effettuata”
+				\end{enumerate}
+			\end{itemize}
+			\item \textbf{Annullamento dell'operazione:} 
+			\begin{itemize}
+				\item \textbf{Condizione:}l'utente annulla la rimozione nella fase di conferma
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema interrompe l'operazione
+					\item Le associazioni dei tag raccolta alla repository rimangono invariate
+				\end{enumerate}
+			\end{itemize}
+	\end{enumerate}
+\end{itemize}
+
+\subsubsection{UC 25.3 - Visualizza presenza criticità}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace 
+		\item L'utente sta visualizzando la lista delle repository del workspace corrente
+		\item La repository di riferimento esiste nel sistema
+		\item La repository ha subito almeno una scansione ?????
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Viene visualizzato un indicatore che rappresenta la presenza e la gravità massima delle criticità rilevate nella repository
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item Il sistema recupera l'esito dell'ultima analisi della repository
+		\item Il sistema determina la gravità massima delle vulnerabilità rilevate
+		\item Il sistema visualizza un indicatore sintetico basato sull'indice CVSS, che identifica i seguenti livelli di criticità: Critico, Alto, Medio, Basso, Nessuna criticità
+	\end{enumerate}
+		\item \textbf{Scenario alternativo:}
+	\begin{itemize}
+		\item \textbf{Analisi di sicurezza non disponibile:} 
+			\begin{itemize}
+				\item \textbf{Condizione:}l'analisi delle vulnerabilità di sicurezza non è stata eseguita o non è andata a buon fine
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema mostra il messaggio: “Analisi sicurezza non disponibile”
+				\end{enumerate}
+			\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{UC 25.4 - Visualizza voto documentazione}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace 
+		\item L'utente sta visualizzando la lista delle repository del workspace corrente
+		\item La repository di riferimento esiste nel sistema
+		\item La repository ha subito almeno una scansione ?????
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Viene visualizzato il voto relativo alla qualità della documentazione della repository
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item Il sistema recupera l'esito dell'ultima analisi della repository
+		\item Il sistema calcola o recupera il voto di qualità della documentazione sulla base di criteri quali: presenza del file README, presenza di documentazione tecnica, presenza e qualità dei commenti nel codice, conformità agli standard di documentazione definiti, 		Il sistema mostra un voto numerico/ indicatore qualitativo che rappresenta la completezza e la qualità della documentazione presente nella repository, calcolato in base alla presenza di file README, documentazione tecnica, commenti nel codice e conformità agli standard di documentazione definiti
+		\item Il sistema visualizza un voto numerico che rappresenta la qualità complessiva della documentazione
+	\end{enumerate}
+	\item \textbf{Scenario alternativo:}
+	\begin{itemize}
+		\item \textbf{Documentazione assente:} 
+			\begin{itemize}
+				\item \textbf{Condizione:}La repository non contiene documentazione analizzabile
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema mostra il messaggio: “Documentazione assente”
+				\end{enumerate}
+			\end{itemize}
+		\item \textbf{Analisi documentazione non disponibile:} 
+			\begin{itemize}
+				\item \textbf{Condizione:}l'analisi della documentazione non è stata eseguita o non è andata a buon fine
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema mostra il messaggio: “Analisi documentazione non disponibile”
+				\end{enumerate}
+			\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{UC 25.5 - Visualizza percentuale test coverage}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace 
+		\item L'utente sta visualizzando la lista delle repository del workspace corrente
+		\item La repository di riferimento esiste nel sistema
+		\item La repository ha subito almeno una scansione ?????
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Viene visualizzato il test coverage della repository
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item Il sistema recupera il test coverage calcolato durante l'ultima analisi della repository (il test coverage viene calcolato come rapporto tra linee di codice eseguite durante i test automatici e totale delle linee di codice eseguibili presenti nella repository)
+		\item Il sistema mostra il valore percentuale del test coverage
+	\end{enumerate}
+		\item \textbf{Scenario alternativo:}
+	\begin{itemize}
+		\item \textbf{Nessun test configurato:} 
+			\begin{itemize}
+				\item \textbf{Condizione:}La repository non contiene file di test o configurazioni per l'esecuzione dei test
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema mostra il messaggio: “Test coverage: 0\% - Nessun test configurato”
+				\end{enumerate}
+			\end{itemize}
+		\item \textbf{Analisi test coverage non disponibile:} 
+			\begin{itemize}
+				\item \textbf{Condizione:}l'analisi del test coverage non è stata eseguita o non è andata a buon fine
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema mostra il messaggio: “Test coverage non disponibile”
+				\end{enumerate}
+			\end{itemize}
+		\item \textbf{Linguaggio non supportato:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} il linguaggio di programmazione utilizzato nella repository non è supportato per l'analisi del test coverage
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema mostra il messaggio: “Analisi test coverage non supportata per questo linguaggio”
+				\end{enumerate}
+			\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{UC26 - Aggiungi repository}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item La repository indicata è associata al workspace corrente
+		\item Se la repository è privata, il sistema ha validato e memorizzato un token di accesso valido
+		\item La repository risulta disponibile per le successive operazioni di analisi e visualizzazione
+		\item Le informazioni di accesso alla repository sono memorizzate dal sistema
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'utente seleziona l'opzione per aggiungere una nuova repository
+		\item Il sistema mostra un form per l'inserimento dei dati della repository
+		\item L'utente inserisce il link della repository GitHub
+		\item (Opzionale) L'utente inserisce il PAT(Personal Access Token) per l'accesso alla repository GitHub, se la repository è privata
+		\item L'utente conferma l'operazione di aggiunta
+		\item Il sistema valida il formato del link della repository
+		\item Il sistema verifica l'accesso alla repository tramite PAT, se privata
+		\item Il sistema associa la repository al workspace corrente
+		\item Il sistema mostra un messaggio di conferma dell'avvenuta aggiunta
+	\end{enumerate}
+	\item \textbf{Inclusioni:}
+	\begin{itemize}
+		\item UC 26.1 - Inserisci link repository GitHub
+		\item UC 26.2 - Inserisci PAT repository GitHub
+	\end{itemize}
+	\item \textbf{Scenario alternativo:}
+	\begin{itemize}
+		\item \textbf{UC 27 - Errore aggiunta repository:} errore se i dati inseriti non sono validi oppure l'accesso alla repository non è consentito 
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{UC 26.1 - Inserisci link repository GitHub}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+		\item L'utente ha avviato la procedura di aggiunta di una nuova repository
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Il link della repository GitHub è acquisito dal sistema ed è disponibile per le successive fasi di validazione
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item Il sistema mostra un campo di input per l'inserimento del link della repository GitHub
+		\item L'utente inserisce l'URL completo della repository GitHub
+		\item Il sistema acquisisce e memorizza il link inserito
+	\end{enumerate}
+\end{itemize}
+
+\subsubsection{UC 26.2 - Inserisci PAT repository GitHub}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+		\item L'utente ha avviato la procedura di aggiunta di una nuova repository
+		\item L'utente ha inserito il link della repository GitHub
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Il token di accesso alla repository GitHub, è acquisito dal sistema ed è disponibile per la verifica dell'accesso, se richiesto
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item Il sistema mostra un campo di input per l'inserimento del token di accesso alla repository GitHub
+		\item L'utente inserisce un Personal Access Token (PAT) valido per l'accesso alla repository
+		\item Il sistema acquisisce e memorizza il token inserito
+	\end{enumerate}
+		\item \textbf{Scenario alternativo:}
+	\begin{itemize}
+		\item \textbf{Repository pubblica:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} La repository è pubblica e non richiede autenticazione
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item l'utente può omettere l'inserimento del token e procedere con la conferma dell'operazione
+				\end{enumerate}
+			\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{UC27 - Erore aggiunta repository}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+		\item L'utente ha avviato la procedura di aggiunta di una nuova repository
+		\item L'utente ha confermato l'aggiunta della repository
+		\item Si è verificata almeno una delle seguenti condizioni:
+		\begin{itemize}
+			\item Il link della repository inserito non è valido (formato errato, repository inesistente)
+			\item Il token inserito non è valido o non ha i permessi necessari
+			\item La repository è già presente nel workspace
+			\item Si è verificato un errore di connessione con GitHub
+			\item Il branch develop non esiste
+		\end{itemize}
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item L'aggiunta della repository viene annullata
+		\item Nessuna nuova repository viene aggiunta al workspace
+		\item Il sistema mostra un messaggio di errore specifico all'utente
+		\item Il form di aggiunta rimane aperto, permettendo di correggere l'errore o annullare l'operazione
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item Il sistema valida il link e il token della repository fornito
+		\item Il sistema rileva un errore durante la validazione o la connessione
+		\item Il sistema annulla l'operazione di aggiunta
+		\item Il sistema mostra un messaggio di errore specifico, a seconda della causa:
+		\begin{itemize}
+			\item \textbf{Link repository non valido}: verifica il formato dell'URL
+			\item \textbf{Repository non trovata}: verifica che l'URL sia corretto, che la repository esista
+			\item \textbf{Token non valido}: verifica il PAT
+			\item \textbf{Permessi insufficienti}: il PAT non ha accesso alla repository
+			\item \textbf{Repository già presente}: repository già presente nel workspace
+			\item \textbf{Errore di connessione}: rrrore di connessione con GitHub, riprova più tardi
+			\item \textbf{Branch non trovato}: il branch develop non esiste nella repository
+		\end{itemize}
+		\item Il sistema mantiene aperto il form di aggiunta per permettere correzioni o annullamento
+	\end{enumerate}
+	\item \textbf{Scenario alternativo:}
+	\begin{itemize}
+		\item \textbf{Annullamento dell'operazione:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} l'utente decide di chiudere il form senza correggere i dati
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema chiude il form di aggiunta
+					\item L'utente torna alla visualizzazione precedente del workspace
+				\end{enumerate}
+			\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+
 \end{document}

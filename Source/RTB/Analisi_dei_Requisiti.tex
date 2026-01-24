@@ -17,13 +17,36 @@
 \renewcommand{\familydefault}{\sfdefault}
 \usepackage{lipsum}
 \usepackage{hyperref}
+\usepackage{float}
 \usepackage{booktabs}
 \usepackage{enumitem}
 \usepackage{titlecaps}
 \usepackage[utf8]{inputenc} % Specifica la codifica del file (necessaria per le accentate)
 \usepackage[T1]{fontenc}    % Migliora l'output dei font per le lingue europee
 
+
+\setcounter{secnumdepth}{5} % Numera fino ai sottoparagrafi (livello 5)
+\setcounter{tocdepth}{5}    % Mostra nell'indice fino ai sottoparagrafi (livello 5)
 % ====== IMPOSTAZIONI GLOBALI DI STILE ======
+
+\makeatletter
+
+% ====== PARAGRAPH come subsubsection ======
+\renewcommand\paragraph{\@startsection{paragraph}{4}
+  {0pt}
+  {2.5ex plus 1ex minus .2ex}
+  {1.5ex plus .2ex}
+  {\normalfont\normalsize\bfseries\color{AccentDark}}}
+
+% ====== SUBPARAGRAPH come paragraph ======
+\renewcommand\subparagraph{\@startsection{subparagraph}{5}
+  {0pt}
+  {2ex plus 0.8ex minus .2ex}
+  {1ex plus .2ex}
+  {\normalfont\normalsize\bfseries\color{AccentColor}}}
+
+\makeatother
+
 
 % 1. DEFINIZIONE COLORI BLU-VIOLA
 \definecolor{AccentColor}{RGB}{80, 90, 180} % Blu-viola principale
@@ -276,8 +299,8 @@ Si è deciso di descrivere ciascun \refterm{caso d'uso} seguendo la seguente str
 \newpage
 \subsection{Lista dei \refterm{casi d'uso}}
 
-% UC1: REGISTRAZIONE UTENTE (Padre)
-\subsubsection{UC1 - Registrazione}
+% UC1: REGISTRAZIONE UTENTE
+\subsubsection{UC1 - Registrazione}\label{UC1}
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=0.8\textwidth]{../Assets/AdR/UC1ext.png}
@@ -296,27 +319,26 @@ Si è deciso di descrivere ciascun \refterm{caso d'uso} seguendo la seguente str
 	\item \textbf{Scenario principale:}
 	\begin{enumerate}
 		\item L'utente accede alla pagina di registrazione
-		\item L'utente inserisce l'username (UC1.1)
-		\item L'utente inserisce l'email (UC1.2)
-		\item L'utente inserisce la password (UC1.3)
+		\item L'utente inserisce l'username (\hyperref[UC1.1]{UC1.1})
+		\item L'utente inserisce l'email (\hyperref[UC1.2]{UC1.2})
+		\item L'utente inserisce la password (\hyperref[UC1.3]{UC1.3})
 		\item L'utente conferma la registrazione
 		\item Il sistema valida i dati e crea l'utente su Amazon Cognito
 		\item Il sistema invia un codice OTP all'email fornita
 	\end{enumerate}
-	\item \textbf{Inclusioni:} 
-		\begin{itemize}
-			\item UC1.1 - Inserimento username
-			\item UC1.2 - Inserimento email
-			\item UC1.3 - Inserimento password
-		\end{itemize} 
-	\item \textbf{Estensioni:} 
-		\begin{itemize}
-			\item UC1.4 - Registrazione fallita
-		\end{itemize}
+	\item \textbf{Scenario alternativo:}
+	\begin{enumerate}
+		\item L'utente ha inserito un errore nei dati inseriti come username già esistente, email già registrata oppure password non valida (\hyperref{UC1.4}(UC1.4))
+	\end{enumerate}
+	\item \textbf{Inclusioni:} \hyperref[UC1.1]{UC1.1}, \hyperref[UC1.2]{UC1.2}, \hyperref[UC1.3]{UC1.3},
+
+	\item \textbf{Estensioni:} \hyperref[UC1.4]{UC1.4}
+	
 \end{itemize}
+\newpage
 
 Il caso d'Uso UC1 include ulteriori casi d'uso come rappresentato nella seguente immagine:
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC1.png}
 	\caption{Inclusioni di UC1: UC1.1,UC1.2,UC1.3}
@@ -324,7 +346,7 @@ Il caso d'Uso UC1 include ulteriori casi d'uso come rappresentato nella seguente
 \end{figure}
 
 % --- Sottocasi di UC1 ---
-\subsubsection{UC1.1 - Inserimento username}
+\paragraph{UC1.1 - Inserimento username}\label{UC1.1}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente non Autenticato
 	\item \textbf{Precondizioni:} 
@@ -332,11 +354,11 @@ Il caso d'Uso UC1 include ulteriori casi d'uso come rappresentato nella seguente
 		\item Il sistema è attivo e funzionante
 		\item L'utente si trova nella pagina di registrazione
 	\end{itemize}
-	\item \textbf{Scenario principale:} L'utente digita l'username scelto nell'apposito campo.
 	\item \textbf{Postcondizioni:} L'username è inserito nel sistema.
+	\item \textbf{Scenario principale:} L'utente digita l'username scelto nell'apposito campo.
 \end{itemize}
 
-\subsubsection{UC1.2 - Inserimento email}
+\paragraph{UC1.2 - Inserimento email}\label{UC1.2}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente non Autenticato
 	\item \textbf{Precondizioni:} 
@@ -344,11 +366,11 @@ Il caso d'Uso UC1 include ulteriori casi d'uso come rappresentato nella seguente
 		\item Il sistema è attivo e funzionante
 		\item L'utente si trova nella pagina di registrazione
 	\end{itemize}
-	\item \textbf{Scenario principale:} L'utente digita il proprio indirizzo email nell'apposito campo.
 	\item \textbf{Postcondizioni:} L'email è inserita nel sistema.
+	\item \textbf{Scenario principale:} L'utente digita il proprio indirizzo email nell'apposito campo.
 \end{itemize}
 
-\subsubsection{UC1.3 - Inserimento password}
+\paragraph{UC1.3 - Inserimento password}\label{UC1.3}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente non Autenticato
 	\item \textbf{Precondizioni:} 
@@ -356,11 +378,11 @@ Il caso d'Uso UC1 include ulteriori casi d'uso come rappresentato nella seguente
 		\item Il sistema è attivo e funzionante
 		\item L'utente si trova nella pagina di registrazione
 	\end{itemize}
-	\item \textbf{Scenario principale:} L'utente digita la password desiderata nell'apposito campo.
 	\item \textbf{Postcondizioni:} La password è inserita nel sistema.
+	\item \textbf{Scenario principale:} L'utente digita la password desiderata nell'apposito campo.
 \end{itemize}
 
-\subsubsection{UC1.4 - Registrazione fallita}
+\paragraph{UC1.4 - Registrazione fallita}\label{UC1.4}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente non Autenticato
 	\item \textbf{Precondizioni:} 
@@ -368,19 +390,19 @@ Il caso d'Uso UC1 include ulteriori casi d'uso come rappresentato nella seguente
 		\item Il sistema è attivo e funzionante
 		\item L'utente ha tentato la conferma della registrazione con dati non validi
 	\end{itemize}
+	\item \textbf{Postcondizioni:} La registrazione non viene completata; l'utente rimane nella pagina di registrazione.
 	\item \textbf{Scenario principale:}
 	\begin{enumerate}
 		\item Il sistema rileva un errore nei dati inseriti (username già esistente, email già registrata oppure password non conforme ai requisiti di sicurezza)
 		\item Il sistema mostra un messaggio di errore specifico all'utente
 		\item Il sistema permette all'utente di correggere i dati mantenendo quelli validi
 	\end{enumerate}
-	\item \textbf{Postcondizioni:} La registrazione non viene completata; l'utente rimane nella pagina di registrazione.
 \end{itemize}
 
 
 % UC2: CONFERMA REGISTRAZIONE 
-\subsubsection{UC2 - Conferma registrazione}
-\begin{figure}[h]
+\subsubsection{UC2 - Conferma registrazione}\label{UC2}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC2.png}
 	\caption{UC2 - Conferma Registrazione}
@@ -392,7 +414,7 @@ Il caso d'Uso UC1 include ulteriori casi d'uso come rappresentato nella seguente
 	\item \textbf{Precondizioni:} 
 		\begin{itemize}
 			\item Il sistema è attivo e funzionante
-			\item L'utente ha completato la prima fase di registrazione (UC1)
+			\item L'utente ha completato la prima fase di registrazione (\hyperref[UC1]{UC1})
 			\item L'utente ha ricevuto il codice OTP via email
 		\end{itemize}
 	\item \textbf{Postcondizioni:} L'account viene attivato e l'utente può effettuare il login.
@@ -400,22 +422,20 @@ Il caso d'Uso UC1 include ulteriori casi d'uso come rappresentato nella seguente
 	\begin{enumerate}
 		\item L'utente accede alla pagina di conferma registrazione
 		\item Il sistema richiede il codice di verifica
-		\item L'utente inserisce il codice OTP (UC2.1)
+		\item L'utente inserisce il codice OTP (\hyperref[UC2.1]{UC2.1})
 		\item L'utente conferma l'invio
 		\item Il sistema verifica il codice e attiva l'account
 	\end{enumerate}
-	\item \textbf{Inclusioni:} 
-		\begin{itemize}
-			\item UC2.1 - Inserimento codice OTP
-		\end{itemize}
-	\item \textbf{Estensioni:} 
-	\begin{itemize}
-		\item UC2.2 - Verifica fallita
-	\end{itemize}
+	\item \textbf{Scenario alternativo:}
+	\begin{enumerate}
+		\item L'utente ha inserito un codice OTP non valido o scaduto(\hyperref[UC2.2]{UC2.2})
+	\end{enumerate}
+	\item \textbf{Inclusioni:} \hyperref[UC2.1]{UC2.1}
+	\item \textbf{Estensioni:} \hyperref[UC2.2]{UC2.2}
 \end{itemize}
 
 % --- Sottocasi di UC2 ---
-\subsubsection{UC2.1 - Inserimento codice OTP}
+\paragraph{UC2.1 - Inserimento codice OTP}\label{UC2.1}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente non Autenticato
 	\item \textbf{Precondizioni:} 
@@ -423,11 +443,11 @@ Il caso d'Uso UC1 include ulteriori casi d'uso come rappresentato nella seguente
 		\item Il sistema è attivo e funzionante
 		\item L'utente si trova nella pagina di conferma registrazione
 	\end{itemize}
-	\item \textbf{Scenario principale:} L'utente inserisce il codice numerico ricevuto via email nell'apposito campo.
 	\item \textbf{Postcondizioni:} Il codice OTP è inserito nel sistema.
+	\item \textbf{Scenario principale:} L'utente inserisce il codice numerico ricevuto via email nell'apposito campo.
 \end{itemize}
 
-\subsubsection{UC2.2 - Verifica fallita}
+\paragraph{UC2.2 - Verifica fallita}\label{UC2.2}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente non Autenticato
 	\item \textbf{Precondizioni:} 
@@ -435,19 +455,19 @@ Il caso d'Uso UC1 include ulteriori casi d'uso come rappresentato nella seguente
 		\item Il sistema è attivo e funzionante
 		\item L'utente ha inviato un codice OTP errato o scaduto
 	\end{itemize}
+	\item \textbf{Postcondizioni:} L'account rimane nello stato "da confermare".
 	\item \textbf{Scenario principale:}
 	\begin{enumerate}
 		\item Il sistema rileva che il codice non è valido o è scaduto
 		\item Il sistema mostra un messaggio di errore "Codice non valido o scaduto"
 		\item Il sistema offre l'opzione per richiedere un nuovo codice OTP
 	\end{enumerate}
-	\item \textbf{Postcondizioni:} L'account rimane nello stato "da confermare".
 \end{itemize}
 
 
 % UC3: LOGIN 
-\subsubsection{UC3 - Login}
-\begin{figure}[h]
+\subsubsection{UC3 - Login} \label{UC3}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC3ext.png}
 	\caption{UC3 - Login}
@@ -464,38 +484,33 @@ Il caso d'Uso UC1 include ulteriori casi d'uso come rappresentato nella seguente
 	\item \textbf{Scenario principale:}
 	\begin{enumerate}
 		\item L'utente accede alla pagina di login
-		\item L'utente inserisce l'username (UC3.1)
-		\item L'utente inserisce la password (UC3.2)
+		\item L'utente inserisce l'username (\hyperref[UC3.1]{UC3.1})
+		\item L'utente inserisce la password (\hyperref[UC3.2]{UC3.2})
 		\item L'utente conferma l'accesso
 		\item Il sistema valida le credenziali tramite Amazon Cognito
 		\item Il sistema reindirizza l'utente alla home
 	\end{enumerate}
-	\item \textbf{Inclusioni:} 
-		\begin{itemize}
-			\item UC3.1 - Inserimento username o email
-			\item UC3.2 - Inserimento password
-		\end{itemize}
-	\item \textbf{Estensioni:} 
-	\begin{itemize}
-		\item UC3.3 - Login fallito
-	\end{itemize}
-	\item \textbf{Scenari alternativi:}
-	\begin{itemize}
-		\item UC4 - Recupero password (accessibile dalla pagina di login)
-	\end{itemize}
+	\item \textbf{Scenari Alternativi}
+	\begin{enumerate}
+		\item L'utente ha inserito credenziali errate o inesistenti(\hyperref[UC3.3]{UC3.3})
+		\item L'utente ha dimenticato la password e sta cercando di ripristinarla (\hyperref[UC4]{UC4})
+	\end{enumerate}
+	\item \textbf{Inclusioni:} \hyperref[UC3.1]{UC3.1}, \hyperref[UC3.2]{UC3.2}
+	\item \textbf{Estensioni:} \hyperref[UC3.3]{UC3.3}, \hyperref[UC4]{UC4}
+	
 \end{itemize}
 
 % --- Sottocasi di UC3 ---
 Il caso d'Uso UC3 include ulteriori casi d'uso come rappresentato nella seguente immagine:
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC3.png}
 	\caption{Inclusioni di UC3: UC3.1,UC3.2}
-	\label{fig:UC1}
+	\label{fig:UC3}
 \end{figure}
 
 
-\subsubsection{UC3.1 - Inserimento username o email}
+\paragraph{UC3.1 - Inserimento username o email}\label{UC3.1}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente non Autenticato
 	\item \textbf{Precondizioni:} 
@@ -503,11 +518,11 @@ Il caso d'Uso UC3 include ulteriori casi d'uso come rappresentato nella seguente
 		\item Il sistema è attivo e funzionante
 		\item L'utente si trova nella pagina di login
 	\end{itemize}
-	\item \textbf{Scenario principale:} L'utente inserisce il proprio username o email nell'apposito campo.
 	\item \textbf{Postcondizioni:} L'username è inserito nel sistema.
+	\item \textbf{Scenario principale:} L'utente inserisce il proprio username o email nell'apposito campo.
 \end{itemize}
 
-\subsubsection{UC3.2 - Inserimento password}
+\paragraph{UC3.2 - Inserimento password}\label{UC3.2}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente non Autenticato
 	\item \textbf{Precondizioni:} 
@@ -515,11 +530,11 @@ Il caso d'Uso UC3 include ulteriori casi d'uso come rappresentato nella seguente
 		\item Il sistema è attivo e funzionante
 		\item L'utente si trova nella pagina di login
 	\end{itemize}
-	\item \textbf{Scenario principale:} L'utente inserisce la propria password nell'apposito campo.
 	\item \textbf{Postcondizioni:} La password è inserita nel sistema.
+	\item \textbf{Scenario principale:} L'utente inserisce la propria password nell'apposito campo.
 \end{itemize}
 
-\subsubsection{UC3.3 - Login fallito}
+\paragraph{UC3.3 - Login fallito}\label{UC3.3}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente non Autenticato
 	\item \textbf{Precondizioni:} 
@@ -527,18 +542,18 @@ Il caso d'Uso UC3 include ulteriori casi d'uso come rappresentato nella seguente
 		\item Il sistema è attivo e funzionante
 		\item L'utente ha inviato credenziali non valide
 	\end{itemize}
+	\item \textbf{Postcondizioni:} L'utente rimane non autenticato.
 	\item \textbf{Scenario principale:}
 	\begin{enumerate}
 		\item Il sistema verifica che le credenziali non corrispondono a nessun account attivo
 		\item Il sistema mostra il messaggio "Username o password errati"
 		\item Il sistema permette di riprovare l'inserimento delle credenziali
 	\end{enumerate}
-	\item \textbf{Postcondizioni:} L'utente rimane non autenticato.
 \end{itemize}
 
 % UC4: RECUPERO PASSWORD 
-\subsubsection{UC4 - Recupero password}
-\begin{figure}[h]
+\subsubsection{UC4 - Recupero password}\label{UC4}
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC4ext.png}
 	\caption{UC4}
@@ -557,26 +572,22 @@ Il caso d'Uso UC3 include ulteriori casi d'uso come rappresentato nella seguente
 	\item \textbf{Scenario principale:}
 	\begin{enumerate}
 		\item L'utente accede alla funzionalità di recupero password dalla pagina di login
-		\item L'utente inserisce l'email associata al proprio account (UC4.1)
+		\item L'utente inserisce l'email associata al proprio account (\hyperref[UC4.1]{UC4.1})
 		\item L'utente conferma la richiesta
 		\item Il sistema valida l'email e genera un codice OTP
 		\item Il sistema invia il codice OTP via email
-		\item L'utente inserisce il codice OTP ricevuto (UC4.2)
-		\item L'utente inserisce la nuova password (UC4.3)
+		\item L'utente inserisce il codice OTP ricevuto (\hyperref[UC4.2]{UC4.2})
+		\item L'utente inserisce la nuova password (\hyperref[UC4.3]{UC4.3})
 		\item L'utente conferma il cambio password
 		\item Il sistema valida il codice OTP, verifica che la nuova password rispetti i requisiti di sicurezza e aggiorna la password
 		\item Il sistema conferma l'aggiornamento e reindirizza alla pagina di login
 	\end{enumerate}
-	\item \textbf{Inclusioni:} 
-	\begin{itemize}
-		\item UC4.1 - Inserimento email per recupero
-		\item UC4.2 - Inserimento codice OTP
-		\item UC4.3 - Inserimento nuova password
-	\end{itemize} 
-	\item \textbf{Estensioni:}
-	\begin{itemize}
-		\item UC4.4 - Ripristino fallito
-	\end{itemize}
+	\item \textbf{Scenario alternativo:}
+	\begin{enumerate}
+		\item L'utente ha inserito credenziali errate oppure il codice OTP è scaduto o errato(\hyperref[UC4.4]{UC4.4})
+	\end{enumerate}
+	\item \textbf{Inclusioni:} \hyperref[UC4.1]{UC4.1}, \hyperref[UC4.2]{UC4.2}, \hyperref[UC4.3]{UC4.3}
+	\item \textbf{Estensioni:} \hyperref[UC4.4]{UC4.4}
 \end{itemize}
 
 % --- Sottocasi di UC4 ---
@@ -585,10 +596,10 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	\centering
 	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC4.png}
 	\caption{Inclusioni di UC4: UC4.1,UC4.2,UC4.3}
-	\label{fig:UC4ext}
+	\label{fig:UC4}
 \end{figure}
 
-\subsubsection{UC4.1 - Inserimento email per recupero}
+\paragraph{UC4.1 - Inserimento email per recupero}\label{UC4.1}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente non Autenticato
 	\item \textbf{Precondizioni:} 
@@ -596,11 +607,11 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 		\item Il sistema è attivo e funzionante
 		\item L'utente si trova nella pagina di recupero password
 	\end{itemize}
-	\item \textbf{Scenario principale:} L'utente inserisce l'email associata all'account nell'apposito campo e conferma la richiesta.
 	\item \textbf{Postcondizioni:} Il sistema invia il codice OTP all'email fornita.
+	\item \textbf{Scenario principale:} L'utente inserisce l'email associata all'account nell'apposito campo e conferma la richiesta.
 \end{itemize}
 
-\subsubsection{UC4.2 - Inserimento codice OTP}
+\paragraph{UC4.2 - Inserimento codice OTP}\label{UC4.2}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente non Autenticato
 	\item \textbf{Precondizioni:} 
@@ -609,11 +620,11 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 		\item L'utente ha ricevuto il codice OTP via email
 		\item L'utente si trova nella pagina di reset password
 	\end{itemize}
-	\item \textbf{Scenario principale:} L'utente inserisce il codice OTP ricevuto via email nell'apposito campo.
 	\item \textbf{Postcondizioni:} Il codice OTP è inserito nel sistema.
+	\item \textbf{Scenario principale:} L'utente inserisce il codice OTP ricevuto via email nell'apposito campo.
 \end{itemize}
 
-\subsubsection{UC4.3 - Inserimento nuova password}
+\paragraph{UC4.3 - Inserimento nuova password}\label{UC4.3}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente non Autenticato
 	\item \textbf{Precondizioni:} 
@@ -622,11 +633,11 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 		\item L'utente ha inserito il codice OTP
 		\item L'utente si trova nella pagina di reset password
 	\end{itemize}
-	\item \textbf{Scenario principale:} L'utente inserisce la nuova password desiderata nell'apposito campo.
 	\item \textbf{Postcondizioni:} La nuova password è inserita nel sistema.
+	\item \textbf{Scenario principale:} L'utente inserisce la nuova password desiderata nell'apposito campo.
 \end{itemize}
 
-\subsubsection{UC4.4 - Ripristino fallito}
+\paragraph{UC4.4 - Ripristino fallito}\label{UC4.4}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente non Autenticato
 	\item \textbf{Precondizioni:} 
@@ -634,13 +645,13 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 		\item Il sistema è attivo e funzionante
 		\item L'utente ha inserito un codice OTP non valido o scaduto, oppure una password non conforme ai requisiti
 	\end{itemize}
+	\item \textbf{Postcondizioni:} La password rimane invariata.
 	\item \textbf{Scenario principale:}
 	\begin{enumerate}
 		\item Il sistema rileva che il codice OTP è errato o scaduto, oppure che la password non rispetta i requisiti di sicurezza
 		\item Il sistema mostra un messaggio di errore specifico
 		\item Il sistema impedisce il cambio password e permette di richiedere un nuovo codice o correggere la password
 	\end{enumerate}
-	\item \textbf{Postcondizioni:} La password rimane invariata.
 \end{itemize}
 
 
@@ -1309,6 +1320,239 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 				\end{enumerate}
 			\end{itemize}
 	\end{itemize}
+\end{itemize}
+
+
+\newpage
+% ============================================
+% UC33 - VISUALIZZA DETTAGLIO REPOSITORY
+% ============================================
+\subsubsection{UC33 - Visualizza dettaglio repository} \label{UC33}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC33ext.png}
+	\caption{UC33 - Visualizza dettaglio repository}
+	\label{fig:UC33ext}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:} L'utente ha selezionato una repository e un branch valido.
+    \item \textbf{Postcondizioni:} L'utente visualizza la dashboard completa della repository.
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema visualizza l'analisi dei test (\hyperref[UC33.1]{UC33.1}).
+        \item Il sistema visualizza le informazioni tecniche (\hyperref[UC33.2]{UC33.2}).
+        \item Il sistema visualizza l'analisi sicurezza (\hyperref[UC33.3]{UC33.3}).
+        \item Il sistema visualizza l'analisi documentazione (\hyperref[UC33.4]{UC33.4}).
+        \item Il sistema visualizza la qualità del codice (\hyperref[UC33.5]{UC33.5}).
+    \end{enumerate}
+    \item \textbf{Inclusioni:} 
+    \hyperref[UC33.1]{UC33.1}, \hyperref[UC33.2]{UC33.2}, \hyperref[UC33.3]{UC33.3}, \hyperref[UC33.4]{UC33.4}, \hyperref[UC33.5]{UC33.5}
+\end{itemize}
+
+Il caso d'Uso UC33 include ulteriori casi d'uso come rappresentato nella seguente immagine:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC33.png}
+	\caption{Inclusioni di UC33: UC33.1, UC33.2, UC33.3, UC33.4, UC33.5}
+	\label{fig:UC33}
+\end{figure}
+
+% ============================================
+% UC33.1 - VISUALIZZA ANALISI DEI TEST
+% ============================================
+
+\paragraph{UC33.1 - Visualizza analisi dei test} \label{UC33.1}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC33-1ext.png}
+	\caption{UC33.1 - Visualizza analisi dei test}
+	\label{fig:UC33-1ext}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera i dati dei test dall'ultima scansione.
+        \item Il sistema mostra il coverage (\hyperref[UC33.1.1]{UC33.1.1}).
+        \item Il sistema mostra i test con qualità insufficiente (\hyperref[UC33.1.2]{UC33.1.2}).
+        \item Il sistema mostra la percentuale di test passati (\hyperref[UC33.1.3]{UC33.1.3}).
+        \item Il sistema mostra l'elenco dei test non passati (\hyperref[UC33.1.4]{UC33.1.4}).
+    \end{enumerate}
+    \item \textbf{Scenario alternativo (Estensione):}
+    \begin{enumerate}
+        \item \textbf{Nessun test rilevato (UC33.1.5):} Se l'ultima scansione non contiene informazioni sui test, il sistema notifica l'assenza di dati.
+    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC33.1.1]{UC33.1.1}, \hyperref[UC33.1.2]{UC33.1.2}, \hyperref[UC33.1.3]{UC33.1.3}, \hyperref[UC33.1.4]{UC33.1.4}
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC33-1.png}
+	\caption{Inclusioni di UC33.1: UC33.1.1, UC33.1.2, UC33.1.3, UC33.1.4}
+	\label{fig:UC33-1}
+\end{figure}
+
+\subparagraph{UC33.1.1 - Visualizza test coverage}\label{UC33.1.1}
+\begin{itemize}
+    \item \textbf{Scenario principale:} Il sistema visualizza la percentuale di copertura del codice.
+\end{itemize}
+
+\subparagraph{UC33.1.2 - Visualizza test con qualità insufficiente}\label{UC33.1.2}
+\begin{itemize}
+    \item \textbf{Scenario principale:} Il sistema elenca i test che superano le soglie di tolleranza (es. durata eccessiva).
+\end{itemize}
+
+\subparagraph{UC33.1.3 - Visualizza percentuale test passati}\label{UC33.1.3}
+\begin{itemize}
+    \item \textbf{Scenario principale:} Il sistema mostra il rapporto percentuale tra test superati e totali.
+\end{itemize}
+
+\subparagraph{UC33.1.4 - Visualizza test non passati}\label{UC33.1.4}
+\begin{itemize}
+    \item \textbf{Scenario principale:} Il sistema mostra l'elenco dei test falliti per permettere l'analisi dell'errore.
+\end{itemize}
+
+
+% ============================================
+% UC33.2 - VISUALIZZA INFORMAZIONI TECNICHE
+% ============================================
+\paragraph{UC33.2 - Visualizza informazioni tecniche} \label{UC33.2}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC33-2.png}
+	\caption{Inclusioni di UC33.2: UC33.2.1, UC33.2.2, UC33.2.3}
+	\label{fig:UC33-2}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema visualizza la lista dei linguaggi (\hyperref[UC33.2.1]{UC33.2.1}).
+        \item Il sistema visualizza la lista delle librerie (\hyperref[UC33.2.2]{UC33.2.2}).
+        \item Il sistema visualizza la lista dei framework (\hyperref[UC33.2.3]{UC33.2.3}).
+    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC33.2.1]{UC33.2.1}, \hyperref[UC33.2.2]{UC33.2.2}, \hyperref[UC33.2.3]{UC33.2.3}
+\end{itemize}
+
+
+
+% --- LINGUAGGI ---
+\subparagraph{UC33.2.1 - Visualizza lista linguaggi}\label{UC33.2.1}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC33-2-1ext.png}
+	\caption{UC33.2.1 - Visualizza lista linguaggi}
+	\label{fig:UC33-2-1ext}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera i linguaggi rilevati.
+        \item Per ogni linguaggio, visualizza il dettaglio (\hyperref[UC33.2.1.1]{UC33.2.1.1}).
+    \end{enumerate}
+    \item \textbf{Scenario alternativo (Estensione):}
+    \begin{enumerate}
+        \item \textbf{Nessun linguaggio rilevato (UC33.2.1.3):} Se la scansione non ha rilevato linguaggi, viene mostrato un messaggio apposito.
+    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC33.2.1.1]{UC33.2.1.1}
+\end{itemize}
+
+\subparagraph{UC33.2.1.1 - Visualizza linguaggio singolo}\label{UC33.2.1.1}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC33-2-1.png}
+	\caption{UC33.2.1.1 - Visualizza linguaggio singolo}
+	\label{fig:UC33-2-1}
+\end{figure}
+\begin{itemize}
+    \item \textbf{Scenario principale:} Il sistema mostra i dettagli del singolo linguaggio:
+    \begin{itemize}
+        \item \textbf{Visualizza nome linguaggio (UC33.2.1.1.1)}
+        \item \textbf{Visualizza versione linguaggio (UC33.2.1.1.2)}
+    \end{itemize}
+\end{itemize}
+
+% --- LIBRERIE ---
+\subparagraph{UC33.2.2 - Visualizza lista librerie}\label{UC33.2.2}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC33-2-2ext.png}
+	\caption{UC33.2.2 - Visualizza lista librerie}
+	\label{fig:UC33-2-2ext}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera le librerie rilevate.
+        \item Per ogni libreria, visualizza il dettaglio (\hyperref[UC33.2.2.1]{UC33.2.2.1}).
+    \end{enumerate}
+    \item \textbf{Scenario alternativo (Estensione):}
+    \begin{enumerate}
+        \item \textbf{Nessuna libreria rilevata (UC33.2.2.3):} Se la scansione non ha trovato librerie, viene notificato all'utente.
+    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC33.2.2.1]{UC33.2.2.1}
+\end{itemize}
+
+\subparagraph{UC33.2.2.1 - Visualizza libreria singola}\label{UC33.2.2.1}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC33-2-2.png}
+	\caption{UC33.2.2.1 - Visualizza libreria singola}
+	\label{fig:UC33-2-2}
+\end{figure}
+\begin{itemize}
+    \item \textbf{Scenario principale:} Il sistema mostra i dettagli della singola libreria:
+    \begin{itemize}
+        \item \textbf{Visualizza nome libreria (UC33.2.2.1.1)}
+        \item \textbf{Visualizza versione libreria (UC33.2.2.1.2)}
+    \end{itemize}
+\end{itemize}
+
+% --- FRAMEWORK ---
+\subparagraph{UC33.2.3 - Visualizza lista framework}\label{UC33.2.3}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC33-2-3ext.png}
+	\caption{UC33.2.3 - Visualizza lista framework}
+	\label{fig:UC33-2-3ext}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera i framework rilevati.
+        \item Per ogni framework, visualizza il dettaglio (\hyperref[UC33.2.3.1]{UC33.2.3.1}).
+    \end{enumerate}
+    \item \textbf{Scenario alternativo (Estensione):}
+    \begin{enumerate}
+        \item \textbf{Nessun framework rilevato (UC33.2.3.3):} Se la scansione non ha rilevato framework, viene mostrato un messaggio di avviso.
+    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC33.2.3.1]{UC33.2.3.1}
+\end{itemize}
+
+\subparagraph{UC33.2.3.1 - Visualizza framework singolo}\label{UC33.2.3.1}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC33-2-3.png}
+	\caption{UC33.2.3.1 - Visualizza framework singolo}
+	\label{fig:UC33-2-3}
+\end{figure}
+\begin{itemize}
+    \item \textbf{Scenario principale:} Il sistema mostra i dettagli del singolo framework:
+    \begin{itemize}
+        \item \textbf{Visualizza nome framework (UC33.2.3.1.1)}
+        \item \textbf{Visualizza versione framework (UC33.2.3.1.2)}
+    \end{itemize}
 \end{itemize}
 
 

@@ -133,6 +133,7 @@
 		\textcolor{white}{\textbf{Data}} & 
 		\multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} &
 		\multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
+		0.3.0 & 25/01/2025 & Lorenzo Grolla & Stesura UC Dettagli Repository e Selezione Branch\\ 
 		0.2.0 & 14/01/2025 & Lorenzo Grolla & Stesura UC Autenticazione\\ 
 		0.1.0 & 19/12/2025 & Alessandro Morabito & Inizio stesura\\ 
 	\end{tabular}
@@ -1331,25 +1332,57 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC33ext.png}
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC33ext.png}
 	\caption{UC33 - Visualizza dettaglio repository}
 	\label{fig:UC33ext}
 \end{figure}
 
 \begin{itemize}
     \item \textbf{Attori principali:} Utente
-    \item \textbf{Precondizioni:} L'utente ha selezionato una repository e un branch valido.
-    \item \textbf{Postcondizioni:} L'utente visualizza la dashboard completa della repository.
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è stato riconosciuto dal sistema come Utente
+        \item L'utente ha selezionato un workspace
+        \item L'utente ha selezionato una repository presente nel workspace
+        \item La repository selezionata ha subito almeno una scansione completata con successo
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema presenta all'utente la dashboard completa della repository
+        \item L'utente può visualizzare tutte le sezioni di analisi disponibili (test, informazioni tecniche, sicurezza, documentazione, qualità del codice)
+    \end{itemize}
     \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il sistema visualizza l'analisi dei test (\hyperref[UC33.1]{UC33.1}).
-        \item Il sistema visualizza le informazioni tecniche (\hyperref[UC33.2]{UC33.2}).
-        \item Il sistema visualizza l'analisi sicurezza (\hyperref[UC33.3]{UC33.3}).
-        \item Il sistema visualizza l'analisi documentazione (\hyperref[UC33.4]{UC33.4}).
-        \item Il sistema visualizza la qualità del codice (\hyperref[UC33.5]{UC33.5}).
+        \item L'utente seleziona una repository dalla lista delle repository del workspace
+        \item Il sistema recupera i dati dell'ultima scansione effettuata sulla repository
+        \item Il sistema visualizza la sezione di analisi dei test (\hyperref[UC33.1]{UC33.1})
+        \item Il sistema visualizza la sezione delle informazioni tecniche (\hyperref[UC33.2]{UC33.2})
+        \item Il sistema visualizza la sezione di analisi della sicurezza (\hyperref[UC33.3]{UC33.3})
+        \item Il sistema visualizza la sezione di analisi della documentazione (\hyperref[UC33.4]{UC33.4})
+        \item Il sistema visualizza la sezione della qualità del codice (\hyperref[UC33.5]{UC33.5})
     \end{enumerate}
-    \item \textbf{Inclusioni:} 
-    \hyperref[UC33.1]{UC33.1}, \hyperref[UC33.2]{UC33.2}, \hyperref[UC33.3]{UC33.3}, \hyperref[UC33.4]{UC33.4}, \hyperref[UC33.5]{UC33.5}
+    \item \textbf{Scenario alternativo:}
+    \begin{itemize}
+        \item \textbf{Nessuna scansione disponibile:}
+        \begin{itemize}
+            \item \textbf{Condizione:} La repository non ha mai subito una scansione o l'ultima scansione non è andata a buon fine
+            \item \textbf{Flusso:}
+            \begin{enumerate}
+                \item Il sistema mostra un messaggio informativo: "Nessuna scansione disponibile per questa repository"
+                \item Il sistema suggerisce all'utente di avviare una nuova scansione
+            \end{enumerate}
+        \end{itemize}
+		\item \textbf{Selezione Branch:}
+		\begin{itemize}
+			\item \textbf{Condizione:} L'utente vuole cambiare branch di cui vedere i dettagli
+			\begin{enumerate}
+				\item L'utente sceglie il branch di cui vedere i dettagli tra la lista dei branch disponibili
+			\end{enumerate}
+		\end{itemize}
+    \end{itemize}
+    \item \textbf{Inclusioni:} \hyperref[UC33.1]{UC33.1}, \hyperref[UC33.2]{UC33.2}, \hyperref[UC33.3]{UC33.3}, \hyperref[UC33.4]{UC33.4}, \hyperref[UC33.5]{UC33.5}
+    \item \textbf{Estensioni:} \hyperref[UC34]{UC34}, \hyperref[UC35]{UC35}
 \end{itemize}
 
 Il caso d'Uso UC33 include ulteriori casi d'uso come rappresentato nella seguente immagine:
@@ -1367,28 +1400,50 @@ Il caso d'Uso UC33 include ulteriori casi d'uso come rappresentato nella seguent
 \paragraph{UC33.1 - Visualizza analisi dei test} \label{UC33.1}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC33-1ext.png}
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC33-1ext.png}
 	\caption{UC33.1 - Visualizza analisi dei test}
 	\label{fig:UC33-1ext}
 \end{figure}
 
 \begin{itemize}
     \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è stato riconosciuto dal sistema come Utente
+        \item L'utente sta visualizzando il dettaglio di una repository (\hyperref[UC33]{UC33})
+        \item La repository ha subito almeno una scansione che include l'analisi dei test
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema presenta all'utente la sezione completa di analisi dei test
+        \item L'utente può visualizzare il coverage, i test con qualità insufficiente, la percentuale di test passati e l'elenco dei test non passati
+    \end{itemize}
     \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il sistema recupera i dati dei test dall'ultima scansione.
-        \item Il sistema mostra il coverage (\hyperref[UC33.1.1]{UC33.1.1}).
-        \item Il sistema mostra i test con qualità insufficiente (\hyperref[UC33.1.2]{UC33.1.2}).
-        \item Il sistema mostra la percentuale di test passati (\hyperref[UC33.1.3]{UC33.1.3}).
-        \item Il sistema mostra l'elenco dei test non passati (\hyperref[UC33.1.4]{UC33.1.4}).
+        \item Il sistema recupera i dati dei test dall'ultima scansione della repository
+        \item Il sistema mostra la percentuale di test coverage (\hyperref[UC33.1.1]{UC33.1.1})
+        \item Il sistema mostra l'elenco dei test con qualità insufficiente (\hyperref[UC33.1.2]{UC33.1.2})
+        \item Il sistema mostra la percentuale di test passati (\hyperref[UC33.1.3]{UC33.1.3})
+        \item Il sistema mostra l'elenco dei test non passati (\hyperref[UC33.1.4]{UC33.1.4})
     \end{enumerate}
-    \item \textbf{Scenario alternativo (Estensione):}
-    \begin{enumerate}
-        \item \textbf{Nessun test rilevato (UC33.1.5):} Se l'ultima scansione non contiene informazioni sui test, il sistema notifica l'assenza di dati.
-    \end{enumerate}
+    \item \textbf{Scenario alternativo:}
+    \begin{itemize}
+        \item \textbf{Nessun test rilevato (\hyperref[UC33.1.5]{UC33.1.5}):}
+        \begin{itemize}
+            \item \textbf{Condizione:} L'ultima scansione non contiene informazioni sui test o la repository non contiene test configurati
+            \item \textbf{Flusso:}
+            \begin{enumerate}
+                \item Il sistema mostra un messaggio informativo: "Nessun test rilevato nella repository"
+                \item Il sistema suggerisce all'utente di configurare i test nella repository
+            \end{enumerate}
+        \end{itemize}
+    \end{itemize}
     \item \textbf{Inclusioni:} \hyperref[UC33.1.1]{UC33.1.1}, \hyperref[UC33.1.2]{UC33.1.2}, \hyperref[UC33.1.3]{UC33.1.3}, \hyperref[UC33.1.4]{UC33.1.4}
+    \item \textbf{Estensioni:} \hyperref[UC33.1.5]{UC33.1.5}
 \end{itemize}
 
+Il caso d'uso UC33.1 include ulteriori casi d'uso come rappresentato nella seguente immagine:
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC33-1.png}
@@ -1398,22 +1453,123 @@ Il caso d'Uso UC33 include ulteriori casi d'uso come rappresentato nella seguent
 
 \subparagraph{UC33.1.1 - Visualizza test coverage}\label{UC33.1.1}
 \begin{itemize}
-    \item \textbf{Scenario principale:} Il sistema visualizza la percentuale di copertura del codice.
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è stato riconosciuto dal sistema come Utente
+        \item L'utente sta visualizzando la sezione di analisi dei test (\hyperref[UC33.1]{UC33.1})
+        \item L'analisi del test coverage è stata eseguita con successo
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzata la percentuale di copertura del codice da parte dei test
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera il valore di test coverage calcolato durante l'ultima scansione
+        \item Il sistema visualizza la percentuale di copertura del codice (rapporto tra linee di codice eseguite durante i test e totale delle linee eseguibili)
+        \item Il sistema mostra un indicatore visivo che rappresenta il livello di copertura raggiunto
+    \end{enumerate}
 \end{itemize}
 
 \subparagraph{UC33.1.2 - Visualizza test con qualità insufficiente}\label{UC33.1.2}
 \begin{itemize}
-    \item \textbf{Scenario principale:} Il sistema elenca i test che superano le soglie di tolleranza (es. durata eccessiva).
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è stato riconosciuto dal sistema come Utente
+        \item L'utente sta visualizzando la sezione di analisi dei test (\hyperref[UC33.1]{UC33.1})
+        \item L'analisi della qualità dei test è stata eseguita con successo
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzato l'elenco dei test che presentano problemi di qualità
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera l'elenco dei test che superano le soglie di tolleranza definite
+        \item Il sistema elenca i test con qualità insufficiente, indicando per ciascuno:
+        \begin{itemize}
+            \item Nome del test
+            \item Tipo di problema rilevato (es. durata eccessiva, asserzioni mancanti, test instabili)
+            \item Dettagli sulla violazione della soglia
+        \end{itemize}
+    \end{enumerate}
+    
 \end{itemize}
 
 \subparagraph{UC33.1.3 - Visualizza percentuale test passati}\label{UC33.1.3}
 \begin{itemize}
-    \item \textbf{Scenario principale:} Il sistema mostra il rapporto percentuale tra test superati e totali.
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è stato riconosciuto dal sistema come Utente
+        \item L'utente sta visualizzando la sezione di analisi dei test (\hyperref[UC33.1]{UC33.1})
+        \item I test sono stati eseguiti durante l'ultima scansione
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzata la percentuale di test passati rispetto al totale
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera il numero totale di test eseguiti e il numero di test superati
+        \item Il sistema calcola e visualizza il rapporto percentuale tra test superati e test totali
+        \item Il sistema mostra un indicatore visivo che rappresenta il tasso di successo dei test
+    \end{enumerate}
 \end{itemize}
 
 \subparagraph{UC33.1.4 - Visualizza test non passati}\label{UC33.1.4}
 \begin{itemize}
-    \item \textbf{Scenario principale:} Il sistema mostra l'elenco dei test falliti per permettere l'analisi dell'errore.
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è stato riconosciuto dal sistema come Utente
+        \item L'utente sta visualizzando la sezione di analisi dei test (\hyperref[UC33.1]{UC33.1})
+        \item I test sono stati eseguiti durante l'ultima scansione
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzato l'elenco dei test falliti con i relativi dettagli
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera l'elenco dei test che non sono stati superati durante l'ultima scansione
+        \item Il sistema mostra l'elenco dei test falliti, indicando per ciascuno:
+        \begin{itemize}
+            \item Nome del test
+            \item Messaggio di errore
+            \item Stack trace o dettagli del fallimento
+            \item File e riga di codice coinvolti
+        \end{itemize}
+    \end{enumerate}
+    
+\end{itemize}
+
+\subparagraph{UC33.1.5 - Nessun test rilevato}\label{UC33.1.5}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è stato riconosciuto dal sistema come Utente
+        \item L'utente sta visualizzando la sezione di analisi dei test (\hyperref[UC33.1]{UC33.1})
+        \item La repository non contiene test configurati o l'analisi dei test non è stata eseguita
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema informa l'utente dell'assenza di dati sui test
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema rileva che non sono presenti informazioni sui test per la repository
+        \item Il sistema mostra un messaggio informativo: "Nessun test rilevato nella repository"
+        \item Il sistema suggerisce all'utente di configurare i test nella repository per abilitare l'analisi
+    \end{enumerate}
 \end{itemize}
 
 
@@ -1430,11 +1586,24 @@ Il caso d'Uso UC33 include ulteriori casi d'uso come rappresentato nella seguent
 
 \begin{itemize}
     \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è stato riconosciuto dal sistema come Utente
+        \item L'utente sta visualizzando il dettaglio di una repository (\hyperref[UC33]{UC33})
+        \item La repository ha subito almeno una scansione che include l'analisi delle informazioni tecniche
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema presenta all'utente la sezione completa delle informazioni tecniche della repository
+        \item L'utente può visualizzare i linguaggi, le librerie e i framework utilizzati nella repository
+    \end{itemize}
     \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il sistema visualizza la lista dei linguaggi (\hyperref[UC33.2.1]{UC33.2.1}).
-        \item Il sistema visualizza la lista delle librerie (\hyperref[UC33.2.2]{UC33.2.2}).
-        \item Il sistema visualizza la lista dei framework (\hyperref[UC33.2.3]{UC33.2.3}).
+        \item Il sistema recupera le informazioni tecniche dall'ultima scansione della repository
+        \item Il sistema visualizza la lista dei linguaggi di programmazione utilizzati (\hyperref[UC33.2.1]{UC33.2.1})
+        \item Il sistema visualizza la lista delle librerie utilizzate (\hyperref[UC33.2.2]{UC33.2.2})
+        \item Il sistema visualizza la lista dei framework utilizzati (\hyperref[UC33.2.3]{UC33.2.3})
     \end{enumerate}
     \item \textbf{Inclusioni:} \hyperref[UC33.2.1]{UC33.2.1}, \hyperref[UC33.2.2]{UC33.2.2}, \hyperref[UC33.2.3]{UC33.2.3}
 \end{itemize}
@@ -1452,31 +1621,130 @@ Il caso d'Uso UC33 include ulteriori casi d'uso come rappresentato nella seguent
 \end{figure}
 
 \begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è stato riconosciuto dal sistema come Utente
+        \item L'utente sta visualizzando la sezione delle informazioni tecniche (\hyperref[UC33.2]{UC33.2})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzata la lista dei linguaggi di programmazione rilevati nella repository
+    \end{itemize}
     \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il sistema recupera i linguaggi rilevati.
-        \item Per ogni linguaggio, visualizza il dettaglio (\hyperref[UC33.2.1.1]{UC33.2.1.1}).
+        \item Il sistema recupera l'elenco dei linguaggi di programmazione rilevati durante l'ultima scansione
+        \item Per ogni linguaggio presente nella lista, il sistema visualizza il dettaglio del singolo linguaggio (\hyperref[UC33.2.1.1]{UC33.2.1.1})
     \end{enumerate}
-    \item \textbf{Scenario alternativo (Estensione):}
-    \begin{enumerate}
-        \item \textbf{Nessun linguaggio rilevato (UC33.2.1.3):} Se la scansione non ha rilevato linguaggi, viene mostrato un messaggio apposito.
-    \end{enumerate}
+    \item \textbf{Scenario alternativo:}
+    \begin{itemize}
+        \item \textbf{Nessun linguaggio rilevato (\hyperref[UC33.2.1.3]{UC33.2.1.3}):}
+        \begin{itemize}
+            \item \textbf{Condizione:} La scansione non ha rilevato alcun linguaggio di programmazione
+            \item \textbf{Flusso:}
+            \begin{enumerate}
+                \item Il sistema mostra un messaggio informativo: "Nessun linguaggio di programmazione rilevato"
+            \end{enumerate}
+        \end{itemize}
+    \end{itemize}
     \item \textbf{Inclusioni:} \hyperref[UC33.2.1.1]{UC33.2.1.1}
+    \item \textbf{Estensioni:} \hyperref[UC33.2.1.3]{UC33.2.1.3}
 \end{itemize}
 
-\subparagraph{UC33.2.1.1 - Visualizza linguaggio singolo}\label{UC33.2.1.1}
+Il caso d'uso UC33.2.1 include ulteriori casi d'uso come rappresentato nella seguente immagine:
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC33-2-1.png}
 	\caption{UC33.2.1.1 - Visualizza linguaggio singolo}
 	\label{fig:UC33-2-1}
 \end{figure}
+
+\subparagraph{UC33.2.1.1 - Visualizza linguaggio singolo}\label{UC33.2.1.1}
 \begin{itemize}
-    \item \textbf{Scenario principale:} Il sistema mostra i dettagli del singolo linguaggio:
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
     \begin{itemize}
-        \item \textbf{Visualizza nome linguaggio (UC33.2.1.1.1)}
-        \item \textbf{Visualizza versione linguaggio (UC33.2.1.1.2)}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è stato riconosciuto dal sistema come Utente
+        \item L'utente sta visualizzando la lista dei linguaggi (\hyperref[UC33.2.1]{UC33.2.1})
+        \item Esiste almeno un linguaggio rilevato nella repository
     \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Vengono visualizzati i dettagli del singolo linguaggio di programmazione
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera le informazioni relative al singolo linguaggio
+        \item Il sistema mostra i dettagli del linguaggio:
+        \begin{itemize}
+            \item Nome del linguaggio (\hyperref[UC33.2.1.1.1]{UC33.2.1.1.1})
+            \item Versione del linguaggio (\hyperref[UC33.2.1.1.2]{UC33.2.1.1.2})
+        \end{itemize}
+    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC33.2.1.1.1]{UC33.2.1.1.1}, \hyperref[UC33.2.1.1.2]{UC33.2.1.1.2}
+\end{itemize}
+
+\subparagraph{UC33.2.1.1.1 - Visualizza nome linguaggio}\label{UC33.2.1.1.1}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando il dettaglio di un linguaggio (\hyperref[UC33.2.1.1]{UC33.2.1.1})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzato il nome del linguaggio di programmazione
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera il nome identificativo del linguaggio
+        \item Il sistema visualizza il nome del linguaggio 
+    \end{enumerate}
+\end{itemize}
+
+\subparagraph{UC33.2.1.1.2 - Visualizza versione linguaggio}\label{UC33.2.1.1.2}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando il dettaglio di un linguaggio (\hyperref[UC33.2.1.1]{UC33.2.1.1})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzata la versione del linguaggio di programmazione
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera la versione del linguaggio rilevata nella repository
+        \item Il sistema visualizza la versione del linguaggio 
+    \end{enumerate}
+    \item \textbf{Scenario alternativo:}
+
+\end{itemize}
+
+\subparagraph{UC33.2.1.3 - Nessun linguaggio rilevato}\label{UC33.2.1.3}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è stato riconosciuto dal sistema come Utente
+        \item L'utente sta visualizzando la sezione delle informazioni tecniche (\hyperref[UC33.2]{UC33.2})
+        \item La scansione non ha rilevato alcun linguaggio di programmazione
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema informa l'utente dell'assenza di linguaggi rilevati
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema rileva che non sono presenti linguaggi di programmazione identificati nella repository
+        \item Il sistema mostra un messaggio informativo: "Nessun linguaggio di programmazione rilevato"
+    \end{enumerate}
 \end{itemize}
 
 % --- LIBRERIE ---
@@ -1490,31 +1758,128 @@ Il caso d'Uso UC33 include ulteriori casi d'uso come rappresentato nella seguent
 \end{figure}
 
 \begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è stato riconosciuto dal sistema come Utente
+        \item L'utente sta visualizzando la sezione delle informazioni tecniche (\hyperref[UC33.2]{UC33.2})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzata la lista delle librerie rilevate nella repository
+    \end{itemize}
     \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il sistema recupera le librerie rilevate.
-        \item Per ogni libreria, visualizza il dettaglio (\hyperref[UC33.2.2.1]{UC33.2.2.1}).
+        \item Il sistema recupera l'elenco delle librerie rilevate durante l'ultima scansione
+        \item Per ogni libreria presente nella lista, il sistema visualizza il dettaglio della singola libreria (\hyperref[UC33.2.2.1]{UC33.2.2.1})
     \end{enumerate}
-    \item \textbf{Scenario alternativo (Estensione):}
-    \begin{enumerate}
-        \item \textbf{Nessuna libreria rilevata (UC33.2.2.3):} Se la scansione non ha trovato librerie, viene notificato all'utente.
-    \end{enumerate}
+    \item \textbf{Scenario alternativo:}
+    \begin{itemize}
+        \item \textbf{Nessuna libreria rilevata (\hyperref[UC33.2.2.3]{UC33.2.2.3}):}
+        \begin{itemize}
+            \item \textbf{Condizione:} La scansione non ha rilevato alcuna libreria
+            \item \textbf{Flusso:}
+            \begin{enumerate}
+                \item Il sistema mostra un messaggio informativo: "Nessuna libreria rilevata"
+            \end{enumerate}
+        \end{itemize}
+    \end{itemize}
     \item \textbf{Inclusioni:} \hyperref[UC33.2.2.1]{UC33.2.2.1}
+    \item \textbf{Estensioni:} \hyperref[UC33.2.2.3]{UC33.2.2.3}
 \end{itemize}
 
-\subparagraph{UC33.2.2.1 - Visualizza libreria singola}\label{UC33.2.2.1}
+Il caso d'uso UC33.2.2 include ulteriori casi d'uso come rappresentato nella seguente immagine:
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC33-2-2.png}
 	\caption{UC33.2.2.1 - Visualizza libreria singola}
 	\label{fig:UC33-2-2}
 \end{figure}
+
+\subparagraph{UC33.2.2.1 - Visualizza libreria singola}\label{UC33.2.2.1}
 \begin{itemize}
-    \item \textbf{Scenario principale:} Il sistema mostra i dettagli della singola libreria:
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
     \begin{itemize}
-        \item \textbf{Visualizza nome libreria (UC33.2.2.1.1)}
-        \item \textbf{Visualizza versione libreria (UC33.2.2.1.2)}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è stato riconosciuto dal sistema come Utente
+        \item L'utente sta visualizzando la lista delle librerie (\hyperref[UC33.2.2]{UC33.2.2})
+        \item Esiste almeno una libreria rilevata nella repository
     \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Vengono visualizzati i dettagli della singola libreria
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera le informazioni relative alla singola libreria
+        \item Il sistema mostra i dettagli della libreria:
+        \begin{itemize}
+            \item Nome della libreria (\hyperref[UC33.2.2.1.1]{UC33.2.2.1.1})
+            \item Versione della libreria (\hyperref[UC33.2.2.1.2]{UC33.2.2.1.2})
+        \end{itemize}
+    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC33.2.2.1.1]{UC33.2.2.1.1}, \hyperref[UC33.2.2.1.2]{UC33.2.2.1.2}
+\end{itemize}
+
+\subparagraph{UC33.2.2.1.1 - Visualizza nome libreria}\label{UC33.2.2.1.1}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando il dettaglio di una libreria (\hyperref[UC33.2.2.1]{UC33.2.2.1})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzato il nome della libreria
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera il nome identificativo della libreria
+        \item Il sistema visualizza il nome della libreria 
+    \end{enumerate}
+\end{itemize}
+
+\subparagraph{UC33.2.2.1.2 - Visualizza versione libreria}\label{UC33.2.2.1.2}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando il dettaglio di una libreria (\hyperref[UC33.2.2.1]{UC33.2.2.1})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzata la versione della libreria
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera la versione della libreria rilevata nella repository
+        \item Il sistema visualizza la versione della libreria 
+    \end{enumerate}
+\end{itemize}
+
+\subparagraph{UC33.2.2.3 - Nessuna libreria rilevata}\label{UC33.2.2.3}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è stato riconosciuto dal sistema come Utente
+        \item L'utente sta visualizzando la sezione delle informazioni tecniche (\hyperref[UC33.2]{UC33.2})
+        \item La scansione non ha rilevato alcuna libreria
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema informa l'utente dell'assenza di librerie rilevate
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema rileva che non sono presenti librerie identificate nella repository
+        \item Il sistema mostra un messaggio informativo: "Nessuna libreria rilevata"
+    \end{enumerate}
 \end{itemize}
 
 % --- FRAMEWORK ---
@@ -1528,32 +1893,286 @@ Il caso d'Uso UC33 include ulteriori casi d'uso come rappresentato nella seguent
 \end{figure}
 
 \begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è stato riconosciuto dal sistema come Utente
+        \item L'utente sta visualizzando la sezione delle informazioni tecniche (\hyperref[UC33.2]{UC33.2})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzata la lista dei framework rilevati nella repository
+    \end{itemize}
     \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il sistema recupera i framework rilevati.
-        \item Per ogni framework, visualizza il dettaglio (\hyperref[UC33.2.3.1]{UC33.2.3.1}).
+        \item Il sistema recupera l'elenco dei framework rilevati durante l'ultima scansione
+        \item Per ogni framework presente nella lista, il sistema visualizza il dettaglio del singolo framework (\hyperref[UC33.2.3.1]{UC33.2.3.1})
     \end{enumerate}
-    \item \textbf{Scenario alternativo (Estensione):}
-    \begin{enumerate}
-        \item \textbf{Nessun framework rilevato (UC33.2.3.3):} Se la scansione non ha rilevato framework, viene mostrato un messaggio di avviso.
-    \end{enumerate}
+    \item \textbf{Scenario alternativo:}
+    \begin{itemize}
+        \item \textbf{Nessun framework rilevato (\hyperref[UC33.2.3.3]{UC33.2.3.3}):}
+        \begin{itemize}
+            \item \textbf{Condizione:} La scansione non ha rilevato alcun framework
+            \item \textbf{Flusso:}
+            \begin{enumerate}
+                \item Il sistema mostra un messaggio informativo: "Nessun framework rilevato"
+            \end{enumerate}
+        \end{itemize}
+    \end{itemize}
     \item \textbf{Inclusioni:} \hyperref[UC33.2.3.1]{UC33.2.3.1}
+    \item \textbf{Estensioni:} \hyperref[UC33.2.3.3]{UC33.2.3.3}
 \end{itemize}
 
-\subparagraph{UC33.2.3.1 - Visualizza framework singolo}\label{UC33.2.3.1}
+Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seguente immagine:
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC33-2-3.png}
 	\caption{UC33.2.3.1 - Visualizza framework singolo}
 	\label{fig:UC33-2-3}
 \end{figure}
+
+\subparagraph{UC33.2.3.1 - Visualizza framework singolo}\label{UC33.2.3.1}
 \begin{itemize}
-    \item \textbf{Scenario principale:} Il sistema mostra i dettagli del singolo framework:
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
     \begin{itemize}
-        \item \textbf{Visualizza nome framework (UC33.2.3.1.1)}
-        \item \textbf{Visualizza versione framework (UC33.2.3.1.2)}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è stato riconosciuto dal sistema come Utente
+        \item L'utente sta visualizzando la lista dei framework (\hyperref[UC33.2.3]{UC33.2.3})
+        \item Esiste almeno un framework rilevato nella repository
     \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Vengono visualizzati i dettagli del singolo framework
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera le informazioni relative al singolo framework
+        \item Il sistema mostra i dettagli del framework:
+        \begin{itemize}
+            \item Nome del framework (\hyperref[UC33.2.3.1.1]{UC33.2.3.1.1})
+            \item Versione del framework (\hyperref[UC33.2.3.1.2]{UC33.2.3.1.2})
+        \end{itemize}
+    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC33.2.3.1.1]{UC33.2.3.1.1}, \hyperref[UC33.2.3.1.2]{UC33.2.3.1.2}
 \end{itemize}
+
+\subparagraph{UC33.2.3.1.1 - Visualizza nome framework}\label{UC33.2.3.1.1}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando il dettaglio di un framework (\hyperref[UC33.2.3.1]{UC33.2.3.1})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzato il nome del framework
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera il nome identificativo del framework
+        \item Il sistema visualizza il nome del framework
+    \end{enumerate}
+\end{itemize}
+
+\subparagraph{UC33.2.3.1.2 - Visualizza versione framework}\label{UC33.2.3.1.2}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando il dettaglio di un framework (\hyperref[UC33.2.3.1]{UC33.2.3.1})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzata la versione del framework
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera la versione del framework rilevata nella repository
+        \item Il sistema visualizza la versione del framework 
+    \end{enumerate}
+
+\end{itemize}
+
+\subparagraph{UC33.2.3.3 - Nessun framework rilevato}\label{UC33.2.3.3}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è stato riconosciuto dal sistema come Utente
+        \item L'utente sta visualizzando la sezione delle informazioni tecniche (\hyperref[UC33.2]{UC33.2})
+        \item La scansione non ha rilevato alcun framework
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema informa l'utente dell'assenza di framework rilevati
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema rileva che non sono presenti framework identificati nella repository
+        \item Il sistema mostra un messaggio informativo: "Nessun framework rilevato"
+    \end{enumerate}
+\end{itemize}
+
+
+% ============================================
+% UC35 - SELEZIONE BRANCH
+% ============================================
+\subsubsection{UC35 - Selezione branch}\label{UC35}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../Assets/AdR/UC35ext.png}
+	\caption{UC35 - Selezione branch}
+	\label{fig:UC35ext}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente Autenticato
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è autenticato nel sistema
+        \item L'utente deve selezionare un branch di una determinata repository
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema ha registrato un branch valido su una determinata repository
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema mostra la lista dei branch di una determinata repository (\hyperref[UC35.1]{UC35.1})
+        \item L'utente seleziona il branch desiderato
+        \item Il sistema memorizza le informazioni relative al branch selezionato
+    \end{enumerate}
+    \item \textbf{Scenario alternativo:}
+    \begin{itemize}
+        \item \textbf{Selezione branch non riuscita (\hyperref[UC35.2]{UC35.2}):} L'utente non seleziona nessun branch valido
+    \end{itemize}
+    \item \textbf{Inclusioni:} \hyperref[UC35.1]{UC35.1}
+    \item \textbf{Estensioni:} \hyperref[UC35.2]{UC35.2}
+\end{itemize}
+
+% --- UC35.1 - VISUALIZZA LISTA BRANCH ---
+\paragraph{UC35.1 - Visualizza lista branch}\label{UC35.1}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC35-1.png}
+	\caption{Inclusioni di UC35.1: UC35.1.1}
+	\label{fig:UC35-1}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente Autenticato
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta eseguendo UC Selezione branch (\hyperref[UC35]{UC35})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item L'utente visualizza una lista di branch di una determinata repository
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente deve selezionare un branch di una repository
+        \item Il sistema recupera la lista dei branch disponibili per la repository
+        \item Per ogni branch presente nella lista, il sistema visualizza il dettaglio del singolo branch (\hyperref[UC35.1.1]{UC35.1.1})
+    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC35.1.1]{UC35.1.1}
+\end{itemize}
+
+% --- UC35.1.1 - VISUALIZZA SINGOLO BRANCH ---
+\subparagraph{UC35.1.1 - Visualizza singolo branch}\label{UC35.1.1}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente Autenticato
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è autenticato nel sistema
+        \item L'utente sta visualizzando la lista dei branch (\hyperref[UC35.1]{UC35.1})
+        \item Esiste almeno un branch nella repository
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Vengono visualizzati i dettagli del singolo branch
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera le informazioni relative al singolo branch
+        \item Il sistema mostra i dettagli del branch:
+        \begin{itemize}
+            \item Nome del branch (\hyperref[UC35.1.1.1]{UC35.1.1.1})
+            \item Data ultima scansione (\hyperref[UC35.1.1.2]{UC35.1.1.2})
+        \end{itemize}
+    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC35.1.1.1]{UC35.1.1.1}, \hyperref[UC35.1.1.2]{UC35.1.1.2}
+\end{itemize}
+
+\subparagraph{UC35.1.1.1 - Visualizza nome branch}\label{UC35.1.1.1}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente Autenticato
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando il dettaglio di un branch (\hyperref[UC35.1.1]{UC35.1.1})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzato il nome del branch
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera il nome identificativo del branch
+        \item Il sistema visualizza il nome del branch
+    \end{enumerate}
+\end{itemize}
+
+\subparagraph{UC35.1.1.2 - Visualizza data ultima scansione}\label{UC35.1.1.2}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente Autenticato
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando il dettaglio di un branch (\hyperref[UC35.1.1]{UC35.1.1})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzata la data dell'ultima scansione effettuata sul branch
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera la data dell'ultima scansione eseguita sul branch
+        \item Il sistema visualizza la data dell'ultima scansione se esistente
+    \end{enumerate}
+
+\end{itemize}
+
+% --- UC35.2 - SELEZIONE BRANCH NON RIUSCITA ---
+\paragraph{UC35.2 - Selezione branch non riuscita}\label{UC35.2}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente Autenticato
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item Il sistema sta eseguendo UC Selezione branch (\hyperref[UC35]{UC35})
+        \item Durante il recupero o la validazione dei branch non viene trovato alcun branch utilizzabile
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Nessun branch viene associato alla repository
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema tenta di recuperare i branch disponibili per la repository
+        \item Il sistema non trova branch validi
+        \item Il sistema notifica l'errore di selezione branch all'utente e annulla il processo in corso
+    \end{enumerate}
+\end{itemize}
+
 
 
 \end{document}

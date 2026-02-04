@@ -133,7 +133,8 @@
 		\textcolor{white}{\textbf{Data}} & 
 		\multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} &
 		\multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
-		0.3.0 & 25/01/2025 & Lorenzo Grolla & Stesura UC Dettagli Repository e Selezione Branch\\ 
+		0.4.0 & 25/01/2025 & Lorenzo Grolla & Stesura UC Dettagli Repository e Selezione Branch\\ 
+        0.3.0 & 18/01/2025 & Giacomo Nalotto & Stesura UC Gestione Workspace\\
 		0.2.0 & 14/01/2025 & Lorenzo Grolla & Stesura UC Autenticazione\\ 
 		0.1.0 & 19/12/2025 & Alessandro Morabito & Inizio stesura\\ 
 	\end{tabular}
@@ -655,6 +656,542 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	\end{enumerate}
 \end{itemize}
 
+\subsubsection{UC5 - Invito utente in workspace}
+\begin{itemize}
+	\item \textbf{Attori principali:} 
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è riconosciuto dal sistema come Project Manager
+        \item L'utente fa parte del workspace all'interno del quale invita un altro utente
+	\end{itemize}
+    \item \textbf{Postcondizioni:} L'invito viene inviato ed un utente esterno al workspace lo riceve
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item Un utente che fa parte di un workspace vuole invitare un altro utente che non ne fa parte
+		\item Inserisce l'username dell'utente che vuole invitare (\hyperref[UC5.2]{UC5.1})
+		\item Seleziona al nuovo utente il ruolo scegliendo dalla lista dei ruoli del workspace (\hyperref[UC5.2]{UC5.2})
+	\end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC5.1]{UC5.1}, \hyperref[UC5.2]{UC5.2}
+    \item \textbf{Estensioni:} \hyperref[UC5.3]{UC5.3}
+	
+\end{itemize}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{Figura 8.png}
+	\caption{Figura 8: UC5 e relative inclusioni}
+	\label{fig:UC1}
+\end{figure}
+
+\subsubsection{UC5.1 - Inserimento username nuovo utente}\label{UC5.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} 
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente fa parte del workspace all'interno del quale invita un altro utente
+        \item L'utente ha avviato la procedura di invito di un nuovo utente
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Il sistema riceve l'username dell'utente da invitare
+	\item \textbf{Scenario principale:} Il sistema presenta un campo di input per l'inserimento dell'username, l'utente digita l'username dell'utente che desidera invitare
+	
+\end{itemize}
+
+\subsubsection{UC5.2 - Selezione ruolo da assegnare al nuovo utente}\label{UC5.2}
+\begin{itemize}
+	\item \textbf{Attori principali:} 
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente fa parte del workspace all'interno del quale invita un altro utente
+        \item L'utente ha avviato la procedura di invito di un nuovo utente
+	\end{itemize}
+    	\item \textbf{Postcondizioni:} Il sistema riceve la selezione del ruolo da assegnare all'utente invitato
+	\item \textbf{Scenario principale:} 
+    \begin{enumerate}
+    \item Il sistema recupera la lista dei ruoli disponibili nel workspace
+    \item Il sistema presenta una lista a tendina con i ruoli disponibili
+    \item L'utente seleziona il ruolo desiderato dalla lista
+    \item Il sistema memorizza il ruolo selezionato
+    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC5.2.1]{UC5.2.1}
+\end{itemize}
+
+\subsubsection{UC5.2.1 - Visualizzazione lista ruoli nel workspace}\label{UC5.2.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} 
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente sta selezionando un ruolo da assegnare durante l'invito
+        \item Esiste almeno un ruolo definito nel workspace
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Viene visualizzata la lista completa dei ruoli disponibili nel workspace
+	\item \textbf{Scenario principale:} 
+    \begin{enumerate}
+    \item Il sistema recupera la lista dei ruoli disponibili nel workspace
+    \item Il sistema presenta una lista a tendina con i ruoli disponibili
+    \item L'utente seleziona il ruolo desiderato dalla lista
+    \item Il sistema memorizza il ruolo selezionato
+    \end{enumerate}
+\end{itemize}
+
+\subsubsection{UC5.3 - Invito non riuscito}\label{UC5.3}
+\begin{itemize}
+	\item \textbf{Attori principali:} 
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente ha tentato l'invio di un invito
+        \item L'utente ha avviato la procedura di invito di un nuovo utente
+	\end{itemize}
+    \item \textbf{Postcondizioni:} 
+    \begin{itemize}
+    \item Il sistema annulla il tentativo di invito e nessun invito viene creato o inviato
+    \item Viene mostrato a schermo un messaggio di errore specifico
+    \end{itemize}
+	\item \textbf{Scenario principale:} 
+    \begin{enumerate}
+    \item Il sistema tenta di validare l'username inserito dall'utente
+    \item Il sistema rileva che l'username è già presente nel workspace o non esiste
+    \end{enumerate}
+	
+\end{itemize}
+
+\subsubsection{UC7 - Visualizzazione inviti in workspace}
+\begin{itemize}
+	\item \textbf{Attori principali:} 
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente ha selezionato l'opzione per visualizzare i propri inviti
+	\end{itemize}	\item \textbf{Postcondizioni:} Il sistema mostra la lista completa degli inviti ricevuti dall'utente
+
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'utente accede alla sezione degli inviti ricevuti
+		\item Il sistema recupera tutti gli inviti pendenti destinati all'utente e li mostra in una lista
+		\item Per ogni invito vengono visualizzate le informazioni (UC7.1)
+	\end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC7.1]{UC7.1}
+\end{itemize}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{Figura 9.png}
+	\caption{Figura 9: UC7 - Visualizzazione inviti in workspace}
+	\label{fig:UC1}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{Figura 10.png}
+	\caption{Figura 10: Inclusioni di UC7.1: UC7.1.1,UC7.1.2}
+	\label{fig:UC1}
+\end{figure}
+
+\subsubsection{UC7.1 - Visualizzazione singolo invito in workspace}\label{UC7.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} 
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente ha selezionato l'opzione per visualizzare i propri inviti
+        \item Esiste almeno un invito destinato all'utente
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Il sistema mostra le informazioni complete di un singolo invito nella lista
+	\item \textbf{Scenario principale:} Il sistema mostra un elemento della lista inviti contenente:
+	\begin{itemize}
+		\item Username del mittente dell'invito (\hyperref[UC7.1.1]{UC7.1.1})
+		\item Username dell'owner del workspace (\hyperref[UC7.1.2]{UC7.1.2})
+        \item Nome del workspace (\hyperref[UC7.1.3]{UC7.1.3})
+	\end{itemize}
+    \item \textbf{Inclusioni:} \hyperref[UC7.1.1]{UC7.1.1}, \hyperref[UC7.1.2]{UC7.1.2}, \hyperref[UC7.1.3]{UC7.1.3}
+	
+\end{itemize}
+
+\subsubsection{UC7.1.1 - Visualizzazione username del mittente dell'invito ricevuto}\label{UC7.1.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} 
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente ha selezionato l'opzione per visualizzare i propri inviti
+        \item L'utente sta visualizzando un singolo invito
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Il sistema mostra l'username dell'utente che ha inviato l'invito
+	\item \textbf{Scenario principale:} 
+	\begin{enumerate}
+	    \item Il sistema recupera l'username dell'utente mittente associato all'invito
+        \item Il sistema visualizza l'username del mittente all'interno dell'elemento invito
+	\end{enumerate}
+\end{itemize}
+
+\subsubsection{UC7.1.2 - Visualizzazione username dell'owner del workspace}\label{UC7.1.2}
+\begin{itemize}
+	\item \textbf{Attori principali:} 
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente ha selezionato l'opzione per visualizzare i propri inviti
+        \item L'utente sta visualizzando un singolo invito
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Il sistema mostra l'username dell'owner del workspace a cui l'utente è stato invitato
+	\item \textbf{Scenario principale:} 
+	\begin{enumerate}
+	    \item Il sistema recupera l'username dell'owner del workspace a cui l'utente è stato invitato
+        \item Il sistema visualizza l'username dell'owner all'interno dell'elemento invito
+	\end{enumerate}
+	
+\end{itemize}
+
+\subsubsection{UC7.1.3 - Visualizzazione nome del workspace}\label{UC7.1.3}
+\begin{itemize}
+	\item \textbf{Attori principali:} 
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente ha selezionato l'opzione per visualizzare i propri inviti
+        \item L'utente sta visualizzando un singolo invito
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Il sistema mostra il nome identificativo del workspace a cui l'utente è stato invitato
+	\item \textbf{Scenario principale:} 
+	\begin{enumerate}
+	    \item Il sistema recupera il nome del workspace a cui l'utente è stato invitato
+        \item Il sistema visualizza il nome del workspace all'interno dell'elemento invito
+	\end{enumerate}
+	
+\end{itemize}
+
+\subsubsection{UC8 - Gestione degli inviti}\label{UC8}
+\begin{itemize}
+	\item \textbf{Attori principali:} 
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente ha selezionato un invito dalla lista degli inviti ricevuti
+	\end{itemize}
+    \item \textbf{Postcondizioni:} L'utente ha gestito l'invito selezionato
+	\item \textbf{Scenario principale:}
+    \begin{itemize}
+        \item Il sistema mostra le opzioni disponibili per gestire l'invito
+    \end{itemize}
+    \item \textbf{UC che ereditano:} \hyperref[UC8.1]{UC8.1}, \hyperref[UC8.2]{UC8.2}
+\end{itemize}
+
+\subsubsection{UC8.1 - Accettazione invito}\label{UC8.1}
+\begin{itemize}
+	\item \textbf{Attori principali: Utente} 
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato identificato dal sistema come Utente
+        \item L'utente ha selezionato un invito dalla lista degli inviti ricevuti
+	\end{itemize}
+    \item \textbf{Postcondizioni:} L'utente accetta l'invito selezionato e diventa nuovo membro del workspace con il ruolo specificato nell'invito
+	\item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona l'opzione "Accetta" per l'invito
+        \item Il sistema aggiunge l'utente al workspace con il ruolo specificato
+        \item Il sistema rimuove l'invito dalla lista degli inviti pendenti
+        \item Il sistema aggiorna la lista dei workspace dell'utente includendo il nuovo workspace
+    \end{enumerate}
+    \item \textbf{Eredita da:} \hyperref[UC8]{UC8}
+\end{itemize}
+
+\subsubsection{UC8.2 - Rifiuto invito}\label{UC8.2}
+\begin{itemize}
+	\item \textbf{Attori principali:} 
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente ha selezionato un invito dalla lista degli inviti ricevuti
+	\end{itemize}
+    \item \textbf{Postcondizioni:} L'utente rifiuta l'invito selezionato e non diventa nuovo membro del workspace
+	\item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona l'opzione "Rifiuta" per l'invito
+        \item Il sistema rimuove l'invito dalla lista degli inviti pendenti
+    \end{enumerate}
+    \item \textbf{Eredita da:} \hyperref[UC8]{UC8}
+\end{itemize}
+
+\subsubsection{UC9 - Visualizzazione lista workspace}
+\begin{itemize}
+	\item \textbf{Attori principali:} 
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente sta visualizzando la dashboard iniziale
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Il sistema mostra la lista completa dei workspace di cui l'utente fa parte
+	\item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera tutti i workspace a cui l'utente appartiene
+        \item Il sistema mostra la lista dei workspace di cui l'utente fa parte
+        \item La lista è composta da singoli elementi che rappresentano ciascuno un workspace (\hyperref[UC9.1]{UC9.1})
+    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC9.1]{UC9.1}
+\end{itemize}
+
+\subsubsection{UC9.1 - Visualizzazione elemento della lista di workspace}\label{UC9.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} 
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente sta visualizzando la dashboard iniziale
+        \item Esiste almeno un workspace di cui l'utente fa parte
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Il sistema mostra un singolo elemento della lista dei workspace rappresentante un workspace specifico
+	\item \textbf{Scenario principale:} Il sistema mostra un elemento della lista contenente:
+    \begin{itemize}
+        \item Username dell'owner del workspace (\hyperref[UC9.1.1]{UC9.1.1})
+        \item Nome del workspace (\hyperref[UC9.1.2]{UC9.1.2})
+    \end{itemize}
+    \item \textbf{Inclusioni:} \hyperref[UC9.1.1]{UC9.1.1}, \hyperref[UC9.1.2]{UC9.1.2}
+\end{itemize}
+
+\subsubsection{UC9.1.1 - Visualizzazione username dell'owner del workspace}\label{UC9.1.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} 
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente sta visualizzando la dashboard iniziale
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Il sistema mostra l'username dell'owner di un workspace di cui l'utente fa parte
+	\item \textbf{Scenario principale:}
+    \begin{itemize}
+        \item Il sistema recupera l'username dell'owner del singolo workspace selezionato dalla lista della dashboard
+        \item Il sistema visualizza l'username dell'owner nell'elemento della lista
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{UC9.1.2 - Visualizzazione nome del workspace}\label{UC9.1.2}
+\begin{itemize}
+	\item \textbf{Attori principali:} 
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente sta visualizzando la dashboard iniziale
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Il sistema mostra il nome di un workspace di cui l'utente fa parte
+	\item \textbf{Scenario principale:}
+    \begin{itemize}
+        \item Il sistema recupera il nome del singolo workspace selezionato dalla lista della dashboard
+        \item Il sistema visualizza il nome nell'elemento della lista
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{UC10 - Ricerca workspace}
+\begin{itemize}
+	\item \textbf{Attori principali:} 
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente sta visualizzando la lista dei workspace di cui fa parte nella dashboard
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Il sistema mostra i workspace che corrispondono ai criteri di ricerca inseriti
+	\item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente dalla dashboard principale accede alla funzione di ricerca workspace
+        \item L'utente inserisce il nome (o parte del nome) del workspace che vuole cercare (\hyperref[UC10.1]{UC10.1})
+        \item Il sistema filtra in tempo reale i workspace mostrati in base al testo inserito
+    \end{enumerate}
+    \item \textbf{Inclusioni:} 
+    \item \textbf{Scenari alternativi:}
+    \begin{itemize}
+		\item Nessun workspace corrisponde alla ricerca, il sistema mostra un messaggio: "Nessun workspace trovato con questo nome"
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{UC10.1 - Inserimento nome del workspace da cercare}\label{UC10.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} 
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente sta eseguendo un'operazione che richiede l'inserimento del nome di un workspace
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Il sistema riceve il nome (o parte del nome) del workspace
+	\item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema presenta un campo di input per l'inserimento del nome del workspace
+        \item L'utente inserisce il nome (o parte del nome) del workspace 
+        \item Il sistema memorizza il testo inserito
+    \end{enumerate}
+\end{itemize}
+
+\subsubsection{UC11 - Creazione workspace}
+\begin{itemize}
+	\item \textbf{Attori principali:} 
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente si trova nella dashboard iniziale
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Un nuovo workspace viene creato con successo
+	\item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona l'opzione per creare un nuovo workspace
+        \item Il sistema presenta un form per l'inserimento dei dati del workspace
+        \item L'utente inserisce il nome del workspace (\hyperref[UC11.1]{UC11.1})
+        \item L'utente conferma la creazione
+        \item Il sistema assegna automaticamente il ruolo di owner all'utente creatore (\hyperref[UC11.2]{UC11.2})
+    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC11.1]{UC11.1}, \hyperref[UC11.2]{UC11.2}
+    \item \textbf{Estensioni:} \hyperref[UC11.3]{UC11.3}
+\end{itemize}
+
+\subsubsection{UC11.1 - Inserimento nome del workspace}\label{UC11.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} 
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente si trova nella dashboard iniziale
+        \item L'utente sta creando un nuovo workspace 
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Il workspace ha il nome assegnatogli dall'utente creatore
+	\item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente inserisce il nome del workspace
+        \item Il sistema valida il nome inserito 
+    \end{enumerate}
+\end{itemize}
+
+\subsubsection{UC11.2- Assegnazione ruolo di owner al creatore del workspace}\label{UC11.2}
+\begin{itemize}
+	\item \textbf{Attori principali:} 
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente si trova nella dashboard iniziale
+        \item L'utente sta creando un nuovo workspace 
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Il sistema assegna automaticamente il ruolo di owner del workspace all'utente che lo sta creando
+	\item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema crea automaticamente il ruolo di owner per il nuovo workspace
+        \item Il sistema associa l'utente creatore al workspace con il ruolo di owner
+        \item Il sistema registra l'utente come proprietario ufficiale del workspace
+    \end{enumerate}
+	
+\end{itemize}
+
+\subsubsection{UC11.3 - Creazione del workspace non riuscita}\label{UC11.3}
+\begin{itemize}
+	\item \textbf{Attori principali:} 
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente si trova nella dashboard iniziale
+        \item L'utente ha tentato la creazione di un nuovo workspace
+	\end{itemize}
+    \item \textbf{Postcondizioni:} 
+    \begin{itemize}
+        \item La creazione del workspace viene annullata
+        \item Nessun nuovo workspace viene aggiunto al sistema
+    \end{itemize}
+	\item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema non permette di terminare il processo di creazione di un workspace poichè esiste già un workspace con lo stesso nome creato dal medesimo utente o il nome inserito non è valido
+        \item Il sistema mantiene aperto il form di creazione permettendo all'utente di correggere l'errore o annullare l'operazione
+    \end{enumerate}
+\end{itemize}
+
+\subsubsection{UC13 - Visualizzazione lista dei ruoli di un workspace}
+\begin{itemize}
+	\item \textbf{Attori principali:} 
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente desidera vedere la lista di tutti i ruoli presenti in un workspace
+	\end{itemize}
+    \item \textbf{Postcondizioni:} L'utente visualizza una lista con l'elenco di tutti i ruoli di un workspace
+	\item \textbf{Scenario principale:}
+        \item L'utente apre la lista con l'elenco di tutti i ruoli presenti al momento all'interno del workspace
+        \item L'utente un singolo ruolo dalla lista per visualizzarne la descrizione (\hyperref[UC13.1]{UC13.1})
+    \item \textbf{Inclusioni:} \hyperref[UC13.1]{UC13.1}
+\end{itemize}
+
+\subsubsection{UC13.1 - Visualizzazione singolo elemento lista ruoli di un workspace}\label{UC13.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} 
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente ha selezionato un singolo ruolo dalla lista di tutti i ruoli presenti in un workspace
+	\end{itemize}
+    \item \textbf{Postcondizioni:} L'utente visualizza singolo ruolo di un workspace
+	\item \textbf{Scenario principale:} L'utente visualizza nome e relativa descrizione di un singolo ruolo presente all'interno del workspace	
+\end{itemize}
+
+\subsubsection{UC14 - Visualizzazione lista utenti di un workspace}
+\begin{itemize}
+	\item \textbf{Attori principali:} 
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente vuole vedere la lista di tutti gli utenti presenti in un workspace
+	\end{itemize}
+    \item \textbf{Postcondizioni:} L'utente visualizza la lista di utenti di un singolo workspace
+	\item \textbf{Scenario principale:} L'utente visualizza l'username di ogni singolo utente presente all'interno del workspace
+	
+\end{itemize}
+
+\subsubsection{UC15 - Rimozione di un utente da un workspace}
+\begin{itemize}
+	\item \textbf{Attori principali:} 
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente sta visualizzando la lista di tutti gli utenti presenti in un workspace
+        \item L'utente ha selezionato un utente specifico dalla lista
+        \item Esiste almeno un altro utente nel workspace oltre all'owner
+        \item L'utente da rimuovere non è l'owner del workspace
+	\end{itemize}
+    \item \textbf{Postcondizioni:} 
+    \begin{itemize}
+        \item L'utente selezionato viene rimosso dal workspace
+        \item L'utente rimosso perde l'accesso al workspace e a tutte le sue risorse
+        \item Tutti i ruoli assegnati all'utente nel workspace vengono revocati
+    \end{itemize}
+	\item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona un utente specifico dalla lista 
+        \item L'utente seleziona l'opzione "Rimuovi utente dal workspace"
+        \item L'utente conferma l'operazione di rimozione
+        \item Il sistema rimuove l'utente dal workspace e aggiorna la lista degli utenti del workspace
+    \end{enumerate}
+\end{itemize}
 
 \subsubsection{UC19 - Visualizza lista tag raccolta}
 \begin{itemize}
@@ -2172,7 +2709,6 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
         \item Il sistema notifica l'errore di selezione branch all'utente e annulla il processo in corso
     \end{enumerate}
 \end{itemize}
-
-
+\end{document}
 
 \end{document}

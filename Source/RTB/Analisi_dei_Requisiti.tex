@@ -73,7 +73,7 @@
 % 4. IMPOSTAZIONE HEADER E FOOTER
 \pagestyle{fancy}
 \fancyhf{} 
-\fancyhead[L]{\sffamily\bfseries\color{AccentColor}\@BYTE HOLDERS}
+\fancyhead[L]{\sffamily\bfseries\color{AccentColor}@BYTE HOLDERS}
 \fancyhead[R]{\sffamily\color{AccentColor}\thepage}
 \renewcommand{\headrulewidth}{0.8pt}
 \renewcommand{\headrule}{\color{AccentColor}\hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}
@@ -133,8 +133,11 @@
 		\textcolor{white}{\textbf{Data}} & 
 		\multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} &
 		\multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
-		0.3.0 & 25/01/2025 & Lorenzo Grolla & Stesura UC Dettagli Repository e Selezione Branch\\ 
-		0.2.0 & 14/01/2025 & Lorenzo Grolla & Stesura UC Autenticazione\\ 
+        0.6.0 & 06/02/2026 & Giacomo Nalotto & Visione analisi sicurezza, analisi documentazione e analisi qualità del codice\\
+		0.5.0 & 04/02/2026 & Lorenzo Grolla & Stesura UC Visione Aggregata\\ 
+		0.4.0 & 25/01/2026 & Lorenzo Grolla & Stesura UC Dettagli Repository e Selezione Branch\\ 
+        0.3.0 & 18/01/2026 & Giacomo Nalotto & Stesura UC Gestione Workspace\\
+		0.2.0 & 14/01/2026 & Lorenzo Grolla & Stesura UC Autenticazione\\ 
 		0.1.0 & 19/12/2025 & Alessandro Morabito & Inizio stesura\\ 
 	\end{tabular}
 \end{center}
@@ -655,6 +658,542 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	\end{enumerate}
 \end{itemize}
 
+\subsubsection{UC5 - Invito utente in workspace}
+\begin{itemize}
+	\item \textbf{Attori principali:} Project Manager
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è riconosciuto dal sistema come Project Manager
+        \item L'utente fa parte del workspace all'interno del quale invita un altro utente
+	\end{itemize}
+    \item \textbf{Postcondizioni:} L'invito viene inviato ed un utente esterno al workspace lo riceve
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item Un utente che fa parte di un workspace vuole invitare un altro utente che non ne fa parte
+		\item Inserisce l'username dell'utente che vuole invitare (\hyperref[UC5.2]{UC5.1})
+		\item Seleziona al nuovo utente il ruolo scegliendo dalla lista dei ruoli del workspace (\hyperref[UC5.2]{UC5.2})
+	\end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC5.1]{UC5.1}, \hyperref[UC5.2]{UC5.2}
+    \item \textbf{Estensioni:} \hyperref[UC5.3]{UC5.3}
+	
+\end{itemize}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{Figura 8.png}
+	\caption{Figura 8: UC5 e relative inclusioni}
+	\label{fig:UC1}
+\end{figure}
+
+\paragraph{UC5.1 - Inserimento username nuovo utente}\label{UC5.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} Project Manager
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente fa parte del workspace all'interno del quale invita un altro utente
+        \item L'utente ha avviato la procedura di invito di un nuovo utente
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Il sistema riceve l'username dell'utente da invitare
+	\item \textbf{Scenario principale:} Il sistema presenta un campo di input per l'inserimento dell'username, l'utente digita l'username dell'utente che desidera invitare
+	
+\end{itemize}
+
+\paragraph{UC5.2 - Selezione ruolo da assegnare al nuovo utente}\label{UC5.2}
+\begin{itemize}
+	\item \textbf{Attori principali:} Project Manager
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente fa parte del workspace all'interno del quale invita un altro utente
+        \item L'utente ha avviato la procedura di invito di un nuovo utente
+	\end{itemize}
+    	\item \textbf{Postcondizioni:} Il sistema riceve la selezione del ruolo da assegnare all'utente invitato
+	\item \textbf{Scenario principale:} 
+    \begin{enumerate}
+    \item Il sistema recupera la lista dei ruoli disponibili nel workspace
+    \item Il sistema presenta una lista a tendina con i ruoli disponibili
+    \item L'utente seleziona il ruolo desiderato dalla lista
+    \item Il sistema memorizza il ruolo selezionato
+    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC5.2.1]{UC5.2.1}
+\end{itemize}
+
+\subparagraph{UC5.2.1 - Visualizzazione lista ruoli nel workspace}\label{UC5.2.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} Project Manager
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente sta selezionando un ruolo da assegnare durante l'invito
+        \item Esiste almeno un ruolo definito nel workspace
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Viene visualizzata la lista completa dei ruoli disponibili nel workspace
+	\item \textbf{Scenario principale:} 
+    \begin{enumerate}
+    \item Il sistema recupera la lista dei ruoli disponibili nel workspace
+    \item Il sistema presenta una lista a tendina con i ruoli disponibili
+    \item L'utente seleziona il ruolo desiderato dalla lista
+    \item Il sistema memorizza il ruolo selezionato
+    \end{enumerate}
+\end{itemize}
+
+\paragraph{UC5.3 - Invito non riuscito}\label{UC5.3}
+\begin{itemize}
+	\item \textbf{Attori principali:} Project Manager
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente ha tentato l'invio di un invito
+        \item L'utente ha avviato la procedura di invito di un nuovo utente
+	\end{itemize}
+    \item \textbf{Postcondizioni:} 
+    \begin{itemize}
+    \item Il sistema annulla il tentativo di invito e nessun invito viene creato o inviato
+    \item Viene mostrato a schermo un messaggio di errore specifico
+    \end{itemize}
+	\item \textbf{Scenario principale:} 
+    \begin{enumerate}
+    \item Il sistema tenta di validare l'username inserito dall'utente
+    \item Il sistema rileva che l'username è già presente nel workspace o non esiste
+    \end{enumerate}
+	
+\end{itemize}
+
+\subsubsection{UC6 - Visualizzazione inviti in workspace}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente ha selezionato l'opzione per visualizzare i propri inviti
+	\end{itemize}	\item \textbf{Postcondizioni:} Il sistema mostra la lista completa degli inviti ricevuti dall'utente
+
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'utente accede alla sezione degli inviti ricevuti
+		\item Il sistema recupera tutti gli inviti pendenti destinati all'utente e li mostra in una lista
+		\item Per ogni invito vengono visualizzate le informazioni (UC6.1)
+	\end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC6.1]{UC6.1}
+\end{itemize}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{Figura 9.png}
+	\caption{Figura 9: UC6 - Visualizzazione inviti in workspace}
+	\label{fig:UC1}
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{Figura 10.png}
+	\caption{Figura 10: Inclusioni di UC7.1: UC7.1.1,UC7.1.2}
+	\label{fig:UC1}
+\end{figure}
+
+\paragraph{UC6.1 - Visualizzazione singolo invito in workspace}\label{UC6.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente ha selezionato l'opzione per visualizzare i propri inviti
+        \item Esiste almeno un invito destinato all'utente
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Il sistema mostra le informazioni complete di un singolo invito nella lista
+	\item \textbf{Scenario principale:} Il sistema mostra un elemento della lista inviti contenente:
+	\begin{itemize}
+		\item Username del mittente dell'invito (\hyperref[UC6.1.1]{UC6.1.1})
+		\item Username dell'owner del workspace (\hyperref[UC6.1.2]{UC6.1.2})
+        \item Nome del workspace (\hyperref[UC6.1.3]{UC6.1.3})
+	\end{itemize}
+    \item \textbf{Inclusioni:} \hyperref[UC6.1.1]{UC6.1.1}, \hyperref[UC6.1.2]{UC6.1.2}, \hyperref[UC6.1.3]{UC6.1.3}
+	
+\end{itemize}
+
+\subparagraph{UC6.1.1 - Visualizzazione username del mittente dell'invito ricevuto}\label{UC6.1.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente ha selezionato l'opzione per visualizzare i propri inviti
+        \item L'utente sta visualizzando un singolo invito
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Il sistema mostra l'username dell'utente che ha inviato l'invito
+	\item \textbf{Scenario principale:} 
+	\begin{enumerate}
+	    \item Il sistema recupera l'username dell'utente mittente associato all'invito
+        \item Il sistema visualizza l'username del mittente all'interno dell'elemento invito
+	\end{enumerate}
+\end{itemize}
+
+\subparagraph{UC6.1.2 - Visualizzazione username dell'owner del workspace}\label{UC6.1.2}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente ha selezionato l'opzione per visualizzare i propri inviti
+        \item L'utente sta visualizzando un singolo invito
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Il sistema mostra l'username dell'owner del workspace a cui l'utente è stato invitato
+	\item \textbf{Scenario principale:} 
+	\begin{enumerate}
+	    \item Il sistema recupera l'username dell'owner del workspace a cui l'utente è stato invitato
+        \item Il sistema visualizza l'username dell'owner all'interno dell'elemento invito
+	\end{enumerate}
+	
+\end{itemize}
+
+\subparagraph{UC6.1.3 - Visualizzazione nome del workspace}\label{UC6.1.3}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente ha selezionato l'opzione per visualizzare i propri inviti
+        \item L'utente sta visualizzando un singolo invito
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Il sistema mostra il nome identificativo del workspace a cui l'utente è stato invitato
+	\item \textbf{Scenario principale:} 
+	\begin{enumerate}
+	    \item Il sistema recupera il nome del workspace a cui l'utente è stato invitato
+        \item Il sistema visualizza il nome del workspace all'interno dell'elemento invito
+	\end{enumerate}
+	
+\end{itemize}
+
+\subsubsection{UC7 - Gestione degli inviti}\label{UC7}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente ha selezionato un invito dalla lista degli inviti ricevuti
+	\end{itemize}
+    \item \textbf{Postcondizioni:} L'utente ha gestito l'invito selezionato
+	\item \textbf{Scenario principale:}
+    \begin{itemize}
+        \item Il sistema mostra le opzioni disponibili per gestire l'invito
+    \end{itemize}
+    \item \textbf{UC che ereditano:} \hyperref[UC7.1]{UC7.1}, \hyperref[UC7.2]{UC7.2}
+\end{itemize}
+
+\paragraph{UC7.1 - Accettazione invito}\label{UC7.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato identificato dal sistema come Utente
+        \item L'utente ha selezionato un invito dalla lista degli inviti ricevuti
+	\end{itemize}
+    \item \textbf{Postcondizioni:} L'utente accetta l'invito selezionato e diventa nuovo membro del workspace con il ruolo specificato nell'invito
+	\item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona l'opzione "Accetta" per l'invito
+        \item Il sistema aggiunge l'utente al workspace con il ruolo specificato
+        \item Il sistema rimuove l'invito dalla lista degli inviti pendenti
+        \item Il sistema aggiorna la lista dei workspace dell'utente includendo il nuovo workspace
+    \end{enumerate}
+    \item \textbf{Eredita da:} \hyperref[UC7]{UC7}
+\end{itemize}
+
+\paragraph{UC7.2 - Rifiuto invito}\label{UC7.2}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente ha selezionato un invito dalla lista degli inviti ricevuti
+	\end{itemize}
+    \item \textbf{Postcondizioni:} L'utente rifiuta l'invito selezionato e non diventa nuovo membro del workspace
+	\item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona l'opzione "Rifiuta" per l'invito
+        \item Il sistema rimuove l'invito dalla lista degli inviti pendenti
+    \end{enumerate}
+    \item \textbf{Eredita da:} \hyperref[UC7]{UC7}
+\end{itemize}
+
+\subsubsection{UC8 - Visualizzazione lista workspace}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente sta visualizzando la dashboard iniziale
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Il sistema mostra la lista completa dei workspace di cui l'utente fa parte
+	\item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera tutti i workspace a cui l'utente appartiene
+        \item Il sistema mostra la lista dei workspace di cui l'utente fa parte
+        \item La lista è composta da singoli elementi che rappresentano ciascuno un workspace (\hyperref[UC8.1]{UC8.1})
+    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC8.1]{UC8.1}
+\end{itemize}
+
+\paragraph{UC8.1 - Visualizzazione elemento della lista di workspace}\label{UC8.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente sta visualizzando la dashboard iniziale
+        \item Esiste almeno un workspace di cui l'utente fa parte
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Il sistema mostra un singolo elemento della lista dei workspace rappresentante un workspace specifico
+	\item \textbf{Scenario principale:} Il sistema mostra un elemento della lista contenente:
+    \begin{itemize}
+        \item Username dell'owner del workspace (\hyperref[UC8.1.1]{UC8.1.1})
+        \item Nome del workspace (\hyperref[UC8.1.2]{UC8.1.2})
+    \end{itemize}
+    \item \textbf{Inclusioni:} \hyperref[UC8.1.1]{UC8.1.1}, \hyperref[UC8.1.2]{UC8.1.2}
+\end{itemize}
+
+\subparagraph{UC8.1.1 - Visualizzazione username dell'owner del workspace}\label{UC8.1.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente sta visualizzando la dashboard iniziale
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Il sistema mostra l'username dell'owner di un workspace di cui l'utente fa parte
+	\item \textbf{Scenario principale:}
+    \begin{itemize}
+        \item Il sistema recupera l'username dell'owner del singolo workspace selezionato dalla lista della dashboard
+        \item Il sistema visualizza l'username dell'owner nell'elemento della lista
+    \end{itemize}
+\end{itemize}
+
+\subparagraph{UC8.1.2 - Visualizzazione nome del workspace}\label{UC8.1.2}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente sta visualizzando la dashboard iniziale
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Il sistema mostra il nome di un workspace di cui l'utente fa parte
+	\item \textbf{Scenario principale:}
+    \begin{itemize}
+        \item Il sistema recupera il nome del singolo workspace selezionato dalla lista della dashboard
+        \item Il sistema visualizza il nome nell'elemento della lista
+    \end{itemize}
+\end{itemize}
+
+\subsubsection{UC9 - Ricerca workspace}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente sta visualizzando la lista dei workspace di cui fa parte nella dashboard
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Il sistema mostra i workspace che corrispondono ai criteri di ricerca inseriti
+	\item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente dalla dashboard principale accede alla funzione di ricerca workspace
+        \item L'utente inserisce il nome (o parte del nome) del workspace che vuole cercare (\hyperref[UC9.1]{UC9.1})
+        \item Il sistema filtra in tempo reale i workspace mostrati in base al testo inserito
+    \end{enumerate}
+    \item \textbf{Inclusioni:} 
+    \item \textbf{Scenari alternativi:}
+    \begin{itemize}
+		\item Nessun workspace corrisponde alla ricerca, il sistema mostra un messaggio: "Nessun workspace trovato con questo nome"
+	\end{itemize}
+\end{itemize}
+
+\paragraph{UC9.1 - Inserimento nome del workspace da cercare}\label{UC9.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente sta eseguendo un'operazione che richiede l'inserimento del nome di un workspace
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Il sistema riceve il nome (o parte del nome) del workspace
+	\item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema presenta un campo di input per l'inserimento del nome del workspace
+        \item L'utente inserisce il nome (o parte del nome) del workspace 
+        \item Il sistema memorizza il testo inserito
+    \end{enumerate}
+\end{itemize}
+
+\subsubsection{UC10 - Creazione workspace}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente si trova nella dashboard iniziale
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Un nuovo workspace viene creato con successo
+	\item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona l'opzione per creare un nuovo workspace
+        \item Il sistema presenta un form per l'inserimento dei dati del workspace
+        \item L'utente inserisce il nome del workspace (\hyperref[UC10.1]{UC10.1})
+        \item L'utente conferma la creazione
+        \item Il sistema assegna automaticamente il ruolo di owner all'utente creatore (\hyperref[UC10.2]{UC10.2})
+    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC10.1]{UC10.1}, \hyperref[UC10.2]{UC10.2}
+    \item \textbf{Estensioni:} \hyperref[UC10.3]{UC10.3}
+\end{itemize}
+
+\paragraph{UC10.1 - Inserimento nome del workspace}\label{UC10.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente si trova nella dashboard iniziale
+        \item L'utente sta creando un nuovo workspace 
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Il workspace ha il nome assegnatogli dall'utente creatore
+	\item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente inserisce il nome del workspace
+        \item Il sistema valida il nome inserito 
+    \end{enumerate}
+\end{itemize}
+
+\paragraph{UC10.2- Assegnazione ruolo di owner al creatore del workspace}\label{UC10.2}
+\begin{itemize}
+	\item \textbf{Attori principali:} Project Manager
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente si trova nella dashboard iniziale
+        \item L'utente sta creando un nuovo workspace 
+	\end{itemize}
+    \item \textbf{Postcondizioni:} Il sistema assegna automaticamente il ruolo di owner del workspace all'utente che lo sta creando
+	\item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema crea automaticamente il ruolo di owner per il nuovo workspace
+        \item Il sistema associa l'utente creatore al workspace con il ruolo di owner
+        \item Il sistema registra l'utente come proprietario ufficiale del workspace
+    \end{enumerate}
+	
+\end{itemize}
+
+\paragraph{UC10.3 - Creazione del workspace non riuscita}\label{UC10.3}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente si trova nella dashboard iniziale
+        \item L'utente ha tentato la creazione di un nuovo workspace
+	\end{itemize}
+    \item \textbf{Postcondizioni:} 
+    \begin{itemize}
+        \item La creazione del workspace viene annullata
+        \item Nessun nuovo workspace viene aggiunto al sistema
+    \end{itemize}
+	\item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema non permette di terminare il processo di creazione di un workspace poichè esiste già un workspace con lo stesso nome creato dal medesimo utente o il nome inserito non è valido
+        \item Il sistema mantiene aperto il form di creazione permettendo all'utente di correggere l'errore o annullare l'operazione
+    \end{enumerate}
+\end{itemize}
+
+\subsubsection{UC11 - Visualizzazione lista dei ruoli di un workspace}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente desidera vedere la lista di tutti i ruoli presenti in un workspace
+	\end{itemize}
+    \item \textbf{Postcondizioni:} L'utente visualizza una lista con l'elenco di tutti i ruoli di un workspace
+	\item \textbf{Scenario principale:}
+        \item L'utente apre la lista con l'elenco di tutti i ruoli presenti al momento all'interno del workspace
+        \item L'utente un singolo ruolo dalla lista per visualizzarne la descrizione (\hyperref[UC11.1]{UC11.1})
+    \item \textbf{Inclusioni:} \hyperref[UC11.1]{UC11.1}
+\end{itemize}
+
+\paragraph{UC11.1 - Visualizzazione singolo elemento lista ruoli di un workspace}\label{UC11.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente ha selezionato un singolo ruolo dalla lista di tutti i ruoli presenti in un workspace
+	\end{itemize}
+    \item \textbf{Postcondizioni:} L'utente visualizza singolo ruolo di un workspace
+	\item \textbf{Scenario principale:} L'utente visualizza nome e relativa descrizione di un singolo ruolo presente all'interno del workspace	
+\end{itemize}
+
+\subsubsection{UC12 - Visualizzazione lista utenti di un workspace}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente vuole vedere la lista di tutti gli utenti presenti in un workspace
+	\end{itemize}
+    \item \textbf{Postcondizioni:} L'utente visualizza la lista di utenti di un singolo workspace
+	\item \textbf{Scenario principale:} L'utente visualizza l'username di ogni singolo utente presente all'interno del workspace
+	
+\end{itemize}
+
+\subsubsection{UC13 - Rimozione di un utente da un workspace}
+\begin{itemize}
+	\item \textbf{Attori principali:} Project Manager
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente sta visualizzando la lista di tutti gli utenti presenti in un workspace
+        \item L'utente ha selezionato un utente specifico dalla lista
+        \item Esiste almeno un altro utente nel workspace oltre all'owner
+        \item L'utente da rimuovere non è l'owner del workspace
+	\end{itemize}
+    \item \textbf{Postcondizioni:} 
+    \begin{itemize}
+        \item L'utente selezionato viene rimosso dal workspace
+        \item L'utente rimosso perde l'accesso al workspace e a tutte le sue risorse
+        \item Tutti i ruoli assegnati all'utente nel workspace vengono revocati
+    \end{itemize}
+	\item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona un utente specifico dalla lista 
+        \item L'utente seleziona l'opzione "Rimuovi utente dal workspace"
+        \item L'utente conferma l'operazione di rimozione
+        \item Il sistema rimuove l'utente dal workspace e aggiorna la lista degli utenti del workspace
+    \end{enumerate}
+\end{itemize}
 
 \subsubsection{UC19 - Visualizza lista tag raccolta}
 
@@ -2522,6 +3061,334 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
 \end{itemize}
 
 
+
+
+
+
+% ============================================
+% UC33.3 - VISUALIZZA ANALISI SICUREZZA
+% ============================================
+\paragraph{UC33.3 - Visualizzazione analisi sicurezza} \label{UC33.3}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente 
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace e una specifica repository
+		\item L'utente ha selezionato uno specifico branch della repository da visualizzare
+		\item La repository ha subito almeno una scansione che include l'analisi di sicurezza
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+    \begin{itemize}
+        \item L'utente visualizza lo stato di sicurezza della repository tramite metriche OWASP, con la possibilità di approfondire le singole criticità
+    \end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item Il sistema recupera le informazioni relative alle vulnerabilità OWASP dall'ultima scansione effettuata
+		\item Il sistema presenta all'utente una visione semplificata dell'analisi (\hyperref[UC33.3.1]{UC33.3.1})
+		\item Il sistema, se richiesto, presenta la visione completa dei dati di sicurezza (\hyperref[UC33.3.2]{UC33.3.2})
+	\end{enumerate}
+    \item \textbf{Scenario alternativo:}
+	\begin{enumerate}
+		\item Analisi OWASP non disponibile: se la repository non presenta file utili all'analisi, il sistema informa l'utente con il messaggio: "Nessun file utile per l'analisi OWASP"
+		\item Analisi OWASP non eseguibile: in caso di errore del motore di analisi o formato dei file non supportato, il sistema informa l'utente con l'errore: "Errore nell'esecuzione dell'analisi OWASP"
+		\item Nessuna vulnerabilità riscontrata: se l'analisi termina correttamente ma non rileva minacce, il sistema mostra la percentuale di test superati e il messaggio: "Nessuna vulnerabilità rilevata"   
+	\end{enumerate}
+	\item \textbf{Inclusioni:} \hyperref[UC33.3.1]{UC33.3.1}, \hyperref[UC33.3.2]{UC33.3.2}
+\end{itemize}
+
+\subparagraph{UC33.3.1 - Visualizza analisi sicurezza semplice}\label{UC33.3.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+    \begin{itemize}
+        \item L'utente è autenticato presso il sistema
+        \item L’utente ha selezionato una specifica repository
+        \item L’utente ha il permesso di visualizzare la sezione OWASP semplice all’interno del workspace di cui fa parte la repository selezionata
+        \item L’utente ha selezionato uno specifico branch della repository da visualizzare
+    \end{itemize}
+	\item \textbf{Postcondizioni:} 
+    \begin{itemize}
+    \item L’utente ha una visione dell’analisi OWASP semplificata dello stato di sicurezza della repository
+    \end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L’utente seleziona una repository appartenente ad un workspace a cui ha accesso
+		\item Il sistema recupera le informazioni relative alle vulnerabilità OWASP (Top 10 e altre)
+        \item Il sistema visualizza un istogramma con il numero di vulnerabilità suddivise per livello di criticità (alta, media, bassa)
+	\end{enumerate}
+\end{itemize}
+
+\subparagraph{UC33.3.2 - Visualizza analisi sicurezza completa}\label{UC33.3.2}
+\begin{itemize}
+    \item \textbf{Attori principali:} 
+    \begin{itemize}
+        \item Tech Lead
+        \item Developer
+    \end{itemize}
+    \item \textbf{Precondizioni:} 
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è autenticato presso il sistema
+        \item L'utente ha selezionato una specifica repository e un relativo branch
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+    \item L'utente ottiene una visione dettagliata dell'analisi di sicurezza e delle eventuali vulnerabilità rilevate nella repository
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona la sezione relativa all'analisi OWASP completa
+        \item Il sistema recupera le informazioni sulle top 10 criticità OWASP
+        \item Il sistema indica l'eventuale lista delle vulnerabilità riscontrate nella repository (\hyperref[UC33.3.2.1]{UC33.3.2.1})
+        \item L'utente può selezionare una singola vulnerabilità dalla lista per consultarne i dettagli e le possibili remediation (\hyperref[UC33.3.2.2]{UC33.3.2.2})
+    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC33.3.2.1]{UC33.3.2.1}, \hyperref[UC33.3.2.2]{UC33.3.2.2}
+\end{itemize}
+
+\subparagraph{UC33.3.2.1 - Visualizzazione singole vulnerabilità riscontrate}\label{UC33.3.2.1}
+\begin{itemize}
+    \item \textbf{Attori principali:}
+    \begin{itemize}
+        \item Tech Lead
+        \item Developer
+    \end{itemize}
+    \item \textbf{Precondizioni:} 
+    \begin{itemize}
+        \item L'utente è autenticato presso il sistema
+        \item L’utente ha selezionato una specifica repository
+        \item Il sistema ha individuato una serie di vulnerabilità nella repository scansionata
+    \end{itemize}
+    \item \textbf{Postcondizioni:} 
+    \begin{itemize}
+        \item L'utente visualizza la lista ordinata di tutte le vulnerabilità identificate e le categorie di criticità OWASP di appartenenza
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera i dati riguardanti le vulnerabilità della repository
+        \item Il sistema visualizza un elenco ordinato in modo decrescente per gravità         
+        \item Per ciascun elemento della lista, il sistema visualizza le informazioni sintetiche (\hyperref[UC33.3.2.2]{UC33.3.2.2})
+    \end{enumerate}
+    \item \textbf{Scenari alternativi:}
+    \begin{itemize}
+        \item Nessuna vulnerabilità rilevata: il sistema mostra il messaggio: ``Nessuna vulnerabilità rilevata''
+    \end{itemize}
+    \item \textbf{Inclusioni:} \hyperref[UC33.3.2.1.1]{UC33.3.2.1.1}
+\end{itemize}
+
+\subparagraph{UC33.3.2.1.1 - Visualizzazione singolo elemento della lista di vulnerabilità}\label{UC33.3.2.1.1}
+\begin{itemize}
+    \item \textbf{Attori principali:} 
+    \begin{itemize}
+        \item Tech Lead
+        \item Developer
+    \end{itemize}
+    \item \textbf{Precondizioni:} 
+    \begin{itemize}
+        \item L'utente è autenticato presso il sistema
+        \item L’utente ha selezionato una specifica repository
+        \item L'utente sta consultando l'elenco delle vulnerabilità
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item L'utente visualizza i dati identificativi di una specifica vulnerabilità
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Per la singola vulnerabilità, il sistema mostra: 
+            \begin{itemize}
+                \item nome/tipo della vulnerabilità
+                \item il file di origine
+                \item categoria di criticità OWASP di appartenenza
+            \end{itemize}
+        \item L'utente può scegliere di approfondire la singola vulnerabilità per accedere alla visione completa
+    \end{enumerate}
+\end{itemize}
+
+\subparagraph{UC33.3.2.3 - Approfondimento criticità}\label{UC33.3.2.3}
+\begin{itemize}
+    \item \textbf{Attori principali:} 
+    \begin{itemize}
+        \item Tech Lead
+        \item Developer
+    \end{itemize}
+    \item \textbf{Precondizioni:} 
+    \begin{itemize}
+        \item L'utente è autenticato presso il sistema
+        \item L’utente ha selezionato una specifica repository
+        \item L'utente ha selezionato una specifica vulnerabilità dall'elenco delle vulnerabilità
+    \end{itemize}
+    \item \textbf{Postcondizioni:} 
+    \begin{itemize}
+        \item L’utente visualizza i dettagli completi della vulnerabilità selezionata
+        \item Il sistema fornisce, se disponibile, una proposta di remediation
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema mostra il livello di gravità e una breve descrizione tecnica del tipo di vulnerabilità
+        \item Il sistema mostra il file coinvolto e il frammento di codice che genera la vulnerabilità
+        \item Il sistema fornisce un suggerimento testuale per la risoluzione del problema
+        \item Il sistema mostra una possibile remediation (codice alternativo)
+    \end{enumerate}
+    \item \textbf{Scenari alternativi:}
+    \begin{itemize}
+        \item Codice non individuato: se il sistema non individua il frammento, mostra: ``Codice sorgente non disponibile per questa vulnerabilità''
+        \item Suggerimento non disponibile: se manca la descrizione risolutiva, mostra: ``Suggerimento non disponibile''
+        \item Remediation non disponibile: se non è generabile codice alternativo, mostra: ``Remediation non disponibile''
+    \end{itemize}
+\end{itemize}
+
+\paragraph{UC33.4 - Visualizzazione analisi documentazione di una repository} \label{UC33.4}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente 
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item È stata effettuata un'analisi della documentazione su una specifica repository
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item L'utente visualizza la valutazione della qualità della documentazione e i consigli per migliorarla
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema mostra il voto complessivo assegnato alla documentazione (\hyperref[UC33.4.1]{UC33.4.1})
+        \item Il sistema fornisce consigli specifici per il miglioramento del file README (\hyperref[UC33.4.2]{UC33.4.2})
+        \item Il sistema elenca le sezioni mancanti o incomplete (\hyperref[UC33.4.3]{UC33.4.3})
+    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC33.4.1]{UC33.4.1}, \hyperref[UC33.4.2]{UC33.4.2}, \hyperref[UC33.4.3]{UC33.4.3}
+\end{itemize}
+
+\subparagraph{UC33.4.1 - Visualizzazione voto documentazione}\label{UC33.4.1}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente 
+    \item \textbf{Precondizioni:} 
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando la sezione documentazione di una specifica repository
+    \end{itemize}
+    \item \textbf{Postcondizioni:} 
+    \begin{itemize}
+        \item Viene visualizzato un voto sintetico sulla qualità documentale
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{itemize}
+        \item Il sistema mostra un voto numerico che rappresenta la completezza e la qualità della documentazione presente nella repository, calcolato in base alla presenza di file README, documentazione tecnica, commenti nel codice e conformità agli standard di documentazione definiti
+    \end{itemize}
+    \item \textbf{Scenario alternativo:}
+    \begin{itemize}
+        \item La repository non contiene documentazione analizzabile, il sistema mostra "Documentazione assente"
+        \item L'analisi della documentazione non è stata eseguita, il sistema mostra "Analisi documentazione non disponibile"
+    \end{itemize}
+\end{itemize}
+
+\subparagraph{UC33.4.2 - Visualizzazione consigli sul README}\label{UC33.4.2}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente 
+    \item \textbf{Precondizioni:} 
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item Il file README è presente nella repository
+        \item L'utente sta visualizzando la sezione documentazione di una specifica repository
+    \end{itemize}
+    \item \textbf{Postcondizioni:} 
+    \begin{itemize}
+        \item Vengono mostrati suggerimenti testuali per il miglioramento del README
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema analizza il contenuto del README della repository
+        \item Il sistema suggerisce l'aggiunta di sezioni utili per arricchirne il contenuto  
+    \end{enumerate}
+\end{itemize}
+
+\subparagraph{UC33.4.3 - Visualizza sezioni mancanti}\label{UC33.4.3}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente 
+    \item \textbf{Precondizioni:} 
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'analisi ha rilevato l'assenza di documenti standard
+    \end{itemize}
+    \item \textbf{Postcondizioni:} 
+    \begin{itemize}
+        \item Viene mostrata una lista dei documenti assenti
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema verifica la presenza di documenti standard
+        \item Il sistema elenca le sezioni o i file documentali che non sono stati trovati nella repository 
+    \end{enumerate}
+\end{itemize}
+
+% ============================================
+% UC33.5 - VISUALIZZA QUALITÀ DEL CODICE
+% ============================================
+\paragraph{UC33.5 - Visualizzazione qualità del codice di una repository} \label{UC33.5}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente 
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item È stata effettuata un'analisi statica del codice
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item L'utente riceve suggerimenti per migliorare la qualità del codice sorgente
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera i risultati dell'analisi sulla qualità del codice
+        \item Il sistema mostra una lista di suggerimenti basati sulle best practices di programmazione (\hyperref[UC33.5.1]{UC33.5.1})
+    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC33.5.1]{UC33.5.1}
+\end{itemize}
+
+\subparagraph{UC33.5.1 - Visualizzazione lista suggerimenti sulla qualità del codice}\label{UC33.5.1}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente 
+    \item \textbf{Precondizioni:} 
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item Sono state rilevate violazioni di best practices o code smells
+    \end{itemize}
+    \item \textbf{Postcondizioni:} 
+    \begin{itemize}
+        \item Viene mostrato l'elenco dei suggerimenti tecnici per migliorare il codice
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema presenta suggerimenti pratici per il refactoring del codice 
+        \item L'utente può consultare i dettagli per applicare le best practices suggerite 
+    \end{enumerate}
+\end{itemize}
+
+\subsubsection{UC34 - Nessuna scansione effettuata}\label{UC34}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente 
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item L'utente tenta di visualizzare i dettagli di una repository
+        \item Non è mai stata effettuata una scansione sulla repository selezionata, oppure l'ultima scansione non ha prodotto dati validi 
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene mostrato un messaggio informativo che notifica l'assenza di dati
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema verifica lo stato delle analisi per la repository selezionata
+        \item Il sistema rileva che non esistono dati di scansione disponibili
+        \item Il sistema mostra il messaggio: "Nessuna scansione effettuata" o "Dati non disponibili" 
+        \item Il sistema può proporre all'utente di avviare una nuova analisi
+    \end{enumerate}
+\end{itemize}
+
+
+
+
+
 % ============================================
 % UC35 - SELEZIONE BRANCH
 % ============================================
@@ -2673,6 +3540,1000 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
         \item Il sistema tenta di recuperare i branch disponibili per la repository
         \item Il sistema non trova branch validi
         \item Il sistema notifica l'errore di selezione branch all'utente e annulla il processo in corso
+    \end{enumerate}
+\end{itemize}
+
+
+% ============================================
+% UC36 - VISIONE AGGREGATA
+% ============================================
+\subsubsection{UC36 - Visione aggregata}\label{UC36}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{../Assets/AdR/UC36ext.png}
+	\caption{UC36 - Visione aggregata}
+	\label{fig:UC36ext}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è autenticato presso il sistema
+        \item L'utente ha accesso a un workspace ed è entrato in uno specifico workspace
+        \item Ogni repository del workspace ha un branch di default valido
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item L'utente visualizza una vista sintetica e aggregata delle informazioni relative all'insieme di repository che fanno parte del workspace
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente richiede la visualizzazione aggregata delle repository del workspace
+        \item Il sistema verifica la presenza di un branch di default per ciascuna repository
+        \item Il sistema recupera i dati di analisi relativi alle repository del workspace
+        \item Il sistema calcola le metriche aggregate (medie, minimi, massimi, distribuzioni)
+        \item Il sistema visualizza la sezione test aggregata (\hyperref[UC36.2]{UC36.2})
+        \item Il sistema visualizza la sezione informazioni tecniche aggregata (\hyperref[UC36.3]{UC36.3})
+        \item Il sistema visualizza la sezione sicurezza aggregata (\hyperref[UC36.4]{UC36.4})
+        \item Il sistema visualizza la sezione documentazione aggregata (\hyperref[UC36.5]{UC36.5})
+    \end{enumerate}
+    \item \textbf{Scenario alternativo:}
+    \begin{itemize}
+        \item \textbf{Filtra per tag (\hyperref[UC36.1]{UC36.1}):}
+        \begin{itemize}
+            \item \textbf{Condizione:} L'utente vuole filtrare le repository per tag 
+            \item \textbf{Flusso:}
+            \begin{enumerate}
+                \item L'utente seleziona uno o più tag 
+                \item Il sistema filtra le repository in base ai tag selezionati
+                \item Il sistema aggiorna la visione aggregata con le repository filtrate
+            \end{enumerate}
+        \end{itemize}
+        \item \textbf{Errore Visione Aggregata (\hyperref[UC36.6]{UC36.6}):}
+        \begin{itemize}
+            \item \textbf{Condizione:} Si è verificato un errore nella visione aggregata, come workspace vuoto o nessuna repository selezionata
+            \item \textbf{Flusso:}
+            \begin{enumerate}
+                \item Il sistema mostra un messaggio di errore appropriato
+            \end{enumerate}
+        \end{itemize}
+        \item \textbf{Scansione Workspace (\hyperref[UC38]{UC38}):}
+        \begin{itemize}
+            \item \textbf{Condizione:} L'utente vuole lanciare una scansione sul workspace visualizzato
+            \item \textbf{Flusso:}
+            \begin{enumerate}
+                \item L'utente avvia la scansione del workspace
+            \end{enumerate}
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Inclusioni:} \hyperref[UC36.2]{UC36.2}, \hyperref[UC36.3]{UC36.3}, \hyperref[UC36.4]{UC36.4}, \hyperref[UC36.5]{UC36.5}
+    \item \textbf{Estensioni:} \hyperref[UC36.1]{UC36.1}, \hyperref[UC36.6]{UC36.6}, \hyperref[UC38]{UC38}
+\end{itemize}
+
+Il caso d'uso UC36 include ulteriori casi d'uso come rappresentato nella seguente immagine:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC36.png}
+	\caption{Inclusioni di UC36: UC36.2, UC36.3, UC36.4, UC36.5}
+	\label{fig:UC36inc}
+\end{figure}
+
+
+% --- UC36.1 - FILTRA PER TAG ---
+\paragraph{UC36.1 - Filtra per tag}\label{UC36.1}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è autenticato presso il sistema
+        \item L'utente sta visualizzando la visione aggregata (\hyperref[UC36]{UC36})
+        \item Esiste almeno un tag raccolta definito nel workspace
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item La visione aggregata viene aggiornata mostrando solo le repository associate ai tag selezionati
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona l'opzione per filtrare per tag
+        \item Il sistema mostra la lista dei tag raccolta disponibili nel workspace
+        \item L'utente seleziona uno o più tag
+        \item Il sistema filtra le repository in base ai tag selezionati
+        \item Il sistema ricalcola e aggiorna la visione aggregata
+    \end{enumerate}
+\end{itemize}
+
+
+% ============================================
+% UC36.2 - SEZIONE TEST AGGREGATA
+% ============================================
+\paragraph{UC36.2 - Sezione Test aggregata}\label{UC36.2}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC36-2.png}
+	\caption{Inclusioni di UC36.2: UC36.2.1, UC36.2.2, UC36.2.3}
+	\label{fig:UC36-2}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è autenticato presso il sistema
+        \item L'utente sta visualizzando la visione aggregata (\hyperref[UC36]{UC36})
+        \item Almeno una repository del workspace ha subito un'analisi dei test
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema presenta all'utente la sezione completa di analisi dei test aggregata
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera i dati dei test dalle repository del workspace
+        \item Il sistema calcola le metriche aggregate sui test
+        \item Il sistema visualizza il test coverage medio (\hyperref[UC36.2.1]{UC36.2.1})
+        \item Il sistema visualizza il numero di repository con test coverage superiore a soglia (\hyperref[UC36.2.2]{UC36.2.2})
+        \item Il sistema visualizza il test coverage minimo (\hyperref[UC36.2.3]{UC36.2.3})
+    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC36.2.1]{UC36.2.1}, \hyperref[UC36.2.2]{UC36.2.2}, \hyperref[UC36.2.3]{UC36.2.3}
+\end{itemize}
+
+% --- UC36.2.1 - TEST COVERAGE MEDIA ---
+\subparagraph{UC36.2.1 - Visualizza test coverage media}\label{UC36.2.1}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando la sezione test aggregata (\hyperref[UC36.2]{UC36.2})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzato il valore medio del test coverage tra le repository del workspace
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema calcola la media del test coverage tra tutte le repository del workspace
+        \item Il sistema visualizza il valore percentuale del test coverage medio
+    \end{enumerate}
+\end{itemize}
+
+% --- UC36.2.2 - TEST COVERAGE SUPERIORE A SOGLIA ---
+\subparagraph{UC36.2.2 - Visualizza test coverage superiore a soglia}\label{UC36.2.2}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando la sezione test aggregata (\hyperref[UC36.2]{UC36.2})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzato il numero di repository che hanno un test coverage superiore alla soglia definita
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema conta il numero di repository con test coverage superiore al parametro configurato (default: 70\%)
+        \item Il sistema visualizza il conteggio delle repository che superano la soglia
+    \end{enumerate}
+\end{itemize}
+
+% --- UC36.2.3 - TEST COVERAGE MINIMO ---
+\subparagraph{UC36.2.3 - Visualizza test coverage minimo}\label{UC36.2.3}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando la sezione test aggregata (\hyperref[UC36.2]{UC36.2})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzato il valore minimo del test coverage tra le repository del workspace
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema individua il valore minimo di test coverage tra tutte le repository del workspace
+        \item Il sistema visualizza il valore percentuale del test coverage minimo
+    \end{enumerate}
+\end{itemize}
+
+
+% ============================================
+% UC36.3 - SEZIONE INFORMAZIONI TECNICHE AGGREGATA
+% ============================================
+\paragraph{UC36.3 - Sezione Informazioni Tecniche Aggregata}\label{UC36.3}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC36-3.png}
+	\caption{Inclusioni di UC36.3: UC36.3.1, UC36.3.2}
+	\label{fig:UC36-3}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è autenticato presso il sistema
+        \item L'utente sta visualizzando la visione aggregata (\hyperref[UC36]{UC36})
+        \item Almeno una repository del workspace ha subito un'analisi delle informazioni tecniche
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema presenta all'utente la sezione completa delle informazioni tecniche aggregate
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera le informazioni tecniche dalle repository del workspace
+        \item Il sistema aggrega i dati su linguaggi e framework
+        \item Il sistema visualizza il grafico distribuzione linguaggi (\hyperref[UC36.3.1]{UC36.3.1})
+        \item Il sistema visualizza il grafico distribuzione framework (\hyperref[UC36.3.2]{UC36.3.2})
+    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC36.3.1]{UC36.3.1}, \hyperref[UC36.3.2]{UC36.3.2}
+\end{itemize}
+
+% --- UC36.3.1 - GRAFICO LINGUAGGI ---
+\subparagraph{UC36.3.1 - Visualizza grafico linguaggi}\label{UC36.3.1}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando la sezione informazioni tecniche aggregata (\hyperref[UC36.3]{UC36.3})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzato un grafico a torta che mostra la distribuzione dei linguaggi di programmazione
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema aggrega i dati sui linguaggi di programmazione utilizzati nelle repository del workspace
+        \item Il sistema calcola la percentuale di utilizzo di ciascun linguaggio
+        \item Il sistema visualizza un grafico a torta con la distribuzione dei linguaggi
+    \end{enumerate}
+\end{itemize}
+
+% --- UC36.3.2 - GRAFICO FRAMEWORK ---
+\subparagraph{UC36.3.2 - Visualizza grafico framework}\label{UC36.3.2}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando la sezione informazioni tecniche aggregata (\hyperref[UC36.3]{UC36.3})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzato un grafico a torta che mostra la distribuzione dei framework
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema aggrega i dati sui framework utilizzati nelle repository del workspace
+        \item Il sistema calcola la percentuale di utilizzo di ciascun framework
+        \item Il sistema visualizza un grafico a torta con la distribuzione dei framework
+    \end{enumerate}
+\end{itemize}
+
+
+% ============================================
+% UC36.4 - SEZIONE SICUREZZA AGGREGATA
+% ============================================
+\paragraph{UC36.4 - Sezione Sicurezza Aggregata}\label{UC36.4}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC36-4.png}
+	\caption{Inclusioni di UC36.4: UC36.4.1, UC36.4.2}
+	\label{fig:UC36-4}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è autenticato presso il sistema
+        \item L'utente sta visualizzando la visione aggregata (\hyperref[UC36]{UC36})
+        \item Almeno una repository del workspace ha subito un'analisi di sicurezza OWASP
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema presenta all'utente la sezione completa di analisi della sicurezza aggregata
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera i dati di sicurezza dalle repository del workspace
+        \item Il sistema aggrega le informazioni sulle vulnerabilità
+        \item Il sistema visualizza la percentuale di repository sicure (\hyperref[UC36.4.1]{UC36.4.1})
+        \item Il sistema visualizza il grafico delle vulnerabilità (\hyperref[UC36.4.2]{UC36.4.2})
+    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC36.4.1]{UC36.4.1}, \hyperref[UC36.4.2]{UC36.4.2}
+\end{itemize}
+
+% --- UC36.4.1 - PERCENTUALE REPOSITORY SICURE ---
+\subparagraph{UC36.4.1 - Visualizza percentuale repository sicure}\label{UC36.4.1}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando la sezione sicurezza aggregata (\hyperref[UC36.4]{UC36.4})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzato il numero di repository che non presentano le Top 10 vulnerabilità OWASP
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema conta il numero di repository che non presentano vulnerabilità tra le Top 10 OWASP
+        \item Il sistema visualizza il conteggio delle repository sicure
+    \end{enumerate}
+\end{itemize}
+
+% --- UC36.4.2 - GRAFICO VULNERABILITÀ ---
+\subparagraph{UC36.4.2 - Visualizza grafico vulnerabilità}\label{UC36.4.2}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando la sezione sicurezza aggregata (\hyperref[UC36.4]{UC36.4})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzato un istogramma che mostra la distribuzione delle vulnerabilità per gravità
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente visualizza un istogramma con il numero di repository che presentano vulnerabilità per ciascun livello di gravità (alta, media, bassa)
+    \end{enumerate}
+\end{itemize}
+
+
+% ============================================
+% UC36.5 - SEZIONE DOCUMENTAZIONE AGGREGATA
+% ============================================
+\paragraph{UC36.5 - Sezione Documentazione Aggregata}\label{UC36.5}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC36-5.png}
+	\caption{Inclusioni di UC36.5: UC36.5.1, UC36.5.2, UC36.5.3, UC36.5.4}
+	\label{fig:UC36-5}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è autenticato presso il sistema
+        \item L'utente sta visualizzando la visione aggregata (\hyperref[UC36]{UC36})
+        \item Almeno una repository del workspace ha subito un'analisi della documentazione
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema presenta all'utente la sezione completa di analisi della documentazione aggregata
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera i dati sulla documentazione dalle repository del workspace
+        \item Il sistema calcola le metriche aggregate sulla qualità della documentazione
+        \item Il sistema visualizza il voto documentazione minimo (\hyperref[UC36.5.1]{UC36.5.1})
+        \item Il sistema visualizza il voto documentazione medio (\hyperref[UC36.5.2]{UC36.5.2})
+        \item Il sistema visualizza il voto documentazione massimo (\hyperref[UC36.5.3]{UC36.5.3})
+        \item Il sistema visualizza il grafico distribuzione voti documentazione (\hyperref[UC36.5.4]{UC36.5.4})
+    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC36.5.1]{UC36.5.1}, \hyperref[UC36.5.2]{UC36.5.2}, \hyperref[UC36.5.3]{UC36.5.3}, \hyperref[UC36.5.4]{UC36.5.4}
+\end{itemize}
+
+% --- UC36.5.1 - VOTO DOCUMENTAZIONE MINIMO ---
+\subparagraph{UC36.5.1 - Visualizza voto documentazione minimo}\label{UC36.5.1}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando la sezione documentazione aggregata (\hyperref[UC36.5]{UC36.5})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzato il voto minimo della qualità della documentazione tra le repository del workspace
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema individua il voto minimo di qualità della documentazione tra tutte le repository del workspace
+        \item Il sistema visualizza il voto minimo della documentazione
+    \end{enumerate}
+\end{itemize}
+
+% --- UC36.5.2 - VOTO DOCUMENTAZIONE MEDIO ---
+\subparagraph{UC36.5.2 - Visualizza voto documentazione medio}\label{UC36.5.2}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando la sezione documentazione aggregata (\hyperref[UC36.5]{UC36.5})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzato il voto medio della qualità della documentazione tra le repository del workspace
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema calcola la media dei voti di qualità della documentazione tra tutte le repository del workspace
+        \item Il sistema visualizza il voto medio della documentazione
+    \end{enumerate}
+\end{itemize}
+
+% --- UC36.5.3 - VOTO DOCUMENTAZIONE MASSIMO ---
+\subparagraph{UC36.5.3 - Visualizza voto documentazione massimo}\label{UC36.5.3}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando la sezione documentazione aggregata (\hyperref[UC36.5]{UC36.5})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzato il voto massimo della qualità della documentazione tra le repository del workspace
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema individua il voto massimo di qualità della documentazione tra tutte le repository del workspace
+        \item Il sistema visualizza il voto massimo della documentazione
+    \end{enumerate}
+\end{itemize}
+
+% --- UC36.5.4 - GRAFICO VOTI DOCUMENTAZIONE ---
+\subparagraph{UC36.5.4 - Visualizza grafico voti documentazione}\label{UC36.5.4}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando la sezione documentazione aggregata (\hyperref[UC36.5]{UC36.5})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzato un grafico a torta che mostra la distribuzione dei voti sulla documentazione
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema raggruppa i voti di qualità della documentazione delle repository del workspace
+        \item Il sistema calcola la distribuzione dei voti
+        \item Il sistema visualizza un grafico a torta con la distribuzione dei voti sulla documentazione
+    \end{enumerate}
+\end{itemize}
+
+
+% ============================================
+% UC36.6 - ERRORE VISIONE AGGREGATA
+% ============================================
+\paragraph{UC36.6 - Errore Visione Aggregata}\label{UC36.6}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è autenticato presso il sistema
+        \item L'utente sta tentando di visualizzare la visione aggregata (\hyperref[UC36]{UC36})
+        \item Si è verificata una delle seguenti condizioni:
+        \begin{itemize}
+            \item L'insieme di repository del workspace è vuoto
+            \item Il workspace non contiene repository
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema informa l'utente dell'impossibilità di visualizzare la visione aggregata
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema rileva una condizione di errore
+        \item Il sistema mostra un messaggio di errore appropriato: "Il workspace non contiene repository da analizzare" (se workspace vuoto)
+    \end{enumerate}
+\end{itemize}
+
+
+% ============================================
+% UC36 - VISIONE AGGREGATA
+% ============================================
+\subsubsection{UC36 - Visione aggregata}\label{UC36}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{../Assets/AdR/UC36ext.png}
+	\caption{UC36 - Visione aggregata}
+	\label{fig:UC36ext}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è autenticato presso il sistema
+        \item L'utente ha accesso a un workspace ed è entrato in uno specifico workspace
+        \item Ogni repository del workspace ha un branch di default valido
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item L'utente visualizza una vista sintetica e aggregata delle informazioni relative all'insieme di repository che fanno parte del workspace
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente richiede la visualizzazione aggregata delle repository del workspace
+        \item Il sistema verifica la presenza di un branch di default per ciascuna repository
+        \item Il sistema recupera i dati di analisi relativi alle repository del workspace
+        \item Il sistema calcola le metriche aggregate (medie, minimi, massimi, distribuzioni)
+        \item Il sistema visualizza la sezione test aggregata (\hyperref[UC36.2]{UC36.2})
+        \item Il sistema visualizza la sezione informazioni tecniche aggregata (\hyperref[UC36.3]{UC36.3})
+        \item Il sistema visualizza la sezione sicurezza aggregata (\hyperref[UC36.4]{UC36.4})
+        \item Il sistema visualizza la sezione documentazione aggregata (\hyperref[UC36.5]{UC36.5})
+    \end{enumerate}
+    \item \textbf{Scenario alternativo:}
+    \begin{itemize}
+        \item \textbf{Filtra per tag (\hyperref[UC36.1]{UC36.1}):}
+        \begin{itemize}
+            \item \textbf{Condizione:} L'utente vuole filtrare le repository per tag 
+            \item \textbf{Flusso:}
+            \begin{enumerate}
+                \item L'utente seleziona uno o più tag 
+                \item Il sistema filtra le repository in base ai tag selezionati
+                \item Il sistema aggiorna la visione aggregata con le repository filtrate
+            \end{enumerate}
+        \end{itemize}
+        \item \textbf{Errore Visione Aggregata (\hyperref[UC36.6]{UC36.6}):}
+        \begin{itemize}
+            \item \textbf{Condizione:} Si è verificato un errore nella visione aggregata, come workspace vuoto o nessuna repository selezionata
+            \item \textbf{Flusso:}
+            \begin{enumerate}
+                \item Il sistema mostra un messaggio di errore appropriato
+            \end{enumerate}
+        \end{itemize}
+        \item \textbf{Scansione Workspace (\hyperref[UC38]{UC38}):}
+        \begin{itemize}
+            \item \textbf{Condizione:} L'utente vuole lanciare una scansione sul workspace visualizzato
+            \item \textbf{Flusso:}
+            \begin{enumerate}
+                \item L'utente avvia la scansione del workspace
+            \end{enumerate}
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Inclusioni:} \hyperref[UC36.2]{UC36.2}, \hyperref[UC36.3]{UC36.3}, \hyperref[UC36.4]{UC36.4}, \hyperref[UC36.5]{UC36.5}
+    \item \textbf{Estensioni:} \hyperref[UC36.1]{UC36.1}, \hyperref[UC36.6]{UC36.6}, \hyperref[UC38]{UC38}
+\end{itemize}
+
+Il caso d'uso UC36 include ulteriori casi d'uso come rappresentato nella seguente immagine:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC36.png}
+	\caption{Inclusioni di UC36: UC36.2, UC36.3, UC36.4, UC36.5}
+	\label{fig:UC36inc}
+\end{figure}
+
+
+% --- UC36.1 - FILTRA PER TAG ---
+\paragraph{UC36.1 - Filtra per tag}\label{UC36.1}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è autenticato presso il sistema
+        \item L'utente sta visualizzando la visione aggregata (\hyperref[UC36]{UC36})
+        \item Esiste almeno un tag raccolta definito nel workspace
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item La visione aggregata viene aggiornata mostrando solo le repository associate ai tag selezionati
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente seleziona l'opzione per filtrare per tag
+        \item Il sistema mostra la lista dei tag raccolta disponibili nel workspace
+        \item L'utente seleziona uno o più tag
+        \item Il sistema filtra le repository in base ai tag selezionati
+        \item Il sistema ricalcola e aggiorna la visione aggregata
+    \end{enumerate}
+\end{itemize}
+
+
+% ============================================
+% UC36.2 - SEZIONE TEST AGGREGATA
+% ============================================
+\paragraph{UC36.2 - Sezione Test aggregata}\label{UC36.2}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC36-2.png}
+	\caption{Inclusioni di UC36.2: UC36.2.1, UC36.2.2, UC36.2.3}
+	\label{fig:UC36-2}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è autenticato presso il sistema
+        \item L'utente sta visualizzando la visione aggregata (\hyperref[UC36]{UC36})
+        \item Almeno una repository del workspace ha subito un'analisi dei test
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema presenta all'utente la sezione completa di analisi dei test aggregata
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera i dati dei test dalle repository del workspace
+        \item Il sistema calcola le metriche aggregate sui test
+        \item Il sistema visualizza il test coverage medio (\hyperref[UC36.2.1]{UC36.2.1})
+        \item Il sistema visualizza il numero di repository con test coverage superiore a soglia (\hyperref[UC36.2.2]{UC36.2.2})
+        \item Il sistema visualizza il test coverage minimo (\hyperref[UC36.2.3]{UC36.2.3})
+    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC36.2.1]{UC36.2.1}, \hyperref[UC36.2.2]{UC36.2.2}, \hyperref[UC36.2.3]{UC36.2.3}
+\end{itemize}
+
+% --- UC36.2.1 - TEST COVERAGE MEDIA ---
+\subparagraph{UC36.2.1 - Visualizza test coverage media}\label{UC36.2.1}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando la sezione test aggregata (\hyperref[UC36.2]{UC36.2})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzato il valore medio del test coverage tra le repository del workspace
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema calcola la media del test coverage tra tutte le repository del workspace
+        \item Il sistema visualizza il valore percentuale del test coverage medio
+    \end{enumerate}
+\end{itemize}
+
+% --- UC36.2.2 - TEST COVERAGE SUPERIORE A SOGLIA ---
+\subparagraph{UC36.2.2 - Visualizza test coverage superiore a soglia}\label{UC36.2.2}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando la sezione test aggregata (\hyperref[UC36.2]{UC36.2})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzato il numero di repository che hanno un test coverage superiore alla soglia definita
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema conta il numero di repository con test coverage superiore al parametro configurato (default: 70\%)
+        \item Il sistema visualizza il conteggio delle repository che superano la soglia
+    \end{enumerate}
+\end{itemize}
+
+% --- UC36.2.3 - TEST COVERAGE MINIMO ---
+\subparagraph{UC36.2.3 - Visualizza test coverage minimo}\label{UC36.2.3}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando la sezione test aggregata (\hyperref[UC36.2]{UC36.2})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzato il valore minimo del test coverage tra le repository del workspace
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema individua il valore minimo di test coverage tra tutte le repository del workspace
+        \item Il sistema visualizza il valore percentuale del test coverage minimo
+    \end{enumerate}
+\end{itemize}
+
+
+% ============================================
+% UC36.3 - SEZIONE INFORMAZIONI TECNICHE AGGREGATA
+% ============================================
+\paragraph{UC36.3 - Sezione Informazioni Tecniche Aggregata}\label{UC36.3}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC36-3.png}
+	\caption{Inclusioni di UC36.3: UC36.3.1, UC36.3.2}
+	\label{fig:UC36-3}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è autenticato presso il sistema
+        \item L'utente sta visualizzando la visione aggregata (\hyperref[UC36]{UC36})
+        \item Almeno una repository del workspace ha subito un'analisi delle informazioni tecniche
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema presenta all'utente la sezione completa delle informazioni tecniche aggregate
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera le informazioni tecniche dalle repository del workspace
+        \item Il sistema aggrega i dati su linguaggi e framework
+        \item Il sistema visualizza il grafico distribuzione linguaggi (\hyperref[UC36.3.1]{UC36.3.1})
+        \item Il sistema visualizza il grafico distribuzione framework (\hyperref[UC36.3.2]{UC36.3.2})
+    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC36.3.1]{UC36.3.1}, \hyperref[UC36.3.2]{UC36.3.2}
+\end{itemize}
+
+% --- UC36.3.1 - GRAFICO LINGUAGGI ---
+\subparagraph{UC36.3.1 - Visualizza grafico linguaggi}\label{UC36.3.1}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando la sezione informazioni tecniche aggregata (\hyperref[UC36.3]{UC36.3})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzato un grafico a torta che mostra la distribuzione dei linguaggi di programmazione
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema aggrega i dati sui linguaggi di programmazione utilizzati nelle repository del workspace
+        \item Il sistema calcola la percentuale di utilizzo di ciascun linguaggio
+        \item Il sistema visualizza un grafico a torta con la distribuzione dei linguaggi
+    \end{enumerate}
+\end{itemize}
+
+% --- UC36.3.2 - GRAFICO FRAMEWORK ---
+\subparagraph{UC36.3.2 - Visualizza grafico framework}\label{UC36.3.2}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando la sezione informazioni tecniche aggregata (\hyperref[UC36.3]{UC36.3})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzato un grafico a torta che mostra la distribuzione dei framework
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema aggrega i dati sui framework utilizzati nelle repository del workspace
+        \item Il sistema calcola la percentuale di utilizzo di ciascun framework
+        \item Il sistema visualizza un grafico a torta con la distribuzione dei framework
+    \end{enumerate}
+\end{itemize}
+
+
+% ============================================
+% UC36.4 - SEZIONE SICUREZZA AGGREGATA
+% ============================================
+\paragraph{UC36.4 - Sezione Sicurezza Aggregata}\label{UC36.4}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC36-4.png}
+	\caption{Inclusioni di UC36.4: UC36.4.1, UC36.4.2}
+	\label{fig:UC36-4}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è autenticato presso il sistema
+        \item L'utente sta visualizzando la visione aggregata (\hyperref[UC36]{UC36})
+        \item Almeno una repository del workspace ha subito un'analisi di sicurezza OWASP
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema presenta all'utente la sezione completa di analisi della sicurezza aggregata
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera i dati di sicurezza dalle repository del workspace
+        \item Il sistema aggrega le informazioni sulle vulnerabilità
+        \item Il sistema visualizza la percentuale di repository sicure (\hyperref[UC36.4.1]{UC36.4.1})
+        \item Il sistema visualizza il grafico delle vulnerabilità (\hyperref[UC36.4.2]{UC36.4.2})
+    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC36.4.1]{UC36.4.1}, \hyperref[UC36.4.2]{UC36.4.2}
+\end{itemize}
+
+% --- UC36.4.1 - PERCENTUALE REPOSITORY SICURE ---
+\subparagraph{UC36.4.1 - Visualizza percentuale repository sicure}\label{UC36.4.1}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando la sezione sicurezza aggregata (\hyperref[UC36.4]{UC36.4})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzato il numero di repository che non presentano le Top 10 vulnerabilità OWASP
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema conta il numero di repository che non presentano vulnerabilità tra le Top 10 OWASP
+        \item Il sistema visualizza il conteggio delle repository sicure
+    \end{enumerate}
+\end{itemize}
+
+% --- UC36.4.2 - GRAFICO VULNERABILITÀ ---
+\subparagraph{UC36.4.2 - Visualizza grafico vulnerabilità}\label{UC36.4.2}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando la sezione sicurezza aggregata (\hyperref[UC36.4]{UC36.4})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzato un istogramma che mostra la distribuzione delle vulnerabilità per gravità
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente visualizza un istogramma con il numero di repository che presentano vulnerabilità per ciascun livello di gravità (alta, media, bassa)
+    \end{enumerate}
+\end{itemize}
+
+
+% ============================================
+% UC36.5 - SEZIONE DOCUMENTAZIONE AGGREGATA
+% ============================================
+\paragraph{UC36.5 - Sezione Documentazione Aggregata}\label{UC36.5}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC36-5.png}
+	\caption{Inclusioni di UC36.5: UC36.5.1, UC36.5.2, UC36.5.3, UC36.5.4}
+	\label{fig:UC36-5}
+\end{figure}
+
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è autenticato presso il sistema
+        \item L'utente sta visualizzando la visione aggregata (\hyperref[UC36]{UC36})
+        \item Almeno una repository del workspace ha subito un'analisi della documentazione
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema presenta all'utente la sezione completa di analisi della documentazione aggregata
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera i dati sulla documentazione dalle repository del workspace
+        \item Il sistema calcola le metriche aggregate sulla qualità della documentazione
+        \item Il sistema visualizza il voto documentazione minimo (\hyperref[UC36.5.1]{UC36.5.1})
+        \item Il sistema visualizza il voto documentazione medio (\hyperref[UC36.5.2]{UC36.5.2})
+        \item Il sistema visualizza il voto documentazione massimo (\hyperref[UC36.5.3]{UC36.5.3})
+        \item Il sistema visualizza il grafico distribuzione voti documentazione (\hyperref[UC36.5.4]{UC36.5.4})
+    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC36.5.1]{UC36.5.1}, \hyperref[UC36.5.2]{UC36.5.2}, \hyperref[UC36.5.3]{UC36.5.3}, \hyperref[UC36.5.4]{UC36.5.4}
+\end{itemize}
+
+% --- UC36.5.1 - VOTO DOCUMENTAZIONE MINIMO ---
+\subparagraph{UC36.5.1 - Visualizza voto documentazione minimo}\label{UC36.5.1}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando la sezione documentazione aggregata (\hyperref[UC36.5]{UC36.5})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzato il voto minimo della qualità della documentazione tra le repository del workspace
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema individua il voto minimo di qualità della documentazione tra tutte le repository del workspace
+        \item Il sistema visualizza il voto minimo della documentazione
+    \end{enumerate}
+\end{itemize}
+
+% --- UC36.5.2 - VOTO DOCUMENTAZIONE MEDIO ---
+\subparagraph{UC36.5.2 - Visualizza voto documentazione medio}\label{UC36.5.2}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando la sezione documentazione aggregata (\hyperref[UC36.5]{UC36.5})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzato il voto medio della qualità della documentazione tra le repository del workspace
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema calcola la media dei voti di qualità della documentazione tra tutte le repository del workspace
+        \item Il sistema visualizza il voto medio della documentazione
+    \end{enumerate}
+\end{itemize}
+
+% --- UC36.5.3 - VOTO DOCUMENTAZIONE MASSIMO ---
+\subparagraph{UC36.5.3 - Visualizza voto documentazione massimo}\label{UC36.5.3}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando la sezione documentazione aggregata (\hyperref[UC36.5]{UC36.5})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzato il voto massimo della qualità della documentazione tra le repository del workspace
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema individua il voto massimo di qualità della documentazione tra tutte le repository del workspace
+        \item Il sistema visualizza il voto massimo della documentazione
+    \end{enumerate}
+\end{itemize}
+
+% --- UC36.5.4 - GRAFICO VOTI DOCUMENTAZIONE ---
+\subparagraph{UC36.5.4 - Visualizza grafico voti documentazione}\label{UC36.5.4}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando la sezione documentazione aggregata (\hyperref[UC36.5]{UC36.5})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene visualizzato un grafico a torta che mostra la distribuzione dei voti sulla documentazione
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema raggruppa i voti di qualità della documentazione delle repository del workspace
+        \item Il sistema calcola la distribuzione dei voti
+        \item Il sistema visualizza un grafico a torta con la distribuzione dei voti sulla documentazione
+    \end{enumerate}
+\end{itemize}
+
+
+% ============================================
+% UC36.6 - ERRORE VISIONE AGGREGATA
+% ============================================
+\paragraph{UC36.6 - Errore Visione Aggregata}\label{UC36.6}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente è autenticato presso il sistema
+        \item L'utente sta tentando di visualizzare la visione aggregata (\hyperref[UC36]{UC36})
+        \item Si è verificata una delle seguenti condizioni:
+        \begin{itemize}
+            \item L'insieme di repository del workspace è vuoto
+            \item Il workspace non contiene repository
+        \end{itemize}
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Il sistema informa l'utente dell'impossibilità di visualizzare la visione aggregata
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema rileva una condizione di errore
+        \item Il sistema mostra un messaggio di errore appropriato: "Il workspace non contiene repository da analizzare" (se workspace vuoto)
     \end{enumerate}
 \end{itemize}
 

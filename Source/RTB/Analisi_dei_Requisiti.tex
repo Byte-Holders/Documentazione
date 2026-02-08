@@ -657,6 +657,14 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 
 
 \subsubsection{UC19 - Visualizza lista tag raccolta}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC19.png}
+	\caption{UC19 - Visualizza lista tag raccolta}
+	\label{fig:UC19}
+\end{figure}
+
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -665,25 +673,90 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 		\item L'utente è stato riconosciuto dal sistema come Utente
 		\item L'utente ha selezionato un workspace
 	\end{itemize}
-	\item \textbf{Postcondizioni:} Il sistema mostra a schermo l'elenco dei tag raccolta definiti nel workspace corrente
+	\item \textbf{Postcondizioni:} Il sistema mostra a schermo l'elenco dei tag raccolta definiti nel workspace o repository corrente
 	\item \textbf{Scenario principale:}
 	\begin{enumerate}
-		\item L'utente seleziona l'opzione per visualizzare i tag raccolta del workspace corrente
-		\item Il sistema recupera l'elenco dei tag raccolta associati al workspace selezionato
-		\item Il sistema mostra a schermo la lista dei tag raccolta
+		\item L'utente seleziona l'opzione per visualizzare i tag raccolta
+		\item Il sistema determina il contesto di visualizzazione (workspace o repository selezionata)
+		\item Il sistema recupera l'elenco dei tag raccolta associati al contesto selezionato
+		\item Il sistema mostra a schermo la lista dei tag raccolta (\hyperref[UC19.1]{UC19.1 - Visualizza elemento lista tag raccolta repository})
 	\end{enumerate}
 	\item \textbf{Scenario alternativo:}
-	\begin{enumerate}
-		\item Il workspace non contiene alcun tag raccolta configurato ->Vedi [UC Nessun tag raccolta presente oppure elenco vuoto], il sistema mostra un messaggio informativo: "Nessun tag raccolta presente nel workspace corrente"
-	\end{enumerate}
-	\item \textbf{Inclusioni:}
-	\begin{enumerate}
-		\item UC19.1 - Visualizza elemento lista tag raccolta repository
-	\end{enumerate}
+    \begin{itemize}
+        \item \textbf{Nessun tag raccolta presente:}
+        \begin{itemize}
+            \item \textbf{Condizione:} Il workspace selezionato non contiene alcun tag raccolta
+            \item \textbf{Flusso:}
+            \begin{enumerate}
+                \item Il sistema mostra un messaggio informativo all'utente indicando che non sono presenti tag raccolta nel workspace
+            \end{enumerate}
+        \end{itemize}
+    \end{itemize}
+	\item \textbf{Inclusioni:} \hyperref[UC19.1]{UC19.1}
+	\item \textbf{UC che ereditano:} 
+	\begin{itemize}
+		\item \hyperref[UC19.1]{UC19.1 - Visualizza lista tag raccolta repository}
+		\item \hyperref[UC19.2]{UC19.2 - Visualizza lista tag raccolta workspace}
+	\end{itemize}
 \end{itemize}
 
+\paragraph{UC19.1 - Visualizza lista tag raccolta repository} \label{UC19.1}
 
-\subsubsection{UC19.1 - Visualizza elemento lista tag raccolta}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC19_1.png}
+	\caption{UC19.1 - Visualizza lista tag raccolta repository}
+	\label{fig:UC19.1}
+\end{figure}
+
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato una repository appartenente al workspace
+	\end{itemize}
+	\item \textbf{Postcondizioni:} Il sistema mostra a schermo l'elenco dei tag raccolta associati alla repository selezionata
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'utente seleziona una repository appartenente al workspace
+		\item Il sistema recupera l'elenco dei tag raccolta associati alla repository selezionata
+		\item Il sistema mostra la lista dei tag raccolta della repository (\hyperref[UC19.1.1]{UC19.1.1 - Visualizza elemento lista tag raccolta})
+	\end{enumerate}
+	\item \textbf{Inclusioni:} \hyperref[UC19.1.1]{UC19.1.1}
+	\item \textbf{Eredita da:} \hyperref[UC19]{UC19 - Visualizza lista tag raccolta}
+\end{itemize}
+
+\paragraph{UC19.2 - Visualizza lista tag raccolta workspace} \label{UC19.2}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC19_2.png}
+	\caption{UC19.2 - Visualizza lista tag raccolta workspace}
+	\label{fig:UC19.2}
+\end{figure}
+
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+	\end{itemize}
+	\item \textbf{Postcondizioni:} Il sistema mostra a schermo l'elenco dei tag raccolta associati al workspace selezionato
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'utente seleziona l'opzione “Gestione tag raccolta” del workspace
+		\item Il sistema recupera l'elenco dei tag raccolta associati al workspace selezionato
+		\item Il sistema mostra la lista dei tag raccolta del workspace (\hyperref[UC19.1.1]{UC19.1.1 - Visualizza elemento lista tag raccolta})
+	\end{enumerate}
+	\item \textbf{Inclusioni:} \hyperref[UC19.1.1]{UC19.1.1}
+	\item \textbf{Eredita da:} \hyperref[UC19]{UC19 - Visualizza lista tag raccolta}
+\end{itemize}
+
+\subparagraph{UC19.1.1 - Visualizza elemento lista tag raccolta} \label{UC19.1.1}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -696,17 +769,37 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	\item \textbf{Scenario principale:}
 	\begin{enumerate}
 		\item Il sistema recupera le informazioni relative a un singolo tag raccolta presente nella lista
-		\item Il sistema mostra il nome identificativo del tag raccolta per la visualizzazione nella lista
+		\item Il sistema mostra il nome identificativo del tag raccolta per la visualizzazione nella lista  ( \hyperref[UC19.1.1.1]{UC19.1.1.1 - Visualizza Nome tag raccolta})
 	\end{enumerate}
-	\item \textbf{Inclusioni:}
+	\item \textbf{Inclusioni:} \hyperref[UC19.1.1]{UC19.1.1}
+\end{itemize}
+
+\subparagraph{UC19.1.1.1 - Visualizza Nome tag raccolta} \label{UC19.1.1.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente sta visualizzando la lista dei tag raccolta del workspace o di un repository
+	\end{itemize}
+	\item \textbf{Postcondizioni:} Viene visualizzato il nome del tag raccolta
+	\item \textbf{Scenario principale:}
 	\begin{enumerate}
-		\item UC19.1.1 - Visualizza Nome tag raccolta
+		\item Il sistema recupera il nome del tag raccolta da mostrare nella lista
+		\item Il sistema mostra il nome del tag raccolta nell'elemento della lista
 	\end{enumerate}
 \end{itemize}
 
-\subsubsection{UC19.1.1 - Visualizza Nome tag raccolta}
-
 \subsubsection{UC20 - Crea tag raccolta}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC20.png}
+	\caption{UC20 - Crea tag raccolta}
+	\label{fig:UC20}
+\end{figure}
+
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -725,23 +818,28 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	\begin{enumerate}
 		\item L'utente seleziona l'opzione per creare un nuovo tag raccolta
 		\item Il sistema richiede l'inserimento del nome del tag raccolta
-		\item L'utente inserisce il nome del tag raccolta
+		\item L'utente inserisce il nome del tag raccolta (\hyperref[UC20.1]{UC 20.1 - Inserisci nome tag raccolta})
 		\item L'utente conferma la creazione
 		\item Il sistema verifica che il nome inserito sia valido e non già esistente nel workspace
 		\item Il sistema crea il nuovo tag raccolta e lo associa al workspace corrente
 		\item Il sistema mostra un messaggio di conferma dell'avvenuta creazione del tag raccolta
 	\end{enumerate}
-	\item \textbf{Inclusioni:}
-	\begin{itemize}
-		\item UC 20.1 - Inserisci nome tag raccolta
-	\end{itemize}
+	\item \textbf{Inclusioni:} \hyperref[UC20.1]{UC 20.1}
 		\item \textbf{Scenario alternativo:}
-	\begin{enumerate}
-		\item Il tag raccolta non viene creato perchè il nome del tag raccolta inserito è già esistente nel workspace o non è valido (vuoto, caratteri non ammessi) ->[vedi UC21 - Creazione tag raccolta non riuscita]
-	\end{enumerate}
+    \begin{itemize}
+        \item \textbf{Nome non valido o già esistent:} (\hyperref[UC21]{UC21 - Creazione tag raccolta non riuscita})
+        \begin{itemize}
+            \item \textbf{Condizione:} il nome inserito è vuoto, contiene caratteri non ammessi o è già presente nel workspace
+            \item \textbf{Flusso:}
+            \begin{enumerate}
+                \item Il sistema non crea il tag raccolta
+                \item Il sistema informa l'utente dell'errore e consente la modifica del nome o l'annullamento dell'operazione
+            \end{enumerate}
+        \end{itemize}
+    \end{itemize}
 \end{itemize}
 
-\subsubsection{UC 20.1 - Inserisci nome tag raccolta}
+\subsubsection{UC 20.1 - Inserisci nome tag raccolta} \label{UC20.1}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -762,7 +860,7 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	\end{enumerate}
 \end{itemize}
 
-\subsubsection{UC21 - Creazione tag raccolta non riuscita}
+\subsubsection{UC21 - Creazione tag raccolta non riuscita} \label{UC21}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -779,7 +877,7 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	\begin{itemize}
 		\item La creazione del tag raccolta viene annullata
 		\item Nessun nuovo tag raccolta viene aggiunto al workspace corrente
-		\item Il sistemafornisce all'utente un messaggio di errore esplicativo
+		\item Il sistema fornisce all'utente un messaggio di errore esplicativo
 	\end{itemize}
 	\item \textbf{Scenario principale:}
 	\begin{enumerate}
@@ -791,6 +889,14 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 \end{itemize}
 
 \subsubsection{UC22 - Eliminazione tag raccolta dal workspace}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC22.png}
+	\caption{UC22 - Eliminazione tag raccolta dal workspace}
+	\label{fig:UC22}
+\end{figure}
+
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -831,6 +937,15 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 \end{itemize}
 
 \subsubsection{UC23 - Assegnazione tag raccolta a repository}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC23.png}
+	\caption{UC23 - Assegnazione tag raccolta a repository}
+	\label{fig:UC23}
+\end{figure}
+
+
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -881,6 +996,14 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 \end{itemize}
 
 \subsubsection{UC24 -Rimozione tag raccolta da repository}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC24.png}
+	\caption{UC24 -Rimozione tag raccolta da repository}
+	\label{fig:UC24}
+\end{figure}
+
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -889,7 +1012,7 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 		\item L'utente è stato riconosciuto dal sistema come Utente
 		\item L'utente ha selezionato un workspace
 		\item L'utente ha selezionato una repository del workspace
-		\item La repository selezionata ha almeno un tag raccolta associatoe
+		\item La repository selezionata ha almeno un tag raccolta associato
 	\end{itemize}
 	\item \textbf{Postcondizioni:} 
 	\begin{itemize}
@@ -929,6 +1052,14 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 \end{itemize}
 
 \subsubsection{UC25 - Visualizza lista repository del workspace}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC25.png}
+	\caption{UC25 - Visualizza lista repository del workspace}
+	\label{fig:UC25}
+\end{figure}
+
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -949,14 +1080,7 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 		\item Il sistema mostra la lista delle repository
 		\item Per ciascuna repository, il sistema visualizza delle informazioni sintetiche
 	\end{enumerate}
-	\item \textbf{Inclusioni:}
-	\begin{itemize}
-		\item UC 25.1 - Visualizza nome repository
-		\item UC 25.2 - Visualizza data ultima scansione
-		\item UC 25.3 - Visualizza presenza criticità
-		\item UC 25.4 - Visualizza voto documentazione
-		\item UC 25.5 - Visualizza percentuale test coverage
-	\end{itemize}
+	\item \textbf{Inclusioni:} \hyperref[UC 25.1]{UC 25.1}, \hyperref[UC 25.2]{UC 25.2}, \hyperref[UC 25.3]{UC 25.3}, \hyperref[UC 25.4]{UC 25.4}, \hyperref[UC 25.5]{UC 25.5}
 	\item \textbf{Scenario alternativo:}
 	\begin{enumerate}
 		\item \textbf{Nessuna repository presente nel workspace:} 
@@ -979,7 +1103,7 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	\end{enumerate}
 \end{itemize}
 
-\subsubsection{UC 25.1 - Visualizza nome repository}
+\subsubsection{UC 25.1 - Visualizza nome repository}\label{UC25.1}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -1001,7 +1125,7 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	\end{enumerate}
 \end{itemize}
 
-\subsubsection{UC 25.2 - Visualizza data ultima scansione}
+\subsubsection{UC 25.2 - Visualizza data ultima scansione} \label{UC25.2}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -1023,7 +1147,7 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	\end{enumerate}
 	\item \textbf{Scenario alternativo:}
 	\begin{enumerate}
-		\item \textbf{Nessuna repository presente nel workspace:} 
+		\item \textbf{Nessuna scansione:} 
 			\begin{itemize}
 				\item \textbf{Condizione:}La repository non ha mai subito una scansione
 				\item \textbf{Flusso:} 
@@ -1031,19 +1155,10 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 					\item Il sistema mostra il messaggio:“Nessuna scansione effettuata”
 				\end{enumerate}
 			\end{itemize}
-			\item \textbf{Annullamento dell'operazione:} 
-			\begin{itemize}
-				\item \textbf{Condizione:}l'utente annulla la rimozione nella fase di conferma
-				\item \textbf{Flusso:} 
-				\begin{enumerate}
-					\item Il sistema interrompe l'operazione
-					\item Le associazioni dei tag raccolta alla repository rimangono invariate
-				\end{enumerate}
-			\end{itemize}
 	\end{enumerate}
 \end{itemize}
 
-\subsubsection{UC 25.3 - Visualizza presenza criticità}
+\subsubsection{UC 25.3 - Visualizza presenza criticità} \label{UC25.3}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -1078,7 +1193,7 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	\end{itemize}
 \end{itemize}
 
-\subsubsection{UC 25.4 - Visualizza voto documentazione}
+\subsubsection{UC 25.4 - Visualizza voto documentazione} \label{UC25.4}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -1121,7 +1236,7 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	\end{itemize}
 \end{itemize}
 
-\subsubsection{UC 25.5 - Visualizza percentuale test coverage}
+\subsubsection{UC 25.5 - Visualizza percentuale test coverage} \label{UC25.5}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -1172,6 +1287,14 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 \end{itemize}
 
 \subsubsection{UC26 - Aggiungi repository}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC26.png}
+	\caption{UC26 - Aggiungi repository}
+	\label{fig:UC26}
+\end{figure}
+
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -1191,23 +1314,20 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	\begin{enumerate}
 		\item L'utente seleziona l'opzione per aggiungere una nuova repository
 		\item Il sistema mostra un form per l'inserimento dei dati della repository
-		\item L'utente inserisce il link della repository GitHub
+		\item L'utente inserisce il link della repository GitHub (\hyperref[UC26.1]{UC 26.1 - Inserisci link repository GitHub})
 		\item (Opzionale) L'utente inserisce il PAT(Personal Access Token) per l'accesso alla repository GitHub, se la repository è privata
 		\item L'utente conferma l'operazione di aggiunta
 		\item Il sistema valida il formato del link della repository
-		\item Il sistema verifica l'accesso alla repository tramite PAT, se privata
+		\item Il sistema verifica l'accesso alla repository tramite PAT, se privata (\hyperref[UC26.2]{UC 26.2 - Inserisci PAT repository GitHub})
 		\item Il sistema associa la repository al workspace corrente
 		\item Il sistema mostra un messaggio di conferma dell'avvenuta aggiunta
 	\end{enumerate}
-	\item \textbf{Inclusioni:}
-	\begin{itemize}
-		\item UC 26.1 - Inserisci link repository GitHub
-		\item UC 26.2 - Inserisci PAT repository GitHub
-	\end{itemize}
 	\item \textbf{Scenario alternativo:}
 	\begin{itemize}
 		\item \textbf{UC 27 - Errore aggiunta repository:} errore se i dati inseriti non sono validi oppure l'accesso alla repository non è consentito 
 	\end{itemize}
+	\item \textbf{Inclusioni:} \hyperref[UC26.1]{UC26.1}, \hyperref[UC26.2]{UC26.2}
+	\item \textbf{Estensioni:} \hyperref[UC27]{UC27}
 \end{itemize}
 
 \subsubsection{UC 26.1 - Inserisci link repository GitHub}
@@ -1266,7 +1386,7 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	\end{itemize}
 \end{itemize}
 
-\subsubsection{UC27 - Erore aggiunta repository}
+\subsubsection{UC27 - Errore aggiunta repository}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -1323,6 +1443,389 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	\end{itemize}
 \end{itemize}
 
+\subsubsection{UC28 - Rimuovi repository} \label{UC28}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC28.png}
+	\caption{UC28 - Rimuovi repository}
+	\label{fig:UC28}
+\end{figure}
+
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+		\item L'utente ha selezionato una repository
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item La repository selezionata viene rimossa dal workspace
+		\item Tutti i dati di analisi, scansioni, configurazioni e associazioni (inclusi i tag raccolta) relativi alla repository sono eliminati dal sistema
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'utente seleziona l'opzione “Rimuovi repository” dalla repository selezionata
+		\item Il sistema mostra una finestra di conferma che informa l'utente che:
+		\begin{itemize}
+			\item la repository verrà rimossa dal workspace
+			\item tutti i dati di analisi associati verranno eliminati
+			\item l'operazione è irreversibile
+		\end{itemize}
+		\item L'utente conferma l'operazione di rimozione
+		\item Il sistema rimuove la repository dal workspace
+		\item Il sistema elimina tutti i dati di analisi, scansioni, configurazioni associate alla repository
+		\item Il sistema aggiorna la visualizzazione e mostra un messaggio di conferma dell'avvenuta rimozione
+	\end{enumerate}
+	\item \textbf{Scenario alternativo:}
+	\begin{itemize}
+		\item \textbf{Annullamento rimozione repository:} (\hyperref[UC28.1]{UC28.1 - Annullamento rimozione repository})
+			\begin{itemize}
+				\item \textbf{Condizione:} l'utente annulla l'operazione nella finestra di conferma
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema annulla l'operazione
+					\item La repository rimane invariata nel workspace
+				\end{enumerate}
+			\end{itemize}
+		\item \textbf{Repository con scansioni in corso:} (\hyperref[UC28.2]{UC28.2 - Repository con scansioni in corso})
+			\begin{itemize}
+				\item \textbf{Condizione:} sono presenti scansioni attive sulla repository
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema mostra un avviso: “Sono presenti scansioni in corso che verranno interrotte”
+					\item Il sistema richiede una conferma esplicita aggiuntiva
+					\item Se l'utente conferma, il flusso riprende dal punto 4 dello scenario principale
+				\end{enumerate}
+			\end{itemize}
+		\item \textbf{Errore durante la rimozione:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} si verifica un errore tecnico durante la rimozione
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema interrompe l'operazione
+					\item Il sistema mostra un messaggio di errore: “Errore durante la rimozione della repository”
+				\end{enumerate}
+			\end{itemize}
+	\end{itemize}
+	\item \textbf{Estensioni:} \hyperref[UC28.1]{UC28.1}, \hyperref[UC28.2]{UC28.2}
+\end{itemize}
+
+\paragraph{UC28.1 - Annullamento rimozione repository} \label{UC28.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+		\item L'utente ha selezionato una repository
+		\item L'utente ha avviato il caso d'uso UC 28 - Rimuovi repository (\hyperref[UC28]{UC28})
+		\item Il sistema ha mostrato la richiesta di conferma della rimozione
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item La repository selezionata non viene rimossa dal workspace
+		\item Nessun dato di analisi, scansioni o configurazione viene eliminato
+		\item Il sistema torna alla visualizzazione precedente alla richiesta di rimozione
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'utente seleziona l'opzione “Rimuovi repository” dalla repository selezionata
+		\item Il sistema mostra una finestra di conferma che informa l'utente che:
+		\begin{itemize}
+			\item la repository verrà rimossa dal workspace
+			\item tutti i dati di analisi associati verranno eliminati
+			\item l'operazione è irreversibile
+		\end{itemize}
+		\item L'utente visualizza il messaggio di conferma della rimozione della repository
+		\item L'utente seleziona l'opzione “Annulla”
+		\item Il sistema interrompe la procedura di rimozione
+		\item Il sistema ritorna alla visualizzazione precedente
+	\end{enumerate}
+\end{itemize}
+
+\paragraph{UC28.2 - Repository con scansioni in corso} \label{UC28.2}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+		\item L'utente ha selezionato una repository
+		\item L'utente ha avviato il caso d'uso UC 28 - Rimuovi repository (\hyperref[UC28]{UC28})
+		\item Il sistema rileva la presenza di scansioni in corso sulla repository
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Le scansioni in corso vengono interrotte e la repository viene rimossa solo se l'utente conferma esplicitamente la richiesta
+		\item In caso di annullamento, nessuna modifica viene applicata
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item Il sistema rileva che la repository ha scansioni attive
+		\item Il sistema mostra un messaggio: “Sono presenti scansioni in corso che verranno interrotte. Vuoi procedere?”
+		\item L'utente conferma la rimozione nonostante le scansioni attive
+		\item Il sistema interrompe le scansioni in corso
+		\item Il sistema procede con la rimozione della repository come descritto nello scenario principale di UC 28 - Rimuovi repository (\hyperref[UC28]{UC28}) 
+	\end{enumerate}
+\end{itemize}
+
+
+\subsection{UC 29 - Ricerca repository}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC29.png}
+	\caption{UC 29 - Ricerca repository}
+	\label{fig:UC29}
+\end{figure}
+
+
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Il sistema mostra la lista della lista delle repository del workspace che soddisfano i criteri di ricerca specificati dall'utente
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'utente seleziona l'opzione di ricerca repository
+		\item Il sistema acquisisce i criteri di ricerca dall'utente (tramite barra di ricerca o filtri)
+		\item Il sistema filtra la lista delle repository del workspace in base ai criteri specificati
+		\item Il sistema mostra la lista delle repository che corrispondono ai criteri di ricerca
+	\end{enumerate}
+	\item \textbf{UC che ereditano:} 
+	\begin{itemize}
+		\item \hyperref[UC30]{UC30 - Ricerca con barra}
+		\item \hyperref[UC31]{UC31 - Ricerca con filtri}
+	\end{itemize}
+\end{itemize}
+
+\subsection{UC 30 - Ricerca con barra}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+		\item L'utente ha selezionato l'opzione di ricerca repository attraverso barra di ricerca
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Il sistema mostra la lista della lista delle repository del workspace che soddisfano i criteri di ricerca specificati dall'utente nella barra di ricerca
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'utente digita una parola chiave o una frase nella barra di ricerca
+		\item L'utente conferma l'operazione di ricerca
+		\item Il sistema filtra la lista delle repository del workspace in base alla corrispondenza con la parola chiave o frase inserita (nome repository, linguaggio di programmazione, tag raccolta o username github???)
+		\item Il sistema mostra la lista delle repository che corrispondono ai criteri di ricerca
+	\end{enumerate}
+\end{itemize}
+
+\subsection{UC 31 - Ricerca con filtri}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC31.png}
+	\caption{UC 31 - Ricerca con filtri}
+	\label{fig:UC31}
+\end{figure}
+
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+		\item L'utente ha selezionato l'opzione di ricerca repository con filtri
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Il sistema mostra la lista della lista delle repository del workspace che soddisfano i criteri di ricerca specificati dall'utente tramite filtri
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'utente seleziona uno o più filtri di ricerca (\hyperref[UC31.1]{UC31.1 - Selezione filtri di ricerca})
+		\item L'utente conferma l'operazione di ricerca
+		\item Il sistema filtra la lista delle repository del workspace in base ai criteri specificati tramite i filtri selezionati
+		\item Il sistema mostra la lista delle repository che corrispondono ai criteri di ricerca
+	\end{enumerate}
+	\item \textbf{Inclusioni}: \hyperref[UC31.1]{UC31.1}
+\end{itemize}
+
+\subsubsection{UC31.1 Selezione filtri di ricerca} \label{UC31.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:}
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+		\item L'utente ha avviato una ricerca con filtri
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item I filtri di ricerca selezionati dall'utente sono acquisiti dal sistema
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item Il sistema mostra una lista di filtri di ricerca disponibili 
+		\item L'utente può selezionare uno o più filtri dalla lista:
+		\begin{itemize}
+			\item linguaggi di programmazione
+			\item tag raccolta
+			\item nome del repository
+			\item username dell'utente che ha aggiunto la repository
+			\item username github di una persona che lavora su una repository ???
+			\item intervallo di test coverage
+			\item intervallo di voto della documentazione
+		\end{itemize}
+		\item L'utente conferma la selezione dei filtri
+		\item Il sistema acquisisce i filtri selezionati
+	\end{enumerate}
+	\item \textbf{Scenario alternativo:}
+	\begin{itemize}
+		\item \textbf{Nessun filtro selezionato:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} l'utente non seleziona alcun filtro
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema considera tutti i repository del workspace come risultati della ricerca
+				\end{enumerate}
+			\end{itemize}
+		\item \textbf{Rimozione filtri selezionati:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} l'utente decide di rimuovere uno o più filtri selezionati
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item L'utente deseleziona i filtri che non vuole più utilizzare
+					\item Il sistema aggiorna la lista dei filtri selezionati
+				\end{enumerate}
+			\end{itemize}
+		\item \textbf{Inserimento di valori non validi}:
+		\begin{itemize}
+				\item \textbf{Condizione:} l'utente inserisce valori non validi
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item il sistema segnala l'errore
+					\item l'utente può correggere i dati inseriti
+				\end{enumerate}
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+\subsection{UC 32 - Ordinamento lista repository}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC32.png}
+	\caption{UC32 - Ordinamento lista repository}
+	\label{fig:UC32}
+\end{figure}
+
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:}
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+		\item L'utente sta visualizzando una lista di repository del workspace
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Il sistema mostra la lista delle repository ordinata secondo il criterio e la direzione selezionati
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'utente seleziona l'opzione di ordinamento della lista repository
+		\item Il sistema mostra il criterio di ordinamento attualmente attivo
+		\item Il sistema mostra una lista di criteri di ordinamento disponibili:
+		\begin{itemize}
+			\item Nome repository (A-Z, Z-A)
+			\item Data di aggiunta al workspace (più recente, più vecchia)
+			\item tempo dall'ultima scansione (più recente, più vecchia)
+			\item Test coverage (crescente, decrescente)
+			\item Voto della documentazione (crescente, decrescente)
+		\end{itemize}
+		\item L'utente seleziona un criterio di ordinamento dalla lista
+		\item L'utente seleziona la direzione di ordinamento: 
+		\begin{itemize}
+			\item crescente: A-Z, da più vecchia a più recente, numero crescente
+			\item decrescente: Z-A, da più recente a più vecchia, numero decrescente
+		\end{itemize}
+		\item Il sistema ordina la lista delle repository in base al criterio e alla direzione selezionati
+		\item Il sistema mostra la lista delle repository ordinata
+	\end{enumerate}
+	\item \textbf{Scenario alternativo:}
+	\begin{itemize}
+		\item \textbf{Nessun criterio selezionato:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} l'utente non seleziona alcun criterio di ordinamento
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema mantiene l'ordinamento attuale della lista delle repository
+				\end{enumerate}
+			\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+\subsection{UC 33 - Aggiorna repository}
+Estende Visualizza lista repo, visualizza singola repo, visualizza visione aggregata !!!!!!
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:}
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+		\item L'utente sta visualizzando una lista di repository del workspace, una singola repository o la visione aggregata del workspace
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Le informazioni mostrate sulle repository sono aggiornate in base all'ultima scansione completata
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'utente seleziona l'azione "Aggiorna"
+		\item Il sistema verifica se, dall'ultima visualizzazione, sono state completate nuove scansioni
+		\item Se sono state completate nuove scansioni, il sistema recupera i dati aggiornati delle repository
+		\item Il sistema aggiorna le informazioni mostrate sulle repository in base ai risultati dell'ultima scansione completata
+	\end{enumerate}
+	\item \textbf{Scenario alternativo:}
+	\begin{itemize}
+		\item \textbf{Nessuna nuova scansione:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} non sono presenti nuove scansioni completate dall'ultima visualizzazione delle repository
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema mostra un messaggio informativo: "Nessuna nuova scansione completata. Le informazioni mostrate sono aggiornate." ????
+				\end{enumerate}
+			\end{itemize}
+		\item \textbf{Scansione in corso:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} è attualmente in corso una scansione su una o più repository
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema mostra un messaggio informativo: "Scansione in corso, provare ad aggiornare le informazioni più tardi." ????
+				\end{enumerate}
+			\end{itemize}
+	\end{itemize}
+\end{itemize}
 
 \newpage
 % ============================================
@@ -2173,6 +2676,207 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
     \end{enumerate}
 \end{itemize}
 
+% ============================================
+% UC37 - AVVIA SCANSIONE
+% ============================================
 
+\subsection{UC 37 - Avvia scansione}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC37.png}
+	\caption{UC37 - Avvia scansione}
+	\label{fig:UC37}
+\end{figure}
+
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:}
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+		\item Esiste almeno una repository nel workspace
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Una nuova scansione viene avviata su una o più repository, su un branch valido, selezionate dall'utente
+		\item Le repository sottoposte a scansione vengono aggiornate con lo stato "Scansione in corso" fino al completamento della scansione
+		\item Al completamento della scansione, le repository vengono aggiornate con i risultati dell'analisi e lo stato "Scansione completata"
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'utente seleziona l'opzione "Avvia scansione"
+		\item Il sistema richiede all'utente di selezionare una o più repository su cui avviare la scansione
+		\item L'utente seleziona le repository su cui avviare la scansione
+		\item Il sistema verifica che le repository selezionate abbiano un branch valido (es. develop)
+		\item Il sistema avvia la scansione sulle repository selezionate
+		\item Il sistema aggiorna lo stato delle repository sottoposte a scansione a "Scansione in corso"
+		\item Al completamento della scansione, il sistema aggiorna le repository con i risultati dell'analisi e lo stato "Scansione completata"	
+	\end{enumerate}
+	\item \textbf{Scenario alternativo:}
+	\begin{itemize}
+		\item \textbf{Annullamento scansione:} \hyperref[UC38]{UC38}
+			\begin{itemize}
+				\item \textbf{Condizione:} l'utente decide di annullare l'operazione di avvio scansione prima del suo completamento
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item L'utente seleziona l'opzione "Annulla scansione" durante la procedura di avvio scansione
+					\item Il sistema interrompe la procedura di avvio scansione
+					\item Il sistema non avvia alcuna nuova scansione e se sono già state scansionate alcune repository, i dati di queste repository vengono riprestinati allo stato precedente all'avvio della scansione
+				\end{enumerate}
+			\end{itemize}
+		\item \textbf{Scansione non riuscita:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} si verifica un errore tecnico durante l'avvio della scansione o durante la scansione stessa
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema rileva un errore durante l'avvio o l'esecuzione della scansione
+					\item Il sistema interrompe la scansione in corso
+					\item Il sistema mantiene o ripristina lo stato precedente delle repository
+					\item Il sistema mostra un messaggio informativo: "Errore durante la scansione. Riprova più tardi." 
+				\end{enumerate}
+			\end{itemize}
+		\item \textbf{Scansione in corso:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} è attualmente in corso una scansione su una o più repository selezionate per la scansione
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema recupera i nomi delle repository attualmente sottoposte a scansione
+					\item Il sistema mostra un messaggio informativo: "Scansione in corso nelle seguenti repository: [nomi delle repository], prova più tardi." 
+					\item Il sistema avvia la scansione solo sulle repository selezionate che non sono attualmente sottoposte a scansione
+				\end{enumerate}
+			\end{itemize}
+		\item \textbf{Branch non valido}: 
+			\begin{itemize}
+				\item \textbf{Condizione:} una o più repository selezionate per la scansione non hanno un branch valido (es. develop)
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema identifica le repository senza un branch valido
+					\item Il sistema mostra un messaggio informativo: "Le seguenti repository non hanno un branch valido e non saranno sottoposte a scansione: [nomi delle repository]. Assicurati che il branch develop esista e riprova." 
+					\item Il sistema avvia la scansione solo sulle repository selezionate che hanno un branch valido
+				\end{enumerate}
+	\end{itemize}
+	\item \textbf{Estensioni}: \hyperref[UC38]{UC38}
+	\item \textbf{UC che ereditano}:
+	\begin{itemize}
+		\item \hyperref[UC37.1]{UC37.1 - Scansione workspace}
+		\item \hyperref[UC37.2]{UC37.2 - Scansione singola repository}
+		\item \hyperref[UC37.3]{UC37.3 - Scansione insieme di repository}
+	\end{itemize}
+\end{itemize}
+
+\subsection{UC 37.1 - Scansione workspace} \label{UC37.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:}
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+		\item Esiste almeno una repository nel workspace
+		\item L'utente ha selezionato l'opzione di avvio scansione su tutto il workspace
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Una scansione viene avviata su tutte le repository del workspace
+		\item Il branch develop è utilizzato per tutte le repository
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'utente seleziona l'opzione "Scansione workspace"
+		\item Il sistema seleziona automaticamente tutte le repository appartenenti al workspace
+		\item Il sistema seleziona automaticamente il branch develop per tutte le repository
+		\item Il sistema avvia la scansione
+	\end{enumerate}
+	\item \textbf{Eredita da}: \hyperref[UC38]{UC38 - Avvio scansione}
+\end{itemize}
+
+\subsection{UC 37.2 - Scansione singola repository} \label{UC37.2}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC37_2.png}
+	\caption{UC37.2 - Scansione singola repository}
+	\label{fig:UC37.2}
+\end{figure}
+
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:}
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+		\item Esiste almeno una repository nel workspace
+		\item L'utente ha selezionato una singola repository su cui avviare la scansione
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Una scansione viene avviata sulla repository selezionata
+		\item Il branch selezionato dall'utente viene analizzato
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item l'utente seleziona una repository del workspace
+		\item L'utente seleziona l'opzione "Avvio scansione"
+		\item Il sistema richiede all'utente di selezionare un branch valido su cui avviare la scansione (\hyperref[UC35]{UC35 - Selezione branch})
+		\item L'utente seleziona un branch valido
+		\item Il sistema avvia la scansione 
+	\end{enumerate}
+	\item \textbf{Inclusioni}: \hyperref[UC35]{UC35}
+	\item \textbf{Eredita da}: \hyperref[UC38]{UC38 - Avvio scansione}
+\end{itemize}
+
+\subsection{UC 37.3 - Scansione insieme di repository} \label{UC37.3}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:}
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+		\item Esiste almeno una repository nel workspace
+		\item L'utente ha selezionato almeno due repository 
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Una scansione viene avviata su tutte le repository selezionate
+		\item Il branch develop è utilizzato per tutte le repository
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item l'utente seleziona due o più repository del workspace
+		\item L'utente seleziona l'opzione "Avvio scansione"
+		\item Il sistema seleziona automaticamente il branch develop
+		\item Il sistema avvia la scansione 
+	\end{enumerate}
+	\item \textbf{Eredita da}: \hyperref[UC38]{UC38 - Avvio scansione}
+\end{itemize}
+
+\subsection{UC 38 - Annullamento scansione} \label{UC38}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:}
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+		\item Esiste almeno una repository nel workspace
+		\item L'utente ha avviato una scansione
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item La scansione in corso viene annullata
+		\item Le repository sottoposte a scansione vengono ripristinate allo stato precedente all'avvio della scansione
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item l'utente seleziona l'opzione "Annulla scansione"
+		\item Il sistema interrompe la scansione in corso
+		\item Il sistema ripristina le repository sottoposte a scansione allo stato precedente all'avvio della scansione
+		\item Il sistema mostra un messaggio informativo: "Scansione annullata. Rispristino delle informazioni delle repository precedentemente scansionate."
+	\end{enumerate}
+\end{itemize}
 
 \end{document}

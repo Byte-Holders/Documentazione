@@ -133,10 +133,13 @@
 		\textcolor{white}{\textbf{Data}} & 
 		\multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} &
 		\multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
-		0.7.0 & 08/02/2026 & Lorenzo Grolla & Stesura UC Verifica aggiornamento scansione \\ 
-        0.6.0 & 06/02/2026 & Giacomo Nalotto & Visione analisi sicurezza, analisi documentazione e analisi qualità del codice\\
-		0.5.0 & 04/02/2026 & Lorenzo Grolla & Stesura UC Visione Aggregata\\ 
-		0.4.0 & 25/01/2026 & Lorenzo Grolla & Stesura UC Dettagli Repository e Selezione Branch\\ 
+		0.10.0 & 08/02/2026 & Giulia Romanato & Stesura UC Backend (UC39 Esegui analisi con relativi sottocasi d'uso) \\ 
+		0.9.0 & 08/02/2026 & Giulia Romanato & Stesura UC Analisi (da UC37 a UC38) e inserimento immagini da UC19 a UC27 e UC37 e UC38 \\ 
+		0.8.0 & 08/02/2026 & Lorenzo Grolla & Stesura UC Verifica aggiornamento scansione \\ 
+        0.7.0 & 06/02/2026 & Giacomo Nalotto & Visione analisi sicurezza, analisi documentazione e analisi qualità del codice\\
+		0.6.0 & 04/02/2026 & Lorenzo Grolla & Stesura UC Visione Aggregata\\ 
+		0.5.0 & 25/01/2026 & Lorenzo Grolla & Stesura UC Dettagli Repository e Selezione Branch\\ 
+		0.4.0 & 19/01/2026 & Giulia Romanato & Stesura UC Gestione Respository e tag (da UC19 a UC27)\\
         0.3.0 & 18/01/2026 & Giacomo Nalotto & Stesura UC Gestione Workspace\\
 		0.2.0 & 14/01/2026 & Lorenzo Grolla & Stesura UC Autenticazione\\ 
 		0.1.0 & 19/12/2025 & Alessandro Morabito & Inizio stesura\\ 
@@ -4286,7 +4289,7 @@ Il caso d'uso UC36 include ulteriori casi d'uso come rappresentato nella seguent
 		\item Il sistema seleziona automaticamente il branch develop per tutte le repository
 		\item Il sistema avvia la scansione
 	\end{enumerate}
-	\item \textbf{Eredita da}: \hyperref[UC38]{UC38 - Avvio scansione}
+	\item \textbf{Eredita da}: \hyperref[UC37]{UC37 - Avvia scansione}
 \end{itemize}
 
 \subsection{UC 37.2 - Scansione singola repository} \label{UC37.2}
@@ -4322,7 +4325,7 @@ Il caso d'uso UC36 include ulteriori casi d'uso come rappresentato nella seguent
 		\item Il sistema avvia la scansione 
 	\end{enumerate}
 	\item \textbf{Inclusioni}: \hyperref[UC35]{UC35}
-	\item \textbf{Eredita da}: \hyperref[UC38]{UC38 - Avvio scansione}
+	\item \textbf{Eredita da}: \hyperref[UC37]{UC37 - Avvia scansione}
 \end{itemize}
 
 \subsection{UC 37.3 - Scansione insieme di repository} \label{UC37.3}
@@ -4348,7 +4351,7 @@ Il caso d'uso UC36 include ulteriori casi d'uso come rappresentato nella seguent
 		\item Il sistema seleziona automaticamente il branch develop
 		\item Il sistema avvia la scansione 
 	\end{enumerate}
-	\item \textbf{Eredita da}: \hyperref[UC38]{UC38 - Avvio scansione}
+	\item \textbf{Eredita da}: \hyperref[UC37]{UC37 - Avvia scansione}
 \end{itemize}
 
 \subsection{UC 38 - Annullamento scansione} \label{UC38}
@@ -4375,5 +4378,471 @@ Il caso d'uso UC36 include ulteriori casi d'uso come rappresentato nella seguent
 		\item Il sistema mostra un messaggio informativo: "Scansione annullata. Rispristino delle informazioni delle repository precedentemente scansionate."
 	\end{enumerate}
 \end{itemize}
+
+
+
+
+
+
+% ============================================
+% UC37 - AVVIA SCANSIONE BACKEND
+% ============================================
+
+\subsubsection{UC 37 - Avvia scansione}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC37.png}
+	\caption{UC37 - Avvia scansione}
+	\label{fig:UC37}
+\end{figure}
+
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:}
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+		\item Esiste almeno una repository nel workspace
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Una nuova scansione viene avviata su una o più repository, su un branch valido, selezionate dall'utente
+		\item Le repository sottoposte a scansione vengono aggiornate con lo stato "Scansione in corso" fino al completamento della scansione
+		\item Al completamento della scansione, le repository vengono aggiornate con i risultati dell'analisi e lo stato "Scansione completata"
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'utente seleziona l'opzione "Avvia scansione"
+		\item Il sistema richiede all'utente di selezionare una o più repository su cui avviare la scansione
+		\item L'utente seleziona le repository su cui avviare la scansione
+		\item Il sistema verifica che le repository selezionate abbiano un branch valido (es. develop)
+		\item Il sistema avvia l'esecuzione dell'analisi sulle repository selezionate (\hyperref[UC39]{UC39 - Esegui analisi})
+		\item Il sistema aggiorna lo stato delle repository sottoposte a scansione a "Scansione in corso"
+		\item Al completamento della scansione, il sistema aggiorna le repository con i risultati dell'analisi e lo stato "Scansione completata"	
+	\end{enumerate}
+	\item \textbf{Scenario alternativo:}
+	\begin{itemize}
+		\item \textbf{Annullamento scansione:} \hyperref[UC38]{UC38}
+			\begin{itemize}
+				\item \textbf{Condizione:} l'utente decide di annullare l'operazione di avvio scansione prima del suo completamento
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item L'utente seleziona l'opzione "Annulla scansione" durante la procedura di avvio scansione
+					\item Il sistema interrompe la procedura di avvio scansione
+					\item Il sistema non avvia alcuna nuova scansione e se sono già state scansionate alcune repository, i dati di queste repository vengono riprestinati allo stato precedente all'avvio della scansione
+				\end{enumerate}
+			\end{itemize}
+		\item \textbf{Scansione non riuscita:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} si verifica un errore tecnico durante l'avvio della scansione o durante la scansione stessa
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema rileva un errore durante l'avvio o l'esecuzione della scansione
+					\item Il sistema interrompe la scansione in corso
+					\item Il sistema mantiene o ripristina lo stato precedente delle repository
+					\item Il sistema mostra un messaggio informativo: "Errore durante la scansione. Riprova più tardi." 
+				\end{enumerate}
+			\end{itemize}
+		\item \textbf{Scansione in corso:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} è attualmente in corso una scansione su una o più repository selezionate per la scansione
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema recupera i nomi delle repository attualmente sottoposte a scansione
+					\item Il sistema mostra un messaggio informativo: "Scansione in corso nelle seguenti repository: [nomi delle repository], prova più tardi." 
+					\item Il sistema avvia la scansione solo sulle repository selezionate che non sono attualmente sottoposte a scansione
+				\end{enumerate}
+			\end{itemize}
+		\item \textbf{Branch non valido}: 
+			\begin{itemize}
+				\item \textbf{Condizione:} una o più repository selezionate per la scansione non hanno un branch valido (es. develop)
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema identifica le repository senza un branch valido
+					\item Il sistema mostra un messaggio informativo: "Le seguenti repository non hanno un branch valido e non saranno sottoposte a scansione: [nomi delle repository]. Assicurati che il branch develop esista e riprova." 
+					\item Il sistema avvia la scansione solo sulle repository selezionate che hanno un branch valido
+				\end{enumerate}
+			\end{itemize}
+	\end{itemize}
+	\item \textbf{Inclusioni}: \hyperref[UC38]{UC38}
+	\item \textbf{Estensioni}: \hyperref[UC38]{UC38}
+	\item \textbf{UC che ereditano}:
+	\begin{itemize}
+		\item \hyperref[UC37.1]{UC37.1 - Scansione workspace}
+		\item \hyperref[UC37.2]{UC37.2 - Scansione singola repository}
+		\item \hyperref[UC37.3]{UC37.3 - Scansione insieme di repository}
+	\end{itemize}
+\end{itemize}
+
+\paragraph{UC 37.1 - Scansione workspace} \label{UC37.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:}
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+		\item Esiste almeno una repository nel workspace
+		\item L'utente ha selezionato l'opzione di avvio scansione su tutto il workspace
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Una scansione viene avviata su tutte le repository del workspace
+		\item Il branch develop è utilizzato per tutte le repository
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'utente seleziona l'opzione "Scansione workspace"
+		\item Il sistema seleziona automaticamente tutte le repository appartenenti al workspace
+		\item Il sistema seleziona automaticamente il branch develop per tutte le repository
+		\item Il sistema esegue l'analisi (\hyperref[UC39]{UC39 - Esegui analisi})
+	\end{enumerate}
+	\item \textbf{Inclusioni:}: \hyperref[UC39]{UC39}
+	\item \textbf{Eredita da}: \hyperref[UC37]{UC37 - Avvia scansione}
+\end{itemize}
+
+\paragraph{UC 37.2 - Scansione singola repository} \label{UC37.2}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC37_2.png}
+	\caption{UC37.2 - Scansione singola repository}
+	\label{fig:UC37.2}
+\end{figure}
+
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:}
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+		\item Esiste almeno una repository nel workspace
+		\item L'utente ha selezionato una singola repository su cui avviare la scansione
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Una scansione viene avviata sulla repository selezionata
+		\item Il branch selezionato dall'utente viene analizzato
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item l'utente seleziona una repository del workspace
+		\item L'utente seleziona l'opzione "Avvio scansione"
+		\item Il sistema richiede all'utente di selezionare un branch valido su cui avviare la scansione (\hyperref[UC35]{UC35 - Selezione branch})
+		\item L'utente seleziona un branch valido
+		\item Il sistema esegue l'analisi (\hyperref[UC39]{UC39 - Esegui analisi})
+	\end{enumerate}
+	\item \textbf{Inclusioni}: \hyperref[UC35]{UC35}, \hyperref[UC39]{UC39}
+	\item \textbf{Eredita da}: \hyperref[UC37]{UC37 - Avvia scansione}
+\end{itemize}
+
+\paragraph{UC 37.3 - Scansione insieme di repository} \label{UC37.3}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:}
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+		\item Esiste almeno una repository nel workspace
+		\item L'utente ha selezionato almeno due repository 
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Una scansione viene avviata su tutte le repository selezionate
+		\item Il branch develop è utilizzato per tutte le repository
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item l'utente seleziona due o più repository del workspace
+		\item L'utente seleziona l'opzione "Avvio scansione"
+		\item Il sistema seleziona automaticamente il branch develop
+		\item Il sistema esegue l'analisi (\hyperref[UC39]{UC39 - Esegui analisi}) 
+	\end{enumerate}
+	\item \textbf{Inclusioni:}: \hyperref[UC39]{UC39}
+	\item \textbf{Eredita da}: \hyperref[UC37]{UC37 - Avvia scansione}
+\end{itemize}
+
+\subsubsection{UC 38 - Annullamento scansione} \label{UC38}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:}
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+		\item Esiste almeno una repository nel workspace
+		\item L'utente ha avviato una scansione
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item La scansione in corso viene annullata
+		\item Le repository sottoposte a scansione vengono ripristinate allo stato precedente all'avvio della scansione
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item l'utente seleziona l'opzione "Annulla scansione"
+		\item Il sistema interrompe la scansione in corso
+		\item Il sistema ripristina le repository sottoposte a scansione allo stato precedente all'avvio della scansione
+		\item Il sistema mostra un messaggio informativo: "Scansione annullata. Rispristino delle informazioni delle repository precedentemente scansionate."
+	\end{enumerate}
+\end{itemize}
+
+\paragraph{UC39 - Esegui analisi repository} \label{UC39}
+\begin{itemize}
+	\item \textbf{Attori principali:} Sistema
+	\item \textbf{Attori secondari:} Orchestratore, Agenti, Git, Database
+	\item \textbf{Precondizioni:}
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item È stata avviata una scansione (\hyperref[UC37]{UC37})
+		\item Esiste almeno una repository da analizzare
+		\item Per ogni repository sono noti:
+		\begin{itemize}
+			\item URL GitHub valido
+			\item Branch da analizzare
+			\item Eventuale PAT valida, in caso di repository private
+		\end{itemize}
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Per ogni repository analizzata:
+		\begin{itemize}
+			\item è stato generato un report completo
+			\item il report è stato salvato nel database
+		\end{itemize}
+		\item Lo stato della scansione viene aggiornato a “Scansione completata” o “Scansione fallita”
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item Il sistema recupera la lista delle repository da analizzare e i branch associati
+		\item Il sistema clona le repository in locale (\hyperref[UC39.1]{UC39.1 - Clona repository})
+		\item Il sistema passa le repository clonate all'orchestratore
+		\item L'orchestratore coordina l'assegnazione delle repository agli agenti (\hyperref[UC39.2]{UC39.2 - Coordina analisi repository})
+		\item Gli agenti eseguono le analisi parziali sulle repository assegnate (\hyperref[UC39.3]{UC39.3 - Esegui analisi parziale})
+		\item L'orchestratore raccoglie i report parziali e genera il report completo (\hyperref[UC39.4]{UC39.4 - Aggrega report e salva risultati})
+	\end{enumerate}
+	\item \textbf{Scenario alternativo:}
+	\begin{itemize}
+		\item \textbf{Errore durante la clonazione:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} avviene un errore durante la clonazione di una repository
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema esclude la repository dall'analisi
+					\item Il sistema segnala all'utente il fallimento nell'analisi della repository
+				\end{enumerate}
+			\end{itemize}
+		\item \textbf{Errore durante l'analisi di un agente:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} si verifica un errore durante la creazione del report parziale da parte di un agente per una repository
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema rileva un errore durante la creazione del report da parte di un agente su una repository
+					\item La repository non analizzabile viene marcate come “Analisi fallita”
+					\item Il sistema continua l'analisi per le repository valide
+					\item Il sistema conclude la scansione con stato “Completata con errori”
+				\end{enumerate}
+			\end{itemize}
+	\end{itemize}
+	\item \textbf{Inclusioni:} \hyperref[UC39.1]{UC39.1}, \hyperref[UC39.2]{UC39.2}, \hyperref[UC39.3]{UC39.3}, \hyperref[UC39.4]{UC39.4},
+\end{itemize}
+
+\subparagraph{UC39.1 - Clona repository} \label{UC39.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} Sistema
+	\item \textbf{Attori secondari:} Git
+	\item \textbf{Precondizioni:}
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item È stata avviata una scansione (\hyperref[UC37]{UC37})
+		\item Esiste almeno una repository da analizzare
+		\item Sono disponibili:
+		\begin{itemize}
+			\item URL GitHub valido
+			\item Branch da analizzare
+			\item Eventuale PAT valida, in caso di repository private
+		\end{itemize}
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item La repository github viene clonata in locale sul server
+		\item Viene restituito il path della directory locale della repository
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item Il sistema recupera l'URL della repository
+		\item Il sistema recupera il branch da analizzare
+		\item Se la repository è privata, il sistema recupera e utilizza una PAT valida
+		\item Il sistema clona il branch selezionato della repository su server locale
+		\item Il sistema salva il path della repository clonata
+	\end{enumerate}
+	\item \textbf{Scenario alternativo:} link non valido, PAT non valido, errore durante la clonazione, non c'è spazio nel server, branch non esistente
+	\item \textbf{Scenario alternativo:}
+	\begin{itemize}
+		\item \textbf{URL o PAT non valido:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} l'URL GitHub o la PAT non è valida
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema tenta la connessione alla repository
+					\item La connessione fallisce
+					\item Il sistema comunica all'utente l'errore
+					\item La repository viene marcate come “Clonazione fallita” e viene esclusa dall'analisi
+				\end{enumerate}
+			\end{itemize}
+		\item \textbf{Spazio insufficiente sul server:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} errore durante la clonazione dovuto all'insufficienza di spazio nel server
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema rileva che lo spazio disponibile è insufficiente
+					\item Il sistema interrompe la clonazione
+					\item L'errore viene registrato e comunicato all'utente
+					\item La repository viene marcate come “Clonazione fallita” e viene esclusa dall'analisi
+				\end{enumerate}
+			\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+\subparagraph{UC39.2 - Coordina analisi repository} \label{UC39.2}
+\begin{itemize}
+	\item \textbf{Attori principali:} Orchestratore
+	\item \textbf{Attori secondari:} Agenti
+	\item \textbf{Precondizioni:}
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item Sono disponibili i path delle repository clonate
+		\item Gli agenti sono registrati (noti al sistema) e disponibili (attivi e non occupati in altre analisi)
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Ogni repository viene assegnata a tutti gli agenti
+		\item Nessun agente analizza più volte la stessa repository nella stessa scansione
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'orchestratore riceve la lista delle repository clonate (path alla directory della repository locale)
+		\item L'orchestratore verifica la disponibilità degli agenti (controlla quali agenti sono liberi e quali no)
+		\item L'orchestratore, per ogni repository, assegna la repository a ciascun agente disponibile
+		\item L'orchestratore monitora l'avanzamento delle analisi
+		\item Quando tutti gli agenti hanno analizzato una repository, l'orchestratore la rimuove dalla lista di scansione
+	\end{enumerate}
+	\item \textbf{Scenario alternativo:}
+	\begin{itemize}
+		\item \textbf{Nessun agente disponibile:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} tutti gli agenti sono occupati o non raggiungibili
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item L'orchestratore verifica la disponibilità degli agenti
+					\item Nessun agente risulta disponibile
+					\item L'orchestratore mette le repository in coda
+					\item L'analisi riprende quando un agente diventa disponibile
+				\end{enumerate}
+			\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+\subparagraph{UC39.3 - Esegui analisi parziale} \label{UC39.3}
+\begin{itemize}
+	\item \textbf{Attori principali:} Agente
+	\item \textbf{Attori secondari:} Orchestratore 
+	\item \textbf{Precondizioni:}
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'agente ha ricevuto il path della repository locale
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Viene generato un report parziale relativo a uno specifico tipo di analisi
+		\item Il report parziale viene inviato all'orchestratore
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'agente riceve il path della repository locale
+		\item L'agente esegue l'analisi di competenza (codice, documentazione o OWASP)
+		\item L'agente genera un report parziale
+		\item L'agente invia il report all'orchestratore
+	\end{enumerate}
+	\item \textbf{Scenario alternativo:}
+	\begin{itemize}
+		\item \textbf{Errore durante l'analisi:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} errore interno dell'agente (tool fallisce, crash, eccezione)
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item L'agente avvia l'analisi
+					\item Si verifica un errore
+					\item L'agente genera un report di errore
+					\item Il report viene inviato all'orchestratore
+				\end{enumerate}
+			\end{itemize}
+		\item \textbf{Nessun dato rilevante:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} non ci sono dati utili all'analisi
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item L'agente avvia l'analisi
+					\item Non vengono trovati dati utili all'analisi
+					\item L'agente invia un report vuoto o informativo
+					\item L'orchestratore considera l'analisi parziale completata
+				\end{enumerate}
+			\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+\subparagraph{UC39.4 - Aggrega report e salva risultati} \label{UC39.4}
+\begin{itemize}
+	\item \textbf{Attori principali:} Orchestratore
+	\item \textbf{Attori secondari:}  Database
+	\item \textbf{Precondizioni:}
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item Sono disponibili tutti i report parziali per una repository
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Viene generato un report completo per il branch analizzato della repository
+		\item Il report completo viene salvato nel database
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'orchestratore riceve i report parziali dagli agenti
+		\item L'orchestratore associa i report alla repository corretta
+		\item Quando tutti i report previsti sono disponibili: aggrega i report parziali e genera il report completo
+		\item Il report completo viene salvato nel database
+		\item La repository viene marcata come analizzata
+	\end{enumerate}
+	\item \textbf{Scenario alternativo:}
+	\begin{itemize}
+		\item \textbf{Report parziale non valido:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} un report ricevuto è incompleto o segnala un errore
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item L'orchestratore valida i report ricevuti
+					\item Un report risulta non valido
+					\item Il report viene scartato
+					\item Il sistema registra l'errore
+					\item Il sistema prosegue con i report validi
+				\end{enumerate}
+			\end{itemize}
+		\item \textbf{Spazio insufficiente sul server:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} errore durante il salvataggio nel database dovuto all'insufficienza di spazio nel server
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema tenta di salvare il report finale
+					\item Il salvataggio fallisce per mancanza di spazio nel server
+					\item Il sistema registra l'errore e segnala il fallimento
+				\end{enumerate}
+			\end{itemize}
+	\end{itemize}
+\end{itemize}
+
 
 \end{document}

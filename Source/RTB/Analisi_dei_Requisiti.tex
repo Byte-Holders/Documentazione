@@ -133,10 +133,11 @@
 		\textcolor{white}{\textbf{Data}} & 
 		\multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} &
 		\multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
+		0.11.0 & 11/02/2026 & Giacomo Nalotto & Sistemazione paragrafi introduttivi da 1 a 3.2 \\
 		0.10.0 & 08/02/2026 & Giulia Romanato & Stesura UC Backend (UC39 Esegui analisi con relativi sottocasi d'uso) \\ 
 		0.9.0 & 08/02/2026 & Giulia Romanato & Stesura UC Analisi (da UC37 a UC38) e inserimento immagini da UC19 a UC27 e UC37 e UC38 \\ 
 		0.8.0 & 08/02/2026 & Lorenzo Grolla & Stesura UC Verifica aggiornamento scansione \\ 
-        0.7.0 & 06/02/2026 & Giacomo Nalotto & Visione analisi sicurezza, analisi documentazione e analisi qualità del codice\\
+        0.7.0 & 06/02/2026 & Giacomo Nalotto & Stesura UC Visione analisi sicurezza, analisi documentazione e analisi qualità del codice\\
 		0.6.0 & 04/02/2026 & Lorenzo Grolla & Stesura UC Visione Aggregata\\ 
 		0.5.0 & 25/01/2026 & Lorenzo Grolla & Stesura UC Dettagli Repository e Selezione Branch\\ 
 		0.4.0 & 19/01/2026 & Giulia Romanato & Stesura UC Gestione Respository e tag (da UC19 a UC27)\\
@@ -156,36 +157,34 @@
 % ====== INTRODUZIONE ======
 \section{Introduzione}
 \subsection{Scopo del documento}
-Con il presente documento il gruppo Byte Holders stabilisce i requisiti funzionali e non funzionali del software CodeGuardian.
-
-Questo documento è rivolto:
+Il presente documento ha lo scopo di formalizzare i requisiti funzionali e non funzionali del sistema CodeGuardian, sviluppato dal gruppo Byte Holders. \\
+La stesura dell'elaborato segue le linee guida dello standard IEEE 830-1998 e si rivolge ai seguenti stakeholder:
 \begin{itemize}
-	\item all'Azienda Var Group, destinatari anche del software sviluppato
-	\item al gruppo Byte Holders, che farà riferimento a questo documento nel corso del progetto
-	\item ai professori Tullio Vardanega e Riccardo Cardin
+	\item Var Group, azienda proponente e destinataria finale del prodotto software
+	\item Byte Holders, team di sviluppo che utilizzerà il documento come riferimento tecnico
+	\item Prof. Tullio Vardanega e Prof. Riccardo Cardin, committenti accademici e supervisori del progetto
 \end{itemize}
 
-All'interno del documento si proponge una visione generale del software proposto nella Sezione \ref{sec:descrizione generale}, per poi passare in rassegna i casi d'uso individuati nella Sezione \ref{sec:casi d'uso}.
-
-Per la redazione del documento si è fatto riferimento allo standard IEEE 830-1998.
+La struttura del documento prevede una descrizione generale del prodotto nella Sezione \ref{sec:descrizione generale}, seguita dalla specifica dettagliata dei casi d'uso nella Sezione \ref{sec:casi d'uso}.
 
 \subsection{Scopo del prodotto}
-Il prodotto CodeGuardian permetterà di effettuare analisi della qualità di repository GitHub, con una particolare attenzione in merito ai permessi di visualizzazione delle informazioni e lancio delle stesse analisi.
-
-CodeGuardian si propone come soluzione per team di sviluppo eterogenei che vogliono poter monitorare lo stato di repository GitHub e ottenere informazioni aggregate su insemi di progetti analizzati.
+Il sistema CodeGuardian è progettato per condurre analisi approfondite sulla qualità di repository GitHub, garantendo un controllo rigoroso sulla gestione degli accessi e sull'autorizzazione all'avvio delle procedure di scansione. 
+\\
+La piattaforma si propone come uno strumento strategico per team di sviluppo multidisciplinari, consentendo il monitoraggio centralizzato dello stato del software e la generazione di metriche aggregate su molteplici progetti analizzati.
 
 \subsection{Glossario}
-Per evitare ambiguità, nel corso del documento si farà riferimento a termini indicati nel \href{https://byte-holders.github.io/Documentazione/RTB/Glossario.pdf}{\refterm{Glossario}} utilizzando la lettera \textit{G} ad apice della formula corrispondente, che viene indicata in corsivo (ad es. \refterm{formula in glossario}). La corrispondenza di termini è a meno di coniugazioni e declinazioni.
+Al fine di garantire la massima chiarezza terminologica ed evitare ambiguità, i termini tecnici presenti in questo documento trovano una definizione puntuale nel \href{https://byte-holders.github.io/Documentazione/RTB/Glossario.pdf}{\refterm{Glossario}}. Tali lemmi sono identificati graficamente dall'uso del corsivo e dalla presenza della lettera \textit{G} posta in apice (ad es. \refterm{formula in glossario}). La validità del riferimento è estesa a tutte le possibili declinazioni e coniugazioni dei termini indicati.
 
 % Dal momento che il glossario è un documento interno, possiamo mettere qua dentro tutti i termini che ci servono
 \subsection{Definizioni, acronimi e abbreviazioni}
 \term{Caso d'uso}
-Un Caso d'uso è un insieme di scenari che hanno in comune uno scopo finale per un utente.
+Un Caso d’uso rappresenta una descrizione coerente delle funzionalità che il sistema offre per soddisfare un obiettivo specifico di un utente. Formalmente, consiste in un insieme di scenari (principali, alternativi o di errore) che descrivono le interazioni tra gli attori e il sistema stesso, finalizzate al raggiungimento di un risultato di valore per l'interessato.
 
 \term{Scenario}
+Uno Scenario è una specifica sequenza di eventi e azioni che descrive un singolo percorso di esecuzione all'interno di un caso d'uso. Esso elenca i passi logici compiuti dagli attori e le risposte fornite dal sistema. Ogni caso d'uso comprende tipicamente uno Scenario Principale (il percorso ideale di successo) e uno o più Scenari Alternativi (che gestiscono varianti o condizioni di errore).
 
 \term{Attore}
-
+Un Attore è un'entità esterna al sistema che interagisce con esso per scambiare informazioni o attivare funzionalità. Un attore può essere un essere umano, un componente hardware o un altro sistema software. Gli attori vengono classificati in primari, se danno inizio al caso d'uso per raggiungere un obiettivo, o secondari, se forniscono un servizio al sistema durante l'esecuzione dello scenario.
 
 \subsection{Riferimenti}
 \subsubsection{Riferimenti normativi}
@@ -212,50 +211,66 @@ Un Caso d'uso è un insieme di scenari che hanno in comune uno scopo finale per 
 
 \section{Descrizione generale} \label{sec:descrizione generale}
 \subsection{Prospettiva del prodotto}
-Il gruppo Byte Holders propone il software CodeGuardian, un sistema ad agenti che permette di analizzare la qualità del codice, il livello di sicurezza e di manutenzione per una repository GitHub. L'esito dell'analisi sarà disponibile sotto forma di report agli utenti, ai quali sono proposte eventuali soluzioni alle problematiche individuate.
-
-Il gruppo Byte Holders ha offerto particolare attenzione alla rolistica all'interno dell'applicazione, che si è tradotta nella distinzione di tipologie di utenti in base ai loro permessi.
-
-A tutti gli utenti sarà comune la presenza di una dashboard che comprenderà vari workspace, nonché la capacità di effettuare ricerche avanzate al loro interno.
-
-Il prodotto si propone quindi come soluzione per diverse tipologie di utenti, come quelle individuate in prima sessione di \textit{Design Thinking}, che condividono gli stessi progetti.
+Il progetto CodeGuardian, sviluppato dal gruppo Byte Holders, si colloca come una soluzione software avanzata per la verifica automatizzata e la remediation di repository software. Il sistema è progettato come una piattaforma web basata su un'architettura a microservizi e agenti intelligenti (Multi-Agent System), in grado di interfacciarsi direttamente con repository GitHub.
+\\ \\
+L'obiettivo primario è fornire un'analisi approfondita su tre assi fondamentali: qualità del codice, sicurezza (con particolare attenzione agli standard OWASP) e documentazione. A differenza dei tradizionali strumenti di analisi statica, CodeGuardian non si limita a segnalare le criticità, ma sfrutta l'intelligenza artificiale generativa per proporre soluzioni pratiche (remediation) e generare reportistica dettagliata.
+\\ \\
+Il sistema gestisce l'accesso e la visibilità delle risorse tramite una logica a Workspace, permettendo a diverse tipologie di utenti di collaborare sugli stessi progetti con livelli di permessi granulari.
 
 \subsection{Funzioni del prodotto}
+Le principali funzionalità offerte dal sistema CodeGuardian sono riassumibili nelle seguenti macro-aree:
+\begin{itemize}
+    \item Gestione workspace e repository: creazione di spazi di lavoro condivisi, collegamento con account GitHub e selezione dei branch da analizzare
+    \item Analisi multi-agente: orchestrazione di agenti IA specializzati per eseguire scansioni parallele su:
+    \begin{itemize}
+        \item Sicurezza
+        \item Qualità del codice
+        \item Documentazione
+    \end{itemize}
+    \item Dashboard e visualizzazione dati: visualizzazione di metriche sintetiche, grafici storici e liste di vulnerabilità filtrabili
+    \item Reportistica: generazione ed esportazione di report sullo stato di salute del progetto
+    \item Gestione utenti e ruoli: sistema con accesso basato sui ruoli RBAC per definire chi può avviare scansioni, visualizzare risultati o gestire il team
+\end{itemize}
 
 \subsection{Caratteristiche dell'utente}
+Il software CodeGuardian si rivolge a team di sviluppo moderni, dove la collaborazione tra la componente gestionale e quella tecnica è essenziale per il successo di un progetto. L'utilità del prodotto risiede nella sua capacità di supportare le diverse figure professionali coinvolte nel ciclo di vita del software e di offrire una visione trasparente e condivisa dello stato di salute di quest'ultimo. 
+\\
+Un'azienda che adotta CodeGuardian mette a disposizione dei propri Project Manager uno strumento di controllo e organizzazione, permettendo loro di gestire il perimetro del team, amministrare i permessi nei vari spazi di lavoro e monitorare l'andamento generale dei progetti attraverso dati sintetici e report chiari, senza la necessità di possedere competenze di programmazione avanzate.
+\\
+Parallelamente, il sistema offre un supporto concreto a chi ha la responsabilità di guidare le scelte tecnologiche, come il Tech Lead, fornendo gli strumenti necessari per impostare standard di sicurezza elevati e validare la robustezza delle repository attraverso l'avvio di scansioni mirate. 
+\\
+Infine, CodeGuardian si rivela un assistente indispensabile per il Developer, che può concentrarsi sulla risoluzione rapida delle criticità grazie ai suggerimenti diretti forniti dall'intelligenza artificiale, riducendo i tempi di manutenzione e aumentando la sicurezza del codice scritto quotidianamente.
 
 \section{Casi d'uso} \label{sec:casi d'uso}
 \subsection{Lista degli Attori}
-Nella creazione dei casi d'uso sono stati individuati i seguenti attori:
-\begin{itemize}
-	\item 
-		\textbf{Utente non Autenticato}\\
-		Un utente non riconosciuto dal sistema
-	\item 
-		\textbf{Utente Autenticato}\\
-		Utente generico riconosciuto dal sistema
-	\item 
-		\textbf{Utente Permesso OWASP}  (eredita da \textit{Utente autenticato})\\
-		Utente Autenticato con il permesso per la visione completa delle informazioni su OWASP
-	\item
-		\textbf{Utente Permesso Utenti/Ruoli} (eredita da \textit{Utente autenticato})\\
-	 	Utente Autenticato con il permesso per la gestione degli utenti e dei ruoli
-	\item 
-		\textbf{Utente Permesso Test} (eredita da \textit{Utente autenticato})\\
-		Utente Autenticato con il permesso per la visione completa delle informazioni sui test
-	\item
-		\textbf{Utente Permesso Documentazione} (eredita da \textit{Utente autenticato})\\
-		Utente Autenticato con il permesso per la visione completa delle informazioni sulla documentazione
-	\item
-		\textbf{Utente Permesso Scansione} (eredita da \textit{Utente autenticato})\\
-		Utente Autenticato con il permesso per il lancio di una scansione
-	\item
-		\textbf{Utente Permesso Qualità Codice} (eredita da \textit{Utente autenticato})\\
-		Utente Autenticato con il permesso per la visione completa delle informazioni sulla qualità del codice
-	\item
-		\textbf{Utente Permesso Informazioni Tecniche} (eredita da \textit{Utente autenticato})\\
-		Utente Autenticato con il permesso per la visione completa delle informazioni tecniche di una repository
-\end{itemize}
+Nella definizione dei casi d'uso sono stati individuati i seguenti attori principali:
+\subsubsection{Attori di Frontend}
+    \begin{itemize}
+    	\item \textbf{Utente non autenticato}: un utente che non ha ancora effettuato l'accesso al sistema, le sue interazioni sono limitate alle procedure di autenticazione e registrazione
+    
+        \item \textbf{Utente autenticato}: rappresenta la generalizzazione di qualsiasi utente che ha effettuato l'accesso alla piattaforma, è l'attore base da cui ereditano tutti i ruoli specifici all'interno di un workspace
+        
+        \item \textbf{Project Manager}: è l'attore con privilegi gestionali sul workspace; si occupa di invitare i membri del team, assegnare i ruoli e configurare i permessi, la sua interazione con il sistema è focalizzata sulla consultazione di dashboard riepilogative e report manageriali per monitorare l'avanzamento del progetto, senza entrare nei dettagli tecnici del codice
+        
+        \item \textbf{Tech Lead}: è l'attore con i privilegi tecnici più elevati; oltre a visualizzare tutte le analisi, ha la responsabilità di configurare le repository e detiene il permesso critico per l'avvio delle scansioni, supervisiona la qualità generale del codice e definisce gli standard per il team di sviluppo
+        
+        \item \textbf{Developer}: è l'attore operativo che lavora quotidianamente sul codice, ha accesso completo ai dettagli tecnici delle analisi (sicurezza, qualità, documentazione) e utilizza attivamente gli agenti AI per ottenere suggerimenti di remediation e risolvere le vulnerabilità individuate
+    \end{itemize}
+\subsubsection{Attori di Backend}
+    \begin{itemize}
+        \item \textbf{Sistema}: attore per i processi automatici e di backend, rappresenta l'entità logica che esegue le operazioni di analisi, orchestrazione e gestione dei dati senza intervento umano diretto durante l'esecuzione
+    
+        \item \textbf{Orchestratore}: è il componente centrale del backend che coordina l'intero flusso di lavoro, riceve le richieste dagli utenti (o dai timer), istanzia gli Agenti necessari, raccoglie i loro report parziali, aggrega i risultati finali e gestisce il salvataggio dei dati
+
+        \item \textbf{Agente}: componente software autonomo basato su AI specializzato in uno specifico dominio di analisi (es. Agente sicurezza, Agente qualità, Agente documentazione), riceve porzioni di codice dall'Orchestratore, esegue l'analisi e restituisce un report parziale
+        
+        \item \textbf{Database}: attore passivo responsabile della persistenza dei dati, interagisce con l'Orchestratore per il salvataggio dei report di scansione, delle configurazioni dei workspace e dei profili utente
+
+        \item \textbf{Timer}: attore temporale che attiva automaticamente casi d'uso periodici, come l'avvio di scansioni pianificate senza l'intervento diretto di un utente umano
+
+        \item \textbf{Sistema Esterno (GitHub)}: rappresenta la piattaforma esterna con cui il sistema interagisce per clonare le repository, recuperare i metadati dei branch e sincronizzare le modifiche al codice
+    \end{itemize}
+
 \subsection{Struttura generale di un caso d'uso}
 Si è deciso di descrivere ciascun \refterm{caso d'uso} seguendo la seguente struttura (\underline{sottolineati} i campi sempre popolati):
 
@@ -273,7 +288,7 @@ Si è deciso di descrivere ciascun \refterm{caso d'uso} seguendo la seguente str
 	&
 	Attori che agiscono sul sistema dando inizio allo scenario\\
 	
-	\textbf{Attori secondari} 
+	\textbf{\underline{Attori secondari}}
 	&
 	Attori di supporto che agiscono in risposta a stimoli del sistema\\
 	
@@ -289,15 +304,15 @@ Si è deciso di descrivere ciascun \refterm{caso d'uso} seguendo la seguente str
 	&
 	Descrizione degli eventi che avvengono all'interno dello \refterm{scenario principale}\\
 	
-	\textbf{Inclusioni} 
+	\textbf{\underline{Inclusioni}} 
 	&
 	Lista dei riferimenti a \refterm{casi d'uso} terzi \refterm{inclusi} dal \refterm{caso d'uso} corrente e al quale si fa riferimento nella sezione \textit{Scenario principale}\\
 	
-	\textbf{Scenari alternativi} 
+	\textbf{\underline{Scenari alternativi}} 
 	&
 	Descrizione delle situazione che portano a \refterm{scenari alternativi}\\
 	
-	\textbf{Eredita da} 
+	\textbf{\underline{Eredita da}} 
 	&
 	Codice del \refterm{caso d'uso} terzo da cui eredita il \refterm{caso d'uso} corrente (non ammettiamo ereditarietà multipla)\\
 	
@@ -662,7 +677,33 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	\end{enumerate}
 \end{itemize}
 
-\subsubsection{UC5 - Invito utente in workspace}
+
+
+
+
+
+
+
+
+
+
+
+
+\subsubsection{UC5 - Invito utente in workspace}\label{UC5}
+
+
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{../Assets/AdR/UC5ext.png}
+	\caption{UC5 - Invito utente in workspace}
+	\label{fig:UC5ext}
+\end{figure}
+
+
+
+
 \begin{itemize}
 	\item \textbf{Attori principali:} Project Manager
 	\item \textbf{Precondizioni:} 
@@ -683,12 +724,19 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	
 \end{itemize}
 
-% \begin{figure}[h]
-% 	\centering
-% 	\includegraphics[width=1\textwidth]{Figura 8.png}
-% 	\caption{Figura 8: UC5 e relative inclusioni}
-% 	\label{fig:UC5}
-% \end{figure}
+
+
+
+Il caso d'Uso UC5 include ulteriori casi d'uso come rappresentato nella seguente immagine:
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth]{../Assets/AdR/UC5.png}
+	\caption{Inclusioni di UC5: UC5.1, UC5.2, UC5.2.1}
+	\label{fig:UC5}
+\end{figure}
+
+
+
 
 \paragraph{UC5.1 - Inserimento username nuovo utente}\label{UC5.1}
 \begin{itemize}
@@ -766,10 +814,22 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
     \item Il sistema tenta di validare l'username inserito dall'utente
     \item Il sistema rileva che l'username è già presente nel workspace o non esiste
     \end{enumerate}
-	
 \end{itemize}
 
-\subsubsection{UC6 - Visualizzazione inviti in workspace}
+\subsubsection{UC6 - Visualizzazione inviti in workspace}\label{UC6}
+
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC6.png}
+	\caption{UC6 e UC6.1}
+	\label{fig:UC6}
+\end{figure}
+
+
+
+
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -783,24 +843,10 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	\begin{enumerate}
 		\item L'utente accede alla sezione degli inviti ricevuti
 		\item Il sistema recupera tutti gli inviti pendenti destinati all'utente e li mostra in una lista
-		\item Per ogni invito vengono visualizzate le informazioni (UC6.1)
+		\item Per ogni invito vengono visualizzate le informazioni (\hyperref[UC6.1]{UC6.1})
 	\end{enumerate}
     \item \textbf{Inclusioni:} \hyperref[UC6.1]{UC6.1}
 \end{itemize}
-
-% \begin{figure}[h]
-% 	\centering
-% 	\includegraphics[width=1\textwidth]{Figura 9.png}
-% 	\caption{Figura 9: UC6 - Visualizzazione inviti in workspace}
-% 	\label{fig:UC6}
-% \end{figure}
-
-% \begin{figure}[h]
-% 	\centering
-% 	\includegraphics[width=1\textwidth]{Figura 10.png}
-% 	\caption{Figura 10: Inclusioni di UC7.1: UC7.1.1,UC7.1.2}
-% 	\label{fig:UC7.1inc}
-% \end{figure}
 
 \paragraph{UC6.1 - Visualizzazione singolo invito in workspace}\label{UC6.1}
 \begin{itemize}
@@ -822,6 +868,19 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
     \item \textbf{Inclusioni:} \hyperref[UC6.1.1]{UC6.1.1}, \hyperref[UC6.1.2]{UC6.1.2}, \hyperref[UC6.1.3]{UC6.1.3}
 	
 \end{itemize}
+
+
+
+Il caso d'Uso UC6.1 include ulteriori casi d'uso come rappresentato nella seguente immagine:
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../Assets/AdR/UC6-1.png}
+	\caption{Figura 10: Inclusioni di UC6.1: UC6.1.1, UC6.1.2, UC6.1.3}
+	\label{fig:UC6-1}
+\end{figure}
+
+
+
 
 \subparagraph{UC6.1.1 - Visualizzazione username del mittente dell'invito ricevuto}\label{UC6.1.1}
 \begin{itemize}
@@ -880,6 +939,20 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 \end{itemize}
 
 \subsubsection{UC7 - Gestione degli inviti}\label{UC7}
+
+
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{../Assets/AdR/UC7.png}
+	\caption{UC7 - Gestione degli inviti}
+	\label{fig:UC7}
+\end{figure}
+
+
+
+
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -935,6 +1008,21 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 \end{itemize}
 
 \subsubsection{UC8 - Visualizzazione lista workspace}
+
+
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{../Assets/AdR/UC8.png}
+	\caption{UC8 e UC8.1}
+	\label{fig:UC8}
+\end{figure}
+
+
+
+
+
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -952,6 +1040,20 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
     \end{enumerate}
     \item \textbf{Inclusioni:} \hyperref[UC8.1]{UC8.1}
 \end{itemize}
+
+
+
+
+Il caso d'Uso UC8.1 include ulteriori casi d'uso come rappresentato nella seguente immagine:
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../Assets/AdR/UC8-1.png}
+	\caption{Inclusioni di UC8.1: UC6.1.1, UC6.1.2}
+	\label{fig:UC8-1}
+\end{figure}
+
+
+
 
 \paragraph{UC8.1 - Visualizzazione elemento della lista di workspace}\label{UC8.1}
 \begin{itemize}
@@ -1007,6 +1109,20 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 \end{itemize}
 
 \subsubsection{UC9 - Ricerca workspace}
+
+
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{../Assets/AdR/UC9.png}
+	\caption{UC9 e UC9.1}
+	\label{fig:UC9}
+\end{figure}
+
+
+
+
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -1048,6 +1164,20 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 \end{itemize}
 
 \subsubsection{UC10 - Creazione workspace}
+
+
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{../Assets/AdR/UC10ext.png}
+	\caption{UC10 - Creazione workspace}
+	\label{fig:UC10ext}
+\end{figure}
+
+
+
+
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -1069,6 +1199,21 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
     \item \textbf{Estensioni:} \hyperref[UC10.3]{UC10.3}
 \end{itemize}
 
+
+
+
+Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguente immagine:
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../Assets/AdR/UC10.png}
+	\caption{Inclusioni di UC10: UC10.1, UC10.2}
+	\label{fig:UC10}
+\end{figure}
+
+
+
+
+
 \paragraph{UC10.1 - Inserimento nome del workspace}\label{UC10.1}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
@@ -1087,9 +1232,9 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
     \end{enumerate}
 \end{itemize}
 
-\paragraph{UC10.2- Assegnazione ruolo di owner al creatore del workspace}\label{UC10.2}
+\paragraph{UC10.2 - Assegnazione ruolo di owner al creatore del workspace}\label{UC10.2}
 \begin{itemize}
-	\item \textbf{Attori principali:} Project Manager
+	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
 	\begin{itemize}
 		\item Il sistema è attivo e funzionante
@@ -1103,6 +1248,7 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
         \item Il sistema crea automaticamente il ruolo di owner per il nuovo workspace
         \item Il sistema associa l'utente creatore al workspace con il ruolo di owner
         \item Il sistema registra l'utente come proprietario ufficiale del workspace
+        \item Il sistema riconosce l'utente come Project Manager
     \end{enumerate}
 	
 \end{itemize}
@@ -1130,6 +1276,21 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 \end{itemize}
 
 \subsubsection{UC11 - Visualizzazione lista dei ruoli di un workspace}
+
+
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{../Assets/AdR/UC11.png}
+	\caption{UC11 e UC11.1}
+	\label{fig:UC11}
+\end{figure}
+
+
+
+
+
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -1159,6 +1320,22 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 \end{itemize}
 
 \subsubsection{UC12 - Visualizzazione lista utenti di un workspace}
+
+
+
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{../Assets/AdR/UC12.png}
+	\caption{UC12 e UC12.1}
+	\label{fig:UC12}
+\end{figure}
+
+
+
+
+
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -1169,10 +1346,38 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	\end{itemize}
     \item \textbf{Postcondizioni:} L'utente visualizza la lista di utenti di un singolo workspace
 	\item \textbf{Scenario principale:} L'utente visualizza l'username di ogni singolo utente presente all'interno del workspace
-	
+    \item \textbf{Inclusioni:} \hyperref[UC12.1]{UC12.1}
+\end{itemize}
+
+\paragraph{UC12.1 - Visualizzazione singolo elemento lista utenti di un workspace}\label{UC12.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente ha selezionato un singolo utente dalla lista di tutti gli utenti presenti in un workspace
+	\end{itemize}
+    \item \textbf{Postcondizioni:} L'utente visualizza singolo utente di un workspace
+	\item \textbf{Scenario principale:} L'utente visualizza username e relativo ruolo di un singolo utente presente all'interno del workspace	
 \end{itemize}
 
 \subsubsection{UC13 - Rimozione di un utente da un workspace}
+
+
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{../Assets/AdR/UC13.png}
+	\caption{UC13 - Rimozione di un utente da un workspace}
+	\label{fig:UC13}
+\end{figure}
+
+
+
+
+
 \begin{itemize}
 	\item \textbf{Attori principali:} Project Manager
 	\item \textbf{Precondizioni:} 
@@ -1182,6 +1387,7 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
         \item L'utente sta visualizzando la lista di tutti gli utenti presenti in un workspace
         \item L'utente ha selezionato un utente specifico dalla lista
         \item Esiste almeno un altro utente nel workspace oltre all'owner
+        \item Esiste un altro utente con il ruolo di Project Manager
         \item L'utente da rimuovere non è l'owner del workspace
 	\end{itemize}
     \item \textbf{Postcondizioni:} 
@@ -1198,6 +1404,13 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
         \item Il sistema rimuove l'utente dal workspace e aggiorna la lista degli utenti del workspace
     \end{enumerate}
 \end{itemize}
+
+
+
+
+
+
+
 
 % ====== UC14 - VERIFICA AGGIORNAMENTO SCANSIONE REPOSITORY (BACKEND) ======
 
@@ -3198,10 +3411,29 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
 
 
 
+
+
+
+
+
 % ============================================
 % UC33.3 - VISUALIZZA ANALISI SICUREZZA
 % ============================================
 \paragraph{UC33.3 - Visualizzazione analisi sicurezza} \label{UC33.3}
+
+
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{../Assets/AdR/UC33-3.png}
+	\caption{UC33.3 - Rimozione di un utente da un workspace}
+	\label{fig:UC33-3}
+\end{figure}
+
+
+
+
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente 
 	\item \textbf{Precondizioni:} 
@@ -3231,7 +3463,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
 	\item \textbf{Inclusioni:} \hyperref[UC33.3.1]{UC33.3.1}, \hyperref[UC33.3.2]{UC33.3.2}
 \end{itemize}
 
-\subparagraph{UC33.3.1 - Visualizza analisi sicurezza semplice}\label{UC33.3.1}
+\subparagraph{UC33.3.1 - Visualizzazione analisi sicurezza semplice}\label{UC33.3.1}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -3253,7 +3485,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
 	\end{enumerate}
 \end{itemize}
 
-\subparagraph{UC33.3.2 - Visualizza analisi sicurezza completa}\label{UC33.3.2}
+\subparagraph{UC33.3.2 - Visualizzazione analisi sicurezza completa}\label{UC33.3.2}
 \begin{itemize}
     \item \textbf{Attori principali:} 
     \begin{itemize}
@@ -3280,7 +3512,22 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
     \item \textbf{Inclusioni:} \hyperref[UC33.3.2.1]{UC33.3.2.1}, \hyperref[UC33.3.2.2]{UC33.3.2.2}
 \end{itemize}
 
-\subparagraph{UC33.3.2.1 - Visualizzazione singole vulnerabilità riscontrate}\label{UC33.3.2.1}
+
+
+
+
+Il caso d'Uso UC33.3.2 include ulteriori casi d'uso come rappresentato nella seguente immagine:
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../Assets/AdR/UC33-3-2.png}
+	\caption{Inclusioni di UC33.3.2: UC33.3.2.1, UC33.3.2.2}
+	\label{fig:UC33-3-2}
+\end{figure}
+
+
+
+
+\subparagraph{UC33.3.2.1 - Visualizzazione lista vulnerabilità riscontrate}\label{UC33.3.2.1}
 \begin{itemize}
     \item \textbf{Attori principali:}
     \begin{itemize}
@@ -3339,7 +3586,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
     \end{enumerate}
 \end{itemize}
 
-\subparagraph{UC33.3.2.3 - Approfondimento criticità}\label{UC33.3.2.3}
+\subparagraph{UC33.3.2.2 - Approfondimento vulnerabilità}\label{UC33.3.2.2}
 \begin{itemize}
     \item \textbf{Attori principali:} 
     \begin{itemize}
@@ -3372,7 +3619,20 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
     \end{itemize}
 \end{itemize}
 
-\paragraph{UC33.4 - Visualizzazione analisi documentazione di una repository} \label{UC33.4}
+\paragraph{UC33.4 - Visualizzazione analisi documentazione} \label{UC33.4}
+
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{../Assets/AdR/UC33-4.png}
+	\caption{UC33.4 - Visualizzazione analisi documentazione}
+	\label{fig:UC33.4}
+\end{figure}
+
+
+
+
 \begin{itemize}
     \item \textbf{Attori principali:} Utente 
     \item \textbf{Precondizioni:}
@@ -3455,10 +3715,21 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
     \end{enumerate}
 \end{itemize}
 
-% ============================================
-% UC33.5 - VISUALIZZA QUALITÀ DEL CODICE
-% ============================================
-\paragraph{UC33.5 - Visualizzazione qualità del codice di una repository} \label{UC33.5}
+\paragraph{UC33.5 - Visualizzazione qualità del codice} \label{UC33.5}
+
+
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{../Assets/AdR/UC33-5.png}
+	\caption{UC33.5 - Visualizzazione qualità del codice}
+	\label{fig:UC33-5}
+\end{figure}
+
+
+
+
 \begin{itemize}
     \item \textbf{Attori principali:} Utente 
     \item \textbf{Precondizioni:}
@@ -3498,6 +3769,21 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
 \end{itemize}
 
 \subsubsection{UC34 - Nessuna scansione effettuata}\label{UC34}
+
+
+
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{../Assets/AdR/UC34.png}
+	\caption{UC34 - Nessuna scansione effettuata}
+	\label{fig:UC34}
+\end{figure}
+
+
+
+
+
 \begin{itemize}
     \item \textbf{Attori principali:} Utente 
     \item \textbf{Precondizioni:}
@@ -3517,9 +3803,6 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
         \item Il sistema può proporre all'utente di avviare una nuova analisi
     \end{enumerate}
 \end{itemize}
-
-
-
 
 
 % ============================================

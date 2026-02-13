@@ -139,7 +139,8 @@
 		\textcolor{white}{\textbf{Data}} & 
 		\multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} &
 		\multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
-		0.12.0 & 11/02/2026 & Giulia Romanato & Cambio numero: (UC37->UC15, UC38->UC16, UC39->UC17) e unificato dtile delle subsubsection \\
+		0.13.0 & 12/02/2026 & Giulia Romanato & Cambio numero: (UC37->UC15, UC38->UC16, UC39->UC17) e unificato dtile delle subsubsection \\
+		0.12.0 & 12/02/2026 & Alessandro Morabito & Verifica del documento \\
 		0.11.0 & 11/02/2026 & Giacomo Nalotto & Sistemazione paragrafi introduttivi da 1 a 3.2 \\
 		0.10.0 & 08/02/2026 & Giulia Romanato & Stesura UC Backend (UC39 Esegui analisi con relativi sottocasi d'uso) \\ 
 		0.9.0 & 08/02/2026 & Giulia Romanato & Stesura UC Analisi (da UC37 a UC38) e inserimento immagini da UC19 a UC27 e UC37 e UC38 \\ 
@@ -255,7 +256,7 @@ Nella definizione dei casi d'uso sono stati individuati i seguenti attori princi
 \begin{itemize}
     	\item \textbf{Utente non autenticato}: un utente che non ha ancora effettuato l'accesso al sistema, le sue interazioni sono limitate alle procedure di autenticazione e registrazione
     
-        \item \textbf{Utente autenticato}: rappresenta la generalizzazione di qualsiasi utente che ha effettuato l'accesso alla piattaforma, è l'attore base da cui ereditano tutti i ruoli specifici all'interno di un workspace
+        \item \textbf{Utente}: rappresenta la generalizzazione di qualsiasi utente che ha effettuato l'accesso alla piattaforma, è l'attore base da cui ereditano tutti i ruoli specifici all'interno di un workspace
         
         \item \textbf{Project Manager}: è l'attore con privilegi gestionali sul workspace; si occupa di invitare i membri del team, assegnare i ruoli e configurare i permessi, la sua interazione con il sistema è focalizzata sulla consultazione di dashboard riepilogative e report manageriali per monitorare l'avanzamento del progetto, senza entrare nei dettagli tecnici del codice
         
@@ -272,8 +273,6 @@ Nella definizione dei casi d'uso sono stati individuati i seguenti attori princi
         \item \textbf{Agente}: componente software autonomo basato su AI specializzato in uno specifico dominio di analisi (es. Agente sicurezza, Agente qualità, Agente documentazione), riceve porzioni di codice dall'Orchestratore, esegue l'analisi e restituisce un report parziale
         
         \item \textbf{Database}: attore passivo responsabile della persistenza dei dati, interagisce con l'Orchestratore per il salvataggio dei report di scansione, delle configurazioni dei workspace e dei profili utente
-
-        \item \textbf{Timer}: attore temporale che attiva automaticamente casi d'uso periodici, come l'avvio di scansioni pianificate senza l'intervento diretto di un utente umano
 
         \item \textbf{Sistema Esterno (GitHub)}: rappresenta la piattaforma esterna con cui il sistema interagisce per clonare le repository, recuperare i metadati dei branch e sincronizzare le modifiche al codice
     \end{itemize}
@@ -762,9 +761,7 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	\item \textbf{Scenario principale:} 
     \begin{enumerate}
     \item Il sistema recupera la lista dei ruoli disponibili nel workspace
-    \item Il sistema presenta una lista a tendina con i ruoli disponibili
-    \item L'utente seleziona il ruolo desiderato dalla lista
-    \item Il sistema memorizza il ruolo selezionato
+    \item Il sistema mostra una lista con i ruoli disponibili
     \end{enumerate}
 \end{itemize}
 
@@ -1649,7 +1646,7 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	\end{enumerate}
 	\item \textbf{Scenario alternativo:}
 	\begin{itemize}
-		\item \textbf{URL o PAT non valido:} 
+		\item \textbf{URL o PAT non esistente:} 
 			\begin{itemize}
 				\item \textbf{Condizione:} l'URL GitHub o la PAT non esistente
 				\item \textbf{Flusso:} 
@@ -2064,6 +2061,7 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	\begin{itemize}
 		\item Il tag raccolta selezionato è stato rimosso dal workspace
 		\item Il tag raccolta è stato dissociato da tutte le repository a cui era associato
+		\item Viene visualizzata la lista tag raccolta aggiornata
 	\end{itemize}
 	\item \textbf{Scenario principale:}
 	\begin{enumerate}
@@ -3156,17 +3154,17 @@ Il caso d'uso UC33.1 include ulteriori casi d'uso come rappresentato nella segue
     \begin{itemize}
         \item Il sistema è attivo e funzionante
         \item L'utente è stato riconosciuto dal sistema come Utente
-        \item L'utente sta visualizzando la sezione di analisi dei test (\hyperref[UC33.1]{UC33.1})
+        \item L'utente sta visualizzando la sezione di analisi dei test unitari(\hyperref[UC33.1]{UC33.1})
         \item L'analisi della qualità dei test è stata eseguita con successo
     \end{itemize}
     \item \textbf{Postcondizioni:}
     \begin{itemize}
-        \item Viene visualizzato l'elenco dei test che presentano problemi di qualità
+        \item Viene visualizzato l'elenco dei test unitari che presentano problemi di qualità
     \end{itemize}
     \item \textbf{Scenario principale:}
     \begin{enumerate}
         \item Il sistema recupera l'elenco dei test che superano le soglie di tolleranza definite
-        \item Il sistema elenca i test con qualità insufficiente, indicando per ciascuno:
+        \item Il sistema elenca i test unitari con qualità insufficiente, indicando per ciascuno:
         \begin{itemize}
             \item Nome del test
             \item Tipo di problema rilevato (es. durata eccessiva, asserzioni mancanti, test instabili)
@@ -3781,7 +3779,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
     \item \textbf{Inclusioni:} \hyperref[UC33.3.2.1]{UC33.3.2.1}, \hyperref[UC33.3.2.2]{UC33.3.2.2}
 \end{itemize}
 
-\subparagraph{UC33.3.2.1 - Visualizzazione singole vulnerabilità riscontrate}\label{UC33.3.2.1}
+\subparagraph{UC33.3.2.1 - Visualizzazione elenco vulnerabilità riscontrate}\label{UC33.3.2.1}
 \begin{itemize}
     \item \textbf{Attori principali:}
     \begin{itemize}
@@ -3908,7 +3906,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
     \end{itemize}
     \item \textbf{Scenario principale:}
     \begin{itemize}
-        \item Il sistema mostra un voto numerico che rappresenta la completezza e la qualità della documentazione presente nella repository, calcolato in base alla presenza di file README, documentazione tecnica, commenti nel codice e conformità agli standard di documentazione definiti
+        \item Il sistema mostra un voto numerico che rappresenta la completezza e la qualità della documentazione presente nella repository, calcolato in base alla presenza di file README, documentazione tecnica e commenti nel codice
     \end{itemize}
     \item \textbf{Scenario alternativo:}
     \begin{itemize}
@@ -4641,7 +4639,7 @@ Il caso d'uso UC36 include ulteriori casi d'uso come rappresentato nella seguent
     \begin{enumerate}
         \item Il sistema raggruppa i voti di qualità della documentazione delle repository del workspace
         \item Il sistema calcola la distribuzione dei voti
-        \item Il sistema visualizza un grafico a torta con la distribuzione dei voti sulla documentazione
+        \item Il sistema mostra un grafico a torta con la distribuzione dei voti sulla documentazione
     \end{enumerate}
 \end{itemize}
 

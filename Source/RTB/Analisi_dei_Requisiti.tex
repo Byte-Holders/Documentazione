@@ -70,6 +70,12 @@
   {1em}
   {}
 
+  \titleformat{\subsubsection}
+  {\normalfont\sffamily\large\bfseries\color{AccentDark}}
+  {\thesubsection}
+  {1em}
+  {}
+
 % 4. IMPOSTAZIONE HEADER E FOOTER
 \pagestyle{fancy}
 \fancyhf{} 
@@ -133,6 +139,7 @@
 		\textcolor{white}{\textbf{Data}} & 
 		\multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} &
 		\multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
+		0.12.0 & 11/02/2026 & Giulia Romanato & Cambio numero: (UC37->UC15, UC38->UC16, UC39->UC17) e unificato dtile delle subsubsection \\
 		0.11.0 & 11/02/2026 & Giacomo Nalotto & Sistemazione paragrafi introduttivi da 1 a 3.2 \\
 		0.10.0 & 08/02/2026 & Giulia Romanato & Stesura UC Backend (UC39 Esegui analisi con relativi sottocasi d'uso) \\ 
 		0.9.0 & 08/02/2026 & Giulia Romanato & Stesura UC Analisi (da UC37 a UC38) e inserimento immagini da UC19 a UC27 e UC37 e UC38 \\ 
@@ -178,7 +185,7 @@ Al fine di garantire la massima chiarezza terminologica ed evitare ambiguità, i
 % Dal momento che il glossario è un documento interno, possiamo mettere qua dentro tutti i termini che ci servono
 \subsection{Definizioni, acronimi e abbreviazioni}
 \term{Caso d'uso}
-Un Caso d’uso rappresenta una descrizione coerente delle funzionalità che il sistema offre per soddisfare un obiettivo specifico di un utente. Formalmente, consiste in un insieme di scenari (principali, alternativi o di errore) che descrivono le interazioni tra gli attori e il sistema stesso, finalizzate al raggiungimento di un risultato di valore per l'interessato.
+Un Caso d'uso rappresenta una descrizione coerente delle funzionalità che il sistema offre per soddisfare un obiettivo specifico di un utente. Formalmente, consiste in un insieme di scenari (principali, alternativi o di errore) che descrivono le interazioni tra gli attori e il sistema stesso, finalizzate al raggiungimento di un risultato di valore per l'interessato.
 
 \term{Scenario}
 Uno Scenario è una specifica sequenza di eventi e azioni che descrive un singolo percorso di esecuzione all'interno di un caso d'uso. Esso elenca i passi logici compiuti dagli attori e le risposte fornite dal sistema. Ogni caso d'uso comprende tipicamente uno Scenario Principale (il percorso ideale di successo) e uno o più Scenari Alternativi (che gestiscono varianti o condizioni di errore).
@@ -245,7 +252,7 @@ Infine, CodeGuardian si rivela un assistente indispensabile per il Developer, ch
 \subsection{Lista degli Attori}
 Nella definizione dei casi d'uso sono stati individuati i seguenti attori principali:
 \subsubsection{Attori di Frontend}
-    \begin{itemize}
+\begin{itemize}
     	\item \textbf{Utente non autenticato}: un utente che non ha ancora effettuato l'accesso al sistema, le sue interazioni sono limitate alle procedure di autenticazione e registrazione
     
         \item \textbf{Utente autenticato}: rappresenta la generalizzazione di qualsiasi utente che ha effettuato l'accesso alla piattaforma, è l'attore base da cui ereditano tutti i ruoli specifici all'interno di un workspace
@@ -255,7 +262,7 @@ Nella definizione dei casi d'uso sono stati individuati i seguenti attori princi
         \item \textbf{Tech Lead}: è l'attore con i privilegi tecnici più elevati; oltre a visualizzare tutte le analisi, ha la responsabilità di configurare le repository e detiene il permesso critico per l'avvio delle scansioni, supervisiona la qualità generale del codice e definisce gli standard per il team di sviluppo
         
         \item \textbf{Developer}: è l'attore operativo che lavora quotidianamente sul codice, ha accesso completo ai dettagli tecnici delle analisi (sicurezza, qualità, documentazione) e utilizza attivamente gli agenti AI per ottenere suggerimenti di remediation e risolvere le vulnerabilità individuate
-    \end{itemize}
+\end{itemize}
 \subsubsection{Attori di Backend}
     \begin{itemize}
         \item \textbf{Sistema}: attore per i processi automatici e di backend, rappresenta l'entità logica che esegue le operazioni di analisi, orchestrazione e gestione dei dati senza intervento umano diretto durante l'esecuzione
@@ -476,7 +483,7 @@ Il caso d'Uso UC1 include ulteriori casi d'uso come rappresentato nella seguente
 	\item \textbf{Precondizioni:} 
 	\begin{itemize}
 		\item Il sistema è attivo e funzionante
-		\item L'utente ha inviato un codice OTP errato o scaduto
+		\item L'utente ha inserito un codice OTP errato o scaduto
 	\end{itemize}
 	\item \textbf{Postcondizioni:} L'account rimane nello stato "da confermare".
 	\item \textbf{Scenario principale:}
@@ -677,33 +684,7 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	\end{enumerate}
 \end{itemize}
 
-
-
-
-
-
-
-
-
-
-
-
-
-\subsubsection{UC5 - Invito utente in workspace}\label{UC5}
-
-
-
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1\textwidth]{../Assets/AdR/UC5ext.png}
-	\caption{UC5 - Invito utente in workspace}
-	\label{fig:UC5ext}
-\end{figure}
-
-
-
-
+\subsubsection{UC5 - Invito utente in workspace}
 \begin{itemize}
 	\item \textbf{Attori principali:} Project Manager
 	\item \textbf{Precondizioni:} 
@@ -724,19 +705,12 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	
 \end{itemize}
 
-
-
-
-Il caso d'Uso UC5 include ulteriori casi d'uso come rappresentato nella seguente immagine:
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1.0\textwidth]{../Assets/AdR/UC5.png}
-	\caption{Inclusioni di UC5: UC5.1, UC5.2, UC5.2.1}
-	\label{fig:UC5}
-\end{figure}
-
-
-
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[width=1\textwidth]{Figura 8.png}
+% 	\caption{Figura 8: UC5 e relative inclusioni}
+% 	\label{fig:UC5}
+% \end{figure}
 
 \paragraph{UC5.1 - Inserimento username nuovo utente}\label{UC5.1}
 \begin{itemize}
@@ -814,22 +788,10 @@ Il caso d'Uso UC5 include ulteriori casi d'uso come rappresentato nella seguente
     \item Il sistema tenta di validare l'username inserito dall'utente
     \item Il sistema rileva che l'username è già presente nel workspace o non esiste
     \end{enumerate}
+	
 \end{itemize}
 
-\subsubsection{UC6 - Visualizzazione inviti in workspace}\label{UC6}
-
-
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC6.png}
-	\caption{UC6 e UC6.1}
-	\label{fig:UC6}
-\end{figure}
-
-
-
-
+\subsubsection{UC6 - Visualizzazione inviti in workspace}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -843,10 +805,24 @@ Il caso d'Uso UC5 include ulteriori casi d'uso come rappresentato nella seguente
 	\begin{enumerate}
 		\item L'utente accede alla sezione degli inviti ricevuti
 		\item Il sistema recupera tutti gli inviti pendenti destinati all'utente e li mostra in una lista
-		\item Per ogni invito vengono visualizzate le informazioni (\hyperref[UC6.1]{UC6.1})
+		\item Per ogni invito vengono visualizzate le informazioni (UC6.1)
 	\end{enumerate}
     \item \textbf{Inclusioni:} \hyperref[UC6.1]{UC6.1}
 \end{itemize}
+
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[width=1\textwidth]{Figura 9.png}
+% 	\caption{Figura 9: UC6 - Visualizzazione inviti in workspace}
+% 	\label{fig:UC6}
+% \end{figure}
+
+% \begin{figure}[h]
+% 	\centering
+% 	\includegraphics[width=1\textwidth]{Figura 10.png}
+% 	\caption{Figura 10: Inclusioni di UC7.1: UC7.1.1,UC7.1.2}
+% 	\label{fig:UC7.1inc}
+% \end{figure}
 
 \paragraph{UC6.1 - Visualizzazione singolo invito in workspace}\label{UC6.1}
 \begin{itemize}
@@ -868,19 +844,6 @@ Il caso d'Uso UC5 include ulteriori casi d'uso come rappresentato nella seguente
     \item \textbf{Inclusioni:} \hyperref[UC6.1.1]{UC6.1.1}, \hyperref[UC6.1.2]{UC6.1.2}, \hyperref[UC6.1.3]{UC6.1.3}
 	
 \end{itemize}
-
-
-
-Il caso d'Uso UC6.1 include ulteriori casi d'uso come rappresentato nella seguente immagine:
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{../Assets/AdR/UC6-1.png}
-	\caption{Figura 10: Inclusioni di UC6.1: UC6.1.1, UC6.1.2, UC6.1.3}
-	\label{fig:UC6-1}
-\end{figure}
-
-
-
 
 \subparagraph{UC6.1.1 - Visualizzazione username del mittente dell'invito ricevuto}\label{UC6.1.1}
 \begin{itemize}
@@ -939,20 +902,6 @@ Il caso d'Uso UC6.1 include ulteriori casi d'uso come rappresentato nella seguen
 \end{itemize}
 
 \subsubsection{UC7 - Gestione degli inviti}\label{UC7}
-
-
-
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1\textwidth]{../Assets/AdR/UC7.png}
-	\caption{UC7 - Gestione degli inviti}
-	\label{fig:UC7}
-\end{figure}
-
-
-
-
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -1008,21 +957,6 @@ Il caso d'Uso UC6.1 include ulteriori casi d'uso come rappresentato nella seguen
 \end{itemize}
 
 \subsubsection{UC8 - Visualizzazione lista workspace}
-
-
-
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1\textwidth]{../Assets/AdR/UC8.png}
-	\caption{UC8 e UC8.1}
-	\label{fig:UC8}
-\end{figure}
-
-
-
-
-
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -1040,20 +974,6 @@ Il caso d'Uso UC6.1 include ulteriori casi d'uso come rappresentato nella seguen
     \end{enumerate}
     \item \textbf{Inclusioni:} \hyperref[UC8.1]{UC8.1}
 \end{itemize}
-
-
-
-
-Il caso d'Uso UC8.1 include ulteriori casi d'uso come rappresentato nella seguente immagine:
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{../Assets/AdR/UC8-1.png}
-	\caption{Inclusioni di UC8.1: UC6.1.1, UC6.1.2}
-	\label{fig:UC8-1}
-\end{figure}
-
-
-
 
 \paragraph{UC8.1 - Visualizzazione elemento della lista di workspace}\label{UC8.1}
 \begin{itemize}
@@ -1109,20 +1029,6 @@ Il caso d'Uso UC8.1 include ulteriori casi d'uso come rappresentato nella seguen
 \end{itemize}
 
 \subsubsection{UC9 - Ricerca workspace}
-
-
-
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1\textwidth]{../Assets/AdR/UC9.png}
-	\caption{UC9 e UC9.1}
-	\label{fig:UC9}
-\end{figure}
-
-
-
-
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -1164,20 +1070,6 @@ Il caso d'Uso UC8.1 include ulteriori casi d'uso come rappresentato nella seguen
 \end{itemize}
 
 \subsubsection{UC10 - Creazione workspace}
-
-
-
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1\textwidth]{../Assets/AdR/UC10ext.png}
-	\caption{UC10 - Creazione workspace}
-	\label{fig:UC10ext}
-\end{figure}
-
-
-
-
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -1199,21 +1091,6 @@ Il caso d'Uso UC8.1 include ulteriori casi d'uso come rappresentato nella seguen
     \item \textbf{Estensioni:} \hyperref[UC10.3]{UC10.3}
 \end{itemize}
 
-
-
-
-Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguente immagine:
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{../Assets/AdR/UC10.png}
-	\caption{Inclusioni di UC10: UC10.1, UC10.2}
-	\label{fig:UC10}
-\end{figure}
-
-
-
-
-
 \paragraph{UC10.1 - Inserimento nome del workspace}\label{UC10.1}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
@@ -1232,9 +1109,9 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
     \end{enumerate}
 \end{itemize}
 
-\paragraph{UC10.2 - Assegnazione ruolo di owner al creatore del workspace}\label{UC10.2}
+\paragraph{UC10.2- Assegnazione ruolo di owner al creatore del workspace}\label{UC10.2}
 \begin{itemize}
-	\item \textbf{Attori principali:} Utente
+	\item \textbf{Attori principali:} Project Manager
 	\item \textbf{Precondizioni:} 
 	\begin{itemize}
 		\item Il sistema è attivo e funzionante
@@ -1248,7 +1125,6 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
         \item Il sistema crea automaticamente il ruolo di owner per il nuovo workspace
         \item Il sistema associa l'utente creatore al workspace con il ruolo di owner
         \item Il sistema registra l'utente come proprietario ufficiale del workspace
-        \item Il sistema riconosce l'utente come Project Manager
     \end{enumerate}
 	
 \end{itemize}
@@ -1276,21 +1152,6 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 \end{itemize}
 
 \subsubsection{UC11 - Visualizzazione lista dei ruoli di un workspace}
-
-
-
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1\textwidth]{../Assets/AdR/UC11.png}
-	\caption{UC11 e UC11.1}
-	\label{fig:UC11}
-\end{figure}
-
-
-
-
-
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -1320,22 +1181,6 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 \end{itemize}
 
 \subsubsection{UC12 - Visualizzazione lista utenti di un workspace}
-
-
-
-
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1\textwidth]{../Assets/AdR/UC12.png}
-	\caption{UC12 e UC12.1}
-	\label{fig:UC12}
-\end{figure}
-
-
-
-
-
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -1346,38 +1191,10 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{itemize}
     \item \textbf{Postcondizioni:} L'utente visualizza la lista di utenti di un singolo workspace
 	\item \textbf{Scenario principale:} L'utente visualizza l'username di ogni singolo utente presente all'interno del workspace
-    \item \textbf{Inclusioni:} \hyperref[UC12.1]{UC12.1}
-\end{itemize}
-
-\paragraph{UC12.1 - Visualizzazione singolo elemento lista utenti di un workspace}\label{UC12.1}
-\begin{itemize}
-	\item \textbf{Attori principali:} Utente
-	\item \textbf{Precondizioni:} 
-	\begin{itemize}
-		\item Il sistema è attivo e funzionante
-		\item L'utente è autenticato nel sistema
-        \item L'utente ha selezionato un singolo utente dalla lista di tutti gli utenti presenti in un workspace
-	\end{itemize}
-    \item \textbf{Postcondizioni:} L'utente visualizza singolo utente di un workspace
-	\item \textbf{Scenario principale:} L'utente visualizza username e relativo ruolo di un singolo utente presente all'interno del workspace	
+	
 \end{itemize}
 
 \subsubsection{UC13 - Rimozione di un utente da un workspace}
-
-
-
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1\textwidth]{../Assets/AdR/UC13.png}
-	\caption{UC13 - Rimozione di un utente da un workspace}
-	\label{fig:UC13}
-\end{figure}
-
-
-
-
-
 \begin{itemize}
 	\item \textbf{Attori principali:} Project Manager
 	\item \textbf{Precondizioni:} 
@@ -1387,7 +1204,6 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
         \item L'utente sta visualizzando la lista di tutti gli utenti presenti in un workspace
         \item L'utente ha selezionato un utente specifico dalla lista
         \item Esiste almeno un altro utente nel workspace oltre all'owner
-        \item Esiste un altro utente con il ruolo di Project Manager
         \item L'utente da rimuovere non è l'owner del workspace
 	\end{itemize}
     \item \textbf{Postcondizioni:} 
@@ -1404,13 +1220,6 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
         \item Il sistema rimuove l'utente dal workspace e aggiorna la lista degli utenti del workspace
     \end{enumerate}
 \end{itemize}
-
-
-
-
-
-
-
 
 % ====== UC14 - VERIFICA AGGIORNAMENTO SCANSIONE REPOSITORY (BACKEND) ======
 
@@ -1462,7 +1271,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 
 \begin{itemize}
 	\item \textbf{Attori principali:} Orchestratore
-	\item \textbf{Attori secondari:} GitHub
+	\item \textbf{Attori secondari:} GitHub 
 	\item \textbf{Precondizioni:}
 	\begin{itemize}
 		\item Il sistema è attivo e funzionante
@@ -1475,16 +1284,16 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{itemize}
 	\item \textbf{Scenario principale:}
 	\begin{enumerate}
-		\item Il sistema invia una richiesta alle GitHub API per ottenere le informazioni della repository
-		\item GitHub API restituisce i metadati della repository, incluso il campo \texttt{pushed\_at}
+		\item Il sistema invia una richiesta alle GitHub per ottenere le informazioni della repository
+		\item GitHub restituisce i metadati della repository, incluso il campo \texttt{pushed\_at}
 		\item Il sistema estrae e memorizza la data dell'ultimo push
 	\end{enumerate}
 
 	\item \textbf{Scenario alternativo:}
 	\begin{itemize}
-		\item \textbf{Errore connessione GitHub API:} (\hyperref[UC14.3]{UC14.3})
+		\item \textbf{Errore connessione GitHub:} (\hyperref[UC14.3]{UC14.3})
 		\begin{itemize}
-			\item \textbf{Condizione:} l'orchestratore non riesce a comunicare con le GitHub API per recuperare la data dell'ultimo push
+			\item \textbf{Condizione:} l'orchestratore non riesce a comunicare con le GitHub per recuperare la data dell'ultimo push
 			\item \textbf{Flusso:}
 			\begin{enumerate}
 				\item L'orchestratore rileva l'errore di connessione
@@ -1520,15 +1329,16 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 
 
 % ------ UC14.3 ------
-\paragraph{UC14.3 - Errore connessione GitHub API} \label{UC14.3}
+\paragraph{UC14.3 - Errore connessione GitHub} \label{UC14.3}
 
 \begin{itemize}
 	\item \textbf{Attori principali:} Orchestratore
+	\item \textbf{Attori secondari:} GitHub
 	\item \textbf{Precondizioni:}
 	\begin{itemize}
 		\item Il sistema è attivo e funzionante
 		\item Il sistema sta eseguendo \hyperref[UC14.1]{UC14.1}
-		\item Si è verificato un errore di comunicazione con le GitHub API
+		\item Si è verificato un errore di comunicazione con le GitHub
 	\end{itemize}
 	\item \textbf{Postcondizioni:}
 	\begin{itemize}
@@ -1536,10 +1346,469 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{itemize}
 	\item \textbf{Scenario principale:}
 	\begin{enumerate}
-		\item L'orchestratore rileva un errore durante la comunicazione con le GitHub API
+		\item L'orchestratore rileva un errore durante la comunicazione con le GitHub
 		\item L'orchestratore imposta lo stato di verifica della repository come "verifica non disponibile"
 	\end{enumerate}
 \end{itemize}
+
+% ============================================
+% UC15 - AVVIA SCANSIONE BACKEND
+% ============================================
+
+\subsubsection{UC 15 - Avvia scansione}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC37.png}
+	\caption{UC15 - Avvia scansione}
+	\label{fig:UC37}
+\end{figure}
+
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:}
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+		\item Esiste almeno una repository nel workspace
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Una nuova scansione viene avviata su una o più repository, su un branch valido, selezionate dall'utente
+		\item Le repository sottoposte a scansione vengono aggiornate con lo stato "Scansione in corso" fino al completamento della scansione
+		\item Al completamento della scansione, le repository vengono aggiornate con i risultati dell'analisi e lo stato "Scansione completata"
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'utente seleziona l'opzione "Avvia scansione"
+		\item Il sistema richiede all'utente di selezionare una o più repository su cui avviare la scansione
+		\item L'utente seleziona le repository su cui avviare la scansione
+		\item Il sistema verifica che le repository selezionate abbiano un branch valido (es. develop)
+		\item Il sistema avvia l'esecuzione dell'analisi sulle repository selezionate (\hyperref[UC17]{UC17 - Esegui analisi})
+		\item Il sistema aggiorna lo stato delle repository sottoposte a scansione a "Scansione in corso"
+		\item Al completamento della scansione, il sistema aggiorna le repository con i risultati dell'analisi e lo stato "Scansione completata"	
+	\end{enumerate}
+	\item \textbf{Scenario alternativo:}
+	\begin{itemize}
+		\item \textbf{Annullamento scansione:} \hyperref[UC16]{UC16}
+			\begin{itemize}
+				\item \textbf{Condizione:} l'utente decide di annullare l'operazione di avvio scansione prima del suo completamento
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item L'utente seleziona l'opzione "Annulla scansione" durante la procedura di avvio scansione
+					\item Il sistema interrompe la procedura di avvio scansione
+					\item Il sistema non avvia alcuna nuova scansione e se sono già state scansionate alcune repository, i dati di queste repository vengono riprestinati allo stato precedente all'avvio della scansione
+				\end{enumerate}
+			\end{itemize}
+		\item \textbf{Scansione non riuscita:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} si verifica un errore tecnico durante l'avvio della scansione o durante la scansione stessa
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema rileva un errore durante l'avvio o l'esecuzione della scansione
+					\item Il sistema interrompe la scansione in corso
+					\item Il sistema mantiene o ripristina lo stato precedente delle repository
+					\item Il sistema mostra un messaggio informativo: "Errore durante la scansione. Riprova più tardi." 
+				\end{enumerate}
+			\end{itemize}
+		\item \textbf{Scansione in corso:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} è attualmente in corso una scansione su una o più repository selezionate per la scansione
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema recupera i nomi delle repository attualmente sottoposte a scansione
+					\item Il sistema mostra un messaggio informativo: "Scansione in corso nelle seguenti repository: [nomi delle repository], prova più tardi." 
+					\item Il sistema avvia la scansione solo sulle repository selezionate che non sono attualmente sottoposte a scansione
+				\end{enumerate}
+			\end{itemize}
+		\item \textbf{Branch non valido}: 
+			\begin{itemize}
+				\item \textbf{Condizione:} una o più repository selezionate per la scansione non hanno un branch valido (es. develop)
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema identifica le repository senza un branch valido
+					\item Il sistema mostra un messaggio informativo: "Le seguenti repository non hanno un branch valido e non saranno sottoposte a scansione: [nomi delle repository]. Assicurati che il branch develop esista e riprova." 
+					\item Il sistema avvia la scansione solo sulle repository selezionate che hanno un branch valido
+				\end{enumerate}
+			\end{itemize}
+	\end{itemize}
+	\item \textbf{Inclusioni}: \hyperref[UC17]{UC17}
+	\item \textbf{Estensioni}: \hyperref[UC16]{UC16}
+	\item \textbf{UC che ereditano}:
+	\begin{itemize}
+		\item \hyperref[UC15.1]{UC15.1 - Scansione workspace}
+		\item \hyperref[UC15.2]{UC15.2 - Scansione singola repository}
+		\item \hyperref[UC15.3]{UC15.3 - Scansione insieme di repository}
+	\end{itemize}
+\end{itemize}
+
+\paragraph{UC 15.1 - Scansione workspace} \label{UC15.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:}
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+		\item Esiste almeno una repository nel workspace
+		\item L'utente ha selezionato l'opzione di avvio scansione su tutto il workspace
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Una scansione viene avviata su tutte le repository del workspace
+		\item Il branch develop è utilizzato per tutte le repository
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'utente seleziona l'opzione "Scansione workspace"
+		\item Il sistema seleziona automaticamente tutte le repository appartenenti al workspace
+		\item Il sistema seleziona automaticamente il branch develop per tutte le repository
+		\item Il sistema esegue l'analisi (\hyperref[UC17]{UC17 - Esegui analisi})
+	\end{enumerate}
+	\item \textbf{Inclusioni:}: \hyperref[UC17]{UC17}
+	\item \textbf{Eredita da}: \hyperref[UC15]{UC15 - Avvia scansione}
+\end{itemize}
+
+\paragraph{UC15.2 - Scansione singola repository} \label{UC15.2}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC37_2.png}
+	\caption{UC15.2 - Scansione singola repository}
+	\label{fig:UC37.2}
+\end{figure}
+
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:}
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+		\item Esiste almeno una repository nel workspace
+		\item L'utente ha selezionato una singola repository su cui avviare la scansione
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Una scansione viene avviata sulla repository selezionata
+		\item Il branch selezionato dall'utente viene analizzato
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item l'utente seleziona una repository del workspace
+		\item L'utente seleziona l'opzione "Avvio scansione"
+		\item Il sistema richiede all'utente di selezionare un branch valido su cui avviare la scansione (\hyperref[UC35]{UC35 - Selezione branch})
+		\item L'utente seleziona un branch valido
+		\item Il sistema esegue l'analisi (\hyperref[UC17]{UC17 - Esegui analisi})
+	\end{enumerate}
+	\item \textbf{Inclusioni}: \hyperref[UC35]{UC35}, \hyperref[UC17]{UC17}
+	\item \textbf{Eredita da}: \hyperref[UC15]{UC15 - Avvia scansione}
+\end{itemize}
+
+\paragraph{UC15.3 - Scansione insieme di repository} \label{UC15.3}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:}
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+		\item Esiste almeno una repository nel workspace
+		\item L'utente ha selezionato almeno due repository 
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Una scansione viene avviata su tutte le repository selezionate
+		\item Il branch develop è utilizzato per tutte le repository
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item l'utente seleziona due o più repository del workspace
+		\item L'utente seleziona l'opzione "Avvio scansione"
+		\item Il sistema seleziona automaticamente il branch develop
+		\item Il sistema esegue l'analisi (\hyperref[UC17]{UC17 - Esegui analisi}) 
+	\end{enumerate}
+	\item \textbf{Inclusioni:}: \hyperref[UC17]{UC17}
+	\item \textbf{Eredita da}: \hyperref[UC15]{UC15 - Avvia scansione}
+\end{itemize}
+
+\subsubsection{UC16 - Annullamento scansione} \label{UC16}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:}
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è stato riconosciuto dal sistema come Utente
+		\item L'utente ha selezionato un workspace
+		\item Esiste almeno una repository nel workspace
+		\item L'utente ha avviato una scansione
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item La scansione in corso viene annullata
+		\item Le repository sottoposte a scansione vengono ripristinate allo stato precedente all'avvio della scansione
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item l'utente seleziona l'opzione "Annulla scansione"
+		\item Il sistema interrompe la scansione in corso
+		\item Il sistema ripristina le repository sottoposte a scansione allo stato precedente all'avvio della scansione
+		\item Il sistema mostra un messaggio informativo: "Scansione annullata. Rispristino delle informazioni delle repository precedentemente scansionate."
+	\end{enumerate}
+\end{itemize}
+
+\subsubsection{UC17 - Esegui analisi repository} \label{UC17}
+\begin{itemize}
+	\item \textbf{Attori principali:} Sistema
+	\item \textbf{Attori secondari:} Orchestratore, Agenti, GitHub, Database
+	\item \textbf{Precondizioni:}
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item È stata avviata una scansione (\hyperref[UC15]{UC15})
+		\item Esiste almeno una repository da analizzare
+		\item Per ogni repository sono noti:
+		\begin{itemize}
+			\item URL GitHub valido
+			\item Branch da analizzare
+			\item Eventuale PAT valida, in caso di repository private
+		\end{itemize}
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Per ogni repository analizzata:
+		\begin{itemize}
+			\item è stato generato un report completo
+			\item il report è stato salvato nel database
+		\end{itemize}
+		\item Lo stato della scansione viene aggiornato a “Scansione completata” o “Scansione fallita”
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item Il sistema recupera la lista delle repository da analizzare e i branch associati
+		\item Il sistema clona le repository in locale (\hyperref[UC17.1]{UC17.1 - Clona repository})
+		\item Il sistema passa le repository clonate all'orchestratore
+		\item L'orchestratore coordina l'assegnazione delle repository agli agenti (\hyperref[UC17.2]{UC17.2 - Coordina analisi repository})
+		\item Gli agenti eseguono le analisi parziali sulle repository assegnate (\hyperref[UC17.3]{UC17.3 - Esegui analisi parziale})
+		\item L'orchestratore raccoglie i report parziali e genera il report completo (\hyperref[UC17.4]{UC17.4 - Aggrega report e salva risultati})
+	\end{enumerate}
+	\item \textbf{Scenario alternativo:}
+	\begin{itemize}
+		\item \textbf{Errore durante la clonazione:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} avviene un errore durante la clonazione di una repository
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema esclude la repository dall'analisi
+					\item Il sistema segnala all'utente il fallimento nell'analisi della repository
+				\end{enumerate}
+			\end{itemize}
+		\item \textbf{Errore durante l'analisi di un agente:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} si verifica un errore durante la creazione del report parziale da parte di un agente per una repository
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema rileva un errore durante la creazione del report da parte di un agente su una repository
+					\item La repository non analizzabile viene marcate come “Analisi fallita”
+					\item Il sistema continua l'analisi per le repository valide
+					\item Il sistema conclude la scansione con stato “Completata con errori”
+				\end{enumerate}
+			\end{itemize}
+	\end{itemize}
+	\item \textbf{Inclusioni:} \hyperref[UC17.1]{UC17.1}, \hyperref[UC17.2]{UC17.2}, \hyperref[UC17.3]{UC27.3}, \hyperref[UC17.4]{UC17.4}
+\end{itemize}
+
+\paragraph{UC17.1 - Clona repository} \label{UC17.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} Sistema
+	\item \textbf{Attori secondari:} GitHub
+	\item \textbf{Precondizioni:}
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item È stata avviata una scansione (\hyperref[UC15]{UC15})
+		\item Esiste almeno una repository da analizzare
+		\item Sono disponibili:
+		\begin{itemize}
+			\item URL GitHub valido
+			\item Branch da analizzare
+			\item Eventuale PAT valida, in caso di repository private
+		\end{itemize}
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item La repository github viene clonata in locale sul server
+		\item Viene restituito il path della directory locale della repository
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item Il sistema recupera l'URL della repository
+		\item Il sistema recupera il branch da analizzare
+		\item Se la repository è privata, il sistema recupera e utilizza una PAT valida
+		\item Il sistema clona il branch selezionato della repository su server locale
+		\item Il sistema salva il path della repository clonata
+	\end{enumerate}
+	\item \textbf{Scenario alternativo:}
+	\begin{itemize}
+		\item \textbf{URL o PAT non valido:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} l'URL GitHub o la PAT non esistente
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema tenta la connessione alla repository
+					\item La connessione fallisce
+					\item Il sistema comunica all'utente l'errore
+					\item La repository viene marcate come “Clonazione fallita” e viene esclusa dall'analisi
+				\end{enumerate}
+			\end{itemize}
+		\item \textbf{Spazio insufficiente sul server:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} errore durante la clonazione dovuto all'insufficienza di spazio nel server
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema rileva che lo spazio disponibile è insufficiente
+					\item Il sistema interrompe la clonazione
+					\item L'errore viene registrato e comunicato all'utente
+					\item La repository viene marcate come “Clonazione fallita” e viene esclusa dall'analisi
+				\end{enumerate}
+			\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+\paragraph{UC17.2 - Coordina analisi repository} \label{UC17.2}
+\begin{itemize}
+	\item \textbf{Attori principali:} Orchestratore
+	\item \textbf{Attori secondari:} Agenti
+	\item \textbf{Precondizioni:}
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item Sono disponibili i path delle repository clonate
+		\item Gli agenti sono registrati (noti al sistema) e disponibili (attivi e non occupati in altre analisi)
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Ogni repository viene assegnata a tutti gli agenti
+		\item Nessun agente analizza più volte la stessa repository nella stessa scansione
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'orchestratore riceve la lista delle repository clonate (path alla directory della repository locale)
+		\item L'orchestratore verifica la disponibilità degli agenti (controlla quali agenti sono liberi e quali no)
+		\item L'orchestratore, per ogni repository, assegna la repository a ciascun agente disponibile
+		\item L'orchestratore monitora l'avanzamento delle analisi
+		\item Quando tutti gli agenti hanno analizzato una repository, l'orchestratore la rimuove dalla lista di scansione
+	\end{enumerate}
+	\item \textbf{Scenario alternativo:}
+	\begin{itemize}
+		\item \textbf{Nessun agente disponibile:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} tutti gli agenti sono occupati o non raggiungibili
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item L'orchestratore verifica la disponibilità degli agenti
+					\item Nessun agente risulta disponibile
+					\item L'orchestratore mette le repository in coda
+					\item L'analisi riprende quando un agente diventa disponibile
+				\end{enumerate}
+			\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+\paragraph{UC17.3 - Esegui analisi parziale} \label{UC17.3}
+\begin{itemize}
+	\item \textbf{Attori principali:} Agente
+	\item \textbf{Attori secondari:} Orchestratore 
+	\item \textbf{Precondizioni:}
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'agente ha ricevuto il path della repository locale
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Viene generato un report parziale relativo a uno specifico tipo di analisi
+		\item Il report parziale viene inviato all'orchestratore
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'agente riceve il path della repository locale
+		\item L'agente esegue l'analisi di competenza (codice, documentazione o OWASP)
+		\item L'agente genera un report parziale
+		\item L'agente invia il report all'orchestratore
+	\end{enumerate}
+	\item \textbf{Scenario alternativo:}
+	\begin{itemize}
+		\item \textbf{Errore durante l'analisi:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} errore interno dell'agente (tool fallisce, crash, eccezione)
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item L'agente avvia l'analisi
+					\item Si verifica un errore
+					\item L'agente genera un report di errore
+					\item Il report viene inviato all'orchestratore
+				\end{enumerate}
+			\end{itemize}
+		\item \textbf{Nessun dato rilevante:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} non ci sono dati utili all'analisi
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item L'agente avvia l'analisi
+					\item Non vengono trovati dati utili all'analisi
+					\item L'agente invia un report vuoto o informativo
+					\item L'orchestratore considera l'analisi parziale completata
+				\end{enumerate}
+			\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+\paragraph{UC17.4 - Aggrega report e salva risultati} \label{UC17.4}
+\begin{itemize}
+	\item \textbf{Attori principali:} Orchestratore
+	\item \textbf{Attori secondari:}  Database
+	\item \textbf{Precondizioni:}
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item Sono disponibili tutti i report parziali per una repository
+	\end{itemize}
+	\item \textbf{Postcondizioni:} 
+	\begin{itemize}
+		\item Viene generato un report completo per il branch analizzato della repository
+		\item Il report completo viene salvato nel database
+	\end{itemize}
+	\item \textbf{Scenario principale:}
+	\begin{enumerate}
+		\item L'orchestratore riceve i report parziali dagli agenti
+		\item L'orchestratore associa i report alla repository corretta
+		\item Quando tutti i report previsti sono disponibili: aggrega i report parziali e genera il report completo
+		\item Il report completo viene salvato nel database
+		\item La repository viene marcata come analizzata
+	\end{enumerate}
+	\item \textbf{Scenario alternativo:}
+	\begin{itemize}
+		\item \textbf{Report parziale non valido:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} un report ricevuto è incompleto o segnala un errore
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item L'orchestratore valida i report ricevuti
+					\item Un report risulta non valido
+					\item Il sistema registra l'errore
+				\end{enumerate}
+			\end{itemize}
+		\item \textbf{Spazio insufficiente sul server:} 
+			\begin{itemize}
+				\item \textbf{Condizione:} errore durante il salvataggio nel database dovuto all'insufficienza di spazio nel server
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema tenta di salvare il report finale
+					\item Il salvataggio fallisce per mancanza di spazio nel server
+					\item Il sistema registra l'errore e segnala il fallimento
+				\end{enumerate}
+			\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+
 
 \subsubsection{UC19 - Visualizza lista tag raccolta}
 
@@ -1724,7 +1993,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
     \end{itemize}
 \end{itemize}
 
-\subsubsection{UC 20.1 - Inserisci nome tag raccolta} \label{UC20.1}
+\paragraph{UC 20.1 - Inserisci nome tag raccolta} \label{UC20.1}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -1988,7 +2257,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{enumerate}
 \end{itemize}
 
-\subsubsection{UC 25.1 - Visualizza nome repository}\label{UC25.1}
+\paragraph{UC 25.1 - Visualizza nome repository}\label{UC25.1}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -2010,7 +2279,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{enumerate}
 \end{itemize}
 
-\subsubsection{UC 25.2 - Visualizza data ultima scansione} \label{UC25.2}
+\paragraph{UC 25.2 - Visualizza data ultima scansione} \label{UC25.2}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -2043,7 +2312,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{enumerate}
 \end{itemize}
 
-\subsubsection{UC 25.3 - Visualizza presenza criticità} \label{UC25.3}
+\paragraph{UC 25.3 - Visualizza presenza criticità} \label{UC25.3}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -2053,7 +2322,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 		\item L'utente ha selezionato un workspace 
 		\item L'utente sta visualizzando la lista delle repository del workspace corrente
 		\item La repository di riferimento esiste nel sistema
-		\item La repository ha subito almeno una scansione ?????
+		\item La repository ha subito almeno una scansione
 	\end{itemize}
 	\item \textbf{Postcondizioni:} 
 	\begin{itemize}
@@ -2078,7 +2347,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{itemize}
 \end{itemize}
 
-\subsubsection{UC 25.4 - Visualizza voto documentazione} \label{UC25.4}
+\paragraph{UC 25.4 - Visualizza voto documentazione} \label{UC25.4}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -2088,7 +2357,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 		\item L'utente ha selezionato un workspace 
 		\item L'utente sta visualizzando la lista delle repository del workspace corrente
 		\item La repository di riferimento esiste nel sistema
-		\item La repository ha subito almeno una scansione ?????
+		\item La repository ha subito almeno una scansione
 	\end{itemize}
 	\item \textbf{Postcondizioni:} 
 	\begin{itemize}
@@ -2121,7 +2390,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{itemize}
 \end{itemize}
 
-\subsubsection{UC 25.5 - Visualizza percentuale test coverage} \label{UC25.5}
+\paragraph{UC 25.5 - Visualizza percentuale test coverage} \label{UC25.5}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -2131,7 +2400,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 		\item L'utente ha selezionato un workspace 
 		\item L'utente sta visualizzando la lista delle repository del workspace corrente
 		\item La repository di riferimento esiste nel sistema
-		\item La repository ha subito almeno una scansione ?????
+		\item La repository ha subito almeno una scansione 
 	\end{itemize}
 	\item \textbf{Postcondizioni:} 
 	\begin{itemize}
@@ -2215,7 +2484,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\item \textbf{Estensioni:} \hyperref[UC27]{UC27}
 \end{itemize}
 
-\subsubsection{UC 26.1 - Inserisci link repository GitHub}
+\paragraph{UC 26.1 - Inserisci link repository GitHub}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -2237,7 +2506,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{enumerate}
 \end{itemize}
 
-\subsubsection{UC 26.2 - Inserisci PAT repository GitHub}
+\paragraph{UC 26.2 - Inserisci PAT repository GitHub}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -2348,9 +2617,9 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{itemize}
 	\item \textbf{Postcondizioni:} 
 	\begin{itemize}
-		\item La repository selezionata viene rimossa dal workspace
-		\item Tutti i dati di analisi, scansioni, configurazioni e associazioni (inclusi i tag raccolta) relativi alla repository sono eliminati dal sistema
-	\end{itemize}
+		\item La repository non è più associata al workspace corrente
+		\item Se la repository non è associata ad altri workspace: tutti i dati di analisi, scansioni, configurazioni e associazioni (inclusi i tag raccolta) vengono eliminati dal sistema
+		\item Se la repository è associata ad altri workspace: vengono rimossi solo i dati e le associazioni relative al workspace corrente
 	\item \textbf{Scenario principale:}
 	\begin{enumerate}
 		\item L'utente seleziona l'opzione “Rimuovi repository” dalla repository selezionata
@@ -2361,6 +2630,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 			\item l'operazione è irreversibile
 		\end{itemize}
 		\item L'utente conferma l'operazione di rimozione
+		\item Il sistema verifica che la repository sia associata esclusivamente al workspace corrente
 		\item Il sistema rimuove la repository dal workspace
 		\item Il sistema elimina tutti i dati di analisi, scansioni, configurazioni associate alla repository
 		\item Il sistema aggiorna la visualizzazione e mostra un messaggio di conferma dell'avvenuta rimozione
@@ -2393,6 +2663,24 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 				\begin{enumerate}
 					\item Il sistema interrompe l'operazione
 					\item Il sistema mostra un messaggio di errore: “Errore durante la rimozione della repository”
+				\end{enumerate}
+			\end{itemize}
+		\item \textbf{Repository appartenente a più workspace}
+			\begin{itemize}
+				\item \textbf{Condizione:} la repository da analizzare appartiene ad altri workspace
+				\item \textbf{Flusso:} 
+				\begin{enumerate}
+					\item Il sistema rileva che la repository è condivisa con altri workspace
+					\item Il sistema mostra un messaggio informativo: “La repository è associata ad altri workspace. Verrà rimossa solo dal workspace corrente.”
+					\item L'utente conferma l'operazione
+					\item Il sistema rimuove l'associazione tra la repository e il workspace corrente
+					\item Il sistema elimina esclusivamente:
+					\begin{itemize}
+						\item i dati di analisi relativi al workspace corrente
+						\item le configurazioni specifiche del workspace
+						\item le associazioni ai tag raccolta del workspace corrente
+					\end{itemize}
+					\item cbLa repository e i relativi dati restano disponibili negli altri workspace
 				\end{enumerate}
 			\end{itemize}
 	\end{itemize}
@@ -2515,7 +2803,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\begin{enumerate}
 		\item L'utente digita una parola chiave o una frase nella barra di ricerca
 		\item L'utente conferma l'operazione di ricerca
-		\item Il sistema filtra la lista delle repository del workspace in base alla corrispondenza con la parola chiave o frase inserita (nome repository, linguaggio di programmazione, tag raccolta o username github???)
+		\item Il sistema filtra la lista delle repository del workspace in base alla corrispondenza con la parola chiave o frase inserita (nome repository, linguaggio di programmazione, tag raccolta o username github)
 		\item Il sistema mostra la lista delle repository che corrispondono ai criteri di ricerca
 	\end{enumerate}
 \end{itemize}
@@ -2575,7 +2863,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 			\item tag raccolta
 			\item nome del repository
 			\item username dell'utente che ha aggiunto la repository
-			\item username github di una persona che lavora su una repository ???
+			\item username github di una persona che lavora su una repository 
 			\item intervallo di test coverage
 			\item intervallo di voto della documentazione
 		\end{itemize}
@@ -2698,7 +2986,7 @@ Estende Visualizza lista repo, visualizza singola repo, visualizza visione aggre
 				\item \textbf{Condizione:} non sono presenti nuove scansioni completate dall'ultima visualizzazione delle repository
 				\item \textbf{Flusso:} 
 				\begin{enumerate}
-					\item Il sistema mostra un messaggio informativo: "Nessuna nuova scansione completata. Le informazioni mostrate sono aggiornate." ????
+					\item Il sistema mostra un messaggio informativo: "Nessuna nuova scansione completata. Le informazioni mostrate sono aggiornate." 
 				\end{enumerate}
 			\end{itemize}
 		\item \textbf{Scansione in corso:} 
@@ -2706,7 +2994,7 @@ Estende Visualizza lista repo, visualizza singola repo, visualizza visione aggre
 				\item \textbf{Condizione:} è attualmente in corso una scansione su una o più repository
 				\item \textbf{Flusso:} 
 				\begin{enumerate}
-					\item Il sistema mostra un messaggio informativo: "Scansione in corso, provare ad aggiornare le informazioni più tardi." ????
+					\item Il sistema mostra un messaggio informativo: "Scansione in corso, provare ad aggiornare le informazioni più tardi." 
 				\end{enumerate}
 			\end{itemize}
 	\end{itemize}
@@ -3048,7 +3336,7 @@ Il caso d'uso UC33.2.1 include ulteriori casi d'uso come rappresentato nella seg
 	\label{fig:UC33-2-1}
 \end{figure}
 
-\subparagraph{UC33.2.1.1 - Visualizza linguaggio singolo}\label{UC33.2.1.1}
+\subsubparagraph{UC33.2.1.1 - Visualizza linguaggio singolo}\label{UC33.2.1.1}
 \begin{itemize}
     \item \textbf{Attori principali:} Utente
     \item \textbf{Precondizioni:}
@@ -3074,7 +3362,7 @@ Il caso d'uso UC33.2.1 include ulteriori casi d'uso come rappresentato nella seg
     \item \textbf{Inclusioni:} \hyperref[UC33.2.1.1.1]{UC33.2.1.1.1}, \hyperref[UC33.2.1.1.2]{UC33.2.1.1.2}
 \end{itemize}
 
-\subparagraph{UC33.2.1.1.1 - Visualizza nome linguaggio}\label{UC33.2.1.1.1}
+\subsubparagraph{UC33.2.1.1.1 - Visualizza nome linguaggio}\label{UC33.2.1.1.1}
 \begin{itemize}
     \item \textbf{Attori principali:} Utente
     \item \textbf{Precondizioni:}
@@ -3093,7 +3381,7 @@ Il caso d'uso UC33.2.1 include ulteriori casi d'uso come rappresentato nella seg
     \end{enumerate}
 \end{itemize}
 
-\subparagraph{UC33.2.1.1.2 - Visualizza versione linguaggio}\label{UC33.2.1.1.2}
+\subsubparagraph{UC33.2.1.1.2 - Visualizza versione linguaggio}\label{UC33.2.1.1.2}
 \begin{itemize}
     \item \textbf{Attori principali:} Utente
     \item \textbf{Precondizioni:}
@@ -3114,7 +3402,7 @@ Il caso d'uso UC33.2.1 include ulteriori casi d'uso come rappresentato nella seg
 
 \end{itemize}
 
-\subparagraph{UC33.2.1.3 - Nessun linguaggio rilevato}\label{UC33.2.1.3}
+\subsubparagraph{UC33.2.1.3 - Nessun linguaggio rilevato}\label{UC33.2.1.3}
 \begin{itemize}
     \item \textbf{Attori principali:} Utente
     \item \textbf{Precondizioni:}
@@ -3185,7 +3473,7 @@ Il caso d'uso UC33.2.2 include ulteriori casi d'uso come rappresentato nella seg
 	\label{fig:UC33-2-2}
 \end{figure}
 
-\subparagraph{UC33.2.2.1 - Visualizza libreria singola}\label{UC33.2.2.1}
+\subsubparagraph{UC33.2.2.1 - Visualizza libreria singola}\label{UC33.2.2.1}
 \begin{itemize}
     \item \textbf{Attori principali:} Utente
     \item \textbf{Precondizioni:}
@@ -3211,7 +3499,7 @@ Il caso d'uso UC33.2.2 include ulteriori casi d'uso come rappresentato nella seg
     \item \textbf{Inclusioni:} \hyperref[UC33.2.2.1.1]{UC33.2.2.1.1}, \hyperref[UC33.2.2.1.2]{UC33.2.2.1.2}
 \end{itemize}
 
-\subparagraph{UC33.2.2.1.1 - Visualizza nome libreria}\label{UC33.2.2.1.1}
+\subsubparagraph{UC33.2.2.1.1 - Visualizza nome libreria}\label{UC33.2.2.1.1}
 \begin{itemize}
     \item \textbf{Attori principali:} Utente
     \item \textbf{Precondizioni:}
@@ -3230,7 +3518,7 @@ Il caso d'uso UC33.2.2 include ulteriori casi d'uso come rappresentato nella seg
     \end{enumerate}
 \end{itemize}
 
-\subparagraph{UC33.2.2.1.2 - Visualizza versione libreria}\label{UC33.2.2.1.2}
+\subsubparagraph{UC33.2.2.1.2 - Visualizza versione libreria}\label{UC33.2.2.1.2}
 \begin{itemize}
     \item \textbf{Attori principali:} Utente
     \item \textbf{Precondizioni:}
@@ -3249,7 +3537,7 @@ Il caso d'uso UC33.2.2 include ulteriori casi d'uso come rappresentato nella seg
     \end{enumerate}
 \end{itemize}
 
-\subparagraph{UC33.2.2.3 - Nessuna libreria rilevata}\label{UC33.2.2.3}
+\subsubparagraph{UC33.2.2.3 - Nessuna libreria rilevata}\label{UC33.2.2.3}
 \begin{itemize}
     \item \textbf{Attori principali:} Utente
     \item \textbf{Precondizioni:}
@@ -3320,7 +3608,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
 	\label{fig:UC33-2-3}
 \end{figure}
 
-\subparagraph{UC33.2.3.1 - Visualizza framework singolo}\label{UC33.2.3.1}
+\subsubparagraph{UC33.2.3.1 - Visualizza framework singolo}\label{UC33.2.3.1}
 \begin{itemize}
     \item \textbf{Attori principali:} Utente
     \item \textbf{Precondizioni:}
@@ -3346,7 +3634,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
     \item \textbf{Inclusioni:} \hyperref[UC33.2.3.1.1]{UC33.2.3.1.1}, \hyperref[UC33.2.3.1.2]{UC33.2.3.1.2}
 \end{itemize}
 
-\subparagraph{UC33.2.3.1.1 - Visualizza nome framework}\label{UC33.2.3.1.1}
+\subsubparagraph{UC33.2.3.1.1 - Visualizza nome framework}\label{UC33.2.3.1.1}
 \begin{itemize}
     \item \textbf{Attori principali:} Utente
     \item \textbf{Precondizioni:}
@@ -3365,7 +3653,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
     \end{enumerate}
 \end{itemize}
 
-\subparagraph{UC33.2.3.1.2 - Visualizza versione framework}\label{UC33.2.3.1.2}
+\subsubparagraph{UC33.2.3.1.2 - Visualizza versione framework}\label{UC33.2.3.1.2}
 \begin{itemize}
     \item \textbf{Attori principali:} Utente
     \item \textbf{Precondizioni:}
@@ -3385,7 +3673,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
 
 \end{itemize}
 
-\subparagraph{UC33.2.3.3 - Nessun framework rilevato}\label{UC33.2.3.3}
+\subsubparagraph{UC33.2.3.3 - Nessun framework rilevato}\label{UC33.2.3.3}
 \begin{itemize}
     \item \textbf{Attori principali:} Utente
     \item \textbf{Precondizioni:}
@@ -3411,29 +3699,10 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
 
 
 
-
-
-
-
-
 % ============================================
 % UC33.3 - VISUALIZZA ANALISI SICUREZZA
 % ============================================
 \paragraph{UC33.3 - Visualizzazione analisi sicurezza} \label{UC33.3}
-
-
-
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1\textwidth]{../Assets/AdR/UC33-3.png}
-	\caption{UC33.3 - Rimozione di un utente da un workspace}
-	\label{fig:UC33-3}
-\end{figure}
-
-
-
-
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente 
 	\item \textbf{Precondizioni:} 
@@ -3463,7 +3732,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
 	\item \textbf{Inclusioni:} \hyperref[UC33.3.1]{UC33.3.1}, \hyperref[UC33.3.2]{UC33.3.2}
 \end{itemize}
 
-\subparagraph{UC33.3.1 - Visualizzazione analisi sicurezza semplice}\label{UC33.3.1}
+\subparagraph{UC33.3.1 - Visualizza analisi sicurezza semplice}\label{UC33.3.1}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -3485,7 +3754,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
 	\end{enumerate}
 \end{itemize}
 
-\subparagraph{UC33.3.2 - Visualizzazione analisi sicurezza completa}\label{UC33.3.2}
+\subparagraph{UC33.3.2 - Visualizza analisi sicurezza completa}\label{UC33.3.2}
 \begin{itemize}
     \item \textbf{Attori principali:} 
     \begin{itemize}
@@ -3512,22 +3781,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
     \item \textbf{Inclusioni:} \hyperref[UC33.3.2.1]{UC33.3.2.1}, \hyperref[UC33.3.2.2]{UC33.3.2.2}
 \end{itemize}
 
-
-
-
-
-Il caso d'Uso UC33.3.2 include ulteriori casi d'uso come rappresentato nella seguente immagine:
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=0.8\textwidth]{../Assets/AdR/UC33-3-2.png}
-	\caption{Inclusioni di UC33.3.2: UC33.3.2.1, UC33.3.2.2}
-	\label{fig:UC33-3-2}
-\end{figure}
-
-
-
-
-\subparagraph{UC33.3.2.1 - Visualizzazione lista vulnerabilità riscontrate}\label{UC33.3.2.1}
+\subparagraph{UC33.3.2.1 - Visualizzazione singole vulnerabilità riscontrate}\label{UC33.3.2.1}
 \begin{itemize}
     \item \textbf{Attori principali:}
     \begin{itemize}
@@ -3586,7 +3840,7 @@ Il caso d'Uso UC33.3.2 include ulteriori casi d'uso come rappresentato nella seg
     \end{enumerate}
 \end{itemize}
 
-\subparagraph{UC33.3.2.2 - Approfondimento vulnerabilità}\label{UC33.3.2.2}
+\subparagraph{UC33.3.2.3 - Approfondimento criticità}\label{UC33.3.2.3}
 \begin{itemize}
     \item \textbf{Attori principali:} 
     \begin{itemize}
@@ -3619,20 +3873,7 @@ Il caso d'Uso UC33.3.2 include ulteriori casi d'uso come rappresentato nella seg
     \end{itemize}
 \end{itemize}
 
-\paragraph{UC33.4 - Visualizzazione analisi documentazione} \label{UC33.4}
-
-
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1\textwidth]{../Assets/AdR/UC33-4.png}
-	\caption{UC33.4 - Visualizzazione analisi documentazione}
-	\label{fig:UC33.4}
-\end{figure}
-
-
-
-
+\paragraph{UC33.4 - Visualizzazione analisi documentazione di una repository} \label{UC33.4}
 \begin{itemize}
     \item \textbf{Attori principali:} Utente 
     \item \textbf{Precondizioni:}
@@ -3715,21 +3956,10 @@ Il caso d'Uso UC33.3.2 include ulteriori casi d'uso come rappresentato nella seg
     \end{enumerate}
 \end{itemize}
 
-\paragraph{UC33.5 - Visualizzazione qualità del codice} \label{UC33.5}
-
-
-
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1\textwidth]{../Assets/AdR/UC33-5.png}
-	\caption{UC33.5 - Visualizzazione qualità del codice}
-	\label{fig:UC33-5}
-\end{figure}
-
-
-
-
+% ============================================
+% UC33.5 - VISUALIZZA QUALITÀ DEL CODICE
+% ============================================
+\paragraph{UC33.5 - Visualizzazione qualità del codice di una repository} \label{UC33.5}
 \begin{itemize}
     \item \textbf{Attori principali:} Utente 
     \item \textbf{Precondizioni:}
@@ -3769,21 +3999,6 @@ Il caso d'Uso UC33.3.2 include ulteriori casi d'uso come rappresentato nella seg
 \end{itemize}
 
 \subsubsection{UC34 - Nessuna scansione effettuata}\label{UC34}
-
-
-
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1\textwidth]{../Assets/AdR/UC34.png}
-	\caption{UC34 - Nessuna scansione effettuata}
-	\label{fig:UC34}
-\end{figure}
-
-
-
-
-
 \begin{itemize}
     \item \textbf{Attori principali:} Utente 
     \item \textbf{Precondizioni:}
@@ -3803,6 +4018,9 @@ Il caso d'Uso UC33.3.2 include ulteriori casi d'uso come rappresentato nella seg
         \item Il sistema può proporre all'utente di avviare una nuova analisi
     \end{enumerate}
 \end{itemize}
+
+
+
 
 
 % ============================================
@@ -4666,465 +4884,7 @@ Il caso d'uso UC36 include ulteriori casi d'uso come rappresentato nella seguent
 
 
 
-% ============================================
-% UC37 - AVVIA SCANSIONE BACKEND
-% ============================================
 
-\subsubsection{UC 37 - Avvia scansione}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC37.png}
-	\caption{UC37 - Avvia scansione}
-	\label{fig:UC37}
-\end{figure}
-
-\begin{itemize}
-	\item \textbf{Attori principali:} Utente
-	\item \textbf{Precondizioni:}
-	\begin{itemize}
-		\item Il sistema è attivo e funzionante
-		\item L'utente è stato riconosciuto dal sistema come Utente
-		\item L'utente ha selezionato un workspace
-		\item Esiste almeno una repository nel workspace
-	\end{itemize}
-	\item \textbf{Postcondizioni:} 
-	\begin{itemize}
-		\item Una nuova scansione viene avviata su una o più repository, su un branch valido, selezionate dall'utente
-		\item Le repository sottoposte a scansione vengono aggiornate con lo stato "Scansione in corso" fino al completamento della scansione
-		\item Al completamento della scansione, le repository vengono aggiornate con i risultati dell'analisi e lo stato "Scansione completata"
-	\end{itemize}
-	\item \textbf{Scenario principale:}
-	\begin{enumerate}
-		\item L'utente seleziona l'opzione "Avvia scansione"
-		\item Il sistema richiede all'utente di selezionare una o più repository su cui avviare la scansione
-		\item L'utente seleziona le repository su cui avviare la scansione
-		\item Il sistema verifica che le repository selezionate abbiano un branch valido (es. develop)
-		\item Il sistema avvia l'esecuzione dell'analisi sulle repository selezionate (\hyperref[UC39]{UC39 - Esegui analisi})
-		\item Il sistema aggiorna lo stato delle repository sottoposte a scansione a "Scansione in corso"
-		\item Al completamento della scansione, il sistema aggiorna le repository con i risultati dell'analisi e lo stato "Scansione completata"	
-	\end{enumerate}
-	\item \textbf{Scenario alternativo:}
-	\begin{itemize}
-		\item \textbf{Annullamento scansione:} \hyperref[UC38]{UC38}
-			\begin{itemize}
-				\item \textbf{Condizione:} l'utente decide di annullare l'operazione di avvio scansione prima del suo completamento
-				\item \textbf{Flusso:} 
-				\begin{enumerate}
-					\item L'utente seleziona l'opzione "Annulla scansione" durante la procedura di avvio scansione
-					\item Il sistema interrompe la procedura di avvio scansione
-					\item Il sistema non avvia alcuna nuova scansione e se sono già state scansionate alcune repository, i dati di queste repository vengono riprestinati allo stato precedente all'avvio della scansione
-				\end{enumerate}
-			\end{itemize}
-		\item \textbf{Scansione non riuscita:} 
-			\begin{itemize}
-				\item \textbf{Condizione:} si verifica un errore tecnico durante l'avvio della scansione o durante la scansione stessa
-				\item \textbf{Flusso:} 
-				\begin{enumerate}
-					\item Il sistema rileva un errore durante l'avvio o l'esecuzione della scansione
-					\item Il sistema interrompe la scansione in corso
-					\item Il sistema mantiene o ripristina lo stato precedente delle repository
-					\item Il sistema mostra un messaggio informativo: "Errore durante la scansione. Riprova più tardi." 
-				\end{enumerate}
-			\end{itemize}
-		\item \textbf{Scansione in corso:} 
-			\begin{itemize}
-				\item \textbf{Condizione:} è attualmente in corso una scansione su una o più repository selezionate per la scansione
-				\item \textbf{Flusso:} 
-				\begin{enumerate}
-					\item Il sistema recupera i nomi delle repository attualmente sottoposte a scansione
-					\item Il sistema mostra un messaggio informativo: "Scansione in corso nelle seguenti repository: [nomi delle repository], prova più tardi." 
-					\item Il sistema avvia la scansione solo sulle repository selezionate che non sono attualmente sottoposte a scansione
-				\end{enumerate}
-			\end{itemize}
-		\item \textbf{Branch non valido}: 
-			\begin{itemize}
-				\item \textbf{Condizione:} una o più repository selezionate per la scansione non hanno un branch valido (es. develop)
-				\item \textbf{Flusso:} 
-				\begin{enumerate}
-					\item Il sistema identifica le repository senza un branch valido
-					\item Il sistema mostra un messaggio informativo: "Le seguenti repository non hanno un branch valido e non saranno sottoposte a scansione: [nomi delle repository]. Assicurati che il branch develop esista e riprova." 
-					\item Il sistema avvia la scansione solo sulle repository selezionate che hanno un branch valido
-				\end{enumerate}
-			\end{itemize}
-	\end{itemize}
-	\item \textbf{Inclusioni}: \hyperref[UC38]{UC38}
-	\item \textbf{Estensioni}: \hyperref[UC38]{UC38}
-	\item \textbf{UC che ereditano}:
-	\begin{itemize}
-		\item \hyperref[UC37.1]{UC37.1 - Scansione workspace}
-		\item \hyperref[UC37.2]{UC37.2 - Scansione singola repository}
-		\item \hyperref[UC37.3]{UC37.3 - Scansione insieme di repository}
-	\end{itemize}
-\end{itemize}
-
-\paragraph{UC 37.1 - Scansione workspace} \label{UC37.1}
-\begin{itemize}
-	\item \textbf{Attori principali:} Utente
-	\item \textbf{Precondizioni:}
-	\begin{itemize}
-		\item Il sistema è attivo e funzionante
-		\item L'utente è stato riconosciuto dal sistema come Utente
-		\item L'utente ha selezionato un workspace
-		\item Esiste almeno una repository nel workspace
-		\item L'utente ha selezionato l'opzione di avvio scansione su tutto il workspace
-	\end{itemize}
-	\item \textbf{Postcondizioni:} 
-	\begin{itemize}
-		\item Una scansione viene avviata su tutte le repository del workspace
-		\item Il branch develop è utilizzato per tutte le repository
-	\end{itemize}
-	\item \textbf{Scenario principale:}
-	\begin{enumerate}
-		\item L'utente seleziona l'opzione "Scansione workspace"
-		\item Il sistema seleziona automaticamente tutte le repository appartenenti al workspace
-		\item Il sistema seleziona automaticamente il branch develop per tutte le repository
-		\item Il sistema esegue l'analisi (\hyperref[UC39]{UC39 - Esegui analisi})
-	\end{enumerate}
-	\item \textbf{Inclusioni:}: \hyperref[UC39]{UC39}
-	\item \textbf{Eredita da}: \hyperref[UC37]{UC37 - Avvia scansione}
-\end{itemize}
-
-\paragraph{UC 37.2 - Scansione singola repository} \label{UC37.2}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC37_2.png}
-	\caption{UC37.2 - Scansione singola repository}
-	\label{fig:UC37.2}
-\end{figure}
-
-\begin{itemize}
-	\item \textbf{Attori principali:} Utente
-	\item \textbf{Precondizioni:}
-	\begin{itemize}
-		\item Il sistema è attivo e funzionante
-		\item L'utente è stato riconosciuto dal sistema come Utente
-		\item L'utente ha selezionato un workspace
-		\item Esiste almeno una repository nel workspace
-		\item L'utente ha selezionato una singola repository su cui avviare la scansione
-	\end{itemize}
-	\item \textbf{Postcondizioni:} 
-	\begin{itemize}
-		\item Una scansione viene avviata sulla repository selezionata
-		\item Il branch selezionato dall'utente viene analizzato
-	\end{itemize}
-	\item \textbf{Scenario principale:}
-	\begin{enumerate}
-		\item l'utente seleziona una repository del workspace
-		\item L'utente seleziona l'opzione "Avvio scansione"
-		\item Il sistema richiede all'utente di selezionare un branch valido su cui avviare la scansione (\hyperref[UC35]{UC35 - Selezione branch})
-		\item L'utente seleziona un branch valido
-		\item Il sistema esegue l'analisi (\hyperref[UC39]{UC39 - Esegui analisi})
-	\end{enumerate}
-	\item \textbf{Inclusioni}: \hyperref[UC35]{UC35}, \hyperref[UC39]{UC39}
-	\item \textbf{Eredita da}: \hyperref[UC37]{UC37 - Avvia scansione}
-\end{itemize}
-
-\paragraph{UC 37.3 - Scansione insieme di repository} \label{UC37.3}
-\begin{itemize}
-	\item \textbf{Attori principali:} Utente
-	\item \textbf{Precondizioni:}
-	\begin{itemize}
-		\item Il sistema è attivo e funzionante
-		\item L'utente è stato riconosciuto dal sistema come Utente
-		\item L'utente ha selezionato un workspace
-		\item Esiste almeno una repository nel workspace
-		\item L'utente ha selezionato almeno due repository 
-	\end{itemize}
-	\item \textbf{Postcondizioni:} 
-	\begin{itemize}
-		\item Una scansione viene avviata su tutte le repository selezionate
-		\item Il branch develop è utilizzato per tutte le repository
-	\end{itemize}
-	\item \textbf{Scenario principale:}
-	\begin{enumerate}
-		\item l'utente seleziona due o più repository del workspace
-		\item L'utente seleziona l'opzione "Avvio scansione"
-		\item Il sistema seleziona automaticamente il branch develop
-		\item Il sistema esegue l'analisi (\hyperref[UC39]{UC39 - Esegui analisi}) 
-	\end{enumerate}
-	\item \textbf{Inclusioni:}: \hyperref[UC39]{UC39}
-	\item \textbf{Eredita da}: \hyperref[UC37]{UC37 - Avvia scansione}
-\end{itemize}
-
-\subsubsection{UC 38 - Annullamento scansione} \label{UC38}
-\begin{itemize}
-	\item \textbf{Attori principali:} Utente
-	\item \textbf{Precondizioni:}
-	\begin{itemize}
-		\item Il sistema è attivo e funzionante
-		\item L'utente è stato riconosciuto dal sistema come Utente
-		\item L'utente ha selezionato un workspace
-		\item Esiste almeno una repository nel workspace
-		\item L'utente ha avviato una scansione
-	\end{itemize}
-	\item \textbf{Postcondizioni:} 
-	\begin{itemize}
-		\item La scansione in corso viene annullata
-		\item Le repository sottoposte a scansione vengono ripristinate allo stato precedente all'avvio della scansione
-	\end{itemize}
-	\item \textbf{Scenario principale:}
-	\begin{enumerate}
-		\item l'utente seleziona l'opzione "Annulla scansione"
-		\item Il sistema interrompe la scansione in corso
-		\item Il sistema ripristina le repository sottoposte a scansione allo stato precedente all'avvio della scansione
-		\item Il sistema mostra un messaggio informativo: "Scansione annullata. Rispristino delle informazioni delle repository precedentemente scansionate."
-	\end{enumerate}
-\end{itemize}
-
-\paragraph{UC39 - Esegui analisi repository} \label{UC39}
-\begin{itemize}
-	\item \textbf{Attori principali:} Sistema
-	\item \textbf{Attori secondari:} Orchestratore, Agenti, Git, Database
-	\item \textbf{Precondizioni:}
-	\begin{itemize}
-		\item Il sistema è attivo e funzionante
-		\item È stata avviata una scansione (\hyperref[UC37]{UC37})
-		\item Esiste almeno una repository da analizzare
-		\item Per ogni repository sono noti:
-		\begin{itemize}
-			\item URL GitHub valido
-			\item Branch da analizzare
-			\item Eventuale PAT valida, in caso di repository private
-		\end{itemize}
-	\end{itemize}
-	\item \textbf{Postcondizioni:} 
-	\begin{itemize}
-		\item Per ogni repository analizzata:
-		\begin{itemize}
-			\item è stato generato un report completo
-			\item il report è stato salvato nel database
-		\end{itemize}
-		\item Lo stato della scansione viene aggiornato a “Scansione completata” o “Scansione fallita”
-	\end{itemize}
-	\item \textbf{Scenario principale:}
-	\begin{enumerate}
-		\item Il sistema recupera la lista delle repository da analizzare e i branch associati
-		\item Il sistema clona le repository in locale (\hyperref[UC39.1]{UC39.1 - Clona repository})
-		\item Il sistema passa le repository clonate all'orchestratore
-		\item L'orchestratore coordina l'assegnazione delle repository agli agenti (\hyperref[UC39.2]{UC39.2 - Coordina analisi repository})
-		\item Gli agenti eseguono le analisi parziali sulle repository assegnate (\hyperref[UC39.3]{UC39.3 - Esegui analisi parziale})
-		\item L'orchestratore raccoglie i report parziali e genera il report completo (\hyperref[UC39.4]{UC39.4 - Aggrega report e salva risultati})
-	\end{enumerate}
-	\item \textbf{Scenario alternativo:}
-	\begin{itemize}
-		\item \textbf{Errore durante la clonazione:} 
-			\begin{itemize}
-				\item \textbf{Condizione:} avviene un errore durante la clonazione di una repository
-				\item \textbf{Flusso:} 
-				\begin{enumerate}
-					\item Il sistema esclude la repository dall'analisi
-					\item Il sistema segnala all'utente il fallimento nell'analisi della repository
-				\end{enumerate}
-			\end{itemize}
-		\item \textbf{Errore durante l'analisi di un agente:} 
-			\begin{itemize}
-				\item \textbf{Condizione:} si verifica un errore durante la creazione del report parziale da parte di un agente per una repository
-				\item \textbf{Flusso:} 
-				\begin{enumerate}
-					\item Il sistema rileva un errore durante la creazione del report da parte di un agente su una repository
-					\item La repository non analizzabile viene marcate come “Analisi fallita”
-					\item Il sistema continua l'analisi per le repository valide
-					\item Il sistema conclude la scansione con stato “Completata con errori”
-				\end{enumerate}
-			\end{itemize}
-	\end{itemize}
-	\item \textbf{Inclusioni:} \hyperref[UC39.1]{UC39.1}, \hyperref[UC39.2]{UC39.2}, \hyperref[UC39.3]{UC39.3}, \hyperref[UC39.4]{UC39.4},
-\end{itemize}
-
-\subparagraph{UC39.1 - Clona repository} \label{UC39.1}
-\begin{itemize}
-	\item \textbf{Attori principali:} Sistema
-	\item \textbf{Attori secondari:} Git
-	\item \textbf{Precondizioni:}
-	\begin{itemize}
-		\item Il sistema è attivo e funzionante
-		\item È stata avviata una scansione (\hyperref[UC37]{UC37})
-		\item Esiste almeno una repository da analizzare
-		\item Sono disponibili:
-		\begin{itemize}
-			\item URL GitHub valido
-			\item Branch da analizzare
-			\item Eventuale PAT valida, in caso di repository private
-		\end{itemize}
-	\end{itemize}
-	\item \textbf{Postcondizioni:} 
-	\begin{itemize}
-		\item La repository github viene clonata in locale sul server
-		\item Viene restituito il path della directory locale della repository
-	\end{itemize}
-	\item \textbf{Scenario principale:}
-	\begin{enumerate}
-		\item Il sistema recupera l'URL della repository
-		\item Il sistema recupera il branch da analizzare
-		\item Se la repository è privata, il sistema recupera e utilizza una PAT valida
-		\item Il sistema clona il branch selezionato della repository su server locale
-		\item Il sistema salva il path della repository clonata
-	\end{enumerate}
-	\item \textbf{Scenario alternativo:} link non valido, PAT non valido, errore durante la clonazione, non c'è spazio nel server, branch non esistente
-	\item \textbf{Scenario alternativo:}
-	\begin{itemize}
-		\item \textbf{URL o PAT non valido:} 
-			\begin{itemize}
-				\item \textbf{Condizione:} l'URL GitHub o la PAT non è valida
-				\item \textbf{Flusso:} 
-				\begin{enumerate}
-					\item Il sistema tenta la connessione alla repository
-					\item La connessione fallisce
-					\item Il sistema comunica all'utente l'errore
-					\item La repository viene marcate come “Clonazione fallita” e viene esclusa dall'analisi
-				\end{enumerate}
-			\end{itemize}
-		\item \textbf{Spazio insufficiente sul server:} 
-			\begin{itemize}
-				\item \textbf{Condizione:} errore durante la clonazione dovuto all'insufficienza di spazio nel server
-				\item \textbf{Flusso:} 
-				\begin{enumerate}
-					\item Il sistema rileva che lo spazio disponibile è insufficiente
-					\item Il sistema interrompe la clonazione
-					\item L'errore viene registrato e comunicato all'utente
-					\item La repository viene marcate come “Clonazione fallita” e viene esclusa dall'analisi
-				\end{enumerate}
-			\end{itemize}
-	\end{itemize}
-\end{itemize}
-
-\subparagraph{UC39.2 - Coordina analisi repository} \label{UC39.2}
-\begin{itemize}
-	\item \textbf{Attori principali:} Orchestratore
-	\item \textbf{Attori secondari:} Agenti
-	\item \textbf{Precondizioni:}
-	\begin{itemize}
-		\item Il sistema è attivo e funzionante
-		\item Sono disponibili i path delle repository clonate
-		\item Gli agenti sono registrati (noti al sistema) e disponibili (attivi e non occupati in altre analisi)
-	\end{itemize}
-	\item \textbf{Postcondizioni:} 
-	\begin{itemize}
-		\item Ogni repository viene assegnata a tutti gli agenti
-		\item Nessun agente analizza più volte la stessa repository nella stessa scansione
-	\end{itemize}
-	\item \textbf{Scenario principale:}
-	\begin{enumerate}
-		\item L'orchestratore riceve la lista delle repository clonate (path alla directory della repository locale)
-		\item L'orchestratore verifica la disponibilità degli agenti (controlla quali agenti sono liberi e quali no)
-		\item L'orchestratore, per ogni repository, assegna la repository a ciascun agente disponibile
-		\item L'orchestratore monitora l'avanzamento delle analisi
-		\item Quando tutti gli agenti hanno analizzato una repository, l'orchestratore la rimuove dalla lista di scansione
-	\end{enumerate}
-	\item \textbf{Scenario alternativo:}
-	\begin{itemize}
-		\item \textbf{Nessun agente disponibile:} 
-			\begin{itemize}
-				\item \textbf{Condizione:} tutti gli agenti sono occupati o non raggiungibili
-				\item \textbf{Flusso:} 
-				\begin{enumerate}
-					\item L'orchestratore verifica la disponibilità degli agenti
-					\item Nessun agente risulta disponibile
-					\item L'orchestratore mette le repository in coda
-					\item L'analisi riprende quando un agente diventa disponibile
-				\end{enumerate}
-			\end{itemize}
-	\end{itemize}
-\end{itemize}
-
-\subparagraph{UC39.3 - Esegui analisi parziale} \label{UC39.3}
-\begin{itemize}
-	\item \textbf{Attori principali:} Agente
-	\item \textbf{Attori secondari:} Orchestratore 
-	\item \textbf{Precondizioni:}
-	\begin{itemize}
-		\item Il sistema è attivo e funzionante
-		\item L'agente ha ricevuto il path della repository locale
-	\end{itemize}
-	\item \textbf{Postcondizioni:} 
-	\begin{itemize}
-		\item Viene generato un report parziale relativo a uno specifico tipo di analisi
-		\item Il report parziale viene inviato all'orchestratore
-	\end{itemize}
-	\item \textbf{Scenario principale:}
-	\begin{enumerate}
-		\item L'agente riceve il path della repository locale
-		\item L'agente esegue l'analisi di competenza (codice, documentazione o OWASP)
-		\item L'agente genera un report parziale
-		\item L'agente invia il report all'orchestratore
-	\end{enumerate}
-	\item \textbf{Scenario alternativo:}
-	\begin{itemize}
-		\item \textbf{Errore durante l'analisi:} 
-			\begin{itemize}
-				\item \textbf{Condizione:} errore interno dell'agente (tool fallisce, crash, eccezione)
-				\item \textbf{Flusso:} 
-				\begin{enumerate}
-					\item L'agente avvia l'analisi
-					\item Si verifica un errore
-					\item L'agente genera un report di errore
-					\item Il report viene inviato all'orchestratore
-				\end{enumerate}
-			\end{itemize}
-		\item \textbf{Nessun dato rilevante:} 
-			\begin{itemize}
-				\item \textbf{Condizione:} non ci sono dati utili all'analisi
-				\item \textbf{Flusso:} 
-				\begin{enumerate}
-					\item L'agente avvia l'analisi
-					\item Non vengono trovati dati utili all'analisi
-					\item L'agente invia un report vuoto o informativo
-					\item L'orchestratore considera l'analisi parziale completata
-				\end{enumerate}
-			\end{itemize}
-	\end{itemize}
-\end{itemize}
-
-\subparagraph{UC39.4 - Aggrega report e salva risultati} \label{UC39.4}
-\begin{itemize}
-	\item \textbf{Attori principali:} Orchestratore
-	\item \textbf{Attori secondari:}  Database
-	\item \textbf{Precondizioni:}
-	\begin{itemize}
-		\item Il sistema è attivo e funzionante
-		\item Sono disponibili tutti i report parziali per una repository
-	\end{itemize}
-	\item \textbf{Postcondizioni:} 
-	\begin{itemize}
-		\item Viene generato un report completo per il branch analizzato della repository
-		\item Il report completo viene salvato nel database
-	\end{itemize}
-	\item \textbf{Scenario principale:}
-	\begin{enumerate}
-		\item L'orchestratore riceve i report parziali dagli agenti
-		\item L'orchestratore associa i report alla repository corretta
-		\item Quando tutti i report previsti sono disponibili: aggrega i report parziali e genera il report completo
-		\item Il report completo viene salvato nel database
-		\item La repository viene marcata come analizzata
-	\end{enumerate}
-	\item \textbf{Scenario alternativo:}
-	\begin{itemize}
-		\item \textbf{Report parziale non valido:} 
-			\begin{itemize}
-				\item \textbf{Condizione:} un report ricevuto è incompleto o segnala un errore
-				\item \textbf{Flusso:} 
-				\begin{enumerate}
-					\item L'orchestratore valida i report ricevuti
-					\item Un report risulta non valido
-					\item Il report viene scartato
-					\item Il sistema registra l'errore
-					\item Il sistema prosegue con i report validi
-				\end{enumerate}
-			\end{itemize}
-		\item \textbf{Spazio insufficiente sul server:} 
-			\begin{itemize}
-				\item \textbf{Condizione:} errore durante il salvataggio nel database dovuto all'insufficienza di spazio nel server
-				\item \textbf{Flusso:} 
-				\begin{enumerate}
-					\item Il sistema tenta di salvare il report finale
-					\item Il salvataggio fallisce per mancanza di spazio nel server
-					\item Il sistema registra l'errore e segnala il fallimento
-				\end{enumerate}
-			\end{itemize}
-	\end{itemize}
-\end{itemize}
 
 
 \end{document}

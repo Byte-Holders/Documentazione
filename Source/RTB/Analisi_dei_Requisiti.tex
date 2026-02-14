@@ -114,15 +114,37 @@
 
 % ====== PAGINA DI TITOLO ======
 \begin{titlepage}
-	\begin{center}
-		\includegraphics[width=0.55\textwidth]{../Assets/ByteHolders1.png}\vspace{1.5cm}
-
-		{\LARGE \sffamily \color{AccentColor}\bfseries Analisi dei Requisiti}
-	\end{center}
-	
-	\vfill
-	\rule{\textwidth}{1pt}\par
-	\textit{Versione: 0.1.0}
+    \centering
+    
+    \includegraphics[width=0.55\textwidth]{../Assets/ByteHolders1.png}\par\vspace{1.5cm}
+    
+    {\LARGE \sffamily \color{AccentColor}\bfseries Analisi dei Requisiti}\par
+    \vspace{0.5cm}
+    {\large \color{AccentColor}\sffamily Versione 1.0.0}\par
+    
+    \vfill
+    
+    \noindent\color{AccentColor}\rule{\textwidth}{1pt}\par
+    \vspace{0.5cm}
+    
+    \begin{tabularx}{\textwidth}{@{} >{\centering\arraybackslash\bfseries\sffamily}X >{\centering\arraybackslash\sffamily}X @{}}
+        Responsabile & \sffamily Giacomo Nalotto  \\
+        \arrayrulecolor{MediumGray}\hline \\[-1.5ex]
+        
+        Verificatori & \sffamily Alessandro Morabito, Giulia Romanato, Lorenzo Grolla, Giacomo Nalotto\\
+        \arrayrulecolor{MediumGray}\hline \\[-1.5ex]
+        
+        Redattori & \sffamily Alessandro Morabito, Giulia Romanato, Lorenzo Grolla, Giacomo Nalotto  \\
+        \arrayrulecolor{MediumGray}\hline \\[-1.5ex]
+        
+        Destinatari & \sffamily Prof. Tullio Vardanega, Prof. Riccardo Cardin, Var Group \\
+        \arrayrulecolor{MediumGray}\hline \\[-1.5ex]
+        
+        Uso & \sffamily Esterno \\
+        \arrayrulecolor{MediumGray}\hline \\[-1.5ex]
+    \end{tabularx}
+    
+    \vfill
 \end{titlepage}
 
 \newpage
@@ -139,8 +161,9 @@
 		\textcolor{white}{\textbf{Data}} & 
 		\multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} &
 		\multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
-		0.14.0 & 13/02/2026 & Giulia Romanato & inserito UC25.1 Visualizza singolo elemento lista repository del workspace, sitemati grafici, cambiato numero Aggiorna repository (UC33->UC37) e aggiunta Aggiorna repository come extend a UC35, UC33, UC36\\
-		0.13.0 & 12/02/2026 & Giulia Romanato & Cambio numero: (UC37->UC15, UC38->UC16, UC39->UC17) e unificato dtile delle subsubsection \\
+        0.15.0 & 13/02/2026 & Giulia Romanato & Inserito UC25.1 Visualizza singolo elemento lista repository del workspace, sitemati grafici, cambiato numero Aggiorna repository (UC33->UC37) e aggiunta Aggiorna repository come extend a UC35, UC33, UC36\\
+        0.14.0 & 14/02/2026 & Giacomo Nalotto & Sistemazione pagina di titolo
+		0.13.0 & 12/02/2026 & Giulia Romanato & Cambio numero: (UC37->UC15, UC38->UC16, UC39->UC17) e unificato stile delle subsubsection \\
 		0.12.0 & 12/02/2026 & Alessandro Morabito & Verifica del documento \\
 		0.11.0 & 11/02/2026 & Giacomo Nalotto & Sistemazione paragrafi introduttivi da 1 a 3.2 \\
 		0.10.0 & 08/02/2026 & Giulia Romanato & Stesura UC Backend (UC39 Esegui analisi con relativi sottocasi d'uso) \\ 
@@ -685,6 +708,14 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 \end{itemize}
 
 \subsubsection{UC5 - Invito utente in workspace}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{../Assets/AdR/UC5ext.png}
+	\caption{UC5 - Invito utente in workspace}
+	\label{fig:UC5ext}
+\end{figure}
+
 \begin{itemize}
 	\item \textbf{Attori principali:} Project Manager
 	\item \textbf{Precondizioni:} 
@@ -705,12 +736,13 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	
 \end{itemize}
 
-% \begin{figure}[h]
-% 	\centering
-% 	\includegraphics[width=1\textwidth]{Figura 8.png}
-% 	\caption{Figura 8: UC5 e relative inclusioni}
-% 	\label{fig:UC5}
-% \end{figure}
+Il caso d'Uso UC5 include ulteriori casi d'uso come rappresentato nella seguente immagine:
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1.0\textwidth]{../Assets/AdR/UC5.png}
+	\caption{Inclusioni di UC5: UC5.1, UC5.2, UC5.2.1}
+	\label{fig:UC5}
+\end{figure}
 
 \paragraph{UC5.1 - Inserimento username nuovo utente}\label{UC5.1}
 \begin{itemize}
@@ -745,25 +777,7 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
     \item L'utente seleziona il ruolo desiderato dalla lista
     \item Il sistema memorizza il ruolo selezionato
     \end{enumerate}
-    \item \textbf{Inclusioni:} \hyperref[UC5.2.1]{UC5.2.1}
-\end{itemize}
-
-\subparagraph{UC5.2.1 - Visualizzazione lista ruoli nel workspace}\label{UC5.2.1}
-\begin{itemize}
-	\item \textbf{Attori principali:} Project Manager
-	\item \textbf{Precondizioni:} 
-	\begin{itemize}
-		\item Il sistema è attivo e funzionante
-		\item L'utente è autenticato nel sistema
-        \item L'utente sta selezionando un ruolo da assegnare durante l'invito
-        \item Esiste almeno un ruolo definito nel workspace
-	\end{itemize}
-    \item \textbf{Postcondizioni:} Viene visualizzata la lista completa dei ruoli disponibili nel workspace
-	\item \textbf{Scenario principale:} 
-    \begin{enumerate}
-    \item Il sistema recupera la lista dei ruoli disponibili nel workspace
-    \item Il sistema mostra una lista con i ruoli disponibili
-    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC11]{UC11}
 \end{itemize}
 
 \paragraph{UC5.3 - Invito non riuscito}\label{UC5.3}
@@ -790,6 +804,14 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 \end{itemize}
 
 \subsubsection{UC6 - Visualizzazione inviti in workspace}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC6.png}
+	\caption{UC6 e UC6.1}
+	\label{fig:UC6}
+\end{figure}
+
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -803,24 +825,10 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	\begin{enumerate}
 		\item L'utente accede alla sezione degli inviti ricevuti
 		\item Il sistema recupera tutti gli inviti pendenti destinati all'utente e li mostra in una lista
-		\item Per ogni invito vengono visualizzate le informazioni (UC6.1)
+		\item Per ogni invito vengono visualizzate le informazioni (\hyperref[UC6.1]{UC6.1})
 	\end{enumerate}
     \item \textbf{Inclusioni:} \hyperref[UC6.1]{UC6.1}
 \end{itemize}
-
-% \begin{figure}[h]
-% 	\centering
-% 	\includegraphics[width=1\textwidth]{Figura 9.png}
-% 	\caption{Figura 9: UC6 - Visualizzazione inviti in workspace}
-% 	\label{fig:UC6}
-% \end{figure}
-
-% \begin{figure}[h]
-% 	\centering
-% 	\includegraphics[width=1\textwidth]{Figura 10.png}
-% 	\caption{Figura 10: Inclusioni di UC7.1: UC7.1.1,UC7.1.2}
-% 	\label{fig:UC7.1inc}
-% \end{figure}
 
 \paragraph{UC6.1 - Visualizzazione singolo invito in workspace}\label{UC6.1}
 \begin{itemize}
@@ -842,6 +850,14 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
     \item \textbf{Inclusioni:} \hyperref[UC6.1.1]{UC6.1.1}, \hyperref[UC6.1.2]{UC6.1.2}, \hyperref[UC6.1.3]{UC6.1.3}
 	
 \end{itemize}
+
+Il caso d'Uso UC6.1 include ulteriori casi d'uso come rappresentato nella seguente immagine:
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../Assets/AdR/UC6-1.png}
+	\caption{Figura 10: Inclusioni di UC6.1: UC6.1.1, UC6.1.2, UC6.1.3}
+	\label{fig:UC6-1}
+\end{figure}
 
 \subparagraph{UC6.1.1 - Visualizzazione username del mittente dell'invito ricevuto}\label{UC6.1.1}
 \begin{itemize}
@@ -900,6 +916,14 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 \end{itemize}
 
 \subsubsection{UC7 - Gestione degli inviti}\label{UC7}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{../Assets/AdR/UC7.png}
+	\caption{UC7 - Gestione degli inviti}
+	\label{fig:UC7}
+\end{figure}
+
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -955,6 +979,14 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 \end{itemize}
 
 \subsubsection{UC8 - Visualizzazione lista workspace}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{../Assets/AdR/UC8.png}
+	\caption{UC8 e UC8.1}
+	\label{fig:UC8}
+\end{figure}
+
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -972,6 +1004,14 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
     \end{enumerate}
     \item \textbf{Inclusioni:} \hyperref[UC8.1]{UC8.1}
 \end{itemize}
+
+Il caso d'Uso UC8.1 include ulteriori casi d'uso come rappresentato nella seguente immagine:
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../Assets/AdR/UC8-1.png}
+	\caption{Inclusioni di UC8.1: UC8.1.1, UC8.1.2}
+	\label{fig:UC8-1}
+\end{figure}
 
 \paragraph{UC8.1 - Visualizzazione elemento della lista di workspace}\label{UC8.1}
 \begin{itemize}
@@ -1027,6 +1067,14 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 \end{itemize}
 
 \subsubsection{UC9 - Ricerca workspace}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{../Assets/AdR/UC9.png}
+	\caption{UC9 e UC9.1}
+	\label{fig:UC9}
+\end{figure}
+
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -1068,6 +1116,14 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 \end{itemize}
 
 \subsubsection{UC10 - Creazione workspace}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{../Assets/AdR/UC10ext.png}
+	\caption{UC10 - Creazione workspace}
+	\label{fig:UC10ext}
+\end{figure}
+
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -1089,6 +1145,14 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
     \item \textbf{Estensioni:} \hyperref[UC10.3]{UC10.3}
 \end{itemize}
 
+Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguente immagine:
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../Assets/AdR/UC10.png}
+	\caption{Inclusioni di UC10: UC10.1, UC10.2}
+	\label{fig:UC10}
+\end{figure}
+
 \paragraph{UC10.1 - Inserimento nome del workspace}\label{UC10.1}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
@@ -1107,9 +1171,9 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
     \end{enumerate}
 \end{itemize}
 
-\paragraph{UC10.2- Assegnazione ruolo di owner al creatore del workspace}\label{UC10.2}
+\paragraph{UC10.2 - Assegnazione ruolo di owner al creatore del workspace}\label{UC10.2}
 \begin{itemize}
-	\item \textbf{Attori principali:} Project Manager
+	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
 	\begin{itemize}
 		\item Il sistema è attivo e funzionante
@@ -1123,6 +1187,7 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
         \item Il sistema crea automaticamente il ruolo di owner per il nuovo workspace
         \item Il sistema associa l'utente creatore al workspace con il ruolo di owner
         \item Il sistema registra l'utente come proprietario ufficiale del workspace
+        \item Il sistema riconosce l'utente come Project Manager
     \end{enumerate}
 	
 \end{itemize}
@@ -1150,6 +1215,14 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 \end{itemize}
 
 \subsubsection{UC11 - Visualizzazione lista dei ruoli di un workspace}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{../Assets/AdR/UC11.png}
+	\caption{UC11 e UC11.1}
+	\label{fig:UC11}
+\end{figure}
+
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -1179,6 +1252,14 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 \end{itemize}
 
 \subsubsection{UC12 - Visualizzazione lista utenti di un workspace}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{../Assets/AdR/UC12.png}
+	\caption{UC12 e UC12.1}
+	\label{fig:UC12}
+\end{figure}
+
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -1189,10 +1270,31 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	\end{itemize}
     \item \textbf{Postcondizioni:} L'utente visualizza la lista di utenti di un singolo workspace
 	\item \textbf{Scenario principale:} L'utente visualizza l'username di ogni singolo utente presente all'interno del workspace
-	
+	\item \textbf{Inclusioni:} \hyperref[UC12.1]{UC12.1}
+\end{itemize}
+
+\paragraph{UC12.1 - Visualizzazione singolo elemento lista utenti di un workspace}\label{UC12.1}
+\begin{itemize}
+	\item \textbf{Attori principali:} Utente
+	\item \textbf{Precondizioni:} 
+	\begin{itemize}
+		\item Il sistema è attivo e funzionante
+		\item L'utente è autenticato nel sistema
+        \item L'utente ha selezionato un singolo utente dalla lista di tutti gli utenti presenti in un workspace
+	\end{itemize}
+    \item \textbf{Postcondizioni:} L'utente visualizza singolo utente di un workspace
+	\item \textbf{Scenario principale:} L'utente visualizza username e relativo ruolo di un singolo utente presente all'interno del workspace	
 \end{itemize}
 
 \subsubsection{UC13 - Rimozione di un utente da un workspace}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{../Assets/AdR/UC13.png}
+	\caption{UC13 - Rimozione di un utente da un workspace}
+	\label{fig:UC13}
+\end{figure}
+
 \begin{itemize}
 	\item \textbf{Attori principali:} Project Manager
 	\item \textbf{Precondizioni:} 
@@ -1202,6 +1304,7 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
         \item L'utente sta visualizzando la lista di tutti gli utenti presenti in un workspace
         \item L'utente ha selezionato un utente specifico dalla lista
         \item Esiste almeno un altro utente nel workspace oltre all'owner
+        \item Esiste un altro utente con il ruolo di Project Manager
         \item L'utente da rimuovere non è l'owner del workspace
 	\end{itemize}
     \item \textbf{Postcondizioni:} 
@@ -1353,7 +1456,7 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 % UC15 - AVVIA SCANSIONE BACKEND
 % ============================================
 
-\subsubsection{UC 15 - Avvia scansione} \label{UC15}
+\subsubsection{UC15 - Avvia scansione}\label{UC15}
 
 \begin{figure}[H]
 	\centering
@@ -1439,17 +1542,18 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 		\item \hyperref[UC15.2]{UC15.2 - Scansione singola repository}
 		\item \hyperref[UC15.3]{UC15.3 - Scansione insieme di repository}
 	\end{itemize}
-	Il caso d'uso è generalizzato nei casi d'uso riportati nel diagramma seguente:
+
+    Il caso d'uso è generalizzato nei casi d'uso riportati nel diagramma seguente:
 	\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC15gen.png}
 	\caption{UC15 - Avvia scansione} 
 	\label{fig:Generalizzazzione UC15: }
 	\end{figure}
-
+    
 \end{itemize}
 
-\paragraph{UC 15.1 - Scansione workspace} \label{UC15.1}
+\paragraph{UC15.1 - Scansione workspace} \label{UC15.1}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:}
@@ -1472,6 +1576,7 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 		\item Il sistema seleziona automaticamente il branch develop per tutte le repository
 		\item Il sistema esegue l'analisi (\hyperref[UC17]{UC17 - Esegui analisi})
 	\end{enumerate}
+	\item \textbf{Inclusioni}: \hyperref[UC35]{UC35}
 	\item \textbf{Eredita da}: \hyperref[UC15]{UC15 - Avvia scansione}
 \end{itemize}
 
@@ -2247,6 +2352,7 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 		\item Il sistema mostra la lista delle repository
 		\item Per ciascuna repository, il sistema visualizza delle informazioni sintetiche (\hyperref[UC 25.1]{UC 25.1})
 	\end{enumerate}
+	
 	\item \textbf{Scenario alternativo:}
 	\begin{itemize}
 		\item \textbf{Nessuna repository presente nel workspace:} 
@@ -2257,7 +2363,7 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 					\item Il sistema mostra un messaggio informativo:“Nessuna repository presente nel workspace corrente”
 				\end{enumerate}
 			\end{itemize}
-		\item \textbf{Annullamento dell'operazione:} 
+        \item \textbf{Annullamento dell'operazione:} 
 		\begin{itemize}
 			\item \textbf{Condizione:}l'utente annulla la rimozione nella fase di conferma
 			\item \textbf{Flusso:} 
@@ -2331,8 +2437,7 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	\item \textbf{Inclusioni:} \hyperref[UC25.1.1]{UC25.1.1}, \hyperref[UC25.1.2]{UC25.1.2}, \hyperref[UC25.1.3]{UC25.1.3}, \hyperref[UC25.1.4]{UC25.1.4}, \hyperref[UC25.1.5]{UC25.1.5}
 \end{itemize}
 
-
-\subparagraph{UC 25.1.1 - Visualizza nome repository}\label{UC25.1.1}
+\paragraph{UC 25.1.1 - Visualizza nome repository}\label{UC25.1}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -3066,9 +3171,10 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
         \item Il sistema recupera i dati dell'ultima scansione effettuata sulla repository
         \item Il sistema visualizza la sezione di analisi dei test (\hyperref[UC33.1]{UC33.1})
         \item Il sistema visualizza la sezione delle informazioni tecniche (\hyperref[UC33.2]{UC33.2})
-        \item Il sistema visualizza la sezione di analisi della sicurezza (\hyperref[UC33.3]{UC33.3})
-        \item Il sistema visualizza la sezione di analisi della documentazione (\hyperref[UC33.4]{UC33.4})
-        \item Il sistema visualizza la sezione della qualità del codice (\hyperref[UC33.5]{UC33.5})
+        \item Il sistema visualizza la sezione di analisi della sicurezza semplice (\hyperref[UC33.3]{UC33.3})
+        \item Il sistema visualizza la sezione di analisi della sicurezza completa (\hyperref[UC33.4]{UC33.4})
+        \item Il sistema visualizza la sezione di analisi della documentazione (\hyperref[UC33.5]{UC33.5})
+        \item Il sistema visualizza la sezione della qualità del codice (\hyperref[UC33.6]{UC33.6})
     \end{enumerate}
     \item \textbf{Scenario alternativo:}
     \begin{itemize}
@@ -3084,12 +3190,12 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 		\item \textbf{Selezione Branch:}
 		\begin{itemize}
 			\item \textbf{Condizione:} L'utente vuole cambiare branch di cui vedere i dettagli
-			\item  \textbf{Flusso:}
+            \item  \textbf{Flusso:}
 			\begin{enumerate}
 				\item L'utente sceglie il branch di cui vedere i dettagli tra la lista dei branch disponibili
 			\end{enumerate}
 		\end{itemize}
-		\item \textbf{Aggiorna visualizzazzione (\hyperref[UC37]{UC37 - Aggiorna repository}):}
+        \item \textbf{Aggiorna visualizzazzione (\hyperref[UC37]{UC37 - Aggiorna repository}):}
         \begin{itemize}
             \item \textbf{Condizione:} L'utente seleziona “Aggiorna”
             \item \textbf{Flusso:}
@@ -3099,7 +3205,7 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
             \end{enumerate}
         \end{itemize}
     \end{itemize}
-    \item \textbf{Inclusioni:} \hyperref[UC33.1]{UC33.1}, \hyperref[UC33.2]{UC33.2}, \hyperref[UC33.3]{UC33.3}, \hyperref[UC33.4]{UC33.4}, \hyperref[UC33.5]{UC33.5}
+    \item \textbf{Inclusioni:} \hyperref[UC33.1]{UC33.1}, \hyperref[UC33.2]{UC33.2}, \hyperref[UC33.3]{UC33.3}, \hyperref[UC33.4]{UC33.4}, \hyperref[UC33.5]{UC33.5}, \hyperref[UC33.6]{UC33.6}
     \item \textbf{Estensioni:} \hyperref[UC34]{UC34}, \hyperref[UC35]{UC35}, \hyperref[UC37]{UC37}
 \end{itemize}
 
@@ -3107,7 +3213,7 @@ Il caso d'Uso UC33 include ulteriori casi d'uso come rappresentato nella seguent
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC33.png}
-	\caption{Inclusioni di UC33: UC33.1, UC33.2, UC33.3, UC33.4, UC33.5}
+	\caption{Inclusioni di UC33: UC33.1, UC33.2, UC33.3, UC33.4, UC33.5, UC33.6}
 	\label{fig:UC33}
 \end{figure}
 
@@ -3740,41 +3846,15 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
 
 
 
+\subparagraph{UC33.3 - Visualizzazione analisi sicurezza semplice}\label{UC33.3}
 
-% ============================================
-% UC33.3 - VISUALIZZA ANALISI SICUREZZA
-% ============================================
-\paragraph{UC33.3 - Visualizzazione analisi sicurezza} \label{UC33.3}
-\begin{itemize}
-	\item \textbf{Attori principali:} Utente 
-	\item \textbf{Precondizioni:} 
-	\begin{itemize}
-		\item Il sistema è attivo e funzionante
-		\item L'utente è stato riconosciuto dal sistema come Utente
-		\item L'utente ha selezionato un workspace e una specifica repository
-		\item L'utente ha selezionato uno specifico branch della repository da visualizzare
-		\item La repository ha subito almeno una scansione che include l'analisi di sicurezza
-	\end{itemize}
-	\item \textbf{Postcondizioni:} 
-    \begin{itemize}
-        \item L'utente visualizza lo stato di sicurezza della repository tramite metriche OWASP, con la possibilità di approfondire le singole criticità
-    \end{itemize}
-	\item \textbf{Scenario principale:}
-	\begin{enumerate}
-		\item Il sistema recupera le informazioni relative alle vulnerabilità OWASP dall'ultima scansione effettuata
-		\item Il sistema presenta all'utente una visione semplificata dell'analisi (\hyperref[UC33.3.1]{UC33.3.1})
-		\item Il sistema, se richiesto, presenta la visione completa dei dati di sicurezza (\hyperref[UC33.3.2]{UC33.3.2})
-	\end{enumerate}
-    \item \textbf{Scenario alternativo:}
-	\begin{enumerate}
-		\item Analisi OWASP non disponibile: se la repository non presenta file utili all'analisi, il sistema informa l'utente con il messaggio: "Nessun file utile per l'analisi OWASP"
-		\item Analisi OWASP non eseguibile: in caso di errore del motore di analisi o formato dei file non supportato, il sistema informa l'utente con l'errore: "Errore nell'esecuzione dell'analisi OWASP"
-		\item Nessuna vulnerabilità riscontrata: se l'analisi termina correttamente ma non rileva minacce, il sistema mostra la percentuale di test superati e il messaggio: "Nessuna vulnerabilità rilevata"   
-	\end{enumerate}
-	\item \textbf{Inclusioni:} \hyperref[UC33.3.1]{UC33.3.1}, \hyperref[UC33.3.2]{UC33.3.2}
-\end{itemize}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC33-3.png}
+	\caption{UC33.3 - Visualizzazione analisi sicurezza semplice}
+	\label{fig:UC33-3}
+\end{figure}
 
-\subparagraph{UC33.3.1 - Visualizza analisi sicurezza semplice}\label{UC33.3.1}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -3794,9 +3874,23 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
 		\item Il sistema recupera le informazioni relative alle vulnerabilità OWASP (Top 10 e altre)
         \item Il sistema visualizza un istogramma con il numero di vulnerabilità suddivise per livello di criticità (alta, media, bassa)
 	\end{enumerate}
+    \item \textbf{Scenario alternativo:}
+	\begin{enumerate}
+		\item Analisi OWASP non disponibile: se la repository non presenta file utili all'analisi, il sistema informa l'utente con il messaggio: "Nessun file utile per l'analisi OWASP"
+		\item Analisi OWASP non eseguibile: in caso di errore del motore di analisi o formato dei file non supportato, il sistema informa l'utente con l'errore: "Errore nell'esecuzione dell'analisi OWASP"
+		\item Nessuna vulnerabilità riscontrata: se l'analisi termina correttamente ma non rileva minacce, il sistema mostra la percentuale di test superati e il messaggio: "Nessuna vulnerabilità rilevata"   
+	\end{enumerate}
 \end{itemize}
 
-\subparagraph{UC33.3.2 - Visualizza analisi sicurezza completa}\label{UC33.3.2}
+\subparagraph{UC33.4 - Visualizzazione analisi sicurezza completa}\label{UC33.4}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC33-4.png}
+	\caption{UC33.4 - Visualizzazione analisi sicurezza completa}
+	\label{fig:UC33-4}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Attori principali:} 
     \begin{itemize}
@@ -3820,10 +3914,16 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
         \item Il sistema indica l'eventuale lista delle vulnerabilità riscontrate nella repository (\hyperref[UC33.3.2.1]{UC33.3.2.1})
         \item L'utente può selezionare una singola vulnerabilità dalla lista per consultarne i dettagli e le possibili remediation (\hyperref[UC33.3.2.2]{UC33.3.2.2})
     \end{enumerate}
+    \item \textbf{Scenario alternativo:}
+	\begin{enumerate}
+		\item Analisi OWASP non disponibile: se la repository non presenta file utili all'analisi, il sistema informa l'utente con il messaggio: "Nessun file utile per l'analisi OWASP"
+		\item Analisi OWASP non eseguibile: in caso di errore del motore di analisi o formato dei file non supportato, il sistema informa l'utente con l'errore: "Errore nell'esecuzione dell'analisi OWASP"
+		\item Nessuna vulnerabilità riscontrata: se l'analisi termina correttamente ma non rileva minacce, il sistema mostra la percentuale di test superati e il messaggio: "Nessuna vulnerabilità rilevata"   
+	\end{enumerate}
     \item \textbf{Inclusioni:} \hyperref[UC33.3.2.1]{UC33.3.2.1}, \hyperref[UC33.3.2.2]{UC33.3.2.2}
 \end{itemize}
 
-\subparagraph{UC33.3.2.1 - Visualizzazione elenco vulnerabilità riscontrate}\label{UC33.3.2.1}
+\subparagraph{UC33.4.1 - Visualizzazione elenco vulnerabilità riscontrate}\label{UC33.4.1}
 \begin{itemize}
     \item \textbf{Attori principali:}
     \begin{itemize}
@@ -3853,7 +3953,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
     \item \textbf{Inclusioni:} \hyperref[UC33.3.2.1.1]{UC33.3.2.1.1}
 \end{itemize}
 
-\subparagraph{UC33.3.2.1.1 - Visualizzazione singolo elemento della lista di vulnerabilità}\label{UC33.3.2.1.1}
+\subparagraph{UC33.4.1.1 - Visualizzazione singolo elemento della lista di vulnerabilità}\label{UC33.4.1.1}
 \begin{itemize}
     \item \textbf{Attori principali:} 
     \begin{itemize}
@@ -3882,7 +3982,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
     \end{enumerate}
 \end{itemize}
 
-\subparagraph{UC33.3.2.3 - Approfondimento criticità}\label{UC33.3.2.3}
+\subparagraph{UC33.4.2 - Approfondimento criticità}\label{UC33.4.2}
 \begin{itemize}
     \item \textbf{Attori principali:} 
     \begin{itemize}
@@ -3915,7 +4015,15 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
     \end{itemize}
 \end{itemize}
 
-\paragraph{UC33.4 - Visualizzazione analisi documentazione di una repository} \label{UC33.4}
+\paragraph{UC33.5 - Visualizzazione analisi documentazione di una repository} \label{UC33.5}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC33-5.png}
+	\caption{UC33.5 - Visualizzazione analisi documentazione di una repository}
+	\label{fig:UC33-5}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Attori principali:} Utente 
     \item \textbf{Precondizioni:}
@@ -3929,14 +4037,14 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
     \end{itemize}
     \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il sistema mostra il voto complessivo assegnato alla documentazione (\hyperref[UC33.4.1]{UC33.4.1})
-        \item Il sistema fornisce consigli specifici per il miglioramento del file README (\hyperref[UC33.4.2]{UC33.4.2})
-        \item Il sistema elenca le sezioni mancanti o incomplete (\hyperref[UC33.4.3]{UC33.4.3})
+        \item Il sistema mostra il voto complessivo assegnato alla documentazione (\hyperref[UC33.5.1]{UC33.5.1})
+        \item Il sistema fornisce consigli specifici per il miglioramento del file README (\hyperref[UC33.5.2]{UC33.5.2})
+        \item Il sistema elenca le sezioni mancanti o incomplete (\hyperref[UC33.5.3]{UC33.5.3})
     \end{enumerate}
-    \item \textbf{Inclusioni:} \hyperref[UC33.4.1]{UC33.4.1}, \hyperref[UC33.4.2]{UC33.4.2}, \hyperref[UC33.4.3]{UC33.4.3}
+    \item \textbf{Inclusioni:} \hyperref[UC33.5.1]{UC33.5.1}, \hyperref[UC33.4.2]{UC33.5.2}, \hyperref[UC33.4.3]{UC33.5.3}
 \end{itemize}
 
-\subparagraph{UC33.4.1 - Visualizzazione voto documentazione}\label{UC33.4.1}
+\subparagraph{UC33.5.1 - Visualizzazione voto documentazione}\label{UC33.5.1}
 \begin{itemize}
     \item \textbf{Attori principali:} Utente 
     \item \textbf{Precondizioni:} 
@@ -3959,7 +4067,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
     \end{itemize}
 \end{itemize}
 
-\subparagraph{UC33.4.2 - Visualizzazione consigli sul README}\label{UC33.4.2}
+\subparagraph{UC33.5.2 - Visualizzazione consigli sul README}\label{UC33.5.2}
 \begin{itemize}
     \item \textbf{Attori principali:} Utente 
     \item \textbf{Precondizioni:} 
@@ -3979,7 +4087,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
     \end{enumerate}
 \end{itemize}
 
-\subparagraph{UC33.4.3 - Visualizza sezioni mancanti}\label{UC33.4.3}
+\subparagraph{UC33.5.3 - Visualizza sezioni mancanti}\label{UC33.5.3}
 \begin{itemize}
     \item \textbf{Attori principali:} Utente 
     \item \textbf{Precondizioni:} 
@@ -4001,7 +4109,15 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
 % ============================================
 % UC33.5 - VISUALIZZA QUALITÀ DEL CODICE
 % ============================================
-\paragraph{UC33.5 - Visualizzazione qualità del codice di una repository} \label{UC33.5}
+\paragraph{UC33.6 - Visualizzazione qualità del codice di una repository} \label{UC33.6}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC33-6.png}
+	\caption{UC33.6 e UC33.6.1}
+	\label{fig:UC33-6}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Attori principali:} Utente 
     \item \textbf{Precondizioni:}
@@ -4016,12 +4132,12 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
     \item \textbf{Scenario principale:}
     \begin{enumerate}
         \item Il sistema recupera i risultati dell'analisi sulla qualità del codice
-        \item Il sistema mostra una lista di suggerimenti basati sulle best practices di programmazione (\hyperref[UC33.5.1]{UC33.5.1})
+        \item Il sistema mostra una lista di suggerimenti basati sulle best practices di programmazione (\hyperref[UC33.6.1]{UC33.6.1})
     \end{enumerate}
-    \item \textbf{Inclusioni:} \hyperref[UC33.5.1]{UC33.5.1}
+    \item \textbf{Inclusioni:} \hyperref[UC33.6.1]{UC33.6.1}
 \end{itemize}
 
-\subparagraph{UC33.5.1 - Visualizzazione lista suggerimenti sulla qualità del codice}\label{UC33.5.1}
+\subparagraph{UC33.6.1 - Visualizzazione lista suggerimenti sulla qualità del codice}\label{UC33.6.1}
 \begin{itemize}
     \item \textbf{Attori principali:} Utente 
     \item \textbf{Precondizioni:} 
@@ -4041,6 +4157,14 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
 \end{itemize}
 
 \subsubsection{UC34 - Nessuna scansione effettuata}\label{UC34}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{../Assets/AdR/UC34.png}
+	\caption{UC34 - Nessuna scansione effettuata}
+	\label{fig:UC34}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Attori principali:} Utente 
     \item \textbf{Precondizioni:}
@@ -4060,10 +4184,6 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
         \item Il sistema può proporre all'utente di avviare una nuova analisi
     \end{enumerate}
 \end{itemize}
-
-
-
-
 
 % ============================================
 % UC35 - SELEZIONE BRANCH
@@ -4282,7 +4402,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
             \begin{enumerate}
                 \item L'utente avvia la scansione del workspace
             \end{enumerate}
-        \end{itemize}
+            \end{itemize}
 		\item \textbf{Aggiorna visualizzazzione (\hyperref[UC37]{UC37 - Aggiorna repository}):}
         \begin{itemize}
             \item \textbf{Condizione:} L'utente seleziona “Aggiorna”
@@ -4725,6 +4845,7 @@ Il caso d'uso UC36 include ulteriori casi d'uso come rappresentato nella seguent
     \end{enumerate}
 \end{itemize}
 
+
 \subsection{UC37 - Aggiorna repository} \label{UC37}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
@@ -4766,6 +4887,5 @@ Il caso d'uso UC36 include ulteriori casi d'uso come rappresentato nella seguent
 			\end{itemize}
 	\end{itemize}
 \end{itemize}
-
 
 \end{document}

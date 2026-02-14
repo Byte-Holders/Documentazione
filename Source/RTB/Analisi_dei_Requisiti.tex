@@ -22,8 +22,6 @@
 \usepackage{booktabs}
 \usepackage{enumitem}
 \usepackage{titlecaps}
-\usepackage[utf8]{inputenc} % Specifica la codifica del file (necessaria per le accentate)
-\usepackage[T1]{fontenc}    % Migliora l'output dei font per le lingue europee
 
 
 \setcounter{secnumdepth}{5} % Numera fino ai sottoparagrafi (livello 5)
@@ -45,6 +43,13 @@
   {2ex plus 0.8ex minus .2ex}
   {1ex plus .2ex}
   {\normalfont\normalsize\bfseries\color{AccentColor}}}
+
+% ====== SUBSUBPARAGRAPH (livello 6, custom) ======
+\newcommand\subsubparagraph{\@startsection{subsubparagraph}{6}
+  {0pt}
+  {1.5ex plus 0.5ex minus .2ex}
+  {0.8ex plus .2ex}
+  {\normalfont\small\bfseries\color{AccentColor}}}
 
 \makeatother
 
@@ -73,7 +78,7 @@
 
   \titleformat{\subsubsection}
   {\normalfont\sffamily\large\bfseries\color{AccentDark}}
-  {\thesubsection}
+  {\thesubsubsection}
   {1em}
   {}
 
@@ -162,9 +167,9 @@
 		\textcolor{white}{\textbf{Data}} & 
 		\multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} &
 		\multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
-		0.16.0 & 14/02/2026 & Giacomo Nalotto & Inizio stesura tabelle dei requisiti
-        0.15.0 & 13/02/2026 & Giulia Romanato & Inserito UC25.1 Visualizza singolo elemento lista repository del workspace, sitemati grafici, cambiato numero Aggiorna repository (UC33->UC37) e aggiunta Aggiorna repository come extend a UC35, UC33, UC36\\
-        0.14.0 & 13/02/2026 & Giacomo Nalotto & Sistemazione pagina di titolo
+		0.16.0 & 14/02/2026 & Giacomo Nalotto & Inizio stesura tabelle dei requisiti \\
+        0.15.0 & 13/02/2026 & Giulia Romanato & Inserito UC25.1 Visualizza singolo elemento lista repository del workspace, sistemati grafici, cambiato numero Aggiorna repository (UC33->UC37) e aggiunta Aggiorna repository come extend a UC35, UC33, UC36\\
+        0.14.0 & 13/02/2026 & Giacomo Nalotto & Sistemazione pagina di titolo \\
 		0.13.0 & 12/02/2026 & Giulia Romanato & Cambio numero: (UC37->UC15, UC38->UC16, UC39->UC17) e unificato stile delle subsubsection \\
 		0.12.0 & 12/02/2026 & Alessandro Morabito & Verifica del documento \\
 		0.11.0 & 11/02/2026 & Giacomo Nalotto & Sistemazione paragrafi introduttivi da 1 a 3.2 \\
@@ -383,7 +388,7 @@ Si è deciso di descrivere ciascun \refterm{caso d'uso} seguendo la seguente str
 	\end{enumerate}
 	\item \textbf{Scenario alternativo:}
 	\begin{enumerate}
-		\item L'utente ha inserito un errore nei dati inseriti come username già esistente, email già registrata oppure password non valida (\hyperref{UC1.4}(UC1.4))
+		\item L'utente ha inserito un errore nei dati inseriti come username già esistente, email già registrata oppure password non valida (\hyperref[UC1.4]{UC1.4})
 	\end{enumerate}
 	\item \textbf{Inclusioni:} \hyperref[UC1.1]{UC1.1}, \hyperref[UC1.2]{UC1.2}, \hyperref[UC1.3]{UC1.3},
 
@@ -730,7 +735,7 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	\item \textbf{Scenario principale:}
 	\begin{enumerate}
 		\item Un utente che fa parte di un workspace vuole invitare un altro utente che non ne fa parte
-		\item Inserisce l'username dell'utente che vuole invitare (\hyperref[UC5.2]{UC5.1})
+		\item Inserisce l'username dell'utente che vuole invitare (\hyperref[UC5.1]{UC5.1})
 		\item Seleziona al nuovo utente il ruolo scegliendo dalla lista dei ruoli del workspace (\hyperref[UC5.2]{UC5.2})
 	\end{enumerate}
     \item \textbf{Inclusioni:} \hyperref[UC5.1]{UC5.1}, \hyperref[UC5.2]{UC5.2}
@@ -1092,7 +1097,6 @@ Il caso d'Uso UC8.1 include ulteriori casi d'uso come rappresentato nella seguen
         \item L'utente inserisce il nome (o parte del nome) del workspace che vuole cercare (\hyperref[UC9.1]{UC9.1})
         \item Il sistema filtra in tempo reale i workspace mostrati in base al testo inserito
     \end{enumerate}
-    \item \textbf{Inclusioni:} 
     \item \textbf{Scenari alternativi:}
     \begin{itemize}
 		\item Nessun workspace corrisponde alla ricerca, il sistema mostra un messaggio: "Nessun workspace trovato con questo nome"
@@ -1235,8 +1239,10 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{itemize}
     \item \textbf{Postcondizioni:} L'utente visualizza una lista con l'elenco di tutti i ruoli di un workspace
 	\item \textbf{Scenario principale:}
+	\begin{enumerate}
         \item L'utente apre la lista con l'elenco di tutti i ruoli presenti al momento all'interno del workspace
-        \item L'utente un singolo ruolo dalla lista per visualizzarne la descrizione (\hyperref[UC11.1]{UC11.1})
+        \item L'utente seleziona un singolo ruolo dalla lista per visualizzarne la descrizione (\hyperref[UC11.1]{UC11.1})
+	\end{enumerate}
     \item \textbf{Inclusioni:} \hyperref[UC11.1]{UC11.1}
 \end{itemize}
 
@@ -1548,7 +1554,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
     Il caso d'uso è generalizzato nei casi d'uso riportati nel diagramma seguente:
 	\begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC15gen.png}
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC15ge.png}
 	\caption{UC15 - Avvia scansione} 
 	\label{fig:Generalizzazzione UC15: }
 	\end{figure}
@@ -1578,7 +1584,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 		\item Il sistema seleziona automaticamente il branch develop per tutte le repository
 		\item Il sistema esegue l'analisi (\hyperref[UC17]{UC17 - Esegui analisi})
 	\end{enumerate}
-	\item \textbf{Inclusioni:}: \hyperref[UC17]{UC17}
+	\item \textbf{Inclusioni:} \hyperref[UC17]{UC17}
 	\item \textbf{Eredita da}: \hyperref[UC15]{UC15 - Avvia scansione}
 \end{itemize}
 
@@ -1586,9 +1592,9 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC37_2.png}
+	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC15_2.png}
 	\caption{UC15.2 - Scansione singola repository}
-	\label{fig:UC37.2}
+	\label{fig:UC15-2.2}
 \end{figure}
 
 \begin{itemize}
@@ -1665,7 +1671,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 		\item l'utente seleziona l'opzione "Annulla scansione"
 		\item Il sistema interrompe la scansione in corso
 		\item Il sistema ripristina le repository sottoposte a scansione allo stato precedente all'avvio della scansione
-		\item Il sistema mostra un messaggio informativo: "Scansione annullata. Rispristino delle informazioni delle repository precedentemente scansionate."
+		\item Il sistema mostra un messaggio informativo: "Scansione annullata. Ripristino delle informazioni delle repository precedentemente scansionate."
 	\end{enumerate}
 \end{itemize}
 
@@ -1728,13 +1734,13 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 				\item \textbf{Flusso:} 
 				\begin{enumerate}
 					\item Il sistema rileva un errore durante la creazione del report da parte di un agente su una repository
-					\item La repository non analizzabile viene marcate come “Analisi fallita”
+					\item La repository non analizzabile viene marcata come “Analisi fallita”
 					\item Il sistema continua l'analisi per le repository valide
 					\item Il sistema conclude la scansione con stato “Completata con errori”
 				\end{enumerate}
 			\end{itemize}
 	\end{itemize}
-	\item \textbf{Inclusioni:} \hyperref[UC17.1]{UC17.1}, \hyperref[UC17.2]{UC17.2}, \hyperref[UC17.3]{UC27.3}, \hyperref[UC17.4]{UC17.4}
+	\item \textbf{Inclusioni:} \hyperref[UC17.1]{UC17.1}, \hyperref[UC17.2]{UC17.2}, \hyperref[UC17.3]{UC17.3}, \hyperref[UC17.4]{UC17.4}
 \end{itemize}
 
 \paragraph{UC17.1 - Clona repository} \label{UC17.1}
@@ -1776,7 +1782,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 					\item Il sistema tenta la connessione alla repository
 					\item La connessione fallisce
 					\item Il sistema comunica all'utente l'errore
-					\item La repository viene marcate come “Clonazione fallita” e viene esclusa dall'analisi
+					\item La repository viene marcata come “Clonazione fallita” e viene esclusa dall'analisi
 				\end{enumerate}
 			\end{itemize}
 		\item \textbf{Spazio insufficiente sul server:} 
@@ -1787,7 +1793,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 					\item Il sistema rileva che lo spazio disponibile è insufficiente
 					\item Il sistema interrompe la clonazione
 					\item L'errore viene registrato e comunicato all'utente
-					\item La repository viene marcate come “Clonazione fallita” e viene esclusa dall'analisi
+					\item La repository viene marcata come “Clonazione fallita” e viene esclusa dall'analisi
 				\end{enumerate}
 			\end{itemize}
 	\end{itemize}
@@ -1927,9 +1933,33 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{itemize}
 \end{itemize}
 
+\subsubsection{UC18 - PAT o URL non esistente}
+\begin{itemize}
+    \item \textbf{Attori principali:} Sistema, Orchestratore
+    \item \textbf{Attori secondari:} GitHub
+    \item \textbf{Precondizioni:}
+        \begin{itemize}
+            \item Il sistema è attivo e funzionante
+            \item Il sistema sta eseguendo il caso d'uso \hyperref[UC14.1]{UC14.1} oppure \hyperref[UC17.1]{UC17.1}
+            \item L'URL della repository fornito non è esistente oppure il PAT non è esistente o è scaduto
+        \end{itemize}
+    \item \textbf{Postcondizioni:}
+        \begin{itemize}
+            \item L'operazione in corso viene interrotta
+            \item Il sistema comunica all'utente il motivo del fallimento
+            \item La repository viene esclusa dalle operazioni successive
+        \end{itemize}
+    \item \textbf{Scenario Principale:}
+        \begin{enumerate}
+            \item Il sistema (o l'Orchestratore) invia una richiesta a GitHub per accedere alla repository utilizzando l'URL salvato e l'eventuale PAT associato
+            \item GitHub respinge la connessione restituendo un errore 
+            \item Il sistema riceve l'errore e interrompe l'operazione sulla repository specifica
+            \item Il sistema notifica l'errore all'utente
+        \end{enumerate}
+\end{itemize}
 
 
-\subsubsection{UC19 - Visualizza lista tag raccolta}\label{UC19}
+\subsubsection{UC19 - Visualizza lista tag raccolta} \label{UC19}
 
 \begin{figure}[H]
 	\centering
@@ -2044,7 +2074,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 		\item Il sistema recupera le informazioni relative a un singolo tag raccolta presente nella lista
 		\item Il sistema mostra il nome identificativo del tag raccolta per la visualizzazione nella lista  ( \hyperref[UC19.1.1.1]{UC19.1.1.1 - Visualizza Nome tag raccolta})
 	\end{enumerate}
-	\item \textbf{Inclusioni:} \hyperref[UC19.1.1]{UC19.1.1}
+	\item \textbf{Inclusioni:} \hyperref[UC19.1.1.1]{UC19.1.1.1}
 \end{itemize}
 
 \subparagraph{UC19.1.1.1 - Visualizza Nome tag raccolta} \label{UC19.1.1.1}
@@ -2100,7 +2130,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\item \textbf{Inclusioni:} \hyperref[UC20.1]{UC 20.1}
 		\item \textbf{Scenario alternativo:}
     \begin{itemize}
-        \item \textbf{Nome non valido o già esistent:} (\hyperref[UC21]{UC21 - Creazione tag raccolta non riuscita})
+        \item \textbf{Nome non valido o già esistente:} (\hyperref[UC21]{UC21 - Creazione tag raccolta non riuscita})
         \begin{itemize}
             \item \textbf{Condizione:} il nome inserito è vuoto, contiene caratteri non ammessi o è già presente nel workspace
             \item \textbf{Flusso:}
@@ -2352,7 +2382,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 		\item L'utente seleziona l'opzione per visualizzare l'elenco delle repository del workspace corrente
 		\item Il sistema recupera l'elenco delle repository associate al workspace 
 		\item Il sistema mostra la lista delle repository
-		\item Per ciascuna repository, il sistema visualizza delle informazioni sintetiche (\hyperref[UC 25.1]{UC 25.1})
+		\item Per ciascuna repository, il sistema visualizza delle informazioni sintetiche (\hyperref[UC25.1]{UC25.1})
 	\end{enumerate}
 	
 	\item \textbf{Scenario alternativo:}
@@ -2374,7 +2404,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 				\item Le associazioni dei tag raccolta alla repository rimangono invariate
 			\end{enumerate}
 		\end{itemize}
-		\item \textbf{Aggiorna visualizzazzione (\hyperref[UC37]{UC37 - Aggiorna repository}):}
+		\item \textbf{Aggiorna visualizzazione (\hyperref[UC37]{UC37 - Aggiorna repository}):}
         \begin{itemize}
             \item \textbf{Condizione:} L'utente seleziona “Aggiorna”
             \item \textbf{Flusso:}
@@ -2417,11 +2447,11 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 		\item Il sistema recupera le informazioni sintetiche associate alla repository
 		\item Il sistema visualizza nella lista:
 		\begin{itemize}
-			\item Il nome della repository (\hyperref[UC 25.1.1]{UC 25.1.1})
-			\item La data dell'ultima scansione (\hyperref[UC 25.1.2]{UC 25.1.2})
-			\item L'indicatore di presenza criticità (\hyperref[UC 25.1.3]{UC 25.1.3})
-			\item Il voto della documentazione (\hyperref[UC 25.1.4]{UC 25.1.4})
-			\item La percentuale di test coverage (\hyperref[UC 25.1.5]{UC 25.1.5})
+			\item Il nome della repository (\hyperref[UC25.1.1]{UC25.1.1})
+			\item La data dell'ultima scansione (\hyperref[UC25.1.2]{UC25.1.2})
+			\item L'indicatore di presenza criticità (\hyperref[UC25.1.3]{UC25.1.3})
+			\item Il voto della documentazione (\hyperref[UC25.1.4]{UC25.1.4})
+			\item La percentuale di test coverage (\hyperref[UC25.1.5]{UC25.1.5})
 		\end{itemize}
 	\end{enumerate}
 	\item \textbf{Scenario alternativo:}
@@ -2559,7 +2589,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 				\item \textbf{Flusso:} 
 				\begin{enumerate}
 					\item Il sistema mostra il messaggio: “Documentazione assente”
-				\end{enumerate}25.1
+				\end{enumerate}
 			\end{itemize}
 		\item \textbf{Analisi documentazione non disponibile:} 
 			\begin{itemize}
@@ -2760,7 +2790,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 			\item \textbf{Token non valido}: verifica il PAT
 			\item \textbf{Permessi insufficienti}: il PAT non ha accesso alla repository
 			\item \textbf{Repository già presente}: repository già presente nel workspace
-			\item \textbf{Errore di connessione}: rrrore di connessione con GitHub, riprova più tardi
+			\item \textbf{Errore di connessione}: errore di connessione con GitHub, riprova più tardi
 			\item \textbf{Branch non trovato}: il branch develop non esiste nella repository
 		\end{itemize}
 		\item Il sistema mantiene aperto il form di aggiunta per permettere correzioni o annullamento
@@ -2802,6 +2832,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 		\item La repository non è più associata al workspace corrente
 		\item Se la repository non è associata ad altri workspace: tutti i dati di analisi, scansioni, configurazioni e associazioni (inclusi i tag raccolta) vengono eliminati dal sistema
 		\item Se la repository è associata ad altri workspace: vengono rimossi solo i dati e le associazioni relative al workspace corrente
+	\end{itemize}
 	\item \textbf{Scenario principale:}
 	\begin{enumerate}
 		\item L'utente seleziona l'opzione “Rimuovi repository” dalla repository selezionata
@@ -2931,7 +2962,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 \end{itemize}
 
 
-\subsection{UC29 - Ricerca repository}\label{UC29}
+\subsubsection{UC29 - Ricerca repository}\label{UC29}
 
 \begin{figure}[H]
 	\centering
@@ -2967,7 +2998,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{itemize}
 \end{itemize}
 
-\subsection{UC30 - Ricerca con barra}\label{UC30}
+\subsubsection{UC30 - Ricerca con barra}\label{UC30}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -2990,7 +3021,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{enumerate}
 \end{itemize}
 
-\subsection{UC31 - Ricerca con filtri}\label{UC31}
+\subsubsection{UC31 - Ricerca con filtri}\label{UC31}
 
 \begin{figure}[H]
  	\centering
@@ -3083,7 +3114,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{itemize}
 \end{itemize}
 
-\subsection{UC32 - Ordinamento lista repository}\label{UC32}
+\subsubsection{UC32 - Ordinamento lista repository}\label{UC32}
 
 \begin{figure}[H]
 	\centering
@@ -3197,7 +3228,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 				\item L'utente sceglie il branch di cui vedere i dettagli tra la lista dei branch disponibili
 			\end{enumerate}
 		\end{itemize}
-        \item \textbf{Aggiorna visualizzazzione (\hyperref[UC37]{UC37 - Aggiorna repository}):}
+        \item \textbf{Aggiorna visualizzazione (\hyperref[UC37]{UC37 - Aggiorna repository}):}
         \begin{itemize}
             \item \textbf{Condizione:} L'utente seleziona “Aggiorna”
             \item \textbf{Flusso:}
@@ -3548,8 +3579,6 @@ Il caso d'uso UC33.2.1 include ulteriori casi d'uso come rappresentato nella seg
         \item Il sistema recupera la versione del linguaggio rilevata nella repository
         \item Il sistema visualizza la versione del linguaggio 
     \end{enumerate}
-    \item \textbf{Scenario alternativo:}
-
 \end{itemize}
 
 \subsubparagraph{UC33.2.1.3 - Nessun linguaggio rilevato}\label{UC33.2.1.3}
@@ -3913,16 +3942,16 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
     \begin{enumerate}
         \item L'utente seleziona la sezione relativa all'analisi OWASP completa
         \item Il sistema recupera le informazioni sulle top 10 criticità OWASP
-        \item Il sistema indica l'eventuale lista delle vulnerabilità riscontrate nella repository (\hyperref[UC33.3.2.1]{UC33.3.2.1})
-        \item L'utente può selezionare una singola vulnerabilità dalla lista per consultarne i dettagli e le possibili remediation (\hyperref[UC33.3.2.2]{UC33.3.2.2})
+        \item Il sistema indica l'eventuale lista delle vulnerabilità riscontrate nella repository (\hyperref[UC33.4.1]{UC33.4.1})
+        \item L'utente può selezionare una singola vulnerabilità dalla lista per consultarne i dettagli e le possibili remediation (\hyperref[UC33.4.2]{UC33.4.2})
     \end{enumerate}
     \item \textbf{Scenario alternativo:}
 	\begin{enumerate}
 		\item Analisi OWASP non disponibile: se la repository non presenta file utili all'analisi, il sistema informa l'utente con il messaggio: "Nessun file utile per l'analisi OWASP"
 		\item Analisi OWASP non eseguibile: in caso di errore del motore di analisi o formato dei file non supportato, il sistema informa l'utente con l'errore: "Errore nell'esecuzione dell'analisi OWASP"
-		\item Nessuna vulnerabilità riscontrata: se l'analisi termina correttamente ma non rileva minacce, il sistema mostra la percentuale di test superati e il messaggio: "Nessuna vulnerabilità rilevata"   
+		\item Nessuna vulnerabilità riscontrata: se l'analisi termina correttamente ma non rileva minacce, il sistema mostra la percentuale di test superati e il messaggio: "Nessuna vulnerabilità rilevata"
 	\end{enumerate}
-    \item \textbf{Inclusioni:} \hyperref[UC33.3.2.1]{UC33.3.2.1}, \hyperref[UC33.3.2.2]{UC33.3.2.2}
+    \item \textbf{Inclusioni:} \hyperref[UC33.4.1]{UC33.4.1}, \hyperref[UC33.4.2]{UC33.4.2}
 \end{itemize}
 
 \subparagraph{UC33.4.1 - Visualizzazione elenco vulnerabilità riscontrate}\label{UC33.4.1}
@@ -3946,13 +3975,13 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
     \begin{enumerate}
         \item Il sistema recupera i dati riguardanti le vulnerabilità della repository
         \item Il sistema visualizza un elenco ordinato in modo decrescente per gravità         
-        \item Per ciascun elemento della lista, il sistema visualizza le informazioni sintetiche (\hyperref[UC33.3.2.2]{UC33.3.2.2})
+        \item Per ciascun elemento della lista, il sistema visualizza le informazioni sintetiche (\hyperref[UC33.4.1.1]{UC33.4.1.1})
     \end{enumerate}
     \item \textbf{Scenari alternativi:}
     \begin{itemize}
         \item Nessuna vulnerabilità rilevata: il sistema mostra il messaggio: ``Nessuna vulnerabilità rilevata''
     \end{itemize}
-    \item \textbf{Inclusioni:} \hyperref[UC33.3.2.1.1]{UC33.3.2.1.1}
+    \item \textbf{Inclusioni:} \hyperref[UC33.4.1.1]{UC33.4.1.1}
 \end{itemize}
 
 \subparagraph{UC33.4.1.1 - Visualizzazione singolo elemento della lista di vulnerabilità}\label{UC33.4.1.1}
@@ -4043,7 +4072,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
         \item Il sistema fornisce consigli specifici per il miglioramento del file README (\hyperref[UC33.5.2]{UC33.5.2})
         \item Il sistema elenca le sezioni mancanti o incomplete (\hyperref[UC33.5.3]{UC33.5.3})
     \end{enumerate}
-    \item \textbf{Inclusioni:} \hyperref[UC33.5.1]{UC33.5.1}, \hyperref[UC33.4.2]{UC33.5.2}, \hyperref[UC33.4.3]{UC33.5.3}
+    \item \textbf{Inclusioni:} \hyperref[UC33.5.1]{UC33.5.1}, \hyperref[UC33.5.2]{UC33.5.2}, \hyperref[UC33.5.3]{UC33.5.3}
 \end{itemize}
 
 \subparagraph{UC33.5.1 - Visualizzazione voto documentazione}\label{UC33.5.1}
@@ -4199,7 +4228,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
 \end{figure}
 
 \begin{itemize}
-    \item \textbf{Attori principali:} Utente Autenticato
+    \item \textbf{Attori principali:} Utente
     \item \textbf{Precondizioni:}
     \begin{itemize}
         \item Il sistema è attivo e funzionante
@@ -4208,7 +4237,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
     \end{itemize}
     \item \textbf{Postcondizioni:}
     \begin{itemize}
-        \item Il sistema ha registrato un branch valido su una determinata repository
+        \item Il sistema ha associato un branch valido su una determinata repository
     \end{itemize}
     \item \textbf{Scenario principale:}
     \begin{enumerate}
@@ -4234,7 +4263,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
 \end{figure}
 
 \begin{itemize}
-    \item \textbf{Attori principali:} Utente Autenticato
+    \item \textbf{Attori principali:} Utente 
     \item \textbf{Precondizioni:}
     \begin{itemize}
         \item Il sistema è attivo e funzionante
@@ -4256,7 +4285,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
 % --- UC35.1.1 - VISUALIZZA SINGOLO BRANCH ---
 \subparagraph{UC35.1.1 - Visualizza singolo branch}\label{UC35.1.1}
 \begin{itemize}
-    \item \textbf{Attori principali:} Utente Autenticato
+    \item \textbf{Attori principali:} Utente 
     \item \textbf{Precondizioni:}
     \begin{itemize}
         \item Il sistema è attivo e funzionante
@@ -4282,7 +4311,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
 
 \subparagraph{UC35.1.1.1 - Visualizza nome branch}\label{UC35.1.1.1}
 \begin{itemize}
-    \item \textbf{Attori principali:} Utente Autenticato
+    \item \textbf{Attori principali:} Utente 
     \item \textbf{Precondizioni:}
     \begin{itemize}
         \item Il sistema è attivo e funzionante
@@ -4301,7 +4330,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
 
 \subparagraph{UC35.1.1.2 - Visualizza data ultima scansione}\label{UC35.1.1.2}
 \begin{itemize}
-    \item \textbf{Attori principali:} Utente Autenticato
+    \item \textbf{Attori principali:} Utente 
     \item \textbf{Precondizioni:}
     \begin{itemize}
         \item Il sistema è attivo e funzionante
@@ -4322,7 +4351,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
 % --- UC35.2 - SELEZIONE BRANCH NON RIUSCITA ---
 \paragraph{UC35.2 - Selezione branch non riuscita}\label{UC35.2}
 \begin{itemize}
-    \item \textbf{Attori principali:} Utente Autenticato
+    \item \textbf{Attori principali:} Utente
     \item \textbf{Precondizioni:}
     \begin{itemize}
         \item Il sistema è attivo e funzionante
@@ -4405,7 +4434,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
                 \item L'utente avvia la scansione del workspace
             \end{enumerate}
             \end{itemize}
-		\item \textbf{Aggiorna visualizzazzione (\hyperref[UC37]{UC37 - Aggiorna repository}):}
+		\item \textbf{Aggiorna visualizzazione (\hyperref[UC37]{UC37 - Aggiorna repository}):}
         \begin{itemize}
             \item \textbf{Condizione:} L'utente seleziona “Aggiorna”
             \item \textbf{Flusso:}
@@ -4848,7 +4877,7 @@ Il caso d'uso UC36 include ulteriori casi d'uso come rappresentato nella seguent
 \end{itemize}
 
 
-\subsection{UC37 - Aggiorna repository} \label{UC37}
+\subsubsection{UC37 - Aggiorna repository} \label{UC37}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:}
@@ -4901,7 +4930,7 @@ Il caso d'uso UC36 include ulteriori casi d'uso come rappresentato nella seguent
 In questa sezione vengono elencati tutti i requisiti del sistema, classificati per tipologia.
 La nomenclatura utilizzata per i codici dei requisiti segue il formato \textbf{R-X-Y-Z}, dove:
 \begin{itemize}
-    \item \textbf{X}: nmero progressivo del requisito
+    \item \textbf{X}: numero progressivo del requisito
     \item \textbf{Y}: tipo del requisito (\textbf{F} = Funzionale, \textbf{Q} = Qualità, \textbf{V} = Vincolo)
     \item \textbf{Z}: classe del requisito (\textbf{Ob} = Obbligatorio, \textbf{De} = Desiderabile, \textbf{Op} = Opzionale)
 \end{itemize}
@@ -5015,7 +5044,7 @@ tecnologie
     R-6-V-Ob & Il codice sorgente deve essere versionato tramite Git & Capitolato \\
     R-7-V-De & L'integrazione CI/CD deve utilizzare GitHub Actions & Capitolato \\
     R-8-V-Ob & L'analisi di sicurezza deve basarsi sullo standard OWASP Top 10 & Capitolato \\
-    R-9-V-Ob & Architettura ad agenti coordinati da un orchestratore autocratico & Capitolato, \hyperref[UC39]{UC39} \\
+    R-9-V-Ob & Architettura ad agenti coordinati da un orchestratore autocratico & Capitolato, \hyperref[UC17]{UC17} \\
 \end{longtable}
 
 \end{document}

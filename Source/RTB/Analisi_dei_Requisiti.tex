@@ -553,10 +553,9 @@ Il caso d'Uso UC1 include ulteriori casi d'uso come rappresentato nella seguente
 	\item \textbf{Scenari Alternativi}
 	\begin{enumerate}
 		\item L'utente ha inserito credenziali errate o inesistenti(\hyperref[UC3.3]{UC3.3})
-		\item L'utente ha dimenticato la password e sta cercando di ripristinarla (\hyperref[UC4]{UC4})
 	\end{enumerate}
 	\item \textbf{Inclusioni:} \hyperref[UC3.1]{UC3.1}, \hyperref[UC3.2]{UC3.2}
-	\item \textbf{Estensioni:} \hyperref[UC3.3]{UC3.3}, \hyperref[UC4]{UC4}
+	\item \textbf{Estensioni:} \hyperref[UC3.3]{UC3.3}
 	
 \end{itemize}
 
@@ -1342,7 +1341,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 \end{figure}
 
 \begin{itemize}
-	\item \textbf{Attori principali:} Orchestratore
+	\item \textbf{Attori principali:} Sistema
 	\item \textbf{Attori secondari:} GitHub
 	\item \textbf{Precondizioni:}
 	\begin{itemize}
@@ -1357,12 +1356,12 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{itemize}
 	\item \textbf{Scenario principale:}
 	\begin{enumerate}
-		\item Il sistema richiede all'orchestratore la verifica dello stato di aggiornamento della repository
-		\item L'orchestratore recupera la data dell'ultimo push dalla repository GitHub (\hyperref[UC14.1]{UC14.1 - Recupero data ultimo push da GitHub})
-		\item L'orchestratore recupera la data dell'ultima scansione completata sulla repository dal database interno
-		\item L'orchestratore confronta la data dell'ultimo push con la data dell'ultima scansione
+		\item Il sistema esegue la verifica dello stato di aggiornamento della repository
+		\item Il sistema recupera la data dell'ultimo push dalla repository GitHub (\hyperref[UC14.1]{UC14.1 - Recupero data ultimo push da GitHub})
+		\item Il sistema recupera la data dell'ultima scansione completata sulla repository dal database interno
+		\item Vengono confrontate la data dell'ultimo push con la data dell'ultima scansione
 		\item La data dell'ultimo push è successiva alla data dell'ultima scansione
-		\item L'orchestratore aggiorna lo stato della repository a "non aggiornata" (\hyperref[UC14.2]{UC14.2 - Aggiornamento stato repository})
+		\item Il sistema aggiorna lo stato della repository a "non aggiornata" (\hyperref[UC14.2]{UC14.2 - Aggiornamento stato repository})
 	\end{enumerate}
 	\item \textbf{Inclusioni:} \hyperref[UC14.1]{UC14.1}, \hyperref[UC14.2]{UC14.2}
 \end{itemize}
@@ -1379,7 +1378,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 \end{figure}
 
 \begin{itemize}
-	\item \textbf{Attori principali:} Orchestratore
+	\item \textbf{Attori principali:} Sistema
 	\item \textbf{Attori secondari:} GitHub 
 	\item \textbf{Precondizioni:}
 	\begin{itemize}
@@ -1402,15 +1401,24 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\begin{itemize}
 		\item \textbf{Errore connessione GitHub:} (\hyperref[UC14.3]{UC14.3})
 		\begin{itemize}
-			\item \textbf{Condizione:} l'orchestratore non riesce a comunicare con le GitHub per recuperare la data dell'ultimo push
+			\item \textbf{Condizione:} Il sistema non riesce a comunicare con le GitHub per recuperare la data dell'ultimo push
 			\item \textbf{Flusso:}
 			\begin{enumerate}
-				\item L'orchestratore rileva l'errore di connessione
-				\item L'orchestratore imposta lo stato della repository come "verifica non disponibile"
+				\item Il sistema rileva l'errore di connessione
+				\item Il sistema imposta lo stato della repository come "verifica non disponibile"
+			\end{enumerate}
+		\end{itemize}
+		\item \textbf{PAT o URL non esistente: } (\hyperref[UC18]{UC18})
+		\begin{itemize}
+			\item \textbf{Condizione:} L’URL della repository fornito non è esistente oppure il PAT non è esistente o è scaduto
+			\item \textbf{Flusso: }
+			\begin{enumerate}
+				\item GitHub rileva un errore dovuto all'url o PAT non corretti
+				\item Il sistema imposta lo stato della repository come "verifica non disponibile"
 			\end{enumerate}
 		\end{itemize}
 	\end{itemize}
-	\item \textbf{Estensioni:} \hyperref[UC14.3]{UC14.3}
+	\item \textbf{Estensioni:} \hyperref[UC14.3]{UC14.3} \hyperref[UC18]{UC18}
 
 \end{itemize}
 
@@ -1420,11 +1428,11 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 
 
 \begin{itemize}
-	\item \textbf{Attori principali:} Orchestratore
+	\item \textbf{Attori principali:} Sistema
 	\item \textbf{Precondizioni:}
 	\begin{itemize}
 		\item Il sistema è attivo e funzionante
-		\item L'orchestratore ha determinato che la data dell'ultimo push è successiva alla data dell'ultima scansione completata
+		\item Il sistema ha determinato che la data dell'ultimo push è successiva alla data dell'ultima scansione completata
 	\end{itemize}
 	\item \textbf{Postcondizioni:}
 	\begin{itemize}
@@ -1432,7 +1440,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{itemize}
 	\item \textbf{Scenario principale:}
 	\begin{enumerate}
-		\item L'orchestratore aggiorna lo stato della repository a "non aggiornata" nel database
+		\item Il sistema aggiorna lo stato della repository a "non aggiornata" nel database
 	\end{enumerate}
 \end{itemize}
 
@@ -1441,13 +1449,12 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 \paragraph{UC14.3 - Errore connessione GitHub} \label{UC14.3}
 
 \begin{itemize}
-	\item \textbf{Attori principali:} Orchestratore
-	\item \textbf{Attori secondari:} GitHub
+	\item \textbf{Attori principali:} Sistema
 	\item \textbf{Precondizioni:}
 	\begin{itemize}
 		\item Il sistema è attivo e funzionante
 		\item Il sistema sta eseguendo \hyperref[UC14.1]{UC14.1}
-		\item Si è verificato un errore di comunicazione con le GitHub
+		\item Si è verificato un errore di comunicazione con GitHub, non riuscendo a raggiungerlo
 	\end{itemize}
 	\item \textbf{Postcondizioni:}
 	\begin{itemize}
@@ -1455,8 +1462,8 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{itemize}
 	\item \textbf{Scenario principale:}
 	\begin{enumerate}
-		\item L'orchestratore rileva un errore durante la comunicazione con le GitHub
-		\item L'orchestratore imposta lo stato di verifica della repository come "verifica non disponibile"
+		\item Il sistema non riesce a comunicare con GitHub
+		\item Il sistema imposta lo stato di verifica della repository come "verifica non disponibile"
 	\end{enumerate}
 \end{itemize}
 
@@ -1933,9 +1940,9 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{itemize}
 \end{itemize}
 
-\subsubsection{UC18 - PAT o URL non esistente}
+\subsubsection{UC18 - PAT o URL non esistente} \label{UC18}
 \begin{itemize}
-    \item \textbf{Attori principali:} Sistema, Orchestratore
+    \item \textbf{Attori principali:} Sistema
     \item \textbf{Attori secondari:} GitHub
     \item \textbf{Precondizioni:}
         \begin{itemize}
@@ -1951,7 +1958,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
         \end{itemize}
     \item \textbf{Scenario Principale:}
         \begin{enumerate}
-            \item Il sistema (o l'Orchestratore) invia una richiesta a GitHub per accedere alla repository utilizzando l'URL salvato e l'eventuale PAT associato
+            \item Il sistema invia una richiesta a GitHub per accedere alla repository utilizzando l'URL salvato e l'eventuale PAT associato
             \item GitHub respinge la connessione restituendo un errore 
             \item Il sistema riceve l'errore e interrompe l'operazione sulla repository specifica
             \item Il sistema notifica l'errore all'utente

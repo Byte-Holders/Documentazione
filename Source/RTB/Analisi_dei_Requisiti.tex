@@ -17,6 +17,7 @@
 \renewcommand{\familydefault}{\sfdefault}
 \usepackage{lipsum}
 \usepackage{hyperref}
+\usepackage{longtable}
 \usepackage{float}
 \usepackage{booktabs}
 \usepackage{enumitem}
@@ -161,8 +162,9 @@
 		\textcolor{white}{\textbf{Data}} & 
 		\multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} &
 		\multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
+		0.16.0 & 14/02/2026 & Giacomo Nalotto & Inizio stesura tabelle dei requisiti
         0.15.0 & 13/02/2026 & Giulia Romanato & Inserito UC25.1 Visualizza singolo elemento lista repository del workspace, sitemati grafici, cambiato numero Aggiorna repository (UC33->UC37) e aggiunta Aggiorna repository come extend a UC35, UC33, UC36\\
-        0.14.0 & 14/02/2026 & Giacomo Nalotto & Sistemazione pagina di titolo
+        0.14.0 & 13/02/2026 & Giacomo Nalotto & Sistemazione pagina di titolo
 		0.13.0 & 12/02/2026 & Giulia Romanato & Cambio numero: (UC37->UC15, UC38->UC16, UC39->UC17) e unificato stile delle subsubsection \\
 		0.12.0 & 12/02/2026 & Alessandro Morabito & Verifica del documento \\
 		0.11.0 & 11/02/2026 & Giacomo Nalotto & Sistemazione paragrafi introduttivi da 1 a 3.2 \\
@@ -707,7 +709,7 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 	\end{enumerate}
 \end{itemize}
 
-\subsubsection{UC5 - Invito utente in workspace}
+\subsubsection{UC5 - Invito utente in workspace}\label{UC5}
 
 \begin{figure}[h]
 	\centering
@@ -803,7 +805,7 @@ Il caso d'Uso UC5 include ulteriori casi d'uso come rappresentato nella seguente
 	
 \end{itemize}
 
-\subsubsection{UC6 - Visualizzazione inviti in workspace}
+\subsubsection{UC6 - Visualizzazione inviti in workspace}\label{UC6}
 
 \begin{figure}[h]
 	\centering
@@ -978,7 +980,7 @@ Il caso d'Uso UC6.1 include ulteriori casi d'uso come rappresentato nella seguen
     \item \textbf{Eredita da:} \hyperref[UC7]{UC7}
 \end{itemize}
 
-\subsubsection{UC8 - Visualizzazione lista workspace}
+\subsubsection{UC8 - Visualizzazione lista workspace}\label{UC8}
 
 \begin{figure}[h]
 	\centering
@@ -1066,7 +1068,7 @@ Il caso d'Uso UC8.1 include ulteriori casi d'uso come rappresentato nella seguen
     \end{itemize}
 \end{itemize}
 
-\subsubsection{UC9 - Ricerca workspace}
+\subsubsection{UC9 - Ricerca workspace}\label{UC9}
 
 \begin{figure}[h]
 	\centering
@@ -1115,7 +1117,7 @@ Il caso d'Uso UC8.1 include ulteriori casi d'uso come rappresentato nella seguen
     \end{enumerate}
 \end{itemize}
 
-\subsubsection{UC10 - Creazione workspace}
+\subsubsection{UC10 - Creazione workspace}\label{UC10}
 
 \begin{figure}[h]
 	\centering
@@ -1214,7 +1216,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
     \end{enumerate}
 \end{itemize}
 
-\subsubsection{UC11 - Visualizzazione lista dei ruoli di un workspace}
+\subsubsection{UC11 - Visualizzazione lista dei ruoli di un workspace}\label{UC11}
 
 \begin{figure}[h]
 	\centering
@@ -1251,7 +1253,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\item \textbf{Scenario principale:} L'utente visualizza nome e relativa descrizione di un singolo ruolo presente all'interno del workspace	
 \end{itemize}
 
-\subsubsection{UC12 - Visualizzazione lista utenti di un workspace}
+\subsubsection{UC12 - Visualizzazione lista utenti di un workspace}\label{UC12}
 
 \begin{figure}[h]
 	\centering
@@ -1286,7 +1288,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\item \textbf{Scenario principale:} L'utente visualizza username e relativo ruolo di un singolo utente presente all'interno del workspace	
 \end{itemize}
 
-\subsubsection{UC13 - Rimozione di un utente da un workspace}
+\subsubsection{UC13 - Rimozione di un utente da un workspace}\label{UC13}
 
 \begin{figure}[h]
 	\centering
@@ -1456,7 +1458,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 % UC15 - AVVIA SCANSIONE BACKEND
 % ============================================
 
-\subsubsection{UC15 - Avvia scansione}\label{UC15}
+\subsubsection{UC 15 - Avvia scansione}\label{UC15}
 
 \begin{figure}[H]
 	\centering
@@ -1553,7 +1555,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
     
 \end{itemize}
 
-\paragraph{UC15.1 - Scansione workspace} \label{UC15.1}
+\paragraph{UC 15.1 - Scansione workspace} \label{UC15.1}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:}
@@ -1576,7 +1578,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 		\item Il sistema seleziona automaticamente il branch develop per tutte le repository
 		\item Il sistema esegue l'analisi (\hyperref[UC17]{UC17 - Esegui analisi})
 	\end{enumerate}
-	\item \textbf{Inclusioni}: \hyperref[UC35]{UC35}
+	\item \textbf{Inclusioni:}: \hyperref[UC17]{UC17}
 	\item \textbf{Eredita da}: \hyperref[UC15]{UC15 - Avvia scansione}
 \end{itemize}
 
@@ -1927,7 +1929,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 
 
 
-\subsubsection{UC19 - Visualizza lista tag raccolta}
+\subsubsection{UC19 - Visualizza lista tag raccolta}\label{UC19}
 
 \begin{figure}[H]
 	\centering
@@ -2062,7 +2064,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{enumerate}
 \end{itemize}
 
-\subsubsection{UC20 - Crea tag raccolta}
+\subsubsection{UC20 - Crea tag raccolta}\label{UC20}
 
 \begin{figure}[H]
 	\centering
@@ -2159,7 +2161,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{enumerate}
 \end{itemize}
 
-\subsubsection{UC22 - Eliminazione tag raccolta dal workspace}
+\subsubsection{UC22 - Eliminazione tag raccolta dal workspace}\label{UC22}
 
 \begin{figure}[H]
 	\centering
@@ -2208,7 +2210,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{itemize}
 \end{itemize}
 
-\subsubsection{UC23 - Assegnazione tag raccolta a repository}
+\subsubsection{UC23 - Assegnazione tag raccolta a repository}\label{UC23}
 
 \begin{figure}[H]
 	\centering
@@ -2267,7 +2269,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{enumerate}
 \end{itemize}
 
-\subsubsection{UC24 -Rimozione tag raccolta da repository}
+\subsubsection{UC24 -Rimozione tag raccolta da repository}\label{UC24}
 
 \begin{figure}[H]
 	\centering
@@ -2323,7 +2325,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{enumerate}
 \end{itemize}
 
-\subsubsection{UC25 - Visualizza lista repository del workspace}
+\subsubsection{UC25 - Visualizza lista repository del workspace}\label{UC25}
 
 \begin{figure}[H]
 	\centering
@@ -2386,7 +2388,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\item \textbf{Estensioni:} \hyperref[UC37]{UC37}
 \end{itemize}
 
-\paragraph{UC25.1 - Visualizza singolo elemento lista repository del workspace}
+\paragraph{UC25.1 - Visualizza singolo elemento lista repository del workspace}\label{UC25.1}
 
 \begin{figure}[H]
 	\centering
@@ -2437,7 +2439,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\item \textbf{Inclusioni:} \hyperref[UC25.1.1]{UC25.1.1}, \hyperref[UC25.1.2]{UC25.1.2}, \hyperref[UC25.1.3]{UC25.1.3}, \hyperref[UC25.1.4]{UC25.1.4}, \hyperref[UC25.1.5]{UC25.1.5}
 \end{itemize}
 
-\paragraph{UC 25.1.1 - Visualizza nome repository}\label{UC25.1}
+\paragraph{UC 25.1.1 - Visualizza nome repository}\label{UC25.1.1}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -2620,7 +2622,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{itemize}
 \end{itemize}
 
-\subsubsection{UC26 - Aggiungi repository}
+\subsubsection{UC26 - Aggiungi repository}\label{UC26}
 
 \begin{figure}[H]
 	\centering
@@ -2664,7 +2666,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\item \textbf{Estensioni:} \hyperref[UC27]{UC27}
 \end{itemize}
 
-\paragraph{UC 26.1 - Inserisci link repository GitHub}
+\paragraph{UC26.1 - Inserisci link repository GitHub}\label{UC26.1}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -2686,7 +2688,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{enumerate}
 \end{itemize}
 
-\paragraph{UC 26.2 - Inserisci PAT repository GitHub}
+\paragraph{UC26.2 - Inserisci PAT repository GitHub}\label{UC26.2}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -2720,7 +2722,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{itemize}
 \end{itemize}
 
-\subsubsection{UC27 - Errore aggiunta repository}
+\subsubsection{UC27 - Errore aggiunta repository}\label{UC27}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -2929,7 +2931,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 \end{itemize}
 
 
-\subsection{UC 29 - Ricerca repository}
+\subsection{UC29 - Ricerca repository}\label{UC29}
 
 \begin{figure}[H]
 	\centering
@@ -2965,7 +2967,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{itemize}
 \end{itemize}
 
-\subsection{UC 30 - Ricerca con barra}
+\subsection{UC30 - Ricerca con barra}\label{UC30}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -2988,7 +2990,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{enumerate}
 \end{itemize}
 
-\subsection{UC 31 - Ricerca con filtri}
+\subsection{UC31 - Ricerca con filtri}\label{UC31}
 
 \begin{figure}[H]
  	\centering
@@ -3081,7 +3083,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{itemize}
 \end{itemize}
 
-\subsection{UC 32 - Ordinamento lista repository}
+\subsection{UC32 - Ordinamento lista repository}\label{UC32}
 
 \begin{figure}[H]
 	\centering
@@ -4887,5 +4889,133 @@ Il caso d'uso UC36 include ulteriori casi d'uso come rappresentato nella seguent
 			\end{itemize}
 	\end{itemize}
 \end{itemize}
+
+
+
+
+
+
+\newpage
+\section{Requisiti} \label{sec:requisiti}
+
+In questa sezione vengono elencati tutti i requisiti del sistema, classificati per tipologia.
+La nomenclatura utilizzata per i codici dei requisiti segue il formato \textbf{R-X-Y-Z}, dove:
+\begin{itemize}
+    \item \textbf{X}: nmero progressivo del requisito
+    \item \textbf{Y}: tipo del requisito (\textbf{F} = Funzionale, \textbf{Q} = Qualità, \textbf{V} = Vincolo)
+    \item \textbf{Z}: classe del requisito (\textbf{Ob} = Obbligatorio, \textbf{De} = Desiderabile, \textbf{Op} = Opzionale)
+\end{itemize}
+
+I requisiti sono così raggruppati: 
+\begin{itemize}
+    \item Funzionali: requisiti che rappresentano qualcosa che il Sistema sviluppato deve
+avere per soddisfare un’aspettativa
+    \item Qualità: requisiti che devono essere soddisfatti per accertare la qualità di
+quanto realizzato
+    \item Vincolo: restrizioni poste al Sistema, quali, a titolo di esempio, sull’uso di alcune
+tecnologie
+\end{itemize}
+
+\subsection{Requisiti Funzionali}
+\renewcommand{\arraystretch}{1.5}
+\rowcolors{2}{lightgray!20}{white}
+\begin{longtable}[c]{ c p{8.3cm} c }
+    \rowcolor{AccentDark}
+    \color{white}\textbf{Codice} & \color{white}\textbf{Descrizione} & \color{white}\textbf{Fonti} \\
+    \endhead
+
+    R-1-F-Ob & L'utente non autenticato deve poter registrarsi al sistema inserendo username, email e password & \hyperref[UC1]{UC1}, Capitolato \\
+    R-2-F-De & Il sistema deve inviare un codice OTP via email per la conferma della registrazione & \hyperref[UC2]{UC2} \\
+    R-3-F-Ob & L'utente non autenticato deve poter effettuare il login tramite username/email e password & \hyperref[UC3]{UC3}, Capitolato \\
+    R-4-F-Ob & Il sistema deve mostrare un messaggio di errore in caso di credenziali errate & \hyperref[UC3.3]{UC3.3} \\
+    R-5-F-Ob & L'utente deve poter recuperare la password & \hyperref[UC4]{UC4} \\
+    R-6-F-Ob & Il sistema deve autenticare gli utenti tramite Amazon Cognito & \hyperref[UC1]{UC1}, \hyperref[UC3]{UC3}, Capitolato \\
+    R-7-F-Ob & L'utente autenticato deve poter visualizzare la lista dei workspace a cui appartiene & \hyperref[UC8]{UC8} \\
+    R-8-F-Ob & L'utente autenticato deve poter creare un nuovo workspace inserendone il nome & \hyperref[UC10]{UC10} \\
+    R-9-F-Ob & L'utente deve poter cercare workspace per nome & \hyperref[UC9]{UC9} \\
+    R-10-F-Ob & Il Project Manager deve poter invitare utenti in un workspace selezionando un ruolo & \hyperref[UC5]{UC5} \\
+    R-11-F-Ob & L'utente deve poter visualizzare la lista degli inviti ricevuti con dettagli & \hyperref[UC6]{UC6} \\
+    R-12-F-Ob & L'utente deve poter accettare o rifiutare un invito a un workspace & \hyperref[UC7]{UC7} \\
+    R-13-F-De & L'utente deve poter visualizzare la lista dei ruoli di un workspace & \hyperref[UC11]{UC11} \\
+    R-14-F-Ob & L'utente deve poter visualizzare la lista degli utenti di un workspace & \hyperref[UC12]{UC12} \\
+    R-15-F-Ob & Il Project Manager deve poter rimuovere un utente da un workspace & \hyperref[UC13]{UC13} \\
+    R-16-F-De & Il sistema deve verificare automaticamente lo stato di aggiornamento di una repository & \hyperref[UC14]{UC14} \\
+    R-17-F-De & L'utente deve poter visualizzare la lista dei tag raccolta di un workspace & \hyperref[UC19]{UC19} \\
+    R-18-F-De & L'utente deve poter creare un tag raccolta all'interno di un workspace & \hyperref[UC20]{UC20} \\
+    R-19-F-De & L'utente deve poter eliminare un tag raccolta dal workspace & \hyperref[UC22]{UC22} \\
+    R-20-F-De & L'utente deve poter assegnare tag raccolta a una repository & \hyperref[UC23]{UC23} \\
+    R-21-F-De & L'utente deve poter rimuovere tag raccolta da una repository & \hyperref[UC24]{UC24} \\
+    R-22-F-Ob & L'utente deve poter visualizzare la lista delle repository del workspace & \hyperref[UC25]{UC25} \\
+    R-23-F-Ob & L'utente deve poter aggiungere una repository GitHub al workspace & \hyperref[UC26]{UC26} \\
+    R-24-F-Ob & Il sistema deve validare il link della repository e verificare l'accesso & \hyperref[UC27]{UC27} \\
+    R-25-F-Ob & L'utente deve poter rimuovere una repository dal workspace & \hyperref[UC28]{UC28} \\
+    R-26-F-Ob & L'utente deve poter effettuare ricerche di repository & \hyperref[UC29]{UC29} \\
+    R-27-F-De & L'utente deve poter filtrare le repository tramite barra di ricerca e filtri & \hyperref[UC30]{UC30}, \hyperref[UC31]{UC31} \\
+    R-28-F-De & L'utente deve poter ordinare la lista delle repository & \hyperref[UC32]{UC32} \\
+    R-29-F-Ob & L'utente deve poter aggiornare le informazioni sulle repository in base all'ultima scansione & UC Aggiorna \\
+    R-30-F-Ob & L'utente deve poter visualizzare il dettaglio di una repository & \hyperref[UC33]{UC33} \\
+    R-31-F-Ob & Il sistema deve permettere la selezione del branch per la visualizzazione & \hyperref[UC35]{UC35} \\
+    R-32-F-De & Il sistema deve mostrare la percentuale di test coverage & \hyperref[UC33.1.1]{UC33.1.1} \\
+    R-33-F-Ob & Il sistema deve mostrare l'elenco dei test con qualità insufficiente & \hyperref[UC33.1.2]{UC33.1.2}, Capitolato \\
+    R-34-F-De & Il sistema deve mostrare la percentuale di test passati & \hyperref[UC33.1.3]{UC33.1.3} \\
+    R-35-F-De & Il sistema deve mostrare l'elenco dei test non passati & \hyperref[UC33.1.4]{UC33.1.4} \\
+    R-36-F-De & Il sistema deve mostrare un messaggio informativo se nessun test è rilevato & \hyperref[UC33.1.5]{UC33.1.5} \\
+    R-37-F-Ob & Il sistema deve mostrare la lista dei linguaggi rilevati & \hyperref[UC33.2.1]{UC33.2.1}, Capitolato \\
+    R-38-F-Ob & Il sistema deve mostrare la lista delle librerie rilevate & \hyperref[UC33.2.2]{UC33.2.2}, Capitolato \\
+    R-39-F-Ob & Il sistema deve mostrare la lista dei framework rilevati & \hyperref[UC33.2.3]{UC33.2.3}, Capitolato \\
+    R-40-F-Ob & Il sistema deve mostrare grafici semplificati dei risultati OWASP & \hyperref[UC33.3]{UC33.3}, Capitolato \\
+    R-41-F-Ob & Il sistema deve mostrare un elenco ordinato delle vulnerabilità OWASP & \hyperref[UC33.4]{UC33.4}, Capitolato \\
+    R-42-F-De & Il sistema deve fornire i dettagli per ogni vulnerabilità & \hyperref[UC33.4.2]{UC33.4.2}, Capitolato \\
+    R-43-F-Ob & Il sistema deve mostrare un voto complessivo della qualità documentale & \hyperref[UC33.5.1]{UC33.5.1}, Capitolato \\
+    R-44-F-De & Il sistema deve mostrare consigli per il miglioramento del README & \hyperref[UC33.5.2]{UC33.5.2} \\
+    R-45-F-Ob & Il sistema deve elencare sezioni o documenti standard mancanti & \hyperref[UC33.5.3]{UC33.5.3} \\
+    R-46-F-De & Il sistema deve mostrare suggerimenti sulla qualità del codice & \hyperref[UC33.6]{UC33.6}, Capitolato \\
+    R-47-F-Ob & L'utente deve poter avviare una scansione & \hyperref[UC15]{UC15}, Capitolato \\
+    R-48-F-Ob & Il sistema deve mostrare lo stato della scansione in corso & \hyperref[UC15]{UC15} \\
+    R-49-F-Ob & L'utente deve poter annullare una scansione in corso & \hyperref[UC16]{UC16} \\
+    R-50-F-Ob & Il sistema deve notificare errori durante la scansione & \hyperref[UC15]{UC15} \\
+    R-51-F-Ob & L'utente deve poter visualizzare una visione aggregata del workspace & \hyperref[UC36]{UC36}, Capitolato \\
+    R-52-F-De & L'utente deve poter filtrare la visione aggregata per tag raccolta & \hyperref[UC36.1]{UC36.1} \\
+    R-53-F-Ob & Il sistema deve analizzare una o più repository & \hyperref[UC17]{UC17} \\
+    R-54-F-Ob & Il sistema deve distribuire l'analisi tra più componenti specializzati & \hyperref[UC17.2]{UC17.2} \\
+    R-55-F-Ob & Il sistema deve aggregare i risultati & \hyperref[UC17.4]{UC17.4} \\
+    R-56-F-Ob & Il sistema deve salvare un report finale & \hyperref[UC17.4]{UC17.4} \\
+    R-57-F-Op & Integrazione con CI/CD (GitHub Actions) & Capitolato N2H \\
+    R-58-F-Op & Analisi storica e confronto tra versioni & Capitolato N2H \\
+    R-59-F-Op & Ranking dei progetti per qualità complessiva & Capitolato N2H \\
+    R-60-F-Op & Remediation interattiva con anteprima & Capitolato N2H \\
+    R-61-F-Op & Notifiche integrate (Slack/Teams/Email) & Capitolato N2H \\
+    R-62-F-Op & Plugin system per nuovi agenti di analisi & Capitolato N2H \\
+\end{longtable}
+
+\subsection{Requisiti di Qualità}
+\begin{longtable}{ c p{9.5cm} c }
+    \rowcolor{AccentDark}
+    \color{white}\textbf{Codice} & \color{white}\textbf{Descrizione} & \color{white}\textbf{Fonti} \\
+    \endhead
+    R-1-Q-Ob & Coverage minimo dei test di unità del 70\% tramite test automatizzati & Capitolato \\
+    R-2-Q-Ob & Presenza di documentazione tecnica completa & Capitolato \\
+    R-3-Q-Ob & Le API devono essere documentate tramite Swagger/OpenAPI & Capitolato \\
+    R-4-Q-Ob & Deve essere presente un documento di Bug Reporting & Capitolato \\
+    R-5-Q-Ob & L'applicazione deve essere sviluppata in ottica modulare ed estensibile & Capitolato \\
+    R-6-Q-De & L'interfaccia utente deve essere responsive e fruibile da vari dispositivi & Capitolato \\
+    R-7-Q-De & Il sistema deve garantire tempi di risposta ragionevoli per le scansioni & Capitolato \\
+\end{longtable}
+
+\subsection{Requisiti di Vincolo}
+\begin{longtable}{ c p{9cm} c }
+    \rowcolor{AccentDark}
+    \color{white}\textbf{Codice} & \color{white}\textbf{Descrizione} & \color{white}\textbf{Fonti} \\
+    \endhead
+    R-1-V-Ob & Backend e Orchestratore sviluppati in Node.js o Python & Capitolato \\
+    R-2-V-Ob & Frontend sviluppato utilizzando la libreria React.js & Capitolato \\
+    R-3-V-Ob & Database supportati: MongoDB o PostgreSQL & Capitolato \\
+    R-4-V-Ob & L'infrastruttura cloud deve essere ospitata su Amazon Web Services (AWS) & Capitolato \\
+    R-5-V-Ob & L'autenticazione deve essere gestita tramite Amazon Cognito & Capitolato \\
+    R-6-V-Ob & Il codice sorgente deve essere versionato tramite Git & Capitolato \\
+    R-7-V-De & L'integrazione CI/CD deve utilizzare GitHub Actions & Capitolato \\
+    R-8-V-Ob & L'analisi di sicurezza deve basarsi sullo standard OWASP Top 10 & Capitolato \\
+    R-9-V-Ob & Architettura ad agenti coordinati da un orchestratore autocratico & Capitolato, \hyperref[UC39]{UC39} \\
+\end{longtable}
 
 \end{document}

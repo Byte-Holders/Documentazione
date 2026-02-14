@@ -16,16 +16,17 @@
 \usepackage{helvet}
 \renewcommand{\familydefault}{\sfdefault}
 \usepackage{lipsum}
-\usepackage{hyperref}
 \usepackage{longtable}
 \usepackage{float}
 \usepackage{booktabs}
 \usepackage{enumitem}
 \usepackage{titlecaps}
+\usepackage[pdfencoding=auto]{hyperref}
+\usepackage{bookmark}
 
 
-\setcounter{secnumdepth}{5} % Numera fino ai sottoparagrafi (livello 5)
-\setcounter{tocdepth}{5}    % Mostra nell'indice fino ai sottoparagrafi (livello 5)
+\setcounter{secnumdepth}{6} % Numera fino ai subsubparagraph (livello 6)
+\setcounter{tocdepth}{6}    % Mostra nell'indice fino ai subsubparagraph (livello 6)
 % ====== IMPOSTAZIONI GLOBALI DI STILE ======
 
 \makeatletter
@@ -50,6 +51,11 @@
   {1.5ex plus 0.5ex minus .2ex}
   {0.8ex plus .2ex}
   {\normalfont\small\bfseries\color{AccentColor}}}
+
+% Definizione dei formati TOC per paragraph, subparagraph e subsubparagraph
+\renewcommand*\l@paragraph{\@dottedtocline{4}{5.5em}{4.5em}}
+\renewcommand*\l@subparagraph{\@dottedtocline{5}{7.5em}{5.5em}}
+\newcommand*\l@subsubparagraph{\@dottedtocline{6}{9.5em}{6.5em}}
 
 \makeatother
 
@@ -167,6 +173,7 @@
 		\textcolor{white}{\textbf{Data}} & 
 		\multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} &
 		\multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
+		0.17.0 & 14/02/2026 & Lorenzo Grolla & Aggiornamento UC14 e UC33.1.2 \\
 		0.16.0 & 14/02/2026 & Giacomo Nalotto & Inizio stesura tabelle dei requisiti \\
         0.15.0 & 13/02/2026 & Giulia Romanato & Inserito UC25.1 Visualizza singolo elemento lista repository del workspace, sistemati grafici, cambiato numero Aggiorna repository (UC33->UC37) e aggiunta Aggiorna repository come extend a UC35, UC33, UC36\\
         0.14.0 & 13/02/2026 & Giacomo Nalotto & Sistemazione pagina di titolo \\
@@ -3337,30 +3344,94 @@ Il caso d'uso UC33.1 include ulteriori casi d'uso come rappresentato nella segue
     \end{enumerate}
 \end{itemize}
 
-\subparagraph{UC33.1.2 - Visualizza test con qualità insufficiente}\label{UC33.1.2}
+\subparagraph{UC33.1.2 - Visualizza lista test con qualità insufficiente}\label{UC33.1.2}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\textwidth]{../Assets/AdR/Screenshot 2026-02-14 alle 17.51.05.png}
+	\caption{UC33.1.2 - Visualizza lista test con qualità insufficiente}
+	\label{fig:UC33-1-2}
+\end{figure}
+
 \begin{itemize}
     \item \textbf{Attori principali:} Utente
     \item \textbf{Precondizioni:}
     \begin{itemize}
         \item Il sistema è attivo e funzionante
         \item L'utente è stato riconosciuto dal sistema come Utente
-        \item L'utente sta visualizzando la sezione di analisi dei test unitari(\hyperref[UC33.1]{UC33.1})
-        \item L'analisi della qualità dei test è stata eseguita con successo
+        \item L'utente sta visualizzando la sezione di analisi dei test (\hyperref[UC33.1]{UC33.1})
+        \item Sono stati rilevati test con qualità insufficiente durante l'ultima scansione
     \end{itemize}
     \item \textbf{Postcondizioni:}
     \begin{itemize}
-        \item Viene visualizzato l'elenco dei test unitari che presentano problemi di qualità
+        \item Viene visualizzata la lista dei test che non rispettano gli standard di qualità definiti
     \end{itemize}
     \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il sistema recupera l'elenco dei test che superano le soglie di tolleranza definite
-        \item Il sistema elenca i test unitari con qualità insufficiente, indicando per ciascuno:
-        \begin{itemize}
-            \item Nome del test
-            \item Tipo di problema rilevato (es. durata eccessiva, asserzioni mancanti, test instabili)
-            \item Dettagli sulla violazione della soglia
-        \end{itemize}
+        \item Il sistema recupera l'elenco dei test unitari valutati come insufficienti
+        \item Il sistema visualizza la lista completa dei test problematici
+        \item Per ogni test nella lista, il sistema visualizza il singolo elemento contenente le informazioni di dettaglio (\hyperref[UC33.1.2.1]{UC33.1.2.1})
     \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC33.1.2.1]{UC33.1.2.1}
+\end{itemize}
+
+\subsubparagraph{UC33.1.2.1 - Visualizza test singolo insufficiente}\label{UC33.1.2.1}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando la lista dei test con qualità insufficiente (\hyperref[UC33.1.2]{UC33.1.2})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Vengono visualizzati i dati identificativi e i dettagli dell'errore per un singolo test
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema identifica il singolo test all'interno della lista
+        \item Il sistema visualizza il nome del test unitario (\hyperref[UC33.1.2.1.1]{UC33.1.2.1.1})
+        \item Il sistema visualizza i dettagli della violazione o del problema di qualità riscontrato (\hyperref[UC33.1.2.1.2]{UC33.1.2.1.2})
+    \end{enumerate}
+    \item \textbf{Inclusioni:} \hyperref[UC33.1.2.1.1]{UC33.1.2.1.1}, \hyperref[UC33.1.2.1.2]{UC33.1.2.1.2}
+\end{itemize}
+
+\subsubparagraph{UC33.1.2.1.1 - Visualizza nome test unitario}\label{UC33.1.2.1.1}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando un singolo test insufficiente (\hyperref[UC33.1.2.1]{UC33.1.2.1})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Viene mostrato il nome identificativo o la firma del metodo del test unitario
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera il nome del test unitario dal report di scansione
+        \item Il sistema mostra a schermo il nome del test per identificarlo univocamente
+    \end{enumerate}
+\end{itemize}
+
+\subsubparagraph{UC33.1.2.1.2 - Visualizza dettagli violazione}\label{UC33.1.2.1.2}
+\begin{itemize}
+    \item \textbf{Attori principali:} Utente
+    \item \textbf{Precondizioni:}
+    \begin{itemize}
+        \item Il sistema è attivo e funzionante
+        \item L'utente sta visualizzando un singolo test insufficiente (\hyperref[UC33.1.2.1]{UC33.1.2.1})
+    \end{itemize}
+    \item \textbf{Postcondizioni:}
+    \begin{itemize}
+        \item Vengono mostrati i motivi specifici per cui la qualità del test è ritenuta insufficiente
+    \end{itemize}
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema recupera i metadati relativi alla violazione 
+        \item Il sistema mostra una descrizione testuale che spiega la criticità rilevata
+    \end{enumerate}
+\end{itemize}
     
 \end{itemize}
 

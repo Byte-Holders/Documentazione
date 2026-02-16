@@ -17,6 +17,38 @@
 \renewcommand{\familydefault}{\sfdefault}
 \usepackage{lipsum}
 \usepackage{longtable}
+\usepackage{etoolbox}
+% Fix "Infinite glue shrinkage" con longtable + xcolor[table]
+\makeatletter
+\renewcommand\LT@output{%
+  \ifnum\outputpenalty <-\@Mi
+    \ifnum\outputpenalty > -\LT@end@pen
+      \LT@err{floats and marginpars not allowed in a longtable}\@ehc
+    \else
+      \setbox\z@\vbox{\unvbox\@cclv}%
+      \ifdim \ht\LT@lastfoot>\ht\LT@foot
+        \dimen@\pagegoal
+        \advance\dimen@-\ht\LT@lastfoot
+        \ifdim\dimen@<\ht\z@
+          \setbox\@cclv\vbox{\unvbox\z@\copy\LT@foot\vss}%
+          \@makecol
+          \@outputpage
+          \setbox\z@\vbox{\box\LT@head}%
+        \fi
+      \fi
+      \global\@colroom\@colht
+      \global\vsize\@colht
+      \vbox
+        {\unvbox\z@\box\ifvoid\LT@lastfoot\LT@foot\else\LT@lastfoot\fi}%
+    \fi
+  \else
+    \setbox\@cclv\vbox{\unvbox\@cclv\copy\LT@foot\vss}%
+    \@makecol
+    \@outputpage
+    \global\vsize\@colroom
+    \copy\LT@head\nobreak
+  \fi}
+\makeatother
 \usepackage{float}
 \usepackage{booktabs}
 \usepackage{enumitem}
@@ -46,6 +78,8 @@
   {\normalfont\normalsize\bfseries\color{AccentColor}}}
 
 % ====== SUBSUBPARAGRAPH (livello 6, custom) ======
+\newcounter{subsubparagraph}[subparagraph]
+\renewcommand{\thesubsubparagraph}{\thesubparagraph.\arabic{subsubparagraph}}
 \newcommand\subsubparagraph{\@startsection{subsubparagraph}{6}
   {0pt}
   {1.5ex plus 0.5ex minus .2ex}
@@ -165,35 +199,42 @@
 {\normalfont\sffamily\huge\bfseries\color{AccentColor} Registro delle versioni}
 \vspace{1cm}
 
-\begin{center}
-	\rowcolors{2}{LightGray}{white}
-	\begin{tabular}{>{\centering\arraybackslash}m{1.5cm} >{\centering\arraybackslash}m{2cm} >{\raggedright\arraybackslash}m{2.5cm} >{\raggedright\arraybackslash}m{6.5cm}}
-		\rowcolor{AccentColor}
-		\textcolor{white}{\textbf{Versione}} & 
-		\textcolor{white}{\textbf{Data}} & 
-		\multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} &
-		\multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
-		0.18.0 & 15/02/2026 & Giacomo Nalotto & Aggiunta tabelle riassuntive dei requisiti \\
-		0.17.0 & 14/02/2026 & Lorenzo Grolla & Aggiornamento UC14 e UC33.1.2 \\
-		0.16.0 & 14/02/2026 & Giacomo Nalotto & Inizio stesura tabelle dei requisiti \\
-        0.15.0 & 13/02/2026 & Giulia Romanato & Inserito UC25.1 Visualizza singolo elemento lista repository del workspace, sistemati grafici, cambiato numero Aggiorna repository (UC33->UC37) e aggiunta Aggiorna repository come extend a UC35, UC33, UC36\\
-        0.14.0 & 13/02/2026 & Giacomo Nalotto & Sistemazione pagina di titolo \\
-		0.13.0 & 12/02/2026 & Giulia Romanato & Cambio numero: (UC37->UC15, UC38->UC16, UC39->UC17) e unificato stile delle subsubsection \\
-		0.12.0 & 12/02/2026 & Alessandro Morabito & Verifica del documento \\
-		0.11.0 & 11/02/2026 & Giacomo Nalotto & Sistemazione paragrafi introduttivi da 1 a 3.2 \\
-		0.10.0 & 08/02/2026 & Giulia Romanato & Stesura UC Backend (UC39 Esegui analisi con relativi sottocasi d'uso) \\ 
-		0.9.0 & 08/02/2026 & Giulia Romanato & Stesura UC Analisi (da UC37 a UC38) e inserimento immagini da UC19 a UC27 e UC37 e UC38 \\ 
-		0.8.0 & 08/02/2026 & Lorenzo Grolla & Stesura UC Verifica aggiornamento scansione \\ 
-        0.7.0 & 06/02/2026 & Giacomo Nalotto & Stesura UC Visione analisi sicurezza, analisi documentazione e analisi qualità del codice\\
-		0.6.0 & 04/02/2026 & Lorenzo Grolla & Stesura UC Visione Aggregata\\ 
-		0.5.0 & 25/01/2026 & Lorenzo Grolla & Stesura UC Dettagli Repository e Selezione Branch\\ 
-		0.4.0 & 19/01/2026 & Giulia Romanato & Stesura UC Gestione Respository e tag (da UC19 a UC27)\\
-        0.3.0 & 18/01/2026 & Giacomo Nalotto & Stesura UC Gestione Workspace\\
-		0.2.0 & 14/01/2026 & Lorenzo Grolla & Stesura UC Autenticazione\\ 
-		0.1.0 & 19/12/2025 & Alessandro Morabito & Inizio stesura\\ 
-	\end{tabular}
-\end{center}
-
+\renewcommand{\arraystretch}{1.0}
+\rowcolors{2}{LightGray}{white}
+\begin{longtable}{>{\centering\arraybackslash}p{1.5cm} >{\centering\arraybackslash}p{2cm} >{\raggedright\arraybackslash}p{2.5cm} >{\raggedright\arraybackslash}p{6.5cm}}
+	\rowcolor{AccentColor}
+	\textcolor{white}{\textbf{Versione}} &
+	\textcolor{white}{\textbf{Data}} &
+	\multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} &
+	\multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
+	\endfirsthead
+	\rowcolor{AccentColor}
+	\textcolor{white}{\textbf{Versione}} &
+	\textcolor{white}{\textbf{Data}} &
+	\multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} &
+	\multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
+	\endhead
+	0.19.0 & 16/02/2026 & Lorenzo Grolla & Fix errori formato \\
+	0.18.0 & 15/02/2026 & Giacomo Nalotto & Aggiunta tabelle riassuntive dei requisiti \\
+	0.17.0 & 14/02/2026 & Lorenzo Grolla & Aggiornamento UC14 e UC33.1.2 \\
+	0.16.0 & 14/02/2026 & Giacomo Nalotto & Inizio stesura tabelle dei requisiti \\
+	0.15.0 & 13/02/2026 & Giulia Romanato & Inserito UC25.1 Visualizza singolo elemento lista repository del workspace, sistemati grafici, cambiato numero Aggiorna repository (UC33->UC37) e aggiunta Aggiorna repository come extend a UC35, UC33, UC36\\
+	0.14.0 & 13/02/2026 & Giacomo Nalotto & Sistemazione pagina di titolo \\
+	0.13.0 & 12/02/2026 & Giulia Romanato & Cambio numero: (UC37->UC15, UC38->UC16, UC39->UC17) e unificato stile delle subsubsection \\
+	0.12.0 & 12/02/2026 & Alessandro Morabito & Verifica del documento \\
+	0.11.0 & 11/02/2026 & Giacomo Nalotto & Sistemazione paragrafi introduttivi da 1 a 3.2 \\
+	0.10.0 & 08/02/2026 & Giulia Romanato & Stesura UC Backend (UC39 Esegui analisi con relativi sottocasi d'uso) \\
+	0.9.0 & 08/02/2026 & Giulia Romanato & Stesura UC Analisi (da UC37 a UC38) e inserimento immagini da UC19 a UC27 e UC37 e UC38 \\
+	0.8.0 & 08/02/2026 & Lorenzo Grolla & Stesura UC Verifica aggiornamento scansione \\
+	0.7.0 & 06/02/2026 & Giacomo Nalotto & Stesura UC Visione analisi sicurezza, analisi documentazione e analisi qualità del codice\\
+	0.6.0 & 04/02/2026 & Lorenzo Grolla & Stesura UC Visione Aggregata\\
+	0.5.0 & 25/01/2026 & Lorenzo Grolla & Stesura UC Dettagli Repository e Selezione Branch\\
+	0.4.0 & 19/01/2026 & Giulia Romanato & Stesura UC Gestione Respository e tag (da UC19 a UC27)\\
+	0.3.0 & 18/01/2026 & Giacomo Nalotto & Stesura UC Gestione Workspace\\
+	0.2.0 & 14/01/2026 & Lorenzo Grolla & Stesura UC Autenticazione\\
+	0.1.0 & 19/12/2025 & Alessandro Morabito & Inizio stesura\\
+\end{longtable}
+\renewcommand{\arraystretch}{1.4}
 
 % ====== INDICE ======
 \pagestyle{fancy}
@@ -3348,7 +3389,7 @@ Il caso d'uso UC33.1 include ulteriori casi d'uso come rappresentato nella segue
 \subparagraph{UC33.1.2 - Visualizza lista test con qualità insufficiente}\label{UC33.1.2}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\textwidth]{../Assets/AdR/Screenshot 2026-02-14 alle 17.51.05.png}
+	\includegraphics[width=0.8\textwidth]{../Assets/AdR/UC33-1-2.png}
 	\caption{UC33.1.2 - Visualizza lista test con qualità insufficiente}
 	\label{fig:UC33-1-2}
 \end{figure}
@@ -3432,8 +3473,6 @@ Il caso d'uso UC33.1 include ulteriori casi d'uso come rappresentato nella segue
         \item Il sistema recupera i metadati relativi alla violazione 
         \item Il sistema mostra una descrizione testuale che spiega la criticità rilevata
     \end{enumerate}
-\end{itemize}
-    
 \end{itemize}
 
 \subparagraph{UC33.1.3 - Visualizza percentuale test passati}\label{UC33.1.3}
@@ -5013,7 +5052,7 @@ La nomenclatura utilizzata per i codici dei requisiti segue il formato \textbf{R
     \item \textbf{Y}: tipo del requisito (\textbf{F} = Funzionale, \textbf{Q} = Qualità, \textbf{V} = Vincolo)
     \item \textbf{Z}: classe del requisito (\textbf{Ob} = Obbligatorio, \textbf{De} = Desiderabile, \textbf{Op} = Opzionale)
 \end{itemize}
-\\ 
+
 I requisiti sono così raggruppati: 
 \begin{itemize}
     \item Funzionali: requisiti che rappresentano qualcosa che il Sistema sviluppato deve
@@ -5025,12 +5064,12 @@ tecnologie
 \end{itemize}
 
 \subsection{Requisiti Funzionali}
-\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.0}
 \rowcolors{2}{lightgray!20}{white}
-\begin{longtable}[c]{ 
-    >{\centering\arraybackslash}m{2.5cm} 
-    >{\centering\arraybackslash}m{8.3cm} 
-    >{\centering\arraybackslash}m{3.5cm} 
+\begin{longtable}[c]{
+    >{\centering\arraybackslash}p{2.5cm}
+    >{\centering\arraybackslash}p{8.3cm}
+    >{\centering\arraybackslash}p{3.5cm}
 }
     \rowcolor{AccentDark}
     \color{white}\textbf{Codice} & \color{white}\textbf{Descrizione} & \color{white}\textbf{Fonti} \\
@@ -5064,7 +5103,7 @@ tecnologie
     R-26-F-Ob & L'utente deve poter effettuare ricerche di repository & \hyperref[UC29]{UC29} \\
     R-27-F-De & L'utente deve poter filtrare le repository tramite barra di ricerca e filtri & \hyperref[UC30]{UC30}, \hyperref[UC31]{UC31} \\
     R-28-F-De & L'utente deve poter ordinare la lista delle repository & \hyperref[UC32]{UC32} \\
-    R-29-F-Ob & L'utente deve poter aggiornare le informazioni sulle repository in base all'ultima scansione & UC Aggiorna \\
+    R-29-F-Ob & L'utente deve poter aggiornare le informazioni sulle repository in base all'ultima scansione & \hyperref[UC37]{UC37} \\
     R-30-F-Ob & L'utente deve poter visualizzare il dettaglio di una repository & \hyperref[UC33]{UC33} \\
     R-31-F-Ob & Il sistema deve permettere la selezione del branch per la visualizzazione & \hyperref[UC35]{UC35} \\
     R-32-F-De & Il sistema deve mostrare la percentuale di test coverage & \hyperref[UC33.1.1]{UC33.1.1} \\
@@ -5101,10 +5140,12 @@ tecnologie
 \end{longtable}
 
 \subsection{Requisiti di Qualità}
-\begin{longtable}[c]{ 
-    >{\centering\arraybackslash}m{2.5cm} 
-    >{\centering\arraybackslash}m{8.3cm} 
-    >{\centering\arraybackslash}m{3.5cm} 
+\renewcommand{\arraystretch}{1.0}
+\rowcolors{2}{lightgray!20}{white}
+\begin{longtable}[c]{
+    >{\centering\arraybackslash}p{2.5cm}
+    >{\centering\arraybackslash}p{8.3cm}
+    >{\centering\arraybackslash}p{3.5cm}
 }
     \rowcolor{AccentDark}
     \color{white}\textbf{Codice} & \color{white}\textbf{Descrizione} & \color{white}\textbf{Fonti} \\
@@ -5119,10 +5160,12 @@ tecnologie
 \end{longtable}
 
 \subsection{Requisiti di Vincolo}
-\begin{longtable}[c]{ 
-    >{\centering\arraybackslash}m{2.5cm} 
-    >{\centering\arraybackslash}m{8.3cm} 
-    >{\centering\arraybackslash}m{3.5cm} 
+\renewcommand{\arraystretch}{1.0}
+\rowcolors{2}{lightgray!20}{white}
+\begin{longtable}[c]{
+    >{\centering\arraybackslash}p{2.5cm}
+    >{\centering\arraybackslash}p{8.3cm}
+    >{\centering\arraybackslash}p{3.5cm}
 }
     \rowcolor{AccentDark}
     \color{white}\textbf{Codice} & \color{white}\textbf{Descrizione} & \color{white}\textbf{Fonti} \\
@@ -5141,10 +5184,10 @@ tecnologie
 
 \subsection{Tracciamento Casi d'Uso e riepilogo}
 
-\renewcommand{\arraystretch}{1.5}
+\renewcommand{\arraystretch}{1.0}
 \rowcolors{2}{lightgray!20}{white}
 
-\begin{longtable}[c]{ >{\centering\arraybackslash}m{5cm} >{\centering\arraybackslash}m{8.5cm} }
+\begin{longtable}[c]{ >{\centering\arraybackslash}p{5cm} >{\centering\arraybackslash}p{8.5cm} }
     \rowcolor{AccentDark}
     \color{white}\textbf{Caso d'Uso} & \color{white}\textbf{Requisiti} \\
     \endhead

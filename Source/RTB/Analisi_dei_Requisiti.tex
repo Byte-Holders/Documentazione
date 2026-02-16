@@ -173,6 +173,7 @@
 		\textcolor{white}{\textbf{Data}} & 
 		\multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} &
 		\multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
+		0.18.0 & 15/02/2026 & Giacomo Nalotto & Aggiunta tabelle riassuntive dei requisiti \\
 		0.17.0 & 14/02/2026 & Lorenzo Grolla & Aggiornamento UC14 e UC33.1.2 \\
 		0.16.0 & 14/02/2026 & Giacomo Nalotto & Inizio stesura tabelle dei requisiti \\
         0.15.0 & 13/02/2026 & Giulia Romanato & Inserito UC25.1 Visualizza singolo elemento lista repository del workspace, sistemati grafici, cambiato numero Aggiorna repository (UC33->UC37) e aggiunta Aggiorna repository come extend a UC35, UC33, UC36\\
@@ -5012,7 +5013,7 @@ La nomenclatura utilizzata per i codici dei requisiti segue il formato \textbf{R
     \item \textbf{Y}: tipo del requisito (\textbf{F} = Funzionale, \textbf{Q} = Qualità, \textbf{V} = Vincolo)
     \item \textbf{Z}: classe del requisito (\textbf{Ob} = Obbligatorio, \textbf{De} = Desiderabile, \textbf{Op} = Opzionale)
 \end{itemize}
-
+\\ 
 I requisiti sono così raggruppati: 
 \begin{itemize}
     \item Funzionali: requisiti che rappresentano qualcosa che il Sistema sviluppato deve
@@ -5026,7 +5027,11 @@ tecnologie
 \subsection{Requisiti Funzionali}
 \renewcommand{\arraystretch}{1.5}
 \rowcolors{2}{lightgray!20}{white}
-\begin{longtable}[c]{ c p{8.3cm} c }
+\begin{longtable}[c]{ 
+    >{\centering\arraybackslash}m{2.5cm} 
+    >{\centering\arraybackslash}m{8.3cm} 
+    >{\centering\arraybackslash}m{3.5cm} 
+}
     \rowcolor{AccentDark}
     \color{white}\textbf{Codice} & \color{white}\textbf{Descrizione} & \color{white}\textbf{Fonti} \\
     \endhead
@@ -5096,7 +5101,11 @@ tecnologie
 \end{longtable}
 
 \subsection{Requisiti di Qualità}
-\begin{longtable}{ c p{9.5cm} c }
+\begin{longtable}[c]{ 
+    >{\centering\arraybackslash}m{2.5cm} 
+    >{\centering\arraybackslash}m{8.3cm} 
+    >{\centering\arraybackslash}m{3.5cm} 
+}
     \rowcolor{AccentDark}
     \color{white}\textbf{Codice} & \color{white}\textbf{Descrizione} & \color{white}\textbf{Fonti} \\
     \endhead
@@ -5110,7 +5119,11 @@ tecnologie
 \end{longtable}
 
 \subsection{Requisiti di Vincolo}
-\begin{longtable}{ c p{9cm} c }
+\begin{longtable}[c]{ 
+    >{\centering\arraybackslash}m{2.5cm} 
+    >{\centering\arraybackslash}m{8.3cm} 
+    >{\centering\arraybackslash}m{3.5cm} 
+}
     \rowcolor{AccentDark}
     \color{white}\textbf{Codice} & \color{white}\textbf{Descrizione} & \color{white}\textbf{Fonti} \\
     \endhead
@@ -5124,5 +5137,91 @@ tecnologie
     R-8-V-Ob & L'analisi di sicurezza deve basarsi sullo standard OWASP Top 10 & Capitolato \\
     R-9-V-Ob & Architettura ad agenti coordinati da un orchestratore autocratico & Capitolato, \hyperref[UC17]{UC17} \\
 \end{longtable}
+
+
+\subsection{Tracciamento Casi d'Uso e riepilogo}
+
+\renewcommand{\arraystretch}{1.5}
+\rowcolors{2}{lightgray!20}{white}
+
+\begin{longtable}[c]{ >{\centering\arraybackslash}m{5cm} >{\centering\arraybackslash}m{8.5cm} }
+    \rowcolor{AccentDark}
+    \color{white}\textbf{Caso d'Uso} & \color{white}\textbf{Requisiti} \\
+    \endhead
+
+    \hyperref[UC1]{UC1} & R-1-F-Ob, R-6-F-Ob \\
+    \hyperref[UC2]{UC2} & R-2-F-De \\
+    \hyperref[UC3]{UC3} & R-3-F-Ob, R-4-F-Ob, R-6-F-Ob \\
+    \hyperref[UC3.3]{UC3.3} & R-4-F-Ob \\
+    \hyperref[UC4]{UC4} & R-5-F-Ob \\
+    \hyperref[UC5]{UC5} & R-10-F-Ob \\
+    \hyperref[UC6]{UC6} & R-11-F-Ob \\
+    \hyperref[UC7]{UC7} & R-12-F-Ob \\
+    \hyperref[UC8]{UC8} & R-7-F-Ob \\
+    \hyperref[UC9]{UC9} & R-9-F-Ob \\
+    \hyperref[UC10]{UC10} & R-8-F-Ob \\
+    \hyperref[UC11]{UC11} & R-13-F-De \\
+    \hyperref[UC12]{UC12} & R-14-F-Ob \\
+    \hyperref[UC13]{UC13} & R-15-F-Ob \\
+    \hyperref[UC14]{UC14} & R-16-F-De \\
+    \hyperref[UC15]{UC15} & R-47-F-Ob, R-48-F-Ob, R-50-F-Ob \\
+    \hyperref[UC16]{UC16} & R-49-F-Ob \\
+    \hyperref[UC17]{UC17} & R-53-F-Ob \\
+    \hyperref[UC17.2]{UC17.2} & R-54-F-Ob \\
+    \hyperref[UC17.4]{UC17.4} & R-55-F-Ob, R-56-F-Ob \\
+    \hyperref[UC19]{UC19} & R-17-F-De \\
+    \hyperref[UC20]{UC20} & R-18-F-De \\
+    \hyperref[UC22]{UC22} & R-19-F-De \\
+    \hyperref[UC23]{UC23} & R-20-F-De \\
+    \hyperref[UC24]{UC24} & R-21-F-De \\
+    \hyperref[UC25]{UC25} & R-22-F-Ob \\
+    \hyperref[UC26]{UC26} & R-23-F-Ob \\
+    \hyperref[UC27]{UC27} & R-24-F-Ob \\
+    \hyperref[UC28]{UC28} & R-25-F-Ob \\
+    \hyperref[UC29]{UC29} & R-26-F-Ob \\
+    \hyperref[UC30]{UC30} & R-27-F-De \\
+    \hyperref[UC31]{UC31} & R-27-F-De \\
+    \hyperref[UC32]{UC32} & R-28-F-De \\
+    \hyperref[UC33]{UC33} & R-30-F-Ob \\
+    \hyperref[UC33.1.1]{UC33.1.1} & R-32-F-De \\
+    \hyperref[UC33.1.2]{UC33.1.2} & R-33-F-Ob \\
+    \hyperref[UC33.1.3]{UC33.1.3} & R-34-F-De \\
+    \hyperref[UC33.1.4]{UC33.1.4} & R-35-F-De \\
+    \hyperref[UC33.1.5]{UC33.1.5} & R-36-F-De \\
+    \hyperref[UC33.2.1]{UC33.2.1} & R-37-F-Ob \\
+    \hyperref[UC33.2.2]{UC33.2.2} & R-38-F-Ob \\
+    \hyperref[UC33.2.3]{UC33.2.3} & R-39-F-Ob \\
+    \hyperref[UC33.3]{UC33.3} & R-40-F-Ob \\
+    \hyperref[UC33.4.2]{UC33.4.2} & R-42-F-De \\
+    \hyperref[UC33.4]{UC33.4} & R-41-F-Ob \\
+    \hyperref[UC33.5.1]{UC33.5.1} & R-43-F-Ob \\
+    \hyperref[UC33.5.2]{UC33.5.2} & R-44-F-De \\
+    \hyperref[UC33.5.3]{UC33.5.3} & R-45-F-Ob \\
+    \hyperref[UC33.6]{UC33.6} & R-46-F-De \\
+    \hyperref[UC35]{UC35} & R-31-F-Ob \\
+    \hyperref[UC36]{UC36} & R-51-F-Ob \\
+    \hyperref[UC36.1]{UC36.1} & R-52-F-De \\
+    \hyperref[UC17]{UC17} & R-9-V-Ob \\
+\end{longtable}
+
+\subsection{Riepilogo dei Requisiti}
+
+Nella seguente tabella viene riportato il riepilogo del numero di requisiti individuati, suddivisi per tipologia e per classe di priorità.
+
+\renewcommand{\arraystretch}{1.5}
+\rowcolors{2}{lightgray!20}{white}
+\begin{table}[H]
+    \centering
+    \begin{tabular}{ l c c c c }
+        \rowcolor{AccentDark}
+        \color{white}\textbf{Tipologia} & \color{white}\textbf{Obbligatori} & \color{white}\textbf{Desiderabili} & \color{white}\textbf{Opzionali} & \color{white}\textbf{Totale} \\
+        
+        Funzionali & 38 & 18 & 6 & 62 \\
+        Qualità    & 5  & 2  & 0 & 7  \\
+        Vincolo    & 8  & 1  & 0 & 9  \\
+        \textbf{Totale} & \textbf{51} & \textbf{21} & \textbf{6} & \textbf{78} \\
+    \end{tabular}
+    \label{tab:riepilogo-requisiti}
+\end{table}
 
 \end{document}

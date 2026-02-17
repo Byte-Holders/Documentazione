@@ -18,7 +18,7 @@
 \usepackage{lipsum}
 \usepackage{longtable}
 \usepackage{etoolbox}
-% Fix "Infinite glue shrinkage" con longtable + xcolor[table]
+
 \makeatletter
 \renewcommand\LT@output{%
   \ifnum\outputpenalty <-\@Mi
@@ -55,6 +55,8 @@
 \usepackage{titlecaps}
 \usepackage[pdfencoding=auto]{hyperref}
 \usepackage{bookmark}
+
+\usepackage{titlesec}
 
 
 \setcounter{secnumdepth}{6} % Numera fino ai subsubparagraph (livello 6)
@@ -675,6 +677,7 @@ Il caso d'Uso UC3 include ulteriori casi d'uso come rappresentato nella seguente
 		\item Il sistema è attivo e funzionante
 		\item L'utente possiede un account registrato
 		\item L'utente ha dimenticato la password
+        \item L'utente ha selezionato l'opzione "Recupera password"
 	\end{itemize}
 	\item \textbf{Postcondizioni:} La password viene reimpostata con successo.
 	\item \textbf{Scenario principale:}
@@ -3109,7 +3112,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\item \textbf{Inclusioni}: \hyperref[UC31.1]{UC31.1}
 \end{itemize}
 
-\subsubsection{UC31.1 Selezione filtri di ricerca} \label{UC31.1}
+\paragraph{UC31.1 Selezione filtri di ricerca} \label{UC31.1}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:}
@@ -3995,7 +3998,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
 
 
 
-\subparagraph{UC33.3 - Visualizzazione analisi sicurezza semplice}\label{UC33.3}
+\paragraph{UC33.3 - Visualizzazione analisi sicurezza semplice}\label{UC33.3}
 
 \begin{figure}[H]
 	\centering
@@ -4031,7 +4034,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
 	\end{enumerate}
 \end{itemize}
 
-\subparagraph{UC33.4 - Visualizzazione analisi sicurezza completa}\label{UC33.4}
+\paragraph{UC33.4 - Visualizzazione analisi sicurezza completa}\label{UC33.4}
 
 \begin{figure}[H]
 	\centering
@@ -4427,7 +4430,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
     \item \textbf{Inclusioni:} \hyperref[UC35.1.1.1]{UC35.1.1.1}, \hyperref[UC35.1.1.2]{UC35.1.1.2}
 \end{itemize}
 
-\subparagraph{UC35.1.1.1 - Visualizza nome branch}\label{UC35.1.1.1}
+\subsubparagraph{UC35.1.1.1 - Visualizza nome branch}\label{UC35.1.1.1}
 \begin{itemize}
     \item \textbf{Attori principali:} Utente 
     \item \textbf{Precondizioni:}
@@ -4446,7 +4449,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
     \end{enumerate}
 \end{itemize}
 
-\subparagraph{UC35.1.1.2 - Visualizza data ultima scansione}\label{UC35.1.1.2}
+\subsubparagraph{UC35.1.1.2 - Visualizza data ultima scansione}\label{UC35.1.1.2}
 \begin{itemize}
     \item \textbf{Attori principali:} Utente 
     \item \textbf{Precondizioni:}
@@ -5066,11 +5069,7 @@ tecnologie
 \subsection{Requisiti Funzionali}
 \renewcommand{\arraystretch}{1.0}
 \rowcolors{2}{lightgray!20}{white}
-\begin{longtable}[c]{
-    >{\centering\arraybackslash}p{2.5cm}
-    >{\centering\arraybackslash}p{8.3cm}
-    >{\centering\arraybackslash}p{3.5cm}
-}
+\begin{longtable}[c]{ >{\centering\arraybackslash}m{2.5cm} >{\centering\arraybackslash}m{8.3cm} >{\centering\arraybackslash}m{3.5cm} }
     \rowcolor{AccentDark}
     \color{white}\textbf{Codice} & \color{white}\textbf{Descrizione} & \color{white}\textbf{Fonti} \\
     \endhead
@@ -5131,22 +5130,19 @@ tecnologie
     R-54-F-Ob & Il sistema deve distribuire l'analisi tra più componenti specializzati & \hyperref[UC17.2]{UC17.2} \\
     R-55-F-Ob & Il sistema deve aggregare i risultati & \hyperref[UC17.4]{UC17.4} \\
     R-56-F-Ob & Il sistema deve salvare un report finale & \hyperref[UC17.4]{UC17.4} \\
-    R-57-F-Op & Integrazione con CI/CD (GitHub Actions) & Capitolato N2H \\
-    R-58-F-Op & Analisi storica e confronto tra versioni & Capitolato N2H \\
-    R-59-F-Op & Ranking dei progetti per qualità complessiva & Capitolato N2H \\
-    R-60-F-Op & Remediation interattiva con anteprima & Capitolato N2H \\
-    R-61-F-Op & Notifiche integrate (Slack/Teams/Email) & Capitolato N2H \\
-    R-62-F-Op & Plugin system per nuovi agenti di analisi & Capitolato N2H \\
+    \\
+    R-57-F-Op & Integrazione con CI/CD (GitHub Actions) & Capitolato sez. N2H \\
+    R-58-F-Op & Analisi storica e confronto tra versioni & Capitolato sez. N2H \\
+    R-59-F-Op & Ranking dei progetti per qualità complessiva & Capitolato sez. N2H \\
+    R-60-F-Op & Remediation interattiva con anteprima & Capitolato sez. N2H \\
+    R-61-F-Op & Notifiche integrate (Slack/Teams/Email) & Capitolato sez. N2H \\
+    R-62-F-Op & Plugin system per nuovi agenti di analisi & Capitolato sez. N2H \\
 \end{longtable}
 
 \subsection{Requisiti di Qualità}
 \renewcommand{\arraystretch}{1.0}
 \rowcolors{2}{lightgray!20}{white}
-\begin{longtable}[c]{
-    >{\centering\arraybackslash}p{2.5cm}
-    >{\centering\arraybackslash}p{8.3cm}
-    >{\centering\arraybackslash}p{3.5cm}
-}
+\begin{longtable}[c]{ >{\centering\arraybackslash}m{2.5cm} >{\centering\arraybackslash}m{8.3cm} >{\centering\arraybackslash}m{3.5cm} }
     \rowcolor{AccentDark}
     \color{white}\textbf{Codice} & \color{white}\textbf{Descrizione} & \color{white}\textbf{Fonti} \\
     \endhead
@@ -5162,11 +5158,7 @@ tecnologie
 \subsection{Requisiti di Vincolo}
 \renewcommand{\arraystretch}{1.0}
 \rowcolors{2}{lightgray!20}{white}
-\begin{longtable}[c]{
-    >{\centering\arraybackslash}p{2.5cm}
-    >{\centering\arraybackslash}p{8.3cm}
-    >{\centering\arraybackslash}p{3.5cm}
-}
+\begin{longtable}[c]{ >{\centering\arraybackslash}m{2.5cm} >{\centering\arraybackslash}m{8.3cm} >{\centering\arraybackslash}m{3.5cm} }
     \rowcolor{AccentDark}
     \color{white}\textbf{Codice} & \color{white}\textbf{Descrizione} & \color{white}\textbf{Fonti} \\
     \endhead
@@ -5187,7 +5179,7 @@ tecnologie
 \renewcommand{\arraystretch}{1.0}
 \rowcolors{2}{lightgray!20}{white}
 
-\begin{longtable}[c]{ >{\centering\arraybackslash}p{5cm} >{\centering\arraybackslash}p{8.5cm} }
+\begin{longtable}[c]{ >{\centering\arraybackslash}m{2.5cm} >{\centering\arraybackslash}m{10cm} }
     \rowcolor{AccentDark}
     \color{white}\textbf{Caso d'Uso} & \color{white}\textbf{Requisiti} \\
     \endhead

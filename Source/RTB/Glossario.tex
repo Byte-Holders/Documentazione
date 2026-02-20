@@ -131,7 +131,7 @@ I principali componenti di un agente sono:
     \item \textbf{Tool}: strumenti esterni con cui l'agente interagisce con l'ambiente esterno per ottenere informazioni o eseguire azioni. Vedi \refterm{Tool}.
 \end{itemize}
 
-\term{Amazon Web Services}
+%\term{Amazon Web Services}
 
 \term{Ambiente}
 Vedi \refterm{Variabili d'Ambiente}
@@ -143,15 +143,15 @@ Documento contenente i requisiti (vedi \refterm{Requisito}) individuati dal grup
 Processo di studio dei bisogni degli utenti per definire un \refterm{Requisito}.
 
 \term{API}
-Un'API (Application Programming Interface) è un insieme di regole e protocolli che consente a diverse applicazioni software di comunicare tra loro. È un'interfaccia per accedere a funzionalità o dati specifici di un'applicazione, servizio o piattaforma, facilitando l'integrazione e l'interoperabilità tra sistemi diversi.
+\textit{Application Programming Interface}. Un'API è un insieme di regole e protocolli che consente a diverse applicazioni software di comunicare tra loro. È un'interfaccia per accedere a funzionalità o dati specifici di un'applicazione, servizio o piattaforma, facilitando l'integrazione e l'interoperabilità tra sistemi diversi.
 
 \term{API Token}
 Chiave unica talvolta necessaria per accedere a una \refterm{API}.
 
-\term{AWS}
+%\term{AWS}
 
 \GlossarioLettera{B}
-\term{Bedrock}
+%\term{Bedrock}
 \term{Board}
 Una Board è una bacheca in stile Kanban che permette di monitorare lo stato di avanzamento del progetto, attraverso l'organizzazione visuale delle attività (issue) da svolgere (Backlog, se non è ancora da prendere in carico - Ready, quando la issue è pronta per essere svolta), in corso (In Progress), in revisione (in Review, in attesa di verifica e approvazione) e terminate (Done).
 
@@ -159,7 +159,7 @@ Una Board è una bacheca in stile Kanban che permette di monitorare lo stato di 
 Un branch (ramo) è una linea di sviluppo indipendente (una copia separata del codice sorgente) all'interno di un sistema di controllo versione (VCS), come Git. Permette agli sviluppatori di lavorare su funzionalità, correzioni di bug o esperimenti senza influenzare direttamente il ramo principale.
 
 \GlossarioLettera{C}
-\term{Chain-of-thought prompting}
+%\term{Chain-of-thought prompting}
 
 \term{CIA}
 \textit{Confidentiality, Integrity, Availability}. Triade che rappresenta i principi chiave della sicurezza informatica.
@@ -169,9 +169,9 @@ Un branch (ramo) è una linea di sviluppo indipendente (una copia separata del c
 	\item \textbf{Availability}: assicura accesso tempestivo a dati ed equipaggiamenti
 \end{itemize}
 
-\term{CodeQL}
+%\term{CodeQL}
 
-\term{Cognito}
+%\term{Cognito}
 
 \term{Container}
 Processo isolato per le componenti di un'applicazione. Un container è:
@@ -184,7 +184,7 @@ Processo isolato per le componenti di un'applicazione. Un container è:
 
  Si ottiene eseguendo una \refterm{Immagine (Docker)} tramite \refterm{Docker}.
 
-\term{Context Prompt}
+%\term{Context Prompt}
 
 \term{CVE}
 \textit{Common Vulnerabilities and Exposures}. Un glossario di \refterm{Vulnerabilità} formalmente identificate. Utilizziamo il termine per fare riferimento più in particolare ai \textit{CVE Record}: una entry di tale glossario, ovvero dati strutturati riguardanti una certa vulnerabilità. Ciascun record possiede un identificatore univoco, e può essere in uno dei seguenti stati:
@@ -256,7 +256,7 @@ Piattaforma per sviluppare e condividere applicazioni in modo che siano separate
 Utilizza un'architettura client-server, dove il demone \texttt{dockerd} (locale o remoto) e il client (ad es. \refterm{docker compose}) comunicano tramite \refterm{API} \refterm{REST} tramite socket o rete.
 
 \term{docker compose}
-Comando che permette di eseguire \refterm{Container} multipli secondo una configurazione specificata in un file \refterm{YAML}, permettendo la configurazione ad esempio di reti, volumi e variabili d'ambiente.
+Comando che permette di eseguire \refterm{Container} multipli secondo una configurazione specificata in un file YAML, permettendo la configurazione ad esempio di reti, volumi e variabili d'ambiente.
 
 \term{Dockerfile}
 File contenente le istruzioni per la costruzione di un'\refterm{Immagine (Docker)}. A seguire istruzioni comuni\footnote{Documentazione: \url{https://docs.docker.com/reference/dockerfile}}:
@@ -294,13 +294,15 @@ I documenti pubblicati:
 \GlossarioLettera{E}
 
 \GlossarioLettera{F}
-\term{Few-shot prompting}
+%\term{Few-shot prompting}
 
-\term{FM}
+%\term{FM}
 
-\term{Foundation Model}
+%\term{Foundation Model}
 
 \term{Framework}
+Codice esterno che controlla il flusso del programma. Un framework permette all'utilizzatore di scrivere del codice all'interno di una struttura predefinita. Successivamente, il codice dell'utente verrà chiamato dal framework sfruttando l'\textit{Inversion of Control}, ed eseguito secondo i suoi termini.\\
+CodeGuardian utilizza \refterm{NestJS} come framework per il backend.
 
 \GlossarioLettera{G}
 \term{Git}
@@ -361,35 +363,37 @@ I principali comandi di gitflow sono:
 \term{GitHub Actions}
 GitHub Actions è il sistema di automazione di GitHub che consente di eseguire workflow automatizzati direttamente all'interno del repository. Permette di creare processi personalizzati per la compilazione, il test, il rilascio e la distribuzione del codice, nonché per altre attività legate allo sviluppo software, in risposta ad eventi del repository, come push o pull request.
 
-\term{GitHub Linguist}
+%\term{GitHub Linguist}
 
 \term{Glossario}
 Questo documento, che ha lo scopo di disambiguare ed essere un riferimento condiviso all'interno del gruppo.
 
 \GlossarioLettera{H}
-\term{Human Prompt}
+%\term{Human Prompt}
 
 \GlossarioLettera{I}
-\term{IaaS}
+%\term{IaaS}
 
-\term{IAM}
+%\term{IAM}
 
-\term{Identity and Access Management}
+%\term{Identity and Access Management}
 
 \term{Immagine (Docker)}
 Un pacchetto in sola lettura che contiene tutti i file, le librerie e le configurazioni per eseguire un \refterm{Container}. Un'immagine è composta da vari strati (\textit{layer}) che rappresentano le modifiche applicate a un'immagine di partenza. La composizioni in strati permette una costruzione di container più rapida e il risparmio di spazio, dal momento che sono condivisibili.
 
 Immagini docker possono essere trovate su \url{https://hub.docker.com/}.
 
-\term{Infrastructure as a Service}
+%\term{Infrastructure as a Service}
 
 \term{Issue}
 Un’issue è uno strumento di GitHub utilizzato per segnalare bug, proporre nuove funzionalità, discutere idee o tracciare attività.
 
 \GlossarioLettera{J}
 \term{JavaScript}
+Linguaggio ad alto livello, generalmente compilato \textit{just-in-time}, dinamicamente tipato. Multiparadigma, supporta programmazione orientata agli oggetti, agli eventi e funzionale. Nasce per rendere dinamico il frontend, successivamente utilizzato anche nel backend tramite \refterm{NodeJS}.
 
 \term{JSON}
+\textit{JavaScript Object Notation}. Formato basato sulla sintassi di oggetti ed array di \refterm{JavaScript}. Può descrivere dati serializzati, anche complessi, come testo leggibile. Utilizzato da \refterm{API} \refterm{REST}. 
 
 \GlossarioLettera{K}
 
@@ -402,8 +406,6 @@ Un’issue è uno strumento di GitHub utilizzato per segnalare bug, proporre nuo
 
 \term{LaTeX}
 LaTeX Linguaggio di marcatura (mark-down) compilato per la realizzazione di documenti.
-
-\term{Linguist}
 
 \term{LLM}
 
@@ -419,12 +421,14 @@ Permette di:
 
 \term{MongoDB}
 
-\term{MongoDB Atlas}
+%\term{MongoDB Atlas}
 
 \GlossarioLettera{N}
 \term{NestJS}
+\refterm{Framework} per la costruzione del lato server di applicazioni che utilizzano \refterm{NodeJS} per il backend. Supporta sia \refterm{JavaScript} che \refterm{TypeScript}.
 
 \term{NodeJS}
+Sistema runtime orientato agli eventi per l'esecuzione di codice \refterm{JavaScript} lato server.
 
 \term{NoSQL}
 Altro nome per \refterm{Database non relazionale}.
@@ -432,12 +436,13 @@ Altro nome per \refterm{Database non relazionale}.
 \term{Norme di Progetto}
 
 \term{npm}
+\textit{node package manager}. Gestore di pacchetti per \refterm{NodeJS}, permette di installare e gestire le dipendenze da riga di comando. Informazioni riguardo il \textit{range} di versioni accettabile sono specificate all'interno del file \texttt{package.json}. In fase di installazione delle dipendenze, queste ottengono una versione "fissa" (quella installata), e vengono aggiunte all'interno del file \texttt{package-lock.json}. Questo rende le installazioni ripetibili pur se su sistemi diversi.
 
 \term{NVD}
 \textit{National Vulnerability Database}. Un database americano che raccoglie e aggiunge informazioni (\refterm{CVSS}, \refterm{CWE}) alle \refterm{CVE} tramite i riferimenti e altri dati pubblici. I dati possono variare se vengono pubblicate informazioni rilevanti.
 
 \GlossarioLettera{O}
-\term{One-shot prompting}
+%\term{One-shot prompting}
 
 \term{Orchestratore Autocratico} %RIGUARDARE
 L'orchestratore è il componente centrale di un sistema ad agenti che coordina e gestisce le operazioni degli agenti per raggiungere obiettivi specifici in modo efficiente.\\
@@ -457,9 +462,9 @@ Documento che contiene le 10 categorie di maggior rischio per le applicazioni we
 \end{itemize}
 
 \GlossarioLettera{P}
-\term{PaaS}
+%\term{PaaS}
 
-\term{Platform as a Service}
+%\term{Platform as a Service}
 
 \term{Project Manager}
 Il Project Manager (PM) è la figura responsabile della gestione completa del ciclo di vita di uno o più progetti, garantendone la realizzazione nel rispetto di tempi, costi, qualità e obiettivi stabiliti. Pur non essendo necessariamente un esperto tecnico di sviluppo software, coordina persone, attività e risorse, fungendo da punto di contatto tra team di sviluppo, organizzazione e cliente.\\
@@ -487,6 +492,7 @@ Le sue principali responsabilità sono:
 \term{Raccolta}
 
 \term{React}
+Libreria \refterm{JavaScript} per la creazione di interfacce utente. Utilizza un'architettura a componenti e permette di aggiornare il contenuto della pagina web in modo efficiente. 
 
 \term{Report}
 
@@ -494,28 +500,36 @@ Le sue principali responsabilità sono:
 Una condizione che un sistema o componente deve rispettare, soddisfacendo una specifica definita nella \refterm{Documentazione}.
 
 \term{REST}
+\textit{REpresentational State Transfer}. Stile architetturale che si basa sui seguenti principi:
+\begin{itemize}
+	\item \textit{interfaccia uniforme}: utilizza metodi HTTP standard (GET, POST, PUT, DELETE) e URI per le risorse
+	\item \textit{client-server}: impone la separazione dei compiti
+	\item \textit{stateless}: una richiesta deve contenere tutte le informazioni necessarie, e il server non deve contenere lo stato della sessione
+	\item \textit{cacheability}: le risposte devono indicare se possono essere messe in \textit{cache}, diminuendo il carico lato server
+	\item \textit{sistema a strati}: il client non deve conoscere la struttura interna del server, ma solamente la specifica
+\end{itemize}
 
-\term{Role Prompt}
+%\term{Role Prompt}
 
 \GlossarioLettera{S}
-\term{SaaS}
+%\term{SaaS}
 
-\term{Sarif}
+%\term{Sarif}
 
-\term{Schema}
+%\term{Schema}
 
 \term{semgrep}
 
-\term{Serverless}
+%\term{Serverless}
 
 \term{Sistema ad agenti}
 Un sistema ad agenti è un insieme di entità autonome, chiamate agenti, che interagiscono tra loro per raggiungere obiettivi specifici all'interno di un ambiente condiviso. Ogni agente possiede capacità di percezione, decisione e azione, permettendo loro di adattarsi e collaborare in modo dinamico.
 
-\term{Snyk}
+%\term{Snyk}
 
-\term{Software as a Service}
+%\term{Software as a Service}
 
-\term{SonarQube}
+%\term{SonarQube}
 
 \term{Sprint}
 Uno sprint è una piccola porzione di tempo (due settimane nel nostro caso) durante il quale un team porta a termine una determinata quantità di lavoro. Gli sprint prevedono
@@ -528,9 +542,9 @@ Uno sprint è una piccola porzione di tempo (due settimane nel nostro caso) dura
 \term{SQL}
 \textit{Structured Query Language}. Linguaggio utilizzato per interrogare un R\refterm{DBMS} (\textit{Relational DataBase Management System}).
 
-\term{Swagger}
+%\term{Swagger}
 
-\term{System Prompt}
+%\term{System Prompt}
 
 \GlossarioLettera{T}
 \term{Tag}
@@ -559,9 +573,9 @@ I tool si dividono in:
 	\item \textbf{Function calling}: usata quando l'\refterm{API} è “segreta”; guida gli input, ma la chiamata vera la fa un sistema esterno.
 	\item \textbf{Data store / \refterm{Database vettoriale}}: permette all'agente di cercare informazioni in database, documenti o siti.
 \end{itemize}
-\term{Trivy}
 
 \term{TypeScript}
+Linguaggio di programmazione ad alto livello fortemente tipato. Viene compilato a \refterm{JavaScript} tramite compilatori come \textit{TypeScript compiler} e \textit{Babel}.
 
 \GlossarioLettera{U}
 
@@ -585,9 +599,9 @@ Il tipo di workflow dipende dal VCS utilizzato e dalle esigenze del team di svil
 \GlossarioLettera{X}
 
 \GlossarioLettera{Y}
-\term{YAML}
+%\term{YAML}
 
 \GlossarioLettera{Z}
-\term{Zero-shot prompting}
+%\term{Zero-shot prompting}
 
 \end{document}

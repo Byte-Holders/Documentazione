@@ -171,6 +171,15 @@ Un branch (ramo) è una linea di sviluppo indipendente (una copia separata del c
 
 %\term{CodeQL}
 
+\term{Code coverage}
+Metrica che misura la percentuale di codice sorgente eseguito durante l'esecuzione di una suite di test. In particolare, include:
+\begin{itemize}
+	\item Statement coverage
+	\item Branch coverage
+	\item Function coverage
+	\item Path coverage
+\end{itemize}
+
 %\term{Cognito}
 
 \term{Container}
@@ -399,15 +408,19 @@ Linguaggio ad alto livello, generalmente compilato \textit{just-in-time}, dinami
 
 \GlossarioLettera{L}
 \term{Langchain}
+\refterm{Framework} open source per lo sviluppo di applicazioni basate su \refname{LLM}. Consente l'utilizzo di workflow semplici.
 
 \term{Langgraph}
+\refterm{Framework} open source per lo sviluppo di applicazione basate su \refname{LLM}. Di basso livello, è concentrato principalmente sull'orchestrazione di agenti. Il workflow è compilato a partire da un grafo, personalizzabile.
 
 \term{Large Language Model}
+Tipologia di modello di \textit{machine learning} addestrato per \textit{Natural Language Processing}, in particolare la generazione di testo. Alla base dei chatbot.
 
 \term{LaTeX}
 LaTeX Linguaggio di marcatura (mark-down) compilato per la realizzazione di documenti.
 
 \term{LLM}
+Vedi \refterm{Large Language Model}.
 
 \GlossarioLettera{M}
 \term{Milestone}
@@ -420,6 +433,7 @@ Permette di:
 \end{itemize}
 
 \term{MongoDB}
+Un \refterm{Database non relazionale} orientato ai documenti BSON (estensione del JSON, salva dati in binario). Permette anche la creazione di \refterm{Database vettoriale}.
 
 %\term{MongoDB Atlas}
 
@@ -483,8 +497,19 @@ Le sue principali responsabilità sono:
 \term{Piano di Qualifica}
 
 \term{PoC}
+Vedi \refterm{Proof of Concept}.
 
 \term{Proof of Concept}
+Semplice applicazione volta a dimostrare la fattibilità dell'obbiettivo prefissato. Utile a fissare una \textit{baseline} tecnologica, quindi RTB. Le tecnologie utilizzate all'interno del Proof of Concept sono:
+\begin{itemize}
+	\item \refterm{NestJS}
+	\item \refterm{React}
+	\item \refterm{MongoDB}
+	\item \refterm{Langgraph}
+	\item \refterm{semgrep}
+	\item \refterm{Syft}
+	\item GitHub \refterm{REST} \refterm{API}
+\end{itemize}
 
 \GlossarioLettera{Q}
 
@@ -516,9 +541,13 @@ Una condizione che un sistema o componente deve rispettare, soddisfacendo una sp
 
 %\term{Sarif}
 
+\term{SBOM}
+Inventario formale e strutturato dei componenti software che vengono utilizzati da un sistema.
+
 %\term{Schema}
 
 \term{semgrep}
+Strumento di analisi statica del codice. Utilizza regole definite all'interno di file YAML per rilevare vulnerabilità di sicurezza e bug. Offre una \textit{community edition} gratuita.
 
 %\term{Serverless}
 
@@ -529,7 +558,8 @@ Un sistema ad agenti è un insieme di entità autonome, chiamate agenti, che int
 
 %\term{Software as a Service}
 
-%\term{SonarQube}
+\term{Syft}
+\refterm{Tool} open source per la creazione di \refterm{SBOM} a partire da \refterm{Immagine (Docker)}, filesystem e binari.
 
 \term{Sprint}
 Uno sprint è una piccola porzione di tempo (due settimane nel nostro caso) durante il quale un team porta a termine una determinata quantità di lavoro. Gli sprint prevedono
@@ -562,8 +592,6 @@ Le sue principali responsabilità sono:
   \item \textbf{Monitoraggio Aggregato}: Analizza dati provenienti da più repository e progetti (test results, test coverage, stato di sicurezza, indicatori di qualità) per identificare trend, criticità e colli di bottiglia.
 \end{itemize}
 
-\term{Test coverage}
-
 \term{Tool}
 Un tool è uno strumento esterno che estende le capacità di un \refterm{Agente}, permettendo ad esempio l'esecuzione di codice e recuperare informazioni aggiornate\footnote{\url{https://docs.langchain.com/oss/python/langchain/tools}}.
 
@@ -595,7 +623,7 @@ Istanza di una \refterm{Debolezza} che può essere sfruttata, impattando negativ
 Il workflow è il processo o modello che stabilisce come vengono gestite le modifiche nello sviluppo del codice all'interno di un'organizzazione o di un progetto.\\
 Ogni workflow definisce come si creano i branch, come si integrano le modifiche e come si collabora.\\
 Il tipo di workflow dipende dal VCS utilizzato e dalle esigenze del team di sviluppo.
-\term{Way of Working}
+
 \GlossarioLettera{X}
 
 \GlossarioLettera{Y}

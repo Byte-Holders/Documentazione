@@ -21,7 +21,8 @@
 \usepackage[utf8]{inputenc} % Specifica la codifica del file (necessaria per le accentate)
 \usepackage[T1]{fontenc}    % Migliora l'output dei font per le lingue europee
 \usepackage{tcolorbox}      % Per creare box colorati dei documenti
-\usepackage{amsmath}         % Per formule matematiche avanzate
+\usepackage{amsmath}   
+\usepackage{longtable}      % Per formule matematiche avanzate
 
 % ====== IMPOSTAZIONI GLOBALI DI STILE ======
 
@@ -128,9 +129,9 @@
     \vspace{0.5cm}
     
     \begin{tabularx}{0.9\textwidth}{@{}>{\bfseries\sffamily}l X@{}}
-    Autore & \sffamily Nicolò Lattanzio\\
+    Autore & \sffamily Nicolò Lattanzio, Giulia Romanato, Lorenzo Grolla, Alessandro Frison\\
     \arrayrulecolor{MediumGray}\hline \\[-1.5ex]
-    Verificatore & \sffamily \\
+    Verificatore & \sffamily Alessandro Morabito, Damiano Berti \\
     \arrayrulecolor{MediumGray}\hline \\[-1.5ex] 
     Approvazione & \sffamily \\ 
     \arrayrulecolor{MediumGray}\hline 
@@ -146,31 +147,48 @@
 %\newpage
 
 % ====== TABELLA DI VERSIONAMENTO ======
+\newpage
 \section{Registro delle versioni}
-\begin{center}
-    \rowcolors{2}{LightGray}{white}
-    \begin{tabular}{>{\centering\arraybackslash}m{1.5cm} >{\centering\arraybackslash}m{2cm} >{\raggedright\arraybackslash}m{2.5cm} >{\raggedright\arraybackslash}m{6.5cm}}
-        \rowcolor{AccentColor}
-          \textcolor{white}{\textbf{Versione}} & 
-          \textcolor{white}{\textbf{Data}} & 
-          \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} & 
-          \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
-        0.0.13 & 15/01/2026 & Lorenzo Grolla & Sistemata sezione Metriche di Qualità del Processo \\
-        0.0.12 & 15/01/2026 & Alessandro Frison & Sistemata sezione Metriche e standard di Qualità e Metriche di Qualità del Prodotto \\
-        0.0.11 & 13/01/2026 & Giulia Romanato & Aggiunta sotto sezione 5.1.1 Metodologia, aggiornamento 5.4 Formazione e aggiornamento sezione 4.1.2 Verbali (definizione struttura interna dei verbali, sezione tabella decisioni e azioni diventa sottosezione 4.1.2.1) \\
-        0.0.10 & 12/01/2026 & Giulia Romanato & Aggiunta sotto sezione 5.7 Formazione e 5.5 Gestione delle infrastutture e degli strumenti \\
-        0.0.9 & 12/01/2026 & Nicolò Lattanzio & Aggiunta sezione Metriche di Qualità del processo e prodotto, e completamento sezione 3.2 Processi di Sviluppo.\\
-        0.0.8 & 11/01/2026 & Giulia Romanato & Aggiunta sotto sezione 3.4 rapporto con proponente e 3.5 rapporto col committente e aggiunta del norme di progetto, verbale, dichiarazione di impegni e dichiarazione degli impegni nella sezione 3.1.1 Documenti Principali\\ 
-        0.0.7 & 08/01/2026 & Nicolò Lattanzio & Aggiunta sotto sezione diari di bordo e sezione Gestione della configurazione\\
-        0.0.6 & 05/01/2026 & Giulia Romanato & Aggiunta sezione processi organizzativi \\
-        0.0.5 & 22/12/2025 & Nicolò Lattanzio & Aggiunta sezione Strumenti di supporto e sezione Produzione e archiviazione. \\
-        0.0.4 & 15/12/2025 & Nicolò Lattanzio & Aggiunta sezione Documenti Principali, insieme ai primi documenti chiave del progetto. \\
-        0.0.3 & 07/12/2025 & Nicolò Lattanzio & Aggiunta sottosezione 4.1.1 per la Struttura dei documenti, 4.1.2 per il loro versionamento e 4.1.3 per la tabella Decisioni e Azioni.\\
-        0.0.2 & 06/12/2025 & Nicolò Lattanzio & Aggiunta sezione Processi Primari, con relative sottosezioni, e prima redazione della sezione Processi di Supporto. \\
-        0.0.1 & 30/11/2025 & Nicolò Lattanzio & Creazione e prima redazione del documento.  \\
-        
-    \end{tabular}
-\end{center}
+
+\rowcolors{2}{LightGray}{white}
+\begin{longtable}{>{\centering\arraybackslash}p{1.35cm} >{\centering\arraybackslash}p{1.8cm} >{\raggedright\arraybackslash}p{2.1cm} >{\raggedright\arraybackslash}p{2.1cm} >{\raggedright\arraybackslash}p{5cm}}
+    % --- Intestazione per la PRIMA pagina ---
+    \rowcolor{AccentColor}
+      \textcolor{white}{\textbf{Versione}} & 
+      \textcolor{white}{\textbf{Data}} & 
+      \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} & 
+      \multicolumn{1}{c}{\textcolor{white}{\textbf{Verificatore}}} & 
+      \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
+    \endfirsthead
+    
+    % --- Intestazione per le Pagine SUCCESSIVE ---
+    \rowcolor{AccentColor}
+      \textcolor{white}{\textbf{Versione}} & 
+      \textcolor{white}{\textbf{Data}} & 
+      \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} & 
+      \multicolumn{1}{c}{\textcolor{white}{\textbf{Verificatore}}} & 
+      \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione (continua)}}} \\
+    \endhead
+    
+    % --- Dati della tabella (Nessuna riga vuota qui in mezzo!) ---
+    0.5.0 & 15/01/2026 & Lorenzo Grolla & Damiano Berti & Sistemata sezione Metriche di Qualità del Processo \\
+    0.4.1 & 15/01/2026 & Alessandro Frison & - & Sistemata sezione Metriche e standard di Qualità e Metriche di Qualità del Prodotto \\
+    0.4.0 & 14/01/2026 & Lorenzo Grolla & - & Verifica del documento. \\
+    0.3.3 & 13/01/2026 & Giulia Romanato & - & Aggiunta sotto sezione 5.1.1 Metodologia, aggiornamento 5.4 Formazione e aggiornamento sezione 4.1.2 Verbali (definizione struttura interna dei verbali, sezione tabella decisioni e azioni diventa sottosezione 4.1.2.1) \\
+    0.3.2 & 12/01/2026 & Giulia Romanato & - & Aggiunta sotto sezione 5.7 Formazione e 5.5 Gestione delle infrastutture e degli strumenti \\
+    0.3.1 & 12/01/2026 & Nicolò Lattanzio & - & Aggiunta sezione Metriche di Qualità del processo e prodotto, e completamento sezione 3.2 Processi di Sviluppo.\\
+    0.3.0 & 12/01/2026 & Giulia Romanato & Damiano Berti & Completamento aggiunta delle nuove sezioni e sottosezioni.  \\
+    0.2.3 & 11/01/2026 & Giulia Romanato & - & Aggiunta sotto sezione 3.4 rapporto con proponente e 3.5 rapporto col committente e aggiunta del norme di progetto, verbale, dichiarazione di impegni e dichiarazione degli impegni nella sezione 3.1.1 Documenti Principali\\ 
+    0.2.2 & 08/01/2026 & Nicolò Lattanzio & - & Aggiunta sotto sezione diari di bordo e sezione Gestione della configurazione\\
+    0.2.1 & 05/01/2026 & Giulia Romanato & - & Aggiunta sezione processi organizzativi \\
+    0.2.0 & 04/01/2026 & Nicolò Lattanzio & Alessandro Morabito & Completamento prima stesura del documento. \\
+    0.1.4 & 22/12/2025 & Nicolò Lattanzio & - & Aggiunta sezione Strumenti di supporto e sezione Produzione e archiviazione. \\
+    0.1.3 & 15/12/2025 & Nicolò Lattanzio & - & Aggiunta sezione Documenti Principali, insieme ai primi documenti chiave del progetto. \\
+    0.1.2 & 07/12/2025 & Nicolò Lattanzio & - & Aggiunta sottosezione 4.1.1 per la Struttura dei documenti, 4.1.2 per il loro versionamento e 4.1.3 per la tabella Decisioni e Azioni.\\
+    0.1.1 & 06/12/2025 & Nicolò Lattanzio & - & Aggiunta sezione Processi Primari, con relative sottosezioni, e prima redazione della sezione Processi di Supporto. \\
+    0.1.0 & 30/11/2025 & Nicolò Lattanzio & Alessandro Morabito & Creazione e prima redazione del documento.  \\
+\end{longtable}
+\newpage
 
 %\vspace{1cm}
 
@@ -199,8 +217,7 @@ Tra queste funzionalità vi sono:
     \item Analisi della qualità della documentazione
     \item Analisi OWASP per la verifica delle vulnerabilità di sicurezza tramite l'integrazione di strumenti di terze parti
     \item Integrazione con API di GitHub per fornire statistiche dettagliate sulle repository
-    \item Analisi specifica sulle pull request per valutare la qualità del codice proposto \textcolor{red}{non abbiamo deciso se farlo}
-    \item Proposte di remedation per migliorare la qualità del codice e della documentazione
+    \item Proposte di remediation per migliorare la qualità del codice e della documentazione
 \end{itemize}
 Il prodotto segue la proposta del \textbf{capitolato C2 - Code Guardian} fornito dal proponente \textbf{\textit{VarGroup S.r.l.}}
 \\
@@ -218,17 +235,17 @@ Essi costituiscono il cuore operativo del progetto, governando le attività prin
 \\
 Possiamo distinguere due macro processi:
 \begin{itemize}
-    \item \textbf{Processo di Fornitura:} Si occupa della gestione delle relazioni con il committente \textcolor{red}{e il proponente}, dalla risposta alla richiesta iniziale fino alla consegna del prodotto.
+    \item \textbf{Processo di Fornitura:} Si occupa della gestione delle relazioni con il committente e il proponente, dalla risposta alla richiesta iniziale fino alla consegna del prodotto.
     \item \textbf{Processo di Sviluppo:} Copre tutte le attività ingegneristiche necessarie per trasformare i requisiti in un prodotto software funzionante, includendo analisi, progettazione, implementazione, testing e rilascio.
 \end{itemize}
 
 \subsection{Processo di Fornitura}
-Questo processo definisce le attività che il gruppo Byte Holders, in qualità di fornitore, implementa per garantire la corretta fornitura del prodotto software a VarGroup S.r.l.,\textcolor{red}{proponente} del progetto\textcolor{red}{, ai docenti Vardanega e Cardin, committenti del progetto} 
+Questo processo definisce le attività che il gruppo Byte Holders, in qualità di fornitore, implementa per garantire la corretta fornitura del prodotto software a VarGroup S.r.l.,proponente del progetto, ai docenti Vardanega e Cardin, committenti del progetto. 
 Esso disciplina l'intero ciclo, dall'aggiudicazione del capitolato alla consegna finale.
 \\
 Vediamo ora le attività principali coinvolte in questo processo:
 \begin{enumerate}
-    \item \textbf{Risposta al Bando:} Analisi del capitolato \textcolor{red}{presentato dal proponente} e preparazione dell'offerta (documento \textit{Candidatura}).
+    \item \textbf{Risposta al Bando:} Analisi del capitolato presentato dal proponente e preparazione dell'offerta (documento \textit{Candidatura}).
     \item \textbf{Negoziazione Requisiti:} Realizzazione di una controproposta per il proponente, definendo i requisiti funzionali e non funzionali che il gruppo Byte Holders, come fornitore, prevede di riuscire a realizzare.
     \item \textbf{Pianificazione della Fornitura:} Creazione del \textit{Piano di Progetto} che dettaglia come verranno eseguiti i processi di sviluppo e gestione.
     \item \textbf{Esecuzione e Controllo:} Realizzazione del progetto conforme al piano, con reporting periodico allo stakeholder.
@@ -249,7 +266,7 @@ Per questo progetto saranno prodotti i seguenti documenti chiave:
     fonttitle=\bfseries\large,
     boxrule=0.5mm,           % Spessore bordo
     arc=2mm,                 % Angoli leggermente arrotondati
-    title={Valutazioni Capitolati} % Titolo del box
+    title={Valutazione Capitolati} % Titolo del box
 ]
     \textbf{\textcolor{AccentDark}{Autore:}} Responsabile  %Ruolo che scrive il documento
     
@@ -259,7 +276,7 @@ Per questo progetto saranno prodotti i seguenti documenti chiave:
     \vspace{0.2cm} % Spazio tra le righe
 
     \textbf{\textcolor{AccentDark}{Scopo:}} \\
-    Nella Valutazioni Capitolati il gruppo Byte Holders presenta l'obbiettivo, i pregi, i difetti e un resoconto dell'eventuale incontro con l'azienda proponente di ogni capitolato proposto.
+    Nella Valutazione Capitolati il gruppo Byte Holders presenta l'obiettivo, i pregi, i difetti e un resoconto dell'eventuale incontro con l'azienda proponente di ogni capitolato proposto.
 \end{tcolorbox}
 
 % ======== Dichiarazioni Impegni ================
@@ -281,7 +298,7 @@ Per questo progetto saranno prodotti i seguenti documenti chiave:
     \vspace{0.2cm} % Spazio tra le righe
 
     \textbf{\textcolor{AccentDark}{Scopo:}} \\
-   Nella Dichiarazione degli Impegni il gruppo Byte Holders presenta una stima dei costi del progetto, a seguito di un approfondito ragionamento riguardo le repsonsabilità dei vari ruoli e all'impegno orario di ogni componente del gruppo. 
+   Nella Dichiarazione degli Impegni il gruppo Byte Holders presenta una stima dei costi del progetto, a seguito di un approfondito ragionamento riguardo le responsabilità dei vari ruoli e all'impegno orario di ogni componente del gruppo. 
    Inoltre viene proposta una data di cosegna finale del progetto. 
 \end{tcolorbox}
 
@@ -454,6 +471,7 @@ Per il processo di fornitura il gruppo \textbf{\textit{BYTE HOLDERS}} ha deciso 
 \end{itemize}
 
 La seconda sezione degli strumenti a supporto riguarda la comunicazione verso l'azienda proponente:
+
 \begin{itemize}
   \item \textbf{Teams}: Per riunioni vocali e video con il proponente VarGroup S.r.l., grazie alla sua integrazione con Outlook si ha anche la possibilità di pianificare riunioni direttamente dal calendario.
   \item \textbf{Slack}: Per la comunicazione rapida con l'azienda proponente, utilizzato principalmente per concordare riunioni.
@@ -564,10 +582,11 @@ Le seguenti convenzioni di codifica sono adottate per garantire uniformità e qu
 \end{itemize}
 Relativamente al posizionamento dei file all'interno della repository GitHub, il gruppo \textbf{\textit{BYTE HOLDERS}} ha deciso di adottare la seguente struttura:
 \begin{itemize}
-    \item \textbf{Cartelle}: Ogni macro funzionalità del progetto avrà una propria cartella dedicata, contenente tutti i file correlati a quella funzionalità. (Es. Cartelle per Frontend e backend separate)
-    \item DA FINIRE
+    \item \textbf{Cartelle}: Ogni macro funzionalità del progetto avrà una propria cartella dedicata, contenente tutti i file correlati a quella funzionalità (es. cartelle separate per \textit{frontend} e \textit{backend}). All'interno di queste, il codice sarà ulteriormente suddiviso in base al pattern architetturale scelto (es. \texttt{components}, \texttt{services}, \texttt{controllers}).
+    \item \textbf{Nomenclatura dei file}: I nomi dei file devono essere esplicativi e riflettere chiaramente il loro contenuto o la loro responsabilità. Si adotterà una convenzione coerente con il framework utilizzato: \textit{PascalCase} per i componenti React (es. \texttt{UserProfile.tsx}) e \textit{kebab-case} per i file di backend o utility (es. \texttt{user-controller.ts}).
+    \item \textbf{File di configurazione}: Tutti i file di configurazione globale dell'ambiente o dei tool di sviluppo (es. \texttt{.gitignore}, \texttt{docker-compose.yml}, file per pipeline CI/CD) devono risiedere nella directory principale (root) della repository o nella root del rispettivo modulo.
+    \item \textbf{Codice di test}: I test automatizzati devono essere facilmente distinguibili dal codice di produzione. Saranno posizionati in cartelle dedicate (es. \texttt{\_\_tests\_\_}) oppure affiancati al file sorgente che testano, utilizzando suffissi standard e riconoscibili (es. \texttt{nome-file.spec.ts} o \texttt{nome-file.test.ts}).
 \end{itemize}
-
 \subsubsection{Strumenti di supporto}
 Per il processo di sviluppo il gruppo \textbf{\textit{BYTE HOLDERS}} ha deciso di utilizzare i seguenti strumenti:
 \begin{itemize}
@@ -825,7 +844,7 @@ L'unico ruolo unico all'interno di uno Sprint è quello di Responsabile, che vie
 Gli altri ruoli possono essere assegnati a più membri contemporaneamente, in base alle necessità del progetto.
 I ruoli sono ruotati in modo che per fine del progetto ogni membro abbia ricoperto tutti i ruoli almeno una volta.
 \paragraph{Responsabile}
-    Il responsabile analizzando lo stato di avanzamento del progetto ha il compito di pianificare ed individuare le attività da svolgere 
+Il responsabile analizzando lo stato di avanzamento del progetto ha il compito di pianificare ed individuare le attività da svolgere 
     per raggiungere gli obiettivi di progetto e organizzare le risorse in modo da rispettare tempi e costi preventivati. \\
     Ha il compito di verificare che tutti i componenti del gruppo portino a termine le attività a loro assegnate nei tempi previsti. \\
     Deve analizzare i possibili rischi e gestire problemi ed imprevisti in modo da raggiungere gli obiettivi del progetto.\\
@@ -841,13 +860,13 @@ I ruoli sono ruotati in modo che per fine del progetto ogni membro abbia ricoper
         \item \textbf{Redazione piano di progetto:} dovrà redigere e aggiornare il piano di progetto con gli obbiettivi, le ore preventivate, i rischi attesi, le ore effettive,
           i rischi incontrati e le osservazioni uscite durante la retrospettiva dello sprint, inoltre si occupa della gestione dei rischi 
         \item \textbf{Approvazione documenti:} ha il compito di approvare i documenti prodotti dal gruppo prima della loro pubblicazione 
-        OPPURE approvare i verbali e verificare il glossario e le norme di progetto 
+        o di approvare i verbali e verificare il glossario e le norme di progetto 
     \end{itemize}
 
 \paragraph{Amministratore}
-    L'Amministratore si occupa di gestire e migliorare l'ambiente di lavoro, overro si occupa tenere aggiornati e migliorare l'infrastruttura tecnologica e organizzativa 
-    (gli strumenti di sviluppo, verifica e validazione, i sistemi di archiviazione e versionamento della documentazione e del codice). \\
-    Le attività che l'amministratore svolge sono:
+L'Amministratore si occupa di gestire e migliorare l'ambiente di lavoro, overro si occupa tenere aggiornati e migliorare l'infrastruttura tecnologica e organizzativa 
+(gli strumenti di sviluppo, verifica e validazione, i sistemi di archiviazione e versionamento della documentazione e del codice). \\
+Le attività che l'amministratore svolge sono:
     \begin{itemize}
         \item \textbf{Redazione norme di progetto:} si occupa di redigere e aggiornare le norme di progetto, in modo da garantire che tutti i membri del gruppo seguano le stesse regole e procedure.
         \item \textbf{Redazione piano di qualifica:} si occupa di redigere e aggiornare il piano di qualifica, in modo da garantire che tutti i membri del gruppo seguano le stesse regole e procedure per la verifica e validazione del prodotto
@@ -877,7 +896,7 @@ Lo sviluppatore si occupa di sviluppare il software/implementa le funzionalità 
     Le attività che lo sviluppatore svolge sono:
     \begin{itemize}
         \item \textbf{Scrittura del Codice:} scrivere codice che segui le specifiche ottenute durante la progettazione seguendo le linee guida (best practices) di codifica stabilite
-        \item \textbf{Test delle Unità:} sviluppare e eseguire test unitari per garantire che ogni componente funzioni correttamente in isolamento (NON SONO SICURA se sia il programmatore o il verificatore)
+        \item \textbf{Test delle Unità:} sviluppare e eseguire test unitari per garantire che ogni componente funzioni correttamente in isolamento.
         \item \textbf{Documentazione del Codice:} mantenere una documentazione aggiornata del codice, per facilitarne la comprensione e la manutenzione
     \end{itemize}
 \paragraph{Verificatore}

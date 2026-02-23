@@ -137,7 +137,7 @@ I principali componenti di un agente sono:
 Vedi \refterm{Variabili d'Ambiente}
 
 \term{Analisi dei Requisiti}
-Documento contenente i requisiti (vedi \refterm{Requisito}) individuati dal gruppo Byte Holders, redatto facendo riferimento allo standard IEEE 830-1998.
+Documento che formalizza i requisiti funzionali e non funzionali di CodeGuardian.
 
 \term{Analisi dei Requisiti (Processo)}
 Processo di studio dei bisogni degli utenti per definire un \refterm{Requisito}.
@@ -206,7 +206,7 @@ A ciascun record è inoltre associato un punteggio \refterm{CVSS}.\\
 Dopo che un record viene aggiunto alle CVE, diventa rapidamente disponibile anche nel \refterm{NVD}, che provvederà ad arricchirlo.
 
 \term{CVSS}
-\textit{Common Vulnerability Scoring System}. Una metrica che associa un valore numerico compreso tra 0 (bassa gravità) e 10 (alta gravità) a una determinata vulnerabilità. A un valore numerico è associata anche una stringa (\textit{CVSS vector string}) che specifica i valori utilizzati per ottenerlo. Attualmente in versione \texttt{4.0}\footnote{\url{https://www.first.org/cvss/v4.0/specification-document}}. Non è ancora stato determinato che versione utilizzerà CodeGuardian.
+\textit{Common Vulnerability Scoring System}. Una metrica che associa un valore numerico compreso tra 0 (bassa gravità) e 10 (alta gravità) a una determinata vulnerabilità. A un valore numerico è associata anche una stringa (\textit{CVSS vector string}) che specifica i valori utilizzati per ottenerlo. Attualmente in versione \texttt{4.0}\footnote{\url{https://www.first.org/cvss/v4.0/specification-document}}.
 
 \term{CWE}
 \textit{Common Weaknesses Enumeration}. Una lista di debolezze software e hardware. A ciascuna \refterm{Debolezza} in CWE è associato:
@@ -408,10 +408,10 @@ Linguaggio ad alto livello, generalmente compilato \textit{just-in-time}, dinami
 
 \GlossarioLettera{L}
 \term{Langchain}
-\refterm{Framework} open source per lo sviluppo di applicazioni basate su \refname{LLM}. Consente l'utilizzo di workflow semplici.
+\refterm{Framework} open source per lo sviluppo di applicazioni basate su \refterm{LLM}. Consente l'utilizzo di workflow semplici.
 
 \term{Langgraph}
-\refterm{Framework} open source per lo sviluppo di applicazione basate su \refname{LLM}. Di basso livello, è concentrato principalmente sull'orchestrazione di agenti. Il workflow è compilato a partire da un grafo, personalizzabile.
+\refterm{Framework} open source per lo sviluppo di applicazione basate su \refterm{LLM}. Di basso livello, è concentrato principalmente sull'orchestrazione di agenti. Il workflow è compilato a partire da un grafo, personalizzabile.
 
 \term{Large Language Model}
 Tipologia di modello di \textit{machine learning} addestrato per \textit{Natural Language Processing}, in particolare la generazione di testo. Alla base dei chatbot.
@@ -448,6 +448,7 @@ Sistema runtime orientato agli eventi per l'esecuzione di codice \refterm{JavaSc
 Altro nome per \refterm{Database non relazionale}.
 
 \term{Norme di Progetto}
+Documento che fornisce le linee guida per la documentazione, comunicazione, gestione delle versioni e le responsabilità all'interno del gruppo Byte Holders.
 
 \term{npm}
 \textit{node package manager}. Gestore di pacchetti per \refterm{NodeJS}, permette di installare e gestire le dipendenze da riga di comando. Informazioni riguardo il \textit{range} di versioni accettabile sono specificate all'interno del file \texttt{package.json}. In fase di installazione delle dipendenze, queste ottengono una versione "fissa" (quella installata), e vengono aggiunte all'interno del file \texttt{package-lock.json}. Questo rende le installazioni ripetibili pur se su sistemi diversi.
@@ -493,8 +494,10 @@ Le sue principali responsabilità sono:
 \end{itemize}
 
 \term{Piano di Progetto}
+Documento che definisce la pianificazione temporale, l'allocazione delle risorse e le tempistiche per la realizzazione di CodeGuardian. Fornisce una guida strutturata per il controllo dell'avanzamento di progetto e la mitigazione dei rischi all'interno del ciclo di vita.
 
 \term{Piano di Qualifica}
+Documento di riferimento per il controllo continuo della qualità del prodotto e dei processi di ciclo di vita. Definisce strategie, standard e metriche per garantire la piena soddisfazione dei requisiti, nonché la correttezza e la buona qualità del prodotto.
 
 \term{PoC}
 Vedi \refterm{Proof of Concept}.
@@ -530,7 +533,7 @@ Prodotto finale di un \refterm{Sistema ad agenti}. Comprende sezioni per:
 \end{itemize}
 
 \term{Requisito}
-Una condizione che un sistema o componente deve rispettare, soddisfacendo una specifica definita nella \refterm{Documentazione}.
+Una condizione che un sistema o componente deve rispettare, soddisfacendo una specifica definita nell'\refterm{Analisi dei Requisiti}.
 
 \term{REST}
 \textit{REpresentational State Transfer}. Stile architetturale che si basa sui seguenti principi:

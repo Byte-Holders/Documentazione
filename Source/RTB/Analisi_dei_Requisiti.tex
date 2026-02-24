@@ -2520,7 +2520,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 			\item La data dell'ultima scansione (\hyperref[UC25.1.2]{UC25.1.2})
 			\item L'indicatore di presenza criticità (\hyperref[UC25.1.3]{UC25.1.3})
 			\item Il voto della documentazione (\hyperref[UC25.1.4]{UC25.1.4})
-			\item La percentuale di test coverage (\hyperref[UC25.1.5]{UC25.1.5})
+			\item La percentuale di code coverage (\hyperref[UC25.1.5]{UC25.1.5})
 		\end{itemize}
 	\end{enumerate}
 	\item \textbf{Scenario alternativo:}
@@ -2647,7 +2647,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\item \textbf{Scenario principale:}
 	\begin{enumerate}
 		\item Il sistema recupera l'esito dell'ultima analisi della repository
-		\item Il sistema calcola o recupera il voto di qualità della documentazione sulla base di criteri quali: presenza del file README, presenza di documentazione tecnica, presenza e qualità dei commenti nel codice, conformità agli standard di documentazione definiti, 		Il sistema mostra un voto numerico/ indicatore qualitativo che rappresenta la completezza e la qualità della documentazione presente nella repository, calcolato in base alla presenza di file README, documentazione tecnica, commenti nel codice e conformità agli standard di documentazione definiti
+		\item Il sistema calcola o recupera il voto di qualità della documentazione sulla base di criteri quali: presenza del file README, presenza di documentazione tecnica, presenza e qualità dei commenti nel codice, conformità agli standard di documentazione definiti 
 		\item Il sistema visualizza un voto numerico che rappresenta la qualità complessiva della documentazione
 	\end{enumerate}
 	\item \textbf{Scenario alternativo:}
@@ -2671,7 +2671,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{itemize}
 \end{itemize}
 
-\paragraph{UC25.1.5 - Visualizza percentuale test coverage} \label{UC25.1.5}
+\paragraph{UC25.1.5 - Visualizza percentuale code coverage} \label{UC25.1.5}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -2685,12 +2685,12 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\end{itemize}
 	\item \textbf{Postcondizioni:} 
 	\begin{itemize}
-		\item Viene visualizzato il test coverage della repository
+		\item Viene visualizzato il code coverage della repository
 	\end{itemize}
 	\item \textbf{Scenario principale:}
 	\begin{enumerate}
-		\item Il sistema recupera il test coverage calcolato durante l'ultima analisi della repository (il test coverage viene calcolato come rapporto tra linee di codice eseguite durante i test automatici e totale delle linee di codice eseguibili presenti nella repository)
-		\item Il sistema mostra il valore percentuale del test coverage
+		\item Il sistema recupera il code coverage calcolato durante l'ultima analisi della repository 
+		\item Il sistema mostra il valore percentuale del code coverage
 	\end{enumerate}
 		\item \textbf{Scenario alternativo:}
 	\begin{itemize}
@@ -2699,23 +2699,23 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 				\item \textbf{Condizione:}La repository non contiene file di test o configurazioni per l'esecuzione dei test
 				\item \textbf{Flusso:} 
 				\begin{enumerate}
-					\item Il sistema mostra il messaggio: “Test coverage: 0\% - Nessun test configurato”
+					\item Il sistema mostra il messaggio: “code coverage: 0\% - Nessun test configurato”
 				\end{enumerate}
 			\end{itemize}
-		\item \textbf{Analisi test coverage non disponibile:} 
+		\item \textbf{Analisi code coverage non disponibile:} 
 			\begin{itemize}
-				\item \textbf{Condizione:}l'analisi del test coverage non è stata eseguita o non è andata a buon fine
+				\item \textbf{Condizione:}l'analisi del code coverage non è stata eseguita o non è andata a buon fine
 				\item \textbf{Flusso:} 
 				\begin{enumerate}
-					\item Il sistema mostra il messaggio: “Test coverage non disponibile”
+					\item Il sistema mostra il messaggio: “code coverage non disponibile”
 				\end{enumerate}
 			\end{itemize}
 		\item \textbf{Linguaggio non supportato:} 
 			\begin{itemize}
-				\item \textbf{Condizione:} il linguaggio di programmazione utilizzato nella repository non è supportato per l'analisi del test coverage
+				\item \textbf{Condizione:} il linguaggio di programmazione utilizzato nella repository non è supportato per l'analisi del code coverage
 				\item \textbf{Flusso:} 
 				\begin{enumerate}
-					\item Il sistema mostra il messaggio: “Analisi test coverage non supportata per questo linguaggio”
+					\item Il sistema mostra il messaggio: “Analisi code coverage non supportata per questo linguaggio”
 				\end{enumerate}
 			\end{itemize}
 	\end{itemize}
@@ -3146,7 +3146,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 			\item nome del repository
 			\item username dell'utente che ha aggiunto la repository
 			\item username github di una persona che lavora su una repository 
-			\item intervallo di test coverage
+			\item intervallo di code coverage
 			\item intervallo di voto della documentazione
 		\end{itemize}
 		\item L'utente conferma la selezione dei filtri
@@ -3214,7 +3214,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 			\item Nome repository (A-Z, Z-A)
 			\item Data di aggiunta al workspace (più recente, più vecchia)
 			\item tempo dall'ultima scansione (più recente, più vecchia)
-			\item Test coverage (crescente, decrescente)
+			\item code coverage (crescente, decrescente)
 			\item Voto della documentazione (crescente, decrescente)
 		\end{itemize}
 		\item L'utente seleziona un criterio di ordinamento dalla lista
@@ -3348,7 +3348,7 @@ Il caso d'Uso UC33 include ulteriori casi d'uso come rappresentato nella seguent
     \item \textbf{Scenario principale:}
     \begin{enumerate}
         \item Il sistema recupera i dati dei test dall'ultima scansione della repository
-        \item Il sistema mostra la percentuale di test coverage (\hyperref[UC33.1.1]{UC33.1.1})
+        \item Il sistema mostra la percentuale di code coverage (\hyperref[UC33.1.1]{UC33.1.1})
         \item Il sistema mostra l'elenco dei test con qualità insufficiente (\hyperref[UC33.1.2]{UC33.1.2})
         \item Il sistema mostra la percentuale di test passati (\hyperref[UC33.1.3]{UC33.1.3})
         \item Il sistema mostra l'elenco dei test non passati (\hyperref[UC33.1.4]{UC33.1.4})
@@ -3377,7 +3377,7 @@ Il caso d'uso UC33.1 include ulteriori casi d'uso come rappresentato nella segue
 	\label{fig:UC33-1}
 \end{figure}
 
-\subparagraph{UC33.1.1 - Visualizza test coverage}\label{UC33.1.1}
+\subparagraph{UC33.1.1 - Visualizza code coverage}\label{UC33.1.1}
 \begin{itemize}
     \item \textbf{Attori principali:} Utente
     \item \textbf{Precondizioni:}
@@ -3385,7 +3385,7 @@ Il caso d'uso UC33.1 include ulteriori casi d'uso come rappresentato nella segue
         \item Il sistema è attivo e funzionante
         \item L'utente è stato riconosciuto dal sistema come Utente
         \item L'utente sta visualizzando la sezione di analisi dei test (\hyperref[UC33.1]{UC33.1})
-        \item L'analisi del test coverage è stata eseguita con successo
+        \item L'analisi del code coverage è stata eseguita con successo
     \end{itemize}
     \item \textbf{Postcondizioni:}
     \begin{itemize}
@@ -3393,7 +3393,7 @@ Il caso d'uso UC33.1 include ulteriori casi d'uso come rappresentato nella segue
     \end{itemize}
     \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il sistema recupera il valore di test coverage calcolato durante l'ultima scansione
+        \item Il sistema recupera il valore di code coverage calcolato durante l'ultima scansione
         \item Il sistema visualizza la percentuale di copertura del codice (rapporto tra linee di codice eseguite durante i test e totale delle linee eseguibili)
         \item Il sistema mostra un indicatore visivo che rappresenta il livello di copertura raggiunto
     \end{enumerate}
@@ -4642,15 +4642,15 @@ Il caso d'uso UC36 include ulteriori casi d'uso come rappresentato nella seguent
     \begin{enumerate}
         \item Il sistema recupera i dati dei test dalle repository del workspace
         \item Il sistema calcola le metriche aggregate sui test
-        \item Il sistema visualizza il test coverage medio (\hyperref[UC36.2.1]{UC36.2.1})
-        \item Il sistema visualizza il numero di repository con test coverage superiore a soglia (\hyperref[UC36.2.2]{UC36.2.2})
-        \item Il sistema visualizza il test coverage minimo (\hyperref[UC36.2.3]{UC36.2.3})
+        \item Il sistema visualizza il code coverage medio (\hyperref[UC36.2.1]{UC36.2.1})
+        \item Il sistema visualizza il numero di repository con code coverage superiore a soglia (\hyperref[UC36.2.2]{UC36.2.2})
+        \item Il sistema visualizza il code coverage minimo (\hyperref[UC36.2.3]{UC36.2.3})
     \end{enumerate}
     \item \textbf{Inclusioni:} \hyperref[UC36.2.1]{UC36.2.1}, \hyperref[UC36.2.2]{UC36.2.2}, \hyperref[UC36.2.3]{UC36.2.3}
 \end{itemize}
 
-% --- UC36.2.1 - TEST COVERAGE MEDIA ---
-\subparagraph{UC36.2.1 - Visualizza test coverage media}\label{UC36.2.1}
+% --- UC36.2.1 - code coverage MEDIA ---
+\subparagraph{UC36.2.1 - Visualizza code coverage media}\label{UC36.2.1}
 \begin{itemize}
     \item \textbf{Attori principali:} Utente
     \item \textbf{Precondizioni:}
@@ -4660,17 +4660,17 @@ Il caso d'uso UC36 include ulteriori casi d'uso come rappresentato nella seguent
     \end{itemize}
     \item \textbf{Postcondizioni:}
     \begin{itemize}
-        \item Viene visualizzato il valore medio del test coverage tra le repository del workspace
+        \item Viene visualizzato il valore medio del code coverage tra le repository del workspace
     \end{itemize}
     \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il sistema calcola la media del test coverage tra tutte le repository del workspace
-        \item Il sistema visualizza il valore percentuale del test coverage medio
+        \item Il sistema calcola la media del code coverage tra tutte le repository del workspace
+        \item Il sistema visualizza il valore percentuale del code coverage medio
     \end{enumerate}
 \end{itemize}
 
-% --- UC36.2.2 - TEST COVERAGE SUPERIORE A SOGLIA ---
-\subparagraph{UC36.2.2 - Visualizza test coverage superiore a soglia}\label{UC36.2.2}
+% --- UC36.2.2 - code coverage SUPERIORE A SOGLIA ---
+\subparagraph{UC36.2.2 - Visualizza code coverage superiore a soglia}\label{UC36.2.2}
 \begin{itemize}
     \item \textbf{Attori principali:} Utente
     \item \textbf{Precondizioni:}
@@ -4680,17 +4680,17 @@ Il caso d'uso UC36 include ulteriori casi d'uso come rappresentato nella seguent
     \end{itemize}
     \item \textbf{Postcondizioni:}
     \begin{itemize}
-        \item Viene visualizzato il numero di repository che hanno un test coverage superiore alla soglia definita
+        \item Viene visualizzato il numero di repository che hanno un code coverage superiore alla soglia definita
     \end{itemize}
     \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il sistema conta il numero di repository con test coverage superiore al parametro configurato (default: 70\%)
+        \item Il sistema conta il numero di repository con code coverage superiore al parametro configurato (default: 70\%)
         \item Il sistema visualizza il conteggio delle repository che superano la soglia
     \end{enumerate}
 \end{itemize}
 
-% --- UC36.2.3 - TEST COVERAGE MINIMO ---
-\subparagraph{UC36.2.3 - Visualizza test coverage minimo}\label{UC36.2.3}
+% --- UC36.2.3 - code coverage MINIMO ---
+\subparagraph{UC36.2.3 - Visualizza code coverage minimo}\label{UC36.2.3}
 \begin{itemize}
     \item \textbf{Attori principali:} Utente
     \item \textbf{Precondizioni:}
@@ -4700,12 +4700,12 @@ Il caso d'uso UC36 include ulteriori casi d'uso come rappresentato nella seguent
     \end{itemize}
     \item \textbf{Postcondizioni:}
     \begin{itemize}
-        \item Viene visualizzato il valore minimo del test coverage tra le repository del workspace
+        \item Viene visualizzato il valore minimo del code coverage tra le repository del workspace
     \end{itemize}
     \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il sistema individua il valore minimo di test coverage tra tutte le repository del workspace
-        \item Il sistema visualizza il valore percentuale del test coverage minimo
+        \item Il sistema individua il valore minimo di code coverage tra tutte le repository del workspace
+        \item Il sistema visualizza il valore percentuale del code coverage minimo
     \end{enumerate}
 \end{itemize}
 
@@ -5116,7 +5116,7 @@ tecnologie
     R-29-F-Ob & L'utente deve poter aggiornare le informazioni sulle repository in base all'ultima scansione & \hyperref[UC37]{UC37} \\
     R-30-F-Ob & L'utente deve poter visualizzare il dettaglio di una repository & \hyperref[UC33]{UC33} \\
     R-31-F-Ob & Il sistema deve permettere la selezione del branch per la visualizzazione & \hyperref[UC35]{UC35} \\
-    R-32-F-De & Il sistema deve mostrare la percentuale di test coverage & \hyperref[UC33.1.1]{UC33.1.1} \\
+    R-32-F-De & Il sistema deve mostrare la percentuale di code coverage & \hyperref[UC33.1.1]{UC33.1.1} \\
     R-33-F-Ob & Il sistema deve mostrare l'elenco dei test con qualità insufficiente & \hyperref[UC33.1.2]{UC33.1.2}, Capitolato \\
     R-34-F-De & Il sistema deve mostrare la percentuale di test passati & \hyperref[UC33.1.3]{UC33.1.3} \\
     R-35-F-De & Il sistema deve mostrare l'elenco dei test non passati & \hyperref[UC33.1.4]{UC33.1.4} \\

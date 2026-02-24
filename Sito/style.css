@@ -152,7 +152,7 @@ nav ul li a:hover::after {
     padding-left: 2.2em;
 }
 
-#CANDIDATURA, #PB, #RTB, #CHI-SIAMO {
+#CANDIDATURA, #PB, #RTB, #CHI-SIAMO, #POC {
     margin-bottom: 5em;
     scroll-margin-top: calc(var(--header-height) + 1em);
 }
@@ -200,7 +200,7 @@ nav ul li a:hover::after {
     transform: translateY(-50%) scale(1.1);
 }
 
-#CHI-SIAMO h1 {
+#CHI-SIAMO h1, #POC h1 {
     margin-bottom: 0.5em;
     color: var(--primary-color);
     font-size: 2.5em;
@@ -209,7 +209,7 @@ nav ul li a:hover::after {
     display: inline-block;
 }
 
-#CHI-SIAMO h1::after {
+#CHI-SIAMO h1::after, #POC h1::after {
     content: '';
     position: absolute;
     left: 0;
@@ -219,7 +219,7 @@ nav ul li a:hover::after {
     background: linear-gradient(90deg, var(--primary-color), transparent);
 }
 
-#CHI-SIAMO h2 {
+#CHI-SIAMO h2, #POC h2 {
     margin: 1.5em 0 0.8em 0;
     color: var(--primary-color);
     font-size: 2em;

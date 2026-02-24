@@ -1,0 +1,1350 @@
+\documentclass[a4paper, 11pt]{article}
+
+% ====== PACCHETTI NECESSARI ======
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\setlength{\headheight}{14pt}
+\usepackage{titlesec}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{lipsum}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc} % Specifica la codifica del file (necessaria per le accentate)
+\usepackage[T1]{fontenc}    % Migliora l'output dei font per le lingue europee
+\usepackage{graphicx} % Necessario per \rotatebox
+\usepackage{multirow}
+\usepackage{float}
+
+% Comando rapido per ruotare il testo di 45 gradi
+\newcommand{\rot}[1]{%
+  \multicolumn{1}{c}{%
+    \makebox[0pt][l]{%
+      \rotatebox[origin=bl]{45}{#1}%
+    }%
+  }%
+}
+
+
+% ====== IMPOSTAZIONI GLOBALI DI STILE ======
+
+% 1. DEFINIZIONE COLORI BLU-VIOLA
+\definecolor{AccentColor}{RGB}{80, 90, 180} % Blu-viola principale
+\definecolor{AccentLight}{RGB}{80, 90, 180} % Versione più chiara
+\definecolor{AccentDark}{RGB}{50, 60, 140} % Versione più scura
+\definecolor{LightGray}{RGB}{245, 245, 250}
+\definecolor{MediumGray}{RGB}{200, 200, 210}
+
+% 2. IMPOSTAZIONE MARGINI
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=3.5cm, bottom=3.5cm}
+
+% 3. STILE DEI TITOLI DI SEZIONE
+\titleformat{\section}
+  {\normalfont\sffamily\Large\bfseries\color{AccentColor}}
+  {\thesection}
+  {1em}
+  {}
+\titleformat{\subsection}
+  {\normalfont\sffamily\large\bfseries\color{AccentDark}}
+  {\thesubsection}
+  {1em}
+  {}
+\titleformat{\subsubsection}
+  {\normalfont\sffamily\large\bfseries\color{AccentDark}}
+  {\thesubsubsection}
+  {1em}
+  {}
+
+% --- CONFIGURAZIONE LIVELLI AGGIUNTIVI (4 e 5) ---
+\setcounter{secnumdepth}{5} 
+\setcounter{tocdepth}{5}
+
+\titleformat{\paragraph}
+  {\normalfont\sffamily\normalsize\bfseries\color{AccentDark}}
+  {\theparagraph}
+  {1em}
+  {}
+\titlespacing*{\paragraph}
+  {0pt}
+  {3.25ex plus 1ex minus .2ex}
+  {1.5ex plus .2ex}
+
+% Alias comando
+\newcommand{\subsubsubsection}[1]{\paragraph{#1}}
+
+\titleformat{\subparagraph}
+  {\normalfont\sffamily\normalsize\bfseries\color{AccentDark}} % Stile
+  {\thesubparagraph}
+  {1em}
+  {}
+\titlespacing*{\subparagraph}
+  {0pt}
+  {3.25ex plus 1ex minus .2ex}
+  {1.5ex plus .2ex}
+
+% Alias comando
+\newcommand{\subsubsubsubsection}[1]{\subparagraph{#1}}
+
+
+
+% 4. IMPOSTAZIONE HEADER E FOOTER
+\pagestyle{fancy}
+\fancyhf{} 
+\fancyhead[L]{\sffamily\bfseries\color{AccentColor}\@BYTE HOLDERS}
+\fancyhead[R]{\sffamily\color{AccentColor}\thepage}
+\renewcommand{\headrulewidth}{0.8pt}
+\renewcommand{\headrule}{\color{AccentColor}\hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}
+
+% 5. IMPOSTAZIONE LINK
+\hypersetup{
+    colorlinks=true,
+    linkcolor=AccentColor,
+    urlcolor=AccentLight,
+    citecolor=AccentDark,
+}
+
+% 6. PERSONALIZZAZIONE ELENCHI
+\setlist[itemize]{itemsep=2pt, topsep=4pt}
+\setlist[enumerate]{itemsep=2pt, topsep=4pt}
+
+% ====== COMANDI PERSONALIZZATI ======
+\makeatletter
+\newcommand{\NomeGruppo}[1]{\def\@NomeGruppo{#1}}
+\newcommand{\TitoloVerbale}[1]{\def\@TitoloVerbale{#1}}
+\newcommand{\Sommario}[1]{\def\@Sommario{#1}}
+\newcommand{\Autore}[1]{\def\@Autore{#1}}
+\newcommand{\Verificatore}[1]{\def\@Verificatore{#1}}
+\makeatother
+
+% ====== STILE TABELLE MIGLIORATO ======
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X} % Colonna giustificata a sinistra
+\setlength{\arrayrulewidth}{0.4pt} % Linee più sottili
+\setlength{\tabcolsep}{10pt} % Spaziatura interna celle
+\renewcommand{\arraystretch}{1.4} % Altezza righe
+
+% ====== INIZIO DEL DOCUMENTO ======
+\begin{document}
+
+% ====== INFORMAZIONI PER LA PAGINA DI TITOLO ======
+\NomeGruppo{BYTE HOLDERS}
+\TitoloVerbale{Verbale Riunione Interna}
+\Sommario{Questo verbale documenta la riunione interna avvenuta il 16/10/2025 per la discussione dei capitolati e la definizione degli strumenti di lavoro del team.}
+\Autore{}
+\Verificatore{}
+
+\pagestyle{empty}
+
+% ====== PAGINA DI TITOLO ======
+\begin{titlepage}
+    \centering
+    
+    \includegraphics[width=0.55\textwidth]{../Assets/ByteHolders1.png}\par\vspace{1.5cm}
+    
+    {\LARGE \sffamily \color{AccentColor}\bfseries Piano di Progetto}\par
+    
+    \vfill
+    
+    \noindent\color{AccentColor}\rule{\textwidth}{1pt}\par
+    \vspace{0.5cm}
+    
+    \begin{tabularx}{0.9\textwidth}{@{}>{\bfseries\sffamily}l X@{}}
+    Autori & \sffamily Damiano Berti, Giulia Romanato, Alessandro Frison, Giacomo Nalotto\\
+    \arrayrulecolor{MediumGray}\hline \\[-1.5ex]
+    Verificatori & \sffamily Alessandro Frison, Giulia Romanato, Damiano Berti, Giacomo Nalotto, Alessandro Morabito\\
+    \arrayrulecolor{MediumGray}\hline \\[-1.5ex] 
+    Approvazione & \sffamily Alessandro Morabito\\ 
+    \arrayrulecolor{MediumGray}\hline 
+\end{tabularx}
+    
+    \vfill
+\end{titlepage}
+
+\newpage
+
+% ====== TABELLA DI VERSIONAMENTO ======
+{\normalfont\sffamily\huge\bfseries\color{AccentColor} Registro delle versioni}
+\vspace{1cm}
+
+\begin{center}
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{>{\centering\arraybackslash}m{1.6cm} >{\centering\arraybackslash}m{2cm} >{\raggedright\arraybackslash}m{1.7cm} >{\raggedright\arraybackslash}m{1.7cm} >{\raggedright\arraybackslash}m{5cm}}
+        \rowcolor{AccentColor}
+          \textcolor{white}{\textbf{Versione}} & 
+          \textcolor{white}{\textbf{Data}} & 
+          \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} & 
+          \multicolumn{1}{c}{\textcolor{white}{\textbf{Verificatore}}} &
+          {\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
+
+        1.0.0 & 24/02/2026 & Giacomo Nalotto & Alessandro Morabito & Versione finale del documento, con tutte le sezioni completate e verificate\\
+        0.7.0 & 23/02/2026 & Giacomo Nalotto & Alessandro Morabito & Redazione sprint 5\\
+        0.6.0 & 05/02/2026 & Alessandro Frison & Giacomo Nalotto & Redazione sprint 4\\
+        0.5.1 & 12/01/2026 & Damiano Berti & Alessandro Frison & Redazione sprint 3 e modifiche e aggiunte varie\\         
+        0.5.0 & 30/12/2025 & Damiano Berti & Alessandro Frison & modifiche e aggiunte varie alle sezioni di pianificazione e alla sezione dei rischi\\         
+        0.4.0 & 29/12/2025 & Giulia Romanato & Damiano Berti & Redazione sprint 2 \\ 
+        0.3.0 & 21/12/2025 & Giulia Romanato & Damiano Berti & Redazione sprint 1 \\ 
+        0.2.1 & 21/12/2025 & Giulia Romanato & Damiano Berti & Creazione tabelle tracciamento sprint \\ 
+        0.2.0 & 20/12/2025 & Giulia Romanato & Damiano Berti & Inserita introduzione generale, sezione analisi e gestione dei rischi e modello di sviluppo\\ 
+        0.1.0 & 01/12/2025 & Damiano Berti & Giulia Romanato & Inizio stesura \\ 
+        
+    \end{tabular}
+\end{center}
+
+
+% ====== INDICE ======
+\pagestyle{fancy}
+\newpage
+\tableofcontents
+\newpage
+\listoftables
+\newpage
+\listoffigures
+\newpage
+
+\section{Introduzione}
+
+\subsection{informazioni generali}
+Il presente documento costituisce il \textbf{Piano di Progetto} ufficiale per lo sviluppo del software Code Guardian. Esso definisce la pianificazione temporale, l'allocazione delle risorse e la metodologia di gestione adottata per garantire il rispetto degli standard qualitativi e dei vincoli contrattuali. \\[0.5cm]
+Lo scopo primario è fornire una guida strutturata per il monitoraggio dell'avanzamento lavori e la mitigazione dei rischi nell'intero ciclo di vita del progetto, il presente piano sarà quindi soggetto ad aggiornamenti progressivi.
+
+\subsection{Glossario}
+Data la natura tecnica del progetto è naturale l'utilizzo di termini settoriali e talvolta anche definiti dal gruppo, per questo è stato appositamente creato un glossario presente su un documento separato.
+
+\subsection{Riferimenti}
+\subsubsection{Riferimenti normativi}
+\begin{itemize}
+  \item \href{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C2p.pdf}{Capitolato d'appalto C2: Code Guardian - Var Group}
+  \item norme di progetto
+\end{itemize}
+\subsubsection{Riferimenti informativi}
+\begin{itemize}
+  \item \href{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T02.pdf}{T2: i processi di ciclo di vita del software}
+  \item \href{https://www.math.unipd.it/~tullio/IS-1/2025/Dispense/T04.pdf}{T4: Gestione di progetto}
+  \item glossario
+\end{itemize}
+
+\newpage
+
+\section{Analisi e gestione dei rischi}
+\subsection{Introduzione}
+L'analisi e la gestione dei rischi rappresentano il processo strategico volto a identificare, valutare e mitigare i potenziali eventi avversi che potrebbero compromettere gli obiettivi del gruppo. \\[0.4cm]
+Identificare ed analizzare i rischi in anticipo è essenziale per guidare lo sviluppo del progetto con maggiore controllo, così da poter anticipare le criticità anziché subirle e poter meglio pianificare. Inoltre permette stimare più accuratamente il tempo necessario per le attività così da poter meglio calibrare il backlog degli sprint. \\[0.4cm]
+Il processo di gestione dei rischi si articola in quattro fasi essenziali:
+\begin{itemize}
+  \item \textbf{Identificazione}: consiste nel rintracciare e scrivere un elenco di tutti i possibili problemi o imprevisti che potrebbero ostacolare il progetto
+  \item \textbf{Analisi}: serve a capire quanto ogni rischio sia rilevante, valutando la probabilità che si verifichi e l'impatto che potrebbe avere.
+  \item \textbf{Pianificazione}: Rappresenta l’insieme delle azioni di mitigazione pianificate per ridurre la probabilità che un rischio si manifesti o per limitarne i possibili effetti dannosi.
+  \item \textbf{Controllo}: È l’attività di monitoraggio continuo che verifica nel tempo l'efficacia delle misure di prevenzione adottate. Il controllo serve a garantire che i rischi restino entro livelli accettabili, a rilevare l'insorgenza di nuove minacce e ad aggiornare dinamicamente le strategie di mitigazione in base all'evoluzione del progetto.
+\end{itemize}
+\vspace{0.4cm}
+Il gruppo Byte Holders individua la seguente lista di possibili rischi, suddividendoli per tipo con annesso codice identificativo:
+\begin{itemize}
+  \item \textbf{T} rischi tecnologici
+  \item \textbf{I} rischi individuali
+  \item \textbf{O} rischi organizzativi
+\end{itemize}
+\vspace{0.4cm}
+Ogni rischio è quindi contrassegnato con un codice composto da un prefisso indicante il tipo ed una cifra univoca.
+
+\newpage
+
+\subsection{Rischi tecnologici}
+
+\subsubsection{T1 - Inesperienza con le nuove tecnologie}
+\begin{table}[H]
+    \centering
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{|m{5cm}|m{8cm}|}
+        \hline
+        \multicolumn{2}{|>{\centering\arraybackslash}m{14cm}|}{\cellcolor{AccentColor}\textcolor{white}{\textbf{T1 - Inesperienza con le nuove tecnologie}}} \\ 
+        \hline
+        Descrizione & il gruppo ha scarsa o nulla esperienza con le tecnologie richieste dal capitolato: architetture ad agenti con LLM, Node.js, Python, React, AWS, OWASP e GitHub Actions \\ 
+        \hline
+        Mitigazione & dedicare tempo allo studio delle tecnologie, sfruttare le sessioni di mentoring tecnico offerte dalla proponente e le risorse informative fornite nel capitolato, realizzare più test di Proof of Concept per familiarizzare con i componenti critici prima dell'implementazione \\ 
+        \hline
+        Probabilità di occorrenza & alta \\
+        \hline
+        Pericolosità & elevata \\
+        \hline
+    \end{tabular}
+    \caption{Informazioni sul rischio T1}
+\end{table}
+
+\subsubsection{T2 - Mancanza della documentazione necessaria}
+\begin{table}[H]
+    \centering
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{|m{5cm}|m{8cm}|}
+        \hline
+        \multicolumn{2}{|>{\centering\arraybackslash}m{14cm}|}{\cellcolor{AccentColor}\textcolor{white}{\textbf{T2 - Mancanza della documentazione necessaria}}} \\ 
+        \hline
+        Descrizione & le tecnologie da utilizzare potrebbero avere documentazione insufficiente, obsoleta o poco chiara, in particolare per framework di agenti LLM, strumenti OWASP e SDK AWS \\ 
+        \hline
+        Mitigazione & identificare precocemente le aree con documentazione carente, utilizzare risorse alternative come tutorial, video dimostrativi e forum. Valutare eventualmente tecnologie alternative meglio documentate previa approvazione del committente \\ 
+        \hline
+        Probabilità di occorrenza & media \\
+        \hline
+        Pericolosità & media \\
+        \hline
+    \end{tabular}
+    \caption{Informazioni sul rischio T2}
+\end{table}
+
+\subsubsection{T3 - Guasti tecnici hardware o software}
+\begin{table}[H]
+    \centering
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{|m{5cm}|m{8cm}|}
+        \hline
+        \multicolumn{2}{|>{\centering\arraybackslash}m{14cm}|}{\cellcolor{AccentColor}\textcolor{white}{\textbf{T3 - Guasti tecnici hardware o software}}} \\ 
+        \hline
+        Descrizione & possibili malfunzionamenti dell'hardware dei membri del gruppo o dei servizi esterni utilizzati (GitHub, AWS, GitHub Actions) che potrebbero interrompere le attività di sviluppo e testing \\ 
+        \hline
+        Mitigazione & utilizzare sistemi di versionamento del codice per garantire backup continuo, implementare deployment su più ambienti, utilizzare Docker per ambienti di sviluppo locali in caso di indisponibilità dei servizi cloud, mantenere copie locali dei repository \\ 
+        \hline
+        Probabilità di occorrenza & bassa \\
+        \hline
+        Pericolosità & media \\
+        \hline
+    \end{tabular}
+    \caption{Informazioni sul rischio T3}
+\end{table}
+
+\subsection{Rischi individuali}
+
+
+\subsubsection{I1 - Impegno personale imprevisto}
+\begin{table}[H]
+    \centering
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{|m{5cm}|m{8cm}|}
+        \hline
+        \multicolumn{2}{|>{\centering\arraybackslash}m{14cm}|}{\cellcolor{AccentColor}\textcolor{white}{\textbf{I1 - Impegno personale imprevisto}}} \\ 
+        \hline
+        Descrizione & uno o più membri del gruppo potrebbero trovarsi impossibilitati a dedicare tempo al progetto a causa di emergenze personali, problemi familiari o di salute \\ 
+        \hline
+        Mitigazione & comunicare tempestivamente l'indisponibilità, gli altri membri si dividono il carico di lavoro, rimandando attività meno urgenti se necessario; una volta risolta l'emergenza, il membro recupera le attività rimanenti \\ 
+        \hline
+        Probabilità di occorrenza & media \\
+        \hline
+        Pericolosità & bassa \\
+        \hline
+    \end{tabular}
+    \caption{Informazioni sul rischio I1}
+\end{table}
+
+\subsubsection{I2 - Mancanza di tempo dovuto ad altre attività universitarie}
+\begin{table}[H]
+    \centering
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{|m{5cm}|m{8cm}|}
+        \hline
+        \multicolumn{2}{|>{\centering\arraybackslash}m{14cm}|}{\cellcolor{AccentColor}\textcolor{white}{\textbf{I2 - Mancanza di tempo dovuto ad altre attività universitarie}}} \\ 
+        \hline
+        Descrizione & i membri del gruppo devono gestire altri corsi, esami e progetti universitari che limitano la disponibilità di tempo da dedicare al progetto, specialmente durante le sessioni d'esame \\ 
+        \hline
+        Mitigazione & pianificare il carico di lavoro considerando il calendario accademico, identificare in anticipo i periodi critici e ridurre il carico in quegli sprint, comunicare tempestivamente sovrapposizioni con altri impegni e bilanciare il lavoro per permettere recuperi successivi \\ 
+        \hline
+        Probabilità di occorrenza & alta \\
+        \hline
+        Pericolosità & media \\
+        \hline
+    \end{tabular}
+    \caption{Informazioni sul rischio I2}
+\end{table}
+
+\subsection{Rischi organizzativi}
+
+\subsubsection{O1 - Sottostima del tempo necessario per una task}
+\begin{table}[H]
+    \centering
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{|m{5cm}|m{8cm}|}
+        \hline
+        \multicolumn{2}{|>{\centering\arraybackslash}m{14cm}|}{\cellcolor{AccentColor}\textcolor{white}{\textbf{O1 - Sottostima del tempo necessario per una task}}} \\ 
+        \hline
+        Descrizione & durante la pianificazione degli sprint, il gruppo potrebbe sottostimare il tempo necessario per completare attività complesse \\ 
+        \hline
+        Mitigazione & utilizzare buffer di tempo nelle stime, specialmente per tecnologie nuove, basarsi sulle retrospettive per migliorare le stime, monitorare costantemente l'avanzamento e segnalare tempestivamente ritardi, riorganizzare le priorità durante gli sprint; eventualmente consultare la proponente per validare stime su attività complesse. \\ 
+        \hline
+        Probabilità di occorrenza & alta \\
+        \hline
+        Pericolosità & elevata \\
+        \hline
+    \end{tabular}
+    \caption{Informazioni sul rischio O1}
+\end{table}
+
+\subsubsection{O2 - Sovrastima del tempo necessario per una task}
+\begin{table}[H]
+  \begin{center}
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{|m{5cm}|m{8cm}|}
+        \hline
+        \multicolumn{2}{|>{\centering\arraybackslash}m{14cm}|}{\cellcolor{AccentColor}\textcolor{white}{\textbf{O2 - Sovrastima del tempo necessario per una task}}} \\ 
+        \hline
+        Descrizione & alcune attività potrebbero richiedere meno tempo del previsto, lasciando membri del gruppo con tempo disponibile non pianificato \\ 
+        \hline
+        Mitigazione & mantenere un backlog di attività secondarie utilizzabili in caso di anticipo, i membri in anticipo supportano i colleghi in difficoltà o iniziano task dello sprint successivo; utilizzare il tempo extra per migliorare qualità del codice, test e documentazione. \\ 
+        \hline
+        Probabilità di occorrenza & bassa \\
+        \hline
+        Pericolosità & bassa \\
+        \hline
+    \end{tabular}
+  \end{center}
+  \caption{Informazioni sul rischio O2}
+\end{table}
+
+
+\begin{table}[H]
+  \subsubsection{O3 - Problemi comunicativi interni al gruppo}
+  \begin{center}
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{|m{5cm}|m{8cm}|}
+        \hline
+        \multicolumn{2}{|>{\centering\arraybackslash}m{14cm}|}{\cellcolor{AccentColor}\textcolor{white}{\textbf{O3 - Problemi comunicativi interni al gruppo}}} \\ 
+        \hline
+        Descrizione & possibili incomprensioni o disallineamento tra i membri del gruppo riguardo obiettivi, priorità o scelte tecniche, la complessità del progetto amplifica questo rischio \\ 
+        \hline
+        Mitigazione & stabilire canali di comunicazione regolari, documentare decisioni importanti e renderle accessibili, utilizzare GitHub Projects per trasparenza sullo stato delle attività, definire chiaramente ruoli e responsabilità per ogni sprint, effettuare code review per mantenere allineamento tecnico. \\ 
+        \hline
+        Probabilità di occorrenza & media \\
+        \hline
+        Pericolosità & media \\
+        \hline
+    \end{tabular}
+  \end{center}
+  \caption{Informazioni sul rischio O3}
+\end{table}
+
+\subsubsection{O4 - Problemi comunicativi con la proponente}
+
+\begin{table}[H]
+  \begin{center}
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{|m{5cm}|m{8cm}|}
+        \hline
+        \multicolumn{2}{|>{\centering\arraybackslash}m{14cm}|}{\cellcolor{AccentColor}\textcolor{white}{\textbf{O4 - Problemi comunicativi con la proponente}}} \\ 
+        \hline
+        Descrizione & possibili incomprensioni sui requisiti, aspettative non allineate o ritardi nelle risposte da parte della proponente potrebbero causare sviluppo di funzionalità non conformi o decisioni bloccate \\ 
+        \hline
+        Mitigazione & sfruttare al massimo le sessioni di design thinking e gli incontri periodici per chiarire i requisiti, documentare ogni incontro con verbali dettagliati., preparare domande specifiche per le sessioni di Q\&A, utilizzare diagrammi UML e documenti di requisiti per validare la comprensione, richiedere chiarimenti tempestivamente senza attendere gli incontri programmati mediante comunicazione asincrona \\ 
+        \hline
+        Probabilità di occorrenza & media \\
+        \hline
+        Pericolosità & elevata \\
+        \hline
+    \end{tabular}
+  \end{center}
+  \caption{Informazioni sul rischio O4}
+\end{table}
+
+
+
+\newpage
+
+
+\section{Modello di sviluppo}
+
+\subsection{Modello adottato}
+Il gruppo \textbf{ByteHolders} ha scelto di adottare la metodologia \textbf{Agile}, ritenendola l'approccio più efficace per la gestione di un progetto software complesso. L'organizzazione del lavoro si baserà su iterazioni di due settimane, denominate \textbf{sprint}.
+Il processo seguirà una logica di miglioramento continuo (simile al modello a spirale) grazie alle retrospettive al termine di ogni ciclo, il gruppo punterà a maturare e a rendere più efficienti i processi di sprint in sprint. Ogni aggiornamento sui dettagli verrà puntualmente riportato nella sezione \hyperref[pianificazione_breve_termine]{Pianificazione nel breve termine}.
+
+\subsection{Gestione dei ruoli}
+All'inizio di ciascun sprint, il gruppo procederà alla pianificazione delle attività e alla contestuale rotazione dei ruoli. Questa strategia ha il duplice scopo di permettere a ogni membro di acquisire competenze trasversali in tutte le aree del progetto e di individuare l'assetto organizzativo più efficiente.
+
+\subsection{Comunicazione e gestione interna}
+Per il coordinamento interno e le comunicazioni rapide, il gruppo si avvarrà di strumenti di messaggistica asincrona quali \textbf{WhatsApp} e \textbf{Discord}.
+La gestione del \textbf{Backlog}, l'assegnazione e il tracciamento delle task avverranno tramite lo strumento \textbf{GitHub Projects}, garantendo così trasparenza e controllo sull'avanzamento dei lavori.
+
+\subsection{Comunicazione con la proponente}
+Il confronto costante con la proponente, \textbf{Var Group}, è ritenuto essenziale per la buona riuscita del progetto.
+Gli accordi prevedono incontri di allineamento a cadenza bisettimanale, uno per ogni sprint. A questi appuntamenti fissi si affiancherà l'uso di canali asincroni e, qualora fosse necessario, verranno concordate ulteriori riunioni straordinarie per garantire il pieno allineamento sugli obiettivi.
+
+\newpage
+
+\section{Pianificazione nel lungo termine}
+Come riportato nella \href{https://byte-holders.github.io/Documentazione/Candidatura/Dichiarazione_Impegni.pdf}{dichiarazione degli impegni} presentata alla candidatura il gruppo prevede di terminare il progetto entro il giorno 20/03/2026 con un budget corrispondente a \textbf{13.290 €}, suddiviso per ruolo secondo quanto riportato nella seguente tabella:
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|c|c|c|c|}
+    \hline
+    \cellcolor{AccentColor}\textbf{\textcolor{white}{Ruolo}} & 
+    \cellcolor{AccentColor}\textbf{\textcolor{white}{Ore}} & 
+    \cellcolor{AccentColor}\textbf{\textcolor{white}{Percentuale}} & 
+    \cellcolor{AccentColor}\textbf{\textcolor{white}{Costo(€/h)}} & 
+    \cellcolor{AccentColor}\textbf{\textcolor{white}{Costo Totale}} \\
+    \hline
+    
+    Responsabile & 66 & 10,48\% & 30 €/h & 1980 € \\ \hline
+    Amministratore & 50 & 7,94\% & 20 €/h & 1000 € \\ \hline
+    Analista & 100 & 15,87\% & 25 €/h & 2500 € \\ \hline
+    Progettista & 160 & 25,40\% & 25 €/h & 4000 € \\ \hline
+    Programmatore & 127 & 20,16\% & 15 €/h & 1905 € \\ \hline
+    Verificatore & 127 & 20,16\% & 15 €/h & 1905 € \\ \hline
+    \textbf{Totale} & \textbf{630} & \textbf{100\%} & - & \textbf{13.290 €} \\ \hline
+  \end{tabular}
+  \caption{Tabella prospetto costi}
+\end{table}
+
+Alla fine del terzo sprint, il 12/01/2026, si è deciso di eseguire una romodulazione delle ore previste per ruolo: 21 ore precedentemente dedicate al ruolo di responsabile sono state spostaate al ruolo di amministratore, questa scelta è stata presa a causa di una sottostimata necessità del ruolo di amministratore e sovrastimata del responsabile.
+Ecco quindi la nuova tabella:
+\begin{table}[H]
+  \centering
+  \begin{tabular}{|l|c|c|c|c|}
+    \hline
+    \cellcolor{AccentColor}\textbf{\textcolor{white}{Ruolo}} & 
+    \cellcolor{AccentColor}\textbf{\textcolor{white}{Ore}} & 
+    \cellcolor{AccentColor}\textbf{\textcolor{white}{Percentuale}} & 
+    \cellcolor{AccentColor}\textbf{\textcolor{white}{Costo(€/h)}} & 
+    \cellcolor{AccentColor}\textbf{\textcolor{white}{Costo Totale}} \\
+    \hline
+    
+    Responsabile & 45 & 7,14\% & 30 €/h & 1350 € \\ \hline
+    Amministratore & 71 & 11,27\% & 20 €/h & 1420 € \\ \hline
+    Analista & 100 & 15,87\% & 25 €/h & 2500 € \\ \hline
+    Progettista & 160 & 25,40\% & 25 €/h & 4000 € \\ \hline
+    Programmatore & 127 & 20,16\% & 15 €/h & 1905 € \\ \hline
+    Verificatore & 127 & 20,16\% & 15 €/h & 1905 € \\ \hline
+    \textbf{Totale} & \textbf{630} & \textbf{100\%} & - & \textbf{13.080 €} \\ \hline
+  \end{tabular}
+  \caption{Tabella prospetto costi aggiornata}
+\end{table}
+
+\subsection{Requirements and Technology Baseline (RTB)}
+\vspace{0.4cm}
+\begin{tabular}{ll}
+Inizio: & \textbf{04/11/2025} \\
+Fine: & \textbf{30/01/2026} \\
+\end{tabular}
+\vspace{0.2cm}
+\subsubsection{Attività da svolgere}
+\subsubsubsection{Redazione analisi dei requisiti}
+Documento esterno che riporta i casi d'uso ed i requisiti del programma rilevati, necessari per allineare le aspettative del cliente e degli stakeholder e per la futura progettazione e implementazione del software.
+\subsubsubsection{Redazione Piano di Progetto}
+Documento esterno che formalizza la pianificazione delle attività del gruppo. Il suo obiettivo primario è definire le strategie per il rispetto dei vincoli di tempi e budget concordati.
+Esso include l'analisi dei rischi di progetto, la scelta del modello di sviluppo e la definizione del preventivo economico, fungendo da riferimento per il monitoraggio dell'avanzamento lavori.
+\subsubsubsection{Redazione piano di qualifica}
+Documento esterno che riporta come la qualità del progetto verrà gestita, monitorata e garantita.
+\subsubsubsection{Redazione norme di progetto}
+Documento interno che riporta il riferimento normativo interno del gruppo. Il documento descrive le procedure, gli strumenti e le convenzioni adottate per lo svolgimento del progetto. Il suo obiettivo è disciplinare il way of working.
+\subsubsubsection{Redazione del glossario}
+Documento interno che riporta una descrizione per termini tecnici e non, utile per una più semplice comprensione dei documenti.
+\subsubsubsection{Realizzazione del Proof of Concept}
+Ovvero un prototipo semplificato ma funzionante, realizzato allo scopo di dimostrare la fattibilità tecnica della soluzione ideata relativamente ai requisiti.
+
+\subsection{Product Baseline 
+(PB)}
+Questa sezione verrà redatta all'inizio della PB per garantire una pianificazione più accurata.
+
+\newpage
+
+\section{Pianificazione nel breve termine} \label{pianificazione_breve_termine}
+
+\subsection{Introduzione}
+In questa sezione vengono esposti i dettagli relativi alla pianificazione e alla rendicontazione di ogni sprint. Il monitoraggio dell'avanzamento avverrà attraverso l'analisi di preventivi e consuntivi, seguita da un momento di retrospettiva.\\
+Nello specifico, per ogni iterazione verranno riportati:
+\begin{itemize}
+  \item Informazioni generali e attività da svolgere
+  \item Rischi attesi
+  \item Preventivo
+  \item Consuntivo
+  \item Aggiornamento delle risorse rimanenti
+  \item Rischi incontrati
+  \item Retrospettiva
+\end{itemize}
+
+\subsection{Requirements and Technology Baseline (RTB)}
+
+\textbf{NOTA: } sebbene la data d'inizio della RTB sia il 04/11/2025 l'effettiva organizzazione in sprint è iniziata il 25/11/2025 a causa di una serie di problemi come:
+\begin{itemize}
+  \item difficoltà iniziale a causa dell'inesperienza.
+  \item imprevisti personali.
+  \item ritardi di comunicazione con l'azienda proponente.
+\end{itemize}
+Il gruppo ha in ogni caso sfruttato questo periodo con attività di formazione
+
+\subsubsection{Sprint 1}
+\begin{tabular}{ll}
+Inizio: & \textbf{25/11/2025} \\
+Fine prevista: & \textbf{9/12/2025} \\
+Fine reale: & \textbf{9/12/2025} \\
+Giorni di ritardo: & \textbf{0} \\
+\end{tabular}
+
+
+\subsubsubsection{Informazioni generali e attività da svolgere}
+In questo primo sprint ufficiale, iniziato subito dopo la prima riunione con l'azienda proponente sono stati definiti degli obiettivi per la maggior parte organizzativi e di studio. \\
+Gli obiettivi sono:
+\begin{itemize}
+  \item riorganizzare la struttura della repo GitHub
+  \item sistemare e aggiornare il sito
+  \item studio su come affrontare l'analisi dei requisiti
+  \item individuazione degli attori e dei casi d'uso
+  \item individuazione delle milestones
+  \item individuazione della struttura dei documenti
+  \item continuazione palestra e studio
+\end{itemize}
+
+\subsubsubsection{Rischi attesi}
+I rischi che il gruppo si aspetta sono:
+\begin{itemize}
+  \item I1 - Impegno personale imprevisto
+  \item O1 - Sottostima del tempo necessario per una task
+  \item O2 - Sovrastima del tempo necessario per una task
+  \item O3 - Problemi comunicativi interni al gruppo
+  \item O4 - Problemi comunicativi con la proponente
+\end{itemize}
+
+\subsubsubsection{Preventivo}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    
+    \begin{tabular}{|m{3.5cm}|*{6}{>{\centering\arraybackslash}m{1.2cm}|}}
+        
+        \multicolumn{1}{c}{} & 
+        \multicolumn{1}{c}{\rule{0pt}{2cm}\makebox[0pt][l]{\rotatebox[origin=bl]{45}{\textcolor{AccentColor}{\textbf{Responsabile}}}}} & 
+        
+        \rot{\textcolor{AccentColor}{\textbf{Amministratore}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Analista}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Progettista}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Programmatore}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Verificatore}}} \\ \hline 
+        
+        Giacomo Nalotto     & - & 2 & - & - & - & - \\ \hline
+        Damiano Berti       & - & 3 & 2 & - & - & 1 \\ \hline
+        Alessandro Morabito & - & - & - & - & - & - \\ \hline
+        Alessandro Frison   & - & 1 & - & - & - & - \\ \hline
+        Giulia Romanato     & - & - & 2 & - & - & 1 \\ \hline
+        Nicolò Lattanzio    & 2 & 2 & - & - & - & - \\ \hline
+        Lorenzo Grolla      & - & 2 & - & - & - & 1 \\ \hline
+    \end{tabular}
+    \caption{Preventivo sprint 1}
+\end{table}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../Assets/pdp/sprint1/preventivo.png}
+    \caption{Grafico preventivo sprint 1}
+\end{figure}
+
+\subsubsubsection{Consuntivo}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    
+    \begin{tabular}{|m{3.5cm}|*{6}{>{\centering\arraybackslash}m{1.2cm}|}}
+        
+        \multicolumn{1}{c}{} & 
+        \multicolumn{1}{c}{\rule{0pt}{2.5cm}\makebox[0pt][l]{\rotatebox[origin=bl]{45}{\textcolor{AccentColor}{\textbf{Responsabile}}}}} & 
+        
+        \rot{\textcolor{AccentColor}{\textbf{Amministratore}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Analista}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Progettista}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Programmatore}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Verificatore}}} \\ \hline 
+        
+        Giacomo Nalotto     & - & 2 & - & - & - & - \\ \hline
+        Damiano Berti       & - & 3 & 2 & - & - & 1 \\ \hline
+        Alessandro Morabito & - & - & - & - & - & - \\ \hline
+        Alessandro Frison   & - & 2 \textcolor{red}{(+1)} & - & - & - & - \\ \hline
+        Giulia Romanato     & - & - & 2 & - & - & 1 \\ \hline
+        Nicolò Lattanzio    & 3 \textcolor{red}{(+1)} & 2 & - & - & - & - \\ \hline
+        Lorenzo Grolla      & - & 2 & - & - & - & 1 \\ \hline
+    \end{tabular}
+    \caption{Consuntivo sprint 1}
+\end{table}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../Assets/pdp/sprint1/consuntivo.png}
+    \caption{Grafico consuntivo sprint 1}
+\end{figure}
+
+\subsubsubsection{Aggiornamento delle risorse rimanenti}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        \textcolor{AccentColor}{\textbf{Ruolo}} &
+        \textcolor{AccentColor}{\textbf{Costo}} &
+        \textcolor{AccentColor}{\textbf{Ore}} &
+        \textcolor{AccentColor}{\textbf{Costo}} &
+        \textcolor{AccentColor}{\textbf{Ore rimanenti}} &
+        \textcolor{AccentColor}{\textbf{Budget Rimanente}} \\ \hline
+        
+        Responsabile & 30€/h & 3 & 90€ & 42 \textcolor{red}{(-3)} & 1.260€ \textcolor{red}{(-90€)}\\ \hline
+        
+        Amministratore & 20€/h & 11 & 220€ & 60 \textcolor{red}{(-11)} & 1.200€ \textcolor{red}{(-220€)} \\ \hline
+        
+        Analista & 25€/h & 4 & 100€ & 96 \textcolor{red}{(-4)} & 2.400€ \textcolor{red}{(-100€)}\\ \hline
+        
+        Progettista & 25€/h & 0 & 0€ & 160 & 4.000€ \\ \hline
+        
+        Programmatore & 15€/h & 0 & 0€ & 127 & 1.905€ \\ \hline
+        
+        Verificatore & 15€/h & 3 & 45€ & 124 \textcolor{red}{(-3)}& 1.860€ \textcolor{red}{(-45€)} \\ \hline
+        
+        \textbf{Totale} & - & \textbf{21} & \textbf{455€} & \textbf{609} \textcolor{red}{(-21)} & \textbf{12.625€} \textcolor{red}{(-455€)}\\ \hline
+    \end{tabular}
+    \caption{Aggiornamento risorse rimanenti sprint 1}
+\end{table}
+\subsubsubsection{Rischi incontrati}
+\begin{itemize}
+  \item O1 - Sottostima del tempo necessario per una task
+  \item O2 - Sovrastima del tempo necessario per una task
+  \item O3 - Problemi comunicativi interni al gruppo
+\end{itemize}
+\subsubsubsection{Retrospettiva}
+Questo primo sprint è stato fondamentale per capire le problematiche dovute alla gestione delle tempistiche. Sono emersi casi di sovrastima, come per l'aggiornamento del sito, ma anche criticità dovute alla sottostima dell'impegno richiesto, in particolare nell'individuazione dei casi d'uso. In quest'ultima fase, il valore prodotto è stato limitato da problemi comunicativi interni e discordanze d'opinione che hanno rallentato i processi decisionali. Ulteriori ostacoli sono derivati da una gestione del lavoro eccessivamente sincrona (svoltasi prevalentemente in riunione) e da una carente automazione dei processi, che ha pesato sull'efficienza complessiva.
+
+
+
+
+
+
+
+
+
+\newpage
+
+
+
+
+
+
+
+
+
+
+
+
+
+\subsubsection{Sprint 2}
+\begin{tabular}{ll}
+Inizio: & \textbf{10/12/2025} \\
+Fine prevista: & \textbf{27/12/2025} \\
+Fine reale: & \textbf{29/12/2025} \\
+Giorni di ritardo: & \textbf{2} \\
+\end{tabular}
+
+
+\subsubsubsection{Informazioni generali e attività da svolgere}
+Nel secondo sprint, sono stati definiti degli obiettivi per identificare e provare le tecnologie da usare
+ e scrivere i casi d'uso identificati nello sprint precedente. \\
+Gli obiettivi sono:
+\begin{itemize}
+  \item completati i casi d'uso identificati nel precedente sprint
+  \item integrazione di nuovi casi d'uso
+  \item confronto con il prof. Cardin riguardo i casi d'uso identificati
+  \item individuazione delle tecnologie da utilizzare
+  \item completamento degli incontri di formazione sulle tecnologie da parte di VARGroup
+  \item identificazione della struttura del PoC (Proof of Concept)
+\end{itemize}
+
+\subsubsubsection{Rischi attesi}
+I rischi che il gruppo si aspetta sono:
+\begin{itemize}
+  \item I1 - Impegno personale imprevisto
+  \item O1 - Sottostima del tempo necessario per una task
+  \item O2 - Sovrastima del tempo necessario per una task
+  \item O3 - Problemi comunicativi interni al gruppo
+  \item O4 - Problemi comunicativi con la proponente
+  \item T1- Inesperienza con le nuove tecnologie
+\end{itemize}
+
+\subsubsubsection{Preventivo}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    
+    \begin{tabular}{|m{3.5cm}|*{6}{>{\centering\arraybackslash}m{1.2cm}|}}
+        
+        \multicolumn{1}{c}{} & 
+        \multicolumn{1}{c}{\rule{0pt}{2cm}\makebox[0pt][l]{\rotatebox[origin=bl]{45}{\textcolor{AccentColor}{\textbf{Responsabile}}}}} & 
+        
+        \rot{\textcolor{AccentColor}{\textbf{Amministratore}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Analista}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Progettista}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Programmatore}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Verificatore}}} \\ \hline 
+        
+        Giacomo Nalotto     & - & - & 4 & - & - & - \\ \hline
+        Damiano Berti       & - & - & 8 & - & - & 1 \\ \hline
+        Alessandro Morabito & - & 0,5 & 8 & - & - & 0,5\\ \hline
+        Alessandro Frison   & - & - & 4 & - & - & 1 \\ \hline
+        Giulia Romanato     & 3 & 3 & 10 & - & - & - \\ \hline
+        Nicolò Lattanzio    & - & 4 & 6 & - & - & - \\ \hline
+        Lorenzo Grolla      & - & 6 & 3 & - & - & 0,5 \\ \hline
+    \end{tabular}
+    \caption{Preventivo sprint 2}
+\end{table}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../Assets/pdp/sprint2/preventivo.png}
+    \caption{Grafico preventivo sprint 2}
+\end{figure}
+
+\subsubsubsection{Consuntivo}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    
+    \begin{tabular}{|m{3.5cm}|*{6}{>{\centering\arraybackslash}m{1.2cm}|}}
+        
+        \multicolumn{1}{c}{} & 
+        \multicolumn{1}{c}{\rule{0pt}{2.5cm}\makebox[0pt][l]{\rotatebox[origin=bl]{45}{\textcolor{AccentColor}{\textbf{Responsabile}}}}} & 
+        
+        \rot{\textcolor{AccentColor}{\textbf{Amministratore}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Analista}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Progettista}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Programmatore}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Verificatore}}} \\ \hline 
+        
+        Giacomo Nalotto     & - & - & 5\textcolor{red}{(+1)}& - & - & - \\ \hline
+        Damiano Berti       & - & - & 10\textcolor{red}{(+2)} & - & - & 1 \\ \hline
+        Alessandro Morabito & - & 0,5 & 10\textcolor{red}{(+2)} & - & - & 0,5 \\ \hline
+        Alessandro Frison   & - & - & 5\textcolor{red}{(+1)} & - & - & 1,5\textcolor{red}{(+1)} \\ \hline
+        Giulia Romanato     & 4\textcolor{red}{(+1)} & 2 & 7 & - & - & - \\ \hline
+        Nicolò Lattanzio    & - & 3 & 4\textcolor{green}{(-2)} & - & - & - \\ \hline
+        Lorenzo Grolla      & - & 5 & 3 & - & - & 0,5 \\ \hline
+    \end{tabular}
+    \caption{Consuntivo sprint 2}
+\end{table}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../Assets/pdp/sprint2/consuntivo.png}
+    \caption{Grafico consuntivo sprint 2}
+\end{figure}
+
+\subsubsubsection{Aggiornamento delle risorse rimanenti}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        \textcolor{AccentColor}{\textbf{Ruolo}} &
+        \textcolor{AccentColor}{\textbf{Costo}} &
+        \textcolor{AccentColor}{\textbf{Ore}} &
+        \textcolor{AccentColor}{\textbf{Costo}} &
+        \textcolor{AccentColor}{\textbf{Ore rimanenti}} &
+        \textcolor{AccentColor}{\textbf{Budget Rimanente}} \\ \hline
+        
+        Responsabile & 30€/h & 4 & 120€ & 38 \textcolor{red}{(-4)} & 1.140€ \textcolor{red}{(-120€)}\\ \hline
+        
+        Amministratore & 20€/h & 10,5 & 210€ & 49,5 \textcolor{red}{(-10,5)} & 990€ \textcolor{red}{(-210€)} \\ \hline
+        
+        Analista & 25€/h & 44 & 1.100€ & 52 \textcolor{red}{(-44)} & 1.300€ \textcolor{red}{(-1.100€)}\\ \hline
+        
+        Progettista & 25€/h & 0 & 0€ & 160 & 4.000€ \\ \hline
+        
+        Programmatore & 15€/h & 0 & 0€ & 127 & 1.905€ \\ \hline
+        
+        Verificatore & 15€/h & 3,5 & 52,5€ & 120,5 \textcolor{red}{(-3,5)}& 1.807,5€ \textcolor{red}{(-52,5€)} \\ \hline
+        
+        \textbf{Totale} & - & \textbf{62} & \textbf{1.482,5€} & \textbf{547} \textcolor{red}{(-62)} & \textbf{11.142,5€} \textcolor{red}{(-1.482,5€)}\\ \hline
+    \end{tabular}
+    \caption{Aggiornamento risorse rimanenti sprint 2}
+\end{table}
+\subsubsubsection{Rischi incontrati}
+\begin{itemize}
+  \item I1 - Impegno personale imprevisto: malattia e impegni familiari
+  \item O1 - Sottostima del tempo necessario per una task
+  \item O2 - Sovrastima del tempo necessario per una task
+  \item O3 - Problemi comunicativi interni al gruppo: divergenze di opinione sui casi d'uso
+  \item O4 - Problemi comunicativi con la proponente: domande riguardo i casi d'uso ancora in attesa di risposta
+   e mancanza dell'account di AWS che doveva essere fornito da VARGroup
+  \item T1- Inesperienza con le nuove tecnologie: difficoltà nell'apprendimento dovuta alla grande varietà di tecnologie suggerite
+\end{itemize}
+\subsubsubsection{Retrospettiva}
+La non chiara definizione della struttura e del grado di approfondimento di ogni singola sezione (Attore, precondizioni, postcondizioni, ecc.) di un caso d'uso ha portato a dover modificare i casi d'uso precedentemente scritti in modo da renderli coerenti. Inoltre, la difficoltà nell'individuare in modo chiaro gli attori che agiscono nel sistema ha comportato una sottostima dei tempi prevista per la stesura dei casi d'uso. \\
+La mancanza dell'account AWS, che doveva essere fornito dall'azienda, ha impedito di studiare in modo pratico il funzionamento degli agenti che poi dovranno essere usati nell'applicazione. \\
+Inoltre la grande varietà di servizi AWS presentati dall'azienda, ha reso complicato capire come effettivamente vadano usati e come interagiscono tra loro.\\
+Ciò ha portato ad un rallentamento dello studio delle relative tecnologie e di conseguenza dello sviluppo del PoC. In attesa, è stata sperimentata la creazione di agenti con mezzi alternativi quali Google AI Studio.
+
+
+
+
+
+
+\newpage
+
+
+
+
+
+
+
+
+
+
+\subsubsection{Sprint 3}
+\begin{tabular}{ll}
+Inizio: & \textbf{30/12/2025} \\
+Fine prevista: & \textbf{12/01/2026} \\
+Fine reale: & \textbf{12/01/2026} \\
+Giorni di ritardo: & \textbf{0} \\
+\end{tabular}
+
+
+\subsubsubsection{Informazioni generali e attività da svolgere}
+Nel terzo sprint gli obiettivi si sono basati sul consolidamento dei casi d'uso, sullo sviluppo dei documenti e sullo studio concreto delle tecnologie per il poc, effettuando anche le prime prove di sviluppo.\\
+Gli obiettivi sono:
+\begin{itemize}
+  \item studio tecnologie per il PoC effettuando test concreti
+  \item finire stesura norme di progetto
+  \item continuazione documenti
+  \item consolidare i casi d'uso
+  \item definire nomenclatura casi d'uso
+  \item consolidare gli attori
+\end{itemize}
+
+\subsubsubsection{Rischi attesi}
+I rischi che il gruppo si aspetta sono:
+\begin{itemize}
+  \item I1 - Impegno personale imprevisto
+  \item O1 - Sottostima del tempo necessario per una task
+  \item O3 - Problemi comunicativi interni al gruppo
+  \item O4 - Problemi comunicativi con la proponente
+  \item T1- Inesperienza con le nuove tecnologie
+\end{itemize}
+
+\subsubsubsection{Preventivo}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    
+    \begin{tabular}{|m{3.5cm}|*{6}{>{\centering\arraybackslash}m{1.2cm}|}}
+        
+        \multicolumn{1}{c}{} & 
+        \multicolumn{1}{c}{\rule{0pt}{2cm}\makebox[0pt][l]{\rotatebox[origin=bl]{45}{\textcolor{AccentColor}{\textbf{Responsabile}}}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Amministratore}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Analista}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Progettista}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Programmatore}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Verificatore}}} \\ \hline 
+        
+        Giacomo Nalotto     & - & - & - & - & - & 1 \\ \hline
+        Damiano Berti       & 5 & - & 8 & - & - & 1 \\ \hline
+        Alessandro Morabito & - & - & 8 & - & 3 & 0,5 \\ \hline
+        Alessandro Frison   & - & 10 & - & - & - & 0,5 \\ \hline
+        Giulia Romanato     & - & 8 & 4 & - & 5 & 0,5 \\ \hline
+        Nicolò Lattanzio    & - & 8 & - & - & - & 0,5 \\ \hline
+        Lorenzo Grolla      & - & 10 & - & - & - & - \\ \hline
+        \textbf{Totale}     & \textbf{5} & \textbf{36} & \textbf{20} & \textbf{0} & \textbf{8} & \textbf{4} \\ \hline
+        
+    \end{tabular}
+    \caption{Preventivo sprint 3}
+\end{table}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../Assets/pdp/sprint3/preventivo.png}
+    \caption{Grafico preventivo sprint 3}
+\end{figure}
+
+\subsubsubsection{Consuntivo}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    
+    \begin{tabular}{|m{3.5cm}|*{6}{>{\centering\arraybackslash}m{1.2cm}|}}
+        
+        \multicolumn{1}{c}{} & 
+        \multicolumn{1}{c}{\rule{0pt}{2.5cm}\makebox[0pt][l]{\rotatebox[origin=bl]{45}{\textcolor{AccentColor}{\textbf{Responsabile}}}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Amministratore}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Analista}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Progettista}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Programmatore}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Verificatore}}} \\ \hline 
+        
+        Giacomo Nalotto     & - & - & 2 \textcolor{red}{(+2)} & - & - & - \\ \hline
+        Damiano Berti       & 4 \textcolor{green}{(-1)} & - & 5 \textcolor{green}{(-3)} & - & - & - \\ \hline
+        Alessandro Morabito & - & - & 4 \textcolor{green}{(-4)} & - & - & - \\ \hline
+        Alessandro Frison   & - & 7 \textcolor{green}{(-3)} & - & - & - & - \\ \hline
+        Giulia Romanato     & - & 8 & 1 \textcolor{green}{(-3)} & - & - & - \\ \hline
+        Nicolò Lattanzio    & - & 8 & - & - & - & 1 \textcolor{red}{(+0,5)} \\ \hline
+        Lorenzo Grolla      & - & 8 \textcolor{green}{(-2)} & - & - & - & - \\ \hline
+    \end{tabular}
+    \caption{Consuntivo sprint 3}
+\end{table}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../Assets/pdp/sprint3/consuntivo.png}
+    \caption{Grafico consuntivo sprint 3}
+\end{figure}
+
+\subsubsubsection{Aggiornamento delle risorse rimanenti}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        \textcolor{AccentColor}{\textbf{Ruolo}} &
+        \textcolor{AccentColor}{\textbf{Costo}} &
+        \textcolor{AccentColor}{\textbf{Ore}} &
+        \textcolor{AccentColor}{\textbf{Costo}} &
+        \textcolor{AccentColor}{\textbf{Ore rimanenti}} &
+        \textcolor{AccentColor}{\textbf{Budget Rimanente}} \\ \hline
+        
+        Responsabile & 30€/h & 4 & 120€ & 34 \textcolor{red}{(-4)} & 1.020€ \textcolor{red}{(-120€)}\\ \hline
+        
+        Amministratore & 20€/h & 31 & 620€ & 18,5 \textcolor{red}{(-31)} & 370€ \textcolor{red}{(-620€)} \\ \hline
+        
+        Analista & 25€/h & 12 & 300€ & 40 \textcolor{red}{(-12)} & 1.000€ \textcolor{red}{(-300€)}\\ \hline
+        
+        Progettista & 25€/h & 0 & 0€ & 160 & 4.000€ \\ \hline
+        
+        Programmatore & 15€/h & 0 & 0€ & 127 & 1.905€ \\ \hline
+        
+        Verificatore & 15€/h & 1 & 15€ & 119,5 \textcolor{red}{(-1)}& 1.792,50€ \textcolor{red}{(-15€)} \\ \hline
+        
+        \textbf{Totale} & - & \textbf{48} & \textbf{1.055€} & \textbf{499} \textcolor{red}{(-48)} & \textbf{10.087,50€} \textcolor{red}{(-1.055€)}\\ \hline
+    \end{tabular}
+    \caption{Aggiornamento risorse rimanenti sprint 3}
+\end{table}
+\subsubsubsection{Rischi incontrati}
+\begin{itemize}
+  \item I1 - Impegno personale imprevisto: impegni familiari
+  \item O1 - Sottostima del tempo necessario per una task
+  \item O2 - Sovrastima del tempo necessario per una task
+  \item O3 - Problemi comunicativi interni al gruppo: difficolta coordinazione lavoro documenti
+  \item O4 - Problemi comunicativi con la proponente: proponente in ferie fino al 6 gennaio ha causato ritardi nell'accesso alle risorse AWS
+  \item T1- Inesperienza con le nuove tecnologie: difficoltà nell'apprendimento dovuta all'inesperienza
+\end{itemize}
+\subsubsubsection{Retrospettiva}
+In questo sprint, la mancanza di comunicazione con l'azienda proponente, dovuta alle ferie natalizie, ha rallentato il progresso del gruppo, specialmente per quanto riguarda l'accesso alle risorse AWS necessarie per lo sviluppo del PoC. Nonostante ciò, il team ha cercato di compensare concentrandosi su altre tecnologie e sullo sviluppo dei documenti di progetto, dedicando molto tempo a quelli redatti dall'amministratore e alla continuazione dell'analisi dei requisiti. \\
+La difficoltà nel coordinare il lavoro sui documenti ha portato a un rallentamento complessivo, evidenziando la necessità di migliorare la comunicazione interna. \\
+L'inesperienza con le nuove tecnologie ha continuato a rappresentare una sfida, richiedendo più tempo del previsto per l'apprendimento e l'implementazione, ma alla fine sono comunque state fatte delle prove delle tecnologie significative.
+Inoltre a causa delle festività natalizie, alcuni membri del gruppo hanno avuto impegni personali che hanno limitato la loro disponibilità, influenzando negativamente la produttività complessiva dello sprint.\\
+Alla fine è stata presa la decisione di fare una rimodulazione delle ore inizialmente preventivate togliendo 21 ore dal responsabile all'Amministratore.
+
+
+
+
+
+
+\newpage
+
+
+
+
+
+
+
+
+
+
+\subsubsection{Sprint 4}
+\begin{tabular}{ll}
+Inizio: & \textbf{13/01/2026} \\
+Fine prevista: & \textbf{03/02/2026} \\
+Fine reale: & \textbf{03/02/2026} \\
+Giorni di ritardo: & \textbf{0} \\
+\end{tabular}
+
+
+\subsubsubsection{Informazioni generali e attività da svolgere}
+Nel quarto sprint gli obiettivi si sono concentrati sul massiccio avanzamento dell'Analisi dei Requisiti e l'inizio concreto dello sviluppo del PoC. \\
+Gli obiettivi sono:
+\begin{itemize}
+  \item avanzamento dell'analisi dei requisiti
+  \item inizio sviluppo PoC
+  \item revisione documenti
+  \item procedere con la stesura dei casi d'uso
+\end{itemize}
+
+\subsubsubsection{Rischi attesi}
+I rischi che il gruppo si aspetta sono:
+\begin{itemize}
+  \item I1 - Impegno personale imprevisto
+  \item I2 - Mancanza di tempo dovuto ad altre attività universitarie
+  \item O1 - Sottostima del tempo necessario per una task
+  \item O3 - Problemi comunicativi interni al gruppo
+  \item O4 - Problemi comunicativi con la proponente
+  \item T1 - Inesperienza con le nuove tecnologie
+\end{itemize}
+
+\subsubsubsection{Preventivo}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    
+    \begin{tabular}{|m{3.5cm}|*{6}{>{\centering\arraybackslash}m{1.2cm}|}}
+        
+        \multicolumn{1}{c}{} & 
+        \multicolumn{1}{c}{\rule{0pt}{2cm}\makebox[0pt][l]{\rotatebox[origin=bl]{45}{\textcolor{AccentColor}{\textbf{Responsabile}}}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Amministratore}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Analista}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Progettista}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Programmatore}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Verificatore}}} \\ \hline 
+        
+        Giacomo Nalotto     & - & - & 10 & - & - & - \\ \hline
+        Damiano Berti       & - & - & - & - & 1 & - \\ \hline
+        Alessandro Morabito & - & - & 2 & - & 5 & 0,5 \\ \hline
+        Alessandro Frison   & 5 & - & - & - & 5 & - \\ \hline
+        Giulia Romanato     & - & - & 10 & - & - & - \\ \hline
+        Nicolò Lattanzio    & - & 1 & - & - & 5 & - \\ \hline
+        Lorenzo Grolla      & - & - & 10 & - & - & - \\ \hline
+        \textbf{Totale}     & \textbf{5} & \textbf{1} & \textbf{32} & \textbf{0} & \textbf{16} & \textbf{0,5} \\ \hline
+        
+    \end{tabular}
+    \caption{Preventivo sprint 4}
+\end{table}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../Assets/pdp/sprint4/preventivo.png}
+    \caption{Grafico preventivo sprint 4}
+\end{figure}
+
+\subsubsubsection{Consuntivo}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    
+    \begin{tabular}{|m{3.5cm}|*{6}{>{\centering\arraybackslash}m{1.2cm}|}}
+        
+        \multicolumn{1}{c}{} & 
+        \multicolumn{1}{c}{\rule{0pt}{2.5cm}\makebox[0pt][l]{\rotatebox[origin=bl]{45}{\textcolor{AccentColor}{\textbf{Responsabile}}}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Amministratore}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Analista}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Progettista}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Programmatore}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Verificatore}}} \\ \hline 
+        
+        Giacomo Nalotto     & - & - & 11 \textcolor{red}{(+1)} & - & - & - \\ \hline
+        Damiano Berti       & - & - & - & - & 1 & - \\ \hline
+        Alessandro Morabito & - & - & 2 & - & 1 \textcolor{green}{(-4)} & 0,5 \\ \hline
+        Alessandro Frison   & 3 \textcolor{green}{(-2)} & - & - & - & 1 \textcolor{green}{(-4)} & - \\ \hline
+        Giulia Romanato     & - & - & 7 \textcolor{green}{(-3)} & - & - & - \\ \hline
+        Nicolò Lattanzio    & - & 1 & - & - & 1 \textcolor{green}{(-4)} & - \\ \hline
+        Lorenzo Grolla      & - & 1 \textcolor{red}{(+1)} & 10 & - & - & - \\ \hline
+    \end{tabular}
+    \caption{Consuntivo sprint 4}
+\end{table}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../Assets/pdp/sprint4/consuntivo.png}
+    \caption{Grafico consuntivo sprint 4}
+\end{figure}
+
+\subsubsubsection{Aggiornamento delle risorse rimanenti}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        \textcolor{AccentColor}{\textbf{Ruolo}} &
+        \textcolor{AccentColor}{\textbf{Costo}} &
+        \textcolor{AccentColor}{\textbf{Ore}} &
+        \textcolor{AccentColor}{\textbf{Costo}} &
+        \textcolor{AccentColor}{\textbf{Ore rimanenti}} &
+        \textcolor{AccentColor}{\textbf{Budget Rimanente}} \\ \hline
+        
+        Responsabile & 30€/h & 3 & 90€ & 31 \textcolor{red}{(-3)} & 930€ \textcolor{red}{(-90€)}\\ \hline
+        
+        Amministratore & 20€/h & 2 & 40€ & 16,5 \textcolor{red}{(-2)} & 330€ \textcolor{red}{(-40€)} \\ \hline
+        
+        Analista & 25€/h & 30 & 750€ & 10 \textcolor{red}{(-30)} & 250€ \textcolor{red}{(-750€)}\\ \hline
+        
+        Progettista & 25€/h & 0 & 0€ & 160 & 4.000€ \\ \hline
+        
+        Programmatore & 15€/h & 4 & 60€ & 123 \textcolor{red}{(-4)} & 1.845€ \textcolor{red}{(-60€)} \\ \hline
+        
+        Verificatore & 15€/h & 0,5 & 7,50€ & 119 \textcolor{red}{(-0,5)}& 1.785€ \textcolor{red}{(-7,50€)} \\ \hline
+        
+        \textbf{Totale} & - & \textbf{39,5} & \textbf{947,50€} & \textbf{459,5} \textcolor{red}{(-39,5)} & \textbf{9.140€} \textcolor{red}{(-947,50€)}\\ \hline
+    \end{tabular}
+    \caption{Aggiornamento risorse rimanenti sprint 4}
+\end{table}
+\subsubsubsection{Rischi incontrati}
+\begin{itemize}
+  \item I1 - Impegno personale imprevisto: impegni familiari
+  \item I2 - Mancanza di tempo dovuto ad altre attività universitarie
+  \item O1 - Sottostima del tempo necessario per una task
+  \item O2 - Sovrastima del tempo necessario per una task
+  \item O4 - Problemi comunicativi con la proponente: proponente in ferie fino al 6 gennaio ha causato ritardi nell'accesso alle risorse AWS
+  \item T1- Inesperienza con le nuove tecnologie: difficoltà nell'apprendimento dovuta all'inesperienza
+\end{itemize}
+\subsubsubsection{Retrospettiva}
+In questo sprint, è stata riscontratata una maggiore difficoltà nel progredire con il progetto a causa degli esami e del progetto di TecWeb, che hanno limitato la disponibilità dei membri del gruppo. Tuttavia, nonostante queste sfide, il team è riuscito a fare dei progressi rispetto agli obiettivi iniziali.\\
+Altra principale difficoltà è stata quella di progredire con lo sviluppo del PoC, a causa della quantità e della difficoltà incontrata nell'uso e apprendimento delle tecnologie necessarie. Per affrontare questa sfida, il gruppo ha deciso di condividere risorse utili e di promuovere un maggiore scambio di conoscenze tra i vari membri, al fine di facilitare l'apprendimento e migliorare l'efficienza nello sviluppo del progetto.\\
+Alla luce di queste problematiche e per garantire un adeguato progresso del progetto, è stata presa la decisione di spostare la data di consegna della retrospettiva, permettendo così al gruppo di dedicare più tempo alla risoluzione delle difficoltà incontrate e al completamento degli obiettivi prefissati.\\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newpage
+
+
+
+
+
+
+
+
+
+
+\subsubsection{Sprint 5}
+\begin{tabular}{ll}
+Inizio: & \textbf{04/02/2026} \\
+Fine prevista: & \textbf{17/02/2026} \\
+Fine reale: & \textbf{17/02/2026} \\
+Giorni di ritardo: & \textbf{0} \\
+\end{tabular}
+
+
+\subsubsubsection{Informazioni generali e attività da svolgere}
+Nel quinto sprint gli obiettivi si sono concentrati prevalentemente sulla conclusione dell'Analisi dei Requisiti e del PoC.\\
+Gli obiettivi sono:
+\begin{itemize}
+  \item conclusione dell'analisi dei requisiti
+  \item fine sviluppo PoC
+  \item approvazione a versione 1.0.0 di tutti i documenti
+\end{itemize}
+
+\subsubsubsection{Rischi attesi}
+I rischi che il gruppo si aspetta sono:
+\begin{itemize}
+  \item I1 - Impegno personale imprevisto
+  \item I2 - Mancanza di tempo dovuto ad altre attività universitarie
+  \item O1 - Sottostima del tempo necessario per una task
+  \item O3 - Problemi comunicativi interni al gruppo
+  \item T1 - Inesperienza con le nuove tecnologie
+\end{itemize}
+
+\subsubsubsection{Preventivo}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    
+    \begin{tabular}{|m{3.5cm}|*{6}{>{\centering\arraybackslash}m{1.2cm}|}}
+        
+        \multicolumn{1}{c}{} & 
+        \multicolumn{1}{c}{\rule{0pt}{2cm}\makebox[0pt][l]{\rotatebox[origin=bl]{45}{\textcolor{AccentColor}{\textbf{Responsabile}}}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Amministratore}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Analista}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Progettista}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Programmatore}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Verificatore}}} \\ \hline 
+        
+        Giacomo Nalotto     & 2 & - & 2 & - & - & - \\ \hline
+        Damiano Berti       & - & - & - & - & 3 & - \\ \hline
+        Alessandro Morabito & - & - & - & - & 3 & - \\ \hline
+        Alessandro Frison   & - & - & - & - & 3 & - \\ \hline
+        Giulia Romanato     & - & 1 & 2 & - & - & - \\ \hline
+        Nicolò Lattanzio    & - & - & - & - & 3 & - \\ \hline
+        Lorenzo Grolla      & - & - & 2 & - & - & - \\ \hline
+        \textbf{Totale}     & \textbf{2} & \textbf{2} & \textbf{6} & \textbf{0} & \textbf{12} & \textbf{0} \\ \hline
+        
+    \end{tabular}
+    \caption{Preventivo sprint 5}
+\end{table}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../Assets/pdp/sprint5/preventivo.png}
+    \caption{Grafico preventivo sprint 5}
+\end{figure}
+
+\subsubsubsection{Consuntivo}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    
+    \begin{tabular}{|m{3.5cm}|*{6}{>{\centering\arraybackslash}m{1.2cm}|}}
+        
+        \multicolumn{1}{c}{} & 
+        \multicolumn{1}{c}{\rule{0pt}{2.5cm}\makebox[0pt][l]{\rotatebox[origin=bl]{45}{\textcolor{AccentColor}{\textbf{Responsabile}}}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Amministratore}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Analista}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Progettista}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Programmatore}}} & 
+        \rot{\textcolor{AccentColor}{\textbf{Verificatore}}} \\ \hline 
+        
+        Giacomo Nalotto     & 2 & - & 5 \textcolor{red}{(+3)} & - & - & - \\ \hline
+        Damiano Berti       & - & - & - & - & 3 & - \\ \hline
+        Alessandro Morabito & - & - & - & - & 3 & 2 \textcolor{red}{(+2)} \\ \hline
+        Alessandro Frison   & - & - & - & - & 3 & - \\ \hline
+        Giulia Romanato     & - & 0 \textcolor{green}{(-1)} & 1 \textcolor{green}{(-1)} & - & - & - \\ \hline
+        Nicolò Lattanzio    & - & - & - & - & 3 & - \\ \hline
+        Lorenzo Grolla      & - & - & 4 \textcolor{red}{(+2)} & - & - & - \\ \hline
+    \end{tabular}
+    \caption{Consuntivo sprint 5}
+\end{table}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../Assets/pdp/sprint5/consuntivo.png}
+    \caption{Grafico consuntivo sprint 5}
+\end{figure}
+
+\subsubsubsection{Aggiornamento delle risorse rimanenti}
+\begin{table}[H]
+    \centering
+    \renewcommand{\arraystretch}{1.5}
+    
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline
+        \textcolor{AccentColor}{\textbf{Ruolo}} &
+        \textcolor{AccentColor}{\textbf{Costo}} &
+        \textcolor{AccentColor}{\textbf{Ore}} &
+        \textcolor{AccentColor}{\textbf{Costo}} &
+        \textcolor{AccentColor}{\textbf{Ore rimanenti}} &
+        \textcolor{AccentColor}{\textbf{Budget Rimanente}} \\ \hline
+        
+        Responsabile & 30€/h & 2 & 60€ & 29 \textcolor{red}{(-2)} & 870€ \textcolor{red}{(-60€)} \\ \hline
+        Amministratore & 20€/h & 0 & 0€ & 16,5 & 330€ \\ \hline
+        Analista & 25€/h & 10 & 250€ & 0 \textcolor{red}{(-10)} & 0€ \textcolor{red}{(-250€)} \\ \hline
+        Progettista & 25€/h & 0 & 0€ & 160 & 4.000€ \\ \hline
+        Programmatore & 15€/h & 12 & 180€ & 111 \textcolor{red}{(-12)} & 1.665€ \textcolor{red}{(-180€)} \\ \hline
+        Verificatore & 15€/h & 2 & 30 € & 117 \textcolor{red}{(-)} & 1.755€ \textcolor{red}{(-€)} \\ \hline
+        \textbf{Totale} & - & \textbf{26} & \textbf{520,00€} & \textbf{433,5} \textcolor{red}{(-26)} & \textbf{8.620€} \textcolor{red}{(-520,00€)} \\ \hline
+    \end{tabular}
+    \caption{Aggiornamento risorse rimanenti sprint 5}
+\end{table}
+\subsubsubsection{Rischi incontrati}
+\begin{itemize}
+  \item I2 - Mancanza di tempo dovuto ad altre attività universitarie
+  \item O1 - Sottostima del tempo necessario per una task
+  \item O3 - Problemi comunicativi interni al gruppo
+  \item T1 - Inesperienza con le nuove tecnologie: difficoltà nell'apprendimento dovuta all'inesperienza
+\end{itemize}
+\subsubsubsection{Retrospettiva}
+In questo ultimo periodo, nonostante alcune difficoltà che hanno rallentato il ritmo di lavoro previsto, il team è comunque riuscito a portare avanti il progetto e a compiere passi in avanti rispetto agli obiettivi iniziali. Le criticità riscontrate sono state dovute principalmente alla sovrapposizione con la sessione d'esami e a qualche incertezza nella comunicazione interna, fattori che hanno limitato la nostra disponibilità e il coordinamento delle attività.\\
+Oltre agli impegni accademici, abbiamo incontrato dei punti poco chiari in merito ad alcune sezioni dell'Analisi dei Requisiti.
+Considerando queste circostanze, abbiamo scelto di far slittare la data della retrospettiva. Questa decisione non è solo tecnica, ma ci permette di essere più sicuri della qualità del lavoro che abbiamo svolto finora, garantendo che ogni obiettivo prefissato sia stato completato con la dovuta attenzione prima di procedere oltre.\\
+
+\end{document}

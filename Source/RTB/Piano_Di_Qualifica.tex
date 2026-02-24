@@ -1,0 +1,749 @@
+\documentclass[a4paper, 11pt]{article}
+
+% ====== PACCHETTI NECESSARI ======
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\setlength{\headheight}{14pt}
+\usepackage{titlesec}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{lipsum}
+\usepackage{hyperref}
+\usepackage{xurl}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{longtable} % Aggiunto per tabelle lunghe (Test di Sistema)
+
+% ====== IMPOSTAZIONI GLOBALI DI STILE ======
+
+% 1. DEFINIZIONE COLORI BLU-VIOLA
+\definecolor{AccentColor}{RGB}{80, 90, 180} % Blu-viola principale
+\definecolor{AccentLight}{RGB}{80, 90, 180} % Versione più chiara
+\definecolor{AccentDark}{RGB}{50, 60, 140} % Versione più scura
+\definecolor{LightGray}{RGB}{245, 245, 250}
+\definecolor{MediumGray}{RGB}{200, 200, 210}
+
+% 2. IMPOSTAZIONE MARGINI
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=3.5cm, bottom=3.5cm}
+
+% 3. STILE DEI TITOLI DI SEZIONE
+\titleformat{\section}
+  {\normalfont\sffamily\Large\bfseries\color{AccentColor}}
+  {\thesection}
+  {1em}
+  {}
+\titleformat{\subsection}
+  {\normalfont\sffamily\large\bfseries\color{AccentDark}}
+  {\thesubsection}
+  {1em}
+  {}
+
+% 4. IMPOSTAZIONE HEADER E FOOTER
+\pagestyle{fancy}
+\fancyhf{} 
+\fancyhead[L]{\sffamily\bfseries\color{AccentColor}\@BYTE HOLDERS}
+\fancyhead[R]{\sffamily\color{AccentColor}\thepage}
+\renewcommand{\headrulewidth}{0.8pt}
+\renewcommand{\headrule}{\color{AccentColor}\hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}
+
+% 5. IMPOSTAZIONE LINK
+\hypersetup{
+    colorlinks=true,
+    linkcolor=AccentColor,
+    urlcolor=AccentLight,
+    citecolor=AccentDark,
+}
+
+% 6. PERSONALIZZAZIONE ELENCHI
+\setlist[itemize]{itemsep=2pt, topsep=4pt}
+\setlist[enumerate]{itemsep=2pt, topsep=4pt}
+
+% ====== COMANDI PERSONALIZZATI ======
+\makeatletter
+\newcommand{\NomeGruppo}[1]{\def\@NomeGruppo{#1}}
+\newcommand{\Sommario}[1]{\def\@Sommario{#1}}
+\newcommand{\Autore}[1]{\def\@Autore{#1}}
+\newcommand{\Verificatore}[1]{\def\@Verificatore{#1}}
+% Fix: "Infinite glue shrinkage" con rowcolors + longtable
+% Ridefinizione di CT@@do@color senza glue infinito (+/-1fill)
+\def\CT@@do@color{%
+  \global\let\CT@do@color\relax
+  \@tempdima\wd\z@
+  \advance\@tempdima\@tempdimb
+  \advance\@tempdima\@tempdimc
+  \kern-\@tempdimb
+  \leaders\vrule \hskip\@tempdima
+  \kern-\@tempdimc
+  \hskip-\wd\z@}
+\makeatother
+
+% ====== STILE TABELLE MIGLIORATO ======
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X} % Colonna giustificata a sinistra
+\setlength{\arrayrulewidth}{0.4pt} % Linee più sottili
+\setlength{\tabcolsep}{10pt} % Spaziatura interna celle
+\renewcommand{\arraystretch}{1.4} % Altezza righe
+
+% ====== INIZIO DEL DOCUMENTO ======
+\begin{document}
+
+% ====== INFORMAZIONI PER LA PAGINA DI TITOLO ======
+\NomeGruppo{BYTE HOLDERS}
+\Sommario{Questo documento descrive il piano di qualifica del progetto, delineando le strategie e le metodologie che verranno adottate per garantire la qualità del prodotto finale.}
+\Autore{}
+\Verificatore{}
+
+\pagestyle{empty}
+
+% ====== PAGINA DI TITOLO ======
+\begin{titlepage}
+    \centering
+    
+    % Assicurati che il percorso dell'immagine sia corretto
+    \includegraphics[width=0.55\textwidth]{../Assets/ByteHolders1.png}\par\vspace{1.5cm}
+    
+    {\LARGE \sffamily \color{AccentColor}\bfseries Piano di Qualifica}\par
+    
+    \vfill
+    
+    \noindent\color{AccentColor}\rule{\textwidth}{1pt}\par
+    \vspace{0.5cm}
+    
+    \begin{tabularx}{0.9\textwidth}{@{}>{\bfseries\sffamily}l X@{}}
+    Autori & \sffamily Alessandro Frison, Lorenzo Grolla \\
+    \arrayrulecolor{MediumGray}\hline \\[-1.5ex]
+    Verificatori & \sffamily Alessandro Frison, Lorenzo Grolla \\
+    \arrayrulecolor{MediumGray}\hline \\[-1.5ex] 
+    Approvazione & \sffamily Alessandro Morabito\\ 
+    \arrayrulecolor{MediumGray}\hline
+\end{tabularx}
+    
+    \vfill
+\end{titlepage}
+
+\newpage
+
+% ====== TABELLA DI VERSIONAMENTO ======
+{\normalfont\sffamily\huge\bfseries\color{AccentColor} Registro delle versioni}
+\vspace{1cm}
+
+\begin{table}[h]
+    \centering
+    \rowcolors{2}{LightGray}{white}
+    \setlength{\tabcolsep}{8pt}%
+    \begin{tabular}{>{\centering\arraybackslash}m{1.4cm} >{\centering\arraybackslash}m{2cm} >{\raggedright\arraybackslash}m{2.2cm} >{\raggedright\arraybackslash}m{2.2cm} >{\raggedright\arraybackslash}m{5.8cm}}
+        \rowcolor{AccentColor}
+          \textcolor{white}{\textbf{Versione}} & 
+          \textcolor{white}{\textbf{Data}} & 
+          \multicolumn{1}{>{\columncolor{AccentColor}\centering\arraybackslash}m{2.2cm}}{\textcolor{white}{\textbf{Autore}}} &
+          \multicolumn{1}{>{\columncolor{AccentColor}\centering\arraybackslash}m{2.2cm}}{\textcolor{white}{\textbf{Verificatore}}} &
+          \multicolumn{1}{>{\columncolor{AccentColor}\raggedright\arraybackslash}m{5.8cm}}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
+        1.0.0 & 24/02/2026 & Alessandro Frison & Lorenzo Grolla & Versione finale del documento, con tutte le sezioni completate e revisionatte. \\
+        0.5.0 & 21/02/2026 & Lorenzo Grolla & Alessandro Frison & Aggiunta sezione test di sistema e accettazione \\
+        0.4.0 & 13/01/2026 & Lorenzo Grolla & Alessandro Frison & Aggiunta sezione cruscotto e test \\
+        0.3.1 & 13/01/2026 & Alessandro Frison & Lorenzo Grolla & Correzione errori e refusi vari \\
+        0.3.0 & 04/01/2025 & Alessandro Frison & Lorenzo Grolla & Aggiunta metriche di prodotto \\
+        0.2.0 & 21/12/2025 & Lorenzo Grolla & Alessandro Frison & Aggiunta metriche processi \\ 
+        0.1.0 & 01/12/2025 & Alessandro Frison & Lorenzo Grolla & Inizio stesura \\
+    \end{tabular}
+    \setlength{\tabcolsep}{10pt}%
+\end{table}
+
+
+% ====== INDICE ======
+\pagestyle{fancy}
+\newpage
+\tableofcontents    % Elenco dei contenuti
+\newpage
+\listoftables       % Elenco delle tabelle
+\newpage
+\listoffigures      % Elenco delle immagini
+\newpage
+
+% ====== INTRODUZIONE ======
+\section{Introduzione}
+
+\subsection{Scopo del documento}
+Il Piano di Qualifica\textsuperscript{G} costituisce il riferimento principale per la gestione e il monitoraggio continuo della qualità del progetto software e dei processi coinvolti nel suo ciclo di vita.
+Esso definisce le strategie, gli standard e le metriche necessarie per assicurare che il software prodotto soddisfi pienamente i requisiti concordati e le aspettative dei committenti.
+L'obiettivo del documento è stabilire un approccio sistematico che si sviluppa attraverso tre dimensioni interconnesse:
+
+\begin{itemize}
+    \item \textbf{Piano della Qualità}: definisce gli obiettivi qualitativi da perseguire, stabilisce gli standard di riferimento e delinea le politiche e le strategie necessarie per raggiungere l'eccellenza nel prodotto finale.
+    \item \textbf{Controllo di Qualità}: implementa meccanismi di misurazione oggettivi per verificare la conformità ai requisiti. Attraverso l'uso di metriche predefinite, il gruppo monitora costantemente le prestazioni e lo stato di avanzamento, assicurando che le attività svolte siano allineate con quanto pianificato.
+    \item \textbf{Miglioramento Continuo}: si basa sull'analisi periodica dei risultati ottenuti per identificare opportunità di ottimizzazione. Questo processo prevede l'adattamento costante dei processi e degli obiettivi per correggere eventuali deviazioni e migliorare l'efficienza complessiva.
+\end{itemize}
+
+Attraverso questo strumento strategico, il gruppo si assicura che il progetto rispetti integralmente i requisiti definiti, consegua gli obiettivi prefissati e mantenga elevati standard qualitativi.
+L'approccio metodologico adottato non configura la qualità come un elemento statico, bensì come un processo dinamico di apprendimento e perfezionamento continuo.
+
+\subsection{Glossario}
+Al fine di prevenire ambiguità e garantire una comunicazione uniforme e precisa tra i membri del gruppo e i committenti, è stato redatto un Glossario apposito.
+Per facilitare la lettura del presente documento, i termini tecnici o dotati di un significato specifico all'interno del dominio di progetto sono contrassegnati da una lettera «G» posta in apice (es. Parola\textsuperscript{G}).
+La definizione estesa di tali termini è reperibile nel documento citato tra i riferimenti informativi.
+
+\subsection{Maturità e miglioramenti}
+La gestione della qualità adottata dal gruppo Byte Holders non è intesa come una verifica statica, bensì come un processo dinamico ed evolutivo.
+La maturità del progetto viene monitorata attraverso l'analisi periodica delle metriche di processo e di prodotto; i dati raccolti permettono di individuare eventuali criticità organizzative o tecniche e di applicare tempestivamente contromisure mirate.
+Questo approccio iterativo garantisce un costante affinamento del \textit{Way of Working}, elevando progressivamente gli standard qualitativi con l'avanzare degli sprint.
+
+\subsection{Riferimenti}
+
+\subsubsection{Riferimenti normativi}
+\begin{itemize}
+    \item \textbf{Norme di Progetto ver. 1.0.0}\textsuperscript{G}: \\ \url{https://github.com/Byte-Holders/Documentazione/blob/main/RTB/Norme_Di_Progetto.pdf}.
+    \item \textbf{Capitolato d'appalto C2 - Code Guardian}: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C2.pdf}.
+\end{itemize}
+
+\subsubsection{Riferimenti informativi}
+\begin{itemize}
+    \item \textbf{Glossario}: \\ \url{https://github.com/Byte-Holders/Documentazione/blob/main/RTB/Glossario.pdf}.
+    \item \textbf{Standard ISO/IEC 9126}: \\ \url{https://it.wikipedia.org/wiki/ISO/IEC_9126}.
+    \item \textbf{Standard ISO/IEC 12207:1995}: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf}.
+\end{itemize}
+
+
+% ====== QUALITÀ DI PROCESSO ======
+\newpage
+\section{Qualità di processo}
+La qualità di processo costituisce un requisito fondamentale per il successo di un progetto software.
+Essa garantisce che i processi adottati siano efficaci, efficienti e conformi agli standard di qualità stabiliti.
+Per assicurare tale qualità, il progetto si avvale dei seguenti strumenti e metodologie:
+
+\begin{itemize}
+    \item \textbf{Modelli di riferimento:} vengono utilizzati il \textit{Capability Maturity Model Integration (CMMI)} e la norma \textit{ISO/IEC 12207}, che forniscono linee guida per la definizione, la gestione e il miglioramento dei processi software;
+    \item \textbf{Metriche di processo:} consentono di valutare le prestazioni e l’efficienza dei processi adottati. Per ciascuna metrica sono definite soglie quantitative che rappresentano i livelli minimi accettabili di qualità;
+    \item \textbf{Revisioni periodiche:} comprendono sessioni di verifica e controllo mirate ad analizzare i risultati ottenuti, confrontandoli con gli obiettivi predefiniti, al fine di individuare eventuali deviazioni e applicare azioni correttive.
+\end{itemize}
+
+\subsection{Processi Primari}
+
+\subsubsection{Fornitura}
+In questa sezione vengono descritte le metriche utilizzate per monitorare l'efficienza economica e temporale del progetto.
+\begin{table}[h!]
+    \centering
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{>{\centering\arraybackslash}m{1.5cm} p{6cm} >{\centering\arraybackslash}m{3cm} >{\centering\arraybackslash}m{2.5cm}}
+        \rowcolor{AccentColor}
+        \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
+
+        MPC-01 & \textbf{Earned Value (EV)} & $\geq 0$ & $\leq EAC$ \\
+        MPC-02 & \textbf{Planned Value (PV)} & $\geq 0$ & $\leq BAC$ \\
+        MPC-03 & \textbf{Actual Cost (AC)} & $\geq 0$ & $\leq EAC$ \\
+        MPC-04 & \textbf{Cost Performance Index (CPI)} & $\geq 0.90$ & $\geq 1.00$ \\
+        MPC-05 & \textbf{Schedule Performance Index (SPI)} & $\geq 0.90$ & $\geq 1.00$ \\
+        MPC-06 & \textbf{Estimate At Completion (EAC)} & $\geq 0$ & $\leq BAC$ \\
+        MPC-07 & \textbf{Estimate To Complete (ETC)} & $\geq 0$ & $\leq BAC$ \\
+        MPC-08 & \textbf{Time Estimate At Completion (TEAC)} & $\geq 0$ & \parbox[c]{2.5cm}{\centering $\leq$ Durata pianificata} \\
+
+    \end{tabular}
+    \caption{Metriche di Processo - Fornitura}
+\end{table}
+
+\subsubsection{Sviluppo}
+Queste metriche mirano a monitorare la stabilità dei requisiti durante la fase di analisi e progettazione.
+\begin{table}[h!]
+    \centering
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{>{\centering\arraybackslash}m{1.5cm} p{6cm} >{\centering\arraybackslash}m{3cm} >{\centering\arraybackslash}m{2.5cm}}
+        \rowcolor{AccentColor}
+        \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
+        
+        MPC-09 & \textbf{Requirements Stability Index (RSI)} & $\geq 70\%$ & $100\%$ \\
+    \end{tabular}
+    \caption{Metriche di Processo - Sviluppo}
+\end{table}
+
+\subsection{Processi di Supporto}
+\subsubsection{Documentazione}
+Metriche volte a garantire la leggibilità e la correttezza formale della documentazione prodotta.
+\begin{table}[h!]
+    \centering
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{>{\centering\arraybackslash}m{1.5cm} p{6cm} >{\centering\arraybackslash}m{3cm} >{\centering\arraybackslash}m{2.5cm}}
+        \rowcolor{AccentColor}
+        \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
+        
+        MPC-10 & \textbf{Indice di Gulpease} & $\geq 40$ & $\geq 60$ \\
+        MPC-11 & \textbf{Correttezza ortografica (Errori)} & 0 & 0 \\
+    \end{tabular}
+    \caption{Metriche di Processo - Documentazione}
+\end{table}
+
+\subsubsection{Verifica}
+\begin{table}[h!]
+    \centering
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{>{\centering\arraybackslash}m{1.5cm} p{6cm} >{\centering\arraybackslash}m{3cm} >{\centering\arraybackslash}m{2.5cm}}
+        \rowcolor{AccentColor}
+        \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
+        
+        MPC-12 & \textbf{Code Coverage} & $\geq 70\%$ & $\geq 80\%$ \\
+        MPC-13 & \textbf{Test Success Rate} & $100\%$ & $100\%$ \\
+    \end{tabular}
+    \caption{Metriche di Processo - Verifica}
+\end{table}
+
+\subsubsection{Gestione della qualità}
+\begin{table}[h!]
+    \centering
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{>{\centering\arraybackslash}m{1.5cm} p{6cm} >{\centering\arraybackslash}m{3cm} >{\centering\arraybackslash}m{2.5cm}}
+        \rowcolor{AccentColor}
+        \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
+        
+        MPC-14 & \textbf{Quality metrics satisfied} & $\geq 80\%$ & $100\%$ \\
+    \end{tabular}
+    \caption{Metriche di Processo - Gestione della qualità}
+\end{table}
+
+\subsection{Processi Organizzativi}
+Attività per gestire l'infrastruttura e le risorse umane
+\begin{table}[h!]
+    \centering
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{>{\centering\arraybackslash}m{1.5cm} p{6cm} >{\centering\arraybackslash}m{3cm} >{\centering\arraybackslash}m{2.5cm}}
+        \rowcolor{AccentColor}
+        \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
+        
+        MPC-15 & \textbf{Time Efficiency} & $\geq 60\%$ & $100\%$ \\
+        MPC-16 & \textbf{Sprint Goal Achievement} & $\geq 80\%$ & $100\%$ \\
+    \end{tabular}
+    \caption{Processi Organizzativi - Gestione dei processi}
+\end{table}
+
+\newpage 
+
+% ====== QUALITÀ DI PRODOTTO ======
+\section{Qualità di prodotto}
+L'obiettivo cardine dello sviluppo software risiede nella qualità di prodotto, intesa come l'attitudine del sistema a conformarsi ai requisiti e alle aspettative di utenti e stakeholder. Tale proprietà non è un attributo isolato, ma deriva direttamente dal rigore e dalla qualità dei processi implementati lungo l'intero ciclo di vita del progetto.
+\\
+Un software si definisce di elevata qualità quando soddisfa i seguenti pilastri metodologici:
+\begin{itemize}
+    \item \textbf{Conformità Funzionale}: il prodotto aderisce rigorosamente ai requisiti funzionali e non funzionali specificati nel documento di Analisi dei Requisiti v1.1.0.
+    \item \textbf{Affidabilità}: il sistema è in grado di operare in modo costante e resiliente, minimizzando i guasti e garantendo l'integrità dei dati nel tempo.
+    \item \textbf{Usabilità}: l'interfaccia e l'esperienza d'uso sono progettate per essere intuitive, permettendo all'utente di raggiungere i propri obiettivi con il minimo sforzo cognitivo.
+    \item \textbf{Efficienza}: le risorse computazionali sono ottimizzate per garantire tempi di risposta rapidi e un consumo energetico o di memoria proporzionato al carico di lavoro.
+    \item \textbf{Manutenibilità}: l'architettura è modulare e ben documentata, facilitando interventi correttivi o evolutivi senza introdurre instabilità nel sistema.
+\end{itemize}
+
+\subsection{Funzionalità}
+\begin{table}[h!]
+    \centering
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{>{\centering\arraybackslash}m{1.5cm} p{6cm} >{\centering\arraybackslash}m{3cm} >{\centering\arraybackslash}m{2.5cm}}
+        \rowcolor{AccentColor}
+        \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
+        MPD-01 & \textbf{Requisiti Obbligatori Soddisfatti} & $\geq 100\%$ & $100\%$ \\
+        MPD-02 & \textbf{Requisiti Desiderabili Soddisfatti} & $\geq 0\%$ & $100\%$ \\
+        MPD-03 & \textbf{Requisiti Opzionali Soddisfatti} & $\geq 0\%$ & $100\%$ \\
+        MPD-04 & \textbf{Function Point} & da determinare & da determinare \\
+    \end{tabular}
+    \caption{Metriche di Prodotto - Funzionalità}
+\end{table}
+
+\subsection{Affidabilità}
+\begin{table}[h!]
+    \centering
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{>{\centering\arraybackslash}m{1.5cm} p{6cm} >{\centering\arraybackslash}m{3cm} >{\centering\arraybackslash}m{2.5cm}}
+        \rowcolor{AccentColor}
+        \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
+        MPD-05 & \textbf{Statement Coverage} & $\geq 80\%$ & $100\%$ \\
+        MPD-06 & \textbf{Branch Coverage} & $\geq 70\%$ & $100\%$ \\
+        MPD-07 & \textbf{Condition Coverage } & $\geq 60\%$ & $100\%$ \\
+    \end{tabular}
+    \caption{Metriche di Prodotto - Affidabilità}
+\end{table}
+
+\newpage
+
+\subsection{Efficienza}
+\begin{table}[h!]
+    \centering
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{>{\centering\arraybackslash}m{1.5cm} p{6cm} >{\centering\arraybackslash}m{3cm} >{\centering\arraybackslash}m{2.5cm}}
+        \rowcolor{AccentColor}
+        \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
+        MPD-08 & \textbf{Response Time} & $\leq 10s$ & $\leq 4s$ \\
+    \end{tabular}
+    \caption{Metriche di Prodotto - Efficienza}
+\end{table}
+
+\subsection{Usabilità}
+\begin{table}[h!]
+    \centering
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{>{\centering\arraybackslash}m{1.5cm} p{6cm} >{\centering\arraybackslash}m{3cm} >{\centering\arraybackslash}m{2.5cm}}
+        \rowcolor{AccentColor}
+        \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
+        MPD-09 & \textbf{Facilità di utilizzo} & $\leq 7$ click & $\leq 5$ click\\
+        MPD-10 & \textbf{Tempo medio di apprendimento} & $\leq 5$ minuti & $\leq 2$ minuti\\
+    \end{tabular}
+    \caption{Metriche di Prodotto - Usabilità}
+\end{table}
+
+\subsection{Manutenibilità}
+\begin{table}[h!]
+    \centering
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{>{\centering\arraybackslash}m{1.5cm} p{6cm} >{\centering\arraybackslash}m{3cm} >{\centering\arraybackslash}m{2.5cm}}
+        \rowcolor{AccentColor}
+        \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
+        MPD-11 & \textbf{Accoppiamento Moduli} & $\leq 4$ & $\leq 2$ \\
+        MPD-12 & \textbf{Linee per Metodo} & $\leq 30$ & $\leq 15$ \\
+        MPD-13 & \textbf{Parametri per Metodo} & $\leq 4$ & $\leq 2$ \\
+        MPD-14 & \textbf{Attributi per Classe} & $\leq 7$ & $\leq 5$ \\
+        MPD-15 & \textbf{Structure Fan-In} & - & massimizzato \\
+        MPD-16 & \textbf{Structure Fan-Out} & - & minimizzato \\
+    \end{tabular}
+    \caption{Metriche di Prodotto - Manutenibilità}
+\end{table}
+
+\newpage
+
+% ====== METODI DI TESTING ======
+\section{Metodi di testing}
+La strategia di verifica adottata dal gruppo \textit{Byte Holders} segue il \textbf{Modello a V}, garantendo che ogni fase di sviluppo abbia una corrispettiva fase di test. L'obiettivo è rilevare i difetti il prima possibile per minimizzare i costi di correzione e garantire la stabilità del prodotto \textit{Code Guardian}.
+
+\subsection{Classificazione dei Test}
+\begin{itemize}
+    \item \textbf{Test di Unità:} Verificano il corretto funzionamento delle singole unità software (funzioni, metodi). Supportano il raggiungimento del Code Coverage.
+    \item \textbf{Test di Integrazione:} Verificano il flusso di dati tra moduli o sottosistemi (es. Agenti e Orchestratore).
+    \item \textbf{Test di Sistema:} Validano il comportamento dell'intero sistema rispetto ai requisiti funzionali.
+    \item \textbf{Test di Accettazione:} Validazione finale per dimostrare che il software soddisfa le aspettative d'uso del committente.
+\end{itemize}
+
+\subsection{Test di Sistema}
+In questa sezione elenchiamo i test necessari per verificare che il software funzioni correttamente nel suo insieme. L'obiettivo è dimostrare che tutti i requisiti (funzionali e prestazionali) definiti nell'Analisi dei Requisiti v1.0.0 sono stati soddisfatti prima della consegna.
+
+\renewcommand{\arraystretch}{1.5}
+\rowcolors{2}{LightGray}{white}
+\setlength{\LTleft}{0pt plus 1fill}\setlength{\LTright}{0pt plus 1fill}\begin{longtable}{>{\centering\arraybackslash}m{1.2cm} >{\raggedright\arraybackslash}p{8.2cm} >{\centering\arraybackslash}m{2.5cm} >{\centering\arraybackslash}m{1.2cm}}
+\rowcolor{AccentColor}
+\textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Descrizione}} & \textcolor{white}{\textbf{Requisito}} & \textcolor{white}{\textbf{Stato}} \\
+\endhead
+
+% === Autenticazione e Registrazione ===
+TS-01 & Verificare che un utente non autenticato possa registrarsi al sistema inserendo username, email e password & R-1-F-Ob & NI \\
+TS-02 & Verificare che il sistema invii un codice OTP via email per la conferma della registrazione & R-2-F-De & NI \\
+TS-03 & Verificare che un utente non autenticato possa effettuare il login tramite username/email e password & R-3-F-Ob & NI \\
+TS-04 & Verificare che il sistema mostri un messaggio di errore in caso di credenziali errate & R-4-F-Ob & NI \\
+TS-05 & Verificare che l'utente possa recuperare la password & R-5-F-Ob & NI \\
+TS-06 & Verificare che il sistema autentichi gli utenti tramite Amazon Cognito & R-6-F-Ob & NI \\
+
+% === Workspace ===
+TS-07 & Verificare che l'utente autenticato possa visualizzare la lista dei workspace a cui appartiene & R-7-F-Ob & NI \\
+TS-08 & Verificare che l'utente autenticato possa creare un nuovo workspace inserendone il nome & R-8-F-Ob & NI \\
+TS-09 & Verificare che l'utente possa cercare workspace per nome & R-9-F-Ob & NI \\
+TS-10 & Verificare che il Project Manager possa invitare utenti in un workspace selezionando un ruolo & R-10-F-Ob & NI \\
+TS-11 & Verificare che l'utente possa visualizzare la lista degli inviti ricevuti con dettagli (mittente, owner, nome workspace) & R-11-F-Ob & NI \\
+TS-12 & Verificare che l'utente possa accettare o rifiutare un invito a un workspace & R-12-F-Ob & NI \\
+TS-13 & Verificare che l'utente possa visualizzare la lista dei ruoli di un workspace & R-13-F-De & NI \\
+TS-14 & Verificare che l'utente possa visualizzare la lista degli utenti di un workspace & R-14-F-Ob & NI \\
+TS-15 & Verificare che il Project Manager possa rimuovere un utente da un workspace & R-15-F-Ob & NI \\
+TS-16 & Verificare che il sistema verifichi automaticamente lo stato di aggiornamento di una repository & R-16-F-De & NI \\
+
+% === Tag raccolta ===
+TS-17 & Verificare che l'utente possa visualizzare la lista dei tag raccolta di un workspace & R-17-F-De & NI \\
+TS-18 & Verificare che l'utente possa creare un tag raccolta all'interno di un workspace & R-18-F-De & NI \\
+TS-19 & Verificare che l'utente possa eliminare un tag raccolta dal workspace & R-19-F-De & NI \\
+TS-20 & Verificare che l'utente possa assegnare tag raccolta a una repository & R-20-F-De & NI \\
+TS-21 & Verificare che l'utente possa rimuovere tag raccolta da una repository & R-21-F-De & NI \\
+
+% === Repository ===
+TS-22 & Verificare che l'utente possa visualizzare la lista delle repository del workspace & R-22-F-Ob & NI \\
+TS-23 & Verificare che l'utente possa aggiungere una repository GitHub al workspace & R-23-F-Ob & NI \\
+TS-24 & Verificare che il sistema validi il link della repository e verifichi l'accesso & R-24-F-Ob & NI \\
+TS-25 & Verificare che l'utente possa rimuovere una repository dal workspace & R-25-F-Ob & NI \\
+TS-26 & Verificare che l'utente possa effettuare ricerche di repository & R-26-F-Ob & NI \\
+TS-27 & Verificare che l'utente possa filtrare le repository tramite barra di ricerca e filtri & R-27-F-De & NI \\
+TS-28 & Verificare che l'utente possa ordinare la lista delle repository & R-28-F-De & NI \\
+TS-29 & Verificare che l'utente possa aggiornare le informazioni sulle repository in base all'ultima scansione & R-29-F-Ob & NI \\
+
+% === Dettaglio repository e risultati analisi ===
+TS-30 & Verificare che l'utente possa visualizzare il dettaglio di una repository & R-30-F-Ob & NI \\
+TS-31 & Verificare che il sistema permetta la selezione del branch per la visualizzazione & R-31-F-Ob & NI \\
+TS-32 & Verificare che il sistema mostri la percentuale di test coverage & R-32-F-De & NI \\
+TS-33 & Verificare che il sistema mostri l'elenco dei test con qualità insufficiente & R-33-F-Ob & NI \\
+TS-34 & Verificare che il sistema mostri la percentuale di test passati & R-34-F-De & NI \\
+TS-35 & Verificare che il sistema mostri l'elenco dei test non passati & R-35-F-De & NI \\
+TS-36 & Verificare che il sistema mostri un messaggio informativo se nessun test è rilevato & R-36-F-De & NI \\
+TS-37 & Verificare che il sistema mostri la lista dei linguaggi rilevati & R-37-F-Ob & NI \\
+TS-38 & Verificare che il sistema mostri la lista delle librerie rilevate & R-38-F-Ob & NI \\
+TS-39 & Verificare che il sistema mostri la lista dei framework rilevati & R-39-F-Ob & NI \\
+
+% === Analisi sicurezza OWASP ===
+TS-40 & Verificare che il sistema mostri grafici semplificati dei risultati OWASP & R-40-F-Ob & NI \\
+TS-41 & Verificare che il sistema mostri un elenco ordinato delle vulnerabilità OWASP & R-41-F-Ob & NI \\
+TS-42 & Verificare che il sistema fornisca i dettagli per ogni vulnerabilità & R-42-F-De & NI \\
+
+% === Analisi documentazione ===
+TS-43 & Verificare che il sistema mostri un voto complessivo della qualità documentale & R-43-F-Ob & NI \\
+TS-44 & Verificare che il sistema mostri consigli per il miglioramento del README & R-44-F-De & NI \\
+TS-45 & Verificare che il sistema elenchi sezioni o documenti standard mancanti & R-45-F-Ob & NI \\
+TS-46 & Verificare che il sistema mostri suggerimenti sulla qualità del codice & R-46-F-De & NI \\
+
+% === Scansione ===
+TS-47 & Verificare che l'utente possa avviare una scansione su una repository & R-47-F-Ob & NI \\
+TS-48 & Verificare che il sistema mostri lo stato della scansione in corso & R-48-F-Ob & NI \\
+TS-49 & Verificare che l'utente possa annullare una scansione in corso & R-49-F-Ob & NI \\
+TS-50 & Verificare che il sistema notifichi errori durante la scansione & R-50-F-Ob & NI \\
+
+% === Visione aggregata ===
+TS-51 & Verificare che l'utente possa visualizzare una visione aggregata del workspace & R-51-F-Ob & NI \\
+TS-52 & Verificare che l'utente possa filtrare la visione aggregata per tag raccolta & R-52-F-De & NI \\
+
+% === Backend / Orchestratore ===
+TS-53 & Verificare che il sistema analizzi una o più repository tramite gli agenti & R-53-F-Ob & NI \\
+TS-54 & Verificare che il sistema distribuisca l'analisi tra più componenti specializzati & R-54-F-Ob & NI \\
+TS-55 & Verificare che il sistema aggreghi i risultati delle analisi & R-55-F-Ob & NI \\
+TS-56 & Verificare che il sistema salvi un report finale dell'analisi & R-56-F-Ob & NI \\
+
+% === Requisiti Opzionali ===
+TS-57 & Verificare l'integrazione con CI/CD (GitHub Actions) & R-57-F-Op & NI \\
+TS-58 & Verificare l'analisi storica e il confronto tra versioni & R-58-F-Op & NI \\
+TS-59 & Verificare il ranking dei progetti per qualità complessiva & R-59-F-Op & NI \\
+TS-60 & Verificare la remediation interattiva con anteprima & R-60-F-Op & NI \\
+TS-61 & Verificare le notifiche integrate (Slack/Teams/Email) & R-61-F-Op & NI \\
+TS-62 & Verificare il plugin system per nuovi agenti di analisi & R-62-F-Op & NI \\
+
+\end{longtable}
+
+\subsubsection{Tracciamento dei Test di Sistema}
+\renewcommand{\arraystretch}{1.4}
+\rowcolors{2}{LightGray}{white}
+\setlength{\LTleft}{0pt plus 1fill}\setlength{\LTright}{0pt plus 1fill}\begin{longtable}{>{\centering\arraybackslash}m{2.5cm} >{\centering\arraybackslash}m{3.5cm}}
+\rowcolor{AccentColor}
+\textcolor{white}{\textbf{Codice Test}} & \textcolor{white}{\textbf{Codice Requisito}} \\
+\endhead
+
+
+TS-01 & R-1-F-Ob \\
+TS-02 & R-2-F-De \\
+TS-03 & R-3-F-Ob \\
+TS-04 & R-4-F-Ob \\
+TS-05 & R-5-F-Ob \\
+TS-06 & R-6-F-Ob \\
+TS-07 & R-7-F-Ob \\
+TS-08 & R-8-F-Ob \\
+TS-09 & R-9-F-Ob \\
+TS-10 & R-10-F-Ob \\
+TS-11 & R-11-F-Ob \\
+TS-12 & R-12-F-Ob \\
+TS-13 & R-13-F-De \\
+TS-14 & R-14-F-Ob \\
+TS-15 & R-15-F-Ob \\
+TS-16 & R-16-F-De \\
+TS-17 & R-17-F-De \\
+TS-18 & R-18-F-De \\
+TS-19 & R-19-F-De \\
+TS-20 & R-20-F-De \\
+TS-21 & R-21-F-De \\
+TS-22 & R-22-F-Ob \\
+TS-23 & R-23-F-Ob \\
+TS-24 & R-24-F-Ob \\
+TS-25 & R-25-F-Ob \\
+TS-26 & R-26-F-Ob \\
+TS-27 & R-27-F-De \\
+TS-28 & R-28-F-De \\
+TS-29 & R-29-F-Ob \\
+TS-30 & R-30-F-Ob \\
+TS-31 & R-31-F-Ob \\
+TS-32 & R-32-F-De \\
+TS-33 & R-33-F-Ob \\
+TS-34 & R-34-F-De \\
+TS-35 & R-35-F-De \\
+TS-36 & R-36-F-De \\
+TS-37 & R-37-F-Ob \\
+TS-38 & R-38-F-Ob \\
+TS-39 & R-39-F-Ob \\
+TS-40 & R-40-F-Ob \\
+TS-41 & R-41-F-Ob \\
+TS-42 & R-42-F-De \\
+TS-43 & R-43-F-Ob \\
+TS-44 & R-44-F-De \\
+TS-45 & R-45-F-Ob \\
+TS-46 & R-46-F-De \\
+TS-47 & R-47-F-Ob \\
+TS-48 & R-48-F-Ob \\
+TS-49 & R-49-F-Ob \\
+TS-50 & R-50-F-Ob \\
+TS-51 & R-51-F-Ob \\
+TS-52 & R-52-F-De \\
+TS-53 & R-53-F-Ob \\
+TS-54 & R-54-F-Ob \\
+TS-55 & R-55-F-Ob \\
+TS-56 & R-56-F-Ob \\
+TS-57 & R-57-F-Op \\
+TS-58 & R-58-F-Op \\
+TS-59 & R-59-F-Op \\
+TS-60 & R-60-F-Op \\
+TS-61 & R-61-F-Op \\
+TS-62 & R-62-F-Op \\
+
+\end{longtable}
+
+\subsection{Test di Accettazione}
+Questi test servono a confermare che il prodotto soddisfi le aspettative del cliente e degli utenti finali. Superare questi test garantisce che il software è pronto per l'uso reale e può essere rilasciato ufficialmente.
+
+\renewcommand{\arraystretch}{1.5}
+\rowcolors{2}{LightGray}{white}
+\setlength{\LTleft}{0pt plus 1fill}\setlength{\LTright}{0pt plus 1fill}\begin{longtable}{>{\centering\arraybackslash}m{1.5cm} >{\raggedright\arraybackslash}p{11cm} >{\centering\arraybackslash}m{1.2cm}}
+\rowcolor{AccentColor}
+\textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Descrizione}} & \textcolor{white}{\textbf{Stato}} \\
+\endhead
+
+
+TA-01 & Verificare che il prodotto permetta la registrazione di un nuovo utente con username, email e password & NI \\
+TA-02 & Verificare che il prodotto permetta l'autenticazione di un utente tramite login con credenziali & NI \\
+TA-03 & Verificare che il prodotto permetta il recupero della password & NI \\
+TA-04 & Verificare che il prodotto permetta la creazione di un workspace & NI \\
+TA-05 & Verificare che il prodotto permetta la visualizzazione della lista dei workspace & NI \\
+TA-06 & Verificare che il prodotto permetta la ricerca di workspace per nome & NI \\
+TA-07 & Verificare che il prodotto permetta l'invito di utenti in un workspace con assegnazione di ruolo & NI \\
+TA-08 & Verificare che il prodotto permetta la visualizzazione e gestione degli inviti ricevuti (accettazione/rifiuto) & NI \\
+TA-09 & Verificare che il prodotto permetta la visualizzazione degli utenti e dei ruoli di un workspace & NI \\
+TA-10 & Verificare che il prodotto permetta la rimozione di un utente da un workspace & NI \\
+TA-11 & Verificare che il prodotto permetta l'aggiunta di repository GitHub a un workspace con validazione del link & NI \\
+TA-12 & Verificare che il prodotto permetta la rimozione di repository da un workspace & NI \\
+TA-13 & Verificare che il prodotto permetta la ricerca, il filtraggio e l'ordinamento delle repository & NI \\
+TA-14 & Verificare che il prodotto permetta la gestione dei tag raccolta (creazione, assegnazione, rimozione, eliminazione) & NI \\
+TA-15 & Verificare che il prodotto permetta la visualizzazione del dettaglio di una repository con selezione del branch & NI \\
+TA-16 & Verificare che il prodotto permetta l'avvio di una scansione su una repository e ne mostri lo stato & NI \\
+TA-17 & Verificare che il prodotto permetta l'annullamento di una scansione in corso & NI \\
+TA-18 & Verificare che il prodotto mostri i risultati dell'analisi della qualità del codice (test coverage, linguaggi, librerie, framework) & NI \\
+TA-19 & Verificare che il prodotto mostri i risultati dell'analisi di sicurezza OWASP (grafici, elenco vulnerabilità, dettagli) & NI \\
+TA-20 & Verificare che il prodotto mostri i risultati dell'analisi documentale (voto complessivo, sezioni mancanti, consigli README) & NI \\
+TA-21 & Verificare che il prodotto mostri suggerimenti sulla qualità del codice & NI \\
+TA-22 & Verificare che il prodotto permetta la visualizzazione di una visione aggregata del workspace con filtro per tag & NI \\
+TA-23 & Verificare che il prodotto distribuisca l'analisi tra agenti specializzati coordinati dall'orchestratore & NI \\
+TA-24 & Verificare che il prodotto aggreghi i risultati e salvi un report finale delle analisi & NI \\
+TA-25 & Verificare che il prodotto permetta l'aggiornamento delle informazioni delle repository & NI \\
+
+\end{longtable}
+
+
+% ====== CRUSCOTTO DI VALUTAZIONE ======
+\newpage
+\section{Cruscotto di Valutazione}
+In questa sezione vengono riportati i risultati delle misurazioni effettuate tramite le metriche definite nei capitoli precedenti (Qualità di Processo e di Prodotto).
+\\
+L'obiettivo del cruscotto è fornire una visione chiara e immediata dell'andamento del progetto. Attraverso l'analisi dei grafici, è possibile valutare se il team sta rispettando gli obiettivi di efficienza pianificati e se il livello qualitativo del software prodotto è conforme alle aspettative.
+\\
+I dati raccolti permettono di individuare eventuali criticità e di intervenire con azioni correttive mirate.
+\subsection{Earned Value e Planned Value (MPC-01/02)}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../Assets/pdq/EV_PV.png}
+    \caption{Andamento di Earned Value e Planned Value}
+    \label{fig:ev_pv}
+\end{figure}
+
+Dal grafico emerge un ritardo temporale crescente tra lo Sprint 2 e lo Sprint 4, dove l'Earned Value (EV) rimane costantemente sotto il Planned Value (PV) a causa di sottostime e sessioni d'esame. Tuttavia, lo Sprint 5 segna il punto di svolta: l'accelerazione dell'EV porta la curva a ricongiungersi quasi totalmente con il PV, dimostrando il successo delle contromisure del team. L'Estimate At Completion (EAC) si mantiene stabile sopra i 10.000€, confermando che, nonostante il ritardo iniziale, le previsioni di spesa finale restano coerenti con l'investimento. In conclusione, il progetto ha recuperato terreno e procede verso la Product Baseline con un budget sotto controllo.
+\newpage
+
+\subsection{Actual Cost e Estimate to Complete(MPC-03/07)}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../Assets/pdq/AC_ETC.png}
+    \caption{Andamento di AC-ETC}
+    \label{fig:ac_etc}
+\end{figure}
+Dal grafico si evince un aumento costante dell'Actual Cost (AC) durante i primi 4 sprint, con un picco significativo nello Sprint 4 a causa di sottostime e sessioni d'esame. Tuttavia, a partire dallo Sprint 5, l'AC si stabilizza e mostra una leggera diminuzione, indicando un miglioramento nella gestione dei costi. L'Estimate to Complete (ETC) rimane relativamente stabile, suggerendo che le previsioni di completamento del progetto non sono state significativamente influenzate dalle variazioni dell'AC. In conclusione, nonostante le difficoltà iniziali, il team è riuscito a contenere i costi e a mantenere le stime di completamento sotto controllo.
+\newpage
+
+\subsection{Cost Performace Index e Schedule Performance Index(MPC-04/05)}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../Assets/pdq/CPI_SPI.png}
+    \caption{Andamento di CPI-SPI}
+    \label{fig:cpi_spi}
+\end{figure}
+Dal grafico emerge un trend iniziale negativo per entrambi gli indici, con il Cost Performance Index (CPI) che scende sotto 1 e il Schedule Performance Index (SPI) che si mantiene anch'esso sotto 1, indicando inefficienze sia nei costi che nella pianificazione. Tuttavia, a partire dallo Sprint 5, entrambi gli indici mostrano un miglioramento significativo: il CPI si avvicina a 1, suggerendo una gestione più efficiente dei costi, mentre lo SPI si avvicina anch'esso a 1, indicando un recupero nella pianificazione. In conclusione, nonostante le difficoltà iniziali, il team è riuscito a migliorare sia la performance dei costi che quella della pianificazione, avvicinandosi agli obiettivi prefissati.
+\newpage
+
+\subsection{Estimate At Completion (MPC-06)}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../Assets/pdq/EAC.png}
+    \caption{Andamento di EAC}
+    \label{fig:eac}
+\end{figure}
+Dal grafico si osserva un aumento costante dell'Estimate At Completion (EAC) durante i primi 4 sprint, con un picco significativo nello Sprint 4 a causa di sottostime e sessioni d'esame. Tuttavia, a partire dallo Sprint 5, l'EAC si stabilizza e mostra una leggera diminuzione, indicando che le contromisure adottate dal team hanno avuto successo nel contenere le previsioni di spesa finale. In conclusione, nonostante le difficoltà iniziali, il progetto sembra essere tornato su una traiettoria più sostenibile in termini di costi, con l'EAC che si mantiene sotto controllo.
+\newpage
+
+\subsection{Time Estimate At Completion (MPC-08)}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../Assets/pdq/TEAC.png}
+    \caption{Andamento di TEAC}
+    \label{fig:teac}
+\end{figure}
+Dal grafico si evince un aumento costante del Time Estimate At Completion (TEAC) durante i primi 4 sprint, con un picco significativo nello Sprint 4 a causa di sottostime e sessioni d'esame. Tuttavia, a partire dallo Sprint 5, il TEAC si stabilizza e mostra una leggera diminuzione, indicando che le contromisure adottate dal team hanno avuto successo nel contenere le previsioni di completamento del progetto. In conclusione, nonostante le difficoltà iniziali, il progetto sembra essere tornato su una traiettoria più sostenibile in termini di tempo, con il TEAC che si mantiene sotto controllo.
+\newpage
+
+\subsection{Requirements Stability Index(MPC-09)}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../Assets/pdq/RSI.png}
+    \caption{Andamento di RSI}
+    \label{fig:rsi}
+\end{figure}
+Dal grafico si osserva una stabilità iniziale del Requirements Stability Index (RSI) durante i primi 3 sprint, con valori vicini a 1, indicando che i requisiti sono rimasti relativamente stabili. Tuttavia, nello Sprint 4 si verifica un calo significativo dell'RSI, infatti in questo periodo sono stati rivisti e sistemati i requisiti. A partire dallo Sprint 5, l'RSI mostra un miglioramento e si avvicina nuovamente a 1, indicando che il team è riuscito a stabilizzare i requisiti e a ridurre le modifiche. In conclusione, nonostante le difficoltà iniziali, il progetto sembra essere tornato su una traiettoria più stabile in termini di requisiti.
+\newpage
+
+\subsection{Indice di Gulpease (MPC-10)}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../Assets/pdq/GULPEASE.png}
+    \caption{Andamento della leggibilità dei documenti}
+    \label{fig:gulpease_documenti}
+\end{figure}
+Dal grafico si osserva un miglioramento costante dell'Indice di Gulpease durante i primi 4 sprint, con valori che si avvicinano a 50, indicando una discreta leggibilità della documentazione. Ad ogni sprint l'indice cresce indicando che nonostante l'aumento della dimensione della documentazione la qualità continua a migliorare. Questo indica che il team è riuscito a migliorare la leggibilità dei documenti nonostante l'aumento del carico di lavoro. In conclusione, la qualità della documentazione è in costante miglioramento, con l'Indice di Gulpease che si avvicina a livelli ottimali.
+\newpage
+
+\subsection{Indice di Gulpease Verbali (MPC-10)}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../Assets/pdq/GULPEASE_VERBALE.png}
+    \caption{Andamento della leggibilità dei verbali}
+    \label{fig:gulpease_verbali}
+\end{figure}
+Dal grafico si orsserva che in linea di massima la stesura dei verbali mantiene un 'indice di Gulpease superiore a 40, indicando una buona leggibilità. In particolare si evidenzia una qualità di scrittura abbastanza regolare per tutti i verbali redatti durante il progetto, con un picco di leggibilità nello Sprint 5, dove l'indice supera i 60. Questo suggerisce che il team ha prestato particolare attenzione alla chiarezza e alla comprensibilità dei verbali in quel periodo. In conclusione, la qualità dei verbali è generalmente buona, con l'Indice di Gulpease che si mantiene a livelli accettabili.
+\newpage
+\subsection{Correttezza Ortografica (MPC-11)}
+Monitoraggio degli errori ortografici presenti nella documentazione prodotta (Piano Qualifica, Analisi dei Requisiti, ecc.).
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../Assets/pdq/ORTOGRAFIA.png}
+    \caption{Andamento degli errori ortografici presenti nei documenti}
+    \label{fig:ortografia}
+\end{figure}
+Dal grafico si osserva un miglioramento costante nella correttezza ortografica dei documenti prodotti durante il progetto. Nei primi 3 sprint, il numero di errori ortografici è contenuto ma presenta comunque un numero più alto di zero. Il team ha preso fin da subito contromisure per ridurre gli errori. In conclusione, la correttezza ortografica è notevolmente migliorata nel corso del progetto, contribuendo a una comunicazione più chiara e professionale.
+\newpage
+
+\subsection{Quality metrics satisfied (MPC-14)}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.8\textwidth]{../Assets/pdq/QMS.png}
+    \caption{Andamento delle metriche soddisfatte}
+    \label{fig:quality_metrics_satisfied}
+\end{figure}
+Dal grafico si osserva un miglioramento abbastanza costante nel numero di metriche soddisfatte durante il progetto. Nei primi 3 sprint, il numero di metriche soddisfatte è relativamente basso, ma a partire dallo Sprint 4 si nota un aumento significativo, con un picco nello Sprint 5. Questo indica che il team ha adottato efficacemente le contromisure per migliorare la qualità del prodotto e del processo, portando a un maggior numero di metriche soddisfatte. In conclusione, il progetto ha mostrato un progresso significativo nel soddisfare le metriche di qualità, contribuendo al successo complessivo del progetto.
+\newpage
+% ====== INIZIATIVE DI AUTOMIGLIORAMENTO ======
+%\newpage
+%\section{Iniziative di automiglioramento}
+%Il miglioramento continuo è essenziale per risolvere le criticità emerse durante gli sprint. Di seguito sono riportati i problemi principali riscontrati e le contromisure adottate.
+
+
+\end{document}

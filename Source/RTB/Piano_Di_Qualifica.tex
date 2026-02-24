@@ -118,12 +118,12 @@
     \vspace{0.5cm}
     
     \begin{tabularx}{0.9\textwidth}{@{}>{\bfseries\sffamily}l X@{}}
-    Autori & \sffamily Alessandro Frison \\
+    Autori & \sffamily Alessandro Frison, Lorenzo Grolla \\
     \arrayrulecolor{MediumGray}\hline \\[-1.5ex]
-    Verificatori & \sffamily Lorenzo Grolla\\
+    Verificatori & \sffamily Alessandro Frison, Lorenzo Grolla \\
     \arrayrulecolor{MediumGray}\hline \\[-1.5ex] 
-    Approvazione & \sffamily YYY\\ 
-    \arrayrulecolor{MediumGray}\hline 
+    Approvazione & \sffamily Alessandro Morabito\\ 
+    \arrayrulecolor{MediumGray}\hline
 \end{tabularx}
     
     \vfill
@@ -146,6 +146,7 @@
           \multicolumn{1}{>{\columncolor{AccentColor}\centering\arraybackslash}m{2.2cm}}{\textcolor{white}{\textbf{Autore}}} &
           \multicolumn{1}{>{\columncolor{AccentColor}\centering\arraybackslash}m{2.2cm}}{\textcolor{white}{\textbf{Verificatore}}} &
           \multicolumn{1}{>{\columncolor{AccentColor}\raggedright\arraybackslash}m{5.8cm}}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
+        1.0.0 & 24/02/2026 & Alessandro Frison & Lorenzo Grolla & Versione finale del documento, con tutte le sezioni completate e revisionatte. \\
         0.5.0 & 21/02/2026 & Lorenzo Grolla & Alessandro Frison & Aggiunta sezione test di sistema e accettazione \\
         0.4.0 & 13/01/2026 & Lorenzo Grolla & Alessandro Frison & Aggiunta sezione cruscotto e test \\
         0.3.1 & 13/01/2026 & Alessandro Frison & Lorenzo Grolla & Correzione errori e refusi vari \\
@@ -640,13 +641,14 @@ L'obiettivo del cruscotto è fornire una visione chiara e immediata dell'andamen
 \\
 I dati raccolti permettono di individuare eventuali criticità e di intervenire con azioni correttive mirate.
 \subsection{Earned Value e Planned Value (MPC-01/02)}
-Il confronto tra EV e PV permette di capire se il progetto è in linea con i tempi previsti.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{../Assets/pdq/EV_PV.png}
     \caption{Andamento di Earned Value e Planned Value}
     \label{fig:ev_pv}
 \end{figure}
+
+Dal grafico emerge un ritardo temporale crescente tra lo Sprint 2 e lo Sprint 4, dove l'Earned Value (EV) rimane costantemente sotto il Planned Value (PV) a causa di sottostime e sessioni d'esame. Tuttavia, lo Sprint 5 segna il punto di svolta: l'accelerazione dell'EV porta la curva a ricongiungersi quasi totalmente con il PV, dimostrando il successo delle contromisure del team. L'Estimate At Completion (EAC) si mantiene stabile sopra i 10.000€, confermando che, nonostante il ritardo iniziale, le previsioni di spesa finale restano coerenti con l'investimento. In conclusione, il progetto ha recuperato terreno e procede verso la Product Baseline con un budget sotto controllo.
 \newpage
 
 \subsection{Actual Cost e Estimate to Complete(MPC-03/07)}
@@ -656,7 +658,7 @@ Il confronto tra EV e PV permette di capire se il progetto è in linea con i tem
     \caption{Andamento di AC-ETC}
     \label{fig:ac_etc}
 \end{figure}
-
+Dal grafico si evince un aumento costante dell'Actual Cost (AC) durante i primi 4 sprint, con un picco significativo nello Sprint 4 a causa di sottostime e sessioni d'esame. Tuttavia, a partire dallo Sprint 5, l'AC si stabilizza e mostra una leggera diminuzione, indicando un miglioramento nella gestione dei costi. L'Estimate to Complete (ETC) rimane relativamente stabile, suggerendo che le previsioni di completamento del progetto non sono state significativamente influenzate dalle variazioni dell'AC. In conclusione, nonostante le difficoltà iniziali, il team è riuscito a contenere i costi e a mantenere le stime di completamento sotto controllo.
 \newpage
 
 \subsection{Cost Performace Index e Schedule Performance Index(MPC-04/05)}
@@ -666,7 +668,7 @@ Il confronto tra EV e PV permette di capire se il progetto è in linea con i tem
     \caption{Andamento di CPI-SPI}
     \label{fig:cpi_spi}
 \end{figure}
-
+Dal grafico emerge un trend iniziale negativo per entrambi gli indici, con il Cost Performance Index (CPI) che scende sotto 1 e il Schedule Performance Index (SPI) che si mantiene anch'esso sotto 1, indicando inefficienze sia nei costi che nella pianificazione. Tuttavia, a partire dallo Sprint 5, entrambi gli indici mostrano un miglioramento significativo: il CPI si avvicina a 1, suggerendo una gestione più efficiente dei costi, mentre lo SPI si avvicina anch'esso a 1, indicando un recupero nella pianificazione. In conclusione, nonostante le difficoltà iniziali, il team è riuscito a migliorare sia la performance dei costi che quella della pianificazione, avvicinandosi agli obiettivi prefissati.
 \newpage
 
 \subsection{Estimate At Completion (MPC-06)}
@@ -676,7 +678,7 @@ Il confronto tra EV e PV permette di capire se il progetto è in linea con i tem
     \caption{Andamento di EAC}
     \label{fig:eac}
 \end{figure}
-
+Dal grafico si osserva un aumento costante dell'Estimate At Completion (EAC) durante i primi 4 sprint, con un picco significativo nello Sprint 4 a causa di sottostime e sessioni d'esame. Tuttavia, a partire dallo Sprint 5, l'EAC si stabilizza e mostra una leggera diminuzione, indicando che le contromisure adottate dal team hanno avuto successo nel contenere le previsioni di spesa finale. In conclusione, nonostante le difficoltà iniziali, il progetto sembra essere tornato su una traiettoria più sostenibile in termini di costi, con l'EAC che si mantiene sotto controllo.
 \newpage
 
 \subsection{Time Estimate At Completion (MPC-08)}
@@ -686,7 +688,7 @@ Il confronto tra EV e PV permette di capire se il progetto è in linea con i tem
     \caption{Andamento di TEAC}
     \label{fig:teac}
 \end{figure}
-
+Dal grafico si evince un aumento costante del Time Estimate At Completion (TEAC) durante i primi 4 sprint, con un picco significativo nello Sprint 4 a causa di sottostime e sessioni d'esame. Tuttavia, a partire dallo Sprint 5, il TEAC si stabilizza e mostra una leggera diminuzione, indicando che le contromisure adottate dal team hanno avuto successo nel contenere le previsioni di completamento del progetto. In conclusione, nonostante le difficoltà iniziali, il progetto sembra essere tornato su una traiettoria più sostenibile in termini di tempo, con il TEAC che si mantiene sotto controllo.
 \newpage
 
 \subsection{Requirements Stability Index(MPC-09)}
@@ -696,27 +698,27 @@ Il confronto tra EV e PV permette di capire se il progetto è in linea con i tem
     \caption{Andamento di RSI}
     \label{fig:rsi}
 \end{figure}
-
+Dal grafico si osserva una stabilità iniziale del Requirements Stability Index (RSI) durante i primi 3 sprint, con valori vicini a 1, indicando che i requisiti sono rimasti relativamente stabili. Tuttavia, nello Sprint 4 si verifica un calo significativo dell'RSI, infatti in questo periodo sono stati rivisti e sistemati i requisiti. A partire dallo Sprint 5, l'RSI mostra un miglioramento e si avvicina nuovamente a 1, indicando che il team è riuscito a stabilizzare i requisiti e a ridurre le modifiche. In conclusione, nonostante le difficoltà iniziali, il progetto sembra essere tornato su una traiettoria più stabile in termini di requisiti.
 \newpage
 
 \subsection{Indice di Gulpease (MPC-10)}
-Monitoraggio della leggibilità della documentazione prodotta (Piano Qualifica, Analisi dei Requisiti, ecc.).
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{../Assets/pdq/GULPEASE.png}
     \caption{Andamento della leggibilità dei documenti}
     \label{fig:gulpease_documenti}
 \end{figure}
+Dal grafico si osserva un miglioramento costante dell'Indice di Gulpease durante i primi 4 sprint, con valori che si avvicinano a 50, indicando una discreta leggibilità della documentazione. Ad ogni sprint l'indice cresce indicando che nonostante l'aumento della dimensione della documentazione la qualità continua a migliorare. Questo indica che il team è riuscito a migliorare la leggibilità dei documenti nonostante l'aumento del carico di lavoro. In conclusione, la qualità della documentazione è in costante miglioramento, con l'Indice di Gulpease che si avvicina a livelli ottimali.
+\newpage
 
 \subsection{Indice di Gulpease Verbali (MPC-10)}
-Monitoraggio della leggibilità dei verbali redatti durante il progetto.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{../Assets/pdq/GULPEASE_VERBALE.png}
     \caption{Andamento della leggibilità dei verbali}
     \label{fig:gulpease_verbali}
 \end{figure}
-
+Dal grafico si orsserva che in linea di massima la stesura dei verbali mantiene un 'indice di Gulpease superiore a 40, indicando una buona leggibilità. In particolare si evidenzia una qualità di scrittura abbastanza regolare per tutti i verbali redatti durante il progetto, con un picco di leggibilità nello Sprint 5, dove l'indice supera i 60. Questo suggerisce che il team ha prestato particolare attenzione alla chiarezza e alla comprensibilità dei verbali in quel periodo. In conclusione, la qualità dei verbali è generalmente buona, con l'Indice di Gulpease che si mantiene a livelli accettabili.
 \newpage
 \subsection{Correttezza Ortografica (MPC-11)}
 Monitoraggio degli errori ortografici presenti nella documentazione prodotta (Piano Qualifica, Analisi dei Requisiti, ecc.).
@@ -726,21 +728,22 @@ Monitoraggio degli errori ortografici presenti nella documentazione prodotta (Pi
     \caption{Andamento degli errori ortografici presenti nei documenti}
     \label{fig:ortografia}
 \end{figure}
+Dal grafico si osserva un miglioramento costante nella correttezza ortografica dei documenti prodotti durante il progetto. Nei primi 3 sprint, il numero di errori ortografici è contenuto ma presenta comunque un numero più alto di zero. Il team ha preso fin da subito contromisure per ridurre gli errori. In conclusione, la correttezza ortografica è notevolmente migliorata nel corso del progetto, contribuendo a una comunicazione più chiara e professionale.
 \newpage
 
 \subsection{Quality metrics satisfied (MPC-14)}
-Monitoraggio delle metriche soddisfatte durante il progetto.
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{../Assets/pdq/QMS.png}
     \caption{Andamento delle metriche soddisfatte}
     \label{fig:quality_metrics_satisfied}
 \end{figure}
+Dal grafico si osserva un miglioramento abbastanza costante nel numero di metriche soddisfatte durante il progetto. Nei primi 3 sprint, il numero di metriche soddisfatte è relativamente basso, ma a partire dallo Sprint 4 si nota un aumento significativo, con un picco nello Sprint 5. Questo indica che il team ha adottato efficacemente le contromisure per migliorare la qualità del prodotto e del processo, portando a un maggior numero di metriche soddisfatte. In conclusione, il progetto ha mostrato un progresso significativo nel soddisfare le metriche di qualità, contribuendo al successo complessivo del progetto.
 \newpage
 % ====== INIZIATIVE DI AUTOMIGLIORAMENTO ======
-\newpage
-\section{Iniziative di automiglioramento}
-Il miglioramento continuo è essenziale per risolvere le criticità emerse durante gli sprint. Di seguito sono riportati i problemi principali riscontrati e le contromisure adottate.
+%\newpage
+%\section{Iniziative di automiglioramento}
+%Il miglioramento continuo è essenziale per risolvere le criticità emerse durante gli sprint. Di seguito sono riportati i problemi principali riscontrati e le contromisure adottate.
 
 
 \end{document}

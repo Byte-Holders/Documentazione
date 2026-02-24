@@ -72,6 +72,17 @@
 \newcommand{\Sommario}[1]{\def\@Sommario{#1}}
 \newcommand{\Autore}[1]{\def\@Autore{#1}}
 \newcommand{\Verificatore}[1]{\def\@Verificatore{#1}}
+% Fix: "Infinite glue shrinkage" con rowcolors + longtable
+% Ridefinizione di CT@@do@color senza glue infinito (+/-1fill)
+\def\CT@@do@color{%
+  \global\let\CT@do@color\relax
+  \@tempdima\wd\z@
+  \advance\@tempdima\@tempdimb
+  \advance\@tempdima\@tempdimc
+  \kern-\@tempdimb
+  \leaders\vrule \hskip\@tempdima
+  \kern-\@tempdimc
+  \hskip-\wd\z@}
 \makeatother
 
 % ====== STILE TABELLE MIGLIORATO ======
@@ -127,13 +138,14 @@
     \centering
     \makebox[\textwidth][c]{ 
         \rowcolors{2}{LightGray}{white}
-        \begin{tabular}{>{\centering\arraybackslash}m{1,4cm} >{\centering\arraybackslash}m{2cm} >{\raggedright\arraybackslash}m{2.2cm} >{\raggedright\arraybackslash}m{2.2cm} >{\raggedright\arraybackslash}m{6cm}}
+        \begin{tabular}{>{\centering\arraybackslash}m{1.4cm} >{\centering\arraybackslash}m{2cm} >{\raggedright\arraybackslash}m{2.2cm} >{\raggedright\arraybackslash}m{2.2cm} >{\raggedright\arraybackslash}m{6cm}}
             \rowcolor{AccentColor}
               \textcolor{white}{\textbf{Versione}} & 
               \textcolor{white}{\textbf{Data}} & 
-              \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} &
-              \multicolumn{1}{c}{\textcolor{white}{\textbf{Verificatore}}} & 
-              \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
+              \multicolumn{1}{>{\columncolor{AccentColor}}c}{\textcolor{white}{\textbf{Autore}}} &
+              \multicolumn{1}{>{\columncolor{AccentColor}}c}{\textcolor{white}{\textbf{Verificatore}}} &
+              \multicolumn{1}{>{\columncolor{AccentColor}}c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
+            0.5.0 & 21/02/2026 & Lorenzo Grolla & Alessandro Frison & Aggiunta sezione test di sistema e accettazione \\
             0.4.0 & 13/01/2026 & Lorenzo Grolla & Alessandro Frison & Aggiunta sezione cruscotto e test \\
             0.3.1 & 13/01/2026 & Alessandro Frison & Lorenzo Grolla & Correzione errori e refusi vari \\
             0.3.0 & 04/01/2025 & Alessandro Frison & Lorenzo Grolla & Aggiunta metriche di prodotto \\
@@ -409,34 +421,214 @@ La strategia di verifica adottata dal gruppo \textit{Byte Holders} segue il \tex
 \end{itemize}
 
 \subsection{Test di Sistema}
-In questa sezione elenchiamo i test necessari per verificare che il software funzioni correttamente nel suo insieme. L'obiettivo è dimostrare che tutti i requisiti (funzionali e prestazionali) definiti nell'Analisi dei Requisiti sono stati soddisfatti prima della consegna.\begin{center}
+In questa sezione elenchiamo i test necessari per verificare che il software funzioni correttamente nel suo insieme. L'obiettivo è dimostrare che tutti i requisiti (funzionali e prestazionali) definiti nell'Analisi dei Requisiti v1.0.0 sono stati soddisfatti prima della consegna.
+
+\renewcommand{\arraystretch}{1.5}
 \rowcolors{2}{LightGray}{white}
-\renewcommand{\arraystretch}{1.5} 
-\begin{longtable}{|>{\centering\arraybackslash}p{1,2cm}|>{\raggedright\arraybackslash}p{9cm}|>{\centering\arraybackslash}p{2.5cm}|>{\centering\arraybackslash}p{1.2cm}|}
-\hline
+\setlength{\LTleft}{0pt plus 1fill}\setlength{\LTright}{0pt plus 1fill}\begin{longtable}{>{\centering\arraybackslash}m{1.2cm} >{\raggedright\arraybackslash}p{8.2cm} >{\centering\arraybackslash}m{2.5cm} >{\centering\arraybackslash}m{1.2cm}}
 \rowcolor{AccentColor}
 \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Descrizione}} & \textcolor{white}{\textbf{Requisito}} & \textcolor{white}{\textbf{Stato}} \\
-\hline
 \endhead
-TS-01 & Test di sistema 1(placeholder) & R-1-F & NI \\ \hline
+
+% === Autenticazione e Registrazione ===
+TS-00 & Verificare che un utente non autenticato possa registrarsi al sistema inserendo username, email e password & R-1-F-Ob & NI \\
+TS-02 & Verificare che il sistema invii un codice OTP via email per la conferma della registrazione & R-2-F-De & NI \\
+TS-03 & Verificare che un utente non autenticato possa effettuare il login tramite username/email e password & R-3-F-Ob & NI \\
+TS-04 & Verificare che il sistema mostri un messaggio di errore in caso di credenziali errate & R-4-F-Ob & NI \\
+TS-05 & Verificare che l'utente possa recuperare la password & R-5-F-Ob & NI \\
+TS-06 & Verificare che il sistema autentichi gli utenti tramite Amazon Cognito & R-6-F-Ob & NI \\
+
+% === Workspace ===
+TS-07 & Verificare che l'utente autenticato possa visualizzare la lista dei workspace a cui appartiene & R-7-F-Ob & NI \\
+TS-08 & Verificare che l'utente autenticato possa creare un nuovo workspace inserendone il nome & R-8-F-Ob & NI \\
+TS-09 & Verificare che l'utente possa cercare workspace per nome & R-9-F-Ob & NI \\
+TS-10 & Verificare che il Project Manager possa invitare utenti in un workspace selezionando un ruolo & R-10-F-Ob & NI \\
+TS-11 & Verificare che l'utente possa visualizzare la lista degli inviti ricevuti con dettagli (mittente, owner, nome workspace) & R-11-F-Ob & NI \\
+TS-12 & Verificare che l'utente possa accettare o rifiutare un invito a un workspace & R-12-F-Ob & NI \\
+TS-13 & Verificare che l'utente possa visualizzare la lista dei ruoli di un workspace & R-13-F-De & NI \\
+TS-14 & Verificare che l'utente possa visualizzare la lista degli utenti di un workspace & R-14-F-Ob & NI \\
+TS-15 & Verificare che il Project Manager possa rimuovere un utente da un workspace & R-15-F-Ob & NI \\
+TS-16 & Verificare che il sistema verifichi automaticamente lo stato di aggiornamento di una repository & R-16-F-De & NI \\
+
+% === Tag raccolta ===
+TS-17 & Verificare che l'utente possa visualizzare la lista dei tag raccolta di un workspace & R-17-F-De & NI \\
+TS-18 & Verificare che l'utente possa creare un tag raccolta all'interno di un workspace & R-18-F-De & NI \\
+TS-19 & Verificare che l'utente possa eliminare un tag raccolta dal workspace & R-19-F-De & NI \\
+TS-20 & Verificare che l'utente possa assegnare tag raccolta a una repository & R-20-F-De & NI \\
+TS-21 & Verificare che l'utente possa rimuovere tag raccolta da una repository & R-21-F-De & NI \\
+
+% === Repository ===
+TS-22 & Verificare che l'utente possa visualizzare la lista delle repository del workspace & R-22-F-Ob & NI \\
+TS-23 & Verificare che l'utente possa aggiungere una repository GitHub al workspace & R-23-F-Ob & NI \\
+TS-24 & Verificare che il sistema validi il link della repository e verifichi l'accesso & R-24-F-Ob & NI \\
+TS-25 & Verificare che l'utente possa rimuovere una repository dal workspace & R-25-F-Ob & NI \\
+TS-26 & Verificare che l'utente possa effettuare ricerche di repository & R-26-F-Ob & NI \\
+TS-27 & Verificare che l'utente possa filtrare le repository tramite barra di ricerca e filtri & R-27-F-De & NI \\
+TS-28 & Verificare che l'utente possa ordinare la lista delle repository & R-28-F-De & NI \\
+TS-29 & Verificare che l'utente possa aggiornare le informazioni sulle repository in base all'ultima scansione & R-29-F-Ob & NI \\
+
+% === Dettaglio repository e risultati analisi ===
+TS-30 & Verificare che l'utente possa visualizzare il dettaglio di una repository & R-30-F-Ob & NI \\
+TS-31 & Verificare che il sistema permetta la selezione del branch per la visualizzazione & R-31-F-Ob & NI \\
+TS-32 & Verificare che il sistema mostri la percentuale di test coverage & R-32-F-De & NI \\
+TS-33 & Verificare che il sistema mostri l'elenco dei test con qualità insufficiente & R-33-F-Ob & NI \\
+TS-34 & Verificare che il sistema mostri la percentuale di test passati & R-34-F-De & NI \\
+TS-35 & Verificare che il sistema mostri l'elenco dei test non passati & R-35-F-De & NI \\
+TS-36 & Verificare che il sistema mostri un messaggio informativo se nessun test è rilevato & R-36-F-De & NI \\
+TS-37 & Verificare che il sistema mostri la lista dei linguaggi rilevati & R-37-F-Ob & NI \\
+TS-38 & Verificare che il sistema mostri la lista delle librerie rilevate & R-38-F-Ob & NI \\
+TS-39 & Verificare che il sistema mostri la lista dei framework rilevati & R-39-F-Ob & NI \\
+
+% === Analisi sicurezza OWASP ===
+TS-40 & Verificare che il sistema mostri grafici semplificati dei risultati OWASP & R-40-F-Ob & NI \\
+TS-41 & Verificare che il sistema mostri un elenco ordinato delle vulnerabilità OWASP & R-41-F-Ob & NI \\
+TS-42 & Verificare che il sistema fornisca i dettagli per ogni vulnerabilità & R-42-F-De & NI \\
+
+% === Analisi documentazione ===
+TS-43 & Verificare che il sistema mostri un voto complessivo della qualità documentale & R-43-F-Ob & NI \\
+TS-44 & Verificare che il sistema mostri consigli per il miglioramento del README & R-44-F-De & NI \\
+TS-45 & Verificare che il sistema elenchi sezioni o documenti standard mancanti & R-45-F-Ob & NI \\
+TS-46 & Verificare che il sistema mostri suggerimenti sulla qualità del codice & R-46-F-De & NI \\
+
+% === Scansione ===
+TS-47 & Verificare che l'utente possa avviare una scansione su una repository & R-47-F-Ob & NI \\
+TS-48 & Verificare che il sistema mostri lo stato della scansione in corso & R-48-F-Ob & NI \\
+TS-49 & Verificare che l'utente possa annullare una scansione in corso & R-49-F-Ob & NI \\
+TS-50 & Verificare che il sistema notifichi errori durante la scansione & R-50-F-Ob & NI \\
+
+% === Visione aggregata ===
+TS-51 & Verificare che l'utente possa visualizzare una visione aggregata del workspace & R-51-F-Ob & NI \\
+TS-52 & Verificare che l'utente possa filtrare la visione aggregata per tag raccolta & R-52-F-De & NI \\
+
+% === Backend / Orchestratore ===
+TS-53 & Verificare che il sistema analizzi una o più repository tramite gli agenti & R-53-F-Ob & NI \\
+TS-54 & Verificare che il sistema distribuisca l'analisi tra più componenti specializzati & R-54-F-Ob & NI \\
+TS-55 & Verificare che il sistema aggreghi i risultati delle analisi & R-55-F-Ob & NI \\
+TS-56 & Verificare che il sistema salvi un report finale dell'analisi & R-56-F-Ob & NI \\
+
+% === Requisiti Opzionali ===
+TS-57 & Verificare l'integrazione con CI/CD (GitHub Actions) & R-57-F-Op & NI \\
+TS-58 & Verificare l'analisi storica e il confronto tra versioni & R-58-F-Op & NI \\
+TS-59 & Verificare il ranking dei progetti per qualità complessiva & R-59-F-Op & NI \\
+TS-60 & Verificare la remediation interattiva con anteprima & R-60-F-Op & NI \\
+TS-61 & Verificare le notifiche integrate (Slack/Teams/Email) & R-61-F-Op & NI \\
+TS-62 & Verificare il plugin system per nuovi agenti di analisi & R-62-F-Op & NI \\
 
 \end{longtable}
-\end{center}
+
+\subsubsection{Tracciamento dei Test di Sistema}
+\renewcommand{\arraystretch}{1.4}
+\rowcolors{2}{LightGray}{white}
+\setlength{\LTleft}{0pt plus 1fill}\setlength{\LTright}{0pt plus 1fill}\begin{longtable}{>{\centering\arraybackslash}m{2.5cm} >{\centering\arraybackslash}m{3.5cm}}
+\rowcolor{AccentColor}
+\textcolor{white}{\textbf{Codice Test}} & \textcolor{white}{\textbf{Codice Requisito}} \\
+\endhead
+
+
+TS-01 & R-1-F-Ob \\
+TS-02 & R-2-F-De \\
+TS-03 & R-3-F-Ob \\
+TS-04 & R-4-F-Ob \\
+TS-05 & R-5-F-Ob \\
+TS-06 & R-6-F-Ob \\
+TS-07 & R-7-F-Ob \\
+TS-08 & R-8-F-Ob \\
+TS-09 & R-9-F-Ob \\
+TS-10 & R-10-F-Ob \\
+TS-11 & R-11-F-Ob \\
+TS-12 & R-12-F-Ob \\
+TS-13 & R-13-F-De \\
+TS-14 & R-14-F-Ob \\
+TS-15 & R-15-F-Ob \\
+TS-16 & R-16-F-De \\
+TS-17 & R-17-F-De \\
+TS-18 & R-18-F-De \\
+TS-19 & R-19-F-De \\
+TS-20 & R-20-F-De \\
+TS-21 & R-21-F-De \\
+TS-22 & R-22-F-Ob \\
+TS-23 & R-23-F-Ob \\
+TS-24 & R-24-F-Ob \\
+TS-25 & R-25-F-Ob \\
+TS-26 & R-26-F-Ob \\
+TS-27 & R-27-F-De \\
+TS-28 & R-28-F-De \\
+TS-29 & R-29-F-Ob \\
+TS-30 & R-30-F-Ob \\
+TS-31 & R-31-F-Ob \\
+TS-32 & R-32-F-De \\
+TS-33 & R-33-F-Ob \\
+TS-34 & R-34-F-De \\
+TS-35 & R-35-F-De \\
+TS-36 & R-36-F-De \\
+TS-37 & R-37-F-Ob \\
+TS-38 & R-38-F-Ob \\
+TS-39 & R-39-F-Ob \\
+TS-40 & R-40-F-Ob \\
+TS-41 & R-41-F-Ob \\
+TS-42 & R-42-F-De \\
+TS-43 & R-43-F-Ob \\
+TS-44 & R-44-F-De \\
+TS-45 & R-45-F-Ob \\
+TS-46 & R-46-F-De \\
+TS-47 & R-47-F-Ob \\
+TS-48 & R-48-F-Ob \\
+TS-49 & R-49-F-Ob \\
+TS-50 & R-50-F-Ob \\
+TS-51 & R-51-F-Ob \\
+TS-52 & R-52-F-De \\
+TS-53 & R-53-F-Ob \\
+TS-54 & R-54-F-Ob \\
+TS-55 & R-55-F-Ob \\
+TS-56 & R-56-F-Ob \\
+TS-57 & R-57-F-Op \\
+TS-58 & R-58-F-Op \\
+TS-59 & R-59-F-Op \\
+TS-60 & R-60-F-Op \\
+TS-61 & R-61-F-Op \\
+TS-62 & R-62-F-Op \\
+
+\end{longtable}
 
 \subsection{Test di Accettazione}
-Questi test servono a confermare che il prodotto soddisfi le aspettative del cliente e degli utenti finali. Superare questi test garantisce che il software è pronto per l'uso reale e può essere rilasciato ufficialmente.\begin{center}
+Questi test servono a confermare che il prodotto soddisfi le aspettative del cliente e degli utenti finali. Superare questi test garantisce che il software è pronto per l'uso reale e può essere rilasciato ufficialmente.
+
+\renewcommand{\arraystretch}{1.5}
 \rowcolors{2}{LightGray}{white}
-\renewcommand{\arraystretch}{1.5} 
-\begin{longtable}{|>{\centering\arraybackslash}p{2cm}|>{\raggedright\arraybackslash}p{9cm}|>{\centering\arraybackslash}p{2.5cm}|>{\centering\arraybackslash}p{1.5cm}|}
-\hline
+\setlength{\LTleft}{0pt plus 1fill}\setlength{\LTright}{0pt plus 1fill}\begin{longtable}{>{\centering\arraybackslash}m{1.5cm} >{\raggedright\arraybackslash}p{11cm} >{\centering\arraybackslash}m{1.2cm}}
 \rowcolor{AccentColor}
 \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Descrizione}} & \textcolor{white}{\textbf{Stato}} \\
-\hline
 \endhead
-TA-01 & Test di accettazione 1(placeholder) & NI \\ \hline
+
+
+TA-01 & Verificare che il prodotto permetta la registrazione di un nuovo utente con username, email e password & NI \\
+TA-02 & Verificare che il prodotto permetta l'autenticazione di un utente tramite login con credenziali & NI \\
+TA-03 & Verificare che il prodotto permetta il recupero della password & NI \\
+TA-04 & Verificare che il prodotto permetta la creazione di un workspace & NI \\
+TA-05 & Verificare che il prodotto permetta la visualizzazione della lista dei workspace & NI \\
+TA-06 & Verificare che il prodotto permetta la ricerca di workspace per nome & NI \\
+TA-07 & Verificare che il prodotto permetta l'invito di utenti in un workspace con assegnazione di ruolo & NI \\
+TA-08 & Verificare che il prodotto permetta la visualizzazione e gestione degli inviti ricevuti (accettazione/rifiuto) & NI \\
+TA-09 & Verificare che il prodotto permetta la visualizzazione degli utenti e dei ruoli di un workspace & NI \\
+TA-10 & Verificare che il prodotto permetta la rimozione di un utente da un workspace & NI \\
+TA-11 & Verificare che il prodotto permetta l'aggiunta di repository GitHub a un workspace con validazione del link & NI \\
+TA-12 & Verificare che il prodotto permetta la rimozione di repository da un workspace & NI \\
+TA-13 & Verificare che il prodotto permetta la ricerca, il filtraggio e l'ordinamento delle repository & NI \\
+TA-14 & Verificare che il prodotto permetta la gestione dei tag raccolta (creazione, assegnazione, rimozione, eliminazione) & NI \\
+TA-15 & Verificare che il prodotto permetta la visualizzazione del dettaglio di una repository con selezione del branch & NI \\
+TA-16 & Verificare che il prodotto permetta l'avvio di una scansione su una repository e ne mostri lo stato & NI \\
+TA-17 & Verificare che il prodotto permetta l'annullamento di una scansione in corso & NI \\
+TA-18 & Verificare che il prodotto mostri i risultati dell'analisi della qualità del codice (test coverage, linguaggi, librerie, framework) & NI \\
+TA-19 & Verificare che il prodotto mostri i risultati dell'analisi di sicurezza OWASP (grafici, elenco vulnerabilità, dettagli) & NI \\
+TA-20 & Verificare che il prodotto mostri i risultati dell'analisi documentale (voto complessivo, sezioni mancanti, consigli README) & NI \\
+TA-21 & Verificare che il prodotto mostri suggerimenti sulla qualità del codice & NI \\
+TA-22 & Verificare che il prodotto permetta la visualizzazione di una visione aggregata del workspace con filtro per tag & NI \\
+TA-23 & Verificare che il prodotto distribuisca l'analisi tra agenti specializzati coordinati dall'orchestratore & NI \\
+TA-24 & Verificare che il prodotto aggreghi i risultati e salvi un report finale delle analisi & NI \\
+TA-25 & Verificare che il prodotto permetta l'aggiornamento delle informazioni delle repository & NI \\
 
 \end{longtable}
-\end{center}
+
 
 % ====== CRUSCOTTO DI VALUTAZIONE ======
 \newpage

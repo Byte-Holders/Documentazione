@@ -1,0 +1,67 @@
+\babel@toc {italian}{}\relax 
+\babel@toc {italian}{}\relax 
+\contentsline {figure}{\numberline {1}{\ignorespaces UC1 - Registrazione}}{16}{figure.1}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Inclusioni di UC1: UC1.1, UC1.2, UC1.3}}{17}{figure.2}%
+\contentsline {figure}{\numberline {3}{\ignorespaces UC2 - Conferma Registrazione}}{18}{figure.3}%
+\contentsline {figure}{\numberline {4}{\ignorespaces UC3 - Login}}{20}{figure.4}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Inclusioni di UC3: UC3.1, UC3.2}}{21}{figure.5}%
+\contentsline {figure}{\numberline {6}{\ignorespaces UC4 - Recupero password}}{22}{figure.6}%
+\contentsline {figure}{\numberline {7}{\ignorespaces Inclusioni di UC4: UC4.1, UC4.2, UC4.3}}{23}{figure.7}%
+\contentsline {figure}{\numberline {8}{\ignorespaces UC5 - Invito utente in workspace}}{25}{figure.8}%
+\contentsline {figure}{\numberline {9}{\ignorespaces Inclusioni di UC5: UC5.1, UC5.2, UC5.2.1}}{26}{figure.9}%
+\contentsline {figure}{\numberline {10}{\ignorespaces UC6 - Visualizzazione inviti in workspace}}{27}{figure.10}%
+\contentsline {figure}{\numberline {11}{\ignorespaces Inclusioni di UC6.1: UC6.1.1, UC6.1.2, UC6.1.3}}{29}{figure.11}%
+\contentsline {figure}{\numberline {12}{\ignorespaces UC7 - Gestione degli inviti}}{30}{figure.12}%
+\contentsline {figure}{\numberline {13}{\ignorespaces UC8 - Visualizzazione lista workspace}}{32}{figure.13}%
+\contentsline {figure}{\numberline {14}{\ignorespaces Inclusioni di UC8.1: UC8.1.1, UC8.1.2}}{33}{figure.14}%
+\contentsline {figure}{\numberline {15}{\ignorespaces UC9 - Ricerca workspace}}{34}{figure.15}%
+\contentsline {figure}{\numberline {16}{\ignorespaces UC10 - Creazione workspace}}{36}{figure.16}%
+\contentsline {figure}{\numberline {17}{\ignorespaces Inclusioni di UC10: UC10.1, UC10.2}}{37}{figure.17}%
+\contentsline {figure}{\numberline {18}{\ignorespaces UC11 - Visualizzazione lista dei ruoli di un workspace}}{38}{figure.18}%
+\contentsline {figure}{\numberline {19}{\ignorespaces UC12 - Visualizzazione lista utenti di un workspace}}{39}{figure.19}%
+\contentsline {figure}{\numberline {20}{\ignorespaces UC13 - Rimozione di un utente da un workspace}}{40}{figure.20}%
+\contentsline {figure}{\numberline {21}{\ignorespaces UC14 - Verifica aggiornamento scansione repository}}{41}{figure.21}%
+\contentsline {figure}{\numberline {22}{\ignorespaces UC14.1 - Recupero data ultimo push da GitHub}}{43}{figure.22}%
+\contentsline {figure}{\numberline {23}{\ignorespaces UC15 - Avvia scansione}}{45}{figure.23}%
+\contentsline {figure}{\numberline {24}{\ignorespaces Generalizzazione di UC15: UC15.1, UC15.2, UC15.3}}{47}{figure.24}%
+\contentsline {figure}{\numberline {25}{\ignorespaces UC15.2 - Scansione singola repository}}{48}{figure.25}%
+\contentsline {figure}{\numberline {26}{\ignorespaces UC17 - Esegui analisi}}{50}{figure.26}%
+\contentsline {figure}{\numberline {27}{\ignorespaces UC19 - Visualizza lista tag raccolta}}{56}{figure.27}%
+\contentsline {figure}{\numberline {28}{\ignorespaces UC19.1 - Visualizza lista tag raccolta repository}}{57}{figure.28}%
+\contentsline {figure}{\numberline {29}{\ignorespaces UC19.2 - Visualizza lista tag raccolta workspace}}{58}{figure.29}%
+\contentsline {figure}{\numberline {30}{\ignorespaces UC20 - Crea tag raccolta}}{60}{figure.30}%
+\contentsline {figure}{\numberline {31}{\ignorespaces UC22 - Eliminazione tag raccolta dal workspace}}{62}{figure.31}%
+\contentsline {figure}{\numberline {32}{\ignorespaces UC23 - Assegnazione tag raccolta a repository}}{63}{figure.32}%
+\contentsline {figure}{\numberline {33}{\ignorespaces UC24 - Rimozione tag raccolta da repository}}{64}{figure.33}%
+\contentsline {figure}{\numberline {34}{\ignorespaces UC25 - Visualizza lista repository del workspace}}{66}{figure.34}%
+\contentsline {figure}{\numberline {35}{\ignorespaces UC25.1 - Visualizza singolo elemento lista repository del workspace}}{68}{figure.35}%
+\contentsline {figure}{\numberline {36}{\ignorespaces UC26 - Aggiungi repository}}{73}{figure.36}%
+\contentsline {figure}{\numberline {37}{\ignorespaces UC28 - Rimuovi repository}}{77}{figure.37}%
+\contentsline {figure}{\numberline {38}{\ignorespaces UC29 - Ricerca repository}}{80}{figure.38}%
+\contentsline {figure}{\numberline {39}{\ignorespaces UC31 - Ricerca con filtri}}{82}{figure.39}%
+\contentsline {figure}{\numberline {40}{\ignorespaces UC32 - Ordinamento lista repository}}{84}{figure.40}%
+\contentsline {figure}{\numberline {41}{\ignorespaces UC33 - Visualizza dettaglio repository}}{86}{figure.41}%
+\contentsline {figure}{\numberline {42}{\ignorespaces Inclusioni di UC33: UC33.1, UC33.2, UC33.3, UC33.4, UC33.5, UC33.6}}{88}{figure.42}%
+\contentsline {figure}{\numberline {43}{\ignorespaces UC33.1 - Visualizza analisi dei test}}{89}{figure.43}%
+\contentsline {figure}{\numberline {44}{\ignorespaces Inclusioni di UC33.1: UC33.1.1, UC33.1.2, UC33.1.3, UC33.1.4}}{90}{figure.44}%
+\contentsline {figure}{\numberline {45}{\ignorespaces UC33.1.2 - Visualizza lista test con qualit^^c3^^a0 insufficiente}}{91}{figure.45}%
+\contentsline {figure}{\numberline {46}{\ignorespaces Inclusioni di UC33.2: UC33.2.1, UC33.2.2, UC33.2.3}}{94}{figure.46}%
+\contentsline {figure}{\numberline {47}{\ignorespaces UC33.2.1 - Visualizza lista linguaggi}}{95}{figure.47}%
+\contentsline {figure}{\numberline {48}{\ignorespaces UC33.2.1.1 - Visualizza linguaggio singolo}}{96}{figure.48}%
+\contentsline {figure}{\numberline {49}{\ignorespaces UC33.2.2 - Visualizza lista librerie}}{98}{figure.49}%
+\contentsline {figure}{\numberline {50}{\ignorespaces UC33.2.2.1 - Visualizza libreria singola}}{99}{figure.50}%
+\contentsline {figure}{\numberline {51}{\ignorespaces UC33.2.3 - Visualizza lista framework}}{101}{figure.51}%
+\contentsline {figure}{\numberline {52}{\ignorespaces UC33.2.3.1 - Visualizza framework singolo}}{102}{figure.52}%
+\contentsline {figure}{\numberline {53}{\ignorespaces UC33.3 - Visualizzazione analisi sicurezza semplice}}{104}{figure.53}%
+\contentsline {figure}{\numberline {54}{\ignorespaces UC33.4 - Visualizzazione analisi sicurezza completa}}{105}{figure.54}%
+\contentsline {figure}{\numberline {55}{\ignorespaces UC33.5 - Visualizzazione analisi documentazione di una repository}}{108}{figure.55}%
+\contentsline {figure}{\numberline {56}{\ignorespaces UC33.6 - Visualizzazione qualit^^c3^^a0 del codice di una repository}}{110}{figure.56}%
+\contentsline {figure}{\numberline {57}{\ignorespaces UC34 - Nessuna scansione effettuata}}{111}{figure.57}%
+\contentsline {figure}{\numberline {58}{\ignorespaces UC35 - Selezione branch}}{112}{figure.58}%
+\contentsline {figure}{\numberline {59}{\ignorespaces Inclusioni di UC35.1: UC35.1.1}}{113}{figure.59}%
+\contentsline {figure}{\numberline {60}{\ignorespaces UC36 - Visione aggregata}}{115}{figure.60}%
+\contentsline {figure}{\numberline {61}{\ignorespaces Inclusioni di UC36: UC36.2, UC36.3, UC36.4, UC36.5}}{117}{figure.61}%
+\contentsline {figure}{\numberline {62}{\ignorespaces Inclusioni di UC36.2: UC36.2.1, UC36.2.2, UC36.2.3}}{118}{figure.62}%
+\contentsline {figure}{\numberline {63}{\ignorespaces Inclusioni di UC36.3: UC36.3.1, UC36.3.2}}{120}{figure.63}%
+\contentsline {figure}{\numberline {64}{\ignorespaces Inclusioni di UC36.4: UC36.4.1, UC36.4.2}}{122}{figure.64}%
+\contentsline {figure}{\numberline {65}{\ignorespaces Inclusioni di UC36.5: UC36.5.1, UC36.5.2, UC36.5.3, UC36.5.4}}{124}{figure.65}%

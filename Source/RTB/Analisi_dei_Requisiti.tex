@@ -176,7 +176,7 @@
     \vspace{0.5cm}
     
     \begin{tabularx}{\textwidth}{@{} >{\centering\arraybackslash\bfseries\sffamily}X >{\centering\arraybackslash\sffamily}X @{}}
-        Responsabile & \sffamily Giacomo Nalotto  \\
+        Responsabile & \sffamily Alessandro Morabito  \\
         \arrayrulecolor{MediumGray}\hline \\[-1.5ex]
         
         Verificatori & \sffamily Alessandro Morabito, Giulia Romanato, Lorenzo Grolla, Giacomo Nalotto\\
@@ -218,12 +218,12 @@
 	\multicolumn{1}{c}{\textcolor{white}{\textbf{Verificatore}}} &
 	\multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
 	\endhead
-	1.0.0 & 22/02/2026 &  Tutti i componenti del gruppo &  Tutti i componenti del gruppo& Approvazione del documento \\
-	0.19.0 & 16/02/2026 & Lorenzo Grolla & Nicolò Lattanzio & Correzione errori struttura documento \\
-	0.18.0 & 15/02/2026 & Giacomo Nalotto & Lorenzo Grolla & Aggiunta tabelle riassuntive dei requisiti \\
-	0.17.0 & 14/02/2026 & Lorenzo Grolla & Alessandro Frison & Aggiornamento UC14 e UC33.1.2 \\
+	1.0.0 & 22/02/2026 &  Alessandro Morabito &  Lorenzo Grolla & Versione finale del documento, con tutte le sezioni completate e revisionate. \\
+	0.19.0 & 16/02/2026 & Lorenzo Grolla & Giacomo Nalotto & Correzione errori struttura documento \\
+	0.18.0 & 15/02/2026 & Giacomo Nalotto & Giulia Romanato & Aggiunta tabelle riassuntive dei requisiti \\
+	0.17.0 & 14/02/2026 & Lorenzo Grolla & Alessandro Morabito & Aggiornamento UC14 e UC33.1.2 \\
 	0.16.0 & 14/02/2026 & Giacomo Nalotto & Giulia Romanato & Inizio stesura tabelle dei requisiti \\
-	0.15.0 & 13/02/2026 & Giulia Romanato & Damiano Berti & Inserito UC25.1 Visualizza singolo elemento lista repository del workspace, sistemati grafici, cambiato numero Aggiorna repository (UC33->UC37) e aggiunta Aggiorna repository come extend a UC35, UC33, UC36\\
+	0.15.0 & 13/02/2026 & Giulia Romanato & Giacomo Nalotto & Inserito UC25.1 Visualizza singolo elemento lista repository del workspace, sistemati grafici, cambiato numero Aggiorna repository (UC33->UC37) e aggiunta Aggiorna repository come extend a UC35, UC33, UC36\\
 	0.14.0 & 13/02/2026 & Giacomo Nalotto & Lorenzo Grolla & Sistemazione pagina di titolo \\
 	0.13.0 & 12/02/2026 & Giulia Romanato & Alessandro Morabito & Cambio numero: (UC37->UC15, UC38->UC16, UC39->UC17) e unificato stile delle subsubsection \\
 	0.12.0 & 12/02/2026 & Alessandro Morabito & Giacomo Nalotto & Correzione errori logici in diversi casi d'uso \\
@@ -231,12 +231,12 @@
 	0.10.0 & 08/02/2026 & Giulia Romanato & Lorenzo Grolla & Stesura UC Backend (UC39 Esegui analisi con relativi sottocasi d'uso) \\
 	0.9.0 & 08/02/2026 & Giulia Romanato & Giacomo Nalotto & Stesura UC Analisi (da UC37 a UC38) e inserimento immagini da UC19 a UC27 e UC37 e UC38 \\
 	0.8.0 & 08/02/2026 & Lorenzo Grolla & Alessandro Morabito & Stesura UC Verifica aggiornamento scansione \\
-	0.7.0 & 06/02/2026 & Giacomo Nalotto & Damiano Berti & Stesura UC Visione analisi sicurezza, analisi documentazione e analisi qualità del codice\\
-	0.6.0 & 04/02/2026 & Lorenzo Grolla & Alessandro Frison & Stesura UC Visione Aggregata\\
+	0.7.0 & 06/02/2026 & Giacomo Nalotto & Giulia Romanato & Stesura UC Visione analisi sicurezza, analisi documentazione e analisi qualità del codice\\
+	0.6.0 & 04/02/2026 & Lorenzo Grolla & Alessandro Morabito & Stesura UC Visione Aggregata\\
 	0.5.0 & 25/01/2026 & Lorenzo Grolla & Giacomo Nalotto & Stesura UC Dettagli Repository e Selezione Branch\\
 	0.4.0 & 19/01/2026 & Giulia Romanato & Lorenzo Grolla & Stesura UC Gestione Respository e tag (da UC19 a UC27)\\
 	0.3.0 & 18/01/2026 & Giacomo Nalotto & Alessandro Morabito & Stesura UC Gestione Workspace\\
-	0.2.0 & 14/01/2026 & Lorenzo Grolla & Nicolò Lattanzio & Stesura UC Autenticazione\\
+	0.2.0 & 14/01/2026 & Lorenzo Grolla & Giulia Romanato & Stesura UC Autenticazione\\
 	0.1.0 & 19/12/2025 & Alessandro Morabito & Giacomo Nalotto & Inizio stesura\\
 \end{longtable}
 \renewcommand{\arraystretch}{1.4}
@@ -245,6 +245,10 @@
 \pagestyle{fancy}
 \newpage
 \tableofcontents
+\newpage
+\listoffigures
+\newpage
+\listoftables
 \newpage
 
 % ====== INTRODUZIONE ======
@@ -364,57 +368,61 @@ Nella definizione dei casi d'uso sono stati individuati i seguenti attori princi
 \subsection{Struttura generale di un caso d'uso}
 Si è deciso di descrivere ciascun \refterm{caso d'uso} seguendo la seguente struttura (\underline{sottolineati} i campi sempre popolati):
 
-\begin{tabular}{|p{.25\linewidth} p{.6\linewidth}|}
-	\hline
-	\textbf{\underline{Codice}} 
-	&
-	Codice identificativo utilizzato per far riferimento al \refterm{caso d'uso} corrente\\
-	
-	\textbf{\underline{Titolo}} 
-	&
-	Titolo del \refterm{caso d'uso} corrente\\
-	
-	\textbf{\underline{Attori principali}} 
-	&
-	Attori che agiscono sul sistema dando inizio allo scenario\\
-	
-	\textbf{\underline{Attori secondari}}
-	&
-	Attori di supporto che agiscono in risposta a stimoli del sistema\\
-	
-	\textbf{\underline{Precondizioni}}
-	&
-	Condizioni necessarie per l'esecuzione del \refterm{caso d'uso} corrente\\
-	
-	\textbf{\underline{Postcondizioni}} 
-	&
-	Condizioni in cui viene lasciato il sistema al termine dello \refterm{scenario principale}\\
-	
-	\textbf{\underline{Scenario principale}}
-	&
-	Descrizione degli eventi che avvengono all'interno dello \refterm{scenario principale}\\
-	
-	\textbf{\underline{Inclusioni}} 
-	&
-	Lista dei riferimenti a \refterm{casi d'uso} terzi \refterm{inclusi} dal \refterm{caso d'uso} corrente e al quale si fa riferimento nella sezione \textit{Scenario principale}\\
-	
-	\textbf{\underline{Scenari alternativi}} 
-	&
-	Descrizione delle situazione che portano a \refterm{scenari alternativi}\\
-	
-	\textbf{\underline{Eredita da}} 
-	&
-	Codice del \refterm{caso d'uso} terzo da cui eredita il \refterm{caso d'uso} corrente (non ammettiamo ereditarietà multipla)\\
-	
-	\hline
-\end{tabular}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|p{.25\linewidth} p{.6\linewidth}|}
+		\hline
+		\textbf{\underline{Codice}}
+		&
+		Codice identificativo utilizzato per far riferimento al \refterm{caso d'uso} corrente\\
+
+		\textbf{\underline{Titolo}}
+		&
+		Titolo del \refterm{caso d'uso} corrente\\
+
+		\textbf{\underline{Attori principali}}
+		&
+		Attori che agiscono sul sistema dando inizio allo scenario\\
+
+		\textbf{\underline{Attori secondari}}
+		&
+		Attori di supporto che agiscono in risposta a stimoli del sistema\\
+
+		\textbf{\underline{Precondizioni}}
+		&
+		Condizioni necessarie per l'esecuzione del \refterm{caso d'uso} corrente\\
+
+		\textbf{\underline{Postcondizioni}}
+		&
+		Condizioni in cui viene lasciato il sistema al termine dello \refterm{scenario principale}\\
+
+		\textbf{\underline{Scenario principale}}
+		&
+		Descrizione degli eventi che avvengono all'interno dello \refterm{scenario principale}\\
+
+		\textbf{\underline{Inclusioni}}
+		&
+		Lista dei riferimenti a \refterm{casi d'uso} terzi \refterm{inclusi} dal \refterm{caso d'uso} corrente e al quale si fa riferimento nella sezione \textit{Scenario principale}\\
+
+		\textbf{\underline{Scenari alternativi}}
+		&
+		Descrizione delle situazione che portano a \refterm{scenari alternativi}\\
+
+		\textbf{\underline{Eredita da}}
+		&
+		Codice del \refterm{caso d'uso} terzo da cui eredita il \refterm{caso d'uso} corrente (non ammettiamo ereditarietà multipla)\\
+
+		\hline
+	\end{tabular}
+	\caption{Struttura generale di un caso d'uso}
+\end{table}
 
 \newpage
 \subsection{Lista dei \refterm{casi d'uso}}
 
 % UC1: REGISTRAZIONE UTENTE
 \subsubsection{UC1 - Registrazione}\label{UC1}
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{../Assets/AdR/UC1ext.png}
 	\caption{UC1 - Registrazione}
@@ -454,7 +462,7 @@ Il caso d'Uso UC1 include ulteriori casi d'uso come rappresentato nella seguente
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC1.png}
-	\caption{Inclusioni di UC1: UC1.1,UC1.2,UC1.3}
+	\caption{Inclusioni di UC1: UC1.1, UC1.2, UC1.3}
 	\label{fig:UC1}
 \end{figure}
 
@@ -617,7 +625,7 @@ Il caso d'Uso UC3 include ulteriori casi d'uso come rappresentato nella seguente
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC3.png}
-	\caption{Inclusioni di UC3: UC3.1,UC3.2}
+	\caption{Inclusioni di UC3: UC3.1, UC3.2}
 	\label{fig:UC3}
 \end{figure}
 
@@ -668,7 +676,7 @@ Il caso d'Uso UC3 include ulteriori casi d'uso come rappresentato nella seguente
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC4ext.png}
-	\caption{UC4}
+	\caption{UC4 - Recupero password}
 	\label{fig:UC4ext}
 \end{figure}
 
@@ -705,10 +713,10 @@ Il caso d'Uso UC3 include ulteriori casi d'uso come rappresentato nella seguente
 
 % --- Sottocasi di UC4 ---
 Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente immagine:
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.6\textwidth]{../Assets/AdR/UC4.png}
-	\caption{Inclusioni di UC4: UC4.1,UC4.2,UC4.3}
+	\caption{Inclusioni di UC4: UC4.1, UC4.2, UC4.3}
 	\label{fig:UC4}
 \end{figure}
 
@@ -769,7 +777,7 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 
 \subsubsection{UC5 - Invito utente in workspace}\label{UC5}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{../Assets/AdR/UC5ext.png}
 	\caption{UC5 - Invito utente in workspace}
@@ -797,7 +805,7 @@ Il caso d'Uso UC4 include ulteriori casi d'uso come rappresentato nella seguente
 \end{itemize}
 
 Il caso d'Uso UC5 include ulteriori casi d'uso come rappresentato nella seguente immagine:
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{../Assets/AdR/UC5.png}
 	\caption{Inclusioni di UC5: UC5.1, UC5.2, UC5.2.1}
@@ -865,10 +873,10 @@ Il caso d'Uso UC5 include ulteriori casi d'uso come rappresentato nella seguente
 
 \subsubsection{UC6 - Visualizzazione inviti in workspace}\label{UC6}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{../Assets/AdR/UC6.png}
-	\caption{UC6 e UC6.1}
+	\caption{UC6 - Visualizzazione inviti in workspace}
 	\label{fig:UC6}
 \end{figure}
 
@@ -912,10 +920,10 @@ Il caso d'Uso UC5 include ulteriori casi d'uso come rappresentato nella seguente
 \end{itemize}
 
 Il caso d'Uso UC6.1 include ulteriori casi d'uso come rappresentato nella seguente immagine:
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{../Assets/AdR/UC6-1.png}
-	\caption{Figura 10: Inclusioni di UC6.1: UC6.1.1, UC6.1.2, UC6.1.3}
+	\caption{Inclusioni di UC6.1: UC6.1.1, UC6.1.2, UC6.1.3}
 	\label{fig:UC6-1}
 \end{figure}
 
@@ -977,7 +985,7 @@ Il caso d'Uso UC6.1 include ulteriori casi d'uso come rappresentato nella seguen
 
 \subsubsection{UC7 - Gestione degli inviti}\label{UC7}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{../Assets/AdR/UC7.png}
 	\caption{UC7 - Gestione degli inviti}
@@ -1040,10 +1048,10 @@ Il caso d'Uso UC6.1 include ulteriori casi d'uso come rappresentato nella seguen
 
 \subsubsection{UC8 - Visualizzazione lista workspace}\label{UC8}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{../Assets/AdR/UC8.png}
-	\caption{UC8 e UC8.1}
+	\caption{UC8 - Visualizzazione lista workspace}
 	\label{fig:UC8}
 \end{figure}
 
@@ -1066,7 +1074,7 @@ Il caso d'Uso UC6.1 include ulteriori casi d'uso come rappresentato nella seguen
 \end{itemize}
 
 Il caso d'Uso UC8.1 include ulteriori casi d'uso come rappresentato nella seguente immagine:
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC8-1.png}
 	\caption{Inclusioni di UC8.1: UC8.1.1, UC8.1.2}
@@ -1128,10 +1136,10 @@ Il caso d'Uso UC8.1 include ulteriori casi d'uso come rappresentato nella seguen
 
 \subsubsection{UC9 - Ricerca workspace}\label{UC9}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{../Assets/AdR/UC9.png}
-	\caption{UC9 e UC9.1}
+	\caption{UC9 - Ricerca workspace}
 	\label{fig:UC9}
 \end{figure}
 
@@ -1176,7 +1184,7 @@ Il caso d'Uso UC8.1 include ulteriori casi d'uso come rappresentato nella seguen
 
 \subsubsection{UC10 - Creazione workspace}\label{UC10}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{../Assets/AdR/UC10ext.png}
 	\caption{UC10 - Creazione workspace}
@@ -1205,7 +1213,7 @@ Il caso d'Uso UC8.1 include ulteriori casi d'uso come rappresentato nella seguen
 \end{itemize}
 
 Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguente immagine:
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{../Assets/AdR/UC10.png}
 	\caption{Inclusioni di UC10: UC10.1, UC10.2}
@@ -1275,10 +1283,10 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 
 \subsubsection{UC11 - Visualizzazione lista dei ruoli di un workspace}\label{UC11}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{../Assets/AdR/UC11.png}
-	\caption{UC11 e UC11.1}
+	\caption{UC11 - Visualizzazione lista dei ruoli di un workspace}
 	\label{fig:UC11}
 \end{figure}
 
@@ -1314,10 +1322,10 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 
 \subsubsection{UC12 - Visualizzazione lista utenti di un workspace}\label{UC12}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{../Assets/AdR/UC12.png}
-	\caption{UC12 e UC12.1}
+	\caption{UC12 - Visualizzazione lista utenti di un workspace}
 	\label{fig:UC12}
 \end{figure}
 
@@ -1349,7 +1357,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 
 \subsubsection{UC13 - Rimozione di un utente da un workspace}\label{UC13}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC13.png}
 	\caption{UC13 - Rimozione di un utente da un workspace}
@@ -1616,7 +1624,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 	\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\textwidth]{../Assets/AdR/UC15ge.png}
-	\caption{UC15 - Avvia scansione} 
+	\caption{Generalizzazione di UC15: UC15.1, UC15.2, UC15.3}
 	\label{fig:Generalizzazzione UC15: }
 	\end{figure}
     
@@ -2365,7 +2373,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC24.png}
-	\caption{UC24 -Rimozione tag raccolta da repository}
+	\caption{UC24 - Rimozione tag raccolta da repository}
 	\label{fig:UC24}
 \end{figure}
 
@@ -3028,7 +3036,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{../Assets/AdR/UC29.png}
-	\caption{UC 29 - Ricerca repository}
+	\caption{UC29 - Ricerca repository}
 	\label{fig:UC29}
 \end{figure}
 
@@ -3087,7 +3095,7 @@ Il caso d'Uso UC10 include ulteriori casi d'uso come rappresentato nella seguent
 \begin{figure}[H]
  	\centering
  	\includegraphics[width=0.8\textwidth]{../Assets/AdR/UC31.png}
- 	\caption{UC 31 - Ricerca con filtri}
+	\caption{UC31 - Ricerca con filtri}
  	\label{fig:UC31}
 \end{figure}
 
@@ -4268,7 +4276,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\textwidth]{../Assets/AdR/UC33-6.png}
-	\caption{UC33.6 e UC33.6.1}
+	\caption{UC33.6 - Visualizzazione qualità del codice di una repository}
 	\label{fig:UC33-6}
 \end{figure}
 
@@ -4312,7 +4320,7 @@ Il caso d'uso UC33.2.3 include ulteriori casi d'uso come rappresentato nella seg
 
 \subsubsection{UC34 - Nessuna scansione effettuata}\label{UC34}
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{../Assets/AdR/UC34.png}
 	\caption{UC34 - Nessuna scansione effettuata}
@@ -5072,6 +5080,7 @@ tecnologie
 \renewcommand{\arraystretch}{1.0}
 \rowcolors{2}{lightgray!20}{white}
 \begin{longtable}[c]{ >{\centering\arraybackslash}m{2.5cm} >{\centering\arraybackslash}m{8.3cm} >{\centering\arraybackslash}m{3.5cm} }
+    \caption{Tabella dei Requisiti Funzionali} \\
     \rowcolor{AccentDark}
     \color{white}\textbf{Codice} & \color{white}\textbf{Descrizione} & \color{white}\textbf{Fonti} \\
     \endhead
@@ -5145,6 +5154,7 @@ tecnologie
 \renewcommand{\arraystretch}{1.0}
 \rowcolors{2}{lightgray!20}{white}
 \begin{longtable}[c]{ >{\centering\arraybackslash}m{2.5cm} >{\centering\arraybackslash}m{8.3cm} >{\centering\arraybackslash}m{3.5cm} }
+    \caption{Tabella dei Requisiti di Qualità} \\
     \rowcolor{AccentDark}
     \color{white}\textbf{Codice} & \color{white}\textbf{Descrizione} & \color{white}\textbf{Fonti} \\
     \endhead
@@ -5161,6 +5171,7 @@ tecnologie
 \renewcommand{\arraystretch}{1.0}
 \rowcolors{2}{lightgray!20}{white}
 \begin{longtable}[c]{ >{\centering\arraybackslash}m{2.5cm} >{\centering\arraybackslash}m{8.3cm} >{\centering\arraybackslash}m{3.5cm} }
+    \caption{Tabella dei Requisiti di Vincolo} \\
     \rowcolor{AccentDark}
     \color{white}\textbf{Codice} & \color{white}\textbf{Descrizione} & \color{white}\textbf{Fonti} \\
     \endhead
@@ -5182,6 +5193,7 @@ tecnologie
 \rowcolors{2}{lightgray!20}{white}
 
 \begin{longtable}[c]{ >{\centering\arraybackslash}m{2.5cm} >{\centering\arraybackslash}m{10cm} }
+    \caption{Tracciamento Casi d'Uso e Requisiti} \\
     \rowcolor{AccentDark}
     \color{white}\textbf{Caso d'Uso} & \color{white}\textbf{Requisiti} \\
     \endhead

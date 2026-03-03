@@ -109,9 +109,9 @@
     \begin{tabularx}{0.9\textwidth}{@{}>{\bfseries\sffamily}l X@{}}
     Autore & \sffamily Giulia Romanato\\
     \arrayrulecolor{MediumGray}\hline \\[-1.5ex]
-    Verificatore & \sffamily \\
+    Verificatore & \sffamily Nicolò Lattanzio \\
     \arrayrulecolor{MediumGray}\hline \\[-1.5ex] 
-    Approvazione & \sffamily \\ 
+    Approvazione & \sffamily Alessandro Morabito \\ 
     \arrayrulecolor{MediumGray}\hline 
 \end{tabularx}
     
@@ -134,8 +134,8 @@
           \textcolor{white}{\textbf{Data}} & 
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} & 
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
-        1.0.0 & 25/02/2026 &  & Approvazione del verbale \\
-        0.1.0 & 25/02/2026 &  & Verifica del verbale \\
+        1.0.0 & 03/03/2026 & Alessandro Morabito & Approvazione del verbale \\
+        0.1.0 & 03/03/2026 & Nicolò Lattanzio & Verifica del verbale \\
         0.0.1 & 25/02/2026 & Giulia Romanato & Stesura del verbale \\ 
         
         & & & \\
@@ -194,7 +194,6 @@ Durante la retrospettiva del terzo Sprint, svoltosi dal 30/12/2025 al 12/01/2026
     \item Ulteriori difficoltà legate all'approfondimento e alla comprensione delle tecnologie adottate.
     \item Ritardo nell'avvio della stesura ufficiale dell'Analisi dei Requisiti a causa di dubbi relativi agli attori e della mancanza di riscontro da parte dell'azienda e del professore.
 \end{itemize}
-
 Al termine della retrospettiva è stato individuato come responsabile del successivo Sprint (dal 13/01/2026 al 03/02/2026) Alessandro Frison. Sono stati inoltre definiti i seguenti obiettivi dello Sprint:
 \begin{itemize}
     \item Sviluppo del PoC.
@@ -218,7 +217,7 @@ Infine, si è deciso di organizzare il lavoro suddividendo il gruppo in due sott
 \end{itemize}
 
 \subsubsection{Analisi dei Requisiti}
-Sottogruppo formato da: Giulia Romanato, Lorenzo Grolla, Giacomo Nalotto\\
+Sottogruppo formato da: Giulia Romanato, Lorenzo Grolla, Giacomo Nalotto.\\
 Per la stesura del documento di Analisi dei Requisiti si è deciso di suddividere i casi d'uso tra i membri del sottogruppo e di definire regole comuni di redazione, al fine di ottenere un documento coerente e uniforme.\\
 Le regole individuate sono le seguenti:
 \begin{itemize}
@@ -240,7 +239,7 @@ Le regole individuate sono le seguenti:
             \item estensioni: scenari che portano a postcondizioni differenti
             \item stato del sistema differente da quallo atteso, esempio in caso si errore invece di visualizzare una certa informazione vine visualizzato un messaggio di errore
         \end{itemize}
-        \item Inclusioni: inserimento solo del riferimento al caso d'uso incluso, usando label{UCx} e hyperref[UCx]{Titolo link}
+        \item Inclusioni: inserimento solo del riferimento al caso d'uso incluso, usando label\{UCx\} e hyperref[UCx]\{Titolo link\}
         \item Estensioni: inserimento solo del riferimento al caso d'uso di estensione
         \item Eredita da/UC che ereditano: in caso di generalizzazione 
         \begin{itemize}
@@ -261,7 +260,7 @@ Le regole individuate sono le seguenti:
 
 
 \subsubsection{Poc} 
-Sottogruppo formato da: Alessandro Frison, Damiano Berti, Nicolò Lattanzio, Alessandro Morabito
+Sottogruppo formato da: Alessandro Frison, Damiano Berti, Nicolò Lattanzio, Alessandro Morabito.
 Si è deciso di strutturare il PoC come una catena composta dai seguenti passaggi:
 \begin{enumerate}
     \item Analisi statica del codice per la sicurezza tramite Semgrep (con riferimento a OWASP).
@@ -274,7 +273,7 @@ Si è deciso di strutturare il PoC come una catena composta dai seguenti passagg
     \item Il frontend renderizza il report in formato Markdown (da migliorare).
     \item Dal frontend è possibile aggiungere una repository al database; questa viene automaticamente clonata.
 \end{enumerate} 
-Nel PoC è stato deciso di non implentare filtri per la selezione delle scansioni da eseguire, non effettuare un'anlisi delle best pactice e non implementata l'analisi delle librerie.
+Nel PoC è stato deciso di non implementare filtri per la selezione delle scansioni da eseguire, non effettuare un'analisi delle best practice e non implementare l'analisi delle librerie.
 
 % ====== SEZIONE DECISIONI E AZIONI ======
 \section{Decisioni e azioni} \label{DecisioniAzioni}
@@ -309,14 +308,14 @@ Nel PoC è stato deciso di non implentare filtri per la selezione delle scansion
         AZ-RTB-043 & PoC: creazione agenti aws & Alessandro Morabito, Nicolò Lattanzio, Damiano Berti, Alessandro Frison\\
         AZ-RTB-044 & PoC: feedback scansione & Alessandro Morabito\\
         AZ-RTB-045 & PoC: container MongoDB & Alessandro Morabito\\
-        AZ-RTB-046 & PoC: agente sulla documantazione & Damiano Berti\\
+        AZ-RTB-046 & PoC: agente sulla documentazione & Damiano Berti\\
         AZ-RTB-047 & PoC: selezione repository & Nicolò Lattanzio\\
         AZ-RTB-048 & PoC: setup Sempgrep & Nicolò Lattanzio\\
         AZ-RTB-049 & PoC: test coverage & Alessandro Frison\\
         AZ-RTB-050 & PoC: storico scansioni & Nicolò Lattanzio\\
         AZ-RTB-051 & PoC: lancio scansione & Nicolò Lattanzio, Alessandro Morabito\\
         AZ-RTB-052 & PoC: elenco delle dipendenze & Nicolò Lattanzio\\
-        AZ-RTB-053 & PoC: remediation & Nicolò Lattanzio\\
+        AZ-RTB-053 & PoC: remediation & Nicolò Lattanzio
     \end{longtable}
 \end{center}
 

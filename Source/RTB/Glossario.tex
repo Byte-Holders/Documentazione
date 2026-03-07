@@ -211,7 +211,7 @@ A ciascun record è inoltre associato un punteggio \refterm{CVSS}.\\
 Dopo che un record viene aggiunto alle CVE, diventa rapidamente disponibile anche nel \refterm{NVD}, che provvederà ad arricchirlo.
 
 \term{CVSS}
-\textit{Common Vulnerability Scoring System}. Una metrica che associa un valore numerico compreso tra 0 (bassa gravità) e 10 (alta gravità) a una determinata vulnerabilità. A un valore numerico è associata anche una stringa (\textit{CVSS vector string}) che specifica i valori utilizzati per ottenerlo. Attualmente in versione \texttt{4.0}\footnote{\url{https://www.first.org/cvss/v4.0/specification-document}}.
+\textit{Common Vulnerability Scoring System}. Una metrica che associa un valore numerico compreso tra 0 (bassa gravità) e 10 (alta gravità) a una determinata vulnerabilità. A un valore numerico è associata anche una stringa (\textit{CVSS vector string}) che specifica i valori utilizzati per ottenerlo. Attualmente in versione \texttt{4.0}\footnote{Specifica CVSSv4.0: \url{https://www.first.org/cvss/v4.0/specification-document}}.
 
 \term{CWE}
 \textit{Common Weaknesses Enumeration}. Una lista di debolezze software e hardware. A ciascuna \refterm{Debolezza} in CWE è associato:
@@ -284,7 +284,7 @@ File contenente le istruzioni per la costruzione di un'\refterm{Immagine (Docker
 		\item dal momento che \texttt{RUN} genera un nuovo layer, effettuare un'operazione che influenza(ad esempio) solamente la shell corrente non influenzerà i comandi successivi. Ad esempio, se entro attivo un \texttt{virtualenv} di python con un comando \texttt{RUN}, e successivamente eseguo \texttt{RUN pip install...}, il pacchetto non verrà installato all'interno dell'ambiente virtuale.
 	\end{enumerate}
 	\item \texttt{ENV <name> <value>}: assegna \texttt{<name>=<value>} a livello di \refterm{Ambiente}
-	\item \texttt{EXPOSE <port>}: indica la porta che vorresti esporre. In realtà è solo documentativa: il comando in sé non espone la porta, ma lo comunica a chi eseguirà poi il container. Starà a quella persona poi pubblicare la porta ad esempio utilizzando la flag \texttt{-p} in \texttt{docker run -p<host>:<container>/<protocol>}. In tal caso, il comando specifica che avviene port-forwarding dalla porta \texttt{<host>} dell'host a quella \texttt{<container>} del container, utilizzando protocollo \texttt{<protocol>} che può essere \texttt{udp} o \texttt{tcp}.
+	\item \texttt{EXPOSE <port>}: indica la porta che vorresti esporre. Valore solo documentativo: il comando in sé non espone la porta, ma lo comunica a chi eseguirà poi il container. Starà a quella persona poi pubblicare la porta ad esempio utilizzando la flag \texttt{-p} in \texttt{docker run -p<host>:<container>/<protocol>}. In tal caso, il comando specifica che avviene port-forwarding dalla porta \texttt{<host>} dell'host a quella \texttt{<container>} del container, utilizzando protocollo \texttt{<protocol>} che può essere \texttt{udp} o \texttt{tcp}.
 	\item \texttt{USER <user/uuid>}: specifica l'utente per le istruzioni successive
 	\item \texttt{CMD ["<command>", "<arg1>"]}: specifica il comando che il container eseguirà ogni volta che viene fatto correre. Ce ne può essere solamente uno per container e deve essere l'ultima istruzione presente nel file.
 \end{itemize}
@@ -323,55 +323,55 @@ CodeGuardian utilizza \refterm{NestJS} come framework per il backend.
 Git è un sistema di controllo versione distribuito che consente di tracciare le modifiche apportate ai file e coordinare il lavoro tra più sviluppatori.\\
 I principali comandi di git sono:
 \begin{itemize}
-    \item \textbf{git clone $<$url$>$}: Clona un repository remoto in locale.
-    \item \textbf{git add $<$file$>$}: Aggiunge file specifici all'area di staging.
-    \item \textbf{git add .}: Aggiunge tutti i file modificati all'area di staging.
-    \item \textbf{git rm $<$file$>$}: Rimuove file specifici dal repository e dall'area di staging
-    \item \textbf{git commit -m "messaggio"}: Crea un commit con i file nell'area di staging e un messaggio descrittivo.
-    \item \textbf{git push origin $<$branch$>$}: Invia i commit locali al repository remoto sul branch specificato.
-    \item \textbf{git pull origin $<$branch$>$}: Recupera e integra le modifiche dal repository remoto al branch locale.
-    \item \textbf{git status}: Mostra lo stato dei file nel repository, inclusi quelli modificati, aggiunti o non tracciati.
-    \item \textbf{git diff}: Mostra le differenze tra i file modificati e l'ultima versione committata.
-    \item \textbf{git branch}: Elenca, crea o elimina branch nel repository.
-    \item \textbf{git checkout $<$branch$>$}: Passa a un branch specifico.
-    \item \textbf{git switch $<$branch$>$}: Alternativa a git checkout per cambiare branch.
-    \item \textbf{git fetch}: Recupera gli aggiornamenti dal repository remoto senza integrarli automaticamente.
-    \item \textbf{git merge $<$branch$>$}: Unisce un branch specifico nel branch corrente.
-    \item \textbf{git rebase $<$branch$>$}: Integra le modifiche di un branch specifico riscrivendo la cronologia dei commit.
+    \item \texttt{git clone <url>}: clona un repository remoto in locale.
+    \item \texttt{git add <file>}: aggiunge file specifici all'area di staging.
+    \item \texttt{git add .}: aggiunge tutti i file modificati all'area di staging.
+    \item \texttt{git rm <file>}: rimuove file specifici dal repository e dall'area di staging
+    \item \texttt{git commit -m "messaggio"}: crea un commit con i file nell'area di staging e un messaggio descrittivo.
+    \item \texttt{git push origin <branch>}: invia i commit locali al repository remoto sul branch specificato.
+    \item \texttt{git pull origin <branch>}: recupera e integra le modifiche dal repository remoto al branch locale.
+    \item \texttt{git status}: mostra lo stato dei file nel repository, inclusi quelli modificati, aggiunti o non tracciati.
+    \item \texttt{git diff}: mostra le differenze tra i file modificati e l'ultima versione committata.
+    \item \texttt{git branch}: elenca, crea o elimina branch nel repository.
+    \item \texttt{git checkout <branch>}: passa a un branch specifico.
+    \item \texttt{git switch <branch>}: alternativa a git checkout per cambiare branch.
+    \item \texttt{git fetch}: recupera gli aggiornamenti dal repository remoto senza integrarli automaticamente.
+    \item \texttt{git merge <branch>}: unisce un branch specifico nel branch corrente.
+    \item \texttt{git rebase <branch>}: integra le modifiche di un branch specifico riscrivendo la cronologia dei commit.
 \end{itemize}
 
 \term{GitHub}
-GitHub è una piattaforma di hosting per lo sviluppo software e il versionamento basato su Git che permette di:
+GitHub è una piattaforma di hosting per lo sviluppo software e il versionamento basato su \refterm{Git} che permette di:
 \begin{itemize}
     \item collaborare allo sviluppo di software in modo distribuito,
     \item gestire issue, pull request, documentazione
-    \item automatizzare processi tramite GitHub Actions
+    \item automatizzare processi tramite \refterm{GitHub Actions}
 \end{itemize}
 È ampiamente utilizzata per progetti open-source e collaborativi.
 
 \term{Gitflow}
-Gitflow è un workflow per Git basato su branch multipli con ruoli specifici. Permette una chiara separazione tra sviluppo, rilascio e manutenzione.\\
+Gitflow è un workflow per \refterm{Git} basato su branch multipli con ruoli specifici. Permette una chiara separazione tra sviluppo, rilascio e manutenzione.\\
 La struttura principale include:
 \begin{itemize}
-    \item \textbf{master}:contiene solo versioni pronte al rilascio
-    \item \textbf{develop}: rappresenta lo stato corrente dello sviluppo
-    \item \textbf{feature branches}: uno per ogni nuova funzionalità
-    \item \textbf{release branches}: preparazione della versione
-    \item \textbf{hotfix branches}: correzioni urgenti sul master
+    \item \texttt{master}: contiene solo versioni pronte al rilascio
+    \item \texttt{develop}: rappresenta lo stato corrente dello sviluppo
+    \item \texttt{feature branches}: uno per ogni nuova funzionalità
+    \item \texttt{release branches}: preparazione della versione
+    \item \texttt{hotfix branches}: correzioni urgenti sul master
 \end{itemize}
 I principali comandi di gitflow sono:
 \begin{itemize}
-  \item \textbf{git flow init}: Inizializza un repository Gitflow.
-  \item \textbf{git flow feature start $<$nome-feature$>$}: Crea e passa a un nuovo branch di funzionalità.
-  \item \textbf{git flow feature finish $<$nome-feature$>$}: Unisce il branch di funzionalità nel branch develop e lo elimina.
-  \item \textbf{git flow feature publish $<$nome-feature$>$}: Pubblica il branch di funzionalità sul repository remoto.
-  \item \textbf{git flow feature pull origin $<$nome-feature$>$}: Recupera e integra le modifiche dal branch di funzionalità remoto.
-  \item \textbf{git flow feature track $<$nome-feature$>$}: Crea un branch di funzionalità locale che traccia il branch remoto.
-  \item \textbf{git flow release start release $[$BASE$]$ $<$versione$>$}: Crea un nuovo branch di release a partire dal branch specificato (di default develop).
-  \item \textbf{git flow feature release publish $<$versione$>$}: Pubblica il branch di release sul repository remoto.
-  \item \textbf{git flow release finish $<$versione$>$}: Unisce il branch di release nei branch master e develop, crea un tag per la versione e elimina il branch di release.
-  \item \textbf{git flow hotfix start $<$nome-hotfix$>$ $[$BASE$]$}: Crea un nuovo branch di hotfix a partire dal branch specificato (di default master).
-  \item \textbf{git flow hotfix finish $<$nome-hotfix$>$}: Unisce il branch di hotfix nei branch master e develop, crea un tag per la versione e elimina il branch di hotfix.
+  \item \texttt{git flow init}: inizializza un repository esistente in modo che possa usare Gitflow
+  \item \texttt{git flow feature start <nome-feature>}: crea e passa a un nuovo branch di funzionalità.
+  \item \texttt{git flow feature finish <nome-feature>}: unisce il branch di funzionalità nel branch develop e lo elimina.
+  \item \texttt{git flow feature publish <nome-feature>}: pubblica il branch di funzionalità sul repository remoto.
+  \item \texttt{git flow feature pull origin <nome-feature>}: recupera e integra le modifiche dal branch di funzionalità remoto.
+  \item \texttt{git flow feature track <nome-feature>}: crea un branch di funzionalità locale che traccia il branch remoto.
+  \item \texttt{git flow release start release [BASE] <versione>}: crea un nuovo branch di release a partire dal branch specificato (di default develop).
+  \item \texttt{git flow feature release publish <versione>}: pubblica il branch di release sul repository remoto.
+  \item \texttt{git flow release finish <versione>}: unisce il branch di release nei branch master e develop, crea un tag per la versione e elimina il branch di release.
+  \item \texttt{git flow hotfix start <nome-hotfix> [BASE]}: crea un nuovo branch di hotfix a partire dal branch specificato (di default master).
+  \item \texttt{git flow hotfix finish <nome-hotfix>}: unisce il branch di hotfix nei branch master e develop, crea un tag per la versione e elimina il branch di hotfix.
 \end{itemize}
 
 \term{GitHub Actions}
@@ -413,13 +413,13 @@ Linguaggio ad alto livello, generalmente compilato \textit{just-in-time}, dinami
 
 \GlossarioLettera{L}
 \term{Langchain}
-\refterm{Framework} open source per lo sviluppo di applicazioni basate su \refterm{LLM}. Consente l'utilizzo di workflow semplici.
+\refterm{Framework} open source per lo sviluppo di applicazioni basate su \refterm{LLM}. Consente l'esecuzioni di workflow semplici.
 
 \term{Langgraph}
-\refterm{Framework} open source per lo sviluppo di applicazione basate su \refterm{LLM}. Di basso livello, è concentrato principalmente sull'orchestrazione di agenti. Il workflow è compilato a partire da un grafo, personalizzabile.
+\refterm{Framework} open source per lo sviluppo di applicazione basate su \refterm{LLM}. Di basso livello, è concentrato principalmente sull'orchestrazione di agenti. I workflow sono compilati a partire da un grafo, personalizzabile.
 
 \term{Large Language Model}
-Tipologia di modello di \textit{machine learning} addestrato per \textit{Natural Language Processing}, in particolare la generazione di testo. Alla base dei chatbot.
+Tipologia di modello di \textit{machine learning} addestrato per \textit{Natural Language Processing}, particolarmente per la generazione di testo. Alla base dei chatbot.
 
 \term{LaTeX}
 LaTeX Linguaggio di marcatura (mark-down) compilato per la realizzazione di documenti.
@@ -438,9 +438,7 @@ Permette di:
 \end{itemize}
 
 \term{MongoDB}
-Un \refterm{Database non relazionale} orientato ai documenti BSON (estensione del JSON, salva dati in binario). Permette anche la creazione di \refterm{Database vettoriale}.
-
-%\term{MongoDB Atlas}
+Un \refterm{Database non relazionale} orientato ai documenti BSON (estensione del \refterm{JSON}, salva dati in binario). Permette anche la creazione di \refterm{Database vettoriale}.
 
 \GlossarioLettera{N}
 \term{NestJS}
@@ -456,7 +454,7 @@ Altro nome per \refterm{Database non relazionale}.
 Documento che fornisce le linee guida per la documentazione, comunicazione, gestione delle versioni e le responsabilità all'interno del gruppo Byte Holders.
 
 \term{npm}
-\textit{node package manager}. Gestore di pacchetti per \refterm{NodeJS}, permette di installare e gestire le dipendenze da riga di comando. Informazioni riguardo il \textit{range} di versioni accettabile sono specificate all'interno del file \texttt{package.json}. In fase di installazione delle dipendenze, queste ottengono una versione "fissa" (quella installata), e vengono aggiunte all'interno del file \texttt{package-lock.json}. Questo rende le installazioni ripetibili pur se su sistemi diversi.
+\textit{node package manager}. Gestore di pacchetti per \refterm{NodeJS}, permette di installare e gestire le dipendenze da riga di comando. Informazioni riguardo il \textit{range} di versioni accettabile sono specificate all'interno del file \texttt{package.json}. In fase di installazione delle dipendenze, queste ottengono una versione "fissa" (quella effettivamente utilizzata), e vengono aggiunte all'interno del file \texttt{package-lock.json}. Questo rende le installazioni ripetibili pur se su sistemi diversi.
 
 \term{NVD}
 \textit{National Vulnerability Database}. Un database americano che raccoglie e aggiunge informazioni (\refterm{CVSS}, \refterm{CWE}) alle \refterm{CVE} tramite i riferimenti e altri dati pubblici. I dati possono variare se vengono pubblicate informazioni rilevanti.
@@ -469,7 +467,7 @@ L'orchestratore è il componente centrale di un sistema ad agenti che coordina e
 In un sistema ad agenti con orchestratore autocratico, l'orchestratore prende decisioni centralizzate e dirige le azioni degli agenti senza consultare o coinvolgere gli agenti stessi nel processo decisionale. In questo sistema gli agenti svolgono compiti molto specifici.\\
 
 \term{OWASP Top 10}
-Documento che contiene le 10 categorie di maggior rischio per le applicazioni web. È redatto da OWASP, un’organizzazione non profit, aperta e non affiliata ad aziende tecnologiche. La OWASP Top 10 viene utilizzata dalle organizzazioni come standard per la sicurezza di applicazioni ed è basata sull'analisi di dati e sondaggi comunitari. A ciascuna categoria è associato:
+Documento che contiene le 10 categorie di maggior rischio per le applicazioni web. È redatto da OWASP, un’organizzazione no profit, aperta e non affiliata ad aziende tecnologiche. La OWASP Top 10 viene utilizzata dalle organizzazioni come standard per la sicurezza di applicazioni ed è basata sull'analisi di dati e sondaggi comunitari. A ciascuna categoria è associato:
 \begin{itemize}
 	\item \textbf{CWE}: numero di \refterm{CWE} mappate alla categoria. È stato impostato dal team OWASP un limite di circa 40 \refterm{CWE} per ciascuna categoria per questione di praticità.
 	\item \textbf{Tasso di incidenza}: percentuale di applicazioni con \refterm{Vulnerabilità} associate ad almeno una \refterm{CWE} mappata alla categoria, tra le applicazioni testate
@@ -493,12 +491,12 @@ Ruolo che fa riferimento al creatore di uno workspace. Gode degli stessi permess
 Il Project Manager (PM) è la figura responsabile della gestione completa del ciclo di vita di uno o più progetti, garantendone la realizzazione nel rispetto di tempi, costi, qualità e obiettivi stabiliti. Pur non essendo necessariamente un esperto tecnico di sviluppo software, coordina persone, attività e risorse, fungendo da punto di contatto tra team di sviluppo, organizzazione e cliente.\\
 Le sue principali responsabilità sono:
 \begin{itemize}
-  \item \textbf{Gestione del Progetto}: Definire obiettivi, scope, tempistiche e budget del progetto, assicurando che vengano rispettati durante tutto il ciclo di vita del progetto
-  \item \textbf{Pianificazione e Organizzazione}: Definisce il piano di progetto, stabilisce scadenze, milestones e priorità operative.
-  \item \textbf{Comunicazione con il Cliente}: Raccoglie requisiti, chiarisce aspettative, condivide stato avanzamento e gestisce richieste o modifiche.
-  \item \textbf{Assegnazione delle Risorse/Assegnazioni (chi fa cosa)}: Decide a quali Developer assegnare i vari progetti di cui è responsabile.
-  \item \textbf{Monitoraggio dell'Avanzamento}: Controlla lo stato dei lavori, interviene in caso di rischi o ritardi, assicura il rispetto degli standard.
-  \item \textbf{Qualità e Conformità}: Definisce standard e requisiti per documentazione e deliverable.
+  \item \textbf{Gestione del Progetto}: definire obiettivi, scope, tempistiche e budget del progetto, assicurando che vengano rispettati durante tutto il ciclo di vita del progetto
+  \item \textbf{Pianificazione e Organizzazione}: definisce il piano di progetto, stabilisce scadenze, milestone e priorità operative
+  \item \textbf{Comunicazione con il Cliente}: raccoglie requisiti, chiarisce aspettative, condivide stato avanzamento e gestisce richieste o modifiche
+  \item \textbf{Assegnazione delle Risorse/Assegnazioni (chi-fa-cosa)}: Decide a quali \refterm{Developer} assegnare i vari progetti di cui è responsabile
+  \item \textbf{Monitoraggio dell'Avanzamento}: controlla lo stato dei lavori, interviene in caso di rischi o ritardi, assicura il rispetto degli standard
+  \item \textbf{Qualità e Conformità}: definisce standard e requisiti per documentazione e deliverable
 \end{itemize}
 
 \term{Piano di Progetto}
@@ -584,7 +582,7 @@ Un sistema ad agenti è un insieme di entità autonome, chiamate agenti, che int
 \refterm{Tool} open source per la creazione di \refterm{SBOM} a partire da \refterm{Immagine (Docker)}, filesystem e binari.
 
 \term{Sprint}
-Uno sprint è una piccola porzione di tempo (due settimane nel nostro caso) durante il quale un team porta a termine una determinata quantità di lavoro. Gli sprint prevedono
+Uno sprint è una piccola porzione di tempo (una o due settimane, nel nostro caso) durante il quale un team porta a termine una determinata quantità di lavoro. Gli sprint prevedono
 \begin{itemize}
 	\item una riunione iniziale, per pianificare gli obbiettivi e lo svolgimento dello sprint
 	\item check-in giornalieri, per controllare l'andamento dello sprint e reagire tempestivamente a eventuali problematiche
@@ -604,18 +602,18 @@ Uno sprint è una piccola porzione di tempo (due settimane nel nostro caso) dura
 %\term{Tag raccolta}
 
 \term{Tech Lead}
-Un tech lead (o technical lead) è il supervisore tecnico di più progetti. È la figura che unisce visione tecnica e capacità di coordinamento, fungendo da ponte tra il Project Manager e il team di sviluppo.\\
+Un tech lead (o technical lead) è il supervisore tecnico di più progetti. È la figura che unisce visione tecnica e capacità di coordinamento, fungendo da ponte tra il \refterm{Project Manager} e il team di sviluppo.\\
 Garantisce la solidità dell'architettura, la qualità del codice e la corretta applicazione delle tecnologie, supportando il team nella risoluzione dei problemi più complessi.\\
 Le sue principali responsabilità sono:
 \begin{itemize}
   \item \textbf{Supporto e Mentoring}: fornire supporto tecnico al team di sviluppo e al Project Manager, aiutando a risolvere problemi complessi e guidando le decisioni tecniche riguardo alle tecnologie di cui si occupa.
-  \item \textbf{Standard Tecnici}:  Assicurare che il codice e le pratiche di sviluppo rispettino gli standard di qualità (guarda i risultati dei test e il test coverage, per valutare la qualità complessiva del codice prodotto), sicurezza (identifica le vulnerabilità o criticità del prodotto) e performance definiti. Mantiene aggiornate librerie e dipendenze e monitora i rischi legati alle tecnologie adottate.
-  \item \textbf{Architettura e Design}: Revisionare e approvare le decisioni architetturali, contribuendo alla definizione della direzione tecnica dei progetti.
-  \item \textbf{Monitoraggio Aggregato}: Analizza dati provenienti da più repository e progetti (test results, test coverage, stato di sicurezza, indicatori di qualità) per identificare trend, criticità e colli di bottiglia.
+  \item \textbf{Standard Tecnici}: assicurare che il codice e le pratiche di sviluppo rispettino gli standard di qualità (guarda i risultati dei test e il test coverage, per valutare la qualità complessiva del codice prodotto), sicurezza (identifica le vulnerabilità o criticità del prodotto) e performance definiti. Mantiene aggiornate librerie e dipendenze e monitora i rischi legati alle tecnologie adottate
+  \item \textbf{Architettura e Design}: revisionare e approvare le decisioni architetturali, contribuendo alla definizione della direzione tecnica dei progetti
+  \item \textbf{Monitoraggio Aggregato}: analizza dati provenienti da più repository e progetti (test results, test coverage, stato di sicurezza, indicatori di qualità) per identificare trend, criticità e colli di bottiglia
 \end{itemize}
 
 \term{Tool}
-Un tool è uno strumento esterno che estende le capacità di un \refterm{Agente}, permettendo ad esempio l'esecuzione di codice e recuperare informazioni aggiornate\footnote{\url{https://docs.langchain.com/oss/python/langchain/tools}}.
+Un tool è uno strumento esterno che estende le capacità di un \refterm{Agente}, permettendo ad esempio l'esecuzione di codice e recuperare informazioni aggiornate.
 
 I tool si dividono in:
 \begin{itemize}

@@ -21,11 +21,12 @@ La repository è organizzata in modo logico e modulare, seguendo una struttura c
 
 
 ### Descrizione delle directory  
-| Directory            | Contenuto                                           | 
-|----------------------|-----------------------------------------------------|
-| `Candidatura`        | Documenti di candidatura                            | 
-| `Sito`               | File richiesti per la visualizzazione del sito web  | 
-| `Diari_di_bordo`     | Slide inerenti ai diari di bordo presentati in aula |
+| Directory            | Contenuto                                               | 
+|----------------------|---------------------------------------------------------|
+| `RTB`                | Documenti di per la Requirement and Technology Baseline | 
+| `Candidatura`        | Documenti di candidatura                                | 
+| `Sito`               | File richiesti per la visualizzazione del sito web      | 
+| `Diari_di_bordo`     | Slide inerenti ai diari di bordo presentati in aula     |
 
 ---
 

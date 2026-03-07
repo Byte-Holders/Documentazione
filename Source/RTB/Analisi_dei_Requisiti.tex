@@ -1002,9 +1002,10 @@ Il caso d'Uso\textsuperscript{G} UC6.1 include ulteriori casi d'uso come rappres
 	\end{itemize}
     \item \textbf{Postcondizioni:} L'utente ha gestito l'invito selezionato
 	\item \textbf{Scenario\textsuperscript{G} principale:}
-    \begin{itemize}
-        \item Il sistema mostra le opzioni disponibili per gestire l'invito
-    \end{itemize}
+    \begin{enumerate}
+        \item L'utente visualizza le informazioni dell'invito selezionato (mittente, workspace e ruolo proposto)
+        \item Il sistema presenta le opzioni per la risoluzione dell'invito, permettendo all'utente di compiere una scelta definitiva che porterà alla rimozione dell'invito dalla lista dei pendenti
+    \end{enumerate}
     \item \textbf{UC che ereditano:} \hyperref[UC7.1]{UC7.1}, \hyperref[UC7.2]{UC7.2}
 \end{itemize}
 
@@ -1034,7 +1035,7 @@ Il caso d'Uso\textsuperscript{G} UC6.1 include ulteriori casi d'uso come rappres
 	\item \textbf{Precondizioni:} 
 	\begin{itemize}
 		\item Il sistema è attivo e funzionante
-		\item L'utente è autenticato nel sistema
+		\item L'utente è stato identificato dal sistema come Utente
         \item L'utente ha selezionato un invito dalla lista degli inviti ricevuti
 	\end{itemize}
     \item \textbf{Postcondizioni:} L'utente rifiuta l'invito selezionato e non diventa nuovo membro del workspace
@@ -5148,6 +5149,7 @@ tecnologie
     R-60-F-Op & Remediation interattiva con anteprima & Capitolato sez. N2H \\
     R-61-F-Op & Notifiche integrate (Slack/Teams/Email) & Capitolato sez. N2H \\
     R-62-F-Op & Plugin system per nuovi agenti di analisi & Capitolato sez. N2H \\
+    R-63-F-Ob & Architettura ad agenti coordinati da un orchestratore autocratico\textsuperscript{G} & Capitolato, \hyperref[UC17]{UC17} \\
 \end{longtable}
 
 \subsection{Requisiti di Qualità}
@@ -5163,8 +5165,9 @@ tecnologie
     R-3-Q-Ob & Le API\textsuperscript{G} devono essere documentate tramite Swagger\textsuperscript{G}/OpenAPI & Capitolato \\
     R-4-Q-Ob & Deve essere presente un documento di Bug Reporting & Capitolato \\
     R-5-Q-Ob & L'applicazione deve essere sviluppata in ottica modulare ed estensibile & Capitolato \\
-    R-6-Q-De & L'interfaccia utente deve essere responsive e fruibile da vari dispositivi & Capitolato \\
-    R-7-Q-De & Il sistema deve garantire tempi di risposta ragionevoli per le scansioni & Capitolato \\
+    
+    R-6-Q-De & Il sistema deve garantire tempi di risposta ragionevoli per le scansioni & Capitolato \\
+    R-7-Q-Ob & L'analisi di sicurezza deve basarsi sullo standard OWASP Top 10\textsuperscript{G} & Capitolato \\
 \end{longtable}
 
 \subsection{Requisiti di Vincolo}
@@ -5182,8 +5185,9 @@ tecnologie
     R-5-V-Ob & L'autenticazione deve essere gestita tramite Amazon Cognito\textsuperscript{G} & Capitolato \\
     R-6-V-Ob & Il codice sorgente deve essere versionato tramite Git\textsuperscript{G} & Capitolato \\
     R-7-V-De & L'integrazione CI/CD deve utilizzare GitHub\textsuperscript{G} Actions\textsuperscript{G} & Capitolato \\
-    R-8-V-Ob & L'analisi di sicurezza deve basarsi sullo standard OWASP Top 10\textsuperscript{G} & Capitolato \\
-    R-9-V-Ob & Architettura ad agenti coordinati da un orchestratore autocratico\textsuperscript{G} & Capitolato, \hyperref[UC17]{UC17} \\
+    R-8-V-De & L'interfaccia utente deve essere responsive e fruibile da vari dispositivi supportando risoluzioni da un minimo di 360x640 (mobile) a 1920x1080 (desktop)
+    
+    & Capitolato \\
 \end{longtable}
 
 

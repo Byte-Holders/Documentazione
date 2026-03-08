@@ -344,7 +344,6 @@ Un software si definisce di elevata qualità quando soddisfa i seguenti pilastri
         MPD-01 & \textbf{Requisiti Obbligatori Soddisfatti} & $\geq 100\%$ & $100\%$ \\
         MPD-02 & \textbf{Requisiti Desiderabili Soddisfatti} & $\geq 0\%$ & $100\%$ \\
         MPD-03 & \textbf{Requisiti Opzionali Soddisfatti} & $\geq 0\%$ & $100\%$ \\
-        MPD-04 & \textbf{Function Point} & da determinare & da determinare \\
     \end{tabular}
     \caption{Metriche di Prodotto - Funzionalità}
 \end{table}
@@ -356,7 +355,7 @@ Un software si definisce di elevata qualità quando soddisfa i seguenti pilastri
     \begin{tabular}{>{\centering\arraybackslash}m{1.5cm} p{6cm} >{\centering\arraybackslash}m{3cm} >{\centering\arraybackslash}m{2.5cm}}
         \rowcolor{AccentColor}
         \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
-        MPD-05 & \textbf{Condition Coverage } & $\geq 60\%$ & $100\%$ \\
+        MPD-04 & \textbf{Condition Coverage } & $\geq 60\%$ & $100\%$ \\
     \end{tabular}
     \caption{Metriche di Prodotto - Affidabilità}
 \end{table}
@@ -370,7 +369,7 @@ Un software si definisce di elevata qualità quando soddisfa i seguenti pilastri
     \begin{tabular}{>{\centering\arraybackslash}m{1.5cm} p{6cm} >{\centering\arraybackslash}m{3cm} >{\centering\arraybackslash}m{2.5cm}}
         \rowcolor{AccentColor}
         \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
-        MPD-06 & \textbf{Response Time} & $\leq 10s$ & $\leq 4s$ \\
+        MPD-05 & \textbf{Response Time} & $\leq 10s$ & $\leq 4s$ \\
     \end{tabular}
     \caption{Metriche di Prodotto - Efficienza}
 \end{table}
@@ -382,8 +381,8 @@ Un software si definisce di elevata qualità quando soddisfa i seguenti pilastri
     \begin{tabular}{>{\centering\arraybackslash}m{1.5cm} p{6cm} >{\centering\arraybackslash}m{3cm} >{\centering\arraybackslash}m{2.5cm}}
         \rowcolor{AccentColor}
         \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
-        MPD-07 & \textbf{Facilità di utilizzo} & $\leq 7$ click & $\leq 5$ click\\
-        MPD-08 & \textbf{Tempo medio di apprendimento} & $\leq 5$ minuti & $\leq 2$ minuti\\
+        MPD-06 & \textbf{Facilità di utilizzo} & $\leq 7$ click & $\leq 5$ click\\
+        MPD-07 & \textbf{Tempo medio di apprendimento} & $\leq 5$ minuti & $\leq 2$ minuti\\
     \end{tabular}
     \caption{Metriche di Prodotto - Usabilità}
 \end{table}
@@ -395,12 +394,12 @@ Un software si definisce di elevata qualità quando soddisfa i seguenti pilastri
     \begin{tabular}{>{\centering\arraybackslash}m{1.5cm} p{6cm} >{\centering\arraybackslash}m{3cm} >{\centering\arraybackslash}m{2.5cm}}
         \rowcolor{AccentColor}
         \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
-        MPD-09 & \textbf{Accoppiamento Moduli} & $\leq 4$ & $\leq 2$ \\
-        MPD-10 & \textbf{Linee per Metodo} & $\leq 30$ & $\leq 15$ \\
-        MPD-11 & \textbf{Parametri per Metodo} & $\leq 4$ & $\leq 2$ \\
-        MPD-12 & \textbf{Attributi per Classe} & $\leq 7$ & $\leq 5$ \\
-        MPD-13 & \textbf{Structure Fan-In} & - & massimizzato \\
-        MPD-14 & \textbf{Structure Fan-Out} & - & minimizzato \\
+        MPD-08 & \textbf{Accoppiamento Moduli} & $\leq 4$ & $\leq 2$ \\
+        MPD-09 & \textbf{Linee per Metodo} & $\leq 30$ & $\leq 15$ \\
+        MPD-10 & \textbf{Parametri per Metodo} & $\leq 4$ & $\leq 2$ \\
+        MPD-11 & \textbf{Attributi per Classe} & $\leq 7$ & $\leq 5$ \\
+        MPD-12 & \textbf{Structure Fan-In} & - & massimizzato \\
+        MPD-13 & \textbf{Structure Fan-Out} & - & minimizzato \\
     \end{tabular}
     \caption{Metriche di Prodotto - Manutenibilità}
 \end{table}
@@ -657,7 +656,7 @@ Dal grafico emerge un ritardo temporale crescente tra lo Sprint\textsuperscript{
 Dal grafico si evince un aumento costante dell'Actual Cost (AC) durante i primi 4 sprint\textsuperscript{G}, con un picco significativo nello Sprint\textsuperscript{G} 4 a causa di sottostime e sessioni d'esame. Tuttavia, a partire dallo Sprint\textsuperscript{G} 5, l'AC si stabilizza e mostra una leggera diminuzione, indicando un miglioramento nella gestione dei costi. L'Estimate to Complete (ETC) rimane relativamente stabile, suggerendo che le previsioni di completamento del progetto non sono state significativamente influenzate dalle variazioni dell'AC. In conclusione, nonostante le difficoltà iniziali, il team è riuscito a contenere i costi e a mantenere le stime di completamento sotto controllo.
 \newpage
 
-\subsection{Cost Performace Index e Schedule Performance Index(MPC-04/05)}
+\subsection{Cost Performance Index e Schedule Performance Index(MPC-04/05)}
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{../Assets/pdq/CPI_SPI.png}
@@ -737,11 +736,11 @@ Dal grafico si osserva un miglioramento costante nella correttezza ortografica d
 Dal grafico si osserva un miglioramento abbastanza costante nel numero di metriche soddisfatte durante il progetto. Nei primi 3 sprint\textsuperscript{G}, il numero di metriche soddisfatte è relativamente basso, ma a partire dallo Sprint\textsuperscript{G} 4 si nota un aumento significativo, con un picco nello Sprint\textsuperscript{G} 5. Questo indica che il team ha adottato efficacemente le contromisure per migliorare la qualità del prodotto e del processo, portando a un maggior numero di metriche soddisfatte. In conclusione, il progetto ha mostrato un progresso significativo nel soddisfare le metriche di qualità, contribuendo al successo complessivo del progetto.
 \newpage
 
-\subsection{Sprint Goal Achivement (MPC-15)}
+\subsection{Sprint Goal Achievement (MPC-15)}
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{../Assets/pdq/SGA.png}
-    \caption{Andamento dello Sprint Goal Achivement}
+    \caption{Andamento dello Sprint Goal Achievement}
     \label{fig:sprint_goal_achivement}
 \end{figure}
 

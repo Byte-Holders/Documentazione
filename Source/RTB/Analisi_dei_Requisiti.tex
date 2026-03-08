@@ -3290,26 +3290,9 @@ Il caso d'Uso\textsuperscript{G} UC10 include ulteriori casi d'uso come rapprese
                 \item Il sistema suggerisce all'utente di avviare una nuova scansione
             \end{enumerate}
         \end{itemize}
-		\item \textbf{Selezione Branch\textsuperscript{G}:}
-		\begin{itemize}
-			\item \textbf{Condizione:} L'utente vuole cambiare branch\textsuperscript{G} di cui vedere i dettagli
-            \item  \textbf{Flusso:}
-			\begin{enumerate}
-				\item L'utente sceglie il branch\textsuperscript{G} di cui vedere i dettagli tra la lista dei branch\textsuperscript{G} disponibili
-			\end{enumerate}
-		\end{itemize}
-        \item \textbf{Aggiorna visualizzazione (\hyperref[UC37]{UC37 - Aggiorna repository}):}
-        \begin{itemize}
-            \item \textbf{Condizione:} L'utente seleziona “Aggiorna”
-            \item \textbf{Flusso:}
-            \begin{enumerate}
-                \item Il sistema controlla se ci sono scansioni più recenti
-                \item Il sistema aggiorna i dati visualizzati con quelli dell'ultima scansione
-            \end{enumerate}
-        \end{itemize}
     \end{itemize}
     \item \textbf{Inclusioni:} \hyperref[UC33.1]{UC33.1}, \hyperref[UC33.2]{UC33.2}, \hyperref[UC33.3]{UC33.3}, \hyperref[UC33.4]{UC33.4}, \hyperref[UC33.5]{UC33.5}, \hyperref[UC33.6]{UC33.6}
-    \item \textbf{Estensioni:} \hyperref[UC34]{UC34}, \hyperref[UC35]{UC35}, \hyperref[UC37]{UC37}
+    \item \textbf{Estensioni:} \hyperref[UC34]{UC34}
 \end{itemize}
 
 Il caso d'Uso\textsuperscript{G} UC33 include ulteriori casi d'uso come rappresentato nella seguente immagine:
@@ -4540,16 +4523,7 @@ Il caso d'uso\textsuperscript{G} UC33.2.3 include ulteriori casi d'uso come rapp
     \end{enumerate}
     \item \textbf{Scenario\textsuperscript{G} alternativo:}
     \begin{itemize}
-        \item \textbf{Filtra per tag\textsuperscript{G} (\hyperref[UC36.1]{UC36.1}):}
-        \begin{itemize}
-            \item \textbf{Condizione:} L'utente vuole filtrare le repository per tag\textsuperscript{G} 
-            \item \textbf{Flusso:}
-            \begin{enumerate}
-                \item L'utente seleziona uno o più tag\textsuperscript{G} 
-                \item Il sistema filtra le repository in base ai tag\textsuperscript{G} selezionati
-                \item Il sistema aggiorna la visione aggregata con le repository filtrate
-            \end{enumerate}
-        \end{itemize}
+
         \item \textbf{Errore Visione Aggregata (\hyperref[UC36.6]{UC36.6}):}
         \begin{itemize}
             \item \textbf{Condizione:} Si è verificato un errore nella visione aggregata, come workspace vuoto o nessuna repository selezionata
@@ -4558,26 +4532,10 @@ Il caso d'uso\textsuperscript{G} UC33.2.3 include ulteriori casi d'uso come rapp
                 \item Il sistema mostra un messaggio di errore appropriato
             \end{enumerate}
         \end{itemize}
-        \item \textbf{Scansione Workspace (\hyperref[UC15.1]{UC15.1}):}
-        \begin{itemize}
-            \item \textbf{Condizione:} L'utente vuole lanciare una scansione sul workspace visualizzato
-            \item \textbf{Flusso:}
-            \begin{enumerate}
-                \item L'utente avvia la scansione del workspace
-            \end{enumerate}
-            \end{itemize}
-		\item \textbf{Aggiorna visualizzazione (\hyperref[UC37]{UC37}):}
-        \begin{itemize}
-            \item \textbf{Condizione:} L'utente seleziona “Aggiorna”
-            \item \textbf{Flusso:}
-            \begin{enumerate}
-                \item Il sistema controlla se ci sono scansioni più recenti
-                \item Il sistema aggiorna i dati visualizzati con quelli dell'ultima scansione
-            \end{enumerate}
-        \end{itemize}
+
     \end{itemize}
     \item \textbf{Inclusioni:} \hyperref[UC36.2]{UC36.2}, \hyperref[UC36.3]{UC36.3}, \hyperref[UC36.4]{UC36.4}, \hyperref[UC36.5]{UC36.5}
-    \item \textbf{Estensioni:} \hyperref[UC36.1]{UC36.1}, \hyperref[UC36.6]{UC36.6}, \hyperref[UC15.1]{UC15.1}, \hyperref[UC37]{UC37} 
+    \item \textbf{Estensioni:} \hyperref[UC36.6]{UC36.6}
 \end{itemize}
 
 Il caso d'uso\textsuperscript{G} UC36 include ulteriori casi d'uso come rappresentato nella seguente immagine:
@@ -5010,6 +4968,13 @@ Il caso d'uso\textsuperscript{G} UC36 include ulteriori casi d'uso come rapprese
 
 
 \subsubsection{UC37 - Aggiorna repository} \label{UC37}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\textwidth]{../Assets/AdR/UC37.png}
+	\caption{UC37 - Aggiorna repository}
+	\label{fig:UC37}
+\end{figure}
+
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:}

@@ -1285,21 +1285,9 @@ Di seguito sono elencate le metriche adottate dal gruppo, suddivise per tipologi
 \end{itemize}
 
 \subsection{Affidabilità}
-\subsubsection{Statement Coverage}
-\begin{itemize}
-    \item \textbf{Codice}: MPD04
-    \item \textbf{Formula}: $\displaystyle \text{Statement Coverage} = \frac{\text{Numero di statement eseguiti}}{\text{Totale numero di statement}} \times 100$
-    \item \textbf{Descrizione}: Questa metrica misura la percentuale di istruzioni del codice sorgente che sono state eseguite durante i test rispetto al totale delle istruzioni presenti nel codice.
-\end{itemize}
-\subsubsection{Branch Coverage}
-\begin{itemize}
-    \item \textbf{Codice}: MPD05
-    \item \textbf{Formula}: $\displaystyle \text{Branch\textsuperscript{G} Coverage} = \frac{\text{Numero di rami eseguiti}}{\text{Totale numero di rami}} \times 100$
-    \item \textbf{Descrizione}: Questa metrica misura la percentuale di rami di controllo (come quelli derivanti da istruzioni condizionali) che sono stati eseguiti durante i test rispetto al totale dei rami presenti nel codice.
-\end{itemize}
 \subsubsection{Condition Coverage}
 \begin{itemize}
-    \item \textbf{Codice}: MPD06
+    \item \textbf{Codice}: MPD04
     \item \textbf{Formula}: $\displaystyle \text{Condition Coverage} = \frac{\text{Numero di condizioni valutate a vero e falso}}{\text{Totale numero di condizioni}} \times 100$
     \item \textbf{Descrizione}: Questa metrica misura la percentuale di condizioni logiche che sono state valutate sia a vero che a falso durante i test rispetto al totale delle condizioni presenti nel codice.
 \end{itemize}
@@ -1307,7 +1295,7 @@ Di seguito sono elencate le metriche adottate dal gruppo, suddivise per tipologi
 \subsection{Efficienza}
 \subsubsection{Response Time}
 \begin{itemize}
-    \item \textbf{Codice}: MPD07
+    \item \textbf{Codice}: MPD05
     \item \textbf{Formula}: $\displaystyle \text{Response Time} = \frac{\sum \text{Tempo di risposta}}{\text{Numero di richieste}}$
     \item \textbf{Descrizione}: Questa metrica misura il tempo medio di risposta del sistema alle richieste degli utenti.
 \end{itemize}
@@ -1315,13 +1303,13 @@ Di seguito sono elencate le metriche adottate dal gruppo, suddivise per tipologi
 \subsection{Usabilità}
 \subsubsection{Facilità di utilizzo}
 \begin{itemize}
-    \item \textbf{Codice}: MPD08
+    \item \textbf{Codice}: MPD06
     \item \textbf{Formula}: $\displaystyle \text{Facilità di utilizzo} = \frac{\sum \text{Punteggio di facilità di utilizzo}}{\text{Numero di utenti}}$
     \item \textbf{Descrizione}: Questa metrica misura il punteggio medio di facilità di utilizzo del software, basato su feedback
 \end{itemize}
 \subsubsection{Tempo medio di apprendimento}
 \begin{itemize}
-    \item \textbf{Codice}: MPD09
+    \item \textbf{Codice}: MPD07
     \item \textbf{Formula}: $\displaystyle \text{Tempo medio di apprendimento} = \frac{\sum \text{Tempo di apprendimento}}{\text{Numero di utenti}}$
     \item \textbf{Descrizione}: Questa metrica misura il tempo medio necessario agli utenti per imparare a utilizzare il software in modo efficace.
 \end{itemize}
@@ -1329,37 +1317,37 @@ Di seguito sono elencate le metriche adottate dal gruppo, suddivise per tipologi
 \subsection{Manutenibilità}
 \subsubsection{Accoppiamento Moduli}
 \begin{itemize}
-    \item \textbf{Codice}: MPD10
+    \item \textbf{Codice}: MPD08
     \item \textbf{Formula}: $\displaystyle \text{Accoppiamento Moduli} = \frac{\sum \text{Numero di dipendenze tra moduli}}{\text{Numero totale di moduli}}$
     \item \textbf{Descrizione}: Questa metrica misura il grado di dipendenza tra i moduli del software, indicando quanto un modulo dipende da altri moduli.
 \end{itemize}
 \subsubsection{Linee per Metodo}
 \begin{itemize}
-    \item \textbf{Codice}: MPD11
+    \item \textbf{Codice}: MPD09
     \item \textbf{Formula}: $\displaystyle \text{Linee per Metodo} = \frac{\sum \text{Numero di linee di codice per metodo}}{\text{Numero totale di metodi}}$
     \item \textbf{Descrizione}: Questa metrica misura il numero medio di linee di codice per metodo, indicando la   complessità dei metodi nel software.
 \end{itemize}
 \subsubsection{Parametri per Metodo}
 \begin{itemize}
-    \item \textbf{Codice}: MPD12
+    \item \textbf{Codice}: MPD10
     \item \textbf{Formula}: $\displaystyle \text{Parametri per Metodo} = \frac{\sum \text{Numero di parametri per metodo}}{\text{Numero totale di metodi}}$
     \item \textbf{Descrizione}: Questa metrica misura il numero medio di parametri per metodo, indicando la complessità e la flessibilità dei metodi nel software.
 \end{itemize}
 \subsubsection{Attributi per Classe}
 \begin{itemize}
-    \item \textbf{Codice}: MPD13
+    \item \textbf{Codice}: MPD11
     \item \textbf{Formula}: $\displaystyle \text{Attributi per Classe} = \frac{\sum \text{Numero di attributi per classe}}{\text{Numero totale di classi}}$
     \item \textbf{Descrizione}: Questa metrica misura il numero medio di attributi per classe, indicando la complessità e la capacità di rappresentazione delle classi nel software.
 \end{itemize}
 \subsubsection{Structure Fan-In}
 \begin{itemize}
-    \item \textbf{Codice}: MPD14
+    \item \textbf{Codice}: MPD12
     \item \textbf{Formula}: $\displaystyle \text{Structure Fan-In} = \frac{\sum \text{Numero di moduli che utilizzano un modulo}}{\text{Numero totale di moduli}}$
     \item \textbf{Descrizione}: Questa metrica misura il numero medio di moduli che utilizzano un modulo specifico, indicando la centralità e l'importanza di quel modulo nel sistema.
 \end{itemize}
 \subsubsection{Structure Fan-Out}
 \begin{itemize}
-    \item \textbf{Codice}: MPD15
+    \item \textbf{Codice}: MPD13
     \item \textbf{Formula}: $\displaystyle \text{Structure Fan-Out} = \frac{\sum \text{Numero di moduli utilizzati da un modulo}}{\text{Numero totale di moduli}}$
     \item \textbf{Descrizione}: Questa metrica misura il numero medio di moduli utilizzati da un modulo specifico, indicando la dipendenza e l'interazione di quel modulo con altri moduli nel sistema.
 \end{itemize}

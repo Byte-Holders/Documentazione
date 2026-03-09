@@ -418,7 +418,7 @@ La strategia di verifica adottata dal gruppo \textit{Byte Holders} segue il \tex
 \end{itemize}
 
 \subsection{Test di Sistema}
-In questa sezione elenchiamo i test necessari per verificare che il software funzioni correttamente nel suo insieme. L'obiettivo è dimostrare che tutti i requisiti (funzionali e prestazionali) definiti nell'Analisi dei Requisiti\textsuperscript{G} v1.0.0 sono stati soddisfatti prima della consegna.
+In questa sezione elenchiamo i test necessari per verificare che il software funzioni correttamente nel suo insieme. L'obiettivo è dimostrare che tutti i requisiti (funzionali e prestazionali) definiti nell'Analisi dei Requisiti\textsuperscript{G} v2.0.0 sono stati soddisfatti prima della consegna.
 
 \renewcommand{\arraystretch}{1.5}
 \rowcolors{2}{LightGray}{white}
@@ -429,87 +429,107 @@ In questa sezione elenchiamo i test necessari per verificare che il software fun
 
 % === Autenticazione e Registrazione ===
 TS-01 & Verificare che un utente non autenticato possa registrarsi al sistema inserendo username, email e password & R-1-F-Ob & NI \\
-TS-02 & Verificare che il sistema invii un codice OTP via email per la conferma della registrazione & R-2-F-De & NI \\
-TS-03 & Verificare che un utente non autenticato possa effettuare il login tramite username/email e password & R-3-F-Ob & NI \\
-TS-04 & Verificare che il sistema mostri un messaggio di errore in caso di credenziali errate & R-4-F-Ob & NI \\
-TS-05 & Verificare che l'utente possa recuperare la password & R-5-F-Ob & NI \\
-TS-06 & Verificare che il sistema autentichi gli utenti tramite Amazon Cognito\textsuperscript{G} & R-6-F-Ob & NI \\
-
+TS-02 & Verificare che il sistema autentichi gli utenti tramite Amazon Cognito\textsuperscript{G} & R-2-F-Ob & NI \\
+TS-03 & Verificare che il sistema mostri un messaggio di errore specifico in caso di registrazione fallita & R-3-F-Ob & NI \\
+TS-04 & Verificare che il sistema invii un codice OTP via email per la conferma della registrazione & R-4-F-De & NI \\
+TS-05 & Verificare che il sistema mostri un messaggio di errore se il codice OTP è errato o scaduto durante la conferma registrazione & R-5-F-De & NI \\
+TS-06 & Verificare che un utente non autenticato possa effettuare il login tramite username/email e password & R-6-F-Ob & NI \\
+TS-07 & Verificare che il sistema mostri un messaggio di errore in caso di credenziali errate & R-7-F-Ob & NI \\
+TS-08 & Verificare che l'utente possa recuperare la password & R-8-F-Ob & NI \\
+TS-09 & Verificare che il sistema mostri un messaggio di errore in caso di ripristino password fallito & R-9-F-Ob & NI \\
 % === Workspace ===
-TS-07 & Verificare che l'utente autenticato possa visualizzare la lista dei workspace a cui appartiene & R-7-F-Ob & NI \\
-TS-08 & Verificare che l'utente autenticato possa creare un nuovo workspace inserendone il nome & R-8-F-Ob & NI \\
-TS-09 & Verificare che l'utente possa cercare workspace per nome & R-9-F-Ob & NI \\
 TS-10 & Verificare che il Project Manager\textsuperscript{G} possa invitare utenti in un workspace selezionando un ruolo & R-10-F-Ob & NI \\
-TS-11 & Verificare che l'utente possa visualizzare la lista degli inviti ricevuti con dettagli (mittente, owner\textsuperscript{G}, nome workspace) & R-11-F-Ob & NI \\
-TS-12 & Verificare che l'utente possa accettare o rifiutare un invito a un workspace & R-12-F-Ob & NI \\
-TS-13 & Verificare che l'utente possa visualizzare la lista dei ruoli di un workspace & R-13-F-De & NI \\
-TS-14 & Verificare che l'utente possa visualizzare la lista degli utenti di un workspace & R-14-F-Ob & NI \\
-TS-15 & Verificare che il Project Manager\textsuperscript{G} possa rimuovere un utente da un workspace & R-15-F-Ob & NI \\
-TS-16 & Verificare che il sistema verifichi automaticamente lo stato di aggiornamento di una repository & R-16-F-De & NI \\
-
-% === Tag raccolta ===
-TS-17 & Verificare che l'utente possa visualizzare la lista dei tag\textsuperscript{G} raccolta\textsuperscript{G} di un workspace & R-17-F-De & NI \\
-TS-18 & Verificare che l'utente possa creare un tag\textsuperscript{G} raccolta\textsuperscript{G} all'interno di un workspace & R-18-F-De & NI \\
-TS-19 & Verificare che l'utente possa eliminare un tag\textsuperscript{G} raccolta\textsuperscript{G} dal workspace & R-19-F-De & NI \\
-TS-20 & Verificare che l'utente possa assegnare tag\textsuperscript{G} raccolta\textsuperscript{G} a una repository & R-20-F-De & NI \\
-TS-21 & Verificare che l'utente possa rimuovere tag\textsuperscript{G} raccolta\textsuperscript{G} da una repository & R-21-F-De & NI \\
-
-% === Repository ===
-TS-22 & Verificare che l'utente possa visualizzare la lista delle repository del workspace & R-22-F-Ob & NI \\
-TS-23 & Verificare che l'utente possa aggiungere una repository GitHub\textsuperscript{G} al workspace & R-23-F-Ob & NI \\
-TS-24 & Verificare che il sistema validi il link della repository e verifichi l'accesso & R-24-F-Ob & NI \\
-TS-25 & Verificare che l'utente possa rimuovere una repository dal workspace & R-25-F-Ob & NI \\
-TS-26 & Verificare che l'utente possa effettuare ricerche di repository & R-26-F-Ob & NI \\
-TS-27 & Verificare che l'utente possa filtrare le repository tramite barra di ricerca e filtri & R-27-F-De & NI \\
-TS-28 & Verificare che l'utente possa ordinare la lista delle repository & R-28-F-De & NI \\
-TS-29 & Verificare che l'utente possa aggiornare le informazioni sulle repository in base all'ultima scansione & R-29-F-Ob & NI \\
-
-% === Dettaglio repository e risultati analisi ===
-TS-30 & Verificare che l'utente possa visualizzare il dettaglio di una repository & R-30-F-Ob & NI \\
-TS-31 & Verificare che il sistema permetta la selezione del branch\textsuperscript{G} per la visualizzazione & R-31-F-Ob & NI \\
-TS-32 & Verificare che il sistema mostri la percentuale di test coverage & R-32-F-De & NI \\
-TS-33 & Verificare che il sistema mostri l'elenco dei test con qualità insufficiente & R-33-F-Ob & NI \\
-TS-34 & Verificare che il sistema mostri la percentuale di test passati & R-34-F-De & NI \\
-TS-35 & Verificare che il sistema mostri l'elenco dei test non passati & R-35-F-De & NI \\
-TS-36 & Verificare che il sistema mostri un messaggio informativo se nessun test è rilevato & R-36-F-De & NI \\
-TS-37 & Verificare che il sistema mostri la lista dei linguaggi rilevati & R-37-F-Ob & NI \\
-TS-38 & Verificare che il sistema mostri la lista delle librerie rilevate & R-38-F-Ob & NI \\
-TS-39 & Verificare che il sistema mostri la lista dei framework\textsuperscript{G} rilevati & R-39-F-Ob & NI \\
-
-% === Analisi sicurezza OWASP ===
-TS-40 & Verificare che il sistema mostri grafici semplificati dei risultati OWASP & R-40-F-Ob & NI \\
-TS-41 & Verificare che il sistema mostri un elenco ordinato delle vulnerabilità\textsuperscript{G} OWASP & R-41-F-Ob & NI \\
-TS-42 & Verificare che il sistema fornisca i dettagli per ogni vulnerabilità\textsuperscript{G} & R-42-F-De & NI \\
-
-% === Analisi documentazione ===
-TS-43 & Verificare che il sistema mostri un voto complessivo della qualità documentale & R-43-F-Ob & NI \\
-TS-44 & Verificare che il sistema mostri consigli per il miglioramento del README & R-44-F-De & NI \\
-TS-45 & Verificare che il sistema elenchi sezioni o documenti standard mancanti & R-45-F-Ob & NI \\
-TS-46 & Verificare che il sistema mostri suggerimenti sulla qualità del codice & R-46-F-De & NI \\
-
-% === Scansione ===
-TS-47 & Verificare che l'utente possa avviare una scansione su una repository & R-47-F-Ob & NI \\
-TS-48 & Verificare che il sistema mostri lo stato della scansione in corso & R-48-F-Ob & NI \\
-TS-49 & Verificare che l'utente possa annullare una scansione in corso & R-49-F-Ob & NI \\
-TS-50 & Verificare che il sistema notifichi errori durante la scansione & R-50-F-Ob & NI \\
-
-% === Visione aggregata ===
-TS-51 & Verificare che l'utente possa visualizzare una visione aggregata del workspace & R-51-F-Ob & NI \\
-TS-52 & Verificare che l'utente possa filtrare la visione aggregata per tag\textsuperscript{G} raccolta\textsuperscript{G} & R-52-F-De & NI \\
-
-% === Backend / Orchestratore ===
-TS-53 & Verificare che il sistema analizzi una o più repository tramite gli agenti & R-53-F-Ob & NI \\
-TS-54 & Verificare che il sistema distribuisca l'analisi tra più componenti specializzati & R-54-F-Ob & NI \\
-TS-55 & Verificare che il sistema aggreghi i risultati delle analisi & R-55-F-Ob & NI \\
-TS-56 & Verificare che il sistema salvi un report\textsuperscript{G} finale dell'analisi & R-56-F-Ob & NI \\
-
+TS-11 & Verificare che il sistema mostri un messaggio di errore se l'invito a un workspace non va a buon fine & R-11-F-Ob & NI \\
+TS-12 & Verificare che l'utente possa visualizzare la lista degli inviti ricevuti con dettagli & R-12-F-Ob & NI \\
+TS-13 & Verificare che il sistema mostri per ciascun invito: username mittente, username owner del workspace e nome del workspace & R-13-F-Ob & NI \\
+TS-14 & Verificare che l'utente possa accettare o rifiutare un invito a un workspace & R-14-F-Ob & NI \\
+TS-15 & Verificare che l'utente autenticato possa visualizzare la lista dei workspace a cui appartiene & R-15-F-Ob & NI \\
+TS-16 & Verificare che il sistema mostri per ciascun workspace in lista: nome del workspace e username dell'owner & R-16-F-Ob & NI \\
+TS-17 & Verificare che l'utente possa cercare workspace per nome & R-17-F-Ob & NI \\
+TS-18 & Verificare che l'utente autenticato possa creare un nuovo workspace inserendone il nome & R-18-F-Ob & NI \\
+TS-19 & Verificare che il sistema assegni automaticamente il ruolo di owner al creatore del workspace & R-19-F-Ob & NI \\
+TS-20 & Verificare che il sistema impedisca la creazione di workspace con nome duplicato o non valido & R-20-F-Ob & NI \\
+TS-21 & Verificare che l'utente possa visualizzare la lista dei ruoli di un workspace & R-21-F-De & NI \\
+TS-22 & Verificare che il sistema mostri nome e descrizione per ciascun ruolo del workspace & R-22-F-De & NI \\
+TS-23 & Verificare che l'utente possa visualizzare la lista degli utenti di un workspace & R-23-F-Ob & NI \\
+TS-24 & Verificare che il sistema mostri username e ruolo per ciascun utente del workspace & R-24-F-Ob & NI \\
+TS-25 & Verificare che il Project Manager\textsuperscript{G} possa rimuovere un utente da un workspace & R-25-F-Ob & NI \\
+TS-26 & Verificare che il sistema verifichi automaticamente lo stato di aggiornamento di una repository & R-26-F-De & NI \\
+TS-27 & Verificare che il sistema recuperare la data dell'ultimo push da GitHub\textsuperscript{G} per verificare l'aggiornamento & R-27-F-De & NI \\
+TS-28 & Verificare che il sistema aggiornare lo stato della repository a 'non aggiornata' se il push è più recente della scansione & R-28-F-De & NI \\
+TS-29 & Verificare che il sistema gestisca errori di connessione con GitHub\textsuperscript{G} & R-29-F-De & NI \\
+TS-30 & Verificare che l'utente possa avviare una scansione & R-30-F-Ob & NI \\
+TS-31 & Verificare che il sistema mostri lo stato della scansione in corso & R-31-F-Ob & NI \\
+TS-32 & Verificare che il sistema notifichi errori durante la scansione & R-32-F-Ob & NI \\
+TS-33 & Verificare che l'utente possa avviare una scansione su tutte le repository di un workspace & R-33-F-Ob & NI \\
+TS-34 & Verificare che l'utente possa avviare una scansione su una singola repository selezionando il branch\textsuperscript{G} & R-34-F-Ob & NI \\
+TS-35 & Verificare che l'utente possa avviare una scansione su un insieme di repository selezionate & R-35-F-Ob & NI \\
+TS-36 & Verificare che l'utente possa annullare una scansione in corso & R-36-F-Ob & NI \\
+TS-37 & Verificare che il sistema analizzi una o più repository & R-37-F-Ob & NI \\
+TS-38 & Verificare che l'architettura sia ad agenti coordinati da un orchestratore autocratico\textsuperscript{G} & R-38-F-Ob & NI \\
+TS-39 & Verificare che il sistema cloni le repository da GitHub\textsuperscript{G} in locale prima dell'analisi & R-39-F-Ob & NI \\
+TS-40 & Verificare che il sistema distribuisca l'analisi tra più componenti specializzati & R-40-F-Ob & NI \\
+TS-41 & Verificare che ciascun agente esegua l'analisi di competenza e generare un report\textsuperscript{G} parziale & R-41-F-Ob & NI \\
+TS-42 & Verificare che il sistema aggreghi i risultati & R-42-F-Ob & NI \\
+TS-43 & Verificare che il sistema salvi un report\textsuperscript{G} finale & R-43-F-Ob & NI \\
+TS-44 & Verificare che il sistema gestisca URL o PAT non validi interrompendo l'operazione e notificando l'utente & R-44-F-Ob & NI \\
+TS-45 & Verificare che l'utente possa visualizzare la lista dei tag\textsuperscript{G} raccolta\textsuperscript{G} di un workspace & R-45-F-De & NI \\
+TS-46 & Verificare che l'utente possa creare un tag\textsuperscript{G} raccolta\textsuperscript{G} all'interno di un workspace & R-46-F-De & NI \\
+TS-47 & Verificare che il sistema impedisca la creazione di tag\textsuperscript{G} raccolta\textsuperscript{G} con nome non valido o duplicato & R-47-F-De & NI \\
+TS-48 & Verificare che l'utente possa eliminare un tag\textsuperscript{G} raccolta\textsuperscript{G} dal workspace & R-48-F-De & NI \\
+TS-49 & Verificare che l'utente possa assegnare tag\textsuperscript{G} raccolta\textsuperscript{G} a una repository & R-49-F-De & NI \\
+TS-50 & Verificare che l'utente possa rimuovere tag\textsuperscript{G} raccolta\textsuperscript{G} da una repository & R-50-F-De & NI \\
+TS-51 & Verificare che l'utente possa visualizzare la lista delle repository del workspace & R-51-F-Ob & NI \\
+TS-52 & Verificare che il sistema mostri per ciascuna repository in lista: nome, data ultima scansione, indicatore criticità, voto documentazione, percentuale code coverage\textsuperscript{G} & R-52-F-Ob & NI \\
+TS-53 & Verificare che l'utente possa aggiungere una repository GitHub\textsuperscript{G} al workspace & R-53-F-Ob & NI \\
+TS-54 & Verificare che il sistema validi il link della repository e verificare l'accesso & R-54-F-Ob & NI \\
+TS-55 & Verificare che l'utente possa rimuovere una repository dal workspace & R-55-F-Ob & NI \\
+TS-56 & Verificare che il sistema permetta l'annullamento della rimozione di una repository & R-56-F-Ob & NI \\
+TS-57 & Verificare che il sistema avvisi l'utente se la repository da rimuovere ha scansioni in corso e richiedere conferma esplicita & R-57-F-Ob & NI \\
+TS-58 & Verificare che l'utente possa effettuare ricerche di repository & R-58-F-Ob & NI \\
+TS-59 & Verificare che l'utente possa filtrare le repository tramite barra di ricerca testuale & R-59-F-De & NI \\
+TS-60 & Verificare che l'utente possa filtrare le repository tramite selezione di filtri multipli (linguaggio, tag, coverage, voto doc) & R-60-F-De & NI \\
+TS-61 & Verificare che il sistema permetta la selezione di filtri di ricerca multipli per le repository & R-61-F-De & NI \\
+TS-62 & Verificare che l'utente possa ordinare la lista delle repository & R-62-F-De & NI \\
+TS-63 & Verificare che l'utente possa visualizzare il dettaglio di una repository & R-63-F-Ob & NI \\
+TS-64 & Verificare che il sistema presenti la sezione completa di analisi dei test della repository & R-64-F-Ob & NI \\
+TS-65 & Verificare che il sistema mostri la percentuale di code coverage\textsuperscript{G} & R-65-F-De & NI \\
+TS-66 & Verificare che il sistema mostri l'elenco dei test con qualità insufficiente & R-66-F-Ob & NI \\
+TS-67 & Verificare che il sistema mostri la percentuale di test passati & R-67-F-De & NI \\
+TS-68 & Verificare che il sistema mostri l'elenco dei test non passati & R-68-F-De & NI \\
+TS-69 & Verificare che il sistema mostri un messaggio informativo se nessun test è rilevato & R-69-F-De & NI \\
+TS-70 & Verificare che il sistema presenti la sezione delle informazioni tecniche (linguaggi, librerie, framework\textsuperscript{G}) & R-70-F-Ob & NI \\
+TS-71 & Verificare che il sistema mostri la lista dei linguaggi rilevati & R-71-F-Ob & NI \\
+TS-72 & Verificare che il sistema mostri la lista delle librerie rilevate & R-72-F-Ob & NI \\
+TS-73 & Verificare che il sistema mostri la lista dei framework\textsuperscript{G} rilevati & R-73-F-Ob & NI \\
+TS-74 & Verificare che il sistema mostri grafici semplificati dei risultati OWASP & R-74-F-Ob & NI \\
+TS-75 & Verificare che il sistema mostri un elenco ordinato delle vulnerabilità\textsuperscript{G} OWASP & R-75-F-Ob & NI \\
+TS-76 & Verificare che il sistema mostri per ciascuna vulnerabilità\textsuperscript{G}: nome/tipo, file di origine e categoria di criticità OWASP & R-76-F-Ob & NI \\
+TS-77 & Verificare che il sistema fornisca i dettagli per ogni vulnerabilità\textsuperscript{G} & R-77-F-De & NI \\
+TS-78 & Verificare che il sistema presenti la sezione di analisi della documentazione della repository & R-78-F-Ob & NI \\
+TS-79 & Verificare che il sistema mostri un voto complessivo della qualità documentale & R-79-F-Ob & NI \\
+TS-80 & Verificare che il sistema mostri consigli per il miglioramento del README & R-80-F-De & NI \\
+TS-81 & Verificare che il sistema elenchi sezioni o documenti standard mancanti & R-81-F-Ob & NI \\
+TS-82 & Verificare che il sistema mostri suggerimenti sulla qualità del codice & R-82-F-De & NI \\
+TS-83 & Verificare che il sistema mostri un messaggio informativo se non sono disponibili dati di scansione per una repository & R-83-F-Ob & NI \\
+TS-84 & Verificare che il sistema permetta la selezione del branch\textsuperscript{G} per la visualizzazione & R-84-F-Ob & NI \\
+TS-85 & Verificare che il sistema mostri la lista dei branch\textsuperscript{G} disponibili per una repository & R-85-F-Ob & NI \\
+TS-86 & Verificare che il sistema notifichi l'errore se non sono disponibili branch\textsuperscript{G} validi per una repository & R-86-F-Ob & NI \\
+TS-87 & Verificare che l'utente possa visualizzare una visione aggregata del workspace & R-87-F-Ob & NI \\
+TS-88 & Verificare che l'utente possa filtrare la visione aggregata per tag\textsuperscript{G} raccolta\textsuperscript{G} & R-88-F-De & NI \\
+TS-89 & Verificare che il sistema mostri le metriche aggregate dei test (coverage medio, repository sopra soglia, coverage minimo) & R-89-F-Ob & NI \\
+TS-90 & Verificare che il sistema mostri grafici aggregati di distribuzione linguaggi e framework\textsuperscript{G} del workspace & R-90-F-Ob & NI \\
+TS-91 & Verificare che il sistema mostri percentuale repository sicure e grafico vulnerabilità\textsuperscript{G} aggregate per gravità & R-91-F-Ob & NI \\
+TS-92 & Verificare che il sistema mostri voto documentazione minimo, medio, massimo e grafico distribuzione del workspace & R-92-F-Ob & NI \\
+TS-93 & Verificare che il sistema mostri un messaggio di errore se il workspace è vuoto o senza repository nella visione aggregata & R-93-F-Ob & NI \\
+TS-94 & Verificare che l'utente possa aggiornare le informazioni sulle repository in base all'ultima scansione & R-94-F-Ob & NI \\
 % === Requisiti Opzionali ===
-TS-57 & Verificare l'integrazione con CI/CD (GitHub\textsuperscript{G} Actions\textsuperscript{G}) & R-57-F-Op & NI \\
-TS-58 & Verificare l'analisi storica e il confronto tra versioni & R-58-F-Op & NI \\
-TS-59 & Verificare il ranking dei progetti per qualità complessiva & R-59-F-Op & NI \\
-TS-60 & Verificare la remediation interattiva con anteprima & R-60-F-Op & NI \\
-TS-61 & Verificare le notifiche integrate (Slack/Teams/Email) & R-61-F-Op & NI \\
-TS-62 & Verificare il plugin system per nuovi agenti di analisi & R-62-F-Op & NI \\
+TS-95 & Verificare l'integrazione con CI/CD (GitHub\textsuperscript{G} Actions\textsuperscript{G}) & R-95-F-Op & NI \\
+TS-96 & Verificare l'analisi storica e il confronto tra versioni & R-96-F-Op & NI \\
+TS-97 & Verificare il ranking dei progetti per qualità complessiva & R-97-F-Op & NI \\
+TS-98 & Verificare la remediation interattiva con anteprima & R-98-F-Op & NI \\
+TS-99 & Verificare le notifiche integrate (Slack/Teams/Email) & R-99-F-Op & NI \\
+TS-100 & Verificare il plugin system per nuovi agenti di analisi & R-100-F-Op & NI \\
 
 \end{longtable}
 
@@ -521,12 +541,11 @@ TS-62 & Verificare il plugin system per nuovi agenti di analisi & R-62-F-Op & NI
 \textcolor{white}{\textbf{Codice Test}} & \textcolor{white}{\textbf{Codice Requisito\textsuperscript{G}}} \\
 \endhead
 
-
 TS-01 & R-1-F-Ob \\
-TS-02 & R-2-F-De \\
+TS-02 & R-2-F-Ob \\
 TS-03 & R-3-F-Ob \\
-TS-04 & R-4-F-Ob \\
-TS-05 & R-5-F-Ob \\
+TS-04 & R-4-F-De \\
+TS-05 & R-5-F-De \\
 TS-06 & R-6-F-Ob \\
 TS-07 & R-7-F-Ob \\
 TS-08 & R-8-F-Ob \\
@@ -534,56 +553,94 @@ TS-09 & R-9-F-Ob \\
 TS-10 & R-10-F-Ob \\
 TS-11 & R-11-F-Ob \\
 TS-12 & R-12-F-Ob \\
-TS-13 & R-13-F-De \\
+TS-13 & R-13-F-Ob \\
 TS-14 & R-14-F-Ob \\
 TS-15 & R-15-F-Ob \\
-TS-16 & R-16-F-De \\
-TS-17 & R-17-F-De \\
-TS-18 & R-18-F-De \\
-TS-19 & R-19-F-De \\
-TS-20 & R-20-F-De \\
+TS-16 & R-16-F-Ob \\
+TS-17 & R-17-F-Ob \\
+TS-18 & R-18-F-Ob \\
+TS-19 & R-19-F-Ob \\
+TS-20 & R-20-F-Ob \\
 TS-21 & R-21-F-De \\
-TS-22 & R-22-F-Ob \\
+TS-22 & R-22-F-De \\
 TS-23 & R-23-F-Ob \\
 TS-24 & R-24-F-Ob \\
 TS-25 & R-25-F-Ob \\
-TS-26 & R-26-F-Ob \\
+TS-26 & R-26-F-De \\
 TS-27 & R-27-F-De \\
 TS-28 & R-28-F-De \\
-TS-29 & R-29-F-Ob \\
+TS-29 & R-29-F-De \\
 TS-30 & R-30-F-Ob \\
 TS-31 & R-31-F-Ob \\
-TS-32 & R-32-F-De \\
+TS-32 & R-32-F-Ob \\
 TS-33 & R-33-F-Ob \\
-TS-34 & R-34-F-De \\
-TS-35 & R-35-F-De \\
-TS-36 & R-36-F-De \\
+TS-34 & R-34-F-Ob \\
+TS-35 & R-35-F-Ob \\
+TS-36 & R-36-F-Ob \\
 TS-37 & R-37-F-Ob \\
 TS-38 & R-38-F-Ob \\
 TS-39 & R-39-F-Ob \\
 TS-40 & R-40-F-Ob \\
 TS-41 & R-41-F-Ob \\
-TS-42 & R-42-F-De \\
+TS-42 & R-42-F-Ob \\
 TS-43 & R-43-F-Ob \\
-TS-44 & R-44-F-De \\
-TS-45 & R-45-F-Ob \\
+TS-44 & R-44-F-Ob \\
+TS-45 & R-45-F-De \\
 TS-46 & R-46-F-De \\
-TS-47 & R-47-F-Ob \\
-TS-48 & R-48-F-Ob \\
-TS-49 & R-49-F-Ob \\
-TS-50 & R-50-F-Ob \\
+TS-47 & R-47-F-De \\
+TS-48 & R-48-F-De \\
+TS-49 & R-49-F-De \\
+TS-50 & R-50-F-De \\
 TS-51 & R-51-F-Ob \\
-TS-52 & R-52-F-De \\
+TS-52 & R-52-F-Ob \\
 TS-53 & R-53-F-Ob \\
 TS-54 & R-54-F-Ob \\
 TS-55 & R-55-F-Ob \\
 TS-56 & R-56-F-Ob \\
-TS-57 & R-57-F-Op \\
-TS-58 & R-58-F-Op \\
-TS-59 & R-59-F-Op \\
-TS-60 & R-60-F-Op \\
-TS-61 & R-61-F-Op \\
-TS-62 & R-62-F-Op \\
+TS-57 & R-57-F-Ob \\
+TS-58 & R-58-F-Ob \\
+TS-59 & R-59-F-De \\
+TS-60 & R-60-F-De \\
+TS-61 & R-61-F-De \\
+TS-62 & R-62-F-De \\
+TS-63 & R-63-F-Ob \\
+TS-64 & R-64-F-Ob \\
+TS-65 & R-65-F-De \\
+TS-66 & R-66-F-Ob \\
+TS-67 & R-67-F-De \\
+TS-68 & R-68-F-De \\
+TS-69 & R-69-F-De \\
+TS-70 & R-70-F-Ob \\
+TS-71 & R-71-F-Ob \\
+TS-72 & R-72-F-Ob \\
+TS-73 & R-73-F-Ob \\
+TS-74 & R-74-F-Ob \\
+TS-75 & R-75-F-Ob \\
+TS-76 & R-76-F-Ob \\
+TS-77 & R-77-F-De \\
+TS-78 & R-78-F-Ob \\
+TS-79 & R-79-F-Ob \\
+TS-80 & R-80-F-De \\
+TS-81 & R-81-F-Ob \\
+TS-82 & R-82-F-De \\
+TS-83 & R-83-F-Ob \\
+TS-84 & R-84-F-Ob \\
+TS-85 & R-85-F-Ob \\
+TS-86 & R-86-F-Ob \\
+TS-87 & R-87-F-Ob \\
+TS-88 & R-88-F-De \\
+TS-89 & R-89-F-Ob \\
+TS-90 & R-90-F-Ob \\
+TS-91 & R-91-F-Ob \\
+TS-92 & R-92-F-Ob \\
+TS-93 & R-93-F-Ob \\
+TS-94 & R-94-F-Ob \\
+TS-95 & R-95-F-Op \\
+TS-96 & R-96-F-Op \\
+TS-97 & R-97-F-Op \\
+TS-98 & R-98-F-Op \\
+TS-99 & R-99-F-Op \\
+TS-100 & R-100-F-Op \\
 
 \end{longtable}
 
@@ -597,32 +654,37 @@ Questi test servono a confermare che il prodotto soddisfi le aspettative del cli
 \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Descrizione}} & \textcolor{white}{\textbf{Stato}} \\
 \endhead
 
-
-TA-01 & Verificare che il prodotto permetta la registrazione di un nuovo utente con username, email e password & NI \\
-TA-02 & Verificare che il prodotto permetta l'autenticazione di un utente tramite login con credenziali & NI \\
-TA-03 & Verificare che il prodotto permetta il recupero della password & NI \\
-TA-04 & Verificare che il prodotto permetta la creazione di un workspace & NI \\
-TA-05 & Verificare che il prodotto permetta la visualizzazione della lista dei workspace & NI \\
-TA-06 & Verificare che il prodotto permetta la ricerca di workspace per nome & NI \\
-TA-07 & Verificare che il prodotto permetta l'invito di utenti in un workspace con assegnazione di ruolo & NI \\
-TA-08 & Verificare che il prodotto permetta la visualizzazione e gestione degli inviti ricevuti (accettazione/rifiuto) & NI \\
-TA-09 & Verificare che il prodotto permetta la visualizzazione degli utenti e dei ruoli di un workspace & NI \\
-TA-10 & Verificare che il prodotto permetta la rimozione di un utente da un workspace & NI \\
-TA-11 & Verificare che il prodotto permetta l'aggiunta di repository GitHub\textsuperscript{G} a un workspace con validazione del link & NI \\
-TA-12 & Verificare che il prodotto permetta la rimozione di repository da un workspace & NI \\
-TA-13 & Verificare che il prodotto permetta la ricerca, il filtraggio e l'ordinamento delle repository & NI \\
-TA-14 & Verificare che il prodotto permetta la gestione dei tag\textsuperscript{G} raccolta\textsuperscript{G} (creazione, assegnazione, rimozione, eliminazione) & NI \\
-TA-15 & Verificare che il prodotto permetta la visualizzazione del dettaglio di una repository con selezione del branch\textsuperscript{G} & NI \\
-TA-16 & Verificare che il prodotto permetta l'avvio di una scansione su una repository e ne mostri lo stato & NI \\
-TA-17 & Verificare che il prodotto permetta l'annullamento di una scansione in corso & NI \\
-TA-18 & Verificare che il prodotto mostri i risultati dell'analisi della qualità del codice (test coverage, linguaggi, librerie, framework\textsuperscript{G}) & NI \\
-TA-19 & Verificare che il prodotto mostri i risultati dell'analisi di sicurezza OWASP (grafici, elenco vulnerabilità\textsuperscript{G}, dettagli) & NI \\
-TA-20 & Verificare che il prodotto mostri i risultati dell'analisi documentale (voto complessivo, sezioni mancanti, consigli README) & NI \\
-TA-21 & Verificare che il prodotto mostri suggerimenti sulla qualità del codice & NI \\
-TA-22 & Verificare che il prodotto permetta la visualizzazione di una visione aggregata del workspace con filtro per tag\textsuperscript{G} & NI \\
-TA-23 & Verificare che il prodotto distribuisca l'analisi tra agenti specializzati coordinati dall'orchestratore & NI \\
-TA-24 & Verificare che il prodotto aggreghi i risultati e salvi un report\textsuperscript{G} finale delle analisi & NI \\
-TA-25 & Verificare che il prodotto permetta l'aggiornamento delle informazioni delle repository & NI \\
+TA-01 & Verificare che il prodotto permetta la registrazione di un nuovo utente con username, email e password, con gestione degli errori & NI \\
+TA-02 & Verificare che il prodotto permetta la conferma della registrazione tramite codice OTP & NI \\
+TA-03 & Verificare che il prodotto permetta l'autenticazione di un utente tramite login con credenziali, con gestione degli errori & NI \\
+TA-04 & Verificare che il prodotto permetta il recupero della password tramite OTP, con gestione degli errori & NI \\
+TA-05 & Verificare che il prodotto permetta la creazione di un workspace con assegnazione automatica del ruolo di owner, con gestione degli errori & NI \\
+TA-06 & Verificare che il prodotto permetta la visualizzazione della lista dei workspace con nome e owner & NI \\
+TA-07 & Verificare che il prodotto permetta la ricerca di workspace per nome & NI \\
+TA-08 & Verificare che il prodotto permetta l'invito di utenti in un workspace con assegnazione di ruolo, con gestione degli errori & NI \\
+TA-09 & Verificare che il prodotto permetta la visualizzazione e gestione degli inviti ricevuti (accettazione/rifiuto) con dettagli & NI \\
+TA-10 & Verificare che il prodotto permetta la visualizzazione degli utenti e dei ruoli di un workspace con dettagli & NI \\
+TA-11 & Verificare che il prodotto permetta la rimozione di un utente da un workspace & NI \\
+TA-12 & Verificare che il prodotto permetta la verifica automatica dello stato di aggiornamento delle repository tramite GitHub\textsuperscript{G}, con gestione degli errori di connessione & NI \\
+TA-13 & Verificare che il prodotto permetta la gestione dei tag\textsuperscript{G} raccolta\textsuperscript{G} (creazione, assegnazione, rimozione, eliminazione) con gestione degli errori & NI \\
+TA-14 & Verificare che il prodotto permetta l'aggiunta di repository GitHub\textsuperscript{G} a un workspace con validazione del link e del PAT, con gestione degli errori & NI \\
+TA-15 & Verificare che il prodotto permetta la rimozione di repository da un workspace con gestione delle scansioni in corso e possibilità di annullamento & NI \\
+TA-16 & Verificare che il prodotto permetta la visualizzazione della lista delle repository con informazioni sintetiche (nome, data scansione, criticità, voto documentazione\textsuperscript{G}, code coverage\textsuperscript{G}) & NI \\
+TA-17 & Verificare che il prodotto permetta la ricerca testuale e il filtraggio delle repository tramite filtri multipli & NI \\
+TA-18 & Verificare che il prodotto permetta l'ordinamento della lista delle repository & NI \\
+TA-19 & Verificare che il prodotto permetta la visualizzazione del dettaglio di una repository con selezione del branch\textsuperscript{G} e gestione dell'assenza di scansioni & NI \\
+TA-20 & Verificare che il prodotto permetta l'avvio di una scansione (workspace, singola repository, insieme di repository) e ne mostri lo stato & NI \\
+TA-21 & Verificare che il prodotto permetta l'annullamento di una scansione in corso con notifica degli errori & NI \\
+TA-22 & Verificare che il prodotto mostri i risultati dell'analisi dei test (coverage, test insufficienti, test passati, test non passati, messaggio assenza test) & NI \\
+TA-23 & Verificare che il prodotto mostri le informazioni tecniche della repository (linguaggi, librerie, framework\textsuperscript{G}) & NI \\
+TA-24 & Verificare che il prodotto mostri i risultati dell'analisi di sicurezza OWASP (grafici semplificati, elenco vulnerabilità\textsuperscript{G} con dettagli) & NI \\
+TA-25 & Verificare che il prodotto mostri i risultati dell'analisi documentale (voto complessivo, sezioni mancanti, consigli README) & NI \\
+TA-26 & Verificare che il prodotto mostri suggerimenti sulla qualità del codice & NI \\
+TA-27 & Verificare che il prodotto permetta la visualizzazione di una visione aggregata del workspace (test, info tecniche, sicurezza, documentazione\textsuperscript{G}) con filtro per tag\textsuperscript{G} e gestione degli errori & NI \\
+TA-28 & Verificare che il prodotto permetta l'aggiornamento delle informazioni delle repository & NI \\
+TA-29 & Verificare che il prodotto esegua l'analisi tramite clonazione, distribuzione agli agenti, aggregazione dei risultati e salvataggio del report\textsuperscript{G} finale & NI \\
+TA-30 & Verificare che il prodotto gestisca correttamente URL o PAT non validi durante le operazioni con GitHub\textsuperscript{G} & NI \\
+TA-31 & Verificare che l'architettura sia ad agenti coordinati da un orchestratore autocratico\textsuperscript{G} & NI \\
 
 \end{longtable}
 

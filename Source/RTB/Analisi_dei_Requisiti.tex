@@ -218,7 +218,8 @@
 	\multicolumn{1}{c}{\textcolor{white}{\textbf{Verificatore}}} &
 	\multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
 	\endhead
-	1.0.1 & 09/03/2026 &  Giulia Romanato &  Lorenzo Grolla & cmapiato nome dell'UC30 da Ricerca con barra a Ricerca testuale, aggiunto include UC32 a UC29 \\
+	1.0.2 & 09/03/2026 &  Lorenzo Grolla &  Giacomo Nalotto & Aggiornamento Requisiti e UC33 e UC36 \\
+	1.0.1 & 09/03/2026 &  Giulia Romanato &  Lorenzo Grolla & Cambiato nome dell'UC30 da Ricerca con barra a Ricerca testuale, aggiunto include UC32 a UC29 \\
 	1.0.0 & 22/02/2026 &  Alessandro Morabito &  Lorenzo Grolla & Versione finale del documento, con tutte le sezioni completate e revisionate. \\
 	0.19.0 & 16/02/2026 & Lorenzo Grolla & Giacomo Nalotto & Correzione errori struttura documento \\
 	0.18.0 & 15/02/2026 & Giacomo Nalotto & Giulia Romanato & Aggiunta tabelle riassuntive dei requisiti \\
@@ -5057,69 +5058,105 @@ tecnologie
     \endhead
 
     R-1-F-Ob & L'utente non autenticato deve poter registrarsi al sistema inserendo username, email e password & \hyperref[UC1]{UC1}, Capitolato \\
-    R-2-F-De & Il sistema deve inviare un codice OTP via email per la conferma della registrazione & \hyperref[UC2]{UC2} \\
-    R-3-F-Ob & L'utente non autenticato deve poter effettuare il login tramite username/email e password & \hyperref[UC3]{UC3}, Capitolato \\
-    R-4-F-Ob & Il sistema deve mostrare un messaggio di errore in caso di credenziali errate & \hyperref[UC3.3]{UC3.3} \\
-    R-5-F-Ob & L'utente deve poter recuperare la password & \hyperref[UC4]{UC4} \\
-    R-6-F-Ob & Il sistema deve autenticare gli utenti tramite Amazon Cognito\textsuperscript{G} & \hyperref[UC1]{UC1}, \hyperref[UC3]{UC3}, Capitolato \\
-    R-7-F-Ob & L'utente autenticato deve poter visualizzare la lista dei workspace a cui appartiene & \hyperref[UC8]{UC8} \\
-    R-8-F-Ob & L'utente autenticato deve poter creare un nuovo workspace inserendone il nome & \hyperref[UC10]{UC10} \\
-    R-9-F-Ob & L'utente deve poter cercare workspace per nome & \hyperref[UC9]{UC9} \\
+    R-2-F-Ob & Il sistema deve autenticare gli utenti tramite Amazon Cognito\textsuperscript{G} & \hyperref[UC1]{UC1}, \hyperref[UC3]{UC3}, Capitolato \\
+    R-3-F-Ob & Il sistema deve mostrare un messaggio di errore specifico in caso di registrazione fallita & \hyperref[UC1.4]{UC1.4} \\
+    R-4-F-De & Il sistema deve inviare un codice OTP via email per la conferma della registrazione & \hyperref[UC2]{UC2} \\
+    R-5-F-De & Il sistema deve mostrare un messaggio di errore se il codice OTP è errato o scaduto durante la conferma registrazione & \hyperref[UC2.2]{UC2.2} \\
+    R-6-F-Ob & L'utente non autenticato deve poter effettuare il login tramite username/email e password & \hyperref[UC3]{UC3}, Capitolato \\
+    R-7-F-Ob & Il sistema deve mostrare un messaggio di errore in caso di credenziali errate & \hyperref[UC3.3]{UC3.3} \\
+    R-8-F-Ob & L'utente deve poter recuperare la password & \hyperref[UC4]{UC4} \\
+    R-9-F-Ob & Il sistema deve mostrare un messaggio di errore in caso di ripristino password fallito & \hyperref[UC4.4]{UC4.4} \\
     R-10-F-Ob & Il Project Manager\textsuperscript{G} deve poter invitare utenti in un workspace selezionando un ruolo & \hyperref[UC5]{UC5} \\
-    R-11-F-Ob & L'utente deve poter visualizzare la lista degli inviti ricevuti con dettagli & \hyperref[UC6]{UC6} \\
-    R-12-F-Ob & L'utente deve poter accettare o rifiutare un invito a un workspace & \hyperref[UC7]{UC7} \\
-    R-13-F-De & L'utente deve poter visualizzare la lista dei ruoli di un workspace & \hyperref[UC11]{UC11} \\
-    R-14-F-Ob & L'utente deve poter visualizzare la lista degli utenti di un workspace & \hyperref[UC12]{UC12} \\
-    R-15-F-Ob & Il Project Manager\textsuperscript{G} deve poter rimuovere un utente da un workspace & \hyperref[UC13]{UC13} \\
-    R-16-F-De & Il sistema deve verificare automaticamente lo stato di aggiornamento di una repository & \hyperref[UC14]{UC14} \\
-    R-17-F-De & L'utente deve poter visualizzare la lista dei tag\textsuperscript{G} raccolta\textsuperscript{G} di un workspace & \hyperref[UC19]{UC19} \\
-    R-18-F-De & L'utente deve poter creare un tag\textsuperscript{G} raccolta\textsuperscript{G} all'interno di un workspace & \hyperref[UC20]{UC20} \\
-    R-19-F-De & L'utente deve poter eliminare un tag\textsuperscript{G} raccolta\textsuperscript{G} dal workspace & \hyperref[UC22]{UC22} \\
-    R-20-F-De & L'utente deve poter assegnare tag\textsuperscript{G} raccolta\textsuperscript{G} a una repository & \hyperref[UC23]{UC23} \\
-    R-21-F-De & L'utente deve poter rimuovere tag\textsuperscript{G} raccolta\textsuperscript{G} da una repository & \hyperref[UC24]{UC24} \\
-    R-22-F-Ob & L'utente deve poter visualizzare la lista delle repository del workspace & \hyperref[UC25]{UC25} \\
-    R-23-F-Ob & L'utente deve poter aggiungere una repository GitHub\textsuperscript{G} al workspace & \hyperref[UC26]{UC26} \\
-    R-24-F-Ob & Il sistema deve validare il link della repository e verificare l'accesso & \hyperref[UC27]{UC27} \\
-    R-25-F-Ob & L'utente deve poter rimuovere una repository dal workspace & \hyperref[UC28]{UC28} \\
-    R-26-F-Ob & L'utente deve poter effettuare ricerche di repository & \hyperref[UC29]{UC29} \\
-    R-27-F-De & L'utente deve poter filtrare le repository tramite barra di ricerca e filtri & \hyperref[UC30]{UC30}, \hyperref[UC31]{UC31} \\
-    R-28-F-De & L'utente deve poter ordinare la lista delle repository & \hyperref[UC32]{UC32} \\
-    R-29-F-Ob & L'utente deve poter aggiornare le informazioni sulle repository in base all'ultima scansione & \hyperref[UC37]{UC37} \\
-    R-30-F-Ob & L'utente deve poter visualizzare il dettaglio di una repository & \hyperref[UC33]{UC33} \\
-    R-31-F-Ob & Il sistema deve permettere la selezione del branch\textsuperscript{G} per la visualizzazione & \hyperref[UC35]{UC35} \\
-    R-32-F-De & Il sistema deve mostrare la percentuale di code coverage\textsuperscript{G} & \hyperref[UC33.1.1]{UC33.1.1} \\
-    R-33-F-Ob & Il sistema deve mostrare l'elenco dei test con qualità insufficiente & \hyperref[UC33.1.2]{UC33.1.2}, Capitolato \\
-    R-34-F-De & Il sistema deve mostrare la percentuale di test passati & \hyperref[UC33.1.3]{UC33.1.3} \\
-    R-35-F-De & Il sistema deve mostrare l'elenco dei test non passati & \hyperref[UC33.1.4]{UC33.1.4} \\
-    R-36-F-De & Il sistema deve mostrare un messaggio informativo se nessun test è rilevato & \hyperref[UC33.1.5]{UC33.1.5} \\
-    R-37-F-Ob & Il sistema deve mostrare la lista dei linguaggi rilevati & \hyperref[UC33.2.1]{UC33.2.1}, Capitolato \\
-    R-38-F-Ob & Il sistema deve mostrare la lista delle librerie rilevate & \hyperref[UC33.2.2]{UC33.2.2}, Capitolato \\
-    R-39-F-Ob & Il sistema deve mostrare la lista dei framework\textsuperscript{G} rilevati & \hyperref[UC33.2.3]{UC33.2.3}, Capitolato \\
-    R-40-F-Ob & Il sistema deve mostrare grafici semplificati dei risultati OWASP & \hyperref[UC33.3]{UC33.3}, Capitolato \\
-    R-41-F-Ob & Il sistema deve mostrare un elenco ordinato delle vulnerabilità\textsuperscript{G} OWASP & \hyperref[UC33.4]{UC33.4}, Capitolato \\
-    R-42-F-De & Il sistema deve fornire i dettagli per ogni vulnerabilità\textsuperscript{G} & \hyperref[UC33.4.2]{UC33.4.2}, Capitolato \\
-    R-43-F-Ob & Il sistema deve mostrare un voto complessivo della qualità documentale & \hyperref[UC33.5.1]{UC33.5.1}, Capitolato \\
-    R-44-F-De & Il sistema deve mostrare consigli per il miglioramento del README & \hyperref[UC33.5.2]{UC33.5.2} \\
-    R-45-F-Ob & Il sistema deve elencare sezioni o documenti standard mancanti & \hyperref[UC33.5.3]{UC33.5.3} \\
-    R-46-F-De & Il sistema deve mostrare suggerimenti sulla qualità del codice & \hyperref[UC33.6]{UC33.6}, Capitolato \\
-    R-47-F-Ob & L'utente deve poter avviare una scansione & \hyperref[UC15]{UC15}, Capitolato \\
-    R-48-F-Ob & Il sistema deve mostrare lo stato della scansione in corso & \hyperref[UC15]{UC15} \\
-    R-49-F-Ob & L'utente deve poter annullare una scansione in corso & \hyperref[UC16]{UC16} \\
-    R-50-F-Ob & Il sistema deve notificare errori durante la scansione & \hyperref[UC15]{UC15} \\
-    R-51-F-Ob & L'utente deve poter visualizzare una visione aggregata del workspace & \hyperref[UC36]{UC36}, Capitolato \\
-    R-52-F-De & L'utente deve poter filtrare la visione aggregata per tag\textsuperscript{G} raccolta\textsuperscript{G} & \hyperref[UC36.1]{UC36.1} \\
-    R-53-F-Ob & Il sistema deve analizzare una o più repository & \hyperref[UC17]{UC17} \\
-    R-54-F-Ob & Il sistema deve distribuire l'analisi tra più componenti specializzati & \hyperref[UC17.2]{UC17.2} \\
-    R-55-F-Ob & Il sistema deve aggregare i risultati & \hyperref[UC17.4]{UC17.4} \\
-    R-56-F-Ob & Il sistema deve salvare un report\textsuperscript{G} finale & \hyperref[UC17.4]{UC17.4} \\
-    \\
-    R-57-F-Op & Integrazione con CI/CD (GitHub\textsuperscript{G} Actions\textsuperscript{G}) & Capitolato sez. N2H \\
-    R-58-F-Op & Analisi storica e confronto tra versioni & Capitolato sez. N2H \\
-    R-59-F-Op & Ranking dei progetti per qualità complessiva & Capitolato sez. N2H \\
-    R-60-F-Op & Remediation interattiva con anteprima & Capitolato sez. N2H \\
-    R-61-F-Op & Notifiche integrate (Slack/Teams/Email) & Capitolato sez. N2H \\
-    R-62-F-Op & Plugin system per nuovi agenti di analisi & Capitolato sez. N2H \\
-    R-63-F-Ob & Architettura ad agenti coordinati da un orchestratore autocratico\textsuperscript{G} & Capitolato, \hyperref[UC17]{UC17} \\
+    R-11-F-Ob & Il sistema deve mostrare un messaggio di errore se l'invito a un workspace non va a buon fine & \hyperref[UC5.3]{UC5.3} \\
+    R-12-F-Ob & L'utente deve poter visualizzare la lista degli inviti ricevuti con dettagli & \hyperref[UC6]{UC6} \\
+    R-13-F-Ob & Il sistema deve mostrare per ciascun invito: username mittente, username owner del workspace e nome del workspace & \hyperref[UC6.1]{UC6.1} \\
+    R-14-F-Ob & L'utente deve poter accettare o rifiutare un invito a un workspace & \hyperref[UC7]{UC7} \\
+    R-15-F-Ob & L'utente autenticato deve poter visualizzare la lista dei workspace a cui appartiene & \hyperref[UC8]{UC8} \\
+    R-16-F-Ob & Il sistema deve mostrare per ciascun workspace in lista: nome del workspace e username dell'owner & \hyperref[UC8.1]{UC8.1} \\
+    R-17-F-Ob & L'utente deve poter cercare workspace per nome & \hyperref[UC9]{UC9} \\
+    R-18-F-Ob & L'utente autenticato deve poter creare un nuovo workspace inserendone il nome & \hyperref[UC10]{UC10} \\
+    R-19-F-Ob & Il sistema deve assegnare automaticamente il ruolo di owner al creatore del workspace & \hyperref[UC10.2]{UC10.2} \\
+    R-20-F-Ob & Il sistema deve impedire la creazione di workspace con nome duplicato o non valido & \hyperref[UC10.3]{UC10.3} \\
+    R-21-F-De & L'utente deve poter visualizzare la lista dei ruoli di un workspace & \hyperref[UC11]{UC11} \\
+    R-22-F-De & Il sistema deve mostrare nome e descrizione per ciascun ruolo del workspace & \hyperref[UC11.1]{UC11.1} \\
+    R-23-F-Ob & L'utente deve poter visualizzare la lista degli utenti di un workspace & \hyperref[UC12]{UC12} \\
+    R-24-F-Ob & Il sistema deve mostrare username e ruolo per ciascun utente del workspace & \hyperref[UC12.1]{UC12.1} \\
+    R-25-F-Ob & Il Project Manager\textsuperscript{G} deve poter rimuovere un utente da un workspace & \hyperref[UC13]{UC13} \\
+    R-26-F-De & Il sistema deve verificare automaticamente lo stato di aggiornamento di una repository & \hyperref[UC14]{UC14} \\
+    R-27-F-De & Il sistema deve recuperare la data dell'ultimo push da Git\textsuperscript{G}Hub\textsuperscript{G} per verificare l'aggiornamento & \hyperref[UC14.1]{UC14.1} \\
+    R-28-F-De & Il sistema deve aggiornare lo stato della repository a 'non aggiornata' se il push è più recente della scansione & \hyperref[UC14.2]{UC14.2} \\
+    R-29-F-De & Il sistema deve gestire errori di connessione con Git\textsuperscript{G}Hub\textsuperscript{G} & \hyperref[UC14.3]{UC14.3} \\
+    R-30-F-Ob & L'utente deve poter avviare una scansione & \hyperref[UC15]{UC15}, Capitolato \\
+    R-31-F-Ob & Il sistema deve mostrare lo stato della scansione in corso & \hyperref[UC15]{UC15} \\
+    R-32-F-Ob & Il sistema deve notificare errori durante la scansione & \hyperref[UC15]{UC15} \\
+    R-33-F-Ob & L'utente deve poter avviare una scansione su tutte le repository di un workspace & \hyperref[UC15.1]{UC15.1} \\
+    R-34-F-Ob & L'utente deve poter avviare una scansione su una singola repository selezionando il branch\textsuperscript{G} & \hyperref[UC15.2]{UC15.2} \\
+    R-35-F-Ob & L'utente deve poter avviare una scansione su un insieme di repository selezionate & \hyperref[UC15.3]{UC15.3} \\
+    R-36-F-Ob & L'utente deve poter annullare una scansione in corso & \hyperref[UC16]{UC16} \\
+    R-37-F-Ob & Il sistema deve analizzare una o più repository & \hyperref[UC17]{UC17} \\
+    R-38-F-Ob & Architettura ad agenti coordinati da un orchestratore autocratico\textsuperscript{G} & Capitolato, \hyperref[UC17]{UC17} \\
+    R-39-F-Ob & Il sistema deve clonare le repository da Git\textsuperscript{G}Hub\textsuperscript{G} in locale prima dell'analisi & \hyperref[UC17.1]{UC17.1} \\
+    R-40-F-Ob & Il sistema deve distribuire l'analisi tra più componenti specializzati & \hyperref[UC17.2]{UC17.2} \\
+    R-41-F-Ob & Ciascun agente deve eseguire l'analisi di competenza e generare un report\textsuperscript{G} parziale & \hyperref[UC17.3]{UC17.3} \\
+    R-42-F-Ob & Il sistema deve aggregare i risultati & \hyperref[UC17.4]{UC17.4} \\
+    R-43-F-Ob & Il sistema deve salvare un report\textsuperscript{G} finale & \hyperref[UC17.4]{UC17.4} \\
+    R-44-F-Ob & Il sistema deve gestire URL o PAT non validi interrompendo l'operazione e notificando l'utente & \hyperref[UC18]{UC18} \\
+    R-45-F-De & L'utente deve poter visualizzare la lista dei tag\textsuperscript{G} raccolta\textsuperscript{G} di un workspace & \hyperref[UC19]{UC19} \\
+    R-46-F-De & L'utente deve poter creare un tag\textsuperscript{G} raccolta\textsuperscript{G} all'interno di un workspace & \hyperref[UC20]{UC20} \\
+    R-47-F-De & Il sistema deve impedire la creazione di tag\textsuperscript{G} raccolta\textsuperscript{G} con nome non valido o duplicato & \hyperref[UC21]{UC21} \\
+    R-48-F-De & L'utente deve poter eliminare un tag\textsuperscript{G} raccolta\textsuperscript{G} dal workspace & \hyperref[UC22]{UC22} \\
+    R-49-F-De & L'utente deve poter assegnare tag\textsuperscript{G} raccolta\textsuperscript{G} a una repository & \hyperref[UC23]{UC23} \\
+    R-50-F-De & L'utente deve poter rimuovere tag\textsuperscript{G} raccolta\textsuperscript{G} da una repository & \hyperref[UC24]{UC24} \\
+    R-51-F-Ob & L'utente deve poter visualizzare la lista delle repository del workspace & \hyperref[UC25]{UC25} \\
+    R-52-F-Ob & Il sistema deve mostrare per ciascuna repository in lista: nome, data ultima scansione, indicatore criticità, voto documentazione\textsuperscript{G}, percentuale code coverage\textsuperscript{G} & \hyperref[UC25.1]{UC25.1} \\
+    R-53-F-Ob & L'utente deve poter aggiungere una repository Git\textsuperscript{G}Hub\textsuperscript{G} al workspace & \hyperref[UC26]{UC26} \\
+    R-54-F-Ob & Il sistema deve validare il link della repository e verificare l'accesso & \hyperref[UC27]{UC27} \\
+    R-55-F-Ob & L'utente deve poter rimuovere una repository dal workspace & \hyperref[UC28]{UC28} \\
+    R-56-F-Ob & Il sistema deve permettere l'annullamento della rimozione di una repository & \hyperref[UC28.1]{UC28.1} \\
+    R-57-F-Ob & Il sistema deve avvisare l'utente se la repository da rimuovere ha scansioni in corso e richiedere conferma esplicita & \hyperref[UC28.2]{UC28.2} \\
+    R-58-F-Ob & L'utente deve poter effettuare ricerche di repository & \hyperref[UC29]{UC29} \\
+    R-59-F-De & L'utente deve poter filtrare le repository tramite barra di ricerca testuale & \hyperref[UC30]{UC30} \\
+    R-60-F-De & L'utente deve poter filtrare le repository tramite selezione di filtri multipli (linguaggio, tag, coverage, voto doc) & \hyperref[UC31]{UC31} \\
+    R-61-F-De & Il sistema deve permettere la selezione di filtri di ricerca multipli per le repository & \hyperref[UC31.1]{UC31.1} \\
+    R-62-F-De & L'utente deve poter ordinare la lista delle repository & \hyperref[UC32]{UC32} \\
+    R-63-F-Ob & L'utente deve poter visualizzare il dettaglio di una repository & \hyperref[UC33]{UC33} \\
+    R-64-F-Ob & Il sistema deve presentare la sezione completa di analisi dei test della repository & \hyperref[UC33.1]{UC33.1} \\
+    R-65-F-De & Il sistema deve mostrare la percentuale di code coverage\textsuperscript{G} & \hyperref[UC33.1.1]{UC33.1.1} \\
+    R-66-F-Ob & Il sistema deve mostrare l'elenco dei test con qualità insufficiente & \hyperref[UC33.1.2]{UC33.1.2}, Capitolato \\
+    R-67-F-De & Il sistema deve mostrare la percentuale di test passati & \hyperref[UC33.1.3]{UC33.1.3} \\
+    R-68-F-De & Il sistema deve mostrare l'elenco dei test non passati & \hyperref[UC33.1.4]{UC33.1.4} \\
+    R-69-F-De & Il sistema deve mostrare un messaggio informativo se nessun test è rilevato & \hyperref[UC33.1.5]{UC33.1.5} \\
+    R-70-F-Ob & Il sistema deve presentare la sezione delle informazioni tecniche (linguaggi, librerie, framework\textsuperscript{G}) & \hyperref[UC33.2]{UC33.2} \\
+    R-71-F-Ob & Il sistema deve mostrare la lista dei linguaggi rilevati & \hyperref[UC33.2.1]{UC33.2.1}, Capitolato \\
+    R-72-F-Ob & Il sistema deve mostrare la lista delle librerie rilevate & \hyperref[UC33.2.2]{UC33.2.2}, Capitolato \\
+    R-73-F-Ob & Il sistema deve mostrare la lista dei framework\textsuperscript{G} rilevati & \hyperref[UC33.2.3]{UC33.2.3}, Capitolato \\
+    R-74-F-Ob & Il sistema deve mostrare grafici semplificati dei risultati OWASP & \hyperref[UC33.3]{UC33.3}, Capitolato \\
+    R-75-F-Ob & Il sistema deve mostrare un elenco ordinato delle vulnerabilità\textsuperscript{G} OWASP & \hyperref[UC33.4]{UC33.4}, Capitolato \\
+    R-76-F-Ob & Il sistema deve mostrare per ciascuna vulnerabilità\textsuperscript{G}: nome/tipo, file di origine e categoria di criticità OWASP & \hyperref[UC33.4.1]{UC33.4.1} \\
+    R-77-F-De & Il sistema deve fornire i dettagli per ogni vulnerabilità\textsuperscript{G} & \hyperref[UC33.4.2]{UC33.4.2}, Capitolato \\
+    R-78-F-Ob & Il sistema deve presentare la sezione di analisi della documentazione\textsuperscript{G} della repository & \hyperref[UC33.5]{UC33.5} \\
+    R-79-F-Ob & Il sistema deve mostrare un voto complessivo della qualità documentale & \hyperref[UC33.5.1]{UC33.5.1}, Capitolato \\
+    R-80-F-De & Il sistema deve mostrare consigli per il miglioramento del README & \hyperref[UC33.5.2]{UC33.5.2} \\
+    R-81-F-Ob & Il sistema deve elencare sezioni o documenti standard mancanti & \hyperref[UC33.5.3]{UC33.5.3} \\
+    R-82-F-De & Il sistema deve mostrare suggerimenti sulla qualità del codice & \hyperref[UC33.6]{UC33.6}, Capitolato \\
+    R-83-F-Ob & Il sistema deve mostrare un messaggio informativo se non sono disponibili dati di scansione per una repository & \hyperref[UC34]{UC34} \\
+    R-84-F-Ob & Il sistema deve permettere la selezione del branch\textsuperscript{G} per la visualizzazione & \hyperref[UC35]{UC35} \\
+    R-85-F-Ob & Il sistema deve mostrare la lista dei branch\textsuperscript{G} disponibili per una repository & \hyperref[UC35.1]{UC35.1} \\
+    R-86-F-Ob & Il sistema deve notificare l'errore se non sono disponibili branch\textsuperscript{G} validi per una repository & \hyperref[UC35.2]{UC35.2} \\
+    R-87-F-Ob & L'utente deve poter visualizzare una visione aggregata del workspace & \hyperref[UC36]{UC36}, Capitolato \\
+    R-88-F-De & L'utente deve poter filtrare la visione aggregata per tag\textsuperscript{G} raccolta\textsuperscript{G} & \hyperref[UC36.1]{UC36.1} \\
+    R-89-F-Ob & Il sistema deve mostrare le metriche aggregate dei test (coverage medio, repository sopra soglia, coverage minimo) & \hyperref[UC36.2]{UC36.2} \\
+    R-90-F-Ob & Il sistema deve mostrare grafici aggregati di distribuzione linguaggi e framework\textsuperscript{G} del workspace & \hyperref[UC36.3]{UC36.3} \\
+    R-91-F-Ob & Il sistema deve mostrare percentuale repository sicure e grafico vulnerabilità\textsuperscript{G} aggregate per gravità & \hyperref[UC36.4]{UC36.4} \\
+    R-92-F-Ob & Il sistema deve mostrare voto documentazione\textsuperscript{G} minimo, medio, massimo e grafico distribuzione del workspace & \hyperref[UC36.5]{UC36.5} \\
+    R-93-F-Ob & Il sistema deve mostrare un messaggio di errore se il workspace è vuoto o senza repository nella visione aggregata & \hyperref[UC36.6]{UC36.6} \\
+    R-94-F-Ob & L'utente deve poter aggiornare le informazioni sulle repository in base all'ultima scansione & \hyperref[UC37]{UC37} \\
+    R-95-F-Op & Integrazione con CI/CD (GitHub\textsuperscript{G} Actions\textsuperscript{G}) & Capitolato sez. N2H \\
+    R-96-F-Op & Analisi storica e confronto tra versioni & Capitolato sez. N2H \\
+    R-97-F-Op & Ranking dei progetti per qualità complessiva & Capitolato sez. N2H \\
+    R-98-F-Op & Remediation interattiva con anteprima & Capitolato sez. N2H \\
+    R-99-F-Op & Notifiche integrate (Slack/Teams/Email) & Capitolato sez. N2H \\
+    R-100-F-Op & Plugin system per nuovi agenti di analisi & Capitolato sez. N2H \\
 \end{longtable}
 
 \subsection{Requisiti di Qualità}
@@ -5131,13 +5168,13 @@ tecnologie
     \color{white}\textbf{Codice} & \color{white}\textbf{Descrizione} & \color{white}\textbf{Fonti} \\
     \endhead
     R-1-Q-Ob & Coverage minimo dei test di unità del 70\% tramite test automatizzati & Capitolato \\
-    R-2-Q-Ob & Presenza di documentazione\textsuperscript{G} tecnica completa & Capitolato \\
+    R-2-Q-Ob & Presenza di documentazione\textsuperscript{G} tecnica completa (manuale utente, guida deployment, documentazione API\textsuperscript{G}) & Capitolato \\
     R-3-Q-Ob & Le API\textsuperscript{G} devono essere documentate tramite Swagger\textsuperscript{G}/OpenAPI & Capitolato \\
     R-4-Q-Ob & Deve essere presente un documento di Bug Reporting & Capitolato \\
-    R-5-Q-Ob & L'applicazione deve essere sviluppata in ottica modulare ed estensibile & Capitolato \\
-    
-    R-6-Q-De & Il sistema deve garantire tempi di risposta ragionevoli per le scansioni & Capitolato \\
+    R-5-Q-Ob & L'applicazione deve raggiungere un indice di manutenibilità $\geq$ 60 secondo le metriche di complessità ciclomatica & Capitolato \\
+    R-6-Q-De & Il sistema deve completare una scansione di una repository di dimensione media ($<$ 50.000 LOC) entro 15 minuti & Capitolato \\
     R-7-Q-Ob & L'analisi di sicurezza deve basarsi sullo standard OWASP Top 10\textsuperscript{G} & Capitolato \\
+    R-8-Q-De & L'interfaccia utente deve essere responsive e fruibile da dispositivi con risoluzioni da 360x640 (mobile) a 1920x1080 (desktop) & Capitolato \\
 \end{longtable}
 
 \subsection{Requisiti di Vincolo}
@@ -5148,16 +5185,13 @@ tecnologie
     \rowcolor{AccentDark}
     \color{white}\textbf{Codice} & \color{white}\textbf{Descrizione} & \color{white}\textbf{Fonti} \\
     \endhead
-    R-1-V-Ob & Backend e Orchestratore sviluppati in Node.js o Python & Capitolato \\
-    R-2-V-Ob & Frontend sviluppato utilizzando la libreria React\textsuperscript{G}.js & Capitolato \\
-    R-3-V-Ob & Database supportati: MongoDB\textsuperscript{G} o PostgreSQL & Capitolato \\
+    R-1-V-Ob & Backend e Orchestratore sviluppati in Node.js ($\geq$ 18.x) o Python ($\geq$ 3.10) & Capitolato \\
+    R-2-V-Ob & Frontend sviluppato utilizzando la libreria React\textsuperscript{G}.js ($\geq$ 18.x) & Capitolato \\
+    R-3-V-Ob & Database supportati: MongoDB\textsuperscript{G} ($\geq$ 6.0) o PostgreSQL ($\geq$ 15) & Capitolato \\
     R-4-V-Ob & L'infrastruttura cloud deve essere ospitata su Amazon Web Services\textsuperscript{G} (AWS\textsuperscript{G}) & Capitolato \\
     R-5-V-Ob & L'autenticazione deve essere gestita tramite Amazon Cognito\textsuperscript{G} & Capitolato \\
     R-6-V-Ob & Il codice sorgente deve essere versionato tramite Git\textsuperscript{G} & Capitolato \\
     R-7-V-De & L'integrazione CI/CD deve utilizzare GitHub\textsuperscript{G} Actions\textsuperscript{G} & Capitolato \\
-    R-8-V-De & L'interfaccia utente deve essere responsive e fruibile da vari dispositivi supportando risoluzioni da un minimo di 360x640 (mobile) a 1920x1080 (desktop)
-    
-    & Capitolato \\
 \end{longtable}
 
 
@@ -5172,59 +5206,95 @@ tecnologie
     \color{white}\textbf{Caso d'Uso\textsuperscript{G}} & \color{white}\textbf{Requisiti} \\
     \endhead
 
-    \hyperref[UC1]{UC1} & R-1-F-Ob, R-6-F-Ob \\
-    \hyperref[UC2]{UC2} & R-2-F-De \\
-    \hyperref[UC3]{UC3} & R-3-F-Ob, R-4-F-Ob, R-6-F-Ob \\
-    \hyperref[UC3.3]{UC3.3} & R-4-F-Ob \\
-    \hyperref[UC4]{UC4} & R-5-F-Ob \\
+    \hyperref[UC1]{UC1} & R-1-F-Ob, R-2-F-Ob \\
+    \hyperref[UC1.4]{UC1.4} & R-3-F-Ob \\
+    \hyperref[UC2]{UC2} & R-4-F-De \\
+    \hyperref[UC2.2]{UC2.2} & R-5-F-De \\
+    \hyperref[UC3]{UC3} & R-2-F-Ob, R-6-F-Ob \\
+    \hyperref[UC3.3]{UC3.3} & R-7-F-Ob \\
+    \hyperref[UC4]{UC4} & R-8-F-Ob \\
+    \hyperref[UC4.4]{UC4.4} & R-9-F-Ob \\
     \hyperref[UC5]{UC5} & R-10-F-Ob \\
-    \hyperref[UC6]{UC6} & R-11-F-Ob \\
-    \hyperref[UC7]{UC7} & R-12-F-Ob \\
-    \hyperref[UC8]{UC8} & R-7-F-Ob \\
-    \hyperref[UC9]{UC9} & R-9-F-Ob \\
-    \hyperref[UC10]{UC10} & R-8-F-Ob \\
-    \hyperref[UC11]{UC11} & R-13-F-De \\
-    \hyperref[UC12]{UC12} & R-14-F-Ob \\
-    \hyperref[UC13]{UC13} & R-15-F-Ob \\
-    \hyperref[UC14]{UC14} & R-16-F-De \\
-    \hyperref[UC15]{UC15} & R-47-F-Ob, R-48-F-Ob, R-50-F-Ob \\
-    \hyperref[UC16]{UC16} & R-49-F-Ob \\
-    \hyperref[UC17]{UC17} & R-53-F-Ob \\
-    \hyperref[UC17.2]{UC17.2} & R-54-F-Ob \\
-    \hyperref[UC17.4]{UC17.4} & R-55-F-Ob, R-56-F-Ob \\
-    \hyperref[UC19]{UC19} & R-17-F-De \\
-    \hyperref[UC20]{UC20} & R-18-F-De \\
-    \hyperref[UC22]{UC22} & R-19-F-De \\
-    \hyperref[UC23]{UC23} & R-20-F-De \\
-    \hyperref[UC24]{UC24} & R-21-F-De \\
-    \hyperref[UC25]{UC25} & R-22-F-Ob \\
-    \hyperref[UC26]{UC26} & R-23-F-Ob \\
-    \hyperref[UC27]{UC27} & R-24-F-Ob \\
-    \hyperref[UC28]{UC28} & R-25-F-Ob \\
-    \hyperref[UC29]{UC29} & R-26-F-Ob \\
-    \hyperref[UC30]{UC30} & R-27-F-De \\
-    \hyperref[UC31]{UC31} & R-27-F-De \\
-    \hyperref[UC32]{UC32} & R-28-F-De \\
-    \hyperref[UC33]{UC33} & R-30-F-Ob \\
-    \hyperref[UC33.1.1]{UC33.1.1} & R-32-F-De \\
-    \hyperref[UC33.1.2]{UC33.1.2} & R-33-F-Ob \\
-    \hyperref[UC33.1.3]{UC33.1.3} & R-34-F-De \\
-    \hyperref[UC33.1.4]{UC33.1.4} & R-35-F-De \\
-    \hyperref[UC33.1.5]{UC33.1.5} & R-36-F-De \\
-    \hyperref[UC33.2.1]{UC33.2.1} & R-37-F-Ob \\
-    \hyperref[UC33.2.2]{UC33.2.2} & R-38-F-Ob \\
-    \hyperref[UC33.2.3]{UC33.2.3} & R-39-F-Ob \\
-    \hyperref[UC33.3]{UC33.3} & R-40-F-Ob \\
-    \hyperref[UC33.4.2]{UC33.4.2} & R-42-F-De \\
-    \hyperref[UC33.4]{UC33.4} & R-41-F-Ob \\
-    \hyperref[UC33.5.1]{UC33.5.1} & R-43-F-Ob \\
-    \hyperref[UC33.5.2]{UC33.5.2} & R-44-F-De \\
-    \hyperref[UC33.5.3]{UC33.5.3} & R-45-F-Ob \\
-    \hyperref[UC33.6]{UC33.6} & R-46-F-De \\
-    \hyperref[UC35]{UC35} & R-31-F-Ob \\
-    \hyperref[UC36]{UC36} & R-51-F-Ob \\
-    \hyperref[UC36.1]{UC36.1} & R-52-F-De \\
-    \hyperref[UC17]{UC17} & R-9-V-Ob \\
+    \hyperref[UC5.3]{UC5.3} & R-11-F-Ob \\
+    \hyperref[UC6]{UC6} & R-12-F-Ob \\
+    \hyperref[UC6.1]{UC6.1} & R-13-F-Ob \\
+    \hyperref[UC7]{UC7} & R-14-F-Ob \\
+    \hyperref[UC8]{UC8} & R-15-F-Ob \\
+    \hyperref[UC8.1]{UC8.1} & R-16-F-Ob \\
+    \hyperref[UC9]{UC9} & R-17-F-Ob \\
+    \hyperref[UC10]{UC10} & R-18-F-Ob \\
+    \hyperref[UC10.2]{UC10.2} & R-19-F-Ob \\
+    \hyperref[UC10.3]{UC10.3} & R-20-F-Ob \\
+    \hyperref[UC11]{UC11} & R-21-F-De \\
+    \hyperref[UC11.1]{UC11.1} & R-22-F-De \\
+    \hyperref[UC12]{UC12} & R-23-F-Ob \\
+    \hyperref[UC12.1]{UC12.1} & R-24-F-Ob \\
+    \hyperref[UC13]{UC13} & R-25-F-Ob \\
+    \hyperref[UC14]{UC14} & R-26-F-De \\
+    \hyperref[UC14.1]{UC14.1} & R-27-F-De \\
+    \hyperref[UC14.2]{UC14.2} & R-28-F-De \\
+    \hyperref[UC14.3]{UC14.3} & R-29-F-De \\
+    \hyperref[UC15]{UC15} & R-30-F-Ob, R-31-F-Ob, R-32-F-Ob \\
+    \hyperref[UC15.1]{UC15.1} & R-33-F-Ob \\
+    \hyperref[UC15.2]{UC15.2} & R-34-F-Ob \\
+    \hyperref[UC15.3]{UC15.3} & R-35-F-Ob \\
+    \hyperref[UC16]{UC16} & R-36-F-Ob \\
+    \hyperref[UC17]{UC17} & R-37-F-Ob, R-38-F-Ob \\
+    \hyperref[UC17.1]{UC17.1} & R-39-F-Ob \\
+    \hyperref[UC17.2]{UC17.2} & R-40-F-Ob \\
+    \hyperref[UC17.3]{UC17.3} & R-41-F-Ob \\
+    \hyperref[UC17.4]{UC17.4} & R-42-F-Ob, R-43-F-Ob \\
+    \hyperref[UC18]{UC18} & R-44-F-Ob \\
+    \hyperref[UC19]{UC19} & R-45-F-De \\
+    \hyperref[UC20]{UC20} & R-46-F-De \\
+    \hyperref[UC21]{UC21} & R-47-F-De \\
+    \hyperref[UC22]{UC22} & R-48-F-De \\
+    \hyperref[UC23]{UC23} & R-49-F-De \\
+    \hyperref[UC24]{UC24} & R-50-F-De \\
+    \hyperref[UC25]{UC25} & R-51-F-Ob \\
+    \hyperref[UC25.1]{UC25.1} & R-52-F-Ob \\
+    \hyperref[UC26]{UC26} & R-53-F-Ob \\
+    \hyperref[UC27]{UC27} & R-54-F-Ob \\
+    \hyperref[UC28]{UC28} & R-55-F-Ob \\
+    \hyperref[UC28.1]{UC28.1} & R-56-F-Ob \\
+    \hyperref[UC28.2]{UC28.2} & R-57-F-Ob \\
+    \hyperref[UC29]{UC29} & R-58-F-Ob \\
+    \hyperref[UC30]{UC30} & R-59-F-De \\
+    \hyperref[UC31]{UC31} & R-60-F-De \\
+    \hyperref[UC31.1]{UC31.1} & R-61-F-De \\
+    \hyperref[UC32]{UC32} & R-62-F-De \\
+    \hyperref[UC33]{UC33} & R-63-F-Ob \\
+    \hyperref[UC33.1]{UC33.1} & R-64-F-Ob \\
+    \hyperref[UC33.1.1]{UC33.1.1} & R-65-F-De \\
+    \hyperref[UC33.1.2]{UC33.1.2} & R-66-F-Ob \\
+    \hyperref[UC33.1.3]{UC33.1.3} & R-67-F-De \\
+    \hyperref[UC33.1.4]{UC33.1.4} & R-68-F-De \\
+    \hyperref[UC33.1.5]{UC33.1.5} & R-69-F-De \\
+    \hyperref[UC33.2]{UC33.2} & R-70-F-Ob \\
+    \hyperref[UC33.2.1]{UC33.2.1} & R-71-F-Ob \\
+    \hyperref[UC33.2.2]{UC33.2.2} & R-72-F-Ob \\
+    \hyperref[UC33.2.3]{UC33.2.3} & R-73-F-Ob \\
+    \hyperref[UC33.3]{UC33.3} & R-74-F-Ob \\
+    \hyperref[UC33.4]{UC33.4} & R-75-F-Ob \\
+    \hyperref[UC33.4.1]{UC33.4.1} & R-76-F-Ob \\
+    \hyperref[UC33.4.2]{UC33.4.2} & R-77-F-De \\
+    \hyperref[UC33.5]{UC33.5} & R-78-F-Ob \\
+    \hyperref[UC33.5.1]{UC33.5.1} & R-79-F-Ob \\
+    \hyperref[UC33.5.2]{UC33.5.2} & R-80-F-De \\
+    \hyperref[UC33.5.3]{UC33.5.3} & R-81-F-Ob \\
+    \hyperref[UC33.6]{UC33.6} & R-82-F-De \\
+    \hyperref[UC34]{UC34} & R-83-F-Ob \\
+    \hyperref[UC35]{UC35} & R-84-F-Ob \\
+    \hyperref[UC35.1]{UC35.1} & R-85-F-Ob \\
+    \hyperref[UC35.2]{UC35.2} & R-86-F-Ob \\
+    \hyperref[UC36]{UC36} & R-87-F-Ob \\
+    \hyperref[UC36.1]{UC36.1} & R-88-F-De \\
+    \hyperref[UC36.2]{UC36.2} & R-89-F-Ob \\
+    \hyperref[UC36.3]{UC36.3} & R-90-F-Ob \\
+    \hyperref[UC36.4]{UC36.4} & R-91-F-Ob \\
+    \hyperref[UC36.5]{UC36.5} & R-92-F-Ob \\
+    \hyperref[UC36.6]{UC36.6} & R-93-F-Ob \\
+    \hyperref[UC37]{UC37} & R-94-F-Ob \\
 \end{longtable}
 
 \subsection{Riepilogo dei Requisiti}
@@ -5239,12 +5309,13 @@ Nella seguente tabella viene riportato il riepilogo del numero di requisiti indi
         \rowcolor{AccentDark}
         \color{white}\textbf{Tipologia} & \color{white}\textbf{Obbligatori} & \color{white}\textbf{Desiderabili} & \color{white}\textbf{Opzionali} & \color{white}\textbf{Totale} \\
         
-        Funzionali & 38 & 18 & 6 & 62 \\
-        Qualità    & 5  & 2  & 0 & 7  \\
-        Vincolo    & 8  & 1  & 0 & 9  \\
-        \textbf{Totale} & \textbf{51} & \textbf{21} & \textbf{6} & \textbf{78} \\
+        Funzionali & 68 & 26 & 6 & 100 \\
+        Qualità    & 6  & 2  & 0 & 8  \\
+        Vincolo    & 6  & 1  & 0 & 7  \\
+        \textbf{Totale} & \textbf{80} & \textbf{29} & \textbf{6} & \textbf{115} \\
     \end{tabular}
     \label{tab:riepilogo-requisiti}
 \end{table}
+
 
 \end{document}

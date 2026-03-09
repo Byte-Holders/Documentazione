@@ -218,6 +218,7 @@
 	\multicolumn{1}{c}{\textcolor{white}{\textbf{Verificatore}}} &
 	\multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
 	\endhead
+	1.0.1 & 09/03/2026 &  Giulia Romanato &  Lorenzo Grolla & cmapiato nome dell'UC30 da Ricerca con barra a Ricerca testuale, aggiunto include UC32 a UC29 \\
 	1.0.0 & 22/02/2026 &  Alessandro Morabito &  Lorenzo Grolla & Versione finale del documento, con tutte le sezioni completate e revisionate. \\
 	0.19.0 & 16/02/2026 & Lorenzo Grolla & Giacomo Nalotto & Correzione errori struttura documento \\
 	0.18.0 & 15/02/2026 & Giacomo Nalotto & Giulia Romanato & Aggiunta tabelle riassuntive dei requisiti \\
@@ -3052,23 +3053,26 @@ Il caso d'Uso\textsuperscript{G} UC10 include ulteriori casi d'uso come rapprese
 	\end{itemize}
 	\item \textbf{Postcondizioni:} 
 	\begin{itemize}
-		\item Il sistema mostra la lista della lista delle repository del workspace che soddisfano i criteri di ricerca specificati dall'utente
+		\item Il sistema mostra la lista delle repository del workspace che soddisfano i criteri di ricerca specificati dall'utente (o tutte le repository se non sono stati specificati criteri) e, se richiesto dall'utente, ordinata secondo il criterio di ordinamento selezionato
 	\end{itemize}
 	\item \textbf{Scenario\textsuperscript{G} principale:}
 	\begin{enumerate}
 		\item L'utente seleziona l'opzione di ricerca repository
 		\item Il sistema acquisisce i criteri di ricerca dall'utente (tramite barra di ricerca o filtri)
+		\item Se l'utente non ha specificato alcun criterio di ricerca, il sistema considera tutte le repository del workspace
 		\item Il sistema filtra la lista delle repository del workspace in base ai criteri specificati
-		\item Il sistema mostra la lista delle repository che corrispondono ai criteri di ricerca
+		\item L'utente può selezionare un criterio di ordinamento dei risultati (\hyperref[UC32]{UC32 - Ordinamento lista repository})
+		\item Il sistema mostra la lista delle repository che corrispondono ai criteri di ricerca, secondo l'ordine selezionato dall'utente
 	\end{enumerate}
+	\item \textbf{Inclusioni:} \hyperref[UC32]{UC32}
 	\item \textbf{UC che ereditano:} 
 	\begin{itemize}
-		\item \hyperref[UC30]{UC30 - Ricerca con barra}
+		\item \hyperref[UC30]{UC30 - Ricerca testuale}
 		\item \hyperref[UC31]{UC31 - Ricerca con filtri}
 	\end{itemize}
 \end{itemize}
 
-\subsubsection{UC30 - Ricerca con barra}\label{UC30}
+\subsubsection{UC30 - Ricerca testuale}\label{UC30}
 \begin{itemize}
 	\item \textbf{Attori principali:} Utente
 	\item \textbf{Precondizioni:} 
@@ -3200,11 +3204,12 @@ Il caso d'Uso\textsuperscript{G} UC10 include ulteriori casi d'uso come rapprese
 		\item Il sistema è attivo e funzionante
 		\item L'utente è stato riconosciuto dal sistema come Utente
 		\item L'utente ha selezionato un workspace
-		\item L'utente sta visualizzando una lista di repository del workspace
+		\item L'utente sta visualizzando una lista delle repository derivante da una ricerca (\hyperref[UC29]{UC29})
 	\end{itemize}
 	\item \textbf{Postcondizioni:} 
 	\begin{itemize}
-		\item Il sistema mostra la lista delle repository ordinata secondo il criterio e la direzione selezionati
+		\item Il sistema mostra la lista delle repository ordinata secondo il criterio e la direzione selezionati dall'utente
+		\item Se l'utente non seleziona alcun criterio di ordinamento, il sistema ordina automaticamente la lista in ordine alfabetico crescente (A-Z) per nome repository
 	\end{itemize}
 	\item \textbf{Scenario\textsuperscript{G} principale:}
 	\begin{enumerate}
@@ -3234,7 +3239,7 @@ Il caso d'Uso\textsuperscript{G} UC10 include ulteriori casi d'uso come rapprese
 				\item \textbf{Condizione:} l'utente non seleziona alcun criterio di ordinamento
 				\item \textbf{Flusso:} 
 				\begin{enumerate}
-					\item Il sistema mantiene l'ordinamento attuale della lista delle repository
+					\item Il sistema ordina automaticamente la lista in ordine alfabetico crescente (A-Z) per nome repository
 				\end{enumerate}
 			\end{itemize}
 	\end{itemize}

@@ -1,0 +1,657 @@
+\documentclass[a4paper, 11pt]{article}
+
+% ====== PACCHETTI NECESSARI ======
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{colortbl}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{lipsum}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+
+% ====== IMPOSTAZIONI GLOBALI DI STILE ======
+
+% 1. DEFINIZIONE COLORI BLU-VIOLA
+\definecolor{AccentColor}{RGB}{80, 90, 180}
+\definecolor{AccentLight}{RGB}{120, 130, 210}
+\definecolor{AccentDark}{RGB}{50, 60, 140}
+\definecolor{LightGray}{RGB}{245, 245, 250}
+\definecolor{MediumGray}{RGB}{200, 200, 210}
+
+% 2. IMPOSTAZIONE MARGINI
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=3.5cm, bottom=3.5cm}
+\setlength{\headheight}{14pt}
+
+% 3. STILE DEI TITOLI DI SEZIONE
+\titleformat{\section}
+  {\normalfont\sffamily\Large\bfseries\color{AccentColor}}
+  {\thesection}{1em}{}
+
+\titleformat{\subsection}
+  {\normalfont\sffamily\large\bfseries\color{AccentDark}}
+  {}{0em}{}
+
+% 4. IMPOSTAZIONE HEADER E FOOTER
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\sffamily\bfseries\color{AccentColor}BYTE HOLDERS}
+\fancyhead[R]{\sffamily\color{AccentColor}\thepage}
+\renewcommand{\headrulewidth}{0.8pt}
+\renewcommand{\headrule}{\color{AccentColor}\hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}
+
+% 5. IMPOSTAZIONE LINK
+\hypersetup{
+    colorlinks=true,
+    linkcolor=AccentColor,
+    urlcolor=AccentLight,
+    citecolor=AccentDark,
+}
+
+% 6. PERSONALIZZAZIONE ELENCHI
+\setlist[itemize]{itemsep=2pt, topsep=4pt}
+\setlist[enumerate]{itemsep=2pt, topsep=4pt}
+
+% ====== COMANDI PERSONALIZZATI ======
+\makeatletter
+\newcommand{\NomeGruppo}[1]{\def\@NomeGruppo{#1}}
+\newcommand{\TitoloVerbale}[1]{\def\@TitoloVerbale{#1}}
+\newcommand{\Sommario}[1]{\def\@Sommario{#1}}
+\newcommand{\Autore}[1]{\def\@Autore{#1}}
+\newcommand{\Verificatore}[1]{\def\@Verificatore{#1}}
+\makeatother
+
+% ====== STILE TABELLE MIGLIORATO ======
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\setlength{\arrayrulewidth}{0.4pt}
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.4}
+
+\newcommand{\GlossarioLettera}[1]{%
+    \clearpage
+    \begin{center}
+        {\LARGE \sffamily \color{AccentColor}\bfseries #1}
+    \end{center}
+    %\section*{#1}
+    \addcontentsline{toc}{section}{#1}
+    \textcolor{AccentColor}{\rule{\textwidth}{0.4pt}}
+}
+\newcommand{\nocontentsline}[3]{}
+\newcommand{\term}[1]{\vspace*{.5cm}\bgroup\let\addcontentsline=\nocontentsline\subsection{#1}\label{term:#1}\egroup}
+\newcommand{\refterm}[1]{\nameref{term:#1}}
+
+% ====== INIZIO DEL DOCUMENTO ======
+\begin{document}
+
+\NomeGruppo{BYTE HOLDERS}
+\TitoloVerbale{Glossario}
+\Sommario{Documento che riporta la definizione dei termini usati durante lo svolgimento del progetto}
+\Autore{}
+\Verificatore{}
+
+\pagestyle{empty}
+
+% ====== PAGINA DI TITOLO ======
+\begin{titlepage}
+    \centering
+    
+    \includegraphics[width=0.55\textwidth]{../Assets/ByteHolders1.png}\par\vspace{1.5cm}
+    
+    {\LARGE \sffamily \color{AccentColor}\bfseries Glossario}\par
+    \vspace{0.5cm}
+    
+
+\end{titlepage}
+
+\pagestyle{fancy}
+\newpage
+\tableofcontents
+\newpage
+
+
+% ====== SEZIONE PRINCIPALE ======
+\GlossarioLettera{A}
+\term{Agente}
+Un agente è un'entità autonoma in grado di: ragionare, pianificare, interagire con API e strumenti esterni, modificando l'ambiente esterno in cui opera per raggiungere obiettivi specifici.\\
+I principali componenti di un agente sono:
+\begin{itemize}
+    \item \textbf{Model}: modello generativo (es. \refterm{LLM}) usato dall'agente. La sua efficacia dipende dalla qualità e quantità dei dati su cui è stato addestrato.\\
+     Diversamente dal modello puro, l'agente può ampliare le proprie capacità tramite interazioni con strumenti esterni.
+    \item \textbf{Reasoning Loop}: processo iterativo di pensiero e decisione dell'agente., in cui distingue i passaggi necessari e decide quali azioni eseguire.\\
+    Può essere implementato con framework come ReAct.
+    \item \textbf{Tool}: strumenti esterni con cui l'agente interagisce con l'ambiente esterno per ottenere informazioni o eseguire azioni. Vedi \refterm{Tool}.
+\end{itemize}
+
+%\term{Amazon Web Services}
+
+\term{Ambiente}
+Vedi \refterm{Variabili d'Ambiente}
+
+\term{Analisi dei Requisiti}
+Documento che formalizza i requisiti funzionali e non funzionali di CodeGuardian.
+
+\term{Analisi dei Requisiti (Processo)}
+Processo di studio dei bisogni degli utenti per definire un \refterm{Requisito}.
+
+\term{API}
+\textit{Application Programming Interface}. Un'API è un insieme di regole e protocolli che consente a diverse applicazioni software di comunicare tra loro. È un'interfaccia per accedere a funzionalità o dati specifici di un'applicazione, servizio o piattaforma, facilitando l'integrazione e l'interoperabilità tra sistemi diversi.
+
+\term{API Token}
+Chiave unica talvolta necessaria per accedere a una \refterm{API}.
+
+\term{Attore}
+Un Attore è un'entità esterna al sistema che interagisce con esso per scambiare informazioni o attivare funzionalità. Un attore può essere un essere umano, un componente hardware o un altro sistema software. Gli attori vengono classificati in primari, se danno inizio al caso d'uso per raggiungere un obiettivo, o secondari, se forniscono un servizio al sistema durante l'esecuzione dello scenario.
+
+%\term{AWS}
+
+\GlossarioLettera{B}
+%\term{Bedrock}
+\term{Board}
+Una Board è una bacheca in stile Kanban che permette di monitorare lo stato di avanzamento del progetto, attraverso l'organizzazione visuale delle attività (issue) da svolgere (Backlog, se non è ancora da prendere in carico - Ready, quando la issue è pronta per essere svolta), in corso (In Progress), in revisione (in Review, in attesa di verifica e approvazione) e terminate (Done).
+
+\term{Branch}
+Un branch (ramo) è una linea di sviluppo indipendente (una copia separata del codice sorgente) all'interno di un sistema di controllo versione (VCS), come Git. Permette agli sviluppatori di lavorare su funzionalità, correzioni di bug o esperimenti senza influenzare direttamente il ramo principale.
+
+\GlossarioLettera{C}
+\term{Caso d'uso}
+Un Caso d'uso rappresenta una descrizione coerente delle funzionalità che il sistema offre per soddisfare un obiettivo specifico di un utente. Formalmente, consiste in un insieme di scenari (principali, alternativi o di errore) che descrivono le interazioni tra gli attori e il sistema stesso, finalizzate al raggiungimento di un risultato di valore per l'interessato.
+%\term{Chain-of-thought prompting}
+
+\term{CIA}
+\textit{Confidentiality, Integrity, Availability}. Triade che rappresenta i principi chiave della sicurezza informatica.
+\begin{itemize}
+	\item \textbf{Confidentiality}: limita l'accesso a informazioni sensibili
+	\item \textbf{Integrity}: assicura l'accuratezza e l'affidabilità di dati e ed equipaggiamenti
+	\item \textbf{Availability}: assicura accesso tempestivo a dati ed equipaggiamenti
+\end{itemize}
+
+%\term{CodeQL}
+
+\term{Code coverage}
+Metrica che misura la percentuale di codice sorgente eseguito durante l'esecuzione di una suite di test. In particolare, include:
+\begin{itemize}
+	\item Statement coverage
+	\item Branch coverage
+	\item Function coverage
+	\item Path coverage
+\end{itemize}
+
+%\term{Cognito}
+
+\term{Container}
+Processo isolato per le componenti di un'applicazione. Un container è:
+\begin{itemize}
+	\item autocontenuto, nel senso che non si appoggia su dipendenze della macchina su cui corre
+	\item isolato, garantendo maggiore sicurezza per le applicazioni. A differenza di una macchina virtuale la separazione non avviene a livello kernel.
+	\item gestito indipendentemente dagli altri container
+	\item portatile, nel senso che lo stesso container può correre allo stesso modo su macchine diverse
+\end{itemize}
+
+ Si ottiene eseguendo una \refterm{Immagine (Docker)} tramite \refterm{Docker}.
+
+%\term{Context Prompt}
+
+\term{CVE}
+\textit{Common Vulnerabilities and Exposures}. Un glossario di \refterm{Vulnerabilità} formalmente identificate. Utilizziamo il termine per fare riferimento più in particolare ai \textit{CVE Record}: una entry di tale glossario, ovvero dati strutturati riguardanti una certa vulnerabilità. Ciascun record possiede un identificatore univoco, e può essere in uno dei seguenti stati:
+\begin{itemize}
+	\item \textbf{Reserved}: il codice associato è riservato e non può essere utilizzato
+	\item \textbf{Published}: i dati relativi al record sono stati popolati, e il record è stato pubblicato
+	\item \textbf{Rejected}: il record non deve essere più considerato, e non viene rimosso per comunicarne lo stato
+\end{itemize}
+A ciascun record è inoltre associato un punteggio \refterm{CVSS}.\\
+Dopo che un record viene aggiunto alle CVE, diventa rapidamente disponibile anche nel \refterm{NVD}, che provvederà ad arricchirlo.
+
+\term{CVSS}
+\textit{Common Vulnerability Scoring System}. Una metrica che associa un valore numerico compreso tra 0 (bassa gravità) e 10 (alta gravità) a una determinata vulnerabilità. A un valore numerico è associata anche una stringa (\textit{CVSS vector string}) che specifica i valori utilizzati per ottenerlo. Attualmente in versione \texttt{4.0}\footnote{\url{https://www.first.org/cvss/v4.0/specification-document}}.
+
+\term{CWE}
+\textit{Common Weaknesses Enumeration}. Una lista di debolezze software e hardware. A ciascuna \refterm{Debolezza} in CWE è associato:
+\begin{itemize}
+	\item \textbf{Nome} descrittivo
+	\item \textbf{Descrizione breve} riassuntiva
+	\item \textbf{Descrizione lunga}, destinata a chi può non comprendere per quale motivo possa essere un problema
+	\item \textbf{Modalità di introduzione}
+	\item \textbf{Potenziali mitigazioni} del problema
+	\item \textbf{Consequenze comuni} che si verificano quando un attaccante sfrutta la debolezza
+	\item \textbf{Piattaforme applicabili}: linguaggi di programmazione, sistemi operativi, architetture e tecnologie
+	\item \textbf{Esempi dimostrativi} che illustrano la vulnerabilità tramite codice, testo e, talvolta, diagrammi
+	\item \textbf{Esempi osservati}, ad es. record \refterm{CVE}
+	\item \textbf{Relazioni} con altre CWE
+	\item \textbf{Riferimenti}, nel senso di citazioni sotto forma di URL, documenti, slide o video
+\end{itemize}
+
+\GlossarioLettera{D}
+\term{Database non relazionale}
+Tipologia di base di dati che permette il salvataggio di dati strutturati, non strutturati e semi strutturati. Possono assumere varie forme come grafi oppure documenti. I database non relazionali sono anche detti \refterm{NoSQL}.
+
+A differenza di un \refterm{Database relazionale} sono facilmente scalabili orizzontalmente, ma non possiedono un linguaggio di interrogazione standard e hanno un supporto limitato per le transazioni (non aderiscono, generalmente, alle proprietà ACID\footnote{ACID: \url{https://database.guide/what-is-acid-in-databases/}}).
+
+\term{Database relazionale}
+Base di dati basata sul modello relazionale. Salva i dati in formato strutturato all'interno di tabelle (relazioni) composte da righe (tuple) e colonne (attributi) ben definite. La comunicazione con un database relazionale avviene tramite R\refterm{DBMS} (\textit{Relational DataBase Management System}) che aderiscono alle proprietà ACID per garantire l'affidabilità delle transazioni. La comunicazione avviene tramite \refterm{SQL}.
+
+I database relazionali permettono un'ottimizzazione formale della ridondanza e dipendenza dei dati e di effettuare interrogazioni complesse tra tabelle sfruttando la proprietà di integrità referenziale. Sono però complessi da scalare orizzontalmente, sono poco flessibili e inadatti a gestire dati non strutturati o gerarchici.
+
+\term{Database vettoriale}
+Base di dati che permette il salvataggio di dati sotto forma di vettori (\textit{embedding}), che vengono raggruppati in base alla similarità. Le interrogazioni effettuate non si basano sulle corrispondenze esatte per recuperare i risultati rilevanti, bensì sulla somiglianza dei dati.
+
+\term{DBMS}
+\textit{DataBase Management System}. Sistema software progettato per consentire la creazione, la manipolazione e l'interrogazione di una o più basi di dati in modo corretto ed efficiente.
+
+\term{Debolezza}
+Condizione in un software o componente che può contribuire all'introduzione di \refterm{Vulnerabilità}.
+
+\term{Dev}
+Vedi \refterm{Developer}.
+
+\term{Developer}
+Il Developer è la figura responsabile di progettare, scrivere, testare e mantenere il codice necessario a realizzare le funzionalità di un progetto software. Traduce i requisiti forniti da Project Manager e Tech Lead in soluzioni tecniche concrete, contribuendo allo sviluppo, all'evoluzione e alla qualità del prodotto.
+
+Le sue principali responsabilità sono:
+\begin{itemize}
+  \item \textbf{Sviluppo del codice}: implementa nuove funzionalità, corregge bug e realizza le componenti software richieste.
+  \item  \textbf{Collaborazione tecnica}: interagisce con Tech Lead e altri sviluppatori per garantire coerenza e qualità.
+  \item \textbf{Test e qualità}: scrive test, verifica il funzionamento del proprio codice e contribuisce alla stabilità del sistema.
+  \item \textbf{Documentazione}: documenta funzionalità, API, processi e soluzioni implementate.
+  \item \textbf{Manutenzione}: aggiorna, ottimizza e riorganizza il codice esistente quando necessario.
+\end{itemize}
+
+\term{Docker}
+Piattaforma per sviluppare e condividere applicazioni in modo che siano separate dalla loro infrastruttura (vedi \refterm{Container}). Facilita la riproducibilità della costruzione di software nonché il loro sviluppo e la scalabilità.
+
+Utilizza un'architettura client-server, dove il demone \texttt{dockerd} (locale o remoto) e il client (ad es. \refterm{docker compose}) comunicano tramite \refterm{API} \refterm{REST} tramite socket o rete.
+
+\term{docker compose}
+Comando che permette di eseguire \refterm{Container} multipli secondo una configurazione specificata in un file YAML, permettendo la configurazione ad esempio di reti, volumi e variabili d'ambiente.
+
+\term{Dockerfile}
+File contenente le istruzioni per la costruzione di un'\refterm{Immagine (Docker)}. A seguire istruzioni comuni\footnote{Documentazione: \url{https://docs.docker.com/reference/dockerfile}}:
+\begin{itemize}
+	\item \texttt{FROM}: definisce l'immagine di partenza
+	\item \texttt{WORKDIR}: definisce la \textit{working directory} all'interno del filesystem dummy dell'immagine
+	\item \texttt{COPY <host-path> <image-path>}: copia tutti i file/directory presenti a \texttt{<host-path>} (dell'utente) in \texttt{<wd>/<image-path>} (dell'immagine). Qui, \texttt{<wd>} è definita dal comando \texttt{WORKDIR}
+	\item \texttt{RUN <cmd>}: esegue \texttt{<cmd>} da riga di comando. Si noti che
+	\begin{enumerate}
+		\item la cache non viene invalidata in build successive, salvo l'esecuzione di \texttt{docker build --no-cache} in fase di build
+		\item dal momento che \texttt{RUN} genera un nuovo layer, effettuare un'operazione che influenza(ad esempio) solamente la shell corrente non influenzerà i comandi successivi. Ad esempio, se entro attivo un \texttt{virtualenv} di python con un comando \texttt{RUN}, e successivamente eseguo \texttt{RUN pip install...}, il pacchetto non verrà installato all'interno dell'ambiente virtuale.
+	\end{enumerate}
+	\item \texttt{ENV <name> <value>}: assegna \texttt{<name>=<value>} a livello di \refterm{Ambiente}
+	\item \texttt{EXPOSE <port>}: indica la porta che vorresti esporre. In realtà è solo documentativa: il comando in sé non espone la porta, ma lo comunica a chi eseguirà poi il container. Starà a quella persona poi pubblicare la porta ad esempio utilizzando la flag \texttt{-p} in \texttt{docker run -p<host>:<container>/<protocol>}. In tal caso, il comando specifica che avviene port-forwarding dalla porta \texttt{<host>} dell'host a quella \texttt{<container>} del container, utilizzando protocollo \texttt{<protocol>} che può essere \texttt{udp} o \texttt{tcp}.
+	\item \texttt{USER <user/uuid>}: specifica l'utente per le istruzioni successive
+	\item \texttt{CMD ["<command>", "<arg1>"]}: specifica il comando che il container eseguirà ogni volta che viene fatto correre. Ce ne può essere solamente uno per container e deve essere l'ultima istruzione presente nel file.
+\end{itemize}
+
+\term{Documentazione}
+Repository, con sito accessibile al link \url{https://byte-holders.github.io/Documentazione/}, contenente tutti i documenti formali prodotti dal gruppo \textbf{Byte Holders}.
+
+I documenti pubblicati:
+\begin{itemize}
+	\item \refterm{Analisi dei Requisiti}
+	\item \refterm{Norme di Progetto}
+	\item \refterm{Piano di Progetto}
+	\item \refterm{Piano di Qualifica}
+	\item \refterm{Glossario}
+	\item Verbali esterni
+	\item Vebali interni
+	\item Diari di bordo
+\end{itemize}
+
+
+\GlossarioLettera{E}
+
+\GlossarioLettera{F}
+%\term{Few-shot prompting}
+
+%\term{FM}
+
+%\term{Foundation Model}
+
+\term{Framework}
+Codice esterno che controlla il flusso del programma. Un framework permette all'utilizzatore di scrivere del codice all'interno di una struttura predefinita. Successivamente, il codice dell'utente verrà chiamato dal framework sfruttando l'\textit{Inversion of Control}, ed eseguito secondo i suoi termini.\\
+CodeGuardian utilizza \refterm{NestJS} come framework per il backend.
+
+\GlossarioLettera{G}
+\term{Git}
+Git è un sistema di controllo versione distribuito che consente di tracciare le modifiche apportate ai file e coordinare il lavoro tra più sviluppatori.\\
+I principali comandi di git sono:
+\begin{itemize}
+    \item \textbf{git clone $<$url$>$}: Clona un repository remoto in locale.
+    \item \textbf{git add $<$file$>$}: Aggiunge file specifici all'area di staging.
+    \item \textbf{git add .}: Aggiunge tutti i file modificati all'area di staging.
+    \item \textbf{git rm $<$file$>$}: Rimuove file specifici dal repository e dall'area di staging
+    \item \textbf{git commit -m "messaggio"}: Crea un commit con i file nell'area di staging e un messaggio descrittivo.
+    \item \textbf{git push origin $<$branch$>$}: Invia i commit locali al repository remoto sul branch specificato.
+    \item \textbf{git pull origin $<$branch$>$}: Recupera e integra le modifiche dal repository remoto al branch locale.
+    \item \textbf{git status}: Mostra lo stato dei file nel repository, inclusi quelli modificati, aggiunti o non tracciati.
+    \item \textbf{git diff}: Mostra le differenze tra i file modificati e l'ultima versione committata.
+    \item \textbf{git branch}: Elenca, crea o elimina branch nel repository.
+    \item \textbf{git checkout $<$branch$>$}: Passa a un branch specifico.
+    \item \textbf{git switch $<$branch$>$}: Alternativa a git checkout per cambiare branch.
+    \item \textbf{git fetch}: Recupera gli aggiornamenti dal repository remoto senza integrarli automaticamente.
+    \item \textbf{git merge $<$branch$>$}: Unisce un branch specifico nel branch corrente.
+    \item \textbf{git rebase $<$branch$>$}: Integra le modifiche di un branch specifico riscrivendo la cronologia dei commit.
+\end{itemize}
+
+\term{GitHub}
+GitHub è una piattaforma di hosting per lo sviluppo software e il versionamento basato su Git che permette di:
+\begin{itemize}
+    \item collaborare allo sviluppo di software in modo distribuito,
+    \item gestire issue, pull request, documentazione
+    \item automatizzare processi tramite GitHub Actions
+\end{itemize}
+È ampiamente utilizzata per progetti open-source e collaborativi.
+
+\term{Gitflow}
+Gitflow è un workflow per Git basato su branch multipli con ruoli specifici. Permette una chiara separazione tra sviluppo, rilascio e manutenzione.\\
+La struttura principale include:
+\begin{itemize}
+    \item \textbf{master}:contiene solo versioni pronte al rilascio
+    \item \textbf{develop}: rappresenta lo stato corrente dello sviluppo
+    \item \textbf{feature branches}: uno per ogni nuova funzionalità
+    \item \textbf{release branches}: preparazione della versione
+    \item \textbf{hotfix branches}: correzioni urgenti sul master
+\end{itemize}
+I principali comandi di gitflow sono:
+\begin{itemize}
+  \item \textbf{git flow init}: Inizializza un repository Gitflow.
+  \item \textbf{git flow feature start $<$nome-feature$>$}: Crea e passa a un nuovo branch di funzionalità.
+  \item \textbf{git flow feature finish $<$nome-feature$>$}: Unisce il branch di funzionalità nel branch develop e lo elimina.
+  \item \textbf{git flow feature publish $<$nome-feature$>$}: Pubblica il branch di funzionalità sul repository remoto.
+  \item \textbf{git flow feature pull origin $<$nome-feature$>$}: Recupera e integra le modifiche dal branch di funzionalità remoto.
+  \item \textbf{git flow feature track $<$nome-feature$>$}: Crea un branch di funzionalità locale che traccia il branch remoto.
+  \item \textbf{git flow release start release $[$BASE$]$ $<$versione$>$}: Crea un nuovo branch di release a partire dal branch specificato (di default develop).
+  \item \textbf{git flow feature release publish $<$versione$>$}: Pubblica il branch di release sul repository remoto.
+  \item \textbf{git flow release finish $<$versione$>$}: Unisce il branch di release nei branch master e develop, crea un tag per la versione e elimina il branch di release.
+  \item \textbf{git flow hotfix start $<$nome-hotfix$>$ $[$BASE$]$}: Crea un nuovo branch di hotfix a partire dal branch specificato (di default master).
+  \item \textbf{git flow hotfix finish $<$nome-hotfix$>$}: Unisce il branch di hotfix nei branch master e develop, crea un tag per la versione e elimina il branch di hotfix.
+\end{itemize}
+
+\term{GitHub Actions}
+GitHub Actions è il sistema di automazione di GitHub che consente di eseguire workflow automatizzati direttamente all'interno del repository. Permette di creare processi personalizzati per la compilazione, il test, il rilascio e la distribuzione del codice, nonché per altre attività legate allo sviluppo software, in risposta ad eventi del repository, come push o pull request.
+
+%\term{GitHub Linguist}
+
+\term{Glossario}
+Questo documento, che ha lo scopo di disambiguare ed essere un riferimento condiviso all'interno del gruppo.
+
+\GlossarioLettera{H}
+%\term{Human Prompt}
+
+\GlossarioLettera{I}
+%\term{IaaS}
+
+%\term{IAM}
+
+%\term{Identity and Access Management}
+
+\term{Immagine (Docker)}
+Un pacchetto in sola lettura che contiene tutti i file, le librerie e le configurazioni per eseguire un \refterm{Container}. Un'immagine è composta da vari strati (\textit{layer}) che rappresentano le modifiche applicate a un'immagine di partenza. La composizioni in strati permette una costruzione di container più rapida e il risparmio di spazio, dal momento che sono condivisibili.
+
+Immagini docker possono essere trovate su \url{https://hub.docker.com/}.
+
+%\term{Infrastructure as a Service}
+
+\term{Issue}
+Un’issue è uno strumento di GitHub utilizzato per segnalare bug, proporre nuove funzionalità, discutere idee o tracciare attività.
+
+\GlossarioLettera{J}
+\term{JavaScript}
+Linguaggio ad alto livello, generalmente compilato \textit{just-in-time}, dinamicamente tipato. Multiparadigma, supporta programmazione orientata agli oggetti, agli eventi e funzionale. Nasce per rendere dinamico il frontend, successivamente utilizzato anche nel backend tramite \refterm{NodeJS}.
+
+\term{JSON}
+\textit{JavaScript Object Notation}. Formato basato sulla sintassi di oggetti ed array di \refterm{JavaScript}. Può descrivere dati serializzati, anche complessi, come testo leggibile. Utilizzato da \refterm{API} \refterm{REST}. 
+
+\GlossarioLettera{K}
+
+\GlossarioLettera{L}
+\term{Langchain}
+\refterm{Framework} open source per lo sviluppo di applicazioni basate su \refterm{LLM}. Consente l'utilizzo di workflow semplici.
+
+\term{Langgraph}
+\refterm{Framework} open source per lo sviluppo di applicazione basate su \refterm{LLM}. Di basso livello, è concentrato principalmente sull'orchestrazione di agenti. Il workflow è compilato a partire da un grafo, personalizzabile.
+
+\term{Large Language Model}
+Tipologia di modello di \textit{machine learning} addestrato per \textit{Natural Language Processing}, in particolare la generazione di testo. Alla base dei chatbot.
+
+\term{LaTeX}
+LaTeX Linguaggio di marcatura (mark-down) compilato per la realizzazione di documenti.
+
+\term{LLM}
+Vedi \refterm{Large Language Model}.
+
+\GlossarioLettera{M}
+\term{Milestone}
+Una milestone è un contenitore che raggruppa issue e pull request sotto un obiettivo comune, di solito legato a una versione, uno sprint o una fase del progetto.\\
+Permette di:
+\begin{itemize}
+    \item monitorare i progressi verso obiettivi specifici (percentuale di completamento),
+    \item organizzare le attività verso una scadenza condivisa,
+    \item facilitare la pianificazione e la comunicazione all'interno del team.
+\end{itemize}
+
+\term{MongoDB}
+Un \refterm{Database non relazionale} orientato ai documenti BSON (estensione del JSON, salva dati in binario). Permette anche la creazione di \refterm{Database vettoriale}.
+
+%\term{MongoDB Atlas}
+
+\GlossarioLettera{N}
+\term{NestJS}
+\refterm{Framework} per la costruzione del lato server di applicazioni che utilizzano \refterm{NodeJS} per il backend. Supporta sia \refterm{JavaScript} che \refterm{TypeScript}.
+
+\term{NodeJS}
+Sistema runtime orientato agli eventi per l'esecuzione di codice \refterm{JavaScript} lato server.
+
+\term{NoSQL}
+Altro nome per \refterm{Database non relazionale}.
+
+\term{Norme di Progetto}
+Documento che fornisce le linee guida per la documentazione, comunicazione, gestione delle versioni e le responsabilità all'interno del gruppo Byte Holders.
+
+\term{npm}
+\textit{node package manager}. Gestore di pacchetti per \refterm{NodeJS}, permette di installare e gestire le dipendenze da riga di comando. Informazioni riguardo il \textit{range} di versioni accettabile sono specificate all'interno del file \texttt{package.json}. In fase di installazione delle dipendenze, queste ottengono una versione "fissa" (quella installata), e vengono aggiunte all'interno del file \texttt{package-lock.json}. Questo rende le installazioni ripetibili pur se su sistemi diversi.
+
+\term{NVD}
+\textit{National Vulnerability Database}. Un database americano che raccoglie e aggiunge informazioni (\refterm{CVSS}, \refterm{CWE}) alle \refterm{CVE} tramite i riferimenti e altri dati pubblici. I dati possono variare se vengono pubblicate informazioni rilevanti.
+
+\GlossarioLettera{O}
+%\term{One-shot prompting}
+
+\term{Orchestratore Autocratico} %RIGUARDARE
+L'orchestratore è il componente centrale di un sistema ad agenti che coordina e gestisce le operazioni degli agenti per raggiungere obiettivi specifici in modo efficiente.\\
+In un sistema ad agenti con orchestratore autocratico, l'orchestratore prende decisioni centralizzate e dirige le azioni degli agenti senza consultare o coinvolgere gli agenti stessi nel processo decisionale. In questo sistema gli agenti svolgono compiti molto specifici.\\
+
+\term{OWASP Top 10}
+Documento che contiene le 10 categorie di maggior rischio per le applicazioni web. È redatto da OWASP, un’organizzazione non profit, aperta e non affiliata ad aziende tecnologiche. La OWASP Top 10 viene utilizzata dalle organizzazioni come standard per la sicurezza di applicazioni ed è basata sull'analisi di dati e sondaggi comunitari. A ciascuna categoria è associato:
+\begin{itemize}
+	\item \textbf{CWE}: numero di \refterm{CWE} mappate alla categoria. È stato impostato dal team OWASP un limite di circa 40 \refterm{CWE} per ciascuna categoria per questione di praticità.
+	\item \textbf{Tasso di incidenza}: percentuale di applicazioni con \refterm{Vulnerabilità} associate ad almeno una \refterm{CWE} mappata alla categoria, tra le applicazioni testate
+	\item \textbf{Sfruttabilità (pesata)}: media pesata del campo \textit{exploitability} del punteggio \refterm{CVSS} (v2 o v3) di \refterm{CVE} associato alle \refterm{CWE} della categoria, normalizzato in una scala da 0 a 10
+	\item \textbf{Impatto (pesato)}:  media pesata del campo \textit{impact} del punteggio \refterm{CVSS} (v2 o v3) di \refterm{CVE} associato alle \refterm{CWE} della categoria, normalizzato in una scala da 0 a 10
+	\item \textbf{Copertura}: percentuale di applicazioni testate contro cui sono stati effettuati test per una specifica \refterm{CWE} di categoria, rispetto al numero totale di applicazioni testate
+	\item \textbf{Occorrenze totali}: numero di applicazioni che hanno presentato una o più \refterm{CWE} di categoria
+	\item \textbf{CVE}: numero di \refterm{CVE} con un punteggio calcolato con \refterm{CVSS}v2 o \refterm{CVSS}v3 nel \refterm{NVD} mappate a \refterm{CWE} di categoria
+	\item \textbf{Punteggio di rischio\footnote{Formula per il calcolo del punteggio del rischio OWASP: \url{https://owasp.org/Top10/2025/0x02_2025-What_are_Application_Security_Risks/}}}: calcolato utilizzando i dati soprastanti. Definisce la posizione nel ranking della Top 10
+\end{itemize}
+
+\term{Owner}
+Ruolo che fa riferimento al creatore di uno workspace. Gode degli stessi permessi di un \refterm{Project Manager} e non può essere rimosso dagli workspace che ha creato.
+
+\GlossarioLettera{P}
+%\term{PaaS}
+
+%\term{Platform as a Service}
+
+\term{Project Manager}
+Il Project Manager (PM) è la figura responsabile della gestione completa del ciclo di vita di uno o più progetti, garantendone la realizzazione nel rispetto di tempi, costi, qualità e obiettivi stabiliti. Pur non essendo necessariamente un esperto tecnico di sviluppo software, coordina persone, attività e risorse, fungendo da punto di contatto tra team di sviluppo, organizzazione e cliente.\\
+Le sue principali responsabilità sono:
+\begin{itemize}
+  \item \textbf{Gestione del Progetto}: Definire obiettivi, scope, tempistiche e budget del progetto, assicurando che vengano rispettati durante tutto il ciclo di vita del progetto
+  \item \textbf{Pianificazione e Organizzazione}: Definisce il piano di progetto, stabilisce scadenze, milestones e priorità operative.
+  \item \textbf{Comunicazione con il Cliente}: Raccoglie requisiti, chiarisce aspettative, condivide stato avanzamento e gestisce richieste o modifiche.
+  \item \textbf{Assegnazione delle Risorse/Assegnazioni (chi fa cosa)}: Decide a quali Developer assegnare i vari progetti di cui è responsabile.
+  \item \textbf{Monitoraggio dell'Avanzamento}: Controlla lo stato dei lavori, interviene in caso di rischi o ritardi, assicura il rispetto degli standard.
+  \item \textbf{Qualità e Conformità}: Definisce standard e requisiti per documentazione e deliverable.
+\end{itemize}
+
+\term{Piano di Progetto}
+Documento che definisce la pianificazione temporale, l'allocazione delle risorse e le tempistiche per la realizzazione di CodeGuardian. Fornisce una guida strutturata per il controllo dell'avanzamento di progetto e la mitigazione dei rischi all'interno del ciclo di vita.
+
+\term{Piano di Qualifica}
+Documento di riferimento per il controllo continuo della qualità del prodotto e dei processi di ciclo di vita. Definisce strategie, standard e metriche per garantire la piena soddisfazione dei requisiti, nonché la correttezza e la buona qualità del prodotto.
+
+\term{PoC}
+Vedi \refterm{Proof of Concept}.
+
+\term{Proof of Concept}
+Semplice applicazione volta a dimostrare la fattibilità dell'obbiettivo prefissato. Utile a fissare una \textit{baseline} tecnologica, quindi RTB. Le tecnologie utilizzate all'interno del Proof of Concept sono:
+\begin{itemize}
+	\item \refterm{NestJS}
+	\item \refterm{React}
+	\item \refterm{MongoDB}
+	\item \refterm{Langgraph}
+	\item \refterm{semgrep}
+	\item \refterm{Syft}
+	\item \refterm{GitHub} \refterm{REST} \refterm{API}
+\end{itemize}
+
+\GlossarioLettera{Q}
+
+\GlossarioLettera{R}
+%\term{Raccolta}
+
+\term{React}
+Libreria \refterm{JavaScript} per la creazione di interfacce utente. Utilizza un'architettura a componenti e permette di aggiornare il contenuto della pagina web in modo efficiente. 
+
+\term{Report}
+Prodotto finale di un \refterm{Sistema ad agenti}. Comprende sezioni per:
+\begin{itemize}
+	\item analisi statica del codice (\refterm{semgrep})
+	\item \refterm{Code coverage}
+	\item analisi della documentazione (utilizzando un \refterm{LLM} dedicato)
+	\item informazioni generali sul repo (\refterm{GitHub} \refterm{REST} \refterm{API})
+	\item dipendenze (\refterm{Syft})
+\end{itemize}
+
+\term{Requisito}
+Una condizione che un sistema o componente deve rispettare, soddisfacendo una specifica definita nell'\refterm{Analisi dei Requisiti}.
+
+\term{REST}
+\textit{REpresentational State Transfer}. Stile architetturale che si basa sui seguenti principi:
+\begin{itemize}
+	\item \textit{interfaccia uniforme}: utilizza metodi HTTP standard (GET, POST, PUT, DELETE) e URI per le risorse
+	\item \textit{client-server}: impone la separazione dei compiti
+	\item \textit{stateless}: una richiesta deve contenere tutte le informazioni necessarie, e il server non deve contenere lo stato della sessione
+	\item \textit{cacheability}: le risposte devono indicare se possono essere messe in \textit{cache}, diminuendo il carico lato server
+	\item \textit{sistema a strati}: il client non deve conoscere la struttura interna del server, ma solamente la specifica
+\end{itemize}
+
+%\term{Role Prompt}
+
+\GlossarioLettera{S}
+%\term{SaaS}
+
+%\term{Sarif}
+
+\term{SBOM}
+Inventario formale e strutturato dei componenti software che vengono utilizzati da un sistema.
+
+\term{Scenario}
+Uno Scenario è una specifica sequenza di eventi e azioni che descrive un singolo percorso di esecuzione all'interno di un \refterm{Caso d'uso}. Esso elenca i passi logici compiuti dagli attori e le risposte fornite dal sistema. Ogni caso d'uso comprende tipicamente uno Scenario Principale (il percorso ideale di successo) e uno o più Scenari Alternativi (che gestiscono varianti o condizioni di errore).
+
+%\term{Schema}
+
+\term{semgrep}
+Strumento di analisi statica del codice. Utilizza regole definite all'interno di file YAML per rilevare vulnerabilità di sicurezza e bug. Offre una \textit{community edition} gratuita.
+
+%\term{Serverless}
+
+\term{Sistema ad agenti}
+Un sistema ad agenti è un insieme di entità autonome, chiamate agenti, che interagiscono tra loro per raggiungere obiettivi specifici all'interno di un ambiente condiviso. Ogni agente possiede capacità di percezione, decisione e azione, permettendo loro di adattarsi e collaborare in modo dinamico.
+
+%\term{Snyk}
+
+%\term{Software as a Service}
+
+\term{Syft}
+\refterm{Tool} open source per la creazione di \refterm{SBOM} a partire da \refterm{Immagine (Docker)}, filesystem e binari.
+
+\term{Sprint}
+Uno sprint è una piccola porzione di tempo (due settimane nel nostro caso) durante il quale un team porta a termine una determinata quantità di lavoro. Gli sprint prevedono
+\begin{itemize}
+	\item una riunione iniziale, per pianificare gli obbiettivi e lo svolgimento dello sprint
+	\item check-in giornalieri, per controllare l'andamento dello sprint e reagire tempestivamente a eventuali problematiche
+	\item una riunione retrospettiva al termine dello sprint, per pianificare e migliorare gli sprint futuri
+\end{itemize}
+
+\term{SQL}
+\textit{Structured Query Language}. Linguaggio utilizzato per interrogare un R\refterm{DBMS} (\textit{Relational DataBase Management System}).
+
+%\term{Swagger}
+
+%\term{System Prompt}
+
+\GlossarioLettera{T}
+%\term{Tag}
+
+%\term{Tag raccolta}
+
+\term{Tech Lead}
+Un tech lead (o technical lead) è il supervisore tecnico di più progetti. È la figura che unisce visione tecnica e capacità di coordinamento, fungendo da ponte tra il Project Manager e il team di sviluppo.\\
+Garantisce la solidità dell'architettura, la qualità del codice e la corretta applicazione delle tecnologie, supportando il team nella risoluzione dei problemi più complessi.\\
+Le sue principali responsabilità sono:
+\begin{itemize}
+  \item \textbf{Supporto e Mentoring}: fornire supporto tecnico al team di sviluppo e al Project Manager, aiutando a risolvere problemi complessi e guidando le decisioni tecniche riguardo alle tecnologie di cui si occupa.
+  \item \textbf{Standard Tecnici}:  Assicurare che il codice e le pratiche di sviluppo rispettino gli standard di qualità (guarda i risultati dei test e il test coverage, per valutare la qualità complessiva del codice prodotto), sicurezza (identifica le vulnerabilità o criticità del prodotto) e performance definiti. Mantiene aggiornate librerie e dipendenze e monitora i rischi legati alle tecnologie adottate.
+  \item \textbf{Architettura e Design}: Revisionare e approvare le decisioni architetturali, contribuendo alla definizione della direzione tecnica dei progetti.
+  \item \textbf{Monitoraggio Aggregato}: Analizza dati provenienti da più repository e progetti (test results, test coverage, stato di sicurezza, indicatori di qualità) per identificare trend, criticità e colli di bottiglia.
+\end{itemize}
+
+\term{Tool}
+Un tool è uno strumento esterno che estende le capacità di un \refterm{Agente}, permettendo ad esempio l'esecuzione di codice e recuperare informazioni aggiornate\footnote{\url{https://docs.langchain.com/oss/python/langchain/tools}}.
+
+I tool si dividono in:
+\begin{itemize}
+	\item \textbf{Extensions}: collegano l'\refterm{Agente} a \refterm{API} esterne in modo autonomo, definendo quando, come e cosa aspettarsi dalla risposta.
+	\item \textbf{Function calling}: usata quando l'\refterm{API} è “segreta”; guida gli input, ma la chiamata vera la fa un sistema esterno.
+	\item \textbf{Data store / \refterm{Database vettoriale}}: permette all'agente di cercare informazioni in database, documenti o siti.
+\end{itemize}
+
+\term{TypeScript}
+Linguaggio di programmazione ad alto livello fortemente tipato. Viene compilato a \refterm{JavaScript} tramite compilatori come \textit{TypeScript compiler} e \textit{Babel}.
+
+\GlossarioLettera{U}
+
+\GlossarioLettera{V}
+\term{Variabili d'Ambiente}
+Un insieme di variabili di sistema (\texttt{NAME=VALUE}) che un processo può leggere, modificando il proprio comportamento. Una variabile d'ambiente nota è \texttt{PATH}, che fa riferimento a una lista di cartelle contenenti file eseguibili (che quindi possono essere eseguiti per nome da riga di comando). Nel nostro caso, tramite \refterm{Docker} si possono indicare dei file che andranno a definire l'ambiente di un container. In questo modo si può facilmente (utilizzando la libreria \texttt{dotenv}) evitare di scrivere dei segreti all'interno di file che saranno caricati e condivisi pubblicamente. Mai condividere un \texttt{.env} file.
+
+\term{VCS}
+Un Version Control System (VCS) è un sistema software che gestisce e traccia tutte le modifiche effettuate a un insieme di file, come documenti, programmi o siti web. Ogni modifica viene registrata come una revisione identificata da un numero o codice, accompagnata da timestamp e autore.\\
+Un VCS permette di confrontare versioni, ripristinare stati precedenti, condividere cambiamenti tra più utenti e gestire attività collaborative tramite funzionalità come branching, merging e tracciamento delle modifiche.
+
+\term{Vulnerabilità}
+Istanza di una \refterm{Debolezza} che può essere sfruttata, impattando negativamente la \refterm{CIA}.
+
+\GlossarioLettera{W}
+\term{Workflow}
+Il workflow è il processo o modello che stabilisce come vengono gestite le modifiche nello sviluppo del codice all'interno di un'organizzazione o di un progetto.\\
+Ogni workflow definisce come si creano i branch, come si integrano le modifiche e come si collabora.\\
+Il tipo di workflow dipende dal VCS utilizzato e dalle esigenze del team di sviluppo.
+
+\GlossarioLettera{X}
+
+\GlossarioLettera{Y}
+%\term{YAML}
+
+\GlossarioLettera{Z}
+%\term{Zero-shot prompting}
+
+\end{document}

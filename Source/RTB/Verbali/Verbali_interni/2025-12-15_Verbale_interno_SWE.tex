@@ -1,0 +1,222 @@
+\documentclass[a4paper, 11pt]{article}
+
+% ====== PACCHETTI NECESSARI ======
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\setlength{\headheight}{14pt}
+\usepackage{titlesec}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{lipsum}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc} % Specifica la codifica del file (necessaria per le accentate)
+\usepackage[T1]{fontenc}    % Migliora l'output dei font per le lingue europee
+
+% ====== IMPOSTAZIONI GLOBALI DI STILE ======
+
+% 1. DEFINIZIONE COLORI BLU-VIOLA
+\definecolor{AccentColor}{RGB}{80, 90, 180} % Blu-viola principale
+\definecolor{AccentLight}{RGB}{80, 90, 180} % Versione più chiara
+\definecolor{AccentDark}{RGB}{50, 60, 140} % Versione più scura
+\definecolor{LightGray}{RGB}{245, 245, 250}
+\definecolor{MediumGray}{RGB}{200, 200, 210}
+
+% 2. IMPOSTAZIONE MARGINI
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=3.5cm, bottom=3.5cm}
+
+% 3. STILE DEI TITOLI DI SEZIONE
+\titleformat{\section}
+  {\normalfont\sffamily\Large\bfseries\color{AccentColor}}
+  {\thesection}
+  {1em}
+  {}
+\titleformat{\subsection}
+  {\normalfont\sffamily\large\bfseries\color{AccentDark}}
+  {\thesubsection}
+  {1em}
+  {}
+\titleformat{\subsubsection}
+  {\normalfont\sffamily\large\bfseries\color{AccentDark}}
+  {\thesubsubsection}
+  {1em}
+  {}
+
+% 4. IMPOSTAZIONE HEADER E FOOTER
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\sffamily\bfseries\color{AccentColor}\@BYTE HOLDERS}
+\fancyhead[R]{\sffamily\color{AccentColor}\thepage}
+\renewcommand{\headrulewidth}{0.8pt}
+\renewcommand{\headrule}{\color{AccentColor}\hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}
+
+% 5. IMPOSTAZIONE LINK
+\hypersetup{
+    colorlinks=true,
+    linkcolor=AccentColor,
+    urlcolor=AccentLight,
+    citecolor=AccentDark,
+}
+
+% 6. PERSONALIZZAZIONE ELENCHI
+\setlist[itemize]{itemsep=2pt, topsep=4pt}
+\setlist[enumerate]{itemsep=2pt, topsep=4pt}
+
+% ====== COMANDI PERSONALIZZATI ======
+\makeatletter
+\newcommand{\NomeGruppo}[1]{\def\@NomeGruppo{#1}}
+\newcommand{\TitoloVerbale}[1]{\def\@TitoloVerbale{#1}}
+\newcommand{\Sommario}[1]{\def\@Sommario{#1}}
+\newcommand{\Autore}[1]{\def\@Autore{#1}}
+\newcommand{\Verificatore}[1]{\def\@Verificatore{#1}}
+\makeatother
+
+% ====== STILE TABELLE MIGLIORATO ======
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X} % Colonna giustificata a sinistra
+\setlength{\arrayrulewidth}{0.4pt} % Linee più sottili
+\setlength{\tabcolsep}{10pt} % Spaziatura interna celle
+\renewcommand{\arraystretch}{1.4} % Altezza righe
+
+% ====== INIZIO DEL DOCUMENTO ======
+\begin{document}
+
+
+% ====== PAGINA DI TITOLO ======
+\begin{titlepage}
+    \centering
+    
+    \includegraphics[width=0.55\textwidth]{../../../Assets/ByteHolders1.png}\par\vspace{1.5cm}
+    
+    {\LARGE \sffamily \color{AccentColor}\bfseries Verbale interno}\par
+    \vspace{0.5cm}
+    {\large \color{AccentColor}\sffamily 15 Dicembre 2025}\par
+    
+    \vfill
+    
+    \noindent\color{AccentColor}\rule{\textwidth}{1pt}\par
+    \vspace{0.5cm}
+    
+    \begin{tabularx}{0.9\textwidth}{@{}>{\bfseries\sffamily}l X@{}}
+    Autore & \sffamily Alessandro Morabito\\
+    \arrayrulecolor{MediumGray}\hline \\[-1.5ex]
+    Verificatore & \sffamily Lorenzo Grolla \\
+    \arrayrulecolor{MediumGray}\hline \\[-1.5ex] 
+    Approvazione & \sffamily Giulia Romanato\\
+    \arrayrulecolor{MediumGray}\hline 
+\end{tabularx}
+    
+    \vfill
+\end{titlepage}
+
+% ====== INDICE ======
+\pagestyle{fancy}
+\newpage
+\tableofcontents
+\newpage
+
+% ====== TABELLA DI VERSIONAMENTO ======
+\section{Registro delle versioni}
+\begin{center}
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{>{\centering\arraybackslash}m{2cm} >{\centering\arraybackslash}m{2cm} >{\raggedright\arraybackslash}m{2.5cm} >{\raggedright\arraybackslash}m{6.5cm}}
+        \rowcolor{AccentColor}
+          \textcolor{white}{\textbf{Versione}} & 
+          \textcolor{white}{\textbf{Data}} & 
+          \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} & 
+          \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
+          1.0.0 & 21/12/2025 & Giulia Romano & Approvazione del verbale \\ 
+          0.1.0 & 21/12/2025 & Lorenzo Grolla & Verifica del verbale \\ 
+          0.0.1 & 16/12/2025 & Alessandro Morabito & Stesura del verbale \\ 
+    \end{tabular}
+\end{center}
+
+%\vspace{1cm}
+
+% ====== SEZIONE INFORMAZIONI INTRODUTTIVE ======
+\section{Informazioni introduttive}
+
+\subsection{Durata e luogo}
+\begin{itemize}
+	\item \textbf{Inizio:} 16:00
+	\item \textbf{Fine:} 19:00
+	\item \textbf{Luogo:} Chiamata Discord
+\end{itemize}
+
+% ====== TABELLA PRESENZE ======
+\subsection{Partecipanti}
+\begin{center}
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{>{\raggedright\arraybackslash}p{6cm} c c}
+        \rowcolor{AccentColor}
+        \textcolor{white}{\textbf{Nome e Cognome}} & 
+        \textcolor{white}{\textbf{Presente}} & 
+        \textcolor{white}{\textbf{Assente}} \\
+        
+        Damiano Berti     & \textcolor{AccentColor}{$\blacksquare$}    & $\square$        \\
+        Alessandro Frison     & \textcolor{AccentColor}{$\blacksquare$}    & $\square$        \\
+        Lorenzo Grolla     & \textcolor{AccentColor}{$\blacksquare$}    & $\square$        \\
+        Nicolò Lattanzio    & $\square$   & \textcolor{AccentColor}{$\blacksquare$}        \\
+        Alessandro Morabito   & \textcolor{AccentColor}{$\blacksquare$}    & $\square$        \\
+        Giacomo Nalotto   & \textcolor{AccentColor}{$\blacksquare$}    & $\square$        \\
+        Giulia Romanato   & \textcolor{AccentColor}{$\blacksquare$}    & $\square$        \\
+    \end{tabular}
+\end{center}
+
+% ====== SEZIONE PRINCIPALE DEL VERBALE ======
+\section{Contenuto della riunione}
+
+\subsection{Ordine del giorno}
+\begin{enumerate}
+    \item Stabilire lista definitiva \textit{use case}
+    \item Assegnazione stesura standardizzata \textit{use case}
+    \item Preparazione domande per Azienda
+\end{enumerate}
+
+\newpage
+
+\subsection{Riassunto della discussione}
+Durante l'incontro si è discusso, uno ad uno, sui Casi d'uso individuati fino ad allora, in modo da ottenere una lista che si è ritenuta ragionevolmente immutabile. Alcuni dei Casi d'uso così ottenuti sono stati assegnati ai vari membri del gruppo a seguito di un sondaggio. Le assegnazioni sono indicate nella sezione \nameref{DecisioniAzioni}.
+
+Durante la discussione sono sorte le seguenti domande da rivolgere all'Azienda:
+\begin{itemize}
+	\item Gestione del login: conviene utilizzare GitHub?
+	\item Utilizzo API GitHub: \textit{Personal Access Token} o \textit{Deploy Key}? (decidere se porre la domanda solo a seguito di uno studio individuale in seguito alla riunione)
+	\item Un utente privo di permessi su GitHub per la visualizzazione del contenuto di una repository può avere i permessi all'interno dell'Applicazione per lanciare scansioni verso quella repository?
+	\item Oltre a test coverage e qualità di un test (di cui è richiesto chiarire il significato), bisogna mostrare informazioni come i test (non) passati? Se sì, come ottenere l'informazione?
+\end{itemize}
+La lista sarà utilizzata prendendo in considerazione che i Casi d'uso che fanno riferimento ai punti sopra possono subire variazioni.
+
+% ====== SEZIONE DECISIONI E AZIONI ======
+\section{Decisioni e azioni} \label{DecisioniAzioni}
+\begin{center}
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{>{\centering\arraybackslash}m{3cm} >{\raggedright\arraybackslash}p{7cm} >{\centering\arraybackslash}p{2.5cm}}
+        \rowcolor{AccentColor}
+        \textcolor{white}{\textbf{Codice }} & 
+        \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione}}} & 
+        \textcolor{white}{\textbf{Assegnatario}} \\
+       
+		DEC-RTB-27 & Stesura lista dichiarata definitiva per \textit{use case} & Tutti\\
+		DEC-RTB-28 & Preparazione domande per azienda & Tutti\\
+		\hline
+        AZ-RTB-015 & Approfondimento \textit{Personal Access Token} e \textit{Deploy Key} GitHub & Tutti\\
+        AZ-RTB-016 & Definizione \textit{use case} riguardanti Creazione workspace e Visualizzazione lista workspace & Damiano Berti\\
+        AZ-RTB-017 & Def. \textit{use case} Ricerca con filtro (repo) e Ordinamento risultati ricerca (repo) & Alessandro Morabito\\
+        AZ-RTB-018 & Def. \textit{use case} Gestione permessi e Gestione ruoli e utenti & Alessandro Frison\\
+        AZ-RTB-019 & Def. \textit{use case} Lancio analisi (repo) e Lancio analisi (workspace) & Lorenzo Grolla\\
+        AZ-RTB-020 & Def. \textit{use case} Visione lista repo & Giacomo Nalotto\\
+        AZ-RTB-021 & Def. \textit{use case} Visione aggregata e Visualizzazione singola repo & Giulia Romanato\\
+
+    \end{tabular}
+\end{center}
+
+\end{document}

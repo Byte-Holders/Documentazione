@@ -1293,11 +1293,11 @@ Di seguito sono elencate le metriche adottate dal gruppo, suddivise per tipologi
 \end{itemize}
 
 \subsection{Efficienza}
-\subsubsection{Response Time}
+\subsubsection{Scan Response Time}
 \begin{itemize}
     \item \textbf{Codice}: MPD05
-    \item \textbf{Formula}: $\displaystyle \text{Response Time} = \frac{\sum \text{Tempo di risposta}}{\text{Numero di richieste}}$
-    \item \textbf{Descrizione}: Questa metrica misura il tempo medio di risposta del sistema alle richieste degli utenti.
+    \item \textbf{Formula}: $\displaystyle \text{SRT} = \frac{\sum (T_{ready} - T_{trigger})}{n}$
+    \item \textbf{Descrizione}: Questa metrica calcola l'intervallo temporale medio tra l'impulso di attivazione della scansione ($T_{trigger}$) e l'istante in cui il dato è processato e disponibile a sistema ($T_{ready}$).
 \end{itemize}
 
 \subsection{Usabilità}

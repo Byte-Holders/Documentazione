@@ -120,9 +120,9 @@
     \begin{tabularx}{0.9\textwidth}{@{}>{\bfseries\sffamily}l X@{}}
     Autori & \sffamily Alessandro Frison, Lorenzo Grolla \\
     \arrayrulecolor{MediumGray}\hline \\[-1.5ex]
-    Verificatori & \sffamily Alessandro Frison, Lorenzo Grolla \\
+    Verificatori & \sffamily Alessandro Frison, Lorenzo Grolla, Alessandro Morabito \\
     \arrayrulecolor{MediumGray}\hline \\[-1.5ex] 
-    Approvazione & \sffamily Alessandro Morabito\\ 
+    Approvazione & \sffamily Tutti i membri del gruppo \\ 
     \arrayrulecolor{MediumGray}\hline
 \end{tabularx}
     
@@ -146,7 +146,8 @@
           \multicolumn{1}{>{\columncolor{AccentColor}\centering\arraybackslash}m{2.2cm}}{\textcolor{white}{\textbf{Autore}}} &
           \multicolumn{1}{>{\columncolor{AccentColor}\centering\arraybackslash}m{2.2cm}}{\textcolor{white}{\textbf{Verificatore}}} &
           \multicolumn{1}{>{\columncolor{AccentColor}\raggedright\arraybackslash}m{5.8cm}}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
-        1.0.0 & 24/02/2026 & Alessandro Frison & Lorenzo Grolla & Versione finale del documento, con tutte le sezioni completate e revisionate. \\
+        1.1.0 & 09/03/2026 & Lorenzo Grolla & Alessandro Morabito & Aggiornamento grafici allo sprint 6, aggiornamento test \\
+        1.0.0 & 24/02/2026 & Tutti i membri del gruppo & Tutti i membri del gruppo & Versione finale del documento, con tutte le sezioni completate e revisionate. \\
         0.5.0 & 21/02/2026 & Lorenzo Grolla & Alessandro Frison & Aggiunta sezione test di sistema e accettazione \\
         0.4.0 & 13/01/2026 & Lorenzo Grolla & Alessandro Frison & Aggiunta sezione cruscotto e test \\
         0.3.1 & 13/01/2026 & Alessandro Frison & Lorenzo Grolla & Correzione errori e refusi vari \\
@@ -306,7 +307,7 @@ Metriche volte a garantire la leggibilità e la correttezza formale della docume
 \end{table}
 
 \subsection{Processi Organizzativi}
-Attività per gestire l'infrastruttura e le risorse umane
+Attività per gestire l'infrastruttura e le risorse umane.
 \begin{table}[h!]
     \centering
     \rowcolors{2}{LightGray}{white}
@@ -369,7 +370,7 @@ Un software si definisce di elevata qualità quando soddisfa i seguenti pilastri
     \begin{tabular}{>{\centering\arraybackslash}m{1.5cm} p{6cm} >{\centering\arraybackslash}m{3cm} >{\centering\arraybackslash}m{2.5cm}}
         \rowcolor{AccentColor}
         \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Nome}} & \textcolor{white}{\textbf{Accettabile}} & \textcolor{white}{\textbf{Ottimo}} \\
-        MPD-05 & \textbf{Response Time} & $\leq 10s$ & $\leq 4s$ \\
+        MPD-05 & \textbf{Scan Response Time} & da determinare & da determinare \\
     \end{tabular}
     \caption{Metriche di Prodotto - Efficienza}
 \end{table}
@@ -407,7 +408,6 @@ Un software si definisce di elevata qualità quando soddisfa i seguenti pilastri
 \newpage
 
 \section{Piano di testing}
-La strategia di verifica adottata dal gruppo \textit{Byte Holders} segue il \textbf{Modello a V}, garantendo che ogni fase di sviluppo abbia una corrispettiva fase di test. L'obiettivo è rilevare i difetti il prima possibile per minimizzare i costi di correzione e garantire la stabilità del prodotto \textit{Code Guardian}.
 
 \subsection{Classificazione dei Test}
 \begin{itemize}
@@ -418,7 +418,7 @@ La strategia di verifica adottata dal gruppo \textit{Byte Holders} segue il \tex
 \end{itemize}
 
 \subsection{Test di Sistema}
-In questa sezione elenchiamo i test necessari per verificare che il software funzioni correttamente nel suo insieme. L'obiettivo è dimostrare che tutti i requisiti (funzionali e prestazionali) definiti nell'Analisi dei Requisiti\textsuperscript{G} v2.0.0 sono stati soddisfatti prima della consegna.
+In questa sezione elenchiamo i test necessari per verificare che il software funzioni correttamente nel suo insieme. L'obiettivo è dimostrare che tutti i requisiti (funzionali e prestazionali) definiti nell'Analisi dei Requisiti\textsuperscript{G} sono stati soddisfatti prima della consegna.
 
 \renewcommand{\arraystretch}{1.5}
 \rowcolors{2}{LightGray}{white}
@@ -455,8 +455,8 @@ TS-23 & Verificare che l'utente possa visualizzare la lista degli utenti di un w
 TS-24 & Verificare che il sistema mostri username e ruolo per ciascun utente del workspace & R-24-F-Ob & NI \\
 TS-25 & Verificare che il Project Manager\textsuperscript{G} possa rimuovere un utente da un workspace & R-25-F-Ob & NI \\
 TS-26 & Verificare che il sistema verifichi automaticamente lo stato di aggiornamento di una repository & R-26-F-De & NI \\
-TS-27 & Verificare che il sistema recuperare la data dell'ultimo push da GitHub\textsuperscript{G} per verificare l'aggiornamento & R-27-F-De & NI \\
-TS-28 & Verificare che il sistema aggiornare lo stato della repository a 'non aggiornata' se il push è più recente della scansione & R-28-F-De & NI \\
+TS-27 & Verificare che il sistema recuperi la data dell'ultimo push da GitHub\textsuperscript{G} per verificare l'aggiornamento & R-27-F-De & NI \\
+TS-28 & Verificare che il sistema aggiorni lo stato della repository a 'non aggiornata' se il push è più recente della scansione & R-28-F-De & NI \\
 TS-29 & Verificare che il sistema gestisca errori di connessione con GitHub\textsuperscript{G} & R-29-F-De & NI \\
 TS-30 & Verificare che l'utente possa avviare una scansione & R-30-F-Ob & NI \\
 TS-31 & Verificare che il sistema mostri lo stato della scansione in corso & R-31-F-Ob & NI \\
@@ -469,7 +469,7 @@ TS-37 & Verificare che il sistema analizzi una o più repository & R-37-F-Ob & N
 TS-38 & Verificare che l'architettura sia ad agenti coordinati da un orchestratore autocratico\textsuperscript{G} & R-38-F-Ob & NI \\
 TS-39 & Verificare che il sistema cloni le repository da GitHub\textsuperscript{G} in locale prima dell'analisi & R-39-F-Ob & NI \\
 TS-40 & Verificare che il sistema distribuisca l'analisi tra più componenti specializzati & R-40-F-Ob & NI \\
-TS-41 & Verificare che ciascun agente esegua l'analisi di competenza e generare un report\textsuperscript{G} parziale & R-41-F-Ob & NI \\
+TS-41 & Verificare che ciascun agente esegua l'analisi di competenza e generi un report\textsuperscript{G} parziale & R-41-F-Ob & NI \\
 TS-42 & Verificare che il sistema aggreghi i risultati & R-42-F-Ob & NI \\
 TS-43 & Verificare che il sistema salvi un report\textsuperscript{G} finale & R-43-F-Ob & NI \\
 TS-44 & Verificare che il sistema gestisca URL o PAT non validi interrompendo l'operazione e notificando l'utente & R-44-F-Ob & NI \\
@@ -482,10 +482,10 @@ TS-50 & Verificare che l'utente possa rimuovere tag\textsuperscript{G} raccolta\
 TS-51 & Verificare che l'utente possa visualizzare la lista delle repository del workspace & R-51-F-Ob & NI \\
 TS-52 & Verificare che il sistema mostri per ciascuna repository in lista: nome, data ultima scansione, indicatore criticità, voto documentazione, percentuale code coverage\textsuperscript{G} & R-52-F-Ob & NI \\
 TS-53 & Verificare che l'utente possa aggiungere una repository GitHub\textsuperscript{G} al workspace & R-53-F-Ob & NI \\
-TS-54 & Verificare che il sistema validi il link della repository e verificare l'accesso & R-54-F-Ob & NI \\
+TS-54 & Verificare che il sistema validi il link della repository e verifichi l'accesso & R-54-F-Ob & NI \\
 TS-55 & Verificare che l'utente possa rimuovere una repository dal workspace & R-55-F-Ob & NI \\
 TS-56 & Verificare che il sistema permetta l'annullamento della rimozione di una repository & R-56-F-Ob & NI \\
-TS-57 & Verificare che il sistema avvisi l'utente se la repository da rimuovere ha scansioni in corso e richiedere conferma esplicita & R-57-F-Ob & NI \\
+TS-57 & Verificare che il sistema avvisi l'utente se la repository da rimuovere ha scansioni in corso e richieda conferma esplicita & R-57-F-Ob & NI \\
 TS-58 & Verificare che l'utente possa effettuare ricerche di repository & R-58-F-Ob & NI \\
 TS-59 & Verificare che l'utente possa filtrare le repository tramite barra di ricerca testuale & R-59-F-De & NI \\
 TS-60 & Verificare che l'utente possa filtrare le repository tramite selezione di filtri multipli (linguaggio, tag, coverage, voto doc) & R-60-F-De & NI \\
@@ -708,7 +708,7 @@ I dati raccolti permettono di individuare eventuali criticità e di intervenire 
 Dal grafico emerge un ritardo temporale crescente tra lo Sprint\textsuperscript{G} 2 e lo Sprint\textsuperscript{G} 4, dove l'Earned Value (EV) rimane costantemente sotto il Planned Value (PV) a causa di sottostime e sessioni d'esame. Tuttavia, lo Sprint\textsuperscript{G} 5 segna il punto di svolta: l'accelerazione dell'EV porta la curva a ricongiungersi quasi totalmente con il PV, dimostrando il successo delle contromisure del team. L'Estimate At Completion (EAC) si mantiene stabile sopra i 10.000€, confermando che, nonostante il ritardo iniziale, le previsioni di spesa finale restano coerenti con l'investimento. In conclusione, il progetto ha recuperato terreno e procede verso la Product Baseline con un budget sotto controllo.
 \newpage
 
-\subsection{Actual Cost e Estimate to Complete(MPC-03/07)}
+\subsection{Actual Cost e Estimate to Complete (MPC-03/07)}
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{../Assets/pdq/AC_ETC.png}
@@ -718,7 +718,7 @@ Dal grafico emerge un ritardo temporale crescente tra lo Sprint\textsuperscript{
 Dal grafico si evince un aumento costante dell'Actual Cost (AC) durante i primi 4 sprint\textsuperscript{G}, con un picco significativo nello Sprint\textsuperscript{G} 4 a causa di sottostime e sessioni d'esame. Tuttavia, a partire dallo Sprint\textsuperscript{G} 5, l'AC si stabilizza e mostra una leggera diminuzione, indicando un miglioramento nella gestione dei costi. L'Estimate to Complete (ETC) rimane relativamente stabile, suggerendo che le previsioni di completamento del progetto non sono state significativamente influenzate dalle variazioni dell'AC. In conclusione, nonostante le difficoltà iniziali, il team è riuscito a contenere i costi e a mantenere le stime di completamento sotto controllo.
 \newpage
 
-\subsection{Cost Performance Index e Schedule Performance Index(MPC-04/05)}
+\subsection{Cost Performance Index e Schedule Performance Index (MPC-04/05)}
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{../Assets/pdq/CPI_SPI.png}
@@ -748,7 +748,7 @@ Dal grafico si osserva un aumento costante dell'Estimate At Completion (EAC) dur
 Dal grafico si evince un aumento costante del Time Estimate At Completion (TEAC) durante i primi 4 sprint\textsuperscript{G}, con un picco significativo nello Sprint\textsuperscript{G} 4 a causa di sottostime e sessioni d'esame. Tuttavia, a partire dallo Sprint\textsuperscript{G} 5, il TEAC si stabilizza e mostra una leggera diminuzione, indicando che le contromisure adottate dal team hanno avuto successo nel contenere le previsioni di completamento del progetto. In conclusione, nonostante le difficoltà iniziali, il progetto sembra essere tornato su una traiettoria più sostenibile in termini di tempo, con il TEAC che si mantiene sotto controllo.
 \newpage
 
-\subsection{Requirements Stability Index(MPC-09)}
+\subsection{Requirements Stability Index (MPC-09)}
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.8\textwidth]{../Assets/pdq/RSI.png}
@@ -765,7 +765,7 @@ Dal grafico si osserva una stabilità iniziale del Requirements Stability Index 
     \caption{Andamento della leggibilità dei documenti}
     \label{fig:gulpease_documenti}
 \end{figure}
-Dal grafico si osserva un miglioramento costante dell'Indice di Gulpease durante i primi 4 sprint\textsuperscript{G}, con valori che si avvicinano a 50, indicando una discreta leggibilità della documentazione\textsuperscript{G}. Ad ogni sprint\textsuperscript{G} l'indice cresce indicando che nonostante l'aumento della dimensione della documentazione\textsuperscript{G} la qualità continua a migliorare. Questo indica che il team è riuscito a migliorare la leggibilità dei documenti nonostante l'aumento del carico di lavoro. In conclusione, la qualità della documentazione\textsuperscript{G} è in costante miglioramento, con l'Indice di Gulpease che si avvicina a livelli ottimali.
+Dal grafico si osserva un miglioramento costante dell'Indice di Gulpease durante i primi 4 sprint\textsuperscript{G}, con valori che si avvicinano a 50, indicando una discreta leggibilità della documentazione\textsuperscript{G}. Ad ogni sprint\textsuperscript{G} l'indice cresce, indicando che, nonostante l'aumento della dimensione della documentazione\textsuperscript{G}, la qualità continua a migliorare. Questo indica che il team è riuscito a migliorare la leggibilità dei documenti nonostante l'aumento del carico di lavoro. In conclusione, la qualità della documentazione\textsuperscript{G} è in costante miglioramento, con l'Indice di Gulpease che si avvicina a livelli ottimali.
 \newpage
 
 \subsection{Indice di Gulpease Verbali (MPC-10)}
@@ -785,7 +785,7 @@ Monitoraggio degli errori ortografici presenti nella documentazione\textsuperscr
     \caption{Andamento degli errori ortografici presenti nei documenti}
     \label{fig:ortografia}
 \end{figure}
-Dal grafico si osserva un miglioramento costante nella correttezza ortografica dei documenti prodotti durante il progetto. Nei primi 3 sprint\textsuperscript{G}, il numero di errori ortografici è contenuto ma presenta comunque un numero più alto di zero. Il team ha preso fin da subito contromisure per ridurre gli errori. In conclusione, la correttezza ortografica è notevolmente migliorata nel corso del progetto, contribuendo a una comunicazione più chiara e professionale.
+Dal grafico si osserva un miglioramento costante nella correttezza ortografica dei documenti prodotti durante il progetto. Nei primi 3 sprint\textsuperscript{G}, il numero di errori ortografici è contenuto ma è comunque superiore a zero. Il team ha preso fin da subito contromisure per ridurre gli errori. In conclusione, la correttezza ortografica è notevolmente migliorata nel corso del progetto, contribuendo a una comunicazione più chiara e professionale.
 \newpage
 
 \subsection{Quality metrics satisfied (MPC-14)}

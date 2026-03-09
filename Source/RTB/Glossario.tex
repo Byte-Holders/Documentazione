@@ -18,6 +18,7 @@
 \usepackage{hyperref}
 \usepackage{booktabs}
 \usepackage{enumitem}
+\usepackage{longtable}
 
 % ====== IMPOSTAZIONI GLOBALI DI STILE ======
 
@@ -108,9 +109,59 @@
     
     {\LARGE \sffamily \color{AccentColor}\bfseries Glossario}\par
     \vspace{0.5cm}
+ 	{\large \color{AccentColor}\sffamily }\par
     
+    \vfill
+    
+    \noindent\color{AccentColor}\rule{\textwidth}{1pt}\par
+    \vspace{0.5cm}
+    
+    \begin{tabularx}{0.9\textwidth}{@{}>{\bfseries\sffamily}l X@{}}
+    	Autore & \sffamily Alessandro Morabito, Giulia Romanato\\
+    	\arrayrulecolor{MediumGray}\hline \\[-1.5ex]
+    	Verificatore & \sffamily Alessandro Morabito, Giulia Romanato \\
+    	\arrayrulecolor{MediumGray}\hline \\[-1.5ex] 
+    	Approvazione & \sffamily Alessandro Morabito\\ 
+    	\arrayrulecolor{MediumGray}\hline 
+    \end{tabularx}
 
 \end{titlepage}
+
+\newpage
+\section*{Registro delle versioni}
+
+\rowcolors{2}{LightGray}{white}
+\begin{longtable}{>{\centering\arraybackslash}p{1.35cm} >{\centering\arraybackslash}p{1.8cm} >{\raggedright\arraybackslash}p{2.1cm} >{\raggedright\arraybackslash}p{2.1cm} >{\raggedright\arraybackslash}p{5cm}}
+	% --- Intestazione per la PRIMA pagina ---
+	\rowcolor{AccentColor}
+	\textcolor{white}{\textbf{Versione}} & 
+	\textcolor{white}{\textbf{Data}} & 
+	\multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} & 
+	\multicolumn{1}{c}{\textcolor{white}{\textbf{Verificatore}}} & 
+	\multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
+	\endfirsthead
+	
+	% --- Intestazione per le Pagine SUCCESSIVE ---
+	\rowcolor{AccentColor}
+	\textcolor{white}{\textbf{Versione}} & 
+	\textcolor{white}{\textbf{Data}} & 
+	\multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} & 
+	\multicolumn{1}{c}{\textcolor{white}{\textbf{Verificatore}}} & 
+	\multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione (continua)}}} \\
+	\endhead
+	
+	% --- Dati della tabella (Nessuna riga vuota qui in mezzo!) ---
+	1.0.0 & 24/02/2026 & Giulia Romanato & Alessandro Morabito & Documento comprendente terminologia fino a revisione RTB.\\
+	0.7.0 & 24/02/2026 & Alessandro Morabito & Giulia Romanato & Aggiunti: Attore, Casi d'uso, Norme di Progetto, Owner, Piano di Progetto, Piano di Qualifica, Scenario.\\
+	0.6.0 & 22/02/2026 & Alessandro Morabito & Giulia Romanato & Aggiunti: Code Coverage, Langchain, Langgraph, LLM, MongoDB, PoC, Report, SBOM, semgrep, syft.\\
+	0.6.0 & 20/02/2026 & Alessandro Morabito & Giulia Romanato & Aggiunti: Framework, JavaScript, JSON, NestJS, NodeJS, npm, React, REST, TypeScript.\\
+	0.5.0 & 18/01/2026 & Alessandro Morabito & Giulia Romanato & Aggiunti: Owasp TOP 10.\\
+	0.4.0 & 17/01/2026 & Alessandro Morabito & Giulia Romanato & Aggiunti: CIA, CVE, CVSS, CWE, Debolezza, NVD, Vulnerabilità.\\
+	0.3.0 & 10/01/2026 & Alessandro Morabito & Giulia Romanato & Aggiunti: Analisi dei Requisiti, Analisi dei Requisiti (Processo), Documentazione, Glossario, Requisito.\\
+	0.2.0 & 08/01/2026 & Alessandro Morabito & Giulia Romanato & Aggiunti: API token, Container, Dev, Docker, docker compose, Dockerfile, Immagine (Docker), Variabili d'Ambiente.\\
+	0.1.0 & 02/12/2025 & Giulia Romanato & Alessandro Morabito & Aggiunti: API, Agente, Board, Branch, Developer, Git, GitHub, Gitflow, GitHub Actions, Issue, LaTeX, Milestone, Orchestratore Autocratico, Project Manager, Sistema ad Agenti, Tech Lead, VCS, Workflow.  \\
+\end{longtable}
+\newpage
 
 \pagestyle{fancy}
 \newpage

@@ -145,7 +145,7 @@
 \setlist[enumerate]{itemsep=2pt, topsep=4pt}
 
 % ====== COMANDI PERSONALIZZATI ======
-\newcommand{\refterm}[1]{\textit{#1}\textsuperscript{G}}
+\newcommand{\refterm}[1]{#1\textsuperscript{G}}
 \newcommand{\term}[1]{\subsubsection{\refterm{#1}}}
 
 % ====== STILE TABELLE MIGLIORATO ======
@@ -195,27 +195,26 @@
 \end{titlepage}
 
 \newpage
+\section*{Registro delle versioni}
 
-% ====== TABELLA DI VERSIONAMENTO ======
-{\normalfont\sffamily\huge\bfseries\color{AccentColor} Registro delle versioni}
-\vspace{1cm}
-
-\renewcommand{\arraystretch}{1.0}
-\rowcolors{2}{lightgray!20}{white}
-\begin{longtable}[c]{>{\centering\arraybackslash}m{1.5cm} >{\centering\arraybackslash}m{2cm} >{\raggedright\arraybackslash}m{2cm} >{\raggedright\arraybackslash}m{2cm} >{\raggedright\arraybackslash}m{5cm}}
+\rowcolors{2}{LightGray}{white}
+\begin{longtable}{>{\centering\arraybackslash}p{1.35cm} >{\centering\arraybackslash}p{1.8cm} >{\raggedright\arraybackslash}p{2.1cm} >{\raggedright\arraybackslash}p{2.1cm} >{\raggedright\arraybackslash}p{5cm}}
+	% --- Intestazione per la PRIMA pagina ---
 	\rowcolor{AccentColor}
-	\textcolor{white}{\textbf{Versione}} &
-	\textcolor{white}{\textbf{Data}} &
-	\multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} &
-	\multicolumn{1}{c}{\textcolor{white}{\textbf{Verificatore}}} &
+	\textcolor{white}{\textbf{Versione}} & 
+	\textcolor{white}{\textbf{Data}} & 
+	\multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} & 
+	\multicolumn{1}{c}{\textcolor{white}{\textbf{Verificatore}}} & 
 	\multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
 	\endfirsthead
+	
+	% --- Intestazione per le Pagine SUCCESSIVE ---
 	\rowcolor{AccentColor}
-	\textcolor{white}{\textbf{Versione}} &
-	\textcolor{white}{\textbf{Data}} &
-	\multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} &
-	\multicolumn{1}{c}{\textcolor{white}{\textbf{Verificatore}}} &
-	\multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
+	\textcolor{white}{\textbf{Versione}} & 
+	\textcolor{white}{\textbf{Data}} & 
+	\multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} & 
+	\multicolumn{1}{c}{\textcolor{white}{\textbf{Verificatore}}} & 
+	\multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione (continua)}}} \\
 	\endhead
 	1.1.0 & 09/03/2026 &  Lorenzo Grolla &  Giacomo Nalotto & Aggiornamento Requisiti e UC33 e UC36 \\
 	1.0.1 & 09/03/2026 &  Giulia Romanato &  Lorenzo Grolla & Cambiato nome dell'UC30 da Ricerca con barra a Ricerca testuale, aggiunto include UC32 a UC29 \\
@@ -247,9 +246,9 @@
 \newpage
 \tableofcontents
 \newpage
-\listoffigures
-\newpage
 \listoftables
+\newpage
+\listoffigures
 \newpage
 
 % ====== INTRODUZIONE ======
@@ -270,7 +269,9 @@ Il sistema CodeGuardian è progettato per condurre analisi approfondite sulla qu
 La piattaforma si propone come uno strumento strategico per team di sviluppo multidisciplinari, consentendo il monitoraggio centralizzato dello stato del software e la generazione di metriche aggregate su molteplici progetti analizzati.
 
 \subsection{Glossario}
-Al fine di garantire la massima chiarezza terminologica ed evitare ambiguità, i termini tecnici presenti in questo documento trovano una definizione puntuale nel \href{https://byte-holders.github.io/Documentazione/RTB/Glossario.pdf}{\refterm{Glossario}}. Tali lemmi sono identificati graficamente dall'uso del corsivo e dalla presenza della lettera \textit{G} posta in apice (ad es. \refterm{formula in glossario}). La validità del riferimento è estesa a tutte le possibili declinazioni e coniugazioni dei termini indicati.
+Al fine di prevenire ambiguità e garantire una comunicazione uniforme e precisa tra i membri del gruppo e i committenti, è stato redatto un Glossario\textsuperscript{G} apposito.
+Per facilitare la lettura del presente documento, i termini tecnici o dotati di un significato specifico all'interno del dominio di progetto sono contrassegnati da una lettera «G» posta in apice (es. Parola\textsuperscript{G}).
+La definizione estesa di tali termini è reperibile nel documento citato tra i riferimenti informativi.
 
 % Dal momento che il glossario è un documento interno, possiamo mettere qua dentro tutti i termini che ci servono
 \subsection{Definizioni, acronimi e abbreviazioni}
@@ -287,11 +288,8 @@ Un Attore\textsuperscript{G} è un'entità esterna al sistema che interagisce co
 \subsubsection{Riferimenti normativi}
 \begin{itemize}
 	\item 
-		Norme Di Progetto\textsuperscript{G}\\
-		\url{https://byte-holders.github.io/Documentazione/RTB/Norme_Di_Progetto.pdf}
-	\item
-		830-1998 - IEEE Recommended Practice for Software Requirements Specifications\\
-		\url{https://ieeexplore.ieee.org/document/720574}
+		Norme Di Progetto\textsuperscript{G} V1.1.0\\
+		\url{https://byte-holders.github.io/Documentazione/RTB/Norme_Di_Progetto-V1.1.0.pdf}
 	\item
 		Capitolato\\
 		\url{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C2.pdf}
@@ -299,8 +297,11 @@ Un Attore\textsuperscript{G} è un'entità esterna al sistema che interagisce co
 \subsubsection{Riferimenti informativi}
 \begin{itemize}
 	\item
-		\refterm{Glossario}\\
-		\url{https://byte-holders.github.io/Documentazione/RTB/Glossario.pdf}
+		\refterm{Glossario} V1.0.0\\
+		\url{https://byte-holders.github.io/Documentazione/RTB/Glossario-V1.0.0.pdf}
+	\item
+		830-1998 - IEEE Recommended Practice for Software Requirements Specifications\\
+		\url{https://ieeexplore.ieee.org/document/720574}
 	\item
 		Specifica UML 2.5.1\\
 		\url{https://www.omg.org/spec/UML/2.5.1/PDF}
@@ -5048,7 +5049,7 @@ tecnologie
 \end{itemize}
 
 \subsection{Requisiti Funzionali}
-\renewcommand{\arraystretch}{1.0}
+\renewcommand{\arraystretch}{1.5}
 \rowcolors{2}{lightgray!20}{white}
 \begin{longtable}[c]{ >{\centering\arraybackslash}m{2.5cm} >{\centering\arraybackslash}m{8.3cm} >{\centering\arraybackslash}m{3.5cm} }
     \caption{Tabella dei Requisiti Funzionali} \\
@@ -5159,7 +5160,7 @@ tecnologie
 \end{longtable}
 
 \subsection{Requisiti di Qualità}
-\renewcommand{\arraystretch}{1.0}
+\renewcommand{\arraystretch}{1.5}
 \rowcolors{2}{lightgray!20}{white}
 \begin{longtable}[c]{ >{\centering\arraybackslash}m{2.5cm} >{\centering\arraybackslash}m{8.3cm} >{\centering\arraybackslash}m{3.5cm} }
     \caption{Tabella dei Requisiti di Qualità} \\
@@ -5177,7 +5178,7 @@ tecnologie
 \end{longtable}
 
 \subsection{Requisiti di Vincolo}
-\renewcommand{\arraystretch}{1.0}
+\renewcommand{\arraystretch}{1.5}
 \rowcolors{2}{lightgray!20}{white}
 \begin{longtable}[c]{ >{\centering\arraybackslash}m{2.5cm} >{\centering\arraybackslash}m{8.3cm} >{\centering\arraybackslash}m{3.5cm} }
     \caption{Tabella dei Requisiti di Vincolo} \\
@@ -5196,9 +5197,8 @@ tecnologie
 
 \subsection{Tracciamento Casi d'Uso e riepilogo}
 
-\renewcommand{\arraystretch}{1.0}
+\renewcommand{\arraystretch}{1.5}
 \rowcolors{2}{lightgray!20}{white}
-
 \begin{longtable}[c]{ >{\centering\arraybackslash}m{2.5cm} >{\centering\arraybackslash}m{10cm} }
     \caption{Tracciamento Casi d'Uso e Requisiti} \\
     \rowcolor{AccentDark}

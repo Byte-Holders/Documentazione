@@ -141,7 +141,7 @@
 \end{titlepage}
 
 \newpage
-\section{Registro delle versioni}
+\section*{Registro delle versioni}
 
 \rowcolors{2}{LightGray}{white}
 \begin{longtable}{>{\centering\arraybackslash}p{1.35cm} >{\centering\arraybackslash}p{1.8cm} >{\raggedright\arraybackslash}p{2.1cm} >{\raggedright\arraybackslash}p{2.1cm} >{\raggedright\arraybackslash}p{5cm}}
@@ -189,8 +189,7 @@
 % ====== INDICE ======
 \pagestyle{fancy}
 \newpage
-\tableofcontents
-%\newpage
+\tableofcontents    % Elenco dei contenuti
 \newpage
 % ====== TABELLA DI VERSIONAMENTO ======
 
@@ -227,10 +226,26 @@ Tra queste funzionalità vi sono:
 Il prodotto segue la proposta del \textbf{capitolato C2 - Code Guardian} fornito dal proponente \textbf{\textit{VarGroup S.r.l.}}
 \\
 Il gruppo si è posto l'obiettivo di completare l'MVP di questo progetto entro il \textbf{20 Marzo 2026}, con un costo totale di \textbf{13.290 Euro.}
+
+\subsection{Glossario}
+Al fine di prevenire ambiguità e garantire una comunicazione uniforme e precisa tra i membri del gruppo e i committenti, è stato redatto un Glossario\textsuperscript{G} apposito.
+Per facilitare la lettura del presente documento, i termini tecnici o dotati di un significato specifico all'interno del dominio di progetto sono contrassegnati da una lettera «G» posta in apice (es. Parola\textsuperscript{G}).
+La definizione estesa di tali termini è reperibile nel documento citato tra i riferimenti informativi.
+
 \subsection{Riferimenti}
+\subsubsection{Riferimenti normativi}
 \begin{itemize}
-        \item \href{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C2.pdf} {Capitolato C2 - Code Guardian}
-        \item \href{https://byte-holders.github.io/Documentazione/} {Documentazione del progetto}
+    \item 
+		Capitolato C2 - Code Guardian\\
+		\url{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C2.pdf}
+\end{itemize}
+\subsubsection{Riferimenti informativi}
+\begin{itemize}
+	\item ISO/IEC/IEEE 12207-1995\\
+		\url{https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf}
+	\item
+    	Glossario\textsuperscript{G} V1.0.0\\
+        \url{https://byte-holders.github.io/Documentazione/RTB/Glossario-V1.0.0.pdf}
 \end{itemize}
 
 
@@ -976,7 +991,7 @@ LaTeX\textsuperscript{G} Workshop è un'estensione di Visual Studio Code utilizz
 L'uso di tale strumento consente di migliorare la qualità e l'affidabilità della documentazione\textsuperscript{G} prodotta.\\
 Per l'uso di questa etensione è necessario prima installare:
 \begin{itemize}
-    \item \textbf{distribuzione LaTex\textsuperscript{G} } installata localmente: TeX Live per sistemi Linux, MiKTeX per sistemi Windows, MacTeX per sistemi macOS\\
+    \item \textbf{Distribuzione LaTex\textsuperscript{G} } installata localmente: TeX Live per sistemi Linux, MiKTeX per sistemi Windows, MacTeX per sistemi macOS\\
     Al suo interno devono essere disponibili:
     \begin{itemize}
         \item almeno un compilatore LaTeX\textsuperscript{G} (pdflatex, xelatex o lualatex);

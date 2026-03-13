@@ -142,8 +142,8 @@
           \textcolor{white}{\textbf{Data}} & 
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} & 
           \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
-        1.0.0 &  & Lorenzo Grolla & Approvazione del verbale \\
-        0.1.0 &  & Giulia Romanato & Verifica del verbale \\
+        1.0.0 & 09/03/2026 & Lorenzo Grolla & Approvazione del verbale \\
+        0.1.0 & 09/03/2026 & Giulia Romanato & Verifica del verbale \\
         0.0.1 & 06/03/2026 & Damiano Berti & Prima stesura del verbale \\
     \end{tabular}
 \end{center}
@@ -211,11 +211,14 @@ Si è affrontato il tema delle tempistiche e dell'ottimizzazione dei costi relat
 \end{itemize}
 
 \subsection{Architettura del Backend in NestJS}
-Il dibattito si è concentrato sulla possibile adozione di un'architettura esagonale per il backend sviluppato in NestJS. Valutando il rapporto costi-benefici, si è discusso sul fatto che affinchè l'utilizzo di una architettura esagonale sia giustificato, deve essere presente un chiaro problema che per essere risolto richieda queta architettura.
+Il dibattito si è concentrato sulla possibile adozione di un'architettura esagonale per il backend sviluppato in NestJS. Valutando il rapporto costi-benefici, si è discusso sul fatto che affinchè l'utilizzo di una architettura esagonale sia giustificato, deve essere presente un chiaro problema che per essere risolto richieda questa architettura.
 
 \subsection{Scansione di Sicurezza e Ottimizzazione Analisi LLM nel PoC}
-È stato analizzato il report generato dal Proof of Concept relativo alla scansione del repository. Un focus particolare è stato dedicato alla sicurezza, in specifico alle vulnerabilità identificate da Semgrep. Si è discusso se effettuare una singola invocazione a un LLM per ogni vulnerabilità (fornendo lo snippet di codice per ottenere una remediation mirata). Per ottimizzare tempi e costi, sono emerse due strategie da valutare: raggruppare i problemi simili in una singola chiamata (riducendo le richieste totali) ed eseguire le interrogazioni in parallelo, sfruttando le funzionalità di LangGraph per lanciare istanze simultanee dei nodi.
-
+È stato analizzato il report generato dal Proof of Concept relativo alla scansione del repository. Un focus particolare è stato dedicato alla sicurezza, in specifico alle vulnerabilità identificate da Semgrep. Si è discusso se effettuare una singola invocazione a un LLM per ogni vulnerabilità, fornendo lo snippet di codice corrispondente per ottenere una remediation mirata. Per ottimizzare tempi e costi, sono emerse due strategie da valutare:  
+\begin{itemize}
+    \item Raggruppare problemi simili in un'unica chiamata, riducendo il numero totale di richieste.
+    \item Eseguire le interrogazioni in parallelo, sfruttando le funzionalità di LangGraph per lanciare istanze simultanee dei nodi.
+\end{itemize}
 \subsection{Scelta del Framework Frontend (Ecosistema React)}
 Si intendeva discutere l'adozione di un framework basato su React rispetto all'utilizzo di React puro. Tuttavia, a causa dell'assenza dei referenti aziendali per l'area frontend, non è stato possibile prendere decisioni in merito.
 
@@ -239,7 +242,7 @@ Si intendeva discutere l'adozione di un framework basato su React rispetto all'u
 
         DEC-PB-004 & Utilizzare un'architettura layered per il backend nestjs & Tutti \\
 
-        DEC-PB-005 & Rimandata la decisione su come architettare la scan della sicurezza, valutando con i nuovi spunti emersi & Tutti \\
+        DEC-PB-005 & Rimandata la scelta sull'architettura della scansione di sicurezza, da valutare alla luce dei nuovi spunti emersi & Tutti \\
 
         DEC-PB-006 & Rimandata la decisione sull'adozione di un framework frontend basato su React & Tutti \\
         

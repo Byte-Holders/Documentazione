@@ -11,17 +11,18 @@
 \usepackage{array}
 \usepackage{amssymb}
 \usepackage{fancyhdr}
-\setlength{\headheight}{14pt}
 \usepackage{titlesec}
 \usepackage{helvet}
 \renewcommand{\familydefault}{\sfdefault}
 \usepackage{lipsum}
 \usepackage{hyperref}
-\usepackage{xurl}
 \usepackage{booktabs}
 \usepackage{enumitem}
-\usepackage{amsmath}
-\usepackage{longtable} % Aggiunto per tabelle lunghe (Test di Sistema)
+\usepackage[utf8]{inputenc} % Specifica la codifica del file (necessaria per le accentate)
+\usepackage[T1]{fontenc}    % Migliora l'output dei font per le lingue europee
+\usepackage{tcolorbox}      % Per creare box colorati dei documenti
+\usepackage{amsmath}   
+\usepackage{longtable}      % Per formule matematiche avanzate
 
 % ====== IMPOSTAZIONI GLOBALI DI STILE ======
 
@@ -32,24 +33,39 @@
 \definecolor{LightGray}{RGB}{245, 245, 250}
 \definecolor{MediumGray}{RGB}{200, 200, 210}
 
+% --- 2. Mostra il livello 4 anche nell'Indice Es. 1.1.1.1 --- 
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+
 % 2. IMPOSTAZIONE MARGINI
 \geometry{a4paper, left=2.5cm, right=2.5cm, top=3.5cm, bottom=3.5cm}
 
 % 3. STILE DEI TITOLI DI SEZIONE
 \titleformat{\section}
-  {\normalfont\sffamily\Large\bfseries\color{AccentColor}}
-  {\thesection}
-  {1em}
-  {}
+{\normalfont\sffamily\Large\bfseries\color{AccentColor}}
+{\thesection}
+{1em}
+{}
 \titleformat{\subsection}
-  {\normalfont\sffamily\large\bfseries\color{AccentDark}}
-  {\thesubsection}
-  {1em}
-  {}
+{\normalfont\sffamily\large\bfseries\color{AccentDark}}
+{\thesubsection}
+{1em}
+{}
+\titleformat{\subsubsection}
+{\normalfont\sffamily\large\bfseries\color{AccentDark}} % Cambiare colore delle subsubsection
+{\thesubsubsection}
+{1em}
+{}
+\titleformat{\paragraph}
+{\normalfont\sffamily\large\bfseries\color{AccentDark}} % Cambiare colore delle paragraph
+{\theparagraph}
+{1em}
+{}
 
 % 4. IMPOSTAZIONE HEADER E FOOTER
 \pagestyle{fancy}
-\fancyhf{} 
+\fancyhf{}
 \fancyhead[L]{\sffamily\bfseries\color{AccentColor}\@BYTE HOLDERS}
 \fancyhead[R]{\sffamily\color{AccentColor}\thepage}
 \renewcommand{\headrulewidth}{0.8pt}
@@ -57,10 +73,10 @@
 
 % 5. IMPOSTAZIONE LINK
 \hypersetup{
-    colorlinks=true,
-    linkcolor=AccentColor,
-    urlcolor=AccentLight,
-    citecolor=AccentDark,
+	colorlinks=true,
+	linkcolor=AccentColor,
+	urlcolor=AccentLight,
+	citecolor=AccentDark,
 }
 
 % 6. PERSONALIZZAZIONE ELENCHI
@@ -70,20 +86,10 @@
 % ====== COMANDI PERSONALIZZATI ======
 \makeatletter
 \newcommand{\NomeGruppo}[1]{\def\@NomeGruppo{#1}}
+\newcommand{\TitoloVerbale}[1]{\def\@TitoloVerbale{#1}}
 \newcommand{\Sommario}[1]{\def\@Sommario{#1}}
 \newcommand{\Autore}[1]{\def\@Autore{#1}}
 \newcommand{\Verificatore}[1]{\def\@Verificatore{#1}}
-% Fix: "Infinite glue shrinkage" con rowcolors + longtable
-% Ridefinizione di CT@@do@color senza glue infinito (+/-1fill)
-\def\CT@@do@color{%
-  \global\let\CT@do@color\relax
-  \@tempdima\wd\z@
-  \advance\@tempdima\@tempdimb
-  \advance\@tempdima\@tempdimc
-  \kern-\@tempdimb
-  \leaders\vrule \hskip\@tempdima
-  \kern-\@tempdimc
-  \hskip-\wd\z@}
 \makeatother
 
 % ====== STILE TABELLE MIGLIORATO ======
@@ -94,19 +100,18 @@
 
 % ====== INIZIO DEL DOCUMENTO ======
 \begin{document}
-
-% ====== INFORMAZIONI PER LA PAGINA DI TITOLO ======
-\NomeGruppo{BYTE HOLDERS}
-\Sommario{Questo documento descrive il piano di qualifica del progetto, delineando le strategie e le metodologie che verranno adottate per garantire la qualità del prodotto finale.}
-\Autore{}
-\Verificatore{}
-
-\pagestyle{empty}
-
-% ====== PAGINA DI TITOLO ======
-\begin{titlepage}
-    \centering
-    
+	
+	% ====== INFORMAZIONI PER LA PAGINA DI TITOLO ======
+	\NomeGruppo{BYTE HOLDERS}
+	\TitoloVerbale{Norme di Progetto\textsuperscript{G}}
+	\Autore{}
+	\Verificatore{}
+	
+	\pagestyle{empty}
+	
+	% ====== PAGINA DI TITOLO ======
+	\begin{titlepage}
+		\centering
     % Assicurati che il percorso dell'immagine sia corretto
     \includegraphics[width=0.55\textwidth]{../Assets/ByteHolders1.png}\par\vspace{1.5cm}
     
@@ -130,33 +135,36 @@
 \end{titlepage}
 
 \newpage
+\section*{Registro delle versioni}
 
-% ====== TABELLA DI VERSIONAMENTO ======
-{\normalfont\sffamily\huge\bfseries\color{AccentColor} Registro delle versioni}
-\vspace{1cm}
-
-\begin{table}[h]
-    \centering
-    \rowcolors{2}{LightGray}{white}
-    \setlength{\tabcolsep}{8pt}%
-    \begin{tabular}{>{\centering\arraybackslash}m{1.4cm} >{\centering\arraybackslash}m{2cm} >{\raggedright\arraybackslash}m{2.2cm} >{\raggedright\arraybackslash}m{2.2cm} >{\raggedright\arraybackslash}m{5.8cm}}
-        \rowcolor{AccentColor}
-          \textcolor{white}{\textbf{Versione}} & 
-          \textcolor{white}{\textbf{Data}} & 
-          \multicolumn{1}{>{\columncolor{AccentColor}\centering\arraybackslash}m{2.2cm}}{\textcolor{white}{\textbf{Autore}}} &
-          \multicolumn{1}{>{\columncolor{AccentColor}\centering\arraybackslash}m{2.2cm}}{\textcolor{white}{\textbf{Verificatore}}} &
-          \multicolumn{1}{>{\columncolor{AccentColor}\raggedright\arraybackslash}m{5.8cm}}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
-        1.1.0 & 09/03/2026 & Lorenzo Grolla & Alessandro Morabito & Aggiornamento grafici allo sprint 6, aggiornamento test \\
-        1.0.0 & 24/02/2026 & Alessandro Frison & Alessandro Morabito & Versione finale del documento, con tutte le sezioni completate e revisionate. \\
-        0.5.0 & 21/02/2026 & Lorenzo Grolla & Alessandro Frison & Aggiunta sezione test di sistema e accettazione \\
-        0.4.0 & 13/01/2026 & Lorenzo Grolla & Alessandro Frison & Aggiunta sezione cruscotto e test \\
-        0.3.1 & 13/01/2026 & Alessandro Frison & Lorenzo Grolla & Correzione errori e refusi vari \\
-        0.3.0 & 04/01/2026 & Alessandro Frison & Lorenzo Grolla & Aggiunta metriche di prodotto \\
-        0.2.0 & 21/12/2025 & Lorenzo Grolla & Alessandro Frison & Aggiunta metriche processi \\ 
-        0.1.0 & 01/12/2025 & Alessandro Frison & Lorenzo Grolla & Inizio stesura \\
-    \end{tabular}
-    \setlength{\tabcolsep}{10pt}%
-\end{table}
+\rowcolors{2}{LightGray}{white}
+\begin{longtable}{>{\centering\arraybackslash}p{1.35cm} >{\centering\arraybackslash}p{1.8cm} >{\raggedright\arraybackslash}p{2.1cm} >{\raggedright\arraybackslash}p{2.1cm} >{\raggedright\arraybackslash}p{5cm}}
+	% --- Intestazione per la PRIMA pagina ---
+	\rowcolor{AccentColor}
+	\textcolor{white}{\textbf{Versione}} & 
+	\textcolor{white}{\textbf{Data}} & 
+	\multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} & 
+	\multicolumn{1}{c}{\textcolor{white}{\textbf{Verificatore}}} & 
+	\multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
+	\endfirsthead
+	
+	% --- Intestazione per le Pagine SUCCESSIVE ---
+	\rowcolor{AccentColor}
+	\textcolor{white}{\textbf{Versione}} & 
+	\textcolor{white}{\textbf{Data}} & 
+	\multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} & 
+	\multicolumn{1}{c}{\textcolor{white}{\textbf{Verificatore}}} & 
+	\multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione (continua)}}} \\
+	\endhead
+    1.1.0 & 09/03/2026 & Lorenzo Grolla & Alessandro Morabito & Aggiornamento grafici allo sprint 6, aggiornamento test \\
+    1.0.0 & 24/02/2026 & Alessandro Frison & Alessandro Morabito & Versione finale del documento, con tutte le sezioni completate e revisionate. \\
+    0.5.0 & 21/02/2026 & Lorenzo Grolla & Alessandro Frison & Aggiunta sezione test di sistema e accettazione \\
+    0.4.0 & 13/01/2026 & Lorenzo Grolla & Alessandro Frison & Aggiunta sezione cruscotto e test \\
+    0.3.1 & 13/01/2026 & Alessandro Frison & Lorenzo Grolla & Correzione errori e refusi vari \\
+    0.3.0 & 04/01/2026 & Alessandro Frison & Lorenzo Grolla & Aggiunta metriche di prodotto \\
+    0.2.0 & 21/12/2025 & Lorenzo Grolla & Alessandro Frison & Aggiunta metriche processi \\ 
+    0.1.0 & 01/12/2025 & Alessandro Frison & Lorenzo Grolla & Inizio stesura \\
+\end{longtable}
 
 
 % ====== INDICE ======
@@ -186,29 +194,40 @@ L'obiettivo del documento è stabilire un approccio sistematico che si sviluppa 
 Attraverso questo strumento strategico, il gruppo si assicura che il progetto rispetti integralmente i requisiti definiti, consegua gli obiettivi prefissati e mantenga elevati standard qualitativi.
 L'approccio metodologico adottato non configura la qualità come un elemento statico, bensì come un processo dinamico di apprendimento e perfezionamento continuo.
 
-\subsection{Glossario}
-Al fine di prevenire ambiguità e garantire una comunicazione uniforme e precisa tra i membri del gruppo e i committenti, è stato redatto un Glossario\textsuperscript{G} apposito.
-Per facilitare la lettura del presente documento, i termini tecnici o dotati di un significato specifico all'interno del dominio di progetto sono contrassegnati da una lettera «G» posta in apice (es. Parola\textsuperscript{G}).
-La definizione estesa di tali termini è reperibile nel documento citato tra i riferimenti informativi.
-
 \subsection{Maturità e miglioramenti}
 La gestione della qualità adottata dal gruppo Byte Holders non è intesa come una verifica statica, bensì come un processo dinamico ed evolutivo.
 La maturità del progetto viene monitorata attraverso l'analisi periodica delle metriche di processo e di prodotto; i dati raccolti permettono di individuare eventuali criticità organizzative o tecniche e di applicare tempestivamente contromisure mirate.
 Questo approccio iterativo garantisce un costante affinamento del \textit{Way of Working}, elevando progressivamente gli standard qualitativi con l'avanzare degli sprint\textsuperscript{G}.
 
+
+\subsection{Glossario}
+Al fine di prevenire ambiguità e garantire una comunicazione uniforme e precisa tra i membri del gruppo e i committenti, è stato redatto un Glossario\textsuperscript{G} apposito.
+Per facilitare la lettura del presente documento, i termini tecnici o dotati di un significato specifico all'interno del dominio di progetto sono contrassegnati da una lettera «G» posta in apice (es. Parola\textsuperscript{G}).
+La definizione estesa di tali termini è reperibile nel documento citato tra i riferimenti informativi.
+
 \subsection{Riferimenti}
 
 \subsubsection{Riferimenti normativi}
 \begin{itemize}
-    \item \textbf{Norme di Progetto ver. 1.0.0}\textsuperscript{G}: \\ \url{https://github.com/Byte-Holders/Documentazione/blob/main/RTB/Norme_Di_Progetto.pdf}.
-    \item \textbf{Capitolato d'appalto C2 - Code Guardian}: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C2.pdf}.
+    \item
+    	Norme di Progetto\textsuperscript{G} ver. 1.1.0\\
+    	\url{https://byte-holders.github.io/Documentazione/RTB/Norme_Di_Progetto-V1.1.0.pdf}
+    \item 
+    	Capitolato C2 - Code Guardian
+    	\url{https://www.math.unipd.it/~tullio/IS-1/2025/Progetto/C2.pdf}
 \end{itemize}
 
 \subsubsection{Riferimenti informativi}
 \begin{itemize}
-    \item \textbf{Glossario\textsuperscript{G}}: \\ \url{https://github.com/Byte-Holders/Documentazione/blob/main/RTB/Glossario.pdf}.
-    \item \textbf{Standard ISO/IEC 9126}: \\ \url{https://it.wikipedia.org/wiki/ISO/IEC_9126}.
-    \item \textbf{Standard ISO/IEC 12207:1995}: \\ \url{https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf}.
+    \item 
+    	Glossario\textsuperscript{G} V1.0.0\\
+    	\url{https://byte-holders.github.io/Documentazione/RTB/Glossario-V1.0.0.pdf}
+    \item
+    	Standard ISO/IEC 9126\\
+    	\url{https://it.wikipedia.org/wiki/ISO/IEC_9126}
+    \item
+    	Standard ISO/IEC 12207:1995\\
+    	\url{https://www.math.unipd.it/~tullio/IS-1/2009/Approfondimenti/ISO_12207-1995.pdf}
 \end{itemize}
 
 

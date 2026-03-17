@@ -89,6 +89,7 @@
 \newcommand{\nocontentsline}[3]{}
 \newcommand{\term}[1]{\vspace*{.5cm}\bgroup\let\addcontentsline=\nocontentsline\subsection{#1}\label{term:#1}\egroup}
 \newcommand{\refterm}[1]{\nameref{term:#1}}
+\newcommand{\lastVisited}[3]{\textit{(Visitato: #1/#2/#3)}}
 
 % ====== INIZIO DEL DOCUMENTO ======
 \begin{document}
@@ -263,7 +264,7 @@ A ciascun record è inoltre associato un punteggio \refterm{CVSS}.\\
 Dopo che un record viene aggiunto alle CVE, diventa rapidamente disponibile anche nel \refterm{NVD}, che provvederà ad arricchirlo.
 
 \term{CVSS}
-\textit{Common Vulnerability Scoring System}. Una metrica che associa un valore numerico compreso tra 0 (bassa gravità) e 10 (alta gravità) a una determinata vulnerabilità. A un valore numerico è associata anche una stringa (\textit{CVSS vector string}) che specifica i valori utilizzati per ottenerlo. Attualmente in versione \texttt{4.0}\footnote{Specifica CVSSv4.0: \url{https://www.first.org/cvss/v4.0/specification-document}}.
+\textit{Common Vulnerability Scoring System}. Una metrica che associa un valore numerico compreso tra 0 (bassa gravità) e 10 (alta gravità) a una determinata vulnerabilità. A un valore numerico è associata anche una stringa (\textit{CVSS vector string}) che specifica i valori utilizzati per ottenerlo. Attualmente in versione \texttt{4.0}\footnote{Specifica CVSSv4.0 \lastVisited{17}{03}{2026}: \url{https://www.first.org/cvss/v4.0/specification-document}}.
 
 \term{CWE}
 \textit{Common Weaknesses Enumeration}. Una lista di debolezze software e hardware. A ciascuna \refterm{Debolezza} in CWE è associato:
@@ -285,7 +286,7 @@ Dopo che un record viene aggiunto alle CVE, diventa rapidamente disponibile anch
 \term{Database non relazionale}
 Tipologia di base di dati che permette il salvataggio di dati strutturati, non strutturati e semi strutturati. Possono assumere varie forme come grafi oppure documenti. I database non relazionali sono anche detti \refterm{NoSQL}.
 
-A differenza di un \refterm{Database relazionale} sono facilmente scalabili orizzontalmente, ma non possiedono un linguaggio di interrogazione standard e hanno un supporto limitato per le transazioni (non aderiscono, generalmente, alle proprietà ACID\footnote{ACID: \url{https://database.guide/what-is-acid-in-databases/}}).
+A differenza di un \refterm{Database relazionale} sono facilmente scalabili orizzontalmente, ma non possiedono un linguaggio di interrogazione standard e hanno un supporto limitato per le transazioni (non aderiscono, generalmente, alle proprietà ACID\footnote{ACID \lastVisited{17}{03}{2026}: \url{https://database.guide/what-is-acid-in-databases/}}).
 
 \term{Database relazionale}
 Base di dati basata sul modello relazionale. Salva i dati in formato strutturato all'interno di tabelle (relazioni) composte da righe (tuple) e colonne (attributi) ben definite. La comunicazione con un database relazionale avviene tramite R\refterm{DBMS} (\textit{Relational DataBase Management System}) che aderiscono alle proprietà ACID per garantire l'affidabilità delle transazioni. La comunicazione avviene tramite \refterm{SQL}.
@@ -325,7 +326,7 @@ Utilizza un'architettura client-server, dove il demone \texttt{dockerd} (locale 
 Comando che permette di eseguire \refterm{Container} multipli secondo una configurazione specificata in un file YAML, permettendo la configurazione ad esempio di reti, volumi e variabili d'ambiente.
 
 \term{Dockerfile}
-File contenente le istruzioni per la costruzione di un'\refterm{Immagine (Docker)}. A seguire istruzioni comuni\footnote{Documentazione: \url{https://docs.docker.com/reference/dockerfile}}:
+File contenente le istruzioni per la costruzione di un'\refterm{Immagine (Docker)}. A seguire istruzioni comuni\footnote{Documentazione Dockerfile \lastVisited{17}{03}{2026}: \url{https://docs.docker.com/reference/dockerfile}}:
 \begin{itemize}
 	\item \texttt{FROM}: definisce l'immagine di partenza
 	\item \texttt{WORKDIR}: definisce la \textit{working directory} all'interno del filesystem dummy dell'immagine
@@ -528,7 +529,7 @@ Documento che contiene le 10 categorie di maggior rischio per le applicazioni we
 	\item \textbf{Copertura}: percentuale di applicazioni testate contro cui sono stati effettuati test per una specifica \refterm{CWE} di categoria, rispetto al numero totale di applicazioni testate
 	\item \textbf{Occorrenze totali}: numero di applicazioni che hanno presentato una o più \refterm{CWE} di categoria
 	\item \textbf{CVE}: numero di \refterm{CVE} con un punteggio calcolato con \refterm{CVSS}v2 o \refterm{CVSS}v3 nel \refterm{NVD} mappate a \refterm{CWE} di categoria
-	\item \textbf{Punteggio di rischio\footnote{Formula per il calcolo del punteggio del rischio OWASP: \url{https://owasp.org/Top10/2025/0x02_2025-What_are_Application_Security_Risks/}}}: calcolato utilizzando i dati soprastanti. Definisce la posizione nel ranking della Top 10
+	\item \textbf{Punteggio di rischio\footnote{Formula per il calcolo del punteggio del rischio OWASP \lastVisited{17}{03}{2026}: \url{https://owasp.org/Top10/2025/0x02_2025-What_are_Application_Security_Risks/}}}: calcolato utilizzando i dati soprastanti. Definisce la posizione nel ranking della Top 10
 \end{itemize}
 
 \term{Owner}

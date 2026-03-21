@@ -1,0 +1,256 @@
+\documentclass[a4paper, 11pt]{article}
+
+% ====== PACCHETTI NECESSARI ======
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[italian]{babel}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage[table]{xcolor}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{amssymb}
+\usepackage{fancyhdr}
+\setlength{\headheight}{14pt}
+\usepackage{titlesec}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{lipsum}
+\usepackage{hyperref}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage[utf8]{inputenc} % Specifica la codifica del file (necessaria per le accentate)
+\usepackage[T1]{fontenc}    % Migliora l'output dei font per le lingue europee
+
+% ====== IMPOSTAZIONI GLOBALI DI STILE ======
+
+% 1. DEFINIZIONE COLORI BLU-VIOLA
+\definecolor{AccentColor}{RGB}{80, 90, 180} % Blu-viola principale
+\definecolor{AccentLight}{RGB}{80, 90, 180} % Versione più chiara
+\definecolor{AccentDark}{RGB}{50, 60, 140} % Versione più scura
+\definecolor{LightGray}{RGB}{245, 245, 250}
+\definecolor{MediumGray}{RGB}{200, 200, 210}
+
+% 2. IMPOSTAZIONE MARGINI
+\geometry{a4paper, left=2.5cm, right=2.5cm, top=3.5cm, bottom=3.5cm}
+
+% 3. STILE DEI TITOLI DI SEZIONE
+\titleformat{\section}
+  {\normalfont\sffamily\Large\bfseries\color{AccentColor}}
+  {\thesection}
+  {1em}
+  {}
+\titleformat{\subsection}
+  {\normalfont\sffamily\large\bfseries\color{AccentDark}}
+  {\thesubsection}
+  {1em}
+  {}
+\titleformat{\subsubsection}
+    {\normalfont\sffamily\large\bfseries\color{AccentDark}}
+    {\thesubsubsection}
+    {1em}
+    {}
+
+
+% 4. IMPOSTAZIONE HEADER E FOOTER
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\sffamily\bfseries\color{AccentColor}\@BYTE HOLDERS}
+\fancyhead[R]{\sffamily\color{AccentColor}\thepage}
+\renewcommand{\headrulewidth}{0.8pt}
+\renewcommand{\headrule}{\color{AccentColor}\hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}
+
+% 5. IMPOSTAZIONE LINK
+\hypersetup{
+    colorlinks=true,
+    linkcolor=AccentColor,
+    urlcolor=AccentLight,
+    citecolor=AccentDark,
+}
+
+% 6. PERSONALIZZAZIONE ELENCHI
+\setlist[itemize]{itemsep=2pt, topsep=4pt}
+\setlist[enumerate]{itemsep=2pt, topsep=4pt}
+
+% ====== COMANDI PERSONALIZZATI ======
+\makeatletter
+\newcommand{\NomeGruppo}[1]{\def\@NomeGruppo{#1}}
+\newcommand{\TitoloVerbale}[1]{\def\@TitoloVerbale{#1}}
+\newcommand{\Sommario}[1]{\def\@Sommario{#1}}
+\newcommand{\Autore}[1]{\def\@Autore{#1}}
+\newcommand{\Verificatore}[1]{\def\@Verificatore{#1}}
+\makeatother
+
+% ====== STILE TABELLE MIGLIORATO ======
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X} % Colonna giustificata a sinistra
+\setlength{\arrayrulewidth}{0.4pt} % Linee più sottili
+\setlength{\tabcolsep}{10pt} % Spaziatura interna celle
+\renewcommand{\arraystretch}{1.4} % Altezza righe
+
+% ====== INIZIO DEL DOCUMENTO ======
+\begin{document}
+
+% ====== INFORMAZIONI PER LA PAGINA DI TITOLO ======
+\NomeGruppo{BYTE HOLDERS}
+\TitoloVerbale{Verbale riunione esterna}
+\Sommario{Questo Verbale documenta la riunione esterna avvenuta il 19 marzo 2026}
+\Autore{}
+\Verificatore{}
+
+\pagestyle{empty}
+
+% ====== PAGINA DI TITOLO ======
+\begin{titlepage}
+    \centering
+    
+    \includegraphics[width=0.55\textwidth]{../../../Assets/ByteHolders1.png}\par\vspace{1.5cm}
+    
+    {\LARGE \sffamily \color{AccentColor}\bfseries Verbale esterno}\par
+    \vspace{0.5cm}
+    {\large \color{AccentColor}\sffamily 19 marzo 2026}\par
+    
+    \vfill
+    
+    \noindent\color{AccentColor}\rule{\textwidth}{1pt}\par
+    \vspace{0.5cm}
+    
+    \begin{tabularx}{0.9\textwidth}{@{}>{\bfseries\sffamily}l X@{}}
+    Autore & \sffamily Nicolò Lattanzio\\
+    \arrayrulecolor{MediumGray}\hline \\[-1.5ex]
+    Verificatore & \sffamily \\
+    \arrayrulecolor{MediumGray}\hline \\[-1.5ex] 
+    Approvazione & \sffamily Giulia Romanato\\ 
+    \arrayrulecolor{MediumGray}\hline 
+\end{tabularx}
+    
+    \vfill
+\end{titlepage}
+
+% ====== INDICE ======
+\pagestyle{fancy}
+\newpage
+\tableofcontents
+\newpage
+
+% ====== TABELLA DI VERSIONAMENTO ======
+\section{Registro delle versioni}
+\begin{center}
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{>{\centering\arraybackslash}m{2cm} >{\centering\arraybackslash}m{2cm} >{\raggedright\arraybackslash}m{2.5cm} >{\raggedright\arraybackslash}m{6.5cm}}
+        \rowcolor{AccentColor}
+          \textcolor{white}{\textbf{Versione}} & 
+          \textcolor{white}{\textbf{Data}} & 
+          \multicolumn{1}{c}{\textcolor{white}{\textbf{Autore}}} & 
+          \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione delle modifiche}}} \\
+        1.0.0 & /03/2026 &  & Approvazione del verbale \\
+        0.1.0 & /03/2026 &  & Verifica del verbale \\
+        0.0.1 & 20/03/2026 & Nicolò Lattanzio & Prima stesura del verbale \\
+    \end{tabular}
+\end{center}
+
+%\vspace{1cm}
+
+% ====== SEZIONE INFORMAZIONI INTRODUTTIVE ======
+\section{Informazioni introduttive}
+
+\subsection{Durata e luogo}
+\begin{itemize}
+    \item \textbf{Inizio:} 14:40
+    \item \textbf{Fine:} 15:10
+    \item \textbf{Luogo:} Meeting Microsoft Teams
+\end{itemize}
+
+% ====== TABELLA PRESENZE ======
+\subsection{Partecipanti}
+\begin{center}
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{>{\raggedright\arraybackslash}p{6cm} c c}
+        \rowcolor{AccentColor}
+        \textcolor{white}{\textbf{Nome e Cognome}} & 
+        \textcolor{white}{\textbf{Presente}} & 
+        \textcolor{white}{\textbf{Assente}} \\
+        
+        Damiano Berti     & \textcolor{AccentColor}{$\blacksquare$}    & $\square$        \\
+        Alessandro Frison     & \textcolor{AccentColor}{$\blacksquare$}    & $\square$        \\
+        Lorenzo Grolla     & \textcolor{AccentColor}{$\blacksquare$}    & $\square$        \\
+        Nicolò Lattanzio    & \textcolor{AccentColor}{$\blacksquare$}    & $\square$        \\
+        Alessandro Morabito   & \textcolor{AccentColor}{$\blacksquare$}    & $\square$        \\
+        Giacomo Nalotto   & \textcolor{AccentColor}{$\blacksquare$}    & $\square$        \\
+        Giulia Romanato   & \textcolor{AccentColor}{$\blacksquare$}    & $\square$        \\
+    \end{tabular}
+\end{center}
+
+% ====== SEZIONE PRINCIPALE DEL VERBALE ======
+\section{Contenuto della riunione}
+
+\subsection{Ordine del giorno}
+\begin{enumerate}
+    \item Discussione sull'analisi della documentazione
+    \item Gestione scelta del branch per scan delle repository
+    \item Gestione scansioni multiple per stessa repository
+    \item Condivisione dei dati e visibilità delle scansioni tra Workspace diversi
+    \item Estendibilità e gestione dei Container per le scansioni
+    \item Sicurezza e autenticazione per la comunicazione tra Container e Backend
+    \item Revisione funzionalità UI Frontend e rimozione grafici secondari per la deadline
+\end{enumerate}
+
+\newpage
+
+\section{Riassunto della discussione}
+
+\subsection{Discussione sull'analisi della documentazione}
+E' stato discusso come deve essere formato un report della documentazione, ed e' stato deciso che un agente dovrebbe riuscire a fornire un report basdandosi sulla maggior parte dei file della repository oltre che al file Readme. Quindi sara' necessario definire se cio e' fattibile rimanendo all'interno del numero di token di contesto massimi dell'LLM scelto.
+
+\subsection{Gestione scelta del branch per scan delle repository}
+E' stata discussa la gestione della scelta del branch da scansionare per ogni repository; considerando che GitHub fornisce solo il nome per identificare il branch, c'e la possibilita che un nuovo branch, con nome identico ad un vecchio branch di cui si e' fatto lo scan, venga considerato uguale a quello precedente; e' stato deciso di ignorare la possibilita in quanto generalmente un nuovo branch con nome identico ad un vecchio branch avra' verosimilmente lo stesso obiettivo di quello precedente. 
+
+\subsection{Gestione scansioni multiple per stessa repository}
+E' stata discussa la possibilità di ricevere richieste di scansione multiple per la stessa repository nello stesso momento; è stato deciso di non avere scansioni contemporanee sulla stessa repository e stesso branch. 
+
+\subsection{Condivisione dei dati e visibilità delle scansioni tra Workspace diversi}
+È stato sollevato il dubbio su come gestire la visibilità delle scansioni nel caso in cui una stessa repository sia presente in più workspace. Si è stabilito che le scansioni devono essere visibili esclusivamente dagli utenti con ruoli specifici all'interno di quel determinato workspace, in modo da mantenere un rigoroso isolamento dei dati. Non ha senso rieseguire la scansione globale per tutti, ma la visibilità del report generato deve essere limitata a chi ne fa richiesta nel proprio ambiente.
+
+\subsection{Estendibilità e gestione dei Container per le scansioni}
+È emersa la questione di come far comunicare in modo sicuro il container (che effettua la scansione) e il backend. Esponendo un endpoint sul backend per ricevere il report, nasce un problema di sicurezza. Si è deciso di proteggere questo endpoint tramite autenticazione, ipotizzando l'uso di Cognito per verificare i permessi (es. tramite un token JWT associato al gruppo dell'utente) e impedire accessi non autorizzati.
+\subsection{Sicurezza e autenticazione per la comunicazione tra Container e Backend}
+Si è accennato alla possibilità di rendere estendibili i container lanciati dal backend per effettuare le scansioni. Il team ha concordato che ha senso utilizzare container separati in base alle diverse configurazioni o tipologie di repository da analizzare.
+\subsection{Revisione funzionalità UI Frontend e rimozione grafici secondari per la deadline}
+Considerando la scadenza del progetto (spostata al 17 aprile rispetto all'originaria previsione), si è deciso di snellire il carico di lavoro sul frontend. Sono stati tagliati elementi non essenziali per l'MVP, come i grafici a torta per la distribuzione dei framework e i grafici visivi per i voti della documentazione, privilegiando i dati tabellari o testuali già a disposizione.
+
+
+% ====== SEZIONE DECISIONI E AZIONI ======
+\section{Decisioni e azioni}
+\begin{center}
+    \rowcolors{2}{LightGray}{white}
+    \begin{tabular}{>{\centering\arraybackslash}m{3cm} >{\raggedright\arraybackslash}p{8cm} >{\centering\arraybackslash}p{2.5cm}}
+        \rowcolor{AccentColor}
+        \textcolor{white}{\textbf{Codice}} & 
+        \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione}}} & 
+        \textcolor{white}{\textbf{Assegnatario}} \\
+        
+        DEC-PB-001 &   & Tutti \\
+
+        DEC-PB-002 &  & Tutti \\
+
+        DEC-PB-003 &  & Tutti \\
+
+        DEC-PB-004 &  & Tutti \\
+
+        DEC-PB-005 & & Tutti \\
+
+        DEC-PB-006 &  & Tutti \\
+        
+        \midrule
+
+        AZ-PB-001 &   & Tutti \\
+
+
+    \end{tabular}
+
+    \vspace{1.5cm}
+    \rule{6cm}{0.4pt}\\
+    \textit{Firma del proponente}
+
+\end{center}
+
+\end{document}

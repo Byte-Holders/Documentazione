@@ -98,6 +98,13 @@
 \setlength{\tabcolsep}{10pt} % Spaziatura interna celle
 \renewcommand{\arraystretch}{1.4} % Altezza righe
 
+\newcommand{\techDef}[2]{%
+	\subsubsection{#1}
+	\begin{itemize}
+		\item \textbf{Descrizione:} #2
+	\end{itemize}
+}
+
 % ====== INIZIO DEL DOCUMENTO ======
 \begin{document}
 	
@@ -211,6 +218,39 @@
 	\end{itemize}
 	
 	\section{Tecnologie}
+	% Descrizione da aggiornare insieme al glossario
+	\subsection{Linguaggi di programmazione}
+	\techDef{TypeScript}{
+		Linguaggio di programmazione ad alto livello fortemente tipato. Viene compilato a JavaScript tramite compilatori come \textit{TypeScript compiler} e \textit{Babel}.
+	}
+		
+	\subsection{Framework}
+	\techDef{NestJS}{
+		Framework per la costruzione del lato server di applicazioni che utilizzano NodeJS per il backend. Supporta sia JavaScript che TypeScript.
+	}
+	\techDef{Langgraph}{}
+			
+	\subsection{Librerie}
+	\techDef{axios}{}
+	\techDef{dotenv}{}
+	\techDef{isomorphic-git}{}
+	\techDef{mongoose}{}
+	\techDef{ReactJS}{
+		Libreria JavaScript per la creazione di interfacce utente. Utilizza un'architettura a componenti e permette di aggiornare il contenuto della pagina web in modo efficiente.
+	}
+	\techDef{react-markdown}{}
+	\techDef{TanstackRouter}{}
+	
+	\subsection{Testing}
+	\techDef{jest}{}
+	\techDef{vitest}{}
+	\techDef{playwright}{}
+	
+	\subsection{Infrastruttura}
+	\techDef{Docker}{}
+	\techDef{Amplify}{}
+	\techDef{ECS}{}
+	\techDef{EC2}{}
 	
 	\section{Architettura}
 	\subsection{Architettura di deployment}

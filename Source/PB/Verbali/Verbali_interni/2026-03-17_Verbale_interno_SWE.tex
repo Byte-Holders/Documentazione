@@ -108,9 +108,9 @@
     \begin{tabularx}{0.9\textwidth}{@{}>{\bfseries\sffamily}l X@{}}
     Autore & \sffamily Alessandro Morabito\\
     \arrayrulecolor{MediumGray}\hline \\[-1.5ex]
-    Verificatore & \sffamily xxx\\
+    Verificatore & \sffamily Lorenzo Grolla\\
     \arrayrulecolor{MediumGray}\hline \\[-1.5ex] 
-    Approvazione & \sffamily xxx\\ 
+    Approvazione & \sffamily Giulia Romanato\\ 
     \arrayrulecolor{MediumGray}\hline 
 \end{tabularx}
     
@@ -164,24 +164,37 @@
 \newpage
 \subsection{Riassunto della discussione}
 \subsubsection{Retrospettiva}
-Durante la retrospettiva dello Sprint sono state identificate principali problematiche tecniche e organizzative nel lavoro svolto. È emersa una difficoltà nell'identificazione dei moduli nel backend che ha evidenziato la necessità di un approccio più strutturato. L’architettura del frontend risulta indietro rispetto alle aspettative, richiedendo ulteriore lavoro per raggiungere una maturità adeguata. Manca una rappresentazione UML per l'autenticazione e l’autorizzazione, sia all'interno del software che nell'interazione con AWS Cognito. La collaborazione tra i membri del gruppo è risultata dispersiva e non tempestiva, con contributi caricati in modo irregolare, causando ritardi nella condivisione delle informazioni.
+Durante la retrospettiva dello Sprint sono state identificate le principali problematiche tecniche e organizzative nel lavoro svolto:
+\begin{itemize}
+    \item \textbf{Backend:} difficoltà nell’identificazione dei moduli, con necessità di un approccio più strutturato.
+    \item \textbf{Frontend:} architettura in ritardo rispetto alle aspettative, richiedendo ulteriore lavoro per raggiungere una maturità adeguata.
+    \item \textbf{UML:} mancanza di una rappresentazione per l’autenticazione e l’autorizzazione, sia all’interno del software che nell’interazione con AWS Cognito.
+    \item \textbf{Collaborazione:} contributi caricati in modo irregolare e non tempestivo, causando ritardi nella condivisione delle informazioni.
+\end{itemize}
 
 \subsubsection{Discussione sul prossimo Sprint}
-Nel prossimo sprint ci si concentrerà sulla risoluzione delle problematiche emerse durante la retrospettiva, con obiettivi chiave per migliorare l'architettura e lo sviluppo del sistema. 
+L’obiettivo principale del prossimo sprint è la conclusione della fase di progettazione, con focus sulla risoluzione delle problematiche emerse durante la retrospettiva. Gli obiettivi tecnici individuati sono:
 
-Per il prossimo sprint, il gruppo ha stabilito come obiettivo principale la conclusione della fase di progettazione, con particolare attenzione alla definizione dell’architettura del backend e frontend. È previsto il diagramma UML per autenticazione e autorizzazione, al fine di chiarire le interazioni tra i componenti. Si dovrà anche ricontrollare il lancio della scansione e come connettere efficacemente il backend con il container del servizio. Per questo, è stato deciso di porre il quesito anche all'azienda. Un altro compito prioritario è l'identificazione dei moduli del backend. Sarà inoltre rifinita l'architettura del backend, dopo aver individuato le \textit{best practice}, e definita un'architettura frontend più solida. Infine, verrà redatta una lista dettagliata delle pagine frontend da implementare.
+\begin{itemize}
+    \item \textbf{Architettura backend:} identificazione dei moduli e raffinamento dell’architettura, dopo aver individuato le \textit{best practice} di riferimento.
+    \item \textbf{Architettura frontend:} definizione di un’architettura più solida e stesura di una lista dettagliata delle pagine da implementare.
+    \item \textbf{Autenticazione e autorizzazione:} realizzazione del diagramma UML per chiarire le interazioni tra i componenti e con AWS Cognito.
+    \item \textbf{Container e scansione:} controllo del lancio della scansione, definizione del funzionamento del salvataggio del report e verifica della connessione tra backend e container del servizio. La questione verrà posta anche all’azienda.
+\end{itemize}
 
-Il team ha deciso di dividere le attività in modo che ciascuno lavori sulle porzioni di progetto che non ha trattato lo sprint precedente. Sarà necessario anche effettuare un controllo finale sul container, con l'obiettivo di completare la parte relativa al salvataggio del report e alla definizione del funzionamento generale del sistema, che cambierà solamente se richiesto dall'Azienda.
-
-Si è deciso di mantenere un ritmo di lavoro regolare, con più riunioni settimanali per controllare lo stato di avanzamento.
+Dal punto di vista organizzativo, il team ha deciso di:
+\begin{itemize}
+    \item Suddividere le attività in modo che ciascuno lavori sulle porzioni di progetto non trattate nello sprint precedente.
+    \item Mantenere un ritmo di lavoro regolare, aumentando il numero di riunioni settimanali per monitorare lo stato di avanzamento.
+\end{itemize}
 
 In vista dell'incontro con la proponente previsto per giovedì 19 marzo, sono state individuate le seguenti domande da porre all'azienda:
 \begin{enumerate}
-	\item È possibile limitare l'analisi della documentazione esclusivamente al README? Andare ad analizzare tutti i file in repository, come precedentemente richiesto, diventerebbe molti dispendioso in termini di denaro.
+	\item È possibile limitare l'analisi della documentazione esclusivamente al README? Andare ad analizzare tutti i file in repository, come precedentemente richiesto, diventerebbe molto dispendioso in termini di denaro.
 	\item Su GitHub quando viene eliminato un branch e ne viene creato un altro sotto lo stesso nome non c'è modo di rilevare la differenza tra i due. È da considerarsi un problema?
 	\item Deve essere possibile effettuare due scansioni in contemporanea sullo stesso repository? E sullo stesso branch?
 	\item Se un repository appartiene a due workspace diversi, un report prodotto da una scansione effettuata all'interno di un workspace deve essere visibile anche all'interno dell'altro workspace?
-	\item Quanto deve essere estendibile un container di lancio scansione, considerando che ci si aspetta l'esistenza di container diversi per configurazioni di repository diversa?
+	\item Quanto deve essere estendibile un container di lancio scansione, considerando che ci si aspetta l'esistenza di container diversi per configurazioni di repository diverse?
 	\item Ci sono consigli in merito alla connessione tra backend e container?
 	\item È possibile diminuire il focus sulla parte di frontend, vista la scadenza prevista per il 17 aprile?
 \end{enumerate}
@@ -191,7 +204,7 @@ In vista dell'incontro con la proponente previsto per giovedì 19 marzo, sono st
 \section{Decisioni e azioni} \label{DecisioniAzioni}
 \begin{center}
     \rowcolors{2}{LightGray}{white}
-    \begin{tabular}{>{\centering\arraybackslash}m{3cm} >{\raggedright\arraybackslash}p{7cm} >{\centering\arraybackslash}p{2.5cm}}
+    \begin{tabular}{>{\centering\arraybackslash}m{3cm} >{\raggedright\arraybackslash}p{5.5cm} >{\centering\arraybackslash}p{4cm}}
         \rowcolor{AccentColor}
         \textcolor{white}{\textbf{Codice }} & 
         \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione}}} & 

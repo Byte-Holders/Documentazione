@@ -117,7 +117,7 @@
     \begin{tabularx}{0.9\textwidth}{@{}>{\bfseries\sffamily}l X@{}}
     Autore & \sffamily Nicolò Lattanzio\\
     \arrayrulecolor{MediumGray}\hline \\[-1.5ex]
-    Verificatore & \sffamily \\
+    Verificatore & Alessandro Morabito\sffamily \\
     \arrayrulecolor{MediumGray}\hline \\[-1.5ex] 
     Approvazione & \sffamily Giulia Romanato\\ 
     \arrayrulecolor{MediumGray}\hline 
@@ -183,24 +183,24 @@
 \section{Riassunto della discussione}
 
 \subsection{Discussione sull'analisi della documentazione}
-È stato discusso come deve essere formato un report della documentazione, ed e' stato deciso che un agente dovrebbe riuscire a fornire un report basdandosi sulla maggior parte dei file della repository oltre che al file Readme. Quindi sara' necessario definire se cio e' fattibile rimanendo all'interno del numero di token di contesto massimi dell'LLM scelto.
+È stato discusso come deve essere formato un report della documentazione, ed è stato deciso che un agente dovrebbe riuscire a fornire un report basandosi sulla maggior parte dei file della repository oltre che al file Readme. Quindi sarà necessario definire se ciò è fattibile rimanendo all'interno del numero di token di contesto massimi dell'LLM scelto.
 
 \subsection{Gestione scelta del branch per scan delle repository}
-È stata discussa la gestione della scelta del branch da scansionare per ogni repository; considerando che GitHub fornisce solo il nome per identificare il branch, c'e la possibilita che un nuovo branch, con nome identico ad un vecchio branch di cui si e' fatto lo scan, venga considerato uguale a quello precedente; e' stato deciso di ignorare la possibilita in quanto generalmente un nuovo branch con nome identico ad un vecchio branch avra' verosimilmente lo stesso obiettivo di quello precedente. 
+È stata discussa la gestione della scelta del branch da scansionare per ogni repository; considerando che GitHub fornisce solo il nome per identificare un branch, è previsto che il software associ un nuovo branch con lo stesso nome di uno precedentemente scansionato e cancellato a quello precedente; è stato deciso che non è un problema se questo accade, in quanto i due branch avrebbero verosimilmente lo stesso obiettivo. 
 
 \subsection{Gestione scansioni multiple per stessa repository}
-È stata discussa la possibilità di ricevere richieste di scansione multiple per la stessa repository nello stesso momento; è stato deciso di non avere scansioni contemporanee sulla stessa repository e stesso branch. 
+È stata discussa la possibilità di ricevere richieste di scansione multiple per la stessa repository nello stesso momento; è stato deciso di non permettere scansioni contemporanee sulla stesso branch della stessa repository.
 
 \subsection{Condivisione dei dati e visibilità delle scansioni tra Workspace diversi}
-È stato sollevato il dubbio su come gestire la visibilità delle scansioni nel caso in cui una stessa repository sia presente in più workspace. Si è stabilito che le scansioni devono essere visibili anche dagli utenti all'interno di tutti i workspace in cui sono presenti.
+È stato sollevato il dubbio su come gestire la visibilità delle scansioni nel caso in cui una stessa repository sia presente in più workspace. Si è stabilito che le scansioni devono essere visibili dagli utenti all'interno di tutti i workspace in cui è presente la repository analizzata.
 
 \subsection{Gestione autorizzazioni e sicurezza}
 È stato discussa la necessità di implementare funzionalità di sicurezza per limitare l'accesso alle scansioni e ai dati sensibili. Si è deciso che, per l'MVP, non sarà necessario concentrarsi su funzionalità di sicurezza particolari, ma sarà  sufficiente controllare gli accessi, con i relativi ruoli e permessi.
 \subsection{Estendibilità e gestione dei Container per le scansioni}
-Si è accennato alla possibilità di rendere estendibili i container lanciati dal backend per effettuare le scansioni. è stato deciso di non rendere estendibili i container, limitando le funzionalità a quelle strettamente necessarie per l'MVP.
+Si è accennato alla possibilità di rendere estendibili i container lanciati dal backend per effettuare le scansioni. È stato deciso di non rendere estendibili i container, limitando le funzionalità a quelle strettamente necessarie per l'MVP.
 
 \subsection{Revisione funzionalità UI Frontend e rimozione grafici secondari per la deadline}
-Considerando la scadenza del progetto (spostata al 17 aprile rispetto all'originaria previsione), si è deciso di snellire il carico di lavoro sul frontend. Sono stati tagliati elementi non essenziali per l'MVP, come i grafici a torta per la distribuzione dei framework e i grafici visivi per i voti della documentazione, privilegiando i dati tabellari o testuali già a disposizione.
+Considerando la scadenza del progetto (spostata al 17 aprile rispetto all'originaria previsione), si è deciso di snellire il carico di lavoro sul frontend. Sono stati tagliati elementi non essenziali per l'MVP, come i grafici a torta per la distribuzione dei framework e i grafici visivi per i voti della documentazione, privilegiando i dati tabellari o testuali già a disposizione. La scrittura del report ha la priorità.
 
 
 % ====== SEZIONE DECISIONI E AZIONI ======
@@ -213,11 +213,11 @@ Considerando la scadenza del progetto (spostata al 17 aprile rispetto all'origin
         \multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione}}} & 
         \textcolor{white}{\textbf{Assegnatario}} \\
         
-        DEC-PB-009 & Analisi della documentazione effettuata completamente da un agente AI se questo non comporta a costi eccessivi  & Tutti \\
+        DEC-PB-009 & Analisi della documentazione effettuata completamente da un agente su tutti i file in repository, se non comporta costi eccessivi  & Tutti \\
 
         DEC-PB-010 & Non verrà gestita la possibilità di aggiungere più branch con nomi diversi nella stessa repository anche se in archi temporali differenti & Tutti \\
 
-        DEC-PB-011 & La possibilità di avere scansioni multiple sulla stessa repository e stesso branch sarà gestita in modo da limitare ad una sola scansione nello stesso momento & Tutti \\
+        DEC-PB-011 & La possibilità di avere scansioni multiple sulla stessa repository e stesso branch sarà gestita in modo da permettere una sola scansione nello stesso momento & Tutti \\
 
         DEC-PB-012 & Le scansioni su una repository devono essere visibili a tutti gli utenti dei workspace in cui la stessa repository è presente & Tutti \\
 
@@ -225,7 +225,7 @@ Considerando la scadenza del progetto (spostata al 17 aprile rispetto all'origin
 
         DEC-PB-014 & Alcuni elementi grafici non essenziali potranno essere rimossi dall'MVP & Tutti \\
 
-        DEC-PB-015 & Non sarà necessario concentrarsi su funzionalità di sicurezza particolari & Tutti \\
+        DEC-PB-015 & Non sarà necessario concentrarsi particolarmente sulla sicurezza del prodotto software & Tutti \\
         
         \midrule
 

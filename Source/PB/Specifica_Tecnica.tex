@@ -136,9 +136,9 @@
 		\vspace{0.5cm}
 		
 		\begin{tabularx}{0.9\textwidth}{@{}>{\bfseries\sffamily}l X@{}}
-			Autore & \sffamily Alessandro Morabito\\
+			Autore & \sffamily Alessandro Morabito, Alessandro Frison\\
 			\arrayrulecolor{MediumGray}\hline \\[-1.5ex]
-			Verificatore & \sffamily  \\
+			Verificatore & \sffamily Alessandro Morabito \\
 			\arrayrulecolor{MediumGray}\hline \\[-1.5ex] 
 			Approvazione & \sffamily \\ 
 			\arrayrulecolor{MediumGray}\hline 
@@ -171,6 +171,7 @@
 		\endhead
 		
 		% --- Dati della tabella (Nessuna riga vuota qui in mezzo!) ---
+		0.2.0 & 25/03/2026 & Alessandro Frison & Alessandro Morabito & Aggiunta sezione introduzione e sezione Tecnologie\\
 		0.1.0 & 24/03/2026 & Alessandro Morabito & & Creazione documento\\
 	\end{longtable}
 	\newpage
@@ -190,10 +191,22 @@
 	% ====== SEZIONE INFORMAZIONI INTRODUTTIVE ======
 	\section{Introduzione}
 	\subsection{Scopo del documento}
-	In questo documento è descritta l'architettura e le tecnologie utilizzate dal prodotto software. L'obbiettivo del documento è essere un riferimento agli sviluppatori attuali e futuri.
-	
-	Si passeranno in rassegna l'architettura di \textit{deployment}, l'architettura logica e le motivazioni che hanno portato a determinate scelte di design, nel modo più trasparente possibile.
-	
+	Il presente documento si pone l'obiettivo di definire in modo esaustivo la \textbf{Specifica Tecnica} del progetto, fornendo una guida dettagliata alle scelte architetturali e implementative adottate. Esso rappresenta il ponte logico tra i requisiti iniziali e l'effettiva realizzazione del software, garantendo che ogni componente sia integrata in modo coerente e scalabile.
+
+	Il documento approfondisce l'evoluzione del sistema rispetto al \textbf{Proof of Concept (PoC)} iniziale, delineando una struttura robusta e orientata alla manutenibilità a lungo termine.
+
+	Nello specifico, questo documento si propone di:
+	\begin{itemize}
+		\item \textbf{Delineare l'architettura di sistema}: fornendo una panoramica delle macro-componenti e del flusso di dati tra di esse;
+		\item \textbf{Dettagliare le scelte tecnologiche}: giustificando l'adozione di specifici framework, librerie e strumenti di sviluppo;
+		\item \textbf{Illustrare i design pattern}: descrivendo gli schemi logici e le best practice utilizzate per risolvere problematiche ricorrenti e ottimizzare la struttura del codice;
+		\item \textbf{Definire i processi di deployment}: spiegando come le diverse componenti vengono distribuite, configurate e rese operative nell'ambiente di produzione;
+		\item \textbf{Fornire una base per la manutenzione}: offrendo la documentazione necessaria affinché futuri sviluppatori possano comprendere ed estendere il sistema con facilità.
+	\end{itemize}
+	\subsection{Glossario}
+	Al fine di prevenire ambiguità e garantire una comunicazione uniforme e precisa tra i membri del gruppo e i committenti, è stato redatto un Glossario\textsuperscript{G} apposito.
+	Per facilitare la lettura del presente documento, i termini tecnici o dotati di un significato specifico all'interno del dominio di progetto sono contrassegnati da una lettera «G» posta in apice (es. Parola\textsuperscript{G}).
+	La definizione estesa di tali termini è reperibile nel documento citato tra i riferimenti informativi.
 	\subsection{Scopo del prodotto}
 	% Preso dall'AdR
 	Il sistema CodeGuardian è progettato per condurre analisi approfondite sulla qualità di repository GitHub\textsuperscript{G}, garantendo un controllo rigoroso sulla gestione degli accessi e sull'autorizzazione all'avvio delle procedure di scansione. 
@@ -220,37 +233,73 @@
 	\section{Tecnologie}
 	% Descrizione da aggiornare insieme al glossario
 	\subsection{Linguaggi di programmazione}
-	\techDef{TypeScript}{
-		Linguaggio di programmazione ad alto livello fortemente tipato. Viene compilato a JavaScript tramite compilatori come \textit{TypeScript compiler} e \textit{Babel}.
-	}
-		
+    \techDef{TypeScript}{[Versione: ]}{
+        Linguaggio di programmazione open-source sviluppato da Microsoft come superset tipato di JavaScript. Introduce la tipizzazione statica opzionale, interfacce e classi, permettendo di individuare errori in fase di compilazione anziché a runtime. La sua adozione facilita lo sviluppo di applicazioni di grandi dimensioni, migliorando il supporto agli IDE e la manutenibilità complessiva.
+        \smallbreak \textbf{Documentazione:} \url{https://www.typescriptlang.org/docs/}
+    }
+
 	\subsection{Framework}
-	\techDef{NestJS}{
-		Framework per la costruzione del lato server di applicazioni che utilizzano NodeJS per il backend. Supporta sia JavaScript che TypeScript.
-	}
-	\techDef{Langgraph}{}
-			
+    \techDef{NestJS}{[Versione: ]}{
+        Framework progressivo per la costruzione di applicazioni lato server efficienti e scalabili su NodeJS. Utilizza TypeScript di default e implementa un'architettura modulare ispirata ad Angular, facilitando l'uso di Dependency Injection e la separazione delle responsabilità.
+        \smallbreak \textbf{Documentazione:} \url{https://docs.nestjs.com/}
+    }
+    \techDef{Langgraph}{[Versione: ]}{
+        Libreria costruita sopra LangChain per la creazione di workflow ciclici e agenti AI basati su grafi di stato, permettendo un controllo granulare sulla logica di esecuzione e sulla memoria dei modelli linguistici (LLM).
+        \smallbreak \textbf{Documentazione:} \url{https://langchain-ai.github.io/langgraphjs/}
+    }
+            
 	\subsection{Librerie}
-	\techDef{axios}{}
-	\techDef{dotenv}{}
-	\techDef{isomorphic-git}{}
-	\techDef{mongoose}{}
-	\techDef{ReactJS}{
-		Libreria JavaScript per la creazione di interfacce utente. Utilizza un'architettura a componenti e permette di aggiornare il contenuto della pagina web in modo efficiente.
-	}
-	\techDef{react-markdown}{}
-	\techDef{TanstackRouter}{}
-	
+    \techDef{ReactJS}{[Versione: ]}{
+        Libreria JavaScript per la creazione di interfacce utente basata su componenti. Utilizza un DOM virtuale per ottimizzare le prestazioni e supporta un approccio dichiarativo per la gestione dello stato della UI.
+        \smallbreak \textbf{Documentazione:} \url{https://react.dev/}
+    }
+    \techDef{TanstackRouter}{[Versione: ]}{
+        Sistema di routing tipizzato per React, che garantisce la sicurezza dei tipi (type-safety) per parametri di ricerca e rotte, migliorando l'affidabilità della navigazione interna.
+        \smallbreak \textbf{Documentazione:} \url{https://tanstack.com/router/latest}
+    }
+    \techDef{mongoose}{[Versione: ]}{
+        Libreria ODM (Object Data Modeling) per MongoDB e NodeJS, che fornisce una soluzione basata su schemi per modellare i dati dell'applicazione e gestirne la validazione.
+        \smallbreak \textbf{Documentazione:} \url{https://mongoosejs.com/docs/}
+    }
+    \techDef{axios}{[Versione: ]}{
+        Client HTTP basato su promise per browser e NodeJS, utilizzato per effettuare richieste asincrone verso API esterne o il backend in modo semplice e configurabile.
+    }
+    \techDef{isomorphic-git}{[Versione: ]}{
+        Implementazione di Git interamente in JavaScript che permette di interagire con i repository sia in ambiente Node.js che direttamente nel browser.
+    }
+    \techDef{react-markdown}{[Versione: ]}{
+        Componente React utilizzato per il rendering sicuro di stringhe in formato Markdown all'interno dell'interfaccia utente, utile per la visualizzazione di documentazione o messaggi formattati.
+    }
+    \techDef{dotenv}{[Versione: ]}{
+        Modulo che carica le variabili d'ambiente da un file \textit{.env} in \textit{process.env}, permettendo di gestire configurazioni sensibili separatamente dal codice sorgente.
+    }
+    
 	\subsection{Testing}
-	\techDef{jest}{}
-	\techDef{vitest}{}
-	\techDef{playwright}{}
-	
+    \techDef{jest}{[Versione: ]}{
+        Framework di test JavaScript focalizzato sulla semplicità, ampiamente utilizzato per unit test e integration test grazie alla sua ampia suite di strumenti inclusi.
+    }
+    \techDef{vitest}{[Versione: ]}{
+        Framework di testing ultra-veloce basato su Vite, progettato per offrire un'esperienza di sviluppo rapida e nativa per progetti moderni in TypeScript.
+    }
+    \techDef{playwright}{[Versione: ]}{
+        Strumento per il testing end-to-end che consente l'automazione dei browser moderni, fondamentale per verificare il corretto funzionamento dei flussi utente completi.
+        \smallbreak \textbf{Documentazione:} \url{https://playwright.dev/}
+    }
+    
 	\subsection{Infrastruttura}
-	\techDef{Docker}{}
-	\techDef{Amplify}{}
-	\techDef{ECS}{}
-	\techDef{EC2}{}
+    \techDef{Docker}{[Versione: ]}{
+        Piattaforma di containerizzazione che permette di pacchettizzare l'applicazione e le sue dipendenze in un'unità standardizzata per garantire coerenza tra sviluppo e produzione.
+        \smallbreak \textbf{Documentazione:} \url{https://docs.docker.com/}
+    }
+    \techDef{AWS Amplify}{[Versione: ]}{
+        Set di strumenti e servizi cloud per lo sviluppo e il deployment rapido di applicazioni web e mobile full-stack su infrastruttura Amazon Web Services.
+    }
+    \techDef{AWS ECS}{[Versione: ]}{
+        Amazon Elastic Container Service, un servizio di orchestrazione di container altamente scalabile che permette di gestire l'esecuzione di container Docker nel cloud.
+    }
+    \techDef{AWS EC2}{[Versione: ]}{
+        Amazon Elastic Compute Cloud, servizio che fornisce capacità di calcolo scalabile sotto forma di istanze di server virtuali per ospitare servizi e applicazioni.
+    }
 	
 	\section{Architettura}
 	\subsection{Architettura di deployment}

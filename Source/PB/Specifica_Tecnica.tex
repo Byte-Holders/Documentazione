@@ -1,5 +1,5 @@
 \documentclass[a4paper, 11pt]{article}
-
+ 
 % ====== PACCHETTI NECESSARI ======
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -23,24 +23,24 @@
 \usepackage{tcolorbox}      % Per creare box colorati dei documenti
 \usepackage{amsmath}   
 \usepackage{longtable}      % Per formule matematiche avanzate
-
+ 
 % ====== IMPOSTAZIONI GLOBALI DI STILE ======
-
+ 
 % 1. DEFINIZIONE COLORI BLU-VIOLA
 \definecolor{AccentColor}{RGB}{80, 90, 180} % Blu-viola principale
 \definecolor{AccentLight}{RGB}{80, 90, 180} % Versione più chiara
 \definecolor{AccentDark}{RGB}{50, 60, 140} % Versione più scura
 \definecolor{LightGray}{RGB}{245, 245, 250}
 \definecolor{MediumGray}{RGB}{200, 200, 210}
-
+ 
 % --- 2. Mostra il livello 4 anche nell'Indice Es. 1.1.1.1 --- 
 \setcounter{secnumdepth}{4}
 \setcounter{tocdepth}{4}
-
-
+ 
+ 
 % 2. IMPOSTAZIONE MARGINI
 \geometry{a4paper, left=2.5cm, right=2.5cm, top=3.5cm, bottom=3.5cm}
-
+ 
 % 3. STILE DEI TITOLI DI SEZIONE
 \titleformat{\section}
 {\normalfont\sffamily\Large\bfseries\color{AccentColor}}
@@ -62,7 +62,7 @@
 {\theparagraph}
 {1em}
 {}
-
+ 
 % 4. IMPOSTAZIONE HEADER E FOOTER
 \pagestyle{fancy}
 \fancyhf{}
@@ -70,7 +70,7 @@
 \fancyhead[R]{\sffamily\color{AccentColor}\thepage}
 \renewcommand{\headrulewidth}{0.8pt}
 \renewcommand{\headrule}{\color{AccentColor}\hrule width\headwidth height\headrulewidth \vskip-\headrulewidth}
-
+ 
 % 5. IMPOSTAZIONE LINK
 \hypersetup{
 	colorlinks=true,
@@ -78,11 +78,11 @@
 	urlcolor=AccentLight,
 	citecolor=AccentDark,
 }
-
+ 
 % 6. PERSONALIZZAZIONE ELENCHI
 \setlist[itemize]{itemsep=2pt, topsep=4pt}
 \setlist[enumerate]{itemsep=2pt, topsep=4pt}
-
+ 
 % ====== COMANDI PERSONALIZZATI ======
 \makeatletter
 \newcommand{\NomeGruppo}[1]{\def\@NomeGruppo{#1}}
@@ -91,20 +91,20 @@
 \newcommand{\Autore}[1]{\def\@Autore{#1}}
 \newcommand{\Verificatore}[1]{\def\@Verificatore{#1}}
 \makeatother
-
+ 
 % ====== STILE TABELLE MIGLIORATO ======
 \newcolumntype{Y}{>{\raggedright\arraybackslash}X} % Colonna giustificata a sinistra
 \setlength{\arrayrulewidth}{0.4pt} % Linee più sottili
 \setlength{\tabcolsep}{10pt} % Spaziatura interna celle
 \renewcommand{\arraystretch}{1.4} % Altezza righe
-
+ 
 \newcommand{\techDef}[2]{%
 	\subsubsection{#1}
 	\begin{itemize}
 		\item \textbf{Descrizione:} #2
 	\end{itemize}
 }
-
+ 
 % ====== INIZIO DEL DOCUMENTO ======
 \begin{document}
 	
@@ -171,8 +171,9 @@
 		\endhead
 		
 		% --- Dati della tabella (Nessuna riga vuota qui in mezzo!) ---
-		0.2.0 & 25/03/2026 & Alessandro Frison & Alessandro Morabito & Aggiunta sezione introduzione e sezione Tecnologie\\
-		0.1.0 & 24/03/2026 & Alessandro Morabito & & Creazione documento\\
+		0.3.0 & 25/03/2026 & Alessandro Frison & & Aggiunta sezione introduzione\\
+		0.2.0 & 25/03/2026 & Lorenzo Grolla & Alessandro Frison & Stesura tecnologie utilizzate \\		
+		0.1.0 & 24/03/2026 & Alessandro Morabito & Lorenzo Grolla & Creazione documento\\
 	\end{longtable}
 	\newpage
 	
@@ -231,75 +232,216 @@
 	\end{itemize}
 	
 	\section{Tecnologie}
-	% Descrizione da aggiornare insieme al glossario
+	Questa sezione descrive gli strumenti e le tecnologie adottati per lo sviluppo, il testing e il deployment del software relativo al progetto CodeGuardian. In particolare, vengono illustrati il linguaggio di programmazione, le librerie, i framework e le infrastrutture utilizzate.
+ 
+	% =============================================
+	% 2.1 LINGUAGGI DI PROGRAMMAZIONE
+	% =============================================
 	\subsection{Linguaggi di programmazione}
-    \techDef{TypeScript}{[Versione: ]}{
-        Linguaggio di programmazione open-source sviluppato da Microsoft come superset tipato di JavaScript. Introduce la tipizzazione statica opzionale, interfacce e classi, permettendo di individuare errori in fase di compilazione anziché a runtime. La sua adozione facilita lo sviluppo di applicazioni di grandi dimensioni, migliorando il supporto agli IDE e la manutenibilità complessiva.
-        \smallbreak \textbf{Documentazione:} \url{https://www.typescriptlang.org/docs/}
-    }
-
+ 
+	\subsubsection{TypeScript}
+	TypeScript è un linguaggio di programmazione open-source sviluppato da Microsoft. Si tratta di un superset di JavaScript, che introduce la tipizzazione statica, consentendo di rilevare errori di programmazione in fase di sviluppo, ridurre il numero di bug e migliorare la qualità del codice.
+	\begin{itemize}
+		\item \textbf{Versione:} 5.x		\item \textbf{Documentazione:} \url{https://www.typescriptlang.org/docs/}.
+	\end{itemize}
+	Nel contesto del progetto CodeGuardian, TypeScript è il linguaggio principale utilizzato per lo sviluppo sia del frontend che del backend. La tipizzazione statica è particolarmente utile in un progetto che coinvolge strutture dati complesse, come i report di analisi del codice e i grafi di scansione generati dall'agente AI\@.
+ 
+	Per il frontend si utilizza TSX, un'estensione di TypeScript che permette di definire la struttura dell'interfaccia utente in modo più leggibile e dichiarativo, integrando HTML direttamente nel codice TypeScript.
+ 
+	% =============================================
+	% 2.2 FORMATO DEI DATI
+	% =============================================
+	\subsection{Formato dei dati}
+ 
+	\subsubsection{JSON}
+	JSON (JavaScript Object Notation) è un formato di scambio dati leggero e indipendente dal linguaggio di programmazione. È ampiamente utilizzato nello sviluppo web e nello scambio di dati tra applicazioni. JSON è basato su due strutture di dati:
+	\begin{itemize}
+		\item \textbf{Oggetti:} insiemi di coppie chiave-valore;
+		\item \textbf{Array:} liste ordinate di valori.
+	\end{itemize}
+	Nel progetto CodeGuardian, JSON viene utilizzato per la trasmissione dei dati tra frontend e backend (payload delle API REST\textsuperscript{G}), per la serializzazione dei risultati di analisi, nonché per la configurazione dell'applicazione e la memorizzazione dei dati in MongoDB\@.
+ 
+	% =============================================
+	% 2.3 FRAMEWORK
+	% =============================================
 	\subsection{Framework}
-    \techDef{NestJS}{[Versione: ]}{
-        Framework progressivo per la costruzione di applicazioni lato server efficienti e scalabili su NodeJS. Utilizza TypeScript di default e implementa un'architettura modulare ispirata ad Angular, facilitando l'uso di Dependency Injection e la separazione delle responsabilità.
-        \smallbreak \textbf{Documentazione:} \url{https://docs.nestjs.com/}
-    }
-    \techDef{Langgraph}{[Versione: ]}{
-        Libreria costruita sopra LangChain per la creazione di workflow ciclici e agenti AI basati su grafi di stato, permettendo un controllo granulare sulla logica di esecuzione e sulla memoria dei modelli linguistici (LLM).
-        \smallbreak \textbf{Documentazione:} \url{https://langchain-ai.github.io/langgraphjs/}
-    }
-            
+ 
+	\subsubsection{NestJS}
+	NestJS è un framework per Node.js\textsuperscript{G} che offre un'architettura modulare e scalabile per la creazione di applicazioni lato server. Si basa su Express.js e fornisce funzionalità aggiuntive come dependency injection\textsuperscript{G}, middleware e decorator. NestJS consente di organizzare il codice in moduli riutilizzabili e di definire facilmente controller, servizi e provider.
+	\begin{itemize}
+		\item \textbf{Versione:} 11.x		
+		\item \textbf{Documentazione:} \url{https://docs.nestjs.com/}.
+	\end{itemize}
+	Nel progetto CodeGuardian, NestJS è utilizzato per creare il backend. In particolare, viene impiegato per definire i controller che gestiscono le richieste HTTP provenienti dal frontend, i servizi che implementano la business logic (gestione workspace\textsuperscript{G}, membership\textsuperscript{G}, scansioni), e i provider per l'iniezione delle dipendenze. L'architettura del backend è organizzata in sette moduli principali: \texttt{WorkspaceModule}, \texttt{MembershipModule}, \texttt{RepositoryModule}, \texttt{ScanModule}, \texttt{ReportModule}, \texttt{AnalysisModule} e \texttt{GitHubModule}.
+ 
+	\subsubsection{LangGraph}
+	LangGraph è un framework open-source per l'orchestrazione di agenti AI\textsuperscript{G}, sviluppato da LangChain Inc. Consente di modellare workflow complessi come grafi a stati, dove ogni nodo rappresenta un passo di ragionamento o un'azione, e ogni arco il flusso di controllo tra i passi. LangGraph fornisce funzionalità di gestione dello stato, checkpointing, streaming token-by-token e supporto per cicli e ramificazioni condizionali.
+	\begin{itemize}
+		\item \textbf{Versione:} 1.x		
+		\item \textbf{Documentazione:} \url{https://langchain-ai.github.io/langgraph/}.
+	\end{itemize}
+	Nel progetto CodeGuardian, LangGraph è il componente centrale dell'agente di analisi del codice. Il grafo implementato definisce il flusso di scansione dei repository GitHub\textsuperscript{G}: dalla clonazione del repository, all'analisi dei file, fino alla generazione del report finale. La struttura a grafo consente di gestire ramificazioni condizionali basate sul tipo di analisi richiesta e permette di integrare verifiche intermedie e retry automatici in caso di errore.
+ 
+	% =============================================
+	% 2.4 LIBRERIE
+	% =============================================
 	\subsection{Librerie}
-    \techDef{ReactJS}{[Versione: ]}{
-        Libreria JavaScript per la creazione di interfacce utente basata su componenti. Utilizza un DOM virtuale per ottimizzare le prestazioni e supporta un approccio dichiarativo per la gestione dello stato della UI.
-        \smallbreak \textbf{Documentazione:} \url{https://react.dev/}
-    }
-    \techDef{TanstackRouter}{[Versione: ]}{
-        Sistema di routing tipizzato per React, che garantisce la sicurezza dei tipi (type-safety) per parametri di ricerca e rotte, migliorando l'affidabilità della navigazione interna.
-        \smallbreak \textbf{Documentazione:} \url{https://tanstack.com/router/latest}
-    }
-    \techDef{mongoose}{[Versione: ]}{
-        Libreria ODM (Object Data Modeling) per MongoDB e NodeJS, che fornisce una soluzione basata su schemi per modellare i dati dell'applicazione e gestirne la validazione.
-        \smallbreak \textbf{Documentazione:} \url{https://mongoosejs.com/docs/}
-    }
-    \techDef{axios}{[Versione: ]}{
-        Client HTTP basato su promise per browser e NodeJS, utilizzato per effettuare richieste asincrone verso API esterne o il backend in modo semplice e configurabile.
-    }
-    \techDef{isomorphic-git}{[Versione: ]}{
-        Implementazione di Git interamente in JavaScript che permette di interagire con i repository sia in ambiente Node.js che direttamente nel browser.
-    }
-    \techDef{react-markdown}{[Versione: ]}{
-        Componente React utilizzato per il rendering sicuro di stringhe in formato Markdown all'interno dell'interfaccia utente, utile per la visualizzazione di documentazione o messaggi formattati.
-    }
-    \techDef{dotenv}{[Versione: ]}{
-        Modulo che carica le variabili d'ambiente da un file \textit{.env} in \textit{process.env}, permettendo di gestire configurazioni sensibili separatamente dal codice sorgente.
-    }
-    
+ 
+	% --- 2.4.1 Librerie Backend ---
+	\subsubsection{Librerie backend}
+ 
+	\paragraph{LangChain}
+	LangChain è una libreria open-source che fornisce componenti riutilizzabili per l'integrazione di Large Language Model (LLM)\textsuperscript{G} in applicazioni software. Offre astrazioni per la gestione dei prompt, l'invocazione dei modelli, l'integrazione con tool esterni e la gestione della memoria conversazionale.
+	\begin{itemize}
+		\item \textbf{Versione:} 1.x		
+		\item \textbf{Documentazione:} \url{https://js.langchain.com/docs/}.
+	\end{itemize}
+	Nel progetto CodeGuardian, LangChain è utilizzato in combinazione con LangGraph per la costruzione dell'agente di analisi. Fornisce le astrazioni per l'invocazione dei modelli LLM e l'integrazione con i tool di analisi del codice sorgente.
+ 
+	\paragraph{Axios}
+	Axios è un client HTTP basato su Promise per Node.js e browser. È isomorfo, cioè può essere eseguito sia nel browser che in Node.js utilizzando lo stesso codice sorgente. Lato server, Axios utilizza il modulo \texttt{http} nativo di Node.js, mentre lato client usa \texttt{XMLHttpRequest}.
+	\begin{itemize}
+		\item \textbf{Versione:} 1.x		
+		\item \textbf{Documentazione:} \url{https://axios-http.com/docs/intro}.
+	\end{itemize}
+	Nel progetto CodeGuardian, Axios viene utilizzato lato frontend per effettuare richieste HTTP al backend (interrogazione delle API REST per workspace, scansioni e report) e lato backend per comunicare con servizi esterni, come le API di GitHub.
+ 
+	\paragraph{dotenv}
+	dotenv è una libreria che consente di caricare variabili d'ambiente da un file \texttt{.env} nell'oggetto \texttt{process.env} di Node.js. Permette di separare la configurazione dal codice sorgente, seguendo le best practice della metodologia Twelve-Factor App.
+	\begin{itemize}
+		\item \textbf{Versione:} 16.x		
+		\item \textbf{Documentazione:} \url{https://github.com/motdotla/dotenv}.
+	\end{itemize}
+	Nel progetto CodeGuardian, dotenv è utilizzato per gestire in modo sicuro le credenziali sensibili (chiavi API dei servizi LLM, credenziali MongoDB, configurazioni AWS) sia in ambiente di sviluppo che di testing, evitando di esporre dati riservati nel codice sorgente.
+ 
+	\paragraph{isomorphic-git}
+	isomorphic-git è una reimplementazione completa di Git in puro JavaScript, compatibile sia con Node.js che con ambienti browser. Consente di eseguire operazioni Git (clone, checkout, log, status) senza dipendenze da moduli nativi C++, garantendo piena interoperabilità con l'implementazione canonica di Git.
+	\begin{itemize}
+		\item \textbf{Versione:} 1.x		
+		\item \textbf{Documentazione:} \url{https://isomorphic-git.org/}.
+	\end{itemize}
+	Nel progetto CodeGuardian, isomorphic-git è una componente fondamentale del modulo \texttt{GitHubModule}. Viene utilizzato per clonare i repository GitHub degli utenti direttamente nel backend, consentendo all'agente AI di analizzare il codice sorgente localmente senza dipendere da strumenti CLI esterni. Ciò garantisce portabilità e compatibilità con ambienti containerizzati.
+ 
+	\paragraph{Mongoose}
+	Mongoose è una libreria ODM (Object Data Modeling) per MongoDB e Node.js. Fornisce una soluzione basata su schema per modellare i dati dell'applicazione, includendo validazione built-in, casting dei tipi, costruzione di query e hook per la business logic.
+	\begin{itemize}
+		\item \textbf{Versione:} 8.x		
+		\item \textbf{Documentazione:} \url{https://mongoosejs.com/docs/}.
+	\end{itemize}
+	Nel progetto CodeGuardian, Mongoose è utilizzato come layer di accesso ai dati per MongoDB\@. Tutti i modelli del dominio applicativo (workspace, membership, repository, scan, report) sono definiti tramite schema Mongoose, garantendo la validazione dei dati a livello applicativo e la coerenza delle operazioni CRUD\@.
+ 
+	% --- 2.4.2 Librerie Frontend ---
+	\subsubsection{Librerie frontend}
+ 
+	\paragraph{React}
+	React è una libreria JavaScript open-source per la creazione di interfacce utente, sviluppata da Meta. Consente di definire componenti riutilizzabili che rappresentano parti dell'interfaccia, aggiornando automaticamente la vista in base allo stato dell'applicazione. React adotta un approccio dichiarativo per la definizione dell'interfaccia utente, semplificando la gestione dello stato e la sincronizzazione con il DOM\@.
+	\begin{itemize}
+		\item \textbf{Versione:} 19.x		
+		\item \textbf{Documentazione:} \url{https://react.dev/learn}.
+	\end{itemize}
+	Nel progetto CodeGuardian, React è il framework di riferimento per l'interfaccia utente. La UI è organizzata in componenti funzionali che gestiscono la visualizzazione dei workspace, la lista dei repository, l'avvio delle scansioni e la consultazione dei report di analisi.
+ 
+	\paragraph{TanStack Router}
+	TanStack Router è una libreria open-source di routing type-safe per applicazioni React. A differenza di React Router, offre un sistema di routing completamente tipizzato a livello di TypeScript, con validazione dei parametri di ricerca, caricamento dati integrato e supporto nativo per search params tipizzati.
+	\begin{itemize}
+		\item \textbf{Versione:} 1.x		
+		\item \textbf{Documentazione:} \url{https://tanstack.com/router/latest}.
+	\end{itemize}
+	Nel progetto CodeGuardian, TanStack Router gestisce la navigazione tra le diverse sezioni dell'applicazione: la dashboard iniziale, la vista dei workspace, le pagine di dettaglio dei repository e le schermate di visualizzazione dei report. L'integrazione type-safe con TypeScript garantisce che tutti i parametri delle rotte siano validati staticamente.
+ 
+	\paragraph{react-markdown}
+	react-markdown è una libreria React che consente di renderizzare contenuto Markdown come componenti React. Supporta la sintassi CommonMark e può essere estesa tramite plugin remark e rehype per funzionalità aggiuntive (syntax highlighting, tabelle, GFM).
+	\begin{itemize}
+		\item \textbf{Versione:} 9.x		
+		\item \textbf{Documentazione:} \url{https://github.com/remarkjs/react-markdown}.
+	\end{itemize}
+	Nel progetto CodeGuardian, react-markdown viene utilizzato per visualizzare i report di analisi generati dall'agente AI, i quali sono prodotti in formato Markdown. La libreria consente di presentare all'utente il report in modo formattato, includendo intestazioni, elenchi, blocchi di codice ed eventuali tabelle riassuntive.
+ 
+	% =============================================
+	% 2.5 AUTENTICAZIONE
+	% =============================================
+	\subsection{Autenticazione}
+ 
+	\subsubsection{Amazon Cognito}
+	Amazon Cognito è un servizio di autenticazione e autorizzazione gestito da Amazon Web Services (AWS)\textsuperscript{G}. Consente di aggiungere funzionalità di sign-up, sign-in e gestione degli accessi alle applicazioni web e mobile. Supporta provider di identità federata (come Google e GitHub), autenticazione multi-fattore (MFA) e gestione dei token JWT\textsuperscript{G}.
+	\begin{itemize}
+		\item \textbf{Documentazione:} \url{https://docs.aws.amazon.com/cognito/}.
+	\end{itemize}
+	Nel progetto CodeGuardian, Amazon Cognito è il servizio di riferimento per la gestione dell'autenticazione degli utenti. Si occupa della registrazione, dell'accesso (anche tramite provider OAuth come GitHub), del rilascio e della verifica dei token JWT, e della gestione delle sessioni. Il backend NestJS verifica i token Cognito per proteggere le API e implementare il controllo degli accessi basato sui ruoli (owner, admin, member) all'interno dei workspace.
+ 
+	% =============================================
+	% 2.6 DATABASE
+	% =============================================
+	\subsection{Database}
+ 
+	\subsubsection{MongoDB}
+	MongoDB è un database NoSQL\textsuperscript{G} open-source, orientato ai documenti. A differenza dei database relazionali, MongoDB memorizza i dati in documenti flessibili in formato BSON (Binary JSON), consentendo strutture dati dinamiche che possono variare tra i documenti di una stessa collezione. MongoDB supporta query ricche, indicizzazione, aggregazioni e scalabilità orizzontale tramite sharding.
+	\begin{itemize}
+		\item \textbf{Documentazione:} \url{https://www.mongodb.com/docs/}.
+	\end{itemize}
+	Nel progetto CodeGuardian, MongoDB è il database principale dell'applicazione. Viene utilizzato per la persistenza di tutte le entità del dominio: workspace, membership, repository, scansioni e report di analisi. La natura document-oriented di MongoDB si adatta alla struttura dei report generati dall'agente AI, che possono variare in formato e complessità. L'accesso ai dati avviene tramite la libreria Mongoose.
+ 
+	% =============================================
+	% 2.7 TESTING
+	% =============================================
 	\subsection{Testing}
-    \techDef{jest}{[Versione: ]}{
-        Framework di test JavaScript focalizzato sulla semplicità, ampiamente utilizzato per unit test e integration test grazie alla sua ampia suite di strumenti inclusi.
-    }
-    \techDef{vitest}{[Versione: ]}{
-        Framework di testing ultra-veloce basato su Vite, progettato per offrire un'esperienza di sviluppo rapida e nativa per progetti moderni in TypeScript.
-    }
-    \techDef{playwright}{[Versione: ]}{
-        Strumento per il testing end-to-end che consente l'automazione dei browser moderni, fondamentale per verificare il corretto funzionamento dei flussi utente completi.
-        \smallbreak \textbf{Documentazione:} \url{https://playwright.dev/}
-    }
-    
-	\subsection{Infrastruttura}
-    \techDef{Docker}{[Versione: ]}{
-        Piattaforma di containerizzazione che permette di pacchettizzare l'applicazione e le sue dipendenze in un'unità standardizzata per garantire coerenza tra sviluppo e produzione.
-        \smallbreak \textbf{Documentazione:} \url{https://docs.docker.com/}
-    }
-    \techDef{AWS Amplify}{[Versione: ]}{
-        Set di strumenti e servizi cloud per lo sviluppo e il deployment rapido di applicazioni web e mobile full-stack su infrastruttura Amazon Web Services.
-    }
-    \techDef{AWS ECS}{[Versione: ]}{
-        Amazon Elastic Container Service, un servizio di orchestrazione di container altamente scalabile che permette di gestire l'esecuzione di container Docker nel cloud.
-    }
-    \techDef{AWS EC2}{[Versione: ]}{
-        Amazon Elastic Compute Cloud, servizio che fornisce capacità di calcolo scalabile sotto forma di istanze di server virtuali per ospitare servizi e applicazioni.
-    }
+ 
+	\subsubsection{Jest}
+	Jest è un framework di testing progettato per garantire la correttezza di qualsiasi sorgente JavaScript. Consente di scrivere test con un'API accessibile e ricca di funzionalità, che fornisce risultati rapidamente. Supporta mocking, snapshot testing, code coverage e test paralleli.
+	\begin{itemize}
+		\item \textbf{Versione:} 29.x		
+		\item \textbf{Documentazione:} \url{https://jestjs.io/docs/getting-started}.
+	\end{itemize}
+	Jest è utilizzato per eseguire i test di unità e di integrazione del backend, verificando che i controller, i servizi e i moduli NestJS siano implementati correttamente. In particolare, viene impiegato per testare la logica di business dei sette moduli dell'applicazione.
+ 
+	\subsubsection{Vitest}
+	Vitest è un framework di testing per Vite. Offre funzionalità avanzate come il supporto nativo per TypeScript, la configurazione tramite file di setup e la possibilità di eseguire test in modalità watch. Questa modalità è particolarmente utile durante lo sviluppo attivo e il debugging, poiché riduce i tempi di attesa per l'esecuzione dei test.
+	\begin{itemize}
+		\item \textbf{Versione:} 3.x		
+		\item \textbf{Documentazione:} \url{https://vitest.dev/guide/}.
+	\end{itemize}
+	Vitest è utilizzato per eseguire i test di unità e di integrazione del frontend, verificando che i componenti React e le funzionalità di interfaccia siano implementati correttamente.
+ 
+	\subsubsection{Playwright}
+	Playwright è un framework di testing end-to-end per applicazioni web, sviluppato da Microsoft. Consente di scrivere test in JavaScript/TypeScript, eseguirli in browser reali (Chromium, Firefox, WebKit) e verificare il comportamento dell'applicazione in modo automatizzato.
+	\begin{itemize}
+		\item \textbf{Versione:} 1.x		
+		\item \textbf{Documentazione:} \url{https://playwright.dev/}.
+	\end{itemize}
+	Playwright è utilizzato per testare il frontend dell'applicazione end-to-end, verificando che i flussi utente principali (registrazione, login, creazione workspace, avvio scansione, visualizzazione report) funzionino correttamente attraverso l'intero stack applicativo.
+ 
+	% =============================================
+	% 2.8 INFRASTRUTTURA E DEPLOYMENT
+	% =============================================
+	\subsection{Infrastruttura e deployment}
+ 
+	\subsubsection{Docker}
+	Docker è una piattaforma open-source per lo sviluppo, la distribuzione e l'esecuzione di applicazioni in contenitori. I contenitori Docker sono unità di software che includono il codice sorgente, le dipendenze e le configurazioni necessarie per eseguire un'applicazione, garantendo ambienti consistenti e facilmente riproducibili.
+	\begin{itemize}
+		\item \textbf{Documentazione:} \url{https://docs.docker.com/}.
+	\end{itemize}
+	Nel progetto CodeGuardian, Docker è utilizzato per containerizzare i singoli servizi dell'applicazione (frontend, backend, agente AI) durante lo sviluppo e il testing locale, garantendo coerenza tra gli ambienti di sviluppo e produzione.
+ 
+	\subsubsection{AWS Amplify}
+	AWS Amplify è un servizio di hosting e deployment gestito da Amazon Web Services, progettato per applicazioni frontend e web full-stack. Supporta il deployment continuo da repository Git, la gestione automatica di certificati SSL, CDN globale e preview per le pull request.
+	\begin{itemize}
+		\item \textbf{Documentazione:} \url{https://docs.amplify.aws/}.
+	\end{itemize}
+	Nel progetto CodeGuardian, AWS Amplify è utilizzato per il deployment e l'hosting del frontend React. Fornisce un ambiente di hosting scalabile con deployment continuo collegato al repository GitHub del progetto.
+ 
+	\subsubsection{Amazon ECS}
+	Amazon Elastic Container Service (ECS) è un servizio di orchestrazione di contenitori completamente gestito da AWS\@. Consente di eseguire, fermare e gestire contenitori Docker su un cluster di istanze EC2 o tramite AWS Fargate (modalità serverless). ECS supporta la scalabilità automatica, il bilanciamento del carico e l'integrazione nativa con altri servizi AWS\@.
+	\begin{itemize}
+		\item \textbf{Documentazione:} \url{https://docs.aws.amazon.com/ecs/}.
+	\end{itemize}
+	Nel progetto CodeGuardian, Amazon ECS è utilizzato per il deployment e l'orchestrazione dei container che eseguono il backend NestJS e il servizio dell'agente AI basato su LangGraph. ECS garantisce alta disponibilità e scalabilità dei servizi backend in ambiente di produzione.
+ 
+	\subsubsection{Amazon EC2}
+	Amazon Elastic Compute Cloud (EC2) è un servizio di cloud computing che fornisce capacità computazionale ridimensionabile nel cloud AWS\@. Consente di lanciare istanze di server virtuali con diversi sistemi operativi e configurazioni hardware.
+	\begin{itemize}
+		\item \textbf{Documentazione:} \url{https://docs.aws.amazon.com/ec2/}.
+	\end{itemize}
+	Nel progetto CodeGuardian, le istanze EC2 costituiscono l'infrastruttura computazionale su cui vengono eseguiti i container gestiti da Amazon ECS\@. La scelta del tipo di istanza è calibrata in base ai requisiti di memoria e CPU necessari per l'esecuzione delle analisi AI\@.
 	
 	\section{Architettura}
 	\subsection{Architettura di deployment}

@@ -450,4 +450,144 @@
 	\subsubsection{Frontend}
 	\subsubsection{Backend}
 	\subsubsection{Container}
+\newpage
+	\section{Stato dei requisiti funzionali}
+	\subsection{Requisiti funzionali}
+	\renewcommand{\arraystretch}{1.5}
+	\rowcolors{2}{lightgray!20}{white}
+	\begin{longtable}[c]{ >{\centering\arraybackslash}m{2.5cm} >{\centering\arraybackslash}m{8.3cm} >{\centering\arraybackslash}m{3.5cm} }
+		\caption{Tabella dei Requisiti Funzionali} \\
+		\rowcolor{AccentDark}
+		\color{white}\textbf{Codice} & \color{white}\textbf{Descrizione} & \color{white}\textbf{Stato} \\
+		\endhead
+
+		R-1-F-Ob & L'utente non autenticato deve poter registrarsi al sistema inserendo username, email e password & Non completato \\
+		R-2-F-Ob & Il sistema deve autenticare gli utenti tramite Amazon Cognito\textsuperscript{G} & Non completato \\
+		R-3-F-Ob & Il sistema deve mostrare un messaggio di errore specifico in caso di registrazione fallita & Non completato \\
+		R-4-F-De & Il sistema deve inviare un codice OTP via email per la conferma della registrazione & Non completato \\
+		R-5-F-De & Il sistema deve mostrare un messaggio di errore se il codice OTP è errato o scaduto durante la conferma registrazione & Non completato \\
+		R-6-F-Ob & L'utente non autenticato deve poter effettuare il login tramite username/email e password & Non completato \\
+		R-7-F-Ob & Il sistema deve mostrare un messaggio di errore in caso di credenziali errate & Non completato \\
+		R-8-F-Ob & L'utente deve poter recuperare la password & Non completato \\
+		R-9-F-Ob & Il sistema deve mostrare un messaggio di errore in caso di ripristino password fallito & Non completato \\
+		R-10-F-Ob & Il Project Manager\textsuperscript{G} deve poter invitare utenti in un workspace selezionando un ruolo & Non completato \\
+		R-11-F-Ob & Il sistema deve mostrare un messaggio di errore se l'invito a un workspace non va a buon fine & Non completato \\
+		R-12-F-Ob & L'utente deve poter visualizzare la lista degli inviti ricevuti con dettagli & Non completato \\
+		R-13-F-Ob & Il sistema deve mostrare per ciascun invito: username mittente, username owner del workspace e nome del workspace & Non completato \\
+		R-14-F-Ob & L'utente deve poter accettare o rifiutare un invito a un workspace & Non completato \\
+		R-15-F-Ob & L'utente autenticato deve poter visualizzare la lista dei workspace a cui appartiene & Non completato \\
+		R-16-F-Ob & Il sistema deve mostrare per ciascun workspace in lista: nome del workspace e username dell'owner & Non completato \\
+		R-17-F-Ob & L'utente deve poter cercare workspace per nome & Non completato \\
+		R-18-F-Ob & L'utente autenticato deve poter creare un nuovo workspace inserendone il nome & Non completato \\
+		R-19-F-Ob & Il sistema deve assegnare automaticamente il ruolo di owner al creatore del workspace & Non completato \\
+		R-20-F-Ob & Il sistema deve impedire la creazione di workspace con nome duplicato o non valido & Non completato \\
+		R-21-F-De & L'utente deve poter visualizzare la lista dei ruoli di un workspace & Non completato \\
+		R-22-F-De & Il sistema deve mostrare nome e descrizione per ciascun ruolo del workspace & Non completato \\
+		R-23-F-Ob & L'utente deve poter visualizzare la lista degli utenti di un workspace & Non completato \\
+		R-24-F-Ob & Il sistema deve mostrare username e ruolo per ciascun utente del workspace & Non completato \\
+		R-25-F-Ob & Il Project Manager\textsuperscript{G} deve poter rimuovere un utente da un workspace & Non completato \\
+		R-26-F-De & Il sistema deve verificare automaticamente lo stato di aggiornamento di una repository & Non completato \\
+		R-27-F-De & Il sistema deve recuperare la data dell'ultimo push da Git\textsuperscript{G}Hub\textsuperscript{G} per verificare l'aggiornamento & Non completato \\
+		R-28-F-De & Il sistema deve aggiornare lo stato della repository a 'non aggiornata' se il push è più recente della scansione & Non completato \\
+		R-29-F-De & Il sistema deve gestire errori di connessione con Git\textsuperscript{G}Hub\textsuperscript{G} & Non completato \\
+		R-30-F-Ob & L'utente deve poter avviare una scansione & Non completato \\
+		R-31-F-Ob & Il sistema deve mostrare lo stato della scansione in corso & Non completato \\
+		R-32-F-Ob & Il sistema deve notificare errori durante la scansione & Non completato \\
+		R-33-F-Ob & L'utente deve poter avviare una scansione su tutte le repository di un workspace & Non completato \\
+		R-34-F-Ob & L'utente deve poter avviare una scansione su una singola repository selezionando il branch\textsuperscript{G} & Non completato \\
+		R-35-F-Ob & L'utente deve poter avviare una scansione su un insieme di repository selezionate & Non completato \\
+		R-36-F-Ob & L'utente deve poter annullare una scansione in corso & Non completato \\
+		R-37-F-Ob & Il sistema deve analizzare una o più repository & Non completato \\
+		R-38-F-Ob & Architettura ad agenti coordinati da un orchestratore autocratico\textsuperscript{G} & Non completato \\
+		R-39-F-Ob & Il sistema deve clonare le repository da Git\textsuperscript{G}Hub\textsuperscript{G} in locale prima dell'analisi & Non completato \\
+		R-40-F-Ob & Il sistema deve distribuire l'analisi tra più componenti specializzati & Non completato \\
+		R-41-F-Ob & Ciascun agente deve eseguire l'analisi di competenza e generare un report\textsuperscript{G} parziale & Non completato \\
+		R-42-F-Ob & Il sistema deve aggregare i risultati & Non completato \\
+		R-43-F-Ob & Il sistema deve salvare un report\textsuperscript{G} finale & Non completato \\
+		R-44-F-Ob & Il sistema deve gestire URL o PAT non validi interrompendo l'operazione e notificando l'utente & Non completato \\
+		R-45-F-De & L'utente deve poter visualizzare la lista dei tag\textsuperscript{G} raccolta\textsuperscript{G} di un workspace & Non completato \\
+		R-46-F-De & L'utente deve poter creare un tag\textsuperscript{G} raccolta\textsuperscript{G} all'interno di un workspace & Non completato \\
+		R-47-F-De & Il sistema deve impedire la creazione di tag\textsuperscript{G} raccolta\textsuperscript{G} con nome non valido o duplicato & Non completato \\
+		R-48-F-De & L'utente deve poter eliminare un tag\textsuperscript{G} raccolta\textsuperscript{G} dal workspace & Non completato \\
+		R-49-F-De & L'utente deve poter assegnare tag\textsuperscript{G} raccolta\textsuperscript{G} a una repository & Non completato \\
+		R-50-F-De & L'utente deve poter rimuovere tag\textsuperscript{G} raccolta\textsuperscript{G} da una repository & Non completato \\
+		R-51-F-Ob & L'utente deve poter visualizzare la lista delle repository del workspace & Non completato \\
+		R-52-F-Ob & Il sistema deve mostrare per ciascuna repository in lista: nome, data ultima scansione, indicatore criticità, voto documentazione\textsuperscript{G}, percentuale code coverage\textsuperscript{G} & Non completato \\
+		R-54-F-Ob & Il sistema deve validare il link della repository e verificare l'accesso & Non completato \\
+		R-55-F-Ob & L'utente deve poter rimuovere una repository dal workspace & Non completato \\
+		R-56-F-Ob & Il sistema deve permettere l'annullamento della rimozione di una repository & Non completato \\
+		R-57-F-Ob & Il sistema deve avvisare l'utente se la repository da rimuovere ha scansioni in corso e richiedere conferma esplicita & Non completato \\
+		R-58-F-Ob & L'utente deve poter effettuare ricerche di repository & Non completato \\
+		R-59-F-De & L'utente deve poter filtrare le repository tramite barra di ricerca testuale & Non completato \\
+		R-60-F-De & L'utente deve poter filtrare le repository tramite selezione di filtri multipli (linguaggio, tag, coverage, voto doc) & Non completato \\
+		R-61-F-De & Il sistema deve permettere la selezione di filtri di ricerca multipli per le repository & Non completato \\
+		R-62-F-De & L'utente deve poter ordinare la lista delle repository & Non completato \\
+		R-63-F-Ob & L'utente deve poter visualizzare il dettaglio di una repository & Non completato \\
+		R-64-F-Ob & Il sistema deve presentare la sezione completa di analisi dei test della repository & Non completato \\
+		R-65-F-De & Il sistema deve mostrare la percentuale di code coverage\textsuperscript{G} & Non completato \\
+		R-66-F-Ob & Il sistema deve mostrare l'elenco dei test con qualità insufficiente & Non completato \\
+		R-67-F-De & Il sistema deve mostrare la percentuale di test passati & Non completato \\
+		R-68-F-De & Il sistema deve mostrare l'elenco dei test non passati & Non completato \\
+		R-69-F-De & Il sistema deve mostrare un messaggio informativo se nessun test è rilevato & Non completato \\
+		R-70-F-Ob & Il sistema deve presentare la sezione delle informazioni tecniche (linguaggi, librerie, framework\textsuperscript{G}) & Non completato \\
+		R-71-F-Ob & Il sistema deve mostrare la lista dei linguaggi rilevati & Non completato \\
+		R-72-F-Ob & Il sistema deve mostrare la lista delle librerie rilevate & Non completato \\
+		R-73-F-Ob & Il sistema deve mostrare la lista dei framework\textsuperscript{G} rilevati & Non completato \\
+		R-74-F-Ob & Il sistema deve mostrare grafici semplificati dei risultati OWASP & Non completato \\
+		R-75-F-Ob & Il sistema deve mostrare un elenco ordinato delle vulnerabilità\textsuperscript{G} OWASP & Non completato \\
+		R-76-F-Ob & Il sistema deve mostrare per ciascuna vulnerabilità\textsuperscript{G}: nome/tipo, file di origine e categoria di criticità OWASP & Non completato \\
+		R-77-F-De & Il sistema deve fornire i dettagli per ogni vulnerabilità\textsuperscript{G} & Non completato \\
+		R-78-F-Ob & Il sistema deve presentare la sezione di analisi della documentazione\textsuperscript{G} della repository & Non completato \\
+		R-79-F-Ob & Il sistema deve mostrare un voto complessivo della qualità documentale & Non completato \\
+		R-80-F-De & Il sistema deve mostrare consigli per il miglioramento del README & Non completato \\
+		R-81-F-Ob & Il sistema deve elencare sezioni o documenti standard mancanti & Non completato \\
+		R-82-F-De & Il sistema deve mostrare suggerimenti sulla qualità del codice & Non completato \\
+		R-83-F-Ob & Il sistema deve mostrare un messaggio informativo se non sono disponibili dati di scansione per una repository & Non completato \\
+		R-84-F-Ob & Il sistema deve permettere la selezione del branch\textsuperscript{G} per la visualizzazione & Non completato \\
+		R-85-F-Ob & Il sistema deve mostrare la lista dei branch\textsuperscript{G} disponibili per una repository & Non completato \\
+		R-86-F-Ob & Il sistema deve notificare l'errore se non sono disponibili branch\textsuperscript{G} validi per una repository & Non completato \\
+		R-87-F-Ob & L'utente deve poter visualizzare una visione aggregata del workspace & Non completato \\
+		R-88-F-De & L'utente deve poter filtrare la visione aggregata per tag\textsuperscript{G} raccolta\textsuperscript{G} & Non completato \\
+		R-89-F-Ob & Il sistema deve mostrare le metriche aggregate dei test (coverage medio, repository sopra soglia, coverage minimo) & Non completato \\
+		R-90-F-Ob & Il sistema deve mostrare grafici aggregati di distribuzione linguaggi e framework\textsuperscript{G} del workspace & Non completato \\
+		R-91-F-Ob & Il sistema deve mostrare percentuale repository sicure e grafico vulnerabilità\textsuperscript{G} aggregate per gravità & Non completato \\
+		R-92-F-Ob & Il sistema deve mostrare voto documentazione\textsuperscript{G} minimo, medio, massimo e grafico distribuzione del workspace & Non completato \\
+		R-93-F-Ob & Il sistema deve mostrare un messaggio di errore se il workspace è vuoto o senza repository nella visione aggregata & Non completato \\
+		R-94-F-Ob & L'utente deve poter aggiornare le informazioni sulle repository in base all'ultima scansione & Non completato \\
+		R-95-F-Op & Integrazione con CI/CD (GitHub\textsuperscript{G} Actions\textsuperscript{G}) & Non completato \\
+		R-96-F-Op & Analisi storica e confronto tra versioni & Non completato \\
+		R-97-F-Op & Ranking dei progetti per qualità complessiva & Non completato \\
+		R-98-F-Op & Remediation interattiva con anteprima & Non completato \\
+		R-99-F-Op & Notifiche integrate (Slack/Teams/Email) & Non completato \\
+		R-100-F-Op & Plugin system per nuovi agenti di analisi & Non completato \\
+	\end{longtable}
+\newpage
+	\subsection{Cruscotto riassuntivo}
+	Di seguito sono riportati i grafici che mostrano lo stato di completamento dei requisiti funzionali totali, obbligatori, desiderabili e opzionali. \\
+	In particolare in verde sono evidenziati i requisiti completati e in rosso quelli non completati. 
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.35\textwidth]{../Assets/specifica_tecnica/req_totali.png}
+		\caption{Percentuale di completamento dei requisiti funzionali totali}
+		\label{fig:req_totali}
+	\end{figure}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.35\textwidth]{../Assets/specifica_tecnica/req_obbligatori.png}
+		\caption{Percentuale di completamento dei requisiti funzionali obbligatori}
+		\label{fig:req_obbligatori}
+	\end{figure}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.35\textwidth]{../Assets/specifica_tecnica/req_desiderabili.png}
+		\caption{Percentuale di completamento dei requisiti funzionali desiderabili}
+		\label{fig:req_desiderabili}
+	\end{figure}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=0.35\textwidth]{../Assets/specifica_tecnica/req_opzionali.png}
+		\caption{Percentuale di completamento dei requisiti funzionali opzionali}
+		\label{fig:req_opzionali}
+	\end{figure}
+
 \end{document}

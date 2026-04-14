@@ -446,8 +446,32 @@
 	
 	\section{Architettura}
 	\subsection{Architettura di deployment}
+    Per la distribuzione dell'applicazione nell'ambiente di produzione AWS, si è optato per un'architettura monolitica containerizzata. In questo modello, tutte le componenti del backend (gestione utenti, analisi del codice, generazione report) sono incluse in un'unica immagine Docker e distribuite come un singolo servizio su Amazon ECS.\\ \\
+    Motivazioni della scelta:
+    \begin{itemize}
+        \item Proporzionalità rispetto alla scala del progetto: per un sistema delle dimensioni di CodeGuardian, l'adozione di un'architettura a microservizi risulterebbe ingente da implementare e nettamente sovradimensionata. Il passaggio a sistemi distribuiti introdurrebbe una complessità accidentale (service discovery, gestione della consistenza distribuita, latenza di rete tra servizi) non giustificata dal carico di lavoro previsto;
+        \item Semplificazione del flusso DevOps: la gestione di un unico artefatto riduce drasticamente l'overhead operativo relativo alla configurazione dei cluster ECS e dei bilanciatori di carico;
+        \item Efficienza nelle operazioni I/O: poiché l'analisi del codice richiede la clonazione locale dei repository, la presenza di tutti i moduli nello stesso ambiente di esecuzione elimina la latenza di rete che si verificherebbe in un'architettura a microservizi;
+        \item Ottimizzazione delle risorse: l'esecuzione su istanze EC2 permette una gestione granulare della CPU e della memoria, necessaria per sostenere i carichi computazionali variabili imposti dall'agente AI.
+    \end{itemize}
 	% Spiegazione della divisione in tre	
 	\subsection{Architettura logica}
+    A livello di organizzazione del codice, il sistema adotta un'architettura layered, sfruttando le potenzialità del framework NestJS. Questa scelta garantisce che, nonostante il deployment sia monolitico, il software mantenga un'elevata qualità strutturale attraverso la separazione delle responsabilità.
+    \\ \\
+    L'architettura si articola sui seguenti strati:
+    \begin{itemize}
+        \item Presentation Layer: funge da punto di ingresso per le richieste HTTP provenienti dal frontend React, si occupa esclusivamente della ricezione degli input e della restituzione delle risposte, delegando l'elaborazione agli strati sottostanti;
+        \item Business Logic  Layer: costituisce il nucleo operativo del sistema, in questo livello viene implementata la logica di business, inclusa l'orchestrazione dei flussi di analisi tramite LangGraph e l'integrazione con le librerie di LangChain;
+        \item Persistence Layer: gestisce l'interazione con il database MongoDB; attraverso l'uso di Mongoose, questo strato isola le operazioni di persistenza dal resto dell'applicazione, garantendo che ogni entità (Workspace, Report, Scan) sia validata correttamente.
+    \end{itemize}
+
+    
+    I vantaggi sono i seguenti:
+    \begin{itemize}
+        \item Isolamento dei guasti: la struttura modulare e a livelli permette di confinare eventuali errori a specifici ambiti, facilitando il debugging e la manutenzione correttiva;
+        \item Testabilità: la separazione netta consente di effettuare test di unità accurati tramite Jest, simulando i comportamenti dei database o dei servizi esterni per verificare la logica dei singoli moduli in modo isolato;
+        \item Separazione delle responsabilità: ogni strato ha un compito preciso e ben delimitato, questo rende il codice più ordinato, leggibile e manutenibile, perché ogni modifica è localizzata nello strato corretto senza impattare gli altri.
+    \end{itemize}
 	\subsubsection{Frontend}
 	\subsubsection{Backend}
 	\subsubsection{Container}

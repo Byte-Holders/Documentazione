@@ -2122,7 +2122,7 @@ Il modulo User è responsabile della gestione degli utenti; fornisce le funziona
 				\end{itemize}
 			\item \texttt{ICreateUser}
 				\begin{itemize}
-					\item \texttt{+createUser(sub, username, email): UserInfo}
+					\item \texttt{+createUser(sub: string, username: string, email: string): UserInfo}
 				\end{itemize}
 			\item \texttt{IfindUserByUsername}
 				\begin{itemize}
@@ -2130,7 +2130,7 @@ Il modulo User è responsabile della gestione degli utenti; fornisce le funziona
 				\end{itemize}
 			\item \texttt{IUserRepository}
 				\begin{itemize}
-					\item \texttt{+create(sub, username, email): UserEntity}
+					\item \texttt{+create(sub: string, username: string, email: string): UserEntity}
 					\item \texttt{+findByUsername(username: string): UserEntity[0..1]}
 					\item \texttt{+findBySub(sub: string): UserEntity[0..1]}
 				\end{itemize}
@@ -2145,7 +2145,7 @@ Il modulo User è responsabile della gestione degli utenti; fornisce le funziona
 						\end{itemize}
 					\item Operazioni
 						\begin{itemize}
-							\item +register(req): estrae le informazioni dell'utente dall'Id Token fornito da Amazon Cognito, e con queste chiama il metodo createUser del servizio per registrare l'utente nel database, ritornando una risposta un \texttt{RegisterResponseDTO} o un errore in caso di fallimento
+							\item \texttt{+register(req)} estrae le informazioni dell'utente dall'Id Token fornito da Amazon Cognito, e con queste chiama il metodo createUser del servizio per registrare l'utente nel database, ritornando una risposta un \texttt{RegisterResponseDTO} o un errore in caso di fallimento
 						\end{itemize}
 				\end{itemize}
 
@@ -2159,9 +2159,9 @@ Il modulo User è responsabile della gestione degli utenti; fornisce le funziona
 						\end{itemize}
 					\item Operazioni
 						\begin{itemize}
-							\item \texttt{+create(sub, username, email): UserInfo} riceve le informazioni per creare un nuovo utente, controlla che l'utente non esista tramite \texttt{IfindUserBySub} e chiama il metodo \texttt{create} del repository per salvare l'utente nel database,
-							\item \texttt{+findBySub(sub): UserInfo[0..1]} chiama il metodo \texttt{findBySub} del repository per recuperare le informazioni dell'utente corrispondente, se questo non ritorna null lo trasforma in UserInfo e lo restituisce, altrimenti ritorna null
-							\item \texttt{+findByUsername(username): UserInfo[0..1]} chiama il metodo \texttt{findByUsername} del repository per recuperare le informazioni dell'utente corrispondente, se questo non ritorna null lo trasforma in UserInfo e lo restituisce, altrimenti ritorna null
+							\item \texttt{+create(sub: string, username: string, email: string): UserInfo} riceve le informazioni per creare un nuovo utente, controlla che l'utente non esista tramite \texttt{IfindUserBySub} e chiama il metodo \texttt{create} del repository per salvare l'utente nel database,
+							\item \texttt{+findBySub(sub: string): UserInfo[0..1]} chiama il metodo \texttt{findBySub} del repository per recuperare le informazioni dell'utente corrispondente, se questo non ritorna null lo trasforma in UserInfo e lo restituisce, altrimenti ritorna null
+							\item \texttt{+findByUsername(username: string): UserInfo[0..1]} chiama il metodo \\ \texttt{findByUsername} del repository per recuperare le informazioni dell'utente corrispondente, se questo non ritorna null lo trasforma in UserInfo e lo restituisce, altrimenti ritorna null
 						\end{itemize}
 				\end{itemize}
 
@@ -2173,9 +2173,9 @@ Il modulo User è responsabile della gestione degli utenti; fornisce le funziona
 						\end{itemize}
 					\item Operazioni
 						\begin{itemize}
-							\item \texttt{+create(sub, username, email): UserEntity}, crea un nuovo userModel e lo salva nel database, se l'operazione ha successo trasforma il risultato in UserEntity e lo restituisce, altrimenti ritorna un errore
-							\item \texttt{+findBySub(sub): UserEntity[0..1]}, tramite il metodo findOne di Mongoose cerca un documento con il campo sub corrispondente, se questo non ritorna null lo trasforma in UserEntity e lo restituisce, altrimenti ritorna null
-							\item \texttt{+findByUsername(username): UserEntity[0..1]}, tramite il metodo findOne di Mongoose cerca un documento con il campo username corrispondente, se questo non ritorna null lo trasforma in UserEntity e lo restituisce, altrimenti ritorna null
+							\item \texttt{+create(sub: string, username: string, email: string): UserEntity}, crea un nuovo userModel e lo salva nel database, se l'operazione ha successo trasforma il risultato in UserEntity e lo restituisce, altrimenti ritorna un errore
+							\item \texttt{+findBySub(sub: string): UserEntity[0..1]}, tramite il metodo findOne di Mongoose cerca un documento con il campo sub corrispondente, se questo non ritorna null lo trasforma in UserEntity e lo restituisce, altrimenti ritorna null
+							\item \texttt{+findByUsername(username: string): UserEntity[0..1]}, tramite il metodo findOne di Mongoose cerca un documento con il campo username corrispondente, se questo non ritorna null lo trasforma in UserEntity e lo restituisce, altrimenti ritorna null
 						\end{itemize}
 				\end{itemize}
 		\end{itemize}
@@ -2315,7 +2315,8 @@ Il modulo Membership è responsabile della gestione degli inviti ai workspace; f
 			\item \texttt{IMembershipRepository}
 				\begin{itemize}
 					\item \texttt{+findPendingInviteById(membershipId: string): MembershipEntity[0..1]}
-					\item \texttt{+findPendingInvite(recipientId: string, workspaceId: string): MembershipEntity[0..1]}
+					\item \texttt{+findPendingInvite(recipientId: string, workspaceId: string):}\\
+          \texttt{MembershipEntity[0..1]}
 					\item \texttt{+findPendingInvites(recipientId: string): MembershipPopulatedEntity[]}
 					\item \texttt{+updateInvite(membershipId: string, status: string): void}
 					\item \texttt{+addInvite(createMembershipEntityParams: CreateMembershipEntityParams): void}
@@ -2327,7 +2328,7 @@ Il modulo Membership è responsabile della gestione degli inviti ai workspace; f
 				\begin{itemize}
 					\item Proprietà:
 						\begin{itemize}
-							\item -membershipService: IMembershipService, istanza del servizio per la gestione degli inviti, iniettata tramite dependency injection
+							\item \texttt{-membershipService: IMembershipService} istanza del servizio per la gestione degli inviti, iniettata tramite dependency injection
 						\end{itemize}
 					\item Operazioni
 						\begin{itemize}
@@ -2352,7 +2353,7 @@ Il modulo Membership è responsabile della gestione degli inviti ai workspace; f
 						\begin{itemize}
 							\item \texttt{+ inviteUser(inviteUseInfo: InviteUserInfo) : void}, riceve le informazioni per invitare un nuovo membro a un workspace, recupera l'utente tramite \texttt{findUserByUsername}, che l'utente non sia già membro del workspace tramite \texttt{checkIfUserInWorkspace}, e che l'utente non abbia già un invito in sospeso per quel workspace tramite \texttt{findPendingInvite}, se questi controlli hanno successo chiama il metodo \texttt{addInvite} del repository per salvare l'invito nel database, altrimenti ritorna un errore
 							\item \texttt{+ getInvites(userId: string) : MembershipPopulatedInfo[]}, riceve l'id dell'utente, chiama il metodo \texttt{findPendingInvites} del repository per recuperare la lista degli inviti ricevuti dall'utente, se l'operazione ha successo trasforma ogni invito in un \texttt{GetInviteInfo} e ritorna la lista, altrimenti ritorna un errore
-							\item \texttt{+ manageInvite(manageInviteInfo: ManageInviteInfo) : void}, riceve le informazioni per gestire un invito, controlla che l'invito esista tramite \texttt{findPendingInviteById}, chiama il metodo \texttt{updateInvite} del repository per accettare o rifiutare l'invito, se l'operazione ha successo e l'invito è stato accettato chiama il metodo \texttt{addUserToWorkspace} per aggiungere l'utente al workspace, altrimenti ritorna un errore
+							\item \texttt{+ manageInvite(manageInviteInfo: ManageInviteInfo) : void}, riceve le informazioni per gestire un invito, controlla che l'invito esista tramite \\ \texttt{findPendingInviteById}, chiama il metodo \texttt{updateInvite} del repository per accettare o rifiutare l'invito, se l'operazione ha successo e l'invito è stato accettato chiama il metodo \texttt{addUserToWorkspace} per aggiungere l'utente al workspace, altrimenti ritorna un errore
 						\end{itemize}
 				\end{itemize}
 
@@ -2362,12 +2363,12 @@ Il modulo Membership è responsabile della gestione degli inviti ai workspace; f
 				\begin{itemize}
 					\item Proprietà:
 						\begin{itemize}
-							\item -userModel: Model<Membership>, oggetto Mongoose per la gestione della collezione degli inviti, iniettato tramite dependency injection
+							\item \texttt{-membershipModel: Model<Membership>}, oggetto Mongoose per la gestione della collezione degli inviti, iniettato tramite dependency injection
 						\end{itemize}
 					\item Operazioni
 						\begin{itemize}
 							\item \texttt{+findPendingInviteById(membershipId: string): MembershipEntity[0..1]}, tramite il metodo findOne di Mongoose cerca un documento con il campo \_id corrispondente e status "pending", se questo non ritorna null lo trasforma in MembershipEntity e lo restituisce, altrimenti ritorna null
-							\item \texttt{+findPendingInvite(recipientId: string, workspaceId: string): MembershipEntity[0..1]}, tramite il metodo findOne di Mongoose cerca un documento con i campi recipientId e workspaceId corrispondenti e status "pending", se questo non ritorna null lo trasforma in MembershipEntity e lo restituisce, altrimenti ritorna null
+							\item \texttt{+findPendingInvite(recipientId: string, workspaceId: string):}\\ \texttt{MembershipEntity[0..1]}, tramite il metodo findOne di Mongoose cerca un documento con i campi recipientId e workspaceId corrispondenti e status "pending", se questo non ritorna null lo trasforma in MembershipEntity e lo restituisce, altrimenti ritorna null
 							\item \texttt{+findPendingInvites(recipientId: string): MembershipPopulatedEntity[]}, tramite il metodo find di Mongoose cerca tutti i documenti con il campo recipientId corrispondente e status "pending", popola i campi workspaceId e senderId con le informazioni del workspace e dell'utente mittente, trasforma ogni documento in MembershipPopulatedEntity e ritorna la lista
 							\item \texttt{+updateInvite(membershipId: string, status: string): void}, tramite il metodo findByIdAndUpdate di Mongoose aggiorna il campo status del documento con il campo \_id corrispondente, se l'operazione ha successo ritorna void, altrimenti ritorna un errore
 							\item \texttt{+addInvite(createMembershipEntityParams: CreateMembershipEntityParams): void}, crea un nuovo documento con i dati forniti, se l'operazione ha successo ritorna void, altrimenti ritorna un errore

@@ -1994,11 +1994,9 @@ L'architettura layered si articola sui seguenti strati:
 
 \subsubsection{Design pattern}
 \subsubsubsection{Dependency injection}
-In NestJS, la Dependency Injection (DI) è il meccanismo per coordinare le interazioni tra classi. Attraverso il decoratore @Injectable(), i servizi vengono forniti a controller o altri provider in modo automatico. Tale architettura minimizza la dipendenza tra parti del codice e ne semplifica il testing, sollevando l’utente dal compito di dover istanziare manualmente gli oggetti.
-\subsubsubsection{Singleton}
-In NestJS, il Singleton è predefinito per gestione dei provider. Una volta inizializzato all'avvio, un servizio mantiene un'unica istanza condivisa per tutto il ciclo di vita dell'applicazione. Questa strategia ottimizza le prestazioni e riduce il consumo di memoria, garantendo che non si debba ricreare continuamente gli oggetti.
+In NestJS, la Dependency Injection è il meccanismo di default per risolvere le dipendenze tra classi. Attraverso il decoratore @Injectable(), i servizi vengono forniti a controller o altri provider in modo automatico. Tale architettura minimizza la dipendenza tra classi e ne semplifica il testing.
 \subsubsubsection{Repository pattern}
-Agisce da ponte per separare le regole di business dai dettagli di persistenza. Centralizzando le operazioni verso il database. In questo modo viene nascosta la complessità delle query.
+Agisce da ponte per separare le regole di business dai dettagli di persistenza. Centralizzando le operazioni verso il database. In questo modo viene nascosta la complessità delle query ai service.
 
 
 \newpage

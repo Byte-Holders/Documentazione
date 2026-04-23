@@ -2169,7 +2169,7 @@ Il modulo User è responsabile della gestione degli utenti; fornisce le funziona
 				\begin{itemize}
 					\item Proprietà:
 						\begin{itemize}
-							\item \texttt{-userModel: Model<User>}, oggetto Mongoose per la gestione della collezione degli utenti, iniettato tramite dependency injection
+							\item \texttt{-userModel: Model<User>}, oggetto Mongoose per la gestione della collezione degli utenti, iniettato tramite dependency injection, utilizza lo schema mongoose User
 						\end{itemize}
 					\item Operazioni
 						\begin{itemize}
@@ -2310,7 +2310,7 @@ Il modulo Membership è responsabile della gestione degli inviti ai workspace; f
 				\end{itemize}
 			\item \texttt{IfindUserByUsername}
 				\begin{itemize}
-					\item \texttt{+findByUUsername(username): UserInfo[0..1]}
+					\item \texttt{+findByUsername(username): UserInfo[0..1]}
 				\end{itemize}
 			\item \texttt{IMembershipRepository}
 				\begin{itemize}
@@ -2363,7 +2363,7 @@ Il modulo Membership è responsabile della gestione degli inviti ai workspace; f
 				\begin{itemize}
 					\item Proprietà:
 						\begin{itemize}
-							\item \texttt{-membershipModel: Model<Membership>}, oggetto Mongoose per la gestione della collezione degli inviti, iniettato tramite dependency injection
+							\item \texttt{-membershipModel: Model<Membership>}, oggetto Mongoose per la gestione della collezione degli inviti, iniettato tramite dependency injection, utilizza lo schema mongoose Membership
 						\end{itemize}
 					\item Operazioni
 						\begin{itemize}

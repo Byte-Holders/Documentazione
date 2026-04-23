@@ -3580,8 +3580,6 @@ All'interno del container non sono stati utilizzati pattern particolari, salvo i
 
 Per questioni di praticità in fase di testing è stato scelto di utilizzare classi \textit{helper} non esportate, dunque private, per ciascun modulo, qualora necessario.
 
-Interfacce sono state utilizzate nel riferimento ai vari nodi da parte dell'orchestratore, avendo in mente un'idea di \textit{Strategy}. Ciò nonostante, mancando nodi alternativi a quelli attualmente implementati all'interno del grafico, tale pattern non è di fatto stato implementato, e l'interfaccia è stata resa quanto più lasca possibile seguendo le firme richieste da \texttt{LangGraph}.
-
 \subsubsubsection{Dependency Injection}
 Il pattern \textit{Dependency Injection}, gestito direttamente da NestJS, è stato ampliamente utilizzato all'interno del container. Ciò ha permesso di diminuire il livello di dipendenza tra le classi e facilitare la fase di test.
 
@@ -4304,7 +4302,7 @@ del progetto analizzato. Essa espone i seguenti attributi:
     raccoglie il dettaglio di ciascun test terminato con esito negativo. Il campo può essere vuoto
     qualora tutti i test abbiano avuto esito positivo;
  
-  \item \texttt{testsRun: string}: stringa che riporta il numero totale di test eseguiti durante
+  \item \texttt{testsRun: number}: numero totale di test eseguiti durante
     l'analisi del progetto.
 \end{itemize}
 
@@ -4489,7 +4487,7 @@ ai report parziali e finale prodotti. Essa espone i seguenti attributi:
   \item \texttt{startScanTime: Date}: valore di tipo \texttt{Date} che indica il momento di avvio
     della scansione;
 
-  \item \texttt{vulnerabilitiesReportPath: Date}: valore di tipo \texttt{Date} che indica il
+  \item \texttt{vulnerabilitiesReportPath: string}: valore di tipo \texttt{string} che indica il
     percorso del file contenente il report grezzo delle vulnerabilità prodotto dallo strumento di
     scansione esterno;
 
@@ -4636,7 +4634,7 @@ R-8-F-Ob & In fase di verifica del codice OTP, il sistema deve mostrare un messa
 R-9-F-Ob & In fase di verifica del codice OTP, il sistema deve mostrare un messaggio di errore se il codice OTP è scaduto & Soddisfatto\\
 R-10-F-Ob & Un utente non autenticato deve poter effettuare il login tramite username e password & Soddisfatto\\
 R-11-F-Ob & Il sistema deve mostrare un messaggio di errore in caso di credenziali errate & Soddisfatto\\
-R-12-F-Ob & L’utente deve poter recuperare la password inviando un codice OTP all'indirizzo di posta elettronica con cui l'utente si è registrato [bisogna vedere come gestisce cognito la cosa] & Soddisfatto\\
+R-12-F-Ob & L’utente deve poter recuperare la password inviando un codice OTP all'indirizzo di posta elettronica con cui l'utente si è registrato & Soddisfatto\\
 R-13-F-Ob & L'utente deve visualizzare un messaggio di errore se il codice OTP è errato o scaduto durante il procedimento di recupero password & Soddisfatto\\
 R-14-F-Ob & Un utente autenticato che ha il ruolo di Project Manager all'interno di un workspace deve poter invitare a quel workspace un utente registrato tramite username & Soddisfatto\\
 R-15-F-Ob & Un utente autenticato che ha il ruolo di Project Manager all'interno di un workspace deve poter invitare a quel workspace un utente registrato tramite username, e assegnargli il ruolo di Project Manager & Soddisfatto\\

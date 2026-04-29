@@ -450,11 +450,11 @@ I moduli di backend testati sono: auth, User, Membership, i sottomoduli di Works
 \renewcommand{\arraystretch}{1.5}
 \setlength{\LTleft}{0pt plus 1fill}
 \setlength{\LTright}{0pt plus 1fill}
-\newcommand{\Soddisfatto}{\textcolor{green!50!black}{\textbf{Soddisfatto}}}
+\newcommand{\Soddisfatto}{Soddisfatto}
 \newcommand{\Mancante}{\textcolor{red}{\textbf{Mancante}}}
 \newcommand{\sectionrow}[1]{
 \rowcolor{gray}
-\multicolumn{5}{l}{\textcolor{white}{#1}} \\
+\multicolumn{4}{l}{\textcolor{white}{#1}} \\
 \rowcolors{2}{LightGray}{white}
 \global\rownum=0
 }
@@ -465,7 +465,6 @@ I moduli di backend testati sono: auth, User, Membership, i sottomoduli di Works
 >{\centering\arraybackslash}m{2cm}
 >{\raggedright\arraybackslash}p{6.5cm}
 >{\raggedright\arraybackslash}p{4cm}
->{\centering\arraybackslash}m{2cm}
 >{\centering\arraybackslash}m{1.8cm}
 }
 
@@ -473,7 +472,6 @@ I moduli di backend testati sono: auth, User, Membership, i sottomoduli di Works
 \textcolor{white}{\textbf{Codice}} &
 \textcolor{white}{\textbf{Descrizione}} &
 \textcolor{white}{\textbf{Valore atteso}} &
-\textcolor{white}{\textbf{Req. rif.}} &
 \textcolor{white}{\textbf{Stato}} \\
 \endhead
 
@@ -485,7 +483,6 @@ $TU_{B}-1$ &
 Validate restituisce \texttt{\{sub, username, email\}} dato un ID token
 Cognito valido (\texttt{token\_use = "id"}) &
 Oggetto con i tre campi estratti correttamente &
-R-1-F-Ob, R-7-F-Ob &
 \Soddisfatto \\
 
 
@@ -493,14 +490,12 @@ $TU_{B}-2$ &
 Validate lancia \texttt{BadRequestException} se \texttt{token\_use}
 è \texttt{"access"} invece di \texttt{"id"} &
 Eccezione \texttt{BadRequestException} &
-R-1-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-3$ &
 Validate lancia \texttt{BadRequestException} se \texttt{token\_use}
 è assente nel payload &
 Eccezione \texttt{BadRequestException} &
-R-1-F-Ob &
 \Soddisfatto \\
 
 
@@ -508,7 +503,6 @@ $TU_{B}-4$ &
 Validate lancia \texttt{BadRequestException} per qualsiasi valore
 di \texttt{token\_use} diverso da \texttt{"id"} &
 Eccezione \texttt{BadRequestException} &
-R-1-F-Ob &
 \Soddisfatto \\
 
 % ===== SEZIONE =====
@@ -518,33 +512,28 @@ $TU_{B}-5$ &
 Validate restituisce \texttt{RequestUser} se lo user esiste nel DB
 (sub presente) &
 Oggetto \texttt{\{sub, username, userId\}} &
-R-10-F-Ob &
 \Soddisfatto \\
 
 
 $TU_{B}-6$ &
 Validate chiama \texttt{findBySub} con il \texttt{sub} del payload &
 \texttt{findBySub} invocata con argomento corretto &
-R-10-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-7$ &
 Validate lancia un errore se lo user non esiste nel DB &
 Eccezione (qualsiasi tipo) &
-R-10-F-Ob &
 \Soddisfatto \\
 
 
 $TU_{B}-8$ &
 Validate lancia \texttt{UnauthorizedException}  quando il sub non esiste &
 \texttt{UnauthorizedException} (401) &
-R-10-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-9$ &
 Il messaggio di errore contiene il \texttt{sub} non trovato &
 La stringa del \texttt{sub} è inclusa nel messaggio &
-R-10-F-Ob &
 \Soddisfatto \\
 
 
@@ -552,7 +541,6 @@ $TU_{B}-10$ &
 Validate propaga le eccezioni sollevate dal servizio utente
 (es.\ DB irraggiungibile) &
 Eccezione originale propagata &
-R-10-F-Ob &
 \Soddisfatto \\
 
 % ---- JwtAuthGuard ----
@@ -563,14 +551,12 @@ R-10-F-Ob &
 $TU_{B}-11$ &
 \texttt{JwtAuthGuard} estende \texttt{AuthGuard("jwt-auth")} &
 \texttt{instanceof AuthGuard("jwt-auth")} restituisce \texttt{true} &
-R-10-F-Ob &
 \Soddisfatto \\
 
 
 $TU_{B}-12$ &
 \texttt{JwtAuthGuard} è definita (classe esportata) &
 La classe non è \texttt{undefined} &
-R-10-F-Ob &
 \Soddisfatto \\
 
 % ---- JwtRegistrationGuard ----
@@ -580,14 +566,12 @@ R-10-F-Ob &
 $TU_{B}-13$ &
 \texttt{JwtRegistrationGuard} estende \texttt{AuthGuard("jwtRegistration")} &
 \texttt{instanceof AuthGuard("jwtRegistration")} restituisce \texttt{true} &
-R-1-F-Ob &
 \Soddisfatto \\
 
 
 $TU_{B}-14$ &
 \texttt{JwtRegistrationGuard} è definita (classe esportata) &
 La classe non è \texttt{undefined} &
-R-1-F-Ob &
 \Soddisfatto \\
 
 % ---- User decorator ----
@@ -598,7 +582,6 @@ $TU_{B}-15$ &
 Il decorator estrae \texttt{req.user} dal contesto HTTP e lo restituisce
 intatto &
 L'oggetto \texttt{user} corrisponde a quello iniettato nella request &
-R-10-F-Ob &
 \Soddisfatto \\
 
 % ---- UserController ----
@@ -609,7 +592,6 @@ $TU_{B}-16$ &
 \texttt{register} chiama \texttt{service.create} con \texttt{sub},
 \texttt{username} e \texttt{email} estratti da \texttt{req.user} &
 \texttt{service.create} invocata con i tre argomenti corretti &
-R-1-F-Ob, R-2-F-Ob, R-3-F-Ob, R-4-F-Ob &
 \Soddisfatto \\
 
 
@@ -617,14 +599,12 @@ $TU_{B}-17$ &
 \texttt{register} restituisce il \texttt{CreateUserResponseDto} corretto
 con \texttt{\_id} e \texttt{sub} &
 Risposta identica all'entità restituita dal service &
-R-1-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-18$ &
 \texttt{register} propaga \texttt{ConflictException} se l'utente è
 già registrato (sub duplicato) &
 \texttt{ConflictException} propagata al chiamante &
-R-5-F-Ob, R-6-F-Ob &
 \Soddisfatto \\
 
 % ---- UserService ----
@@ -635,39 +615,33 @@ R-5-F-Ob, R-6-F-Ob &
 $TU_{B}-19$ &
 \texttt{findBySub}: restituisce l'entità se il sub esiste nel repository &
 Entità corretta; \texttt{repo.findBySub} chiamata con argomento giusto &
-R-10-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-20$ &
 \texttt{findBySub}: restituisce \texttt{null} se il sub non esiste &
 \texttt{null} &
-R-10-F-Ob &
 \Soddisfatto \\
 
 
 $TU_{B}-21$ &
 \texttt{findBySub}: propaga le eccezioni del repository (es.\ DB error) &
 Eccezione originale propagata &
-R-10-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-22$ &
 \texttt{findByUsername}: restituisce l'entità se lo username esiste &
 Entità corretta; \texttt{repo.findByUsername} chiamata correttamente &
-R-10-F-Ob &
 \Soddisfatto \\
 
 
 $TU_{B}-23$ &
 \texttt{findByUsername}: restituisce \texttt{null} se lo username non esiste &
 \texttt{null} &
-R-10-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-24$ &
 \texttt{findByUsername}: propaga le eccezioni del repository &
 Eccezione originale propagata &
-R-10-F-Ob &
 \Soddisfatto \\
 
 
@@ -675,14 +649,12 @@ $TU_{B}-25$ &
 \texttt{create}: crea l'utente se il sub non esiste ancora; chiama
 \texttt{repo.create} con \texttt{sub}, \texttt{username}, \texttt{email} &
 Entità creata restituita; \texttt{repo.create} invocata &
-R-1-F-Ob, R-2-F-Ob, R-3-F-Ob, R-4-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-26$ &
 \texttt{create}: lancia \texttt{ConflictException} se il sub è già
 registrato; non chiama \texttt{repo.create} &
 \texttt{ConflictException}; \texttt{repo.create} non chiamato &
-R-5-F-Ob, R-6-F-Ob &
 \Soddisfatto \\
 
 
@@ -690,7 +662,6 @@ $TU_{B}-27$ &
 \texttt{create}: non chiama \texttt{repo.create} se \texttt{findBySub}
 fallisce e propaga l'eccezione &
 Eccezione originale propagata; \texttt{repo.create} non invocato &
-R-1-F-Ob &
 \Soddisfatto \\
 
 % ---- UserRepository ----
@@ -701,14 +672,12 @@ $TU_{B}-28$ &
 \texttt{findBySub}: restituisce l'entità user se il documento esiste;
 chiama \texttt{findOne(\{sub\})} con chain \texttt{lean(\{versionKey: false\})} &
 Entità corretta; catena Mongoose verificata &
-R-10-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-29$ &
 \texttt{findBySub}: restituisce \texttt{null} se nessun documento
 corrisponde al \texttt{sub} fornito &
 \texttt{null} &
-R-10-F-Ob &
 \Soddisfatto \\
 
 
@@ -716,14 +685,12 @@ $TU_{B}-30$ &
 \texttt{findByUsername}: restituisce l'entità user se esiste;
 chiama \texttt{findOne(\{username\})} &
 Entità corretta; argomento di \texttt{findOne} verificato &
-R-10-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-31$ &
 \texttt{findByUsername}: restituisce \texttt{null} se nessun documento
 corrisponde &
 \texttt{null} &
-R-10-F-Ob &
 \Soddisfatto \\
 
 
@@ -732,14 +699,12 @@ $TU_{B}-32$ &
 e restituisce il plain object &
 Plain object identico all'entità; \texttt{save} e \texttt{toObject}
 invocati &
-R-1-F-Ob, R-2-F-Ob, R-3-F-Ob, R-4-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-33$ &
 \texttt{create}: propaga errore MongoDB code 11000 (violazione unique)
 senza trasformarlo &
 Errore con \texttt{code: 11000} propagato &
-R-5-F-Ob, R-6-F-Ob &
 \Soddisfatto \\
 
 % ---- MembershipController ----
@@ -750,7 +715,6 @@ $TU_{B}-34$ &
 chiama il service con \texttt{InviteUserInfo} &
 \texttt{service.inviteUser} chiamato con workspaceId, senderId,
 recipientUsername, recipientRole corretti &
-R-14-F-Ob, R-15-F-Ob, R-16-F-Ob, R-17-F-Ob &
 \Soddisfatto \\
 
 
@@ -758,14 +722,12 @@ $TU_{B}-35$ &
 \texttt{getInvites}: restituisce la lista degli inviti pendenti per
 l'utente corrente &
 Lista corretta; \texttt{service.getInvites} chiamato con \texttt{userId} &
-R-20-F-Ob, R-21-F-Ob, R-22-F-Ob, R-23-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-36$ &
 \texttt{manageInvite}: mappa correttamente l'id dell'invito e l'azione
 dal DTO e chiama il service &
 \texttt{service.manageInvite} chiamato con \texttt{\{id, action\}} &
-R-24-F-Ob, R-25-F-Ob &
 \Soddisfatto \\
 
 
@@ -777,14 +739,12 @@ $TU_{B}-37$ &
 \texttt{inviteUser}: lancia \texttt{NotFoundException} se il
 destinatario non esiste nel sistema &
 \texttt{NotFoundException} &
-R-14-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-38$ &
 \texttt{inviteUser}: lancia \texttt{BadRequestException} se esiste
 già un invito pendente verso lo stesso utente nello stesso workspace &
 \texttt{BadRequestException} &
-R-18-F-Ob, R-19-F-Ob &
 \Soddisfatto \\
 
 
@@ -793,14 +753,12 @@ $TU_{B}-39$ &
 non è già membro e non ha inviti pendenti &
 \texttt{repo.addInvite} chiamato con workspaceId, senderId, recipientId,
 recipientRole e \texttt{status: Pending} &
-R-14-F-Ob, R-15-F-Ob, R-16-F-Ob, R-17-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-40$ &
 \texttt{getInvites}: restituisce la lista degli inviti pendenti
 tramite il repository &
 Lista corretta; \texttt{repo.findPendingInvites} chiamato con userId &
-R-20-F-Ob, R-21-F-Ob, R-22-F-Ob, R-23-F-Ob &
 \Soddisfatto \\
 
 
@@ -808,14 +766,12 @@ $TU_{B}-41$ &
 \texttt{manageInvite}: lancia \texttt{BadRequestException} se l'invito
 non esiste &
 \texttt{BadRequestException} &
-R-24-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-42$ &
 \texttt{manageInvite}: lancia \texttt{Error} se non riesce a recuperare
 l'username del destinatario dalla lista degli inviti pendenti &
 Eccezione con messaggio descrittivo &
-R-24-F-Ob &
 \Soddisfatto \\
 
 
@@ -823,7 +779,6 @@ $TU_{B}-43$ &
 \texttt{manageInvite} (Accept): lancia \texttt{NotFoundException} se
 l'utente da aggiungere non viene trovato tramite username &
 \texttt{NotFoundException} &
-R-24-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-44$ &
@@ -831,7 +786,6 @@ $TU_{B}-44$ &
 \texttt{PreconditionFailedException} se l'utente è già nel workspace &
 \texttt{PreconditionFailedException}; \texttt{repo.updateInvite} chiamato
 con \texttt{Rejected} &
-R-18-F-Ob, R-24-F-Ob &
 \Soddisfatto \\
 
 
@@ -840,7 +794,6 @@ $TU_{B}-45$ &
 aggiorna l'invito ad \texttt{Accepted} &
 \texttt{addUserToWorkspace} e \texttt{repo.updateInvite(Accepted)}
 chiamati con parametri corretti &
-R-24-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-46$ &
@@ -848,7 +801,6 @@ $TU_{B}-46$ &
 senza chiamare \texttt{addUserToWorkspace} &
 \texttt{repo.updateInvite(Rejected)} chiamato; \texttt{addUserToWorkspace}
 non invocato &
-R-25-F-Ob &
 \Soddisfatto \\
 
 
@@ -857,7 +809,6 @@ $TU_{B}-47$ &
 venga lanciata \texttt{BadRequestException} se l'utente destinatario
 appartiene già al workspace&
 \texttt{BadRequestException} per utente già membro &
-R-18-F-Ob, R-19-F-Ob &
 \Soddisfatto \\
 
 % ---- MembershipRepository ----
@@ -868,7 +819,6 @@ $TU_{B}-48$ &
 \texttt{addInvite}: crea e salva un nuovo documento senza lanciare
 eccezioni &
 Nessuna eccezione; documento creato &
-R-14-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-49$ &
@@ -876,7 +826,6 @@ $TU_{B}-49$ &
 \texttt{matchedCount} $> 0$ &
 Nessuna eccezione; \texttt{updateOne} chiamato con filtro e
 \texttt{\$set} corretti &
-R-24-F-Ob, R-25-F-Ob &
 \Soddisfatto \\
 
 
@@ -884,7 +833,6 @@ $TU_{B}-50$ &
 \texttt{updateInvite}: lancia \texttt{NotFoundException} se
 \texttt{matchedCount === 0} &
 \texttt{NotFoundException} &
-R-24-F-Ob, R-25-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-51$ &
@@ -892,7 +840,6 @@ $TU_{B}-51$ &
 correttamente (populate su workspaceId, senderId, recipientId) &
 Lista con \texttt{workspaceName}, \texttt{senderUsername},
 \texttt{recipientUsername}, \texttt{recipientRole}, \texttt{status} &
-R-20-F-Ob, R-21-F-Ob, R-22-F-Ob, R-23-F-Ob &
 \Soddisfatto \\
 
 
@@ -900,14 +847,12 @@ $TU_{B}-52$ &
 \texttt{findPendingInviteById}: restituisce \texttt{null} se l'invito
 non esiste &
 \texttt{null} &
-R-24-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-53$ &
 \texttt{findPendingInviteById}: restituisce un \texttt{MembershipEntity}
 mappato se l'invito esiste &
 Oggetto con tutti i campi dell'entità &
-R-24-F-Ob &
 \Soddisfatto \\
 
 % ---- WorkspaceManagerController ----
@@ -917,7 +862,6 @@ $TU_{B}-54$ &
 \texttt{create}: chiama \texttt{service.createWorkspace}, mappa via
 \texttt{WorkspaceMapper} e restituisce il DTO di risposta &
 \texttt{service.createWorkspace} invocato; risultato mappato correttamente &
-R-32-F-Ob, R-33-F-Ob &
 \Soddisfatto \\
 
 
@@ -925,14 +869,12 @@ $TU_{B}-55$ &
 \texttt{delete}: chiama \texttt{service.deleteWorkspace} con l'id del
 workspace e l'id dell'utente corrente &
 \texttt{service.deleteWorkspace("123", "1")} invocato &
-R-32-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-56$ &
 \texttt{list}: chiama \texttt{service.getWorkspaces} con l'userId e
 restituisce la lista mappata &
 Lista con un elemento; \texttt{service.getWorkspaces("1")} invocato &
-R-26-F-Ob, R-27-F-Ob, R-28-F-Ob &
 \Soddisfatto \\
 
 
@@ -946,46 +888,39 @@ $TU_{B}-57$ &
 restituisce errore con \texttt{code: 11000} (nome workspace duplicato
 per lo stesso owner) &
 \texttt{ConflictException} &
-R-35-F-Ob, R-36-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-58$ &
 \texttt{createWorkspace}: verifica il corretto funzionamento del metodo passando dati validi &
 Risultato definito; \texttt{repo.create} invocato una sola volta &
-R-32-F-Ob, R-33-F-Ob, R-34-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-59$ &
 \texttt{createWorkspace}: verifica che all'owner venga assegnato il ruolo di \texttt{PROJECT\_MANAGER} nei members del documento creato &
 Il membro con \texttt{userId = ownerId} ha \texttt{role = PROJECT\_MANAGER} &
-R-34-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-60$ &
 \texttt{createWorkspace}: verifica che venga restituito un workspace con i dati corretti, effettuando correttamente il mapping tra il documento del database e l’oggetto di output &
 Oggetto: id (derivato da \_id), name, ownerId, ownerUsername; con valori coerenti con quelli salvati nel database &
-R-32-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-61$ &
 \texttt{createWorkspace}: verifica la corretta correzzione dell'oggetto e l'invocazione del repository con i parametri attesi 
 &
 Chiamata al repository con:nome, ownerId e ownerUsername corretti, lista initialMembers contenente l’owner con ruolo \texttt{PROJECT\_MANAGER} &
-R-32-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-62$ &
 \texttt{deleteWorkspace}: lancia \texttt{NotFoundException} se il workspace
 non viene trovato; non chiama \texttt{repo.delete} &
 \texttt{NotFoundException}; \texttt{repo.delete} non invocato &
-R-32-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-63$ &
 \texttt{deleteWorkspace}: lancia \texttt{ForbiddenException} se chi
 richiede la cancellazione non è il proprietario del workspace &
 \texttt{ForbiddenException}; \texttt{repo.delete} non invocato &
-R-32-F-Ob &
 \Soddisfatto \\
 
 
@@ -993,7 +928,6 @@ $TU_{B}-64$ &
 \texttt{deleteWorkspace}: elimina il workspace se il richiedente è
 il proprietario; chiama \texttt{repo.delete} una sola volta &
 \texttt{repo.delete("ws-1")} invocato una sola volta &
-R-32-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-65$ &
@@ -1001,7 +935,6 @@ $TU_{B}-65$ &
 l'utente appartiene (array non vuoto, mappato) &
 Array definito con lunghezza corretta; \texttt{repo.findByMemberId}
 invocato con userId &
-R-26-F-Ob, R-27-F-Ob, R-28-F-Ob &
 \Soddisfatto \\
 
 
@@ -1015,14 +948,12 @@ $TU_{B}-66$ &
 \texttt{create}: istanzia il modello Mongoose con i dati e chiama
 \texttt{save()} senza lanciare eccezioni &
 Documento con il metodo \texttt{save} definito &
-R-32-F-Ob, R-33-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-67$ &
 \texttt{findById}: chiama \texttt{WorkspaceModel.findById} con l'id
 fornito &
 \texttt{findById} invocato con argomento corretto &
-R-26-F-Ob &
 \Soddisfatto \\
 
 
@@ -1030,14 +961,12 @@ $TU_{B}-68$ &
 \texttt{findByMemberId}: chiama \texttt{WorkspaceModel.find} con il
 filtro \texttt{\{'members.userId': userId\}} e restituisce l'array &
 \texttt{find} invocato con filtro corretto; array (anche vuoto) restituito &
-R-26-F-Ob, R-27-F-Ob, R-28-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-69$ &
 \texttt{delete}: chiama \texttt{WorkspaceModel.findByIdAndDelete}
 con l'id fornito &
 \texttt{findByIdAndDelete} invocato con argomento corretto &
-R-32-F-Ob &
 \Soddisfatto \\
 
 % ---- WorkspaceUserController ----
@@ -1047,7 +976,6 @@ $TU_{B}-70$ &
 \texttt{getUsersOfWorkspace}: chiama il service con il workspaceId e
 restituisce la lista degli utenti &
 \texttt{service.getUsersOfWorkspace} invocato; lista corretta restituita &
-R-38-F-Ob, R-39-F-Ob &
 \Soddisfatto \\
 
 
@@ -1055,7 +983,6 @@ $TU_{B}-71$ &
 \texttt{removeUserFromWorkspace}: chiama il service con workspaceId e
 userId corretti &
 \texttt{service.removeUserFromWorkspace} invocato con argomenti corretti &
-R-40-F-Ob &
 \Soddisfatto \\
 
 % ---- WorkspaceUserService ----
@@ -1065,7 +992,6 @@ $TU_{B}-72$ &
 \texttt{getUsersOfWorkspace}: restituisce la lista degli utenti del
 workspace tramite il repository &
 Lista corretta; \texttt{repo.getUsersOfWorkspace} invocato con workspaceId &
-R-38-F-Ob, R-39-F-Ob &
 \Soddisfatto \\
 
 
@@ -1073,7 +999,6 @@ $TU_{B}-73$ &
 \texttt{removeUserFromWorkspace}: rimuove l'utente se è presente nel
 workspace; chiama prima \texttt{checkIfUserIsInWorkspace} &
 \texttt{repo.removeUserFromWorkspace} invocato; verifica presenza eseguita &
-R-40-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-74$ &
@@ -1081,7 +1006,6 @@ $TU_{B}-74$ &
 se l'utente non è nel workspace; non chiama \texttt{removeUserFromWorkspace}
 del repository &
 \texttt{NotFoundException}; \texttt{repo.removeUserFromWorkspace} non invocato &
-R-40-F-Ob &
 \Soddisfatto \\
 
 
@@ -1090,14 +1014,12 @@ $TU_{B}-75$ &
 per il repository specificato &
 Ruolo corretto; \texttt{repo.getUserRoleForRepository} invocato
 con repositoryId e userId &
-R-40-F-Ob, R-41-F-De &
 \Soddisfatto \\
 
 $TU_{B}-76$ &
 \texttt{addUserToWorkspace}: aggiunge l'utente se non è già membro;
 chiama \texttt{checkIfUserIsInWorkspace} prima dell'inserimento &
 \texttt{repo.addUserToWorkspace} invocato; verifica previa eseguita &
-R-24-F-Ob &
 \Soddisfatto \\
 
 
@@ -1106,7 +1028,6 @@ $TU_{B}-77$ &
 se l'utente è già nel workspace; non chiama il repository &
 \texttt{PreconditionFailedException}; \texttt{repo.addUserToWorkspace}
 non invocato &
-R-18-F-Ob &
 \Soddisfatto \\
 
 
@@ -1115,7 +1036,6 @@ $TU_{B}-78$ &
 verifica che solo un utente con ruolo \texttt{PROJECT\_MANAGER} possa
 rimuovere altri utenti &
 \texttt{PreconditionFailedException} se il richiedente non è Project Manager &
-R-41-F-De &
 \Soddisfatto \\
 
 
@@ -1124,7 +1044,6 @@ $TU_{B}-79$ &
 verifica che l'owner del workspace non possa essere rimosso &
 \texttt{PreconditionFailedException} se
 l'utente da rimuovere è l'owner del workspace&
-R-41-F-De &
 \Soddisfatto \\
 
 % ---- WorkspaceUserRepository ----
@@ -1135,7 +1054,6 @@ $TU_{B}-80$ &
 mappati da \texttt{members} del workspace; chiama \texttt{findById} &
 Array di entità con \texttt{userId}, \texttt{username}, \texttt{role};
 \texttt{model.findById} invocato &
-R-38-F-Ob, R-39-F-Ob &
 \Soddisfatto \\
 
 
@@ -1143,14 +1061,12 @@ $TU_{B}-81$ &
 \texttt{getUsersOfWorkspace}: lancia \texttt{NotFoundException} se il
 workspace non esiste &
 \texttt{NotFoundException} &
-R-38-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-82$ &
 \texttt{removeUserFromWorkspace}: chiama \texttt{updateOne} con
 \texttt{\$pull} su \texttt{members.userId} &
 \texttt{model.updateOne} invocato con filtro e operatore corretti &
-R-40-F-Ob &
 \Soddisfatto \\
 
 
@@ -1158,7 +1074,6 @@ $TU_{B}-83$ &
 \texttt{addUserToWorkspace}: chiama \texttt{updateOne} con \texttt{\$push}
 su \texttt{members} con \texttt{userId}, \texttt{userUsername}, \texttt{role} &
 \texttt{model.updateOne} invocato con i dati dell'utente corretti &
-R-24-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-84$ &
@@ -1166,7 +1081,6 @@ $TU_{B}-84$ &
 se il workspace e il membro esistono &
 Ruolo corretto; \texttt{model.findOne} invocato con filtro su
 \texttt{repositories.repoId} e \texttt{members.userId} &
-R-40-F-Ob, R-41-F-De &
 \Soddisfatto \\
 
 
@@ -1174,14 +1088,12 @@ $TU_{B}-85$ &
 \texttt{getUserRoleForRepository}: restituisce \texttt{null} se
 il workspace non viene trovato &
 \texttt{null} &
-R-40-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-86$ &
 \texttt{getUserRoleForRepository}: restituisce \texttt{null} se
 l'utente non è tra i membri del workspace trovato &
 \texttt{null} &
-R-40-F-Ob &
 \Soddisfatto \\
 
 
@@ -1189,14 +1101,12 @@ $TU_{B}-87$ &
 \texttt{checkIfUserIsInWorkspace}: restituisce \texttt{true} se
 l'utente è membro del workspace &
 \texttt{true} &
-R-40-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-88$ &
 \texttt{checkIfUserIsInWorkspace}: restituisce \texttt{false} se
 l'utente non è membro del workspace &
 \texttt{false} &
-R-40-F-Ob &
 \Soddisfatto \\
 
 
@@ -1204,7 +1114,6 @@ $TU_{B}-89$ &
 \texttt{checkIfUserIsInWorkspace}: lancia \texttt{NotFoundException}
 se il workspace non esiste &
 \texttt{NotFoundException} &
-R-40-F-Ob &
 \Soddisfatto \\
 
 % ---- WorkspaceRepositoryController ----
@@ -1215,7 +1124,6 @@ $TU_{B}-90$ &
 query params) e restituisce la lista dei repository &
 Lista corretta; \texttt{service.getRepositories("myWorkspaceId", undefined)}
 invocato &
-R-80-F-Ob &
 \Soddisfatto \\
 
 
@@ -1223,41 +1131,35 @@ $TU_{B}-91$ &
 \texttt{getRepositories}: propaga il parametro \texttt{searchInput}
 al service &
 \texttt{service.getRepositories} chiamato con \texttt{"mySearch"} &
-R-80-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-92$ &
 \texttt{getRepositories}: restituisce array vuoto quando il service
 non trova repository &
 Array vuoto \texttt{[]} &
-R-80-F-Ob &
 \Soddisfatto \\
 
 
 $TU_{B}-93$ &
 \texttt{getRepositories}: propaga l'eccezione se il service la lancia &
 Eccezione originale propagata &
-R-80-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-94$ &
 \texttt{addRepository}: delega al service con workspaceId, repositoryUrl
 e accessToken dal DTO &
 \texttt{service.addRepository} invocato con i tre argomenti corretti &
-R-86-F-Ob, R-87-F-Ob &
 \Soddisfatto \\
 
 
 $TU_{B}-95$ &
 \texttt{addRepository}: funziona senza access token (campo opzionale) &
 \texttt{service.addRepository} invocato con \texttt{accessToken = undefined} &
-R-86-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-96$ &
 \texttt{addRepository}: propaga l'eccezione se il service la lancia &
 Eccezione originale propagata &
-R-86-F-Ob &
 \Soddisfatto \\
 
 
@@ -1266,13 +1168,11 @@ $TU_{B}-97$ &
 workspaceId nell'ordine corretto &
 \texttt{service.removeRepository("myRepositoryId", "myWorkspaceId")}
 invocato &
-R-91-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-98$ &
 \texttt{removeRepository}: propaga l'eccezione se il service la lancia &
 Eccezione originale propagata &
-R-91-F-Ob &
 \Soddisfatto \\
 
 
@@ -1280,13 +1180,11 @@ $TU_{B}-99$ &
 \texttt{updateToken}: delega al service con repositoryId, workspaceId
 e accessToken dal DTO &
 \texttt{service.updateToken} invocato con i tre argomenti corretti &
-R-88-F-Ob, R-89-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-100$ &
 \texttt{updateToken}: propaga l'eccezione se il service la lancia &
 Eccezione originale propagata &
-R-88-F-Ob &
 \Soddisfatto \\
 
 % ---- WorkspaceRepositoryService ----
@@ -1296,7 +1194,6 @@ $TU_{B}-101$ &
 \texttt{getRepositories}: restituisce array vuoto se il workspace non
 ha repository (senza chiamare il reader) &
 \texttt{[]}; \texttt{mockRepositoryReader.getRepositories} non invocato &
-R-80-F-Ob &
 \Soddisfatto \\
 
 
@@ -1304,14 +1201,12 @@ $TU_{B}-102$ &
 \texttt{getRepositories}: restituisce i repository forniti dal reader
 con gli ID recuperati dal workspace repository &
 Lista corretta; reader invocato con gli ID e senza searchInput &
-R-80-F-Ob, R-81-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-103$ &
 \texttt{getRepositories}: propaga il parametro \texttt{searchInput}
 al reader &
 \texttt{reader.getRepositories} chiamato con \texttt{"mySearch"} &
-R-80-F-Ob &
 \Soddisfatto \\
 
 
@@ -1319,7 +1214,6 @@ $TU_{B}-104$ &
 \texttt{getRepositories}: propaga l'eccezione se il workspace repository
 la lancia (es.\ workspace non trovato) &
 Eccezione originale propagata &
-R-80-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-105$ &
@@ -1327,21 +1221,18 @@ $TU_{B}-105$ &
 repository con l'ID restituito &
 \texttt{writer.addRepository} e \texttt{wsRepo.addRepository} invocati
 nell'ordine corretto &
-R-86-F-Ob, R-90-F-Ob &
 \Soddisfatto \\
 
 
 $TU_{B}-106$ &
 \texttt{addRepository}: funziona senza access token (parametro opzionale) &
 \texttt{writer.addRepository} chiamato con \texttt{undefined} come token &
-R-86-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-107$ &
 \texttt{addRepository}: non chiama il workspace repository se il writer
 lancia eccezione &
 Eccezione del writer propagata; \texttt{wsRepo.addRepository} non invocato &
-R-86-F-Ob &
 \Soddisfatto \\
 
 
@@ -1350,14 +1241,12 @@ $TU_{B}-108$ &
 parametri corretti &
 \texttt{wsRepo.removeRepository("myRepositoryId", "myWorkspaceId")}
 invocato &
-R-91-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-109$ &
 \texttt{removeRepository}: propaga l'eccezione se il workspace
 repository la lancia &
 Eccezione originale propagata &
-R-91-F-Ob &
 \Soddisfatto \\
 
 
@@ -1365,14 +1254,12 @@ $TU_{B}-110$ &
 \texttt{updateToken}: verifica che il repository appartenga al workspace
 prima di aggiornare il token; chiama il writer se la verifica ha successo &
 \texttt{writer.updateToken} invocato; promise risolta senza eccezioni &
-R-88-F-Ob, R-89-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-111$ &
 \texttt{updateToken}: lancia \texttt{NotFoundException} se il repository
 non appartiene al workspace specificato; non chiama il writer &
 \texttt{NotFoundException}; \texttt{writer.updateToken} non invocato &
-R-88-F-Ob &
 \Soddisfatto \\
 
 % ---- WorkspaceRepositoryRepository ----
@@ -1383,14 +1270,12 @@ $TU_{B}-112$ &
 \texttt{getRepositories}: restituisce un array di ID stringa dei
 repository presenti nel workspace &
 Array di stringhe; \texttt{model.findById} invocato con workspaceId &
-R-80-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-113$ &
 \texttt{getRepositories}: lancia \texttt{NotFoundException} se il
 workspace non viene trovato &
 \texttt{NotFoundException} &
-R-80-F-Ob &
 \Soddisfatto \\
 
 
@@ -1398,14 +1283,12 @@ $TU_{B}-114$ &
 \texttt{addRepository}: chiama \texttt{updateOne} con \texttt{\$push}
 su \texttt{repositories} con il \texttt{repoId} corretto &
 \texttt{model.updateOne} invocato con filtro e operatore corretti &
-R-86-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-115$ &
 \texttt{addRepository}: lancia \texttt{NotFoundException} se
 \texttt{matchedCount === 0} (workspace non trovato) &
 \texttt{NotFoundException("Workspace non trovato")} &
-R-86-F-Ob &
 \Soddisfatto \\
 
 
@@ -1413,14 +1296,12 @@ $TU_{B}-116$ &
 \texttt{removeRepository}: chiama \texttt{updateOne} con \texttt{\$pull}
 su \texttt{repositories} con il \texttt{repoId} corretto &
 \texttt{model.updateOne} invocato con filtro e operatore corretti &
-R-91-F-Ob &
 \Soddisfatto \\
 
 $TU_{B}-117$ &
 \texttt{removeRepository}: lancia \texttt{NotFoundException} se
 \texttt{matchedCount === 0} (workspace non trovato) &
 \texttt{NotFoundException("Workspace non trovato")} &
-R-91-F-Ob &
 \Soddisfatto \\
 
 
@@ -1428,7 +1309,6 @@ $TU_{B}-118$ &
 \texttt{removeRepository}: lancia \texttt{NotFoundException} se
 \texttt{modifiedCount === 0} (repository non trovata nel workspace) &
 \texttt{NotFoundException("Repository non trovata nel workspace")} &
-R-91-F-Ob &
 \Soddisfatto \\
 
 \end{longtable}
@@ -1440,9 +1320,9 @@ e React Testing Library.
 \renewcommand{\arraystretch}{1.5}
 \setlength{\LTleft}{0pt plus 1fill}
 \setlength{\LTright}{0pt plus 1fill}
-\newcommand{\sectionrow}[1]{
+\renewcommand{\sectionrow}[1]{
 \rowcolor{gray}
-\multicolumn{5}{l}{\textcolor{white}{#1}} \\
+\multicolumn{4}{l}{\textcolor{white}{#1}} \\
 \rowcolors{2}{LightGray}{white}
 \global\rownum=0
 }
@@ -1451,7 +1331,6 @@ e React Testing Library.
 >{\centering\arraybackslash}m{2cm}
 >{\raggedright\arraybackslash}p{6.5cm}
 >{\raggedright\arraybackslash}p{4cm}
->{\centering\arraybackslash}m{2cm}
 >{\centering\arraybackslash}m{1.8cm}
 }
 
@@ -1459,7 +1338,6 @@ e React Testing Library.
 \textcolor{white}{\textbf{Codice}} &
 \textcolor{white}{\textbf{Descrizione}} &
 \textcolor{white}{\textbf{Valore atteso}} &
-\textcolor{white}{\textbf{Req. rif.}} &
 \textcolor{white}{\textbf{Stato}} \\
 \endhead
 
@@ -1472,7 +1350,6 @@ $TU_{F}-1$ &
 \texttt{useAuth}: parte con \texttt{isLoading = true} e
 \texttt{isAuthenticated = false} prima che \texttt{checkAuth} si risolva &
 Stato iniziale corretto durante la promise pendente &
-R-10-F-Ob &
 \Soddisfatto \\
 
 
@@ -1481,14 +1358,12 @@ $TU_{F}-2$ &
 se la sessione \`e valida (\texttt{fetchCurrentUser} e \texttt{fetchSession}
 restituiscono dati validi) &
 \texttt{isAuthenticated = true}; \texttt{user} con dati corretti &
-R-10-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-3$ &
 \texttt{useAuth}: imposta \texttt{isAuthenticated = false} se i
 \texttt{tokens} della sessione sono \texttt{undefined} &
 \texttt{isAuthenticated = false} &
-R-10-F-Ob &
 \Soddisfatto \\
 
 
@@ -1496,14 +1371,12 @@ $TU_{F}-4$ &
 \texttt{useAuth}: imposta \texttt{isAuthenticated = false} se
 \texttt{fetchCurrentUser} lancia un errore (utente non loggato) &
 \texttt{isAuthenticated = false}; \texttt{user = null} &
-R-10-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-5$ &
 \texttt{useAuth}: imposta \texttt{isLoading = false} anche in caso di
 errore di rete, senza rimanere bloccato &
 \texttt{isLoading = false} dopo il catch &
-R-10-F-Ob &
 \Soddisfatto \\
 
 
@@ -1511,14 +1384,12 @@ $TU_{F}-6$ &
 \texttt{useAuth.login}: chiama \texttt{signIn} con il \texttt{redirectTo}
 fornito &
 \texttt{signIn("/workspaces")} invocato &
-R-10-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-7$ &
 \texttt{useAuth.login}: chiama \texttt{signIn} con \texttt{undefined}
 se \texttt{redirectTo} non \`e fornito &
 \texttt{signIn(undefined)} invocato &
-R-10-F-Ob &
 \Soddisfatto \\
 
 
@@ -1526,7 +1397,6 @@ $TU_{F}-8$ &
 \texttt{useAuth.logout}: chiama \texttt{logOut} e delega il redirect
 internamente &
 \texttt{logOut} invocato; nessun crash &
-R-10-F-Ob &
 \Soddisfatto \\
 
 % ==================================================
@@ -1536,14 +1406,12 @@ $TU_{F}-9$ &
 \texttt{useRegister.register}: chiama \texttt{authRepository.register}
 una sola volta &
 \texttt{authRepository.register} invocato esattamente una volta &
-R-1-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-10$ &
 \texttt{useRegister.register}: propaga le eccezioni di
 \texttt{authRepository.register} &
 Eccezione originale propagata al chiamante &
-R-1-F-Ob &
 \Soddisfatto \\
 
 % ==================================================
@@ -1553,7 +1421,6 @@ $TU_{F}-11$ &
 \texttt{ProtectedRoute}: mostra il loader (\texttt{"Caricamento..."}) mentre
 \texttt{isLoading = true}; non renderizza i children &
 Testo loader presente; children assenti &
-R-10-F-Ob &
 \Soddisfatto \\
 
 
@@ -1561,27 +1428,23 @@ $TU_{F}-12$ &
 \texttt{ProtectedRoute}: non renderizza nulla se non autenticato e non
 in loading (container vuoto) &
 \texttt{container} vuoto; children assenti &
-R-10-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-13$ &
 \texttt{ProtectedRoute}: chiama \texttt{login} con il path corrente se
 non autenticato e non in loading &
 \texttt{login("/workspaces")} invocato via \texttt{useEffect} &
-R-10-F-Ob &
 \Soddisfatto \\
 
 
 $TU_{F}-14$ &
 \texttt{ProtectedRoute}: non chiama \texttt{login} se \texttt{isLoading = true} &
 \texttt{login} non invocato &
-R-10-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-15$ &
 \texttt{ProtectedRoute}: renderizza i children se l'utente \`e autenticato &
 Children visibili; loader assente &
-R-10-F-Ob &
 \Soddisfatto \\
 
 
@@ -1589,7 +1452,6 @@ $TU_{F}-16$ &
 \texttt{ProtectedRoute}: non chiama \texttt{login} se l'utente \`e gi\`a
 autenticato &
 \texttt{login} non invocato &
-R-10-F-Ob &
 \Soddisfatto \\
 
 % ==================================================
@@ -1599,7 +1461,6 @@ $TU_{F}-17$ &
 \texttt{CallbackPage}: mostra \texttt{"Accesso in corso..."} mentre il
 callback OAuth \`e in attesa &
 Testo presente durante la promise pendente &
-R-10-F-Ob &
 \Soddisfatto \\
 
 
@@ -1607,14 +1468,12 @@ $TU_{F}-18$ &
 \texttt{CallbackPage}: naviga a \texttt{/workspaces} se non c'\`e un
 \texttt{auth\_redirect} in \texttt{sessionStorage} &
 \texttt{navigate(\{to: "/workspaces", replace: true\})} invocato &
-R-10-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-19$ &
 \texttt{CallbackPage}: naviga al path salvato in \texttt{sessionStorage}
 (\texttt{auth\_redirect}) dopo il callback &
 \texttt{navigate(\{to: "/workspace/123", replace: true\})} invocato &
-R-10-F-Ob &
 \Soddisfatto \\
 
 
@@ -1622,14 +1481,12 @@ $TU_{F}-20$ &
 \texttt{CallbackPage}: rimuove \texttt{auth\_redirect} da
 \texttt{sessionStorage} dopo averlo letto (no leak) &
 \texttt{sessionStorage.getItem("auth\_redirect") === null} &
-R-10-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-21$ &
 \texttt{CallbackPage}: naviga a \texttt{/} se \texttt{fetchCurrentUser}
 fallisce &
 \texttt{navigate(\{to: "/", replace: true\})} invocato &
-R-10-F-Ob &
 \Soddisfatto \\
 
 
@@ -1637,14 +1494,12 @@ $TU_{F}-22$ &
 \texttt{CallbackPage}: naviga a \texttt{/} con \texttt{search:
 \{error: "registration\_failed"\}} se \texttt{register} lancia un errore &
 \texttt{navigate} con \texttt{search.error = "registration\_failed"} &
-R-1-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-23$ &
 \texttt{CallbackPage}: chiama \texttt{fetchCurrentUser} prima di
 \texttt{register} (ordine garantito) &
 Entrambi invocati; nessun crash &
-R-1-F-Ob, R-10-F-Ob &
 \Soddisfatto \\
 
 
@@ -1652,7 +1507,6 @@ $TU_{F}-24$ &
 \texttt{CallbackPage}: chiama \texttt{removeCurrentUser} per cancellare
 l'utente da Cognito se \texttt{register} nel DB fallisce (rollback) &
 \texttt{removeCurrentUser} invocato esattamente una volta &
-R-1-F-Ob &
 \Soddisfatto \\
 
 
@@ -1663,7 +1517,6 @@ $TU_{F}-25$ &
 \texttt{workspaceListRepository.getWorkspaces}: chiama
 \texttt{GET /api/workspaces} e restituisce la lista dei workspace &
 \texttt{apiGet} invocato con il path corretto; lista corretta restituita &
-R-26-F-Ob, R-27-F-Ob, R-28-F-Ob &
 \Soddisfatto \\
 
 
@@ -1671,14 +1524,12 @@ $TU_{F}-26$ &
 \texttt{workspaceListRepository.getWorkspaces}: restituisce array vuoto
 se il server risponde con \texttt{[]} &
 Array vuoto senza eccezioni &
-R-26-F-Ob, R-31-F-De &
 \Soddisfatto \\
 
 $TU_{F}-27$ &
 \texttt{workspaceListRepository.getWorkspaces}: propaga l'errore se
 \texttt{apiGet} fallisce (es.\ 401) &
 Eccezione originale propagata &
-R-26-F-Ob &
 \Soddisfatto \\
 
 
@@ -1690,7 +1541,6 @@ $TU_{F}-28$ &
 \texttt{useWorkspaces}: parte con \texttt{isLoading = true}, array
 \texttt{workspaces} vuoto e \texttt{error = null} &
 Stato iniziale corretto durante la promise pendente &
-R-26-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-29$ &
@@ -1698,7 +1548,6 @@ $TU_{F}-29$ &
 \texttt{workspaces} dopo la risoluzione &
 \texttt{workspaces} uguale ai dati restituiti dal repository;
 \texttt{isLoading = false} &
-R-26-F-Ob, R-27-F-Ob, R-28-F-Ob &
 \Soddisfatto \\
 
 
@@ -1706,14 +1555,12 @@ $TU_{F}-30$ &
 \texttt{useWorkspaces}: imposta \texttt{error} con il messaggio dell'eccezione
 e mantiene \texttt{workspaces} vuoto in caso di errore API &
 \texttt{error = "Errore di rete"}; \texttt{workspaces = []} &
-R-26-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-31$ &
 \texttt{useWorkspaces.refresh}: ricarica i dati dal repository e aggiorna
 \texttt{workspaces} con i nuovi risultati &
 \texttt{workspaces} aggiornato con la seconda risposta del repository &
-R-26-F-Ob &
 \Soddisfatto \\
 
 
@@ -1721,7 +1568,6 @@ $TU_{F}-32$ &
 \texttt{useWorkspaces.refresh}: imposta \texttt{isLoading = true}
 durante il ricaricamento &
 \texttt{isLoading = true} subito dopo la chiamata a \texttt{refresh} &
-R-26-F-Ob &
 \Soddisfatto \\
 
 % ==================================================
@@ -1731,7 +1577,6 @@ $TU_{F}-33$ &
 \texttt{useGetWorkspace}: restituisce il workspace corrispondente all'id
 fornito tramite selezione dalla lista completa &
 \texttt{data} uguale all'oggetto con \texttt{id = "ws-1"} &
-R-26-F-Ob, R-27-F-Ob, R-28-F-Ob &
 \Soddisfatto \\
 
 
@@ -1739,14 +1584,12 @@ $TU_{F}-34$ &
 \texttt{useGetWorkspace}: restituisce \texttt{undefined} se l'id non
 corrisponde ad alcun workspace nella lista &
 \texttt{data = undefined} &
-R-26-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-35$ &
 \texttt{useGetWorkspace}: espone \texttt{isLoading = true} mentre la
 lista dei workspace \`e in caricamento &
 \texttt{isLoading = true} durante la promise pendente &
-R-26-F-Ob &
 \Soddisfatto \\
 
 % ==================================================
@@ -1755,7 +1598,6 @@ R-26-F-Ob &
 $TU_{F}-36$ &
 \texttt{WorkspaceListItem}: mostra il nome del workspace &
 Testo del nome visibile nel DOM &
-R-26-F-Ob, R-27-F-Ob &
 \Soddisfatto \\
 
 
@@ -1763,14 +1605,12 @@ $TU_{F}-37$ &
 \texttt{WorkspaceListItem}: mostra l'owner del workspace
 (\texttt{"Owner: john"}) &
 Testo owner visibile nel DOM &
-R-27-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-38$ &
 \texttt{WorkspaceListItem}: mostra il ruolo dell'utente nel workspace
 (\texttt{"Role: admin"}) &
 Testo ruolo visibile nel DOM &
-R-28-F-Ob &
 \Soddisfatto \\
 
 
@@ -1778,14 +1618,12 @@ $TU_{F}-39$ &
 \texttt{WorkspaceListItem}: mostra la prima lettera del nome come icona
 avatar &
 Lettera maiuscola corretta visibile &
-R-26-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-40$ &
 \texttt{WorkspaceListItem}: converte in maiuscolo la prima lettera del
 nome anche se il nome \`e minuscolo &
 Prima lettera in maiuscolo (\texttt{"A"} per \texttt{"alpha project"}) &
-R-26-F-Ob &
 \Soddisfatto \\
 
 % ==================================================
@@ -1796,14 +1634,12 @@ $TU_{F}-41$ &
 \texttt{WorkspaceList}: mostra il messaggio di caricamento
 (\texttt{"loading workspaces"}) mentre i dati sono in attesa &
 Testo loader presente; workspace assenti &
-R-26-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-42$ &
 \texttt{WorkspaceList}: mostra il messaggio di errore se la chiamata API
 fallisce &
 Testo \texttt{"Errore di rete"} visibile &
-R-26-F-Ob &
 \Soddisfatto \\
 
 
@@ -1811,14 +1647,12 @@ $TU_{F}-43$ &
 \texttt{WorkspaceList}: mostra \texttt{"no workspaces yet"} se la lista
 \`e vuota &
 Messaggio vuoto visibile &
-R-31-F-De &
 \Soddisfatto \\
 
 $TU_{F}-44$ &
 \texttt{WorkspaceList}: renderizza un \texttt{WorkspaceListItem} per ogni
 workspace restituito dall'API &
 Nomi di tutti i workspace visibili &
-R-26-F-Ob, R-27-F-Ob, R-28-F-Ob &
 \Soddisfatto \\
 
 
@@ -1826,7 +1660,6 @@ $TU_{F}-45$ &
 \texttt{WorkspaceList}: non mostra il loader dopo il completamento del
 caricamento &
 Testo loader assente dopo la risoluzione &
-R-26-F-Ob &
 \Soddisfatto \\
 
 
@@ -1837,7 +1670,6 @@ $TU_{F}-46$ &
 \texttt{WorkspaceHeader}: mostra lo skeleton (\texttt{.animate-pulse})
 durante il caricamento &
 Elemento con classe \texttt{animate-pulse} presente nel DOM &
-R-26-F-Ob &
 \Soddisfatto \\
 
 
@@ -1845,14 +1677,12 @@ $TU_{F}-47$ &
 \texttt{WorkspaceHeader}: restituisce \texttt{null} se il workspace non
 \`e trovato e non \`e in loading &
 \texttt{container.firstChild = null} &
-R-26-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-48$ &
 \texttt{WorkspaceHeader}: mostra il nome del workspace quando i dati
 sono disponibili &
 Testo del nome visibile &
-R-26-F-Ob, R-27-F-Ob &
 \Soddisfatto \\
 
 
@@ -1860,14 +1690,12 @@ $TU_{F}-49$ &
 \texttt{WorkspaceHeader}: mostra il badge del ruolo con label
 correttamente formattata (\texttt{"developer"} $\to$ \texttt{"Developer"}) &
 Testo \texttt{"Developer"} visibile &
-R-28-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-50$ &
 \texttt{WorkspaceHeader}: mostra le iniziali del workspace nell'avatar
 (es.\ \texttt{"My Workspace"} $\to$ \texttt{"MW"}) &
 Iniziali corrette visibili &
-R-26-F-Ob &
 \Soddisfatto \\
 
 
@@ -1875,14 +1703,12 @@ $TU_{F}-51$ &
 \texttt{WorkspaceHeader}: mostra il conteggio dei membri se i dati
 \texttt{useGetMembers} sono disponibili &
 Numero e testo \texttt{"membri"} visibili &
-R-38-F-Ob, R-39-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-52$ &
 \texttt{WorkspaceHeader}: mostra il conteggio dei repository se i dati
 \texttt{useGetRepositories} sono disponibili &
 Numero e testo \texttt{"repository"} visibili &
-R-80-F-Ob &
 \Soddisfatto \\
 
 
@@ -1890,28 +1716,24 @@ $TU_{F}-53$ &
 \texttt{WorkspaceHeader}: non mostra le statistiche se i dati di
 membri e repository non sono ancora caricati &
 Testi \texttt{"membri"} e \texttt{"repository"} assenti &
-R-38-F-Ob, R-80-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-54$ &
 \texttt{WorkspaceHeader}: applica la classe CSS \texttt{purple} per il
 ruolo \texttt{"tech lead"} &
 Classe \texttt{purple} presente nel className del badge &
-R-28-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-55$ &
 \texttt{WorkspaceHeader}: applica la classe CSS \texttt{fuchsia} per il
 ruolo \texttt{"project manager"} &
 Classe \texttt{fuchsia} presente nel className del badge &
-R-28-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-56$ &
 \texttt{WorkspaceHeader}: usa la configurazione \texttt{developer} come
 fallback per ruoli sconosciuti, applicando la classe \texttt{violet} &
 Classe \texttt{violet} presente nel className del badge &
-R-28-F-Ob &
 \Soddisfatto \\
 
 \sectionrow{Feature: Membership -- \texttt{getInvitesData}}
@@ -1921,14 +1743,12 @@ $TU_{F}-57$ &
 \texttt{getInvitesRepository.getInvites}: chiama
 \texttt{GET /api/invitations} e restituisce la lista degli inviti &
 \texttt{apiGet} invocato con il path corretto; lista corretta restituita &
-R-20-F-Ob, R-21-F-Ob, R-22-F-Ob, R-23-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-58$ &
 \texttt{getInvitesRepository.getInvites}: propaga l'errore se
 \texttt{apiGet} fallisce &
 Eccezione originale propagata &
-R-20-F-Ob &
 \Soddisfatto \\
 
 % ==================================================
@@ -1939,14 +1759,12 @@ $TU_{F}-59$ &
 \texttt{manageInviteRepository.manageInvite}: chiama
 \texttt{PATCH /api/invitations/:id} con \texttt{\{action: "Accept"\}} &
 \texttt{apiPatch} invocato con path e body corretti &
-R-24-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-60$ &
 \texttt{manageInviteRepository.manageInvite}: chiama
 \texttt{PATCH /api/invitations/:id} con \texttt{\{action: "Reject"\}} &
 \texttt{apiPatch} invocato con path e body corretti &
-R-25-F-Ob &
 \Soddisfatto \\
 
 
@@ -1954,7 +1772,6 @@ $TU_{F}-61$ &
 \texttt{manageInviteRepository.manageInvite}: propaga l'errore se
 \texttt{apiPatch} fallisce &
 Eccezione originale propagata &
-R-24-F-Ob, R-25-F-Ob &
 \Soddisfatto \\
 
 % ==================================================
@@ -1964,7 +1781,6 @@ $TU_{F}-62$ &
 \texttt{useInvitePage}: espone \texttt{invites}, \texttt{isLoading = false}
 e \texttt{isPending = false} quando i dati sono disponibili &
 Dati corretti; stati di loading e pending falsi &
-R-20-F-Ob &
 \Soddisfatto \\
 
 
@@ -1972,7 +1788,6 @@ $TU_{F}-63$ &
 \texttt{useInvitePage.handleAction}: chiama \texttt{mutate} con
 \texttt{\{membershipId, action\}} &
 \texttt{mutate(\{membershipId: "inv-1", action: "Accept"\})} invocato &
-R-24-F-Ob, R-25-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-64$ &
@@ -1980,7 +1795,6 @@ $TU_{F}-64$ &
 \texttt{isLoading = true} se \texttt{useQuery.data} \`e
 \texttt{undefined} &
 Array vuoto; \texttt{isLoading = true} &
-R-20-F-Ob &
 \Soddisfatto \\
 
 % ==================================================
@@ -1990,26 +1804,22 @@ R-20-F-Ob &
 $TU_{F}-65$ &
 \texttt{InviteItem}: mostra il nome del workspace dell'invito &
 Testo \texttt{"MyWorkspace"} visibile &
-R-20-F-Ob, R-21-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-66$ &
 \texttt{InviteItem}: mostra le iniziali del workspace (es.\ \texttt{"MY"}) &
 Testo delle iniziali visibile &
-R-20-F-Ob &
 \Soddisfatto \\
 
 
 $TU_{F}-67$ &
 \texttt{InviteItem}: mostra lo username del mittente dell'invito &
 Testo \texttt{"alice"} visibile &
-R-22-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-68$ &
 \texttt{InviteItem}: mostra il ruolo assegnato dall'invito &
 Testo \texttt{"developer"} visibile &
-R-23-F-Ob &
 \Soddisfatto \\
 
 
@@ -2017,14 +1827,12 @@ $TU_{F}-69$ &
 \texttt{InviteItem}: chiama \texttt{onAccept} con l'id dell'invito al click
 del pulsante \texttt{"Accetta"} &
 \texttt{onAccept("inv-1")} invocato &
-R-24-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-70$ &
 \texttt{InviteItem}: chiama \texttt{onReject} con l'id dell'invito al click
 del pulsante \texttt{"Rifiuta"} &
 \texttt{onReject("inv-1")} invocato &
-R-25-F-Ob &
 \Soddisfatto \\
 
 
@@ -2033,7 +1841,6 @@ $TU_{F}-71$ &
 \texttt{isPending = true} &
 Pulsanti \texttt{"Accetta"} e \texttt{"Rifiuta"} con attributo
 \texttt{disabled} &
-R-24-F-Ob, R-25-F-Ob &
 \Soddisfatto \\
 
 % ==================================================
@@ -2043,7 +1850,6 @@ $TU_{F}-72$ &
 \texttt{InviteList}: mostra \texttt{"Nessun invito pendente"} se la lista
 degli inviti \`e vuota &
 Messaggio vuoto visibile &
-R-20-F-Ob &
 \Soddisfatto \\
 
 
@@ -2051,14 +1857,12 @@ $TU_{F}-73$ &
 \texttt{InviteList}: renderizza un \texttt{InviteItem} per ogni invito
 nella lista &
 Nomi di tutti i workspace visibili &
-R-20-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-74$ &
 \texttt{InviteList}: chiama \texttt{onAction} con
 \texttt{("inv-1", "Accept")} al click di \texttt{"Accetta"} &
 \texttt{onAction} invocato con id e azione corretti &
-R-24-F-Ob &
 \Soddisfatto \\
 
 
@@ -2066,7 +1870,6 @@ $TU_{F}-75$ &
 \texttt{InviteList}: chiama \texttt{onAction} con
 \texttt{("inv-1", "Reject")} al click di \texttt{"Rifiuta"} &
 \texttt{onAction} invocato con id e azione corretti &
-R-25-F-Ob &
 \Soddisfatto \\
 
 
@@ -2080,14 +1883,12 @@ $TU_{F}-76$ &
 \texttt{POST /api/workspaces/:id/repositories} con \texttt{repositoryUrl}
 senza token (repository pubblica) &
 \texttt{apiPost} invocato con path e body corretti &
-R-86-F-Ob, R-87-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-77$ &
 \texttt{addRepositoryRepository.addRepository}: include
 \texttt{accessToken} nel body se fornito (repository privata) &
 \texttt{apiPost} invocato con \texttt{accessToken} valorizzato &
-R-87-F-Ob, R-88-F-Ob, R-89-F-Ob &
 \Soddisfatto \\
 
 
@@ -2095,7 +1896,6 @@ $TU_{F}-78$ &
 \texttt{addRepositoryRepository.addRepository}: propaga l'errore se
 \texttt{apiPost} fallisce (es.\ repository gi\`a aggiunta) &
 Eccezione originale propagata &
-R-86-F-Ob, R-90-F-Ob &
 \Soddisfatto \\
 
 % ==================================================
@@ -2106,7 +1906,6 @@ $TU_{F}-79$ &
 \texttt{GET /api/workspaces/:id/repositories} senza query se
 \texttt{searchInput} non \`e fornito &
 \texttt{apiGet} invocato con path senza query string; lista restituita &
-R-80-F-Ob &
 \Soddisfatto \\
 
 
@@ -2115,7 +1914,6 @@ $TU_{F}-80$ &
 param \texttt{searchInput} se fornito &
 \texttt{apiGet} invocato con
 \texttt{?searchInput=repo-a} &
-R-80-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-81$ &
@@ -2123,7 +1921,6 @@ $TU_{F}-81$ &
 \texttt{searchInput} con caratteri speciali (spazi, \texttt{\&}) &
 URL codificato (\texttt{\%20}, \texttt{\%26}) nell'argomento di
 \texttt{apiGet} &
-R-80-F-Ob &
 \Soddisfatto \\
 
 
@@ -2131,7 +1928,6 @@ $TU_{F}-82$ &
 \texttt{getRepositoriesRepository.getRepositories}: propaga l'errore se
 \texttt{apiGet} fallisce (es.\ 401) &
 Eccezione originale propagata &
-R-80-F-Ob &
 \Soddisfatto \\
 
 % ==================================================
@@ -2142,7 +1938,6 @@ $TU_{F}-83$ &
 \texttt{GET /api/repositories/:id} e restituisce il repository &
 \texttt{apiGet("/api/repositories/repo-1")} invocato; oggetto repository
 restituito &
-R-80-F-Ob, R-81-F-Ob &
 \Soddisfatto \\
 
 
@@ -2150,7 +1945,6 @@ $TU_{F}-84$ &
 \texttt{getRepositoryRepository.getRepository}: propaga l'errore se
 \texttt{apiGet} fallisce (es.\ 404) &
 Eccezione originale propagata &
-R-80-F-Ob &
 \Soddisfatto \\
 
 % ==================================================
@@ -2161,7 +1955,6 @@ $TU_{F}-85$ &
 \texttt{DELETE /api/workspaces/:wId/repositories/:rId} con i parametri
 corretti &
 \texttt{apiDelete("/api/workspaces/ws-1/repositories/repo-1")} invocato &
-R-91-F-Ob &
 \Soddisfatto \\
 
 
@@ -2169,7 +1962,6 @@ $TU_{F}-86$ &
 \texttt{removeRepositoryRepository.removeRepository}: propaga l'errore se
 \texttt{apiDelete} fallisce (es.\ 404) &
 Eccezione originale propagata &
-R-91-F-Ob &
 \Soddisfatto \\
 
 % ==================================================
@@ -2179,7 +1971,6 @@ $TU_{F}-87$ &
 \texttt{useGetRepositories}: restituisce la lista dei repository dalla
 API con il \texttt{workspaceId} corretto &
 \texttt{data} uguale all'array restituito dal repository &
-R-80-F-Ob, R-81-F-Ob &
 \Soddisfatto \\
 
 
@@ -2187,14 +1978,12 @@ $TU_{F}-88$ &
 \texttt{useGetRepositories}: passa \texttt{searchInput} all'API quando
 fornito &
 \texttt{getRepositories(workspaceId, "mio-repo")} invocato &
-R-80-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-89$ &
 \texttt{useGetRepositories}: \`e disabilitato (\texttt{fetchStatus = "idle"})
 se \texttt{workspaceId} \`e vuoto &
 Query non eseguita &
-R-80-F-Ob &
 \Soddisfatto \\
 
 
@@ -2202,7 +1991,6 @@ $TU_{F}-90$ &
 \texttt{useGetRepositories}: restituisce un array vuoto se non ci sono
 repository nel workspace &
 \texttt{data = []} &
-R-80-F-Ob, R-31-F-De &
 \Soddisfatto \\
 
 % ==================================================
@@ -2212,7 +2000,6 @@ $TU_{F}-91$ &
 \texttt{useGetRepository}: restituisce il repository corrispondente al
 \texttt{repositoryId} fornito &
 \texttt{data} uguale all'oggetto repository &
-R-80-F-Ob, R-81-F-Ob &
 \Soddisfatto \\
 
 
@@ -2220,14 +2007,12 @@ $TU_{F}-92$ &
 \texttt{useGetRepository}: chiama \texttt{getRepository} con il
 \texttt{repositoryId} corretto &
 \texttt{getRepository("repo-1")} invocato &
-R-80-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-93$ &
 \texttt{useGetRepository}: \`e disabilitato (\texttt{fetchStatus = "idle"})
 se \texttt{repositoryId} \`e vuoto &
 Query non eseguita &
-R-80-F-Ob &
 \Soddisfatto \\
 
 
@@ -2235,7 +2020,6 @@ $TU_{F}-94$ &
 \texttt{useGetRepository}: espone \texttt{isLoading = true} mentre la
 promise \`e pendente &
 \texttt{isLoading = true} durante la promise pendente &
-R-80-F-Ob &
 \Soddisfatto \\
 
 % ==================================================
@@ -2245,7 +2029,6 @@ $TU_{F}-95$ &
 \texttt{useRemoveRepository}: chiama \texttt{removeRepository} con
 \texttt{workspaceId} e \texttt{repositoryId} al trigger della mutazione &
 \texttt{removeRepository(workspaceId, "repo-1")} invocato &
-R-91-F-Ob &
 \Soddisfatto \\
 
 
@@ -2253,13 +2036,11 @@ $TU_{F}-96$ &
 \texttt{useRemoveRepository}: espone \texttt{isPending = true} durante
 la mutazione in corso &
 \texttt{isPending = true} mentre la promise \`e pendente &
-R-91-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-97$ &
 \texttt{useRemoveRepository}: parte con \texttt{isPending = false} &
 \texttt{isPending = false} prima di qualsiasi mutazione &
-R-91-F-Ob &
 \Soddisfatto \\
 
 % ==================================================
@@ -2271,7 +2052,6 @@ $TU_{F}-98$ &
 \texttt{updateToken} se il token inserito \`e malformato &
 \texttt{clientError} non null; \texttt{updateTokenRepository.updateToken}
 non invocato &
-R-88-F-Ob, R-89-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-99$ &
@@ -2279,7 +2059,6 @@ $TU_{F}-99$ &
 corretti e azzera il campo token dopo il successo &
 \texttt{updateToken(workspaceId, repositoryId, token)} invocato;
 \texttt{token = ""} dopo la risoluzione &
-R-88-F-Ob, R-89-F-Ob &
 \Soddisfatto \\
 
 
@@ -2287,7 +2066,6 @@ $TU_{F}-100$ &
 \texttt{useUpdateToken}: espone \texttt{serverError} se \texttt{updateToken}
 lancia un'eccezione &
 \texttt{serverError.message} uguale al messaggio dell'errore &
-R-88-F-Ob &
 \Soddisfatto \\
 
 % ==================================================
@@ -2297,7 +2075,6 @@ $TU_{F}-101$ &
 \texttt{useAddRepositoryForm}: si inizializza con \texttt{url = ""}
 e \texttt{token = ""} &
 Stato iniziale corretto &
-R-86-F-Ob &
 \Soddisfatto \\
 
 
@@ -2305,7 +2082,6 @@ $TU_{F}-102$ &
 \texttt{useAddRepositoryForm}: non chiama \texttt{addRepository} se
 \texttt{url} \`e vuoto al momento del submit &
 \texttt{addRepositoryRepository.addRepository} non invocato &
-R-86-F-Ob, R-90-F-Ob &
 \Soddisfatto \\
 
 % ==================================================
@@ -2315,7 +2091,6 @@ $TU_{F}-103$ &
 \texttt{RepositoryList}: mostra il messaggio di caricamento mentre i
 dati sono in attesa &
 Testo che corrisponde a \texttt{/caricamento/i} presente nel DOM &
-R-80-F-Ob &
 \Soddisfatto \\
 
 
@@ -2323,14 +2098,12 @@ $TU_{F}-104$ &
 \texttt{RepositoryList}: mostra \texttt{"nessun repository aggiunto"}
 se la lista \`e vuota &
 Messaggio vuoto visibile &
-R-80-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-105$ &
 \texttt{RepositoryList}: renderizza un elemento per ogni repository
 restituito dall'API &
 Nomi di tutti i repository visibili nel DOM &
-R-80-F-Ob, R-81-F-Ob &
 \Soddisfatto \\
 
 
@@ -2339,7 +2112,6 @@ $TU_{F}-106$ &
 quando l'utente digita nella barra di ricerca &
 \texttt{getRepositories(workspaceId, "test-search")} invocato dopo
 l'input dell'utente &
-R-80-F-Ob &
 \Soddisfatto \\
 
 % ==================================================
@@ -2349,55 +2121,47 @@ $TU_{F}-107$ &
 \texttt{NewWorkspaceDialog}: mostra il bottone di apertura
 \texttt{"+ New Workspace"} &
 Pulsante presente nel DOM &
-R-32-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-108$ &
 \texttt{NewWorkspaceDialog}: mostra il titolo \texttt{"New Workspace"}
 e la descrizione del dialog &
 Titolo e testo descrittivo visibili &
-R-32-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-109$ &
 \texttt{NewWorkspaceDialog}: mostra il campo \texttt{"Workspace Name"}
 con la label associata &
 Elemento input con label \texttt{"Workspace Name"} presente &
-R-32-F-Ob, R-33-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-110$ &
 \texttt{NewWorkspaceDialog}: mostra i bottoni \texttt{"Cancel"} e
 \texttt{"Create Workspace"} &
 Entrambi i pulsanti presenti nel DOM &
-R-32-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-111$ &
 \texttt{NewWorkspaceDialog}: chiama \texttt{handleSubmit} al submit
 del form &
 \texttt{handleSubmit} invocato al \texttt{fireEvent.submit} &
-R-32-F-Ob, R-33-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-112$ &
 \texttt{NewWorkspaceDialog}: mostra il \texttt{serverError} se presente &
 Testo dell'errore server visibile nel DOM &
-R-35-F-Ob, R-36-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-113$ &
 \texttt{NewWorkspaceDialog}: mostra l'errore di validazione se il campo
 \`e stato toccato e non \`e valido &
 Messaggio di errore di validazione visibile &
-R-33-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-114$ &
 \texttt{NewWorkspaceDialog}: non mostra l'errore di validazione se il
 campo non \`e stato toccato &
 Messaggio di errore assente &
-R-33-F-Ob &
 \Soddisfatto \\
 % ==================================================
 \sectionrow{Feature: createWorkspace -- \texttt{useNewWorkspaceForm}}
@@ -2407,27 +2171,23 @@ $TU_{F}-115$ &
 \texttt{newWorkspaceSchema}: valida correttamente un nome di lunghezza
 accettabile &
 \texttt{safeParse.success = true} &
-R-32-F-Ob, R-33-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-116$ &
 \texttt{newWorkspaceSchema}: rifiuta un nome troppo corto (1 carattere) &
 \texttt{safeParse.success = false} &
-R-33-F-Ob &
 \Soddisfatto \\
 
 
 $TU_{F}-117$ &
 \texttt{newWorkspaceSchema}: rifiuta un nome troppo lungo ($>30$ caratteri) &
 \texttt{safeParse.success = false} &
-R-33-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-118$ &
 \texttt{useNewWorkspaceForm}: si inizializza con \texttt{serverError = null}
 e un oggetto \texttt{form} definito &
 \texttt{serverError = null}; \texttt{form} non \texttt{undefined} &
-R-32-F-Ob &
 \Soddisfatto \\
 
 
@@ -2435,14 +2195,12 @@ $TU_{F}-119$ &
 \texttt{useNewWorkspaceForm}: naviga a
 \texttt{/workspaces/:id/repositories} dopo la creazione con successo &
 \texttt{navigate(\{to: "/workspaces/ws-new/repositories"\})} invocato &
-R-32-F-Ob, R-33-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-120$ &
 \texttt{useNewWorkspaceForm}: imposta \texttt{serverError} con il messaggio
 dell'eccezione se \texttt{createWorkspace} fallisce con nome valido &
 \texttt{serverError = "Duplicate name"} &
-R-35-F-Ob, R-36-F-Ob &
 \Soddisfatto \\
 
 
@@ -2450,7 +2208,6 @@ $TU_{F}-121$ &
 \texttt{useNewWorkspaceForm}: non imposta \texttt{serverError} se il form
 non supera la validazione Zod (nome vuoto) — il server non viene chiamato &
 \texttt{serverError = null}; \texttt{createWorkspace} non invocato &
-R-33-F-Ob &
 \Soddisfatto \\
 
 
@@ -2463,14 +2220,12 @@ $TU_{F}-122$ &
 \texttt{POST /api/workspaces/} con il body \texttt{\{name\}} e
 restituisce il workspace creato &
 \texttt{apiPost} invocato con path e body corretti; risposta restituita &
-R-32-F-Ob, R-33-F-Ob &
 \Soddisfatto \\
 
 $TU_{F}-123$ &
 \texttt{createWorkspaceRepository.createWorkspace}: propaga l'errore se
 \texttt{apiPost} fallisce (es.\ 409 Conflict) &
 Eccezione originale propagata &
-R-35-F-Ob, R-36-F-Ob &
 \Soddisfatto \\
 
  
@@ -2480,14 +2235,12 @@ R-35-F-Ob, R-36-F-Ob &
 $TU_{F}-124$ &
 \texttt{DeleteWorkspaceButton}: renderizza il bottone \texttt{"Elimina"} &
 Testo \texttt{"Elimina"} visibile nel DOM &
-R-37-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-125$ &
 \texttt{DeleteWorkspaceButton}: apre il dialog di conferma al click del
 bottone &
 Testo di conferma con nome workspace visibile nel dialog &
-R-37-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-126$ &
@@ -2495,7 +2248,6 @@ $TU_{F}-126$ &
 router e naviga a \texttt{/workspaces} dopo la conferma &
 \texttt{execute}, \texttt{invalidate} e \texttt{navigate} invocati
 con i parametri corretti &
-R-37-F-Ob &
 \Soddisfatto \\
  
 % ==================================================
@@ -2505,49 +2257,42 @@ $TU_{F}-127$ &
 \texttt{useDeleteWorkspace}: parte con \texttt{loading = false} e
 \texttt{error = null} &
 Stato iniziale corretto &
-R-37-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-128$ &
 \texttt{useDeleteWorkspace}: chiama \texttt{deleteWorkspace} con il
 \texttt{workspaceId} corretto &
 \texttt{deleteWorkspace(\{workspaceId: "ws-1"\})} invocato &
-R-37-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-129$ &
 \texttt{useDeleteWorkspace}: imposta \texttt{loading = true} durante
 l'operazione e \texttt{loading = false} al termine &
 Transizione di stato \texttt{loading} corretta &
-R-37-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-130$ &
 \texttt{useDeleteWorkspace}: resetta \texttt{error = null} all'inizio
 di una nuova chiamata (reset tra tentativi) &
 \texttt{error = null} prima del secondo tentativo &
-R-37-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-131$ &
 \texttt{useDeleteWorkspace}: imposta \texttt{error} con il messaggio
 dell'eccezione se \texttt{deleteWorkspace} fallisce &
 \texttt{error} uguale al messaggio dell'errore &
-R-37-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-132$ &
 \texttt{useDeleteWorkspace}: rilancia l'eccezione dopo aver impostato
 \texttt{error} (per permettere al chiamante di gestirla) &
 Eccezione propagata al chiamante &
-R-37-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-133$ &
 \texttt{useDeleteWorkspace}: imposta \texttt{loading = false} anche in
 caso di errore (blocco \texttt{finally}) &
 \texttt{loading = false} dopo il catch &
-R-37-F-Ob &
 \Soddisfatto \\
  
 % ==================================================
@@ -2557,21 +2302,18 @@ $TU_{F}-134$ &
 \texttt{deleteWorkspaceRepository}: chiama
 \texttt{DELETE /api/workspaces/:id} con il \texttt{workspaceId} corretto &
 \texttt{apiDelete("/api/workspaces/ws-1")} invocato &
-R-37-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-135$ &
 \texttt{deleteWorkspaceRepository}: propaga gli errori 403 (solo il
 proprietario pu\`o eliminare) &
 Eccezione originale propagata &
-R-37-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-136$ &
 \texttt{deleteWorkspaceRepository}: propaga gli errori 404 (workspace
 non trovato) &
 Eccezione originale propagata &
-R-37-F-Ob &
 \Soddisfatto \\
  
 % ==================================================
@@ -2581,61 +2323,52 @@ $TU_{F}-137$ &
 \texttt{InviteForm}: mostra il campo input per lo username con
 placeholder \texttt{"es.\ mario\_rossi"} &
 Elemento input con placeholder corretto presente &
-R-41-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-138$ &
 \texttt{InviteForm}: mostra il selettore del ruolo (\texttt{combobox}) &
 Elemento con ruolo \texttt{combobox} presente nel DOM &
-R-41-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-139$ &
 \texttt{InviteForm}: mostra il pulsante \texttt{"Invita"} &
 Pulsante con testo \texttt{"Invita"} presente &
-R-41-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-140$ &
 \texttt{InviteForm}: disabilita il pulsante e mostra \texttt{"Invio..."}
 quando \texttt{isPending = true} &
 Pulsante \texttt{disabled} con testo \texttt{"Invio..."} &
-R-41-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-141$ &
 \texttt{InviteForm}: disabilita il pulsante \texttt{"Invita"} quando
 \texttt{username} \`e una stringa vuota &
 Pulsante \texttt{disabled} &
-R-41-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-142$ &
 \texttt{InviteForm}: abilita il pulsante \texttt{"Invita"} quando
 \texttt{username} non \`e vuoto e \texttt{isPending = false} &
 Pulsante abilitato &
-R-41-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-143$ &
 \texttt{InviteForm}: mostra il messaggio di errore quando \texttt{error}
 non \`e \texttt{null} &
 Testo dell'errore visibile nel DOM &
-R-41-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-144$ &
 \texttt{InviteForm}: mostra \texttt{"Invito inviato con successo."}
 quando \texttt{isSuccess = true} &
 Messaggio di successo visibile &
-R-41-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-145$ &
 \texttt{InviteForm}: non mostra il messaggio di successo quando
 \texttt{isSuccess = false} &
 Messaggio di successo assente &
-R-41-F-Ob &
 \Soddisfatto \\
  
 % ==================================================
@@ -2644,40 +2377,34 @@ R-41-F-Ob &
 $TU_{F}-146$ &
 \texttt{MemberItem}: mostra lo username del membro &
 Testo \texttt{"mario\_rossi"} visibile nel DOM &
-R-38-F-Ob, R-39-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-146$ &
 \texttt{MemberItem}: mostra il ruolo del membro &
 Testo \texttt{"Developer"} visibile nel DOM &
-R-39-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-147$ &
 \texttt{MemberItem}: mostra il pulsante \texttt{"Rimuovi"} &
 Pulsante con testo \texttt{"Rimuovi"} presente &
-R-40-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-148$ &
 \texttt{MemberItem}: disabilita il pulsante \texttt{"Rimuovi"} quando
 \texttt{isRemoving = true} &
 Pulsante con attributo \texttt{disabled} &
-R-40-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-149$ &
 \texttt{MemberItem}: non chiama \texttt{onRemove} al click quando
 \texttt{isRemoving = true} (pulsante disabilitato) &
 \texttt{onRemove} non invocato &
-R-40-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-150$ &
 \texttt{MemberItem}: pulsante \texttt{"Rimuovi"} \`e abilitato quando
 \texttt{isRemoving = false} &
 Pulsante non disabilitato &
-R-40-F-Ob &
 \Soddisfatto \\
  
 % ==================================================
@@ -2687,55 +2414,47 @@ $TU_{F}-151$ &
 \texttt{MemberList}: mostra \texttt{"Nessun membro nel workspace"} se
 la lista \`e vuota &
 Messaggio vuoto visibile &
-R-38-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-152$ &
 \texttt{MemberList}: non mostra nessun \texttt{MemberItem} se la lista
 \`e vuota &
 Nessun pulsante \texttt{"Rimuovi"} presente &
-R-38-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-153$ &
 \texttt{MemberList}: renderizza un \texttt{MemberItem} per ogni membro
 nella lista &
 Username di tutti i membri visibili nel DOM &
-R-38-F-Ob, R-39-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-154$ &
 \texttt{MemberList}: mostra un pulsante \texttt{"Rimuovi"} per ogni
 membro &
 Numero di pulsanti uguale al numero di membri &
-R-40-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-155$ &
 \texttt{MemberList}: chiama \texttt{onRemove} con \texttt{userId} corretto
 al click del primo membro &
 \texttt{onRemove("u-1")} invocato una volta &
-R-40-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-156$ &
 \texttt{MemberList}: chiama \texttt{onRemove} con \texttt{userId} corretto
 al click del secondo membro &
 \texttt{onRemove("u-2")} invocato &
-R-40-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-157$ &
 \texttt{MemberList}: disabilita tutti i pulsanti \texttt{"Rimuovi"}
 quando \texttt{isRemoving = true} &
 Tutti i pulsanti con attributo \texttt{disabled} &
-R-40-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-158$ &
 \texttt{MemberList}: non mostra il messaggio vuoto quando ci sono membri &
 Testo \texttt{"Nessun membro nel workspace"} assente &
-R-38-F-Ob &
 \Soddisfatto \\
  
 % ==================================================
@@ -2744,35 +2463,30 @@ R-38-F-Ob &
 $TU_{F}-159$ &
 \texttt{useRemoveMember}: parte con \texttt{isPending = false} &
 Stato iniziale corretto &
-R-40-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-160$ &
 \texttt{useRemoveMember}: chiama \texttt{removeMember} con
 \texttt{workspaceId} e \texttt{userId} corretti al trigger della mutazione &
 \texttt{removeMember("ws-1", "user-1")} invocato &
-R-40-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-161$ &
 \texttt{useRemoveMember}: imposta \texttt{isPending = true} durante la
 mutazione in corso &
 \texttt{isPending = true} mentre la promise \`e pendente &
-R-40-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-162$ &
 \texttt{useRemoveMember}: chiama \texttt{invalidateQueries} con la chiave
 \texttt{["members", workspaceId]} dopo la rimozione con successo &
 \texttt{invalidateQueries} invocato con la chiave corretta &
-R-40-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-163$ &
 \texttt{useRemoveMember}: non chiama \texttt{invalidateQueries} se
 \texttt{removeMember} fallisce &
 \texttt{invalidateQueries} non invocato &
-R-40-F-Ob &
 \Soddisfatto \\
  
 % ==================================================
@@ -2782,35 +2496,30 @@ $TU_{F}-164$ &
 \texttt{useGetMembers}: restituisce la lista dei membri dopo il
 caricamento &
 \texttt{data} uguale all'array restituito dal repository &
-R-38-F-Ob, R-39-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-165$ &
 \texttt{useGetMembers}: \`e disabilitato (\texttt{fetchStatus = "idle"})
 se \texttt{workspaceId} \`e una stringa vuota &
 Query non eseguita &
-R-38-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-166$ &
 \texttt{useGetMembers}: espone \texttt{isLoading = true} mentre la
 chiamata \`e pendente &
 \texttt{isLoading = true} durante la promise pendente &
-R-38-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-167$ &
 \texttt{useGetMembers}: restituisce \texttt{data = []} se il workspace
 non ha membri &
 Array vuoto restituito senza errori &
-R-38-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-168$ &
 \texttt{useGetMembers}: espone \texttt{isError = true} se \texttt{getMembers}
 fallisce &
 \texttt{isError = true} dopo il rigetto della promise &
-R-38-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-169$ &
@@ -2818,7 +2527,6 @@ $TU_{F}-169$ &
 -- workspace diversi non condividono la cache &
 \texttt{getMembers} invocato separatamente per \texttt{ws-1} e
 \texttt{ws-2} &
-R-38-F-Ob &
 \Soddisfatto \\
  
 % ==================================================
@@ -2829,76 +2537,65 @@ $TU_{F}-170$ &
 ruolo di default definito, \texttt{isPending = false},
 \texttt{isSuccess = false} e \texttt{error = null} &
 Stato iniziale corretto &
-R-41-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-171$ &
 \texttt{useInviteMember}: aggiorna \texttt{username} tramite
 \texttt{setUsername} &
 \texttt{username} aggiornato al valore passato &
-R-41-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-172$ &
 \texttt{useInviteMember}: aggiorna \texttt{role} tramite \texttt{setRole} &
 \texttt{role} aggiornato al valore passato &
-R-41-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-173$ &
 \texttt{useInviteMember}: non chiama \texttt{inviteMember} se
 \texttt{username} \`e vuoto (stringa vuota) &
 \texttt{inviteMember} non invocato &
-R-41-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-174$ &
 \texttt{useInviteMember}: non chiama \texttt{inviteMember} se
 \texttt{username} \`e solo spazi bianchi &
 \texttt{inviteMember} non invocato &
-R-41-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-175$ &
 \texttt{useInviteMember}: chiama \texttt{inviteMember} con
 \texttt{workspaceId}, \texttt{username} e \texttt{role} corretti &
 \texttt{inviteMember("ws-1", "mario\_rossi", "Developer")} invocato &
-R-41-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-176$ &
 \texttt{useInviteMember}: azzera \texttt{username} e ripristina il ruolo
 di default dopo il successo &
 \texttt{username = ""}; \texttt{role} definito &
-R-41-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-177$ &
 \texttt{useInviteMember}: chiama \texttt{invalidateQueries} con la
 chiave \texttt{["members", workspaceId]} dopo il successo &
 \texttt{invalidateQueries} invocato con chiave corretta &
-R-41-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-178$ &
 \texttt{useInviteMember}: espone \texttt{isSuccess = true} dopo l'invio
 con successo &
 \texttt{isSuccess = true} dopo la risoluzione &
-R-41-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-179$ &
 \texttt{useInviteMember}: espone \texttt{error} non null se
 \texttt{inviteMember} fallisce (utente non trovato) &
 \texttt{error.message} uguale al messaggio dell'errore &
-R-41-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-180$ &
 \texttt{useInviteMember}: non chiama \texttt{invalidateQueries} se
 \texttt{inviteMember} fallisce &
 \texttt{invalidateQueries} non invocato &
-R-41-F-Ob &
 \Soddisfatto \\
  
 % ==================================================
@@ -2908,35 +2605,30 @@ $TU_{F}-181$ &
 \texttt{useMembersPage}: espone \texttt{members}, \texttt{membersLoading},
 \texttt{removeMember}, \texttt{isRemoving} e \texttt{inviteForm} &
 Tutti i campi definiti e con i valori corretti &
-R-38-F-Ob, R-40-F-Ob, R-41-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-182$ &
 \texttt{useMembersPage}: passa \texttt{workspaceId} a \texttt{useGetMembers},
 \texttt{useRemoveMember} e \texttt{useInviteMember} &
 Tutti e tre gli hook invocati con \texttt{"ws-abc"} &
-R-38-F-Ob, R-40-F-Ob, R-41-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-183$ &
 \texttt{useMembersPage}: restituisce \texttt{members = []} se
 \texttt{useGetMembers.data} \`e \texttt{undefined} (default fallback) &
 Array vuoto; \texttt{membersLoading = true} &
-R-38-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-184$ &
 \texttt{useMembersPage}: riflette \texttt{isRemoving = true} quando
 \texttt{useRemoveMember} \`e in pending &
 \texttt{isRemoving = true} esposto correttamente &
-R-40-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-185$ &
 \texttt{useMembersPage}: espone la funzione \texttt{removeMember}
 proveniente da \texttt{useRemoveMember} &
 \texttt{removeMember} \`e la stessa funzione \texttt{mutate} del hook &
-R-40-F-Ob &
 \Soddisfatto \\
  
 % ==================================================
@@ -2947,35 +2639,30 @@ $TU_{F}-186$ &
 \texttt{POST /api/invitations} con \texttt{workspaceId},
 \texttt{recipientUsername} e \texttt{recipientRole} corretti &
 \texttt{apiPost} invocato con path e body corretti &
-R-41-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-187$ &
 \texttt{inviteMemberRepository}: funziona correttamente con il ruolo
 \texttt{"Tech Lead"} &
 \texttt{apiPost} invocato con \texttt{recipientRole = "Tech Lead"} &
-R-41-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-188$ &
 \texttt{inviteMemberRepository}: funziona correttamente con il ruolo
 \texttt{"Project Manager"} &
 \texttt{apiPost} invocato con \texttt{recipientRole = "Project Manager"} &
-R-41-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-189$ &
 \texttt{inviteMemberRepository}: propaga gli errori 404 (destinatario
 non trovato nel sistema) &
 Eccezione originale propagata &
-R-41-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-190$ &
 \texttt{inviteMemberRepository}: propaga gli errori 400 (utente gi\`a
 membro o invito gi\`a pendente) &
 Eccezione originale propagata &
-R-41-F-Ob &
 \Soddisfatto \\
  
 % ==================================================
@@ -2986,28 +2673,24 @@ $TU_{F}-191$ &
 \texttt{DELETE /api/workspaces/:wId/users/:userId} con i parametri
 corretti &
 \texttt{apiDelete("/api/workspaces/ws-1/users/user-1")} invocato &
-R-40-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-192$ &
 \texttt{removeMemberRepository}: costruisce il path corretto per
 \texttt{workspaceId} e \texttt{userId} diversi &
 \texttt{apiDelete("/api/workspaces/ws-abc/users/user-xyz")} invocato &
-R-40-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-193$ &
 \texttt{removeMemberRepository}: propaga gli errori 403 (utente non
 autorizzato a rimuovere) &
 Eccezione originale propagata &
-R-40-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-194$ &
 \texttt{removeMemberRepository}: propaga gli errori 404 (membro non
 trovato nel workspace) &
 Eccezione originale propagata &
-R-40-F-Ob &
 \Soddisfatto \\
  
 % ==================================================
@@ -3018,28 +2701,24 @@ $TU_{F}-195$ &
 \texttt{GET /api/workspaces/:id/users} e restituisce i membri &
 \texttt{apiGet("/api/workspaces/ws-1/users")} invocato; lista corretta
 restituita &
-R-38-F-Ob, R-39-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-196$ &
 \texttt{getMembersRepository}: restituisce un array vuoto se il workspace
 non ha membri &
 \texttt{apiGet} invocato; array vuoto restituito &
-R-38-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-197$ &
 \texttt{getMembersRepository}: propaga gli errori della API
 (es.\ 401 non autorizzato) &
 Eccezione originale propagata &
-R-38-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-198$ &
 \texttt{getMembersRepository}: propaga gli errori 404 se il workspace
 non esiste &
 Eccezione originale propagata &
-R-38-F-Ob &
 \Soddisfatto \\
 
 % ==================================================
@@ -3049,34 +2728,29 @@ $TU_{F}-199$ &
 \texttt{BranchSelector}: mostra lo skeleton (\texttt{.animate-pulse})
 durante il caricamento &
 Elemento con classe \texttt{animate-pulse} presente nel DOM &
-R-81-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-200$ &
 \texttt{BranchSelector}: non mostra la \texttt{select} durante il
 caricamento &
 Elemento \texttt{combobox} assente dal DOM &
-R-81-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-201$ &
 \texttt{BranchSelector}: renderizza le branch come opzioni della select &
 Opzioni \texttt{"main"}, \texttt{"develop"}, \texttt{"feature/x"}
 visibili &
-R-81-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-202$ &
 \texttt{BranchSelector}: ha il valore selezionato corretto &
 \texttt{combobox} con valore \texttt{"develop"} &
-R-81-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-203$ &
 \texttt{BranchSelector}: chiama \texttt{onChange} con il valore
 selezionato al cambio di opzione &
 \texttt{onChange("develop")} invocato &
-R-81-F-Ob &
 \Soddisfatto \\
  
 % ==================================================
@@ -3085,48 +2759,41 @@ R-81-F-Ob &
 $TU_{F}-204$ &
 \texttt{SummarySection}: mostra il testo del summary &
 Testo \texttt{"Progetto in buono stato."} visibile nel DOM &
-R-81-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-205$ &
 \texttt{SummarySection}: mostra il voto nel ring &
 Valore \texttt{"8.5"} visibile &
-R-81-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-206$ &
 \texttt{SummarySection}: mostra la durata calcolata correttamente
 (minuti e secondi) &
 Testo \texttt{"2m 30s"} visibile &
-R-81-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-207$ &
 \texttt{SummarySection}: mostra solo i secondi se la durata \`e
 inferiore a un minuto &
 Testo \texttt{"45s"} visibile &
-R-81-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-208$ &
 \texttt{SummarySection}: non mostra la durata se il tempo di fine \`e
 precedente all'inizio &
 Etichetta \texttt{"Durata"} assente dal DOM &
-R-81-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-209$ &
 \texttt{SummarySection}: non mostra i metadati se non forniti &
 Etichette \texttt{"Inizio scansione"} e \texttt{"Fine scansione"}
 assenti &
-R-81-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-210$ &
 \texttt{SummarySection}: mostra \texttt{"Inizio scansione"} e
 \texttt{"Fine scansione"} quando i metadati sono forniti &
 Entrambe le etichette visibili nel DOM &
-R-81-F-Ob &
 \Soddisfatto \\
  
 % ==================================================
@@ -3136,32 +2803,27 @@ $TU_{F}-211$ &
 \texttt{DocsSection}: mostra il titolo
 \texttt{"Analisi della documentazione"} &
 Testo del titolo visibile nel DOM &
-R-81-F-Ob, R-84-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-212$ &
 \texttt{DocsSection}: mostra lo \texttt{ScoreBar} con il voto corretto &
 \texttt{data-testid="score-bar"} con valore \texttt{8} &
-R-84-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-213$ &
 \texttt{DocsSection}: renderizza il contenuto del \texttt{readmeReport} &
 Testo \texttt{"Ottimo README"} visibile &
-R-84-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-214$ &
 \texttt{DocsSection}: renderizza il contenuto del \texttt{commentReport} &
 Testo \texttt{"Commenti sufficienti"} visibile &
-R-84-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-215$ &
 \texttt{DocsSection}: mostra le etichette \texttt{"README"} e
 \texttt{"Commenti nel codice"} &
 Entrambe le etichette visibili nel DOM &
-R-84-F-Ob &
 \Soddisfatto \\
  
 % ==================================================
@@ -3170,53 +2832,45 @@ R-84-F-Ob &
 $TU_{F}-216$ &
 \texttt{TechSection}: mostra il titolo \texttt{"Informazioni tecniche"} &
 Testo del titolo visibile nel DOM &
-R-81-F-Ob, R-83-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-217$ &
 \texttt{TechSection}: mostra i linguaggi con percentuale $\geq$ 1\% &
 Testi \texttt{"TypeScript"} e \texttt{"CSS"} visibili &
-R-83-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-218$ &
 \texttt{TechSection}: mostra i linguaggi minori come chip con
 \texttt{<1\%} &
 Testo \texttt{/Shell.*<1\%/} visibile &
-R-83-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-219$ &
 \texttt{TechSection}: mostra i framework con versione &
 Testi \texttt{"React"} e \texttt{"18.2.0"} visibili &
-R-83-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-220$ &
 \texttt{TechSection}: mostra le librerie &
 Testi \texttt{"axios"} e \texttt{"zod"} visibili &
-R-83-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-221$ &
 \texttt{TechSection}: mostra \texttt{"Nessuno rilevato"} se non ci sono
 framework &
 Messaggio vuoto visibile &
-R-83-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-222$ &
 \texttt{TechSection}: mostra \texttt{"Nessuna rilevata"} se non ci sono
 librerie &
 Messaggio vuoto visibile &
-R-83-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-223$ &
 \texttt{TechSection}: mostra \texttt{"Nessun linguaggio rilevato"} se
 la lista \`e vuota &
 Messaggio vuoto visibile &
-R-83-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-224$ &
@@ -3224,14 +2878,12 @@ $TU_{F}-224$ &
 \texttt{allDeps} \`e fornito &
 Testo \texttt{/Tutte le dipendenze rilevate (2)/} e nomi delle
 dipendenze visibili &
-R-83-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-225$ &
 \texttt{TechSection}: non mostra la sezione dipendenze se \texttt{allDeps}
 \`e \texttt{undefined} &
 Testo \texttt{/Tutte le dipendenze/} assente dal DOM &
-R-83-F-Ob &
 \Soddisfatto \\
  
 % ==================================================
@@ -3240,13 +2892,11 @@ R-83-F-Ob &
 $TU_{F}-226$ &
 \texttt{TestSection}: mostra il numero di test eseguiti &
 Testo \texttt{"42 test eseguiti"} visibile nel DOM &
-R-81-F-Ob, R-82-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-227$ &
 \texttt{TestSection}: calcola e mostra la coverage media &
 Valore \texttt{"81"} (media di 80, 70, 90, 85) visibile &
-R-82-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-228$ &
@@ -3254,21 +2904,18 @@ $TU_{F}-228$ &
 (statements, branches, functions, lines) &
 Testi \texttt{"80\%"}, \texttt{"70\%"}, \texttt{"90\%"}, \texttt{"85\%"}
 visibili &
-R-82-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-229$ &
 \texttt{TestSection}: mostra il messaggio \texttt{"Nessun test rilevato"}
 se \texttt{testsRun = 0} &
 Messaggio visibile nel DOM &
-R-82-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-230$ &
 \texttt{TestSection}: non mostra il messaggio di assenza test se ci
 sono test &
 Messaggio \texttt{"Nessun test rilevato"} assente &
-R-82-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-231$ &
@@ -3276,14 +2923,12 @@ $TU_{F}-231$ &
 di errore &
 Testi \texttt{"test-a"}, \texttt{"src/a.test.ts"} e
 \texttt{"Expected true"} visibili; contatore \texttt{"1 falliti"} &
-R-82-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-232$ &
 \texttt{TestSection}: non mostra la sezione test falliti se tutti i
 test passano &
 Etichetta \texttt{"Test falliti"} assente dal DOM &
-R-82-F-Ob &
 \Soddisfatto \\
  
 % ==================================================
@@ -3293,55 +2938,47 @@ $TU_{F}-233$ &
 \texttt{SecuritySection}: mostra il titolo
 \texttt{"Analisi della sicurezza"} &
 Testo del titolo visibile nel DOM &
-R-81-F-Ob, R-85-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-234$ &
 \texttt{SecuritySection}: mostra lo \texttt{ScoreBar} con il voto &
 Elemento \texttt{data-testid="score-bar"} presente &
-R-85-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-235$ &
 \texttt{SecuritySection}: mostra il messaggio verde
 \texttt{"Nessuna vulnerabilit\`a rilevata."} se la lista \`e vuota &
 Messaggio visibile nel DOM &
-R-85-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-236$ &
 \texttt{SecuritySection}: mostra i contatori overview
 \texttt{"Vulnerabilit\`a codice"} e \texttt{"Dipendenze vulnerabili"} &
 Entrambe le etichette visibili &
-R-85-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-237$ &
 \texttt{SecuritySection}: mostra le descrizioni delle vulnerabilit\`a
 del codice &
 Testi \texttt{"SQL Injection"} e \texttt{"XSS"} visibili &
-R-85-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-238$ &
 \texttt{SecuritySection}: espande i dettagli di una vulnerabilit\`a al
 click (path, remediation, CWE, OWASP) &
 Dettagli visibili dopo il click &
-R-85-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-239$ &
 \texttt{SecuritySection}: chiude i dettagli della vulnerabilit\`a al
 secondo click &
 Dettagli assenti dopo il secondo click &
-R-85-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-240$ &
 \texttt{SecuritySection}: mostra il toggle delle dipendenze vulnerabili
 con conteggio &
 Testo \texttt{/Dipendenze vulnerabili (2 pacchetti/} visibile &
-R-85-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-241$ &
@@ -3349,21 +2986,18 @@ $TU_{F}-241$ &
 mostrando pacchetti e versione di fix &
 Testi \texttt{"lodash@4.17.0"}, \texttt{"axios@0.21.0"},
 \texttt{"4.17.21"} visibili &
-R-85-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-242$ &
 \texttt{SecuritySection}: mostra l'analisi testuale delle dipendenze
 se presente &
 Testo \texttt{"Aggiornare le dipendenze."} visibile &
-R-85-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-243$ &
 \texttt{SecuritySection}: usa \texttt{vulnCounts} per il totale se
 disponibile invece di iterare le vulnerabilit\`a &
 Contatore calcolato da \texttt{vulnCounts} (totale 6) visibile &
-R-85-F-Ob &
 \Soddisfatto \\
 
 % ==================================================
@@ -3373,14 +3007,12 @@ $TU_{F}-244$ &
 \texttt{UpdateTokenForm}: mostra un errore \texttt{"Token non valido"}
 e non chiama \texttt{updateToken} se il token inserito \`e malformato &
 Messaggio di errore visibile; \texttt{updateToken} non invocato &
-R-88-F-Ob, R-89-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-245$ &
 \texttt{UpdateTokenForm}: mostra il messaggio di errore del backend se
 la chiamata API fallisce &
 Testo dell'errore server visibile nel DOM &
-R-88-F-Ob &
 \Soddisfatto \\
 
 % ==================================================
@@ -3390,21 +3022,18 @@ $TU_{F}-246$ &
 \texttt{useGetBranches}: restituisce la lista di branch dopo il
 caricamento &
 \texttt{data} uguale all'array restituito dal repository &
-R-80-F-Ob, R-81-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-247$ &
 \texttt{useGetBranches}: \`e disabilitato (\texttt{fetchStatus = "idle"})
 se \texttt{repositoryId} \`e vuoto &
 Query non eseguita &
-R-80-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-248$ &
 \texttt{useGetBranches}: espone \texttt{isLoading = true} mentre la
 promise \`e pendente &
 \texttt{isLoading = true} durante la promise pendente &
-R-80-F-Ob &
 \Soddisfatto \\
  
 % ==================================================
@@ -3415,21 +3044,18 @@ $TU_{F}-249$ &
 con \texttt{repositoryId} e \texttt{branch} corretti &
 \texttt{data} uguale al report; \texttt{getReport("repo-1", "develop")}
 invocato &
-R-81-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-250$ &
 \texttt{useGetReport}: \`e disabilitato (\texttt{fetchStatus = "idle"})
 se \texttt{branch} \`e \texttt{undefined} &
 Query non eseguita &
-R-81-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-251$ &
 \texttt{useGetReport}: espone \texttt{isLoading = true} mentre la
 promise \`e pendente &
 \texttt{isLoading = true} durante la promise pendente &
-R-81-F-Ob &
 \Soddisfatto \\
  
 % ==================================================
@@ -3439,41 +3065,35 @@ $TU_{F}-252$ &
 \texttt{useReportPage}: inizia con \texttt{selectedBranch = undefined}
 e \texttt{branchesLoading = true} &
 Stato iniziale corretto durante la promise pendente &
-R-81-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-253$ &
 \texttt{useReportPage}: seleziona \texttt{"develop"} automaticamente
 se presente nella lista di branch &
 \texttt{selectedBranch = "develop"} dopo il caricamento &
-R-81-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-254$ &
 \texttt{useReportPage}: seleziona il primo branch se \texttt{"develop"}
 non \`e presente &
 \texttt{selectedBranch} uguale al primo elemento della lista &
-R-81-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-255$ &
 \texttt{useReportPage}: permette la selezione manuale di un branch
 tramite \texttt{setSelectedBranch} &
 \texttt{selectedBranch} aggiornato al valore passato &
-R-81-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-256$ &
 \texttt{useReportPage}: non sovrascrive la selezione manuale al
 ricaricamento dei branch &
 \texttt{selectedBranch} mantiene il valore impostato manualmente &
-R-81-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-257$ &
 \texttt{useReportPage}: espone le branch caricate tramite \texttt{branches} &
 \texttt{branches} uguale all'array restituito dal repository &
-R-80-F-Ob, R-81-F-Ob &
 \Soddisfatto \\
 
 % ==================================================
@@ -3484,35 +3104,30 @@ $TU_{F}-258$ &
 \texttt{GET /api/repositories/:id/branches} e restituisce la lista di
 branch &
 \texttt{apiGet} invocato con il path corretto; lista corretta restituita &
-R-80-F-Ob, R-81-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-259$ &
 \texttt{getBranchesRepository}: restituisce \texttt{[]} in caso di
 errore 404 (repository non trovata) &
 Array vuoto senza eccezioni &
-R-80-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-260$ &
 \texttt{getBranchesRepository}: restituisce \texttt{[]} in caso di
 errore 403 (accesso negato) &
 Array vuoto senza eccezioni &
-R-80-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-261$ &
 \texttt{getBranchesRepository}: propaga errori con status diverso da
 404/403 (es.\ 500 Errore server) &
 Eccezione originale propagata &
-R-80-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-262$ &
 \texttt{getBranchesRepository}: propaga errori non-\texttt{ApiError}
 (es.\ errore di rete) &
 Eccezione originale propagata &
-R-80-F-Ob &
 \Soddisfatto \\
  
 % ==================================================
@@ -3523,20 +3138,17 @@ $TU_{F}-263$ &
 \texttt{GET /api/repositories/:id/branches/:branch/report} con il
 path corretto e restituisce il report &
 \texttt{apiGet} invocato con path corretto; report restituito &
-R-81-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-264$ &
 \texttt{getReportRepository}: codifica correttamente il nome della
 branch (spazi e \texttt{/} come \texttt{\%2F} e \texttt{\%20}) &
 URL codificato nell'argomento di \texttt{apiGet} &
-R-81-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-265$ &
 \texttt{getReportRepository}: propaga gli errori della API &
 Eccezione originale propagata &
-R-81-F-Ob &
 \Soddisfatto \\
 
 % ==================================================
@@ -3546,27 +3158,23 @@ $TU_{F}-266$ &
 \texttt{ScanButton}: mostra il bottone \texttt{"Lancia scansione"} di
 default &
 Pulsante con testo \texttt{"Lancia scansione"} presente &
-R-92-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-267$ &
 \texttt{ScanButton}: chiama \texttt{reset} e \texttt{triggerScan} al
 click del bottone &
 Entrambe le funzioni invocate &
-R-92-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-268$ &
 \texttt{ScanButton}: mostra \texttt{"Avvio..."} e disabilita il bottone
 durante \texttt{isPending = true} &
 Pulsante \texttt{disabled} con testo \texttt{"Avvio..."} &
-R-92-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-269$ &
 \texttt{ScanButton}: disabilita il bottone se \texttt{branch} \`e vuoto &
 Pulsante con attributo \texttt{disabled} &
-R-92-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-270$ &
@@ -3574,26 +3182,22 @@ $TU_{F}-270$ &
 la scansione \`e in corso (\texttt{isSuccess = true} e \texttt{scanId}
 valorizzato) &
 Pulsante con testo \texttt{"Ferma scansione"} presente &
-R-93-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-271$ &
 \texttt{ScanButton}: mostra \texttt{"Arresto..."} e disabilita il
 bottone durante \texttt{isStopping = true} &
 Pulsante \texttt{disabled} con testo \texttt{"Arresto..."} &
-R-93-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-272$ &
 \texttt{ScanButton}: mostra il messaggio di errore di avvio scan &
 Testo \texttt{"Errore avvio"} visibile nel DOM &
-R-92-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-273$ &
 \texttt{ScanButton}: mostra il messaggio di errore di stop scan &
 Testo \texttt{"Errore stop"} visibile nel DOM &
-R-93-F-Ob &
 \Soddisfatto \\
 
 % ==================================================
@@ -3603,49 +3207,42 @@ $TU_{F}-274$ &
 \texttt{useScan}: inizia con \texttt{isPending = false},
 \texttt{scanId = undefined} e \texttt{isSuccess = false} &
 Stato iniziale corretto &
-R-92-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-275$ &
 \texttt{useScan}: imposta \texttt{isPending = true} durante la
 mutazione &
 \texttt{isPending = true} mentre la promise \`e pendente &
-R-92-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-276$ &
 \texttt{useScan}: restituisce il \texttt{scanId} e imposta
 \texttt{isSuccess = true} dopo il successo &
 \texttt{scanId = "scan-123"}; \texttt{isSuccess = true} &
-R-92-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-277$ &
 \texttt{useScan}: imposta \texttt{error} in caso di fallimento della
 mutazione &
 \texttt{error.message = "Scan fallito"} &
-R-92-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-278$ &
 \texttt{useStopScan}: inizia con \texttt{isStopping = false} e
 \texttt{stopError = null} &
 Stato iniziale corretto &
-R-93-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-279$ &
 \texttt{useStopScan}: chiama \texttt{stopScan} con il \texttt{scanId}
 corretto al trigger &
 \texttt{scanRepository.stopScan("scan-abc")} invocato &
-R-93-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-280$ &
 \texttt{useStopScan}: imposta \texttt{isStopping = true} durante la
 mutazione &
 \texttt{isStopping = true} mentre la promise \`e pendente &
-R-93-F-Ob &
 \Soddisfatto \\
 
 % ==================================================
@@ -3656,26 +3253,22 @@ $TU_{F}-281$ &
 con il payload corretto e restituisce il \texttt{scanId} &
 \texttt{apiPost("/api/scan", payload)} invocato; \texttt{scanId}
 restituito &
-R-92-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-282$ &
 \texttt{scanRepository.requestScan}: propaga gli errori della API &
 Eccezione originale propagata &
-R-92-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-283$ &
 \texttt{scanRepository.stopScan}: chiama
 \texttt{PATCH /api/scan/:scanId} con il \texttt{scanId} corretto &
 \texttt{apiPatch("/api/scan/scanId")} invocato &
-R-93-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-284$ &
 \texttt{scanRepository.stopScan}: propaga gli errori della API &
 Eccezione originale propagata &
-R-93-F-Ob &
 \Soddisfatto \\
 
  
@@ -3686,72 +3279,61 @@ $TU_{F}-285$ &
 \texttt{Header} (caricamento): non mostra \texttt{"Accedi"} n\'e
 \texttt{"Logout"} mentre \texttt{isLoading = true} &
 Entrambi i testi assenti durante il caricamento &
-R-10-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-286$ &
 \texttt{Header} (non autenticato): mostra il bottone \texttt{"Accedi"} &
 Testo \texttt{"Accedi"} visibile &
-R-10-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-287$ &
 \texttt{Header} (non autenticato): non mostra \texttt{"Logout"} n\'e
 \texttt{NewWorkspaceDialog} &
 Entrambi gli elementi assenti dal DOM &
-R-10-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-288$ &
 \texttt{Header} (non autenticato): chiama \texttt{login} al click
 su \texttt{"Accedi"} &
 \texttt{login} invocato esattamente una volta &
-R-10-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-289$ &
 \texttt{Header} (autenticato): mostra il bottone \texttt{"Logout"} &
 Testo \texttt{"Logout"} visibile &
-R-10-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-290$ &
 \texttt{Header} (autenticato): mostra \texttt{NewWorkspaceDialog} &
 Elemento con \texttt{data-testid="new-workspace-dialog"} presente &
-R-32-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-291$ &
 \texttt{Header} (autenticato): non mostra \texttt{"Accedi"} &
 Testo \texttt{"Accedi"} assente dal DOM &
-R-10-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-292$ &
 \texttt{Header} (autenticato): chiama \texttt{logout} al click su
 \texttt{"Logout"} &
 \texttt{logout} invocato esattamente una volta &
-R-10-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-293$ &
 \texttt{Header} (navigazione): mostra il link \texttt{"Workspace"} e
 il link \texttt{"Inviti"} quando autenticato &
 Entrambi i testi visibili nel DOM &
-R-26-F-Ob, R-20-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-294$ &
 \texttt{Header} (navigazione): mostra il logo con link alla homepage &
 Elemento \texttt{img} con \texttt{alt="Logo"} presente &
-R-10-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-295$ &
 \texttt{Header} (non autenticato): non mostra i link \texttt{"Workspace"}
 n\'e \texttt{"Inviti"} &
 Entrambi i testi assenti dal DOM &
-R-10-F-Ob &
 \Soddisfatto \\
 
 % ==================================================
@@ -3760,31 +3342,26 @@ R-10-F-Ob &
 $TU_{F}-296$ &
 \texttt{Footer}: mostra il copyright con l'anno corrente &
 Testo \texttt{"© <anno corrente>"} visibile nel DOM &
-R-10-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-297$ &
 \texttt{Footer}: mostra il nome del gruppo \texttt{"Byte-Holders"} &
 Testo \texttt{"Realizzato dal gruppo Byte-Holders"} visibile &
-R-10-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-298$ &
 \texttt{Footer}: mostra il nome del prodotto \texttt{"CodeGuardian"} &
 Testo \texttt{"CodeGuardian"} visibile nel DOM &
-R-10-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-299$ &
 \texttt{Footer}: mostra il logo &
 Elemento \texttt{img} con \texttt{alt="Logo"} presente nel DOM &
-R-10-F-Ob &
 \Soddisfatto \\
  
 $TU_{F}-300$ &
 \texttt{Footer}: non contiene link social &
 Nessun elemento con ruolo \texttt{link} presente nel DOM &
-R-10-F-Ob &
 \Soddisfatto \\
 
 \end{longtable}
@@ -3795,114 +3372,190 @@ In questa sezione elenchiamo i test necessari per verificare che il software fun
 
 \renewcommand{\arraystretch}{1.5}
 \rowcolors{2}{LightGray}{white}
-\setlength{\LTleft}{0pt plus 1fill}\setlength{\LTright}{0pt plus 1fill}\begin{longtable}{>{\centering\arraybackslash}m{1.2cm} >{\raggedright\arraybackslash}p{8.2cm} >{\centering\arraybackslash}m{2.5cm} >{\centering\arraybackslash}m{1.2cm}}
+\setlength{\LTleft}{0pt plus 1fill}\setlength{\LTright}{0pt plus 1fill}\begin{longtable}{>{\centering\arraybackslash}m{1.4cm} >{\raggedright\arraybackslash}p{7.2cm} >{\centering\arraybackslash}m{2.5cm} >{\centering\arraybackslash}m{2.2cm}}
 \rowcolor{AccentColor}
 \textcolor{white}{\textbf{ID}} & \textcolor{white}{\textbf{Descrizione}} & \textcolor{white}{\textbf{Requisito\textsuperscript{G}}} & \textcolor{white}{\textbf{Stato}} \\
 \endhead
 
-% === Autenticazione e Registrazione ===
-TS-01 & Verificare che un utente non autenticato possa registrarsi al sistema inserendo username, email e password & R-1-F-Ob & NI \\
-TS-02 & Verificare che il sistema autentichi gli utenti tramite Amazon Cognito\textsuperscript{G} & R-2-F-Ob & NI \\
-TS-03 & Verificare che il sistema mostri un messaggio di errore specifico in caso di registrazione fallita & R-3-F-Ob & NI \\
-TS-04 & Verificare che il sistema invii un codice OTP via email per la conferma della registrazione & R-4-F-De & NI \\
-TS-05 & Verificare che il sistema mostri un messaggio di errore se il codice OTP è errato o scaduto durante la conferma registrazione & R-5-F-De & NI \\
-TS-06 & Verificare che un utente non autenticato possa effettuare il login tramite username/email e password & R-6-F-Ob & NI \\
-TS-07 & Verificare che il sistema mostri un messaggio di errore in caso di credenziali errate & R-7-F-Ob & NI \\
-TS-08 & Verificare che l'utente possa recuperare la password & R-8-F-Ob & NI \\
-TS-09 & Verificare che il sistema mostri un messaggio di errore in caso di ripristino password fallito & R-9-F-Ob & NI \\
-% === Workspace ===
-TS-10 & Verificare che il Project Manager\textsuperscript{G} possa invitare utenti in un workspace selezionando un ruolo & R-10-F-Ob & NI \\
-TS-11 & Verificare che il sistema mostri un messaggio di errore se l'invito a un workspace non va a buon fine & R-11-F-Ob & NI \\
-TS-12 & Verificare che l'utente possa visualizzare la lista degli inviti ricevuti con dettagli & R-12-F-Ob & NI \\
-TS-13 & Verificare che il sistema mostri per ciascun invito: username mittente, username owner del workspace e nome del workspace & R-13-F-Ob & NI \\
-TS-14 & Verificare che l'utente possa accettare o rifiutare un invito a un workspace & R-14-F-Ob & NI \\
-TS-15 & Verificare che l'utente autenticato possa visualizzare la lista dei workspace a cui appartiene & R-15-F-Ob & NI \\
-TS-16 & Verificare che il sistema mostri per ciascun workspace in lista: nome del workspace e username dell'owner & R-16-F-Ob & NI \\
-TS-17 & Verificare che l'utente possa cercare workspace per nome & R-17-F-Ob & NI \\
-TS-18 & Verificare che l'utente autenticato possa creare un nuovo workspace inserendone il nome & R-18-F-Ob & NI \\
-TS-19 & Verificare che il sistema assegni automaticamente il ruolo di owner al creatore del workspace & R-19-F-Ob & NI \\
-TS-20 & Verificare che il sistema impedisca la creazione di workspace con nome duplicato o non valido & R-20-F-Ob & NI \\
-TS-21 & Verificare che l'utente possa visualizzare la lista dei ruoli di un workspace & R-21-F-De & NI \\
-TS-22 & Verificare che il sistema mostri nome e descrizione per ciascun ruolo del workspace & R-22-F-De & NI \\
-TS-23 & Verificare che l'utente possa visualizzare la lista degli utenti di un workspace & R-23-F-Ob & NI \\
-TS-24 & Verificare che il sistema mostri username e ruolo per ciascun utente del workspace & R-24-F-Ob & NI \\
-TS-25 & Verificare che il Project Manager\textsuperscript{G} possa rimuovere un utente da un workspace & R-25-F-Ob & NI \\
-TS-26 & Verificare che il sistema verifichi automaticamente lo stato di aggiornamento di una repository & R-26-F-De & NI \\
-TS-27 & Verificare che il sistema recuperi la data dell'ultimo push da GitHub\textsuperscript{G} per verificare l'aggiornamento & R-27-F-De & NI \\
-TS-28 & Verificare che il sistema aggiorni lo stato della repository a 'non aggiornata' se il push è più recente della scansione & R-28-F-De & NI \\
-TS-29 & Verificare che il sistema gestisca errori di connessione con GitHub\textsuperscript{G} & R-29-F-De & NI \\
-TS-30 & Verificare che l'utente possa avviare una scansione & R-30-F-Ob & NI \\
-TS-31 & Verificare che il sistema mostri lo stato della scansione in corso & R-31-F-Ob & NI \\
-TS-32 & Verificare che il sistema notifichi errori durante la scansione & R-32-F-Ob & NI \\
-TS-33 & Verificare che l'utente possa avviare una scansione su tutte le repository di un workspace & R-33-F-Ob & NI \\
-TS-34 & Verificare che l'utente possa avviare una scansione su una singola repository selezionando il branch\textsuperscript{G} & R-34-F-Ob & NI \\
-TS-35 & Verificare che l'utente possa avviare una scansione su un insieme di repository selezionate & R-35-F-Ob & NI \\
-TS-36 & Verificare che l'utente possa annullare una scansione in corso & R-36-F-Ob & NI \\
-TS-37 & Verificare che il sistema analizzi una o più repository & R-37-F-Ob & NI \\
-TS-38 & Verificare che l'architettura sia ad agenti coordinati da un orchestratore autocratico\textsuperscript{G} & R-38-F-Ob & NI \\
-TS-39 & Verificare che il sistema cloni le repository da GitHub\textsuperscript{G} in locale prima dell'analisi & R-39-F-Ob & NI \\
-TS-40 & Verificare che il sistema distribuisca l'analisi tra più componenti specializzati & R-40-F-Ob & NI \\
-TS-41 & Verificare che ciascun agente esegua l'analisi di competenza e generi un report\textsuperscript{G} parziale & R-41-F-Ob & NI \\
-TS-42 & Verificare che il sistema aggreghi i risultati & R-42-F-Ob & NI \\
-TS-43 & Verificare che il sistema salvi un report\textsuperscript{G} finale & R-43-F-Ob & NI \\
-TS-44 & Verificare che il sistema gestisca URL o PAT non validi interrompendo l'operazione e notificando l'utente & R-44-F-Ob & NI \\
-TS-45 & Verificare che l'utente possa visualizzare la lista dei tag\textsuperscript{G} raccolta\textsuperscript{G} di un workspace & R-45-F-De & NI \\
-TS-46 & Verificare che l'utente possa creare un tag\textsuperscript{G} raccolta\textsuperscript{G} all'interno di un workspace & R-46-F-De & NI \\
-TS-47 & Verificare che il sistema impedisca la creazione di tag\textsuperscript{G} raccolta\textsuperscript{G} con nome non valido o duplicato & R-47-F-De & NI \\
-TS-48 & Verificare che l'utente possa eliminare un tag\textsuperscript{G} raccolta\textsuperscript{G} dal workspace & R-48-F-De & NI \\
-TS-49 & Verificare che l'utente possa assegnare tag\textsuperscript{G} raccolta\textsuperscript{G} a una repository & R-49-F-De & NI \\
-TS-50 & Verificare che l'utente possa rimuovere tag\textsuperscript{G} raccolta\textsuperscript{G} da una repository & R-50-F-De & NI \\
-TS-51 & Verificare che l'utente possa visualizzare la lista delle repository del workspace & R-51-F-Ob & NI \\
-TS-52 & Verificare che il sistema mostri per ciascuna repository in lista: nome, data ultima scansione, indicatore criticità, voto documentazione, percentuale code coverage\textsuperscript{G} & R-52-F-Ob & NI \\
-TS-53 & Verificare che l'utente possa aggiungere una repository GitHub\textsuperscript{G} al workspace & R-53-F-Ob & NI \\
-TS-54 & Verificare che il sistema validi il link della repository e verifichi l'accesso & R-54-F-Ob & NI \\
-TS-55 & Verificare che l'utente possa rimuovere una repository dal workspace & R-55-F-Ob & NI \\
-TS-56 & Verificare che il sistema permetta l'annullamento della rimozione di una repository & R-56-F-Ob & NI \\
-TS-57 & Verificare che il sistema avvisi l'utente se la repository da rimuovere ha scansioni in corso e richieda conferma esplicita & R-57-F-Ob & NI \\
-TS-58 & Verificare che l'utente possa effettuare ricerche di repository & R-58-F-Ob & NI \\
-TS-59 & Verificare che l'utente possa filtrare le repository tramite barra di ricerca testuale & R-59-F-De & NI \\
-TS-60 & Verificare che l'utente possa filtrare le repository tramite selezione di filtri multipli (linguaggio, tag, coverage, voto doc) & R-60-F-De & NI \\
-TS-61 & Verificare che il sistema permetta la selezione di filtri di ricerca multipli per le repository & R-61-F-De & NI \\
-TS-62 & Verificare che l'utente possa ordinare la lista delle repository & R-62-F-De & NI \\
-TS-63 & Verificare che l'utente possa visualizzare il dettaglio di una repository & R-63-F-Ob & NI \\
-TS-64 & Verificare che il sistema presenti la sezione completa di analisi dei test della repository & R-64-F-Ob & NI \\
-TS-65 & Verificare che il sistema mostri la percentuale di code coverage\textsuperscript{G} & R-65-F-De & NI \\
-TS-66 & Verificare che il sistema mostri l'elenco dei test con qualità insufficiente & R-66-F-Ob & NI \\
-TS-67 & Verificare che il sistema mostri la percentuale di test passati & R-67-F-De & NI \\
-TS-68 & Verificare che il sistema mostri l'elenco dei test non passati & R-68-F-De & NI \\
-TS-69 & Verificare che il sistema mostri un messaggio informativo se nessun test è rilevato & R-69-F-De & NI \\
-TS-70 & Verificare che il sistema presenti la sezione delle informazioni tecniche (linguaggi, librerie, framework\textsuperscript{G}) & R-70-F-Ob & NI \\
-TS-71 & Verificare che il sistema mostri la lista dei linguaggi rilevati & R-71-F-Ob & NI \\
-TS-72 & Verificare che il sistema mostri la lista delle librerie rilevate & R-72-F-Ob & NI \\
-TS-73 & Verificare che il sistema mostri la lista dei framework\textsuperscript{G} rilevati & R-73-F-Ob & NI \\
-TS-74 & Verificare che il sistema mostri grafici semplificati dei risultati OWASP & R-74-F-Ob & NI \\
-TS-75 & Verificare che il sistema mostri un elenco ordinato delle vulnerabilità\textsuperscript{G} OWASP & R-75-F-Ob & NI \\
-TS-76 & Verificare che il sistema mostri per ciascuna vulnerabilità\textsuperscript{G}: nome/tipo, file di origine e categoria di criticità OWASP & R-76-F-Ob & NI \\
-TS-77 & Verificare che il sistema fornisca i dettagli per ogni vulnerabilità\textsuperscript{G} & R-77-F-De & NI \\
-TS-78 & Verificare che il sistema presenti la sezione di analisi della documentazione della repository & R-78-F-Ob & NI \\
-TS-79 & Verificare che il sistema mostri un voto complessivo della qualità documentale & R-79-F-Ob & NI \\
-TS-80 & Verificare che il sistema mostri consigli per il miglioramento del README & R-80-F-De & NI \\
-TS-81 & Verificare che il sistema elenchi sezioni o documenti standard mancanti & R-81-F-Ob & NI \\
-TS-82 & Verificare che il sistema mostri suggerimenti sulla qualità del codice & R-82-F-De & NI \\
-TS-83 & Verificare che il sistema mostri un messaggio informativo se non sono disponibili dati di scansione per una repository & R-83-F-Ob & NI \\
-TS-84 & Verificare che il sistema permetta la selezione del branch\textsuperscript{G} per la visualizzazione & R-84-F-Ob & NI \\
-TS-85 & Verificare che il sistema mostri la lista dei branch\textsuperscript{G} disponibili per una repository & R-85-F-Ob & NI \\
-TS-86 & Verificare che il sistema notifichi l'errore se non sono disponibili branch\textsuperscript{G} validi per una repository & R-86-F-Ob & NI \\
-TS-87 & Verificare che l'utente possa visualizzare una visione aggregata del workspace & R-87-F-Ob & NI \\
-TS-88 & Verificare che l'utente possa filtrare la visione aggregata per tag\textsuperscript{G} raccolta\textsuperscript{G} & R-88-F-De & NI \\
-TS-89 & Verificare che il sistema mostri le metriche aggregate dei test (coverage medio, repository sopra soglia, coverage minimo) & R-89-F-Ob & NI \\
-TS-90 & Verificare che il sistema mostri grafici aggregati di distribuzione linguaggi e framework\textsuperscript{G} del workspace & R-90-F-Ob & NI \\
-TS-91 & Verificare che il sistema mostri percentuale repository sicure e grafico vulnerabilità\textsuperscript{G} aggregate per gravità & R-91-F-Ob & NI \\
-TS-92 & Verificare che il sistema mostri voto documentazione minimo, medio, massimo e grafico distribuzione del workspace & R-92-F-Ob & NI \\
-TS-93 & Verificare che il sistema mostri un messaggio di errore se il workspace è vuoto o senza repository nella visione aggregata & R-93-F-Ob & NI \\
-TS-94 & Verificare che l'utente possa aggiornare le informazioni sulle repository in base all'ultima scansione & R-94-F-Ob & NI \\
+% === Autenticazione, Registrazione, Login, Recupero password ===
+TS-001 & Verificare che un utente non autenticato possa registrarsi al sistema & R-1-F-Ob & \Soddisfatto \\
+TS-002 & Verificare che durante la registrazione l'utente debba specificare uno username & R-2-F-Ob & \Soddisfatto \\
+TS-003 & Verificare che durante la registrazione l'utente debba specificare un indirizzo email & R-3-F-Ob & \Soddisfatto \\
+TS-004 & Verificare che durante la registrazione l'utente debba specificare una password & R-4-F-Ob & \Soddisfatto \\
+TS-005 & Verificare che il sistema rifiuti la registrazione se lo username è già utilizzato da un altro utente & R-5-F-Ob & \Soddisfatto \\
+TS-006 & Verificare che il sistema rifiuti la registrazione se l'indirizzo email è già utilizzato da un altro utente & R-6-F-Ob & \Soddisfatto \\
+TS-007 & Verificare che il sistema invii un codice OTP via email per la conferma della registrazione & R-7-F-Ob & \Soddisfatto \\
+TS-008 & Verificare che, in fase di verifica dell'OTP di registrazione, il sistema mostri un messaggio di errore se il codice OTP è errato & R-8-F-Ob & \Soddisfatto \\
+TS-009 & Verificare che, in fase di verifica dell'OTP di registrazione, il sistema mostri un messaggio di errore se il codice OTP è scaduto & R-9-F-Ob & \Soddisfatto \\
+TS-010 & Verificare che un utente non autenticato possa effettuare il login tramite username e password & R-10-F-Ob & \Soddisfatto \\
+TS-011 & Verificare che il sistema mostri un messaggio di errore in caso di credenziali errate al login & R-11-F-Ob & \Soddisfatto \\
+TS-012 & Verificare che l'utente possa recuperare la password ricevendo un codice OTP all'indirizzo email di registrazione & R-12-F-Ob & \Soddisfatto \\
+TS-013 & Verificare che il sistema mostri un messaggio di errore se il codice OTP è errato o scaduto durante il recupero password & R-13-F-Ob & \Soddisfatto \\
+
+% === Workspace - Inviti e gestione utenti ===
+TS-014 & Verificare che un Project Manager\textsuperscript{G} possa invitare un utente registrato a un workspace tramite username & R-14-F-Ob & \Soddisfatto \\
+TS-015 & Verificare che un Project Manager\textsuperscript{G} possa invitare un utente registrato a un workspace assegnandogli il ruolo di Project Manager\textsuperscript{G} & R-15-F-Ob & \Soddisfatto \\
+TS-016 & Verificare che un Project Manager\textsuperscript{G} possa invitare un utente registrato a un workspace assegnandogli il ruolo di Tech Lead & R-16-F-Ob & \Soddisfatto \\
+TS-017 & Verificare che un Project Manager\textsuperscript{G} possa invitare un utente registrato a un workspace assegnandogli il ruolo di Developer & R-17-F-Ob & \Soddisfatto \\
+TS-018 & Verificare che il sistema non invii l'invito se l'utente invitato appartiene già al workspace & R-18-F-Ob & \Soddisfatto \\
+TS-019 & Verificare che il sistema mostri un messaggio di errore se l'utente invitato è già presente nel workspace & R-19-F-Ob & \Soddisfatto \\
+TS-020 & Verificare che un utente possa visualizzare la lista degli inviti ricevuti non ancora accettati né rifiutati & R-20-F-Ob & \Soddisfatto \\
+TS-021 & Verificare che, per ciascun invito, l'utente possa visualizzare il nome del workspace a cui è stato invitato & R-21-F-Ob & \Soddisfatto \\
+TS-022 & Verificare che, per ciascun invito, l'utente possa visualizzare lo username del mittente & R-22-F-Ob & \Soddisfatto \\
+TS-023 & Verificare che, per ciascun invito, l'utente possa visualizzare il ruolo che assumerebbe accettando l'invito & R-23-F-Ob & \Soddisfatto \\
+TS-024 & Verificare che un utente autenticato possa accettare un invito a un workspace & R-24-F-Ob & \Soddisfatto \\
+TS-025 & Verificare che un utente autenticato possa rifiutare un invito a un workspace & R-25-F-Ob & \Soddisfatto \\
+
+% === Workspace - Lista e creazione ===
+TS-026 & Verificare che un utente autenticato possa visualizzare la lista dei workspace a cui appartiene & R-26-F-Ob & \Soddisfatto \\
+TS-027 & Verificare che, per ciascun workspace nella lista, sia visualizzato il nome del workspace & R-27-F-Ob & \Soddisfatto \\
+TS-028 & Verificare che, per ciascun workspace nella lista, sia visualizzato lo username dell'owner & R-28-F-Ob & \Soddisfatto \\
+TS-029 & Verificare che l'utente possa effettuare una ricerca di workspace per nome tramite barra di ricerca & R-29-F-De & \Soddisfatto \\
+TS-030 & Verificare che la ricerca di workspace per nome tramite barra di ricerca funzioni in tempo reale & R-30-F-De & \Soddisfatto \\
+TS-031 & Verificare che, se la lista dei workspace dell'utente è vuota, sia mostrato un messaggio dedicato & R-31-F-De & \Soddisfatto \\
+TS-032 & Verificare che un utente autenticato possa creare un nuovo workspace & R-32-F-Ob & \Soddisfatto \\
+TS-033 & Verificare che, durante la creazione di un workspace, l'utente debba specificarne il nome & R-33-F-Ob & \Soddisfatto \\
+TS-034 & Verificare che al creatore di un workspace venga assegnato automaticamente il ruolo di owner & R-34-F-Ob & \Soddisfatto \\
+TS-035 & Verificare che il sistema rifiuti la creazione di un workspace se esiste già un workspace con lo stesso nome creato dallo stesso utente & R-35-F-Ob & \Soddisfatto \\
+TS-036 & Verificare che, se il sistema rifiuta la creazione di un workspace, l'utente creatore visualizzi un messaggio di errore & R-36-F-Ob & \Soddisfatto \\
+TS-037 & Verificare che, se il sistema rifiuta la creazione di un workspace, sia mostrato un messaggio di errore dedicato & R-37-F-De & \Soddisfatto \\
+
+% === Workspace - Utenti e rimozione ===
+TS-038 & Verificare che, per ogni workspace, l'utente possa visualizzare lo username di ciascun utente appartenente al workspace & R-38-F-Ob & \Soddisfatto \\
+TS-039 & Verificare che, per ogni workspace, l'utente possa visualizzare il ruolo di ciascun utente appartenente al workspace & R-39-F-Ob & \Soddisfatto \\
+TS-040 & Verificare che un utente autenticato appartenente a un workspace possa rimuovere qualunque utente da quel workspace & R-40-F-Ob & \Soddisfatto \\
+TS-041 & Verificare che solo gli utenti con ruolo Project Manager\textsuperscript{G} possano rimuovere utenti dal workspace, e che non sia consentito rimuovere l'owner & R-41-F-De & \Soddisfatto \\
+
+% === Verifica aggiornamento scansione repository ===
+TS-042 & Verificare che, all'avvio di una scansione, il sistema memorizzi in memoria persistente la data di inizio della scansione & R-42-F-De & \Soddisfatto \\
+TS-043 & Verificare che, al termine di una scansione, il sistema memorizzi in memoria persistente la data di fine della scansione & R-43-F-De & \Soddisfatto \\
+TS-044 & Verificare che il sistema sia in grado di reperire la data dell'ultimo push verso una repository registrata in un workspace & R-44-F-De & NI \\
+TS-045 & Verificare che il sistema aggiorni lo stato di una repository a 'non aggiornata' se la data dell'ultimo push è successiva alla data di inizio dell'ultima scansione & R-45-F-De & NI \\
+TS-046 & Verificare che, in caso di problemi di connessione con GitHub\textsuperscript{G} durante il reperimento dell'ultimo push, il sistema aggiorni lo stato della repository a 'non disponibile' & R-46-F-De & NI \\
+TS-047 & Verificare che un utente con accesso al workspace possa richiedere l'aggiornamento dello stato di una repository & R-47-F-De & NI \\
+TS-048 & Verificare che un utente con accesso al workspace possa visualizzare lo stato di aggiornamento di una repository & R-48-F-De & NI \\
+
+% === Avvio e annullamento scansione ===
+TS-049 & Verificare che un utente con accesso al workspace possa visualizzare se è in corso una scansione su una repository & R-49-F-De & \Soddisfatto \\
+TS-050 & Verificare che un utente con accesso al workspace possa lanciare una scansione contro una repository & R-50-F-Ob & \Soddisfatto \\
+TS-051 & Verificare che, se al lancio della scansione il sistema non riesce a connettersi alla repository, la scansione sia annullata e venga mostrato un errore all'utente & R-51-F-Ob & \Soddisfatto \\
+TS-052 & Verificare che, se al lancio della scansione il sistema non riesce ad accedere a un tool di scansione che richiede autenticazione, la scansione sia annullata e venga mostrato un errore & R-52-F-Ob & \Soddisfatto \\
+TS-053 & Verificare che un utente possa lanciare con un unico comando una scansione contro tutte le repository di un workspace & R-53-F-De & NI \\
+TS-054 & Verificare che un utente con accesso al workspace possa visualizzare i branch\textsuperscript{G} attuali di una repository & R-54-F-Ob & \Soddisfatto \\
+TS-055 & Verificare che un utente con accesso al workspace possa lanciare una scansione su uno specifico branch\textsuperscript{G} di una repository & R-55-F-Ob & \Soddisfatto \\
+TS-056 & Verificare che un utente possa lanciare, previa selezione multipla, una scansione contro un insieme di repository selezionate del workspace & R-56-F-De & NI \\
+TS-057 & Verificare che un utente che visualizza una scansione in corso possa interromperla & R-57-F-Ob & \Soddisfatto \\
+
+% === Esecuzione analisi ===
+TS-058 & Verificare che il sistema cloni localmente la repository bersaglio prima di effettuare la scansione & R-58-F-Ob & \Soddisfatto \\
+TS-059 & Verificare che, dopo il lancio del container di scansione, sia avviato un container per l'esecuzione della scansione & R-59-F-Ob & \Soddisfatto \\
+TS-060 & Verificare che il sistema esegua un'analisi statica di sicurezza del codice del progetto bersaglio e generi un report\textsuperscript{G} & R-60-F-Ob & \Soddisfatto \\
+TS-061 & Verificare che il sistema generi una remediation per ciascuna vulnerabilità\textsuperscript{G} individuata nell'analisi statica di sicurezza e produca un report\textsuperscript{G} & R-61-F-Ob & \Soddisfatto \\
+TS-062 & Verificare che il sistema calcoli la code coverage\textsuperscript{G} del progetto bersaglio e generi un report\textsuperscript{G} contenente i valori & R-62-F-Ob & \Soddisfatto \\
+TS-063 & Verificare che il sistema individui i test eseguiti dal progetto bersaglio e falliti, e generi un report\textsuperscript{G} contenente l'elenco & R-63-F-Ob & \Soddisfatto \\
+TS-064 & Verificare che il sistema analizzi la correttezza logica dei test codificati del progetto bersaglio e generi un report\textsuperscript{G} & R-64-F-De & NI \\
+TS-065 & Verificare che il sistema analizzi l'utilizzo di best practice nel codice del progetto bersaglio e generi un report\textsuperscript{G} & R-65-F-De & NI \\
+TS-066 & Verificare che il sistema analizzi la correttezza logica a livello di codice del progetto bersaglio e generi un report\textsuperscript{G} & R-66-F-De & NI \\
+TS-067 & Verificare che il sistema analizzi le librerie utilizzate dal progetto bersaglio e generi un report\textsuperscript{G} con elenco di librerie e versioni & R-67-F-Ob & \Soddisfatto \\
+TS-068 & Verificare che il sistema individui le dipendenze vulnerabili utilizzate dal progetto bersaglio e generi un report\textsuperscript{G} & R-68-F-De & \Soddisfatto \\
+TS-069 & Verificare che il sistema analizzi la qualità del file README in root del progetto bersaglio e generi un report\textsuperscript{G} & R-69-F-Ob & \Soddisfatto \\
+TS-070 & Verificare che il sistema analizzi la qualità dei commenti nel codice del progetto bersaglio e generi un report\textsuperscript{G} & R-70-F-Ob & \Soddisfatto \\
+TS-071 & Verificare che un agente sintetizzatore unisca i report\textsuperscript{G} parziali in un unico riassunto contenente un voto finale compreso tra 1 e 10 & R-71-F-Ob & \Soddisfatto \\
+TS-072 & Verificare che, al termine della scansione, il container generato trasmetta il report\textsuperscript{G} e ne deleghi il salvataggio sul database & R-72-F-Ob & \Soddisfatto \\
+
+% === Tag raccolta ===
+TS-073 & Verificare che un utente appartenente a un workspace possa visualizzare la lista dei tag\textsuperscript{G} raccolta\textsuperscript{G} definiti nel workspace & R-73-F-De & NI \\
+TS-074 & Verificare che un utente appartenente a un workspace possa definire un tag\textsuperscript{G} raccolta\textsuperscript{G} unico all'interno del workspace & R-74-F-De & NI \\
+TS-075 & Verificare che il sistema non definisca un tag\textsuperscript{G} raccolta\textsuperscript{G} se nel workspace esiste già un tag con lo stesso nome & R-75-F-De & NI \\
+TS-076 & Verificare che, al tentativo di definire un tag con nome duplicato, l'utente visualizzi un messaggio di errore e il tag non venga definito & R-76-F-De & NI \\
+TS-077 & Verificare che un utente appartenente a un workspace possa eliminare un tag\textsuperscript{G} raccolta\textsuperscript{G} definito nel workspace & R-77-F-De & NI \\
+TS-078 & Verificare che un utente appartenente a un workspace possa assegnare un tag\textsuperscript{G} raccolta\textsuperscript{G} a un qualunque numero di repository del workspace & R-78-F-De & NI \\
+TS-079 & Verificare che un utente appartenente a un workspace possa rimuovere un tag\textsuperscript{G} raccolta\textsuperscript{G} da un qualunque numero di repository del workspace & R-79-F-De & NI \\
+
+% === Repository - Lista e aggiunta ===
+TS-080 & Verificare che un utente appartenente a un workspace possa visualizzare la lista delle repository del workspace & R-80-F-Ob & \Soddisfatto \\
+TS-081 & Verificare che, per ciascuna repository nella lista, sia visualizzato il nome & R-81-F-Ob & \Soddisfatto \\
+TS-082 & Verificare che, per ciascuna repository nella lista, sia visualizzata la data dell'ultima scansione sul branch\textsuperscript{G} develop & R-82-F-Ob & \Soddisfatto \\
+TS-083 & Verificare che, per ciascuna repository nella lista, sia visualizzato il voto di sicurezza del codice rilevato dall'ultima scansione su develop & R-83-F-Ob & \Soddisfatto \\
+TS-084 & Verificare che, per ciascuna repository nella lista, sia visualizzato il voto della documentazione\textsuperscript{G} calcolato durante l'ultima scansione su develop & R-84-F-Ob & \Soddisfatto \\
+TS-085 & Verificare che, per ciascuna repository nella lista, sia visualizzata la percentuale delle righe di codice testate durante l'ultima scansione su develop & R-85-F-Ob & \Soddisfatto \\
+TS-086 & Verificare che un utente appartenente a un workspace possa aggiungere una repository GitHub\textsuperscript{G} al workspace & R-86-F-Ob & \Soddisfatto \\
+TS-087 & Verificare che, in fase di aggiunta di una repository GitHub\textsuperscript{G}, l'utente possa indicare opzionalmente un Access Token & R-87-F-Ob & \Soddisfatto \\
+TS-088 & Verificare che un utente appartenente a un workspace possa aggiungere un Access Token a una repository GitHub\textsuperscript{G} appartenente al workspace & R-88-F-Ob & \Soddisfatto \\
+TS-089 & Verificare che un utente appartenente a un workspace possa aggiornare l'Access Token di una repository GitHub\textsuperscript{G} inserendone uno nuovo & R-89-F-Ob & \Soddisfatto \\
+TS-090 & Verificare che, all'aggiunta di una repository GitHub\textsuperscript{G} al workspace, il sistema controlli la validità dell'Access Token associato a tale repository & R-90-F-Ob & \Soddisfatto \\
+
+% === Repository - Rimozione ===
+TS-091 & Verificare che un utente appartenente a un workspace possa rimuovere una repository registrata nel workspace & R-91-F-Ob & \Soddisfatto \\
+TS-092 & Verificare che, prima della effettiva rimozione di una repository, il sistema richieda conferma o annullamento, e che in caso di mancata conferma la procedura sia annullata & R-92-F-De & NI \\
+
+% === Ricerca avanzata repository ===
+TS-093 & Verificare che un utente possa effettuare una ricerca avanzata che restringa i risultati alle repository che utilizzano tutti i linguaggi specificati & R-93-F-De & NI \\
+TS-094 & Verificare che un utente possa effettuare una ricerca avanzata che restringa i risultati alle repository a cui sono assegnati tutti i tag specificati & R-94-F-De & NI \\
+TS-095 & Verificare che un utente possa effettuare una ricerca avanzata che restringa i risultati alle repository la cui ultima scansione su develop ha registrato una percentuale di code coverage\textsuperscript{G} in un intervallo specificato & R-95-F-De & NI \\
+TS-096 & Verificare che un utente possa effettuare una ricerca avanzata che restringa i risultati alle repository la cui ultima scansione su develop ha registrato un voto sulla documentazione\textsuperscript{G} in un intervallo specificato & R-96-F-De & NI \\
+
+% === Ordinamento repository ===
+TS-097 & Verificare che un utente possa ordinare la lista delle repository in base al nome, in ordine alfabetico crescente & R-97-F-De & NI \\
+TS-098 & Verificare che un utente possa ordinare la lista delle repository in base al nome, in ordine alfabetico decrescente & R-98-F-De & NI \\
+TS-099 & Verificare che un utente possa ordinare la lista delle repository in base alla data di aggiunta al workspace, dalla più recente alla meno recente & R-99-F-De & NI \\
+TS-100 & Verificare che un utente possa ordinare la lista delle repository in base alla data di aggiunta al workspace, dalla meno recente alla più recente & R-100-F-De & NI \\
+TS-101 & Verificare che un utente possa ordinare la lista delle repository in base alla data dell'ultima scansione sul branch\textsuperscript{G} develop, dalla più recente alla meno recente & R-101-F-De & NI \\
+TS-102 & Verificare che un utente possa ordinare la lista delle repository in base alla data dell'ultima scansione sul branch\textsuperscript{G} develop, dalla meno recente alla più recente & R-102-F-De & NI \\
+TS-103 & Verificare che un utente possa ordinare la lista delle repository in base alla percentuale di code coverage\textsuperscript{G} sulle righe di codice dell'ultima scansione su develop, in ordine crescente & R-103-F-De & NI \\
+TS-104 & Verificare che un utente possa ordinare la lista delle repository in base alla percentuale di code coverage\textsuperscript{G} sulle righe di codice dell'ultima scansione su develop, in ordine decrescente & R-104-F-De & NI \\
+TS-105 & Verificare che un utente possa ordinare la lista delle repository in base al voto della documentazione\textsuperscript{G} dell'ultima scansione su develop, in ordine crescente & R-105-F-De & NI \\
+TS-106 & Verificare che un utente possa ordinare la lista delle repository in base al voto della documentazione\textsuperscript{G} dell'ultima scansione su develop, in ordine decrescente & R-106-F-De & NI \\
+
+% === Dettaglio repository - Report ===
+TS-107 & Verificare che un utente appartenente a un workspace possa visualizzare nel dettaglio il report\textsuperscript{G} dell'ultima scansione di una repository & R-107-F-Ob & \Soddisfatto \\
+TS-108 & Verificare che il report\textsuperscript{G} di un branch\textsuperscript{G} contenga una sezione dedicata all'analisi dei test & R-108-F-Ob & \Soddisfatto \\
+TS-109 & Verificare che la sezione test del report\textsuperscript{G} rappresenti le 4 metriche di code coverage\textsuperscript{G} (righe di codice, statement, branch\textsuperscript{G}, funzioni) & R-109-F-Ob & \Soddisfatto \\
+TS-110 & Verificare che la sezione test del report\textsuperscript{G} mostri le 4 metriche di code coverage\textsuperscript{G} tramite un grafico a barre & R-110-F-De & \Soddisfatto \\
+TS-111 & Verificare che la sezione test del report\textsuperscript{G} mostri la lista dei test falliti registrati dalla scansione & R-111-F-De & \Soddisfatto \\
+TS-112 & Verificare che la sezione test del report\textsuperscript{G} mostri la lista dei test di qualità insufficiente & R-112-F-De & NI \\
+TS-113 & Verificare che il report\textsuperscript{G} di un branch\textsuperscript{G} contenga una sezione dedicata alle informazioni tecniche sul progetto & R-113-F-Ob & \Soddisfatto \\
+TS-114 & Verificare che la sezione informazioni tecniche del report\textsuperscript{G} indichi il nome dei linguaggi registrati dalla scansione & R-114-F-Ob & \Soddisfatto \\
+TS-115 & Verificare che la sezione informazioni tecniche del report\textsuperscript{G} indichi il nome e la percentuale d'uso dei linguaggi registrati dalla scansione & R-115-F-De & \Soddisfatto \\
+TS-116 & Verificare che la sezione informazioni tecniche del report\textsuperscript{G} rappresenti l'utilizzo dei linguaggi tramite un grafico a torta & R-116-F-De & \Soddisfatto \\
+TS-117 & Verificare che la sezione informazioni tecniche del report\textsuperscript{G} indichi il nome delle librerie registrate dalla scansione & R-117-F-Ob & \Soddisfatto \\
+TS-118 & Verificare che la sezione informazioni tecniche del report\textsuperscript{G} indichi il nome dei framework\textsuperscript{G} registrati dalla scansione & R-118-F-Ob & \Soddisfatto \\
+TS-119 & Verificare che il report\textsuperscript{G} di un branch\textsuperscript{G} contenga una sezione dedicata all'analisi statica della sicurezza del codice & R-119-F-Ob & \Soddisfatto \\
+TS-120 & Verificare che la sezione di analisi statica della sicurezza del report\textsuperscript{G} indichi la lista delle vulnerabilità\textsuperscript{G} registrate dalla scansione & R-120-F-Ob & \Soddisfatto \\
+TS-121 & Verificare che la sezione di analisi statica della sicurezza del report\textsuperscript{G} indichi, per ogni vulnerabilità\textsuperscript{G}, le remediation registrate durante la scansione & R-121-F-De & \Soddisfatto \\
+TS-122 & Verificare che la sezione di analisi statica della sicurezza del report\textsuperscript{G} indichi, per ogni vulnerabilità\textsuperscript{G}, le conseguenze di una mancata sanificazione, se registrate & R-122-F-De & NI \\
+TS-123 & Verificare che la sezione di analisi statica della sicurezza del report\textsuperscript{G} mostri un istogramma con la distribuzione dei livelli di criticità delle vulnerabilità\textsuperscript{G} rilevate & R-123-F-De & \Soddisfatto \\
+TS-124 & Verificare che il report\textsuperscript{G} di un branch\textsuperscript{G} contenga una sezione dedicata all'analisi della documentazione\textsuperscript{G} & R-124-F-Ob & \Soddisfatto \\
+TS-125 & Verificare che la sezione di analisi della documentazione\textsuperscript{G} del report\textsuperscript{G} includa un'analisi del file README in root del bersaglio della scansione & R-125-F-Ob & \Soddisfatto \\
+TS-126 & Verificare che la sezione di analisi della documentazione\textsuperscript{G} del report\textsuperscript{G} includa un'analisi dei commenti nel codice del bersaglio della scansione & R-126-F-De & \Soddisfatto \\
+TS-127 & Verificare che il report\textsuperscript{G} di un branch\textsuperscript{G} contenga una sezione dedicata all'analisi della qualità del codice & R-127-F-De & NI \\
+
+% === Nessuna scansione ===
+TS-128 & Verificare che, se l'utente richiede l'ultimo report\textsuperscript{G} di un branch\textsuperscript{G} a cui non è associato alcun report\textsuperscript{G}, sia visualizzato un messaggio opportuno & R-128-F-Ob & \Soddisfatto \\
+
+% === Selezione branch ===
+TS-129 & Verificare che un utente che sta visualizzando una repository possa accedere alla lista dei branch\textsuperscript{G} presenti su GitHub\textsuperscript{G} & R-129-F-Ob & \Soddisfatto \\
+TS-130 & Verificare che un utente che sta visualizzando una repository possa selezionare uno qualunque dei branch\textsuperscript{G} presenti su GitHub\textsuperscript{G} e visualizzare il report\textsuperscript{G} associato terminato più di recente & R-130-F-Ob & \Soddisfatto \\
+
+% === Visione aggregata ===
+TS-131 & Verificare che un utente appartenente a un workspace possa visualizzare una visione aggregata del workspace & R-131-F-De & NI \\
+TS-132 & Verificare che, nella visione aggregata, sia mostrata la media delle percentuali di righe di codice ricoperte da test secondo l'ultima scansione terminata su develop (0 per repository mai scansionate) & R-132-F-De & NI \\
+TS-133 & Verificare che, nella visione aggregata, sia mostrata la percentuale di repository del workspace con code coverage\textsuperscript{G} sulle righe di codice $\geq$ 70\% secondo l'ultima scansione terminata su develop & R-133-F-De & NI \\
+TS-134 & Verificare che, nella visione aggregata, sia mostrata la percentuale di code coverage\textsuperscript{G} minima tra le repository del workspace secondo l'ultima scansione terminata su develop & R-134-F-De & NI \\
+TS-135 & Verificare che, nella visione aggregata, sia mostrata la distribuzione di utilizzo dei linguaggi di programmazione del workspace tramite un grafico a torta & R-135-F-De & NI \\
+TS-136 & Verificare che, nella visione aggregata, sia mostrata la distribuzione della gravità delle vulnerabilità\textsuperscript{G} nelle repository del workspace tramite un istogramma & R-136-F-De & NI \\
+TS-137 & Verificare che, nella visione aggregata, sia mostrato il voto minimo della documentazione\textsuperscript{G} tra le repository del workspace secondo l'ultima scansione terminata su develop & R-137-F-De & NI \\
+
+% === Aggiorna repository ===
+TS-138 & Verificare che un utente che sta visualizzando l'ultimo report\textsuperscript{G} di un branch\textsuperscript{G} possa aggiornare la visualizzazione al report\textsuperscript{G} successivo, qualora un'altra scansione sia terminata dall'inizio della visione & R-138-F-De & NI \\
+
 % === Requisiti Opzionali ===
-TS-95 & Verificare l'integrazione con CI/CD (GitHub\textsuperscript{G} Actions\textsuperscript{G}) & R-95-F-Op & NI \\
-TS-96 & Verificare l'analisi storica e il confronto tra versioni & R-96-F-Op & NI \\
-TS-97 & Verificare il ranking dei progetti per qualità complessiva & R-97-F-Op & NI \\
-TS-98 & Verificare la remediation interattiva con anteprima & R-98-F-Op & NI \\
-TS-99 & Verificare le notifiche integrate (Slack/Teams/Email) & R-99-F-Op & NI \\
-TS-100 & Verificare il plugin system per nuovi agenti di analisi & R-100-F-Op & NI \\
+TS-139 & Verificare l'integrazione con CI/CD (GitHub\textsuperscript{G} Actions\textsuperscript{G}) & R-139-F-Op & NI \\
+TS-140 & Verificare l'analisi storica e il confronto tra versioni & R-140-F-Op & NI \\
+TS-141 & Verificare il ranking dei progetti per qualità complessiva & R-141-F-Op & NI \\
+TS-142 & Verificare la remediation interattiva con anteprima & R-142-F-Op & NI \\
+TS-143 & Verificare le notifiche integrate (Slack/Teams/Email) & R-143-F-Op & NI \\
+TS-144 & Verificare il plugin system per nuovi agenti di analisi & R-144-F-Op & NI \\
 
 \end{longtable}
 
@@ -3914,106 +3567,150 @@ TS-100 & Verificare il plugin system per nuovi agenti di analisi & R-100-F-Op & 
 \textcolor{white}{\textbf{Codice Test}} & \textcolor{white}{\textbf{Codice Requisito\textsuperscript{G}}} \\
 \endhead
 
-TS-01 & R-1-F-Ob \\
-TS-02 & R-2-F-Ob \\
-TS-03 & R-3-F-Ob \\
-TS-04 & R-4-F-De \\
-TS-05 & R-5-F-De \\
-TS-06 & R-6-F-Ob \\
-TS-07 & R-7-F-Ob \\
-TS-08 & R-8-F-Ob \\
-TS-09 & R-9-F-Ob \\
-TS-10 & R-10-F-Ob \\
-TS-11 & R-11-F-Ob \\
-TS-12 & R-12-F-Ob \\
-TS-13 & R-13-F-Ob \\
-TS-14 & R-14-F-Ob \\
-TS-15 & R-15-F-Ob \\
-TS-16 & R-16-F-Ob \\
-TS-17 & R-17-F-Ob \\
-TS-18 & R-18-F-Ob \\
-TS-19 & R-19-F-Ob \\
-TS-20 & R-20-F-Ob \\
-TS-21 & R-21-F-De \\
-TS-22 & R-22-F-De \\
-TS-23 & R-23-F-Ob \\
-TS-24 & R-24-F-Ob \\
-TS-25 & R-25-F-Ob \\
-TS-26 & R-26-F-De \\
-TS-27 & R-27-F-De \\
-TS-28 & R-28-F-De \\
-TS-29 & R-29-F-De \\
-TS-30 & R-30-F-Ob \\
-TS-31 & R-31-F-Ob \\
-TS-32 & R-32-F-Ob \\
-TS-33 & R-33-F-Ob \\
-TS-34 & R-34-F-Ob \\
-TS-35 & R-35-F-Ob \\
-TS-36 & R-36-F-Ob \\
-TS-37 & R-37-F-Ob \\
-TS-38 & R-38-F-Ob \\
-TS-39 & R-39-F-Ob \\
-TS-40 & R-40-F-Ob \\
-TS-41 & R-41-F-Ob \\
-TS-42 & R-42-F-Ob \\
-TS-43 & R-43-F-Ob \\
-TS-44 & R-44-F-Ob \\
-TS-45 & R-45-F-De \\
-TS-46 & R-46-F-De \\
-TS-47 & R-47-F-De \\
-TS-48 & R-48-F-De \\
-TS-49 & R-49-F-De \\
-TS-50 & R-50-F-De \\
-TS-51 & R-51-F-Ob \\
-TS-52 & R-52-F-Ob \\
-TS-53 & R-53-F-Ob \\
-TS-54 & R-54-F-Ob \\
-TS-55 & R-55-F-Ob \\
-TS-56 & R-56-F-Ob \\
-TS-57 & R-57-F-Ob \\
-TS-58 & R-58-F-Ob \\
-TS-59 & R-59-F-De \\
-TS-60 & R-60-F-De \\
-TS-61 & R-61-F-De \\
-TS-62 & R-62-F-De \\
-TS-63 & R-63-F-Ob \\
-TS-64 & R-64-F-Ob \\
-TS-65 & R-65-F-De \\
-TS-66 & R-66-F-Ob \\
-TS-67 & R-67-F-De \\
-TS-68 & R-68-F-De \\
-TS-69 & R-69-F-De \\
-TS-70 & R-70-F-Ob \\
-TS-71 & R-71-F-Ob \\
-TS-72 & R-72-F-Ob \\
-TS-73 & R-73-F-Ob \\
-TS-74 & R-74-F-Ob \\
-TS-75 & R-75-F-Ob \\
-TS-76 & R-76-F-Ob \\
-TS-77 & R-77-F-De \\
-TS-78 & R-78-F-Ob \\
-TS-79 & R-79-F-Ob \\
-TS-80 & R-80-F-De \\
-TS-81 & R-81-F-Ob \\
-TS-82 & R-82-F-De \\
-TS-83 & R-83-F-Ob \\
-TS-84 & R-84-F-Ob \\
-TS-85 & R-85-F-Ob \\
-TS-86 & R-86-F-Ob \\
-TS-87 & R-87-F-Ob \\
-TS-88 & R-88-F-De \\
-TS-89 & R-89-F-Ob \\
-TS-90 & R-90-F-Ob \\
-TS-91 & R-91-F-Ob \\
-TS-92 & R-92-F-Ob \\
-TS-93 & R-93-F-Ob \\
-TS-94 & R-94-F-Ob \\
-TS-95 & R-95-F-Op \\
-TS-96 & R-96-F-Op \\
-TS-97 & R-97-F-Op \\
-TS-98 & R-98-F-Op \\
-TS-99 & R-99-F-Op \\
-TS-100 & R-100-F-Op \\
+TS-001 & R-1-F-Ob \\
+TS-002 & R-2-F-Ob \\
+TS-003 & R-3-F-Ob \\
+TS-004 & R-4-F-Ob \\
+TS-005 & R-5-F-Ob \\
+TS-006 & R-6-F-Ob \\
+TS-007 & R-7-F-Ob \\
+TS-008 & R-8-F-Ob \\
+TS-009 & R-9-F-Ob \\
+TS-010 & R-10-F-Ob \\
+TS-011 & R-11-F-Ob \\
+TS-012 & R-12-F-Ob \\
+TS-013 & R-13-F-Ob \\
+TS-014 & R-14-F-Ob \\
+TS-015 & R-15-F-Ob \\
+TS-016 & R-16-F-Ob \\
+TS-017 & R-17-F-Ob \\
+TS-018 & R-18-F-Ob \\
+TS-019 & R-19-F-Ob \\
+TS-020 & R-20-F-Ob \\
+TS-021 & R-21-F-Ob \\
+TS-022 & R-22-F-Ob \\
+TS-023 & R-23-F-Ob \\
+TS-024 & R-24-F-Ob \\
+TS-025 & R-25-F-Ob \\
+TS-026 & R-26-F-Ob \\
+TS-027 & R-27-F-Ob \\
+TS-028 & R-28-F-Ob \\
+TS-029 & R-29-F-De \\
+TS-030 & R-30-F-De \\
+TS-031 & R-31-F-De \\
+TS-032 & R-32-F-Ob \\
+TS-033 & R-33-F-Ob \\
+TS-034 & R-34-F-Ob \\
+TS-035 & R-35-F-Ob \\
+TS-036 & R-36-F-Ob \\
+TS-037 & R-37-F-De \\
+TS-038 & R-38-F-Ob \\
+TS-039 & R-39-F-Ob \\
+TS-040 & R-40-F-Ob \\
+TS-041 & R-41-F-De \\
+TS-042 & R-42-F-De \\
+TS-043 & R-43-F-De \\
+TS-044 & R-44-F-De \\
+TS-045 & R-45-F-De \\
+TS-046 & R-46-F-De \\
+TS-047 & R-47-F-De \\
+TS-048 & R-48-F-De \\
+TS-049 & R-49-F-De \\
+TS-050 & R-50-F-Ob \\
+TS-051 & R-51-F-Ob \\
+TS-052 & R-52-F-Ob \\
+TS-053 & R-53-F-De \\
+TS-054 & R-54-F-Ob \\
+TS-055 & R-55-F-Ob \\
+TS-056 & R-56-F-De \\
+TS-057 & R-57-F-Ob \\
+TS-058 & R-58-F-Ob \\
+TS-059 & R-59-F-Ob \\
+TS-060 & R-60-F-Ob \\
+TS-061 & R-61-F-Ob \\
+TS-062 & R-62-F-Ob \\
+TS-063 & R-63-F-Ob \\
+TS-064 & R-64-F-De \\
+TS-065 & R-65-F-De \\
+TS-066 & R-66-F-De \\
+TS-067 & R-67-F-Ob \\
+TS-068 & R-68-F-De \\
+TS-069 & R-69-F-Ob \\
+TS-070 & R-70-F-Ob \\
+TS-071 & R-71-F-Ob \\
+TS-072 & R-72-F-Ob \\
+TS-073 & R-73-F-De \\
+TS-074 & R-74-F-De \\
+TS-075 & R-75-F-De \\
+TS-076 & R-76-F-De \\
+TS-077 & R-77-F-De \\
+TS-078 & R-78-F-De \\
+TS-079 & R-79-F-De \\
+TS-080 & R-80-F-Ob \\
+TS-081 & R-81-F-Ob \\
+TS-082 & R-82-F-Ob \\
+TS-083 & R-83-F-Ob \\
+TS-084 & R-84-F-Ob \\
+TS-085 & R-85-F-Ob \\
+TS-086 & R-86-F-Ob \\
+TS-087 & R-87-F-Ob \\
+TS-088 & R-88-F-Ob \\
+TS-089 & R-89-F-Ob \\
+TS-090 & R-90-F-Ob \\
+TS-091 & R-91-F-Ob \\
+TS-092 & R-92-F-De \\
+TS-093 & R-93-F-De \\
+TS-094 & R-94-F-De \\
+TS-095 & R-95-F-De \\
+TS-096 & R-96-F-De \\
+TS-097 & R-97-F-De \\
+TS-098 & R-98-F-De \\
+TS-099 & R-99-F-De \\
+TS-100 & R-100-F-De \\
+TS-101 & R-101-F-De \\
+TS-102 & R-102-F-De \\
+TS-103 & R-103-F-De \\
+TS-104 & R-104-F-De \\
+TS-105 & R-105-F-De \\
+TS-106 & R-106-F-De \\
+TS-107 & R-107-F-Ob \\
+TS-108 & R-108-F-Ob \\
+TS-109 & R-109-F-Ob \\
+TS-110 & R-110-F-De \\
+TS-111 & R-111-F-De \\
+TS-112 & R-112-F-De \\
+TS-113 & R-113-F-Ob \\
+TS-114 & R-114-F-Ob \\
+TS-115 & R-115-F-De \\
+TS-116 & R-116-F-De \\
+TS-117 & R-117-F-Ob \\
+TS-118 & R-118-F-Ob \\
+TS-119 & R-119-F-Ob \\
+TS-120 & R-120-F-Ob \\
+TS-121 & R-121-F-De \\
+TS-122 & R-122-F-De \\
+TS-123 & R-123-F-De \\
+TS-124 & R-124-F-Ob \\
+TS-125 & R-125-F-Ob \\
+TS-126 & R-126-F-De \\
+TS-127 & R-127-F-De \\
+TS-128 & R-128-F-Ob \\
+TS-129 & R-129-F-Ob \\
+TS-130 & R-130-F-Ob \\
+TS-131 & R-131-F-De \\
+TS-132 & R-132-F-De \\
+TS-133 & R-133-F-De \\
+TS-134 & R-134-F-De \\
+TS-135 & R-135-F-De \\
+TS-136 & R-136-F-De \\
+TS-137 & R-137-F-De \\
+TS-138 & R-138-F-De \\
+TS-139 & R-139-F-Op \\
+TS-140 & R-140-F-Op \\
+TS-141 & R-141-F-Op \\
+TS-142 & R-142-F-Op \\
+TS-143 & R-143-F-Op \\
+TS-144 & R-144-F-Op \\
 
 \end{longtable}
 

@@ -123,9 +123,9 @@
     \vspace{0.5cm}
     
     \begin{tabularx}{0.9\textwidth}{@{}>{\bfseries\sffamily}l X@{}}
-    Autori & \sffamily Alessandro Frison, Lorenzo Grolla \\
+    Autori & \sffamily Alessandro Frison, Giulia Romanato, Damiano Berti, Nicolò Lattanzio \\
     \arrayrulecolor{MediumGray}\hline \\[-1.5ex]
-    Verificatori & \sffamily Alessandro Frison, Lorenzo Grolla, Alessandro Morabito \\
+    Verificatori & \sffamily Alessandro Frison, Giulia Romanato, Alessandro Morabito, Nicolò Lattanzio \\
     \arrayrulecolor{MediumGray}\hline \\[-1.5ex] 
     Approvazione & \sffamily Alessandro Morabito \\ 
     \arrayrulecolor{MediumGray}\hline
@@ -156,10 +156,12 @@
 	\multicolumn{1}{c}{\textcolor{white}{\textbf{Verificatore}}} & 
 	\multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione (continua)}}} \\
 	\endhead
-    1.6.0 & 29/04/2026 & Alessandro Frison & Giulia Romanato & Aggiunta test di unità del container \\
-    1.5.0 & 29/04/2026 & Giulia Romanato & Lorenzo Grolla & Aggiunta test di integrazione \\
-    1.4.0 & 29/04/2026 & Lorenzo Grolla & Giulia Romanato & Aggiornamento dei test di sistema \\
-    1.3.0 & 28/04/2026 & Giulia Romanato & Alessandro Frison & Aggiunta test di unità del frontend e dei moduli di backend Auth, Memebership, User, Workspace (WorkspaceManager, WorkspaceUser, WorkspaceRepository) \\
+    2.0.0 & 29/04/2026 & Giulia Romanato & Alessandro Morabito & Aggiunta test di accettazione \\
+    1.7.0 & 27/04/2026 & Alessandro Frison & Nicolò Lattanzio & Aggiunta test di unità del backend (Report, Repository, Scan) \\
+    1.6.0 & 26/04/2026 & Nicolò Lattanzio & Giulia Romanato & Aggiunta test di unità del container \\
+    1.5.0 & 23/04/2026 & Giulia Romanato & Alessandro Morabito & Aggiunta test di integrazione \\
+    1.4.0 & 22/04/2026 & Damiano Berti & Giulia Romanato & Aggiornamento dei test di sistema \\
+    1.3.0 & 20/04/2026 & Giulia Romanato & Alessandro Frison & Aggiunta test di unità del frontend e dei moduli di backend Auth, Memebership, User, Workspace (WorkspaceManager, WorkspaceUser, WorkspaceRepository) \\
     1.2.0 & 19/04/2026 & Alessandro Frison & Giulia Romanato & Aggiornamento grafici del cruscotto di valutazione (MPC) \\
     1.1.0 & 09/03/2026 & Lorenzo Grolla & Alessandro Morabito & Aggiornamento grafici allo sprint 6, aggiornamento test \\
     1.0.0 & 24/02/2026 & Alessandro Frison & Alessandro Morabito & Versione finale del documento, con tutte le sezioni completate e revisionate. \\
@@ -1312,6 +1314,514 @@ $TU_{B}-118$ &
 \texttt{removeRepository}: lancia \texttt{NotFoundException} se
 \texttt{modifiedCount === 0} (repository non trovata nel workspace) &
 \texttt{NotFoundException("Repository non trovata nel workspace")} &
+\Soddisfatto \\
+
+% ---- ReportController ----
+\sectionrow{ReportController}
+
+$TU_{B}-119$ &
+\texttt{saveReport}: mappa correttamente il DTO estraendo il target dal token JWT e delega il salvataggio al service &
+\texttt{reportService.saveReport} invocato con i dati del report e il token estratti &
+\Soddisfatto \\
+
+$TU_{B}-120$ &
+\texttt{saveReport}: lancia \texttt{UnauthorizedException} se la validazione del token JWT fallisce o il token scade &
+\texttt{UnauthorizedException} propagata al chiamante &
+\Soddisfatto \\
+
+$TU_{B}-121$ &
+\texttt{getReport}: restituisce il report invocando il service con repositoryId, branch e l'ID dell'utente &
+Restituisce l'oggetto \texttt{ReportInfo} ricevuto in modo intatto dal service &
+\Soddisfatto \\
+
+% ---- ReportService ----
+\sectionrow{ReportService}
+
+$TU_{B}-122$ &
+\texttt{saveReport}: salva correttamente il report nel DB, aggiorna lo score aggregato del repository e imposta lo stato della scansione a 'COMPLETED' &
+I moduli repository, writer e status vengono chiamati sequenzialmente senza errori &
+\Soddisfatto \\
+
+$TU_{B}-123$ &
+\texttt{getReport}: filtra i dati sensibili (nascondendo lista dipendenze e dettagli vulnerabilità) se l'utente ha il ruolo di \texttt{PROJECT\_MANAGER} &
+Il report restituito include i \texttt{vulnCounts} ma omette le descrizioni testuali e le liste complete &
+\Soddisfatto \\
+
+$TU_{B}-124$ &
+\texttt{getReport}: restituisce il report integrale per i membri del workspace che non sono \texttt{PROJECT\_MANAGER} &
+Il report mantiene intatte le liste di vulnerabilità, aggiungendo correttamente il conteggio aggregato per severity &
+\Soddisfatto \\
+
+$TU_{B}-125$ &
+\texttt{getReport}: lancia \texttt{NotFoundException} se nessun report corrisponde a repository e branch richiesti &
+\texttt{NotFoundException} propagata al chiamante &
+\Soddisfatto \\
+
+% ---- RepositoryController ----
+\sectionrow{RepositoryController}
+
+$TU_{B}-126$ &
+\texttt{getRepository}: restituisce i dettagli del repository tramite il service &
+Ritorna i dati del repository invocando \texttt{service.getRepository} con l'ID fornito &
+\Soddisfatto \\
+
+$TU_{B}-127$ &
+\texttt{getRepository}: rigetta l'eccezione se il service fallisce nel recupero &
+L'eccezione (es. "Repository non trovata") viene propagata al chiamante &
+\Soddisfatto \\
+
+$TU_{B}-128$ &
+\texttt{getBranches}: restituisce la lista dei branch tramite il service &
+Ritorna l'array di branch (es. \texttt{['main', 'develop']}) invocando \texttt{service.getBranches} &
+\Soddisfatto \\
+
+$TU_{B}-129$ &
+\texttt{getBranches}: restituisce un array vuoto se il repository non ha branch &
+Ritorna un array \texttt{[]} senza generare eccezioni &
+\Soddisfatto \\
+
+$TU_{B}-130$ &
+\texttt{getBranches}: rigetta l'eccezione se il service fallisce nel recupero &
+L'eccezione (es. per rate limit o permessi) viene propagata al chiamante &
+\Soddisfatto \\
+
+% ---- GitHubRepository ----
+\sectionrow{GitHubRepository}
+
+$TU_{B}-131$ &
+\texttt{getBranches}: recupera con successo la lista dei branch dall'API di GitHub &
+Restituisce array di stringhe se l'API risponde 200 &
+\Soddisfatto \\
+
+$TU_{B}-132$ &
+\texttt{getBranches}: include l'header Authorization se viene fornito l'accessToken &
+La richiesta fetch viene effettuata con header \texttt{Authorization: Bearer <token>} &
+\Soddisfatto \\
+
+$TU_{B}-133$ &
+\texttt{getBranches}: lancia \texttt{NotFoundException} se l'API restituisce 404 &
+Eccezione \texttt{NotFoundException} con messaggio "Repository non trovata" &
+\Soddisfatto \\
+
+$TU_{B}-134$ &
+\texttt{getBranches}: lancia \texttt{ForbiddenException} se l'API restituisce 403 &
+Eccezione \texttt{ForbiddenException} per rate limit o accesso negato &
+\Soddisfatto \\
+
+$TU_{B}-135$ &
+\texttt{getBranches}: lancia \texttt{ServiceUnavailableException} su errori server (502, 503, 504) &
+Eccezione \texttt{ServiceUnavailableException} &
+\Soddisfatto \\
+
+$TU_{B}-136$ &
+\texttt{verifyAccess}: risolve senza lanciare eccezioni se l'accesso è autorizzato (status 200) &
+La Promise si risolve con \texttt{undefined} &
+\Soddisfatto \\
+
+$TU_{B}-137$ &
+\texttt{verifyAccess}: lancia \texttt{UnauthorizedException} se l'API restituisce 401 o 403 &
+Eccezione \texttt{UnauthorizedException} &
+\Soddisfatto \\
+
+$TU_{B}-138$ &
+\texttt{verifyAccess}: lancia \texttt{ServiceUnavailableException} su errori server (502, 503, 504) &
+Eccezione \texttt{ServiceUnavailableException} &
+\Soddisfatto \\
+
+% ---- RepositoryRepository ----
+\sectionrow{RepositoryRepository}
+
+$TU_{B}-139$ &
+\texttt{getRepositories}: restituisce un array di repository mappato per gli ID richiesti (senza \texttt{searchInput}) &
+Modello \texttt{find} invocato solo con \texttt{\{ \_id: \{ \$in: [...] \} \}} e mappa ai \texttt{RepositoryEntity} &
+\Soddisfatto \\
+
+$TU_{B}-140$ &
+\texttt{getRepositories}: filtra per nome usando \texttt{searchInput} con escaping corretto e case-insensitive &
+Modello \texttt{find} invocato includendo la condizione regex corretta per la ricerca &
+\Soddisfatto \\
+
+$TU_{B}-141$ &
+\texttt{getRepository}: restituisce i dettagli di un singolo repository per ID &
+Modello \texttt{findById} invocato; restituisce \texttt{RepositoryEntity} mappato &
+\Soddisfatto \\
+
+$TU_{B}-142$ &
+\texttt{getRepository}: lancia \texttt{NotFoundException} se il repository non viene trovato &
+Eccezione \texttt{NotFoundException} &
+\Soddisfatto \\
+
+$TU_{B}-143$ &
+\texttt{addRepository}: crea e salva un nuovo documento e restituisce il suo ObjectId (stringa) &
+\texttt{create} invocato con ownerName, name, accessToken; \texttt{findOne} ritorna null &
+\Soddisfatto \\
+
+$TU_{B}-144$ &
+\texttt{addRepository}: aggiorna il token se il repository esiste già e il token viene fornito &
+\texttt{updateOne} invocato; restituisce l'id esistente senza duplicare &
+\Soddisfatto \\
+
+$TU_{B}-145$ &
+\texttt{updateToken}: aggiorna con successo il token per il repository dato &
+\texttt{updateOne} chiamato con \texttt{\$set: \{ accessToken \}} &
+\Soddisfatto \\
+
+$TU_{B}-146$ &
+\texttt{updateToken}: lancia \texttt{NotFoundException} se il repository non viene trovato (matchedCount 0) &
+Eccezione \texttt{NotFoundException} &
+\Soddisfatto \\
+
+$TU_{B}-147$ &
+\texttt{updateScores}: aggiorna con successo il punteggio aggregato (cvss, docs, coverage) per il repository &
+\texttt{updateOne} chiamato con \texttt{\$set: scores} &
+\Soddisfatto \\
+
+$TU_{B}-148$ &
+\texttt{updateScores}: lancia \texttt{NotFoundException} se il repository non viene trovato (matchedCount 0) &
+Eccezione \texttt{NotFoundException} &
+\Soddisfatto \\
+
+% ---- RepositoryController ----
+\sectionrow{RepositoryController}
+
+$TU_{B}-149$ &
+\texttt{getRepository}: restituisce i dettagli del repository tramite il service &
+Ritorna i dati del repository invocando \texttt{service.getRepository} con l'ID fornito &
+\Soddisfatto \\
+
+$TU_{B}-150$ &
+\texttt{getRepository}: rigetta l'eccezione se il service fallisce nel recupero &
+L'eccezione (es. "Repository non trovata") viene propagata al chiamante &
+\Soddisfatto \\
+
+$TU_{B}-151$ &
+\texttt{getBranches}: restituisce la lista dei branch tramite il service &
+Ritorna l'array di branch (es. \texttt{['main', 'develop']}) invocando \texttt{service.getBranches} &
+\Soddisfatto \\
+
+$TU_{B}-152$ &
+\texttt{getBranches}: restituisce un array vuoto se il repository non ha branch &
+Ritorna un array \texttt{[]} senza generare eccezioni &
+\Soddisfatto \\
+
+$TU_{B}-153$ &
+\texttt{getBranches}: rigetta l'eccezione se il service fallisce nel recupero &
+L'eccezione (es. per rate limit o permessi) viene propagata al chiamante &
+\Soddisfatto \\
+
+% ---- GitHubRepository ----
+\sectionrow{GitHubRepository}
+
+$TU_{B}-154$ &
+\texttt{getBranches}: recupera con successo la lista dei branch dall'API di GitHub &
+Restituisce array di stringhe se l'API risponde 200 &
+\Soddisfatto \\
+
+$TU_{B}-155$ &
+\texttt{getBranches}: include l'header Authorization se viene fornito l'accessToken &
+La richiesta fetch viene effettuata con header \texttt{Authorization: Bearer <token>} &
+\Soddisfatto \\
+
+$TU_{B}-156$ &
+\texttt{getBranches}: lancia \texttt{NotFoundException} se l'API restituisce 404 &
+Eccezione \texttt{NotFoundException} con messaggio "Repository non trovata" &
+\Soddisfatto \\
+
+$TU_{B}-157$ &
+\texttt{getBranches}: lancia \texttt{ForbiddenException} se l'API restituisce 403 &
+Eccezione \texttt{ForbiddenException} per rate limit o accesso negato &
+\Soddisfatto \\
+
+$TU_{B}-158$ &
+\texttt{getBranches}: lancia \texttt{ServiceUnavailableException} su errori server (502, 503, 504) &
+Eccezione \texttt{ServiceUnavailableException} &
+\Soddisfatto \\
+
+$TU_{B}-159$ &
+\texttt{verifyAccess}: risolve senza lanciare eccezioni se l'accesso è autorizzato (status 200) &
+La Promise si risolve con \texttt{undefined} &
+\Soddisfatto \\
+
+$TU_{B}-160$ &
+\texttt{verifyAccess}: lancia \texttt{UnauthorizedException} se l'API restituisce 401 o 403 &
+Eccezione \texttt{UnauthorizedException} &
+\Soddisfatto \\
+
+$TU_{B}-161$ &
+\texttt{verifyAccess}: lancia \texttt{ServiceUnavailableException} su errori server (502, 503, 504) &
+Eccezione \texttt{ServiceUnavailableException} &
+\Soddisfatto \\
+
+% ---- RepositoryRepository ----
+\sectionrow{RepositoryRepository}
+
+$TU_{B}-162$ &
+\texttt{getRepositories}: restituisce un array di repository mappato per gli ID richiesti (senza \texttt{searchInput}) &
+Modello \texttt{find} invocato solo con \texttt{\{ \_id: \{ \$in: [...] \} \}} e mappa ai \texttt{RepositoryEntity} &
+\Soddisfatto \\
+
+$TU_{B}-163$ &
+\texttt{getRepositories}: filtra per nome usando \texttt{searchInput} con escaping corretto e case-insensitive &
+Modello \texttt{find} invocato includendo la condizione regex corretta per la ricerca &
+\Soddisfatto \\
+
+$TU_{B}-164$ &
+\texttt{getRepository}: restituisce i dettagli di un singolo repository per ID &
+Modello \texttt{findById} invocato; restituisce \texttt{RepositoryEntity} mappato &
+\Soddisfatto \\
+
+$TU_{B}-165$ &
+\texttt{getRepository}: lancia \texttt{NotFoundException} se il repository non viene trovato &
+Eccezione \texttt{NotFoundException} &
+\Soddisfatto \\
+
+$TU_{B}-166$ &
+\texttt{addRepository}: crea e salva un nuovo documento e restituisce il suo ObjectId (stringa) &
+\texttt{create} invocato con ownerName, name, accessToken; \texttt{findOne} ritorna null &
+\Soddisfatto \\
+
+$TU_{B}-167$ &
+\texttt{addRepository}: aggiorna il token se il repository esiste già e il token viene fornito &
+\texttt{updateOne} invocato; restituisce l'id esistente senza duplicare &
+\Soddisfatto \\
+
+$TU_{B}-168$ &
+\texttt{updateToken}: aggiorna con successo il token per il repository dato &
+\texttt{updateOne} chiamato con \texttt{\$set: \{ accessToken \}} &
+\Soddisfatto \\
+
+$TU_{B}-169$ &
+\texttt{updateToken}: lancia \texttt{NotFoundException} se il repository non viene trovato (matchedCount 0) &
+Eccezione \texttt{NotFoundException} &
+\Soddisfatto \\
+
+$TU_{B}-170$ &
+\texttt{updateScores}: aggiorna con successo il punteggio aggregato (cvss, docs, coverage) per il repository &
+\texttt{updateOne} chiamato con \texttt{\$set: scores} &
+\Soddisfatto \\
+
+$TU_{B}-171$ &
+\texttt{updateScores}: lancia \texttt{NotFoundException} se il repository non viene trovato (matchedCount 0) &
+Eccezione \texttt{NotFoundException} &
+\Soddisfatto \\
+
+% ---- RepositoryService ----
+\sectionrow{RepositoryService}
+
+$TU_{B}-172$ &
+\texttt{getRepository}: restituisce le informazioni del repository mappate dal repository &
+L'oggetto \texttt{RepositoryInfo} è correttamente strutturato (es.\ data formattata in ISO, id, owner, name, ecc.) &
+\Soddisfatto \\
+
+$TU_{B}-173$ &
+\texttt{getRepository}: gestisce il caso in cui \texttt{dateScan} sia mancante (undefined) nell'entità restituita dal DB &
+\texttt{dateScan} risulta \texttt{undefined} nel \texttt{RepositoryInfo} di ritorno &
+\Soddisfatto \\
+
+$TU_{B}-174$ &
+\texttt{getRepository}: propaga le eccezioni generate dal repository layer (es.\ non trovato) &
+Eccezione (es.\ "Repository non trovata") sollevata &
+\Soddisfatto \\
+
+$TU_{B}-175$ &
+\texttt{getBranches}: restituisce la lista dei branch fornita da GitHub invocando i moduli necessari in catena &
+L'array di branch ritornato (es.\ \texttt{['main', 'develop']}) corrisponde all'output del \texttt{GitHubRepository} &
+\Soddisfatto \\
+
+$TU_{B}-176$ &
+\texttt{getBranches}: propaga le eccezioni generate dal \texttt{find-repository} (es.\ se il repo cercato non è presente a DB) &
+Eccezione (es.\ "Repository non trovata") sollevata al chiamante &
+\Soddisfatto \\
+
+% ---- RepositoryReaderService ----
+\sectionrow{RepositoryReaderService}
+
+$TU_{B}-177$ &
+\texttt{getRepositories}: converte correttamente un array di \texttt{RepositoryEntity} nel formato DTO \texttt{RepositoryInfo} atteso &
+Ogni elemento mappato contiene i campi esatti (\texttt{repositoryId}, \texttt{ownerName}, \texttt{cvss}, date ISO) &
+\Soddisfatto \\
+
+$TU_{B}-178$ &
+\texttt{getRepositories}: gestisce ed evita errori quando il parametro \texttt{dateScan} è \texttt{undefined} &
+Ritorna l'oggetto mappato ma con \texttt{dateScan} settato a \texttt{undefined} &
+\Soddisfatto \\
+
+$TU_{B}-179$ &
+\texttt{getRepositories}: propaga il parametro opzionale \texttt{searchInput} al repository primario &
+\texttt{getRepositories} interno è invocato includendo la stringa di ricerca (\texttt{"mySearch"}) &
+\Soddisfatto \\
+
+$TU_{B}-180$ &
+\texttt{getRepositories}: restituisce correttamente un array vuoto se nessuna entità soddisfa i criteri di ricerca &
+\texttt{[]} &
+\Soddisfatto \\
+
+$TU_{B}-181$ &
+\texttt{getRepositories}: propaga l'eccezione nativa se il database layer (\texttt{FindRepository}) fallisce &
+Viene sollevato il \texttt{Database error} originario &
+\Soddisfatto \\
+
+% ---- RepositoryScoreService ----
+\sectionrow{RepositoryScoreService}
+
+$TU_{B}-182$ &
+\texttt{updateScores}: delega l'operazione completa di aggiornamento punteggi (doc, cvss, coverage) al layer di repository dedicato &
+\texttt{repositoryScoreRepository.updateScores} riceve \texttt{repositoryId} e l'oggetto score &
+\Soddisfatto \\
+
+$TU_{B}-183$ &
+\texttt{updateScores}: supporta aggiornamenti parziali dei punteggi (es.\ inviando solo il cvss) &
+Il layer dati riceve regolarmente solo il subset inviato (\texttt{\{ cvss: 3.0 \}}) &
+\Soddisfatto \\
+
+$TU_{B}-184$ &
+\texttt{updateScores}: propaga l'eccezione \texttt{NotFoundException} prodotta a livello repository se l'aggiornamento fallisce &
+\texttt{NotFoundException} sollevata al chiamante del service &
+\Soddisfatto \\
+
+% ---- RepositoryWriterService ----
+\sectionrow{RepositoryWriterService}
+
+$TU_{B}-185$ &
+\texttt{addRepository} (Senza Token): estrae proprietario e nome da url e aggiunge la repo senza controllare gli accessi GitHub &
+Estrae \texttt{"myOwner"} e \texttt{"myRepo"} da stringa url; invoca \texttt{addRepository} del layer db bypassando \texttt{verifyAccess} &
+\Soddisfatto \\
+
+$TU_{B}-186$ &
+\texttt{addRepository} (Con Token): estrae i parametri, verifica i token su GitHub, infine aggiunge il record nel database &
+Estrae proprietario/nome; invoca in successione \texttt{verifyAccess} e poi \texttt{addRepository} restituendo il nuovo ObjectId &
+\Soddisfatto \\
+
+$TU_{B}-187$ &
+\texttt{addRepository}: gestisce url con terminazione \texttt{.git} &
+Mappa correttamente proprietario e nome del repo eliminando il prefisso \texttt{.git} &
+\Soddisfatto \\
+
+$TU_{B}-188$ &
+\texttt{addRepository}: fallisce repentinamente propagando eccezioni di GitHub se il token non è valido o per rate limit &
+\texttt{UnauthorizedException} (o derivata) viene propagata a monte prima di invocare i metodi del db &
+\Soddisfatto \\
+
+$TU_{B}-189$ &
+\texttt{updateToken}: recupera il repo, valida le credenziali su GitHub ed aggiorna il db &
+Verifica i passi in successione: \texttt{getRepository}, \texttt{verifyAccess} e \texttt{updateToken} su DB senza sollevare errori &
+\Soddisfatto \\
+
+$TU_{B}-190$ &
+\texttt{updateToken}: lancia eccezione bloccante al chiamante se la repository ricercata non esiste nel db &
+\texttt{Error('not found')} sollevato, intercettando il flusso prima della convalida GitHub (\texttt{verifyAccess} non invocata) &
+\Soddisfatto \\
+
+$TU_{B}-191$ &
+\texttt{updateToken}: lancia un'eccezione se la convalida del token su GitHub restituisce un mancato accesso &
+Viene propagato \texttt{Error('unauthorized')} e impedito l'aggiornamento (db \texttt{updateToken} non chiamato) &
+\Soddisfatto \\
+
+% ---- ScanManagerController ----
+\sectionrow{ScanManagerController}
+
+$TU_{B}-192$ &
+\texttt{startScan}: delega l'avvio della scansione al service passando correttamente il DTO &
+Il metodo \texttt{startScan} del service viene invocato una sola volta con il DTO fornito &
+\Soddisfatto \\
+
+$TU_{B}-193$ &
+\texttt{startScan}: propaga l'eccezione se il service fallisce durante l'avvio &
+L'eccezione rigettata dal service viene propagata al chiamante &
+\Soddisfatto \\
+
+$TU_{B}-194$ &
+\texttt{stopScan}: delega l'interruzione della scansione al service usando lo \texttt{scanId} corretto &
+Il metodo \texttt{stopScan} del service viene invocato con lo \texttt{scanId} &
+\Soddisfatto \\
+
+$TU_{B}-195$ &
+\texttt{stopScan}: restituisce \texttt{undefined} se l'operazione di interruzione viene completata con successo &
+Valore restituito: \texttt{undefined} &
+\Soddisfatto \\
+
+$TU_{B}-196$ &
+\texttt{stopScan}: propaga l'eccezione se il service fallisce durante l'interruzione &
+L'eccezione rigettata dal service viene propagata al chiamante &
+\Soddisfatto \\
+
+% ---- ScanManagerService ----
+\sectionrow{ScanManagerService}
+
+$TU_{B}-197$ &
+\texttt{startScan}: lancia un'eccezione se il repository target non viene trovato tramite il reader &
+Eccezione sollevata interrompendo il flusso di avvio &
+\Soddisfatto \\
+
+$TU_{B}-198$ &
+\texttt{startScan}: lancia \texttt{InternalServerErrorException} se l'invio del comando ad ECS (\texttt{RunTaskCommand}) fallisce &
+Eccezione sollevata con il messaggio di errore specifico di ECS &
+\Soddisfatto \\
+
+$TU_{B}-199$ &
+\texttt{startScan}: inizializza e salva correttamente il nuovo oggetto \texttt{Scan} nel database al momento dell'avvio &
+\texttt{scanRepository.create} invocato con i dati della scansione (id, target, startTime, status: Started) &
+\Soddisfatto \\
+
+$TU_{B}-200$ &
+\texttt{stopScan}: lancia \texttt{NotFoundException} se la scansione richiesta non esiste nel database &
+Eccezione \texttt{NotFoundException} propagata al chiamante &
+\Soddisfatto \\
+
+$TU_{B}-201$ &
+\texttt{stopScan}: lancia \texttt{ConflictException} se la scansione esiste ma si trova già in uno stato diverso da \texttt{Started} &
+Eccezione \texttt{ConflictException} propagata al chiamante &
+\Soddisfatto \\
+
+$TU_{B}-202$ &
+\texttt{stopScan}: propaga l'eccezione se l'invio del comando di interruzione ad ECS fallisce &
+Eccezione derivante dal client ECS propagata al chiamante &
+\Soddisfatto \\
+
+$TU_{B}-203$ &
+\texttt{stopScan}: aggiorna con successo lo stato della scansione a \texttt{Stopped} nel database &
+\texttt{scanRepository.update} invocato con l'ID corretto e lo stato aggiornato a \texttt{Stopped} &
+\Soddisfatto \\
+
+% ---- ScanStatusController ----
+\sectionrow{ScanStatusController}
+
+$TU_{B}-204$ &
+\texttt{getScanStatus}: restituisce lo stato corretto invocando il service con lo \texttt{scanId} fornito &
+Restituisce il valore \texttt{ScanStatus} (es.\ \texttt{ScanStatus.Started}) &
+\Soddisfatto \\
+
+$TU_{B}-205$ &
+\texttt{getScanStatus}: propaga le eccezioni generate dal service &
+L'eccezione (es.\ "Error getting scan status") viene propagata al chiamante &
+\Soddisfatto \\
+
+$TU_{B}-206$ &
+\texttt{setErrorStatus}: chiama \texttt{setScanStatusFromToken} nel service con il token fornito e lo stato \texttt{Err} &
+Il service viene invocato con argomenti \texttt{(token, ScanStatus.Err)} &
+\Soddisfatto \\
+
+$TU_{B}-207$ &
+\texttt{setErrorStatus}: lancia \texttt{InternalServerErrorException} se il service genera un'eccezione durante l'aggiornamento &
+Eccezione \texttt{InternalServerErrorException} &
+\Soddisfatto \\
+
+$TU_{B}-208$ &
+\texttt{setErrorStatus}: non restituisce nulla (\texttt{void}) in caso di successo &
+La funzione si risolve senza restituire alcun valore (\texttt{undefined}) &
+\Soddisfatto \\
+
+% ---- ScanStatusService ----
+\sectionrow{ScanStatusService}
+
+$TU_{B}-209$ &
+\texttt{getScanStatus}: restituisce correttamente lo stato della scansione prelevato dal database &
+Il valore enumerato corrispondente allo stato della scansione nel database &
+\Soddisfatto \\
+
+$TU_{B}-210$ &
+\texttt{getScanStatus}: lancia un'eccezione (es. \texttt{NotFoundException}) se la scansione non viene trovata nel DB &
+Eccezione sollevata interrompendo il flusso &
 \Soddisfatto \\
 
 \end{longtable}
@@ -4019,12 +4529,12 @@ dipendenze interne.
 \renewcommand{\arraystretch}{1.5}
 \setlength{\LTleft}{0pt plus 1fill}
 \setlength{\LTright}{0pt plus 1fill}
-\newcommand{\sectionrow}[1]{
-\rowcolor{gray}
-\multicolumn{5}{l}{\textcolor{white}{#1}} \\
-\rowcolors{2}{LightGray}{white}
-\global\rownum=0
-}
+%\newcommand{\sectionrow}[1]{
+%\rowcolor{gray}
+%\multicolumn{5}{l}{\textcolor{white}{#1}} \\
+%\rowcolors{2}{LightGray}{white}
+%\global\rownum=0
+%}
 
 \begin{longtable}{
 >{\centering\arraybackslash}m{2cm}

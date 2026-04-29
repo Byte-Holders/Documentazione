@@ -156,6 +156,7 @@
 	\multicolumn{1}{c}{\textcolor{white}{\textbf{Verificatore}}} & 
 	\multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione (continua)}}} \\
 	\endhead
+    1.6.0 & 29/04/2026 & Alessandro Frison & Giulia Romanato & Aggiunta test di unità del container \\
     1.5.0 & 29/04/2026 & Giulia Romanato & Lorenzo Grolla & Aggiunta test di integrazione \\
     1.4.0 & 29/04/2026 & Lorenzo Grolla & Giulia Romanato & Aggiornamento dei test di sistema \\
     1.3.0 & 28/04/2026 & Giulia Romanato & Alessandro Frison & Aggiunta test di unità del frontend e dei moduli di backend Auth, Memebership, User, Workspace (WorkspaceManager, WorkspaceUser, WorkspaceRepository) \\
@@ -1314,6 +1315,644 @@ $TU_{B}-118$ &
 \Soddisfatto \\
 
 \end{longtable}
+
+\subsubsection{Container}
+Nei moduli del container sono stati testati i file responsabili dell'orchestrazione del workflow e dell'esecuzione delle analisi di sicurezza, copertura, documentazione e dipendenze.
+I moduli testati includono: Reporter, Scan, Orchestrator e i nodi worker (Coverage, Dependency, Docs, Github, Remediation, Security, Synthesizer).
+
+\rowcolors{2}{LightGray}{white}
+\begin{longtable}{
+>{\centering\arraybackslash}m{2cm}
+>{\raggedright\arraybackslash}p{6.5cm}
+>{\raggedright\arraybackslash}p{4cm}
+>{\centering\arraybackslash}m{1.8cm}
+}
+
+\rowcolor{AccentColor}
+\textcolor{white}{\textbf{Codice}} &
+\textcolor{white}{\textbf{Descrizione}} &
+\textcolor{white}{\textbf{Valore atteso}} &
+\textcolor{white}{\textbf{Stato}} \\
+\endhead
+
+% ============================================================
+% MODULO: REPORTER
+% ============================================================
+\sectionrow{ReporterModule}
+
+$TU_{C}-1$ &
+Compilazione del modulo: verifica che il \texttt{ReporterModule} compili senza errori &
+Il modulo è definito e istanziato correttamente &
+\Soddisfatto \\
+
+$TU_{C}-2$ &
+Dependency Injection: verifica che \texttt{IREPORTER\_SERVICE\_TOKEN} venga risolto con \texttt{ReporterService} &
+Il service ottenuto dal modulo è definito ed è un'istanza di \texttt{ReporterService} &
+\Soddisfatto \\
+
+\sectionrow{ReporterService}
+
+$TU_{C}-3$ &
+\texttt{sendReport}: esegue correttamente la chiamata POST per inviare il payload all'URL di destinazione &
+\texttt{httpService.post} invocato 1 volta con l'URL fornito e il body contenente \texttt{report} e \texttt{token} &
+\Soddisfatto \\
+
+$TU_{C}-4$ &
+\texttt{sendReport}: propaga un'eccezione se la richiesta HTTP POST fallisce &
+L'errore originale (es. Network error) viene sollevato e propagato al chiamante &
+\Soddisfatto \\
+
+$TU_{C}-5$ &
+\texttt{sendErrorNotification}: esegue correttamente la chiamata PATCH per notificare l'errore &
+\texttt{httpService.patch} invocato 1 volta con l'URL fornito e il body contenente il \texttt{token} &
+\Soddisfatto \\
+
+$TU_{C}-6$ &
+\texttt{sendErrorNotification}: propaga un'eccezione se la richiesta HTTP PATCH fallisce &
+L'errore originale viene sollevato e propagato al chiamante &
+\Soddisfatto \\
+
+% ============================================================
+% MODULO: SCAN
+% ============================================================
+\sectionrow{ScanModule}
+
+$TU_{C}-7$ &
+Compilazione del modulo: verifica che lo \texttt{ScanModule} compili senza errori &
+Il modulo è definito e istanziato correttamente &
+\Soddisfatto \\
+
+$TU_{C}-8$ &
+Dependency Injection: verifica che \texttt{ISCAN\_SERVICE\_TOKEN} venga risolto con un'istanza &
+Il service ottenuto è definito e truthy &
+\Soddisfatto \\
+
+% ============================================================
+% MODULO: ORCHESTRATOR
+% ============================================================
+\sectionrow{OrchestratorModule}
+
+$TU_{C}-9$ &
+Compilazione del modulo: verifica che l'\texttt{OrchestratorModule} compili senza errori &
+Il modulo è definito e istanziato correttamente &
+\Soddisfatto \\
+
+$TU_{C}-10$ &
+Dependency Injection: verifica che \texttt{OrchestratorService} venga risolto &
+Il service ottenuto è definito e truthy &
+\Soddisfatto \\
+
+$TU_{C}-11$ &
+Dependency Injection: verifica che \texttt{OrchestratorHelper} venga risolto &
+L'helper ottenuto è definito e truthy &
+\Soddisfatto \\
+
+\sectionrow{OrchestratorService}
+
+$TU_{C}-12$ &
+Definizione del service: verifica l'avvenuta istanziazione &
+\texttt{OrchestratorService} definito correttamente &
+\Soddisfatto \\
+
+$TU_{C}-13$ &
+\texttt{execute}: restituisce il report finale se l'invocazione del workflow va a buon fine &
+L'oggetto Report generato dall'app invocata viene restituito intatto &
+\Soddisfatto \\
+
+$TU_{C}-14$ &
+\texttt{execute}: propaga l'errore se l'esecuzione del workflow fallisce &
+La Promise viene rigettata con l'errore generato dal workflow &
+\Soddisfatto \\
+
+$TU_{C}-15$ &
+\texttt{execute}: lancia un errore se il workflow termina senza produrre un \texttt{finalReport} &
+Lancio di un Error "Il synthesizer non ha prodotto un report." &
+\Soddisfatto \\
+
+% ============================================================
+% MODULO: COVERAGE
+% ============================================================
+\sectionrow{CoverageModule}
+
+$TU_{C}-16$ &
+Compilazione del modulo: verifica che il \texttt{CoverageModule} compili senza errori &
+Il modulo è definito e istanziato correttamente &
+\Soddisfatto \\
+
+$TU_{C}-17$ &
+Dependency Injection: verifica che \texttt{COVERAGE\_NODE\_SERVICE\_TOKEN} venga risolto con \texttt{CoverageNodeService} &
+Il service ottenuto è definito ed è un'istanza corretta &
+\Soddisfatto \\
+
+$TU_{C}-18$ &
+Dependency Injection: verifica che \texttt{CoverageNodeHelper} venga risolto &
+L'helper ottenuto è definito ed è un'istanza di \texttt{CoverageNodeHelper} &
+\Soddisfatto \\
+
+\sectionrow{CoverageNodeService}
+
+$TU_{C}-19$ &
+\texttt{scan}: restituisce un report con valori a zero se il \texttt{package.json} non esiste nel repository &
+Il \texttt{testReport} restituito contiene metriche a 0 e nessun test fallito &
+\Soddisfatto \\
+
+$TU_{C}-20$ &
+\texttt{scan}: restituisce un report vuoto se l'esecuzione del tool di coverage (helper) rigetta un'eccezione &
+L'errore viene loggato e \texttt{testReport} restituito contiene metriche a 0 &
+\Soddisfatto \\
+
+$TU_{C}-21$ &
+\texttt{scan}: restituisce un report vuoto se l'output testuale (\texttt{stdout}) del tool non è parsabile &
+Il \texttt{testReport} restituito contiene metriche a 0 e nessun test fallito &
+\Soddisfatto \\
+
+$TU_{C}-22$ &
+\texttt{scan}: estrae le 4 metriche e i test falliti eseguendo il parsing corretto dei risultati (\textit{happy path}) &
+L'oggetto \texttt{testReport} generato contiene i valori percentuali, \texttt{testsRun} e l'array \texttt{failedTests} attesi &
+\Soddisfatto \\
+
+% ============================================================
+% MODULO: DEPENDENCY
+% ============================================================
+\sectionrow{DependencyModule}
+
+$TU_{C}-23$ &
+Compilazione del modulo: verifica che il \texttt{DepsModule} compili senza errori &
+Il modulo è definito e istanziato correttamente &
+\Soddisfatto \\
+
+$TU_{C}-24$ &
+Dependency Injection: verifica che \texttt{DEPENDENCY\_NODE\_SERVICE\_TOKEN} venga risolto &
+Il service ottenuto è definito ed è un'istanza corretta &
+\Soddisfatto \\
+
+$TU_{C}-25$ &
+Dependency Injection: verifica che \texttt{DependencyNodeHelper} venga fornito internamente &
+L'helper ottenuto è definito ed è un'istanza corretta &
+\Soddisfatto \\
+
+\sectionrow{DependencyNodeHelper}
+
+$TU_{C}-26$ &
+\texttt{createModel}: istanzia \texttt{ChatBedrockConverse} con la configurazione di default &
+Il modello viene creato con la regione e il nome modello standard &
+\Soddisfatto \\
+
+$TU_{C}-27$ &
+\texttt{createModel}: istanzia \texttt{ChatBedrockConverse} tramite variabili d'ambiente &
+Il modello utilizza i valori custom per region e model id &
+\Soddisfatto \\
+
+$TU_{C}-28$ &
+\texttt{executeSyft}: esegue la CLI per estrarre le librerie utilizzate &
+\texttt{executeCli} invocata con \texttt{syft} e parametri JSON corretti &
+\Soddisfatto \\
+
+$TU_{C}-29$ &
+\texttt{executeSyft}: propaga l'errore se la CLI di syft fallisce &
+Viene sollevata un'eccezione contenente il messaggio di errore &
+\Soddisfatto \\
+
+$TU_{C}-30$ &
+\texttt{parseSbom}: mappa i risultati SBOM grezzi nella lista di artefatti &
+Restituisce array di \texttt{DepsReportUnit} correttamente popolato &
+\Soddisfatto \\
+
+$TU_{C}-31$ &
+\texttt{parseSbom}: gestisce i fallback per SBOM vuoti o JSON privi di artefatti &
+Restituisce un array vuoto &
+\Soddisfatto \\
+
+$TU_{C}-32$ &
+\texttt{parseGrype}: mappa l'output JSON di grype identificando vulnerabilità e fix &
+Restituisce array di \texttt{DependencyVulnerability} &
+\Soddisfatto \\
+
+$TU_{C}-33$ &
+\texttt{parseGrype}: omette il \texttt{fixVersion} se lo stato del fix non è 'fixed' &
+Il campo \texttt{fixVersion} risulta \texttt{undefined} &
+\Soddisfatto \\
+
+$TU_{C}-34$ &
+\texttt{parseGrype}: gestisce fallback con JSON validi ma privi di matches &
+Restituisce un array vuoto &
+\Soddisfatto \\
+
+$TU_{C}-35$ &
+\texttt{translateDescriptions}: bypassa LLM se la lista vulnerabilità è vuota/priva descrizioni &
+Restituisce l'input inalterato, LLM non invocato &
+\Soddisfatto \\
+
+$TU_{C}-36$ &
+\texttt{translateDescriptions}: invoca LLM, traduce e pulisce blocchi markdown &
+Le descrizioni vengono sovrascritte con la traduzione JSON dell'LLM &
+\Soddisfatto \\
+
+$TU_{C}-37$ &
+\texttt{translateDescriptions}: fallback ai testi originali se l'invocazione LLM fallisce &
+Vengono mantenute le descrizioni inglesi in caso di errore &
+\Soddisfatto \\
+
+$TU_{C}-38$ &
+\texttt{analyzeDependencies}: analizza dipendenze e package.json tramite LLM &
+Partizionamento in \texttt{libraries}, \texttt{frameworks} e testo \texttt{vulnerabilityAnalysis} &
+\Soddisfatto \\
+
+$TU_{C}-39$ &
+\texttt{analyzeDependencies}: procede senza leggere package.json se non esiste &
+Analisi LLM prosegue con stringa vuota per package.json &
+\Soddisfatto \\
+
+$TU_{C}-40$ &
+\texttt{analyzeDependencies}: fallback silenzioso se LLM fallisce o restituisce JSON corrotto &
+Restituisce campi vuoti senza bloccare il flusso &
+\Soddisfatto \\
+
+\sectionrow{DependencyNodeService}
+
+$TU_{C}-41$ &
+\texttt{scan}: orchestra passaggi (\textit{syft, parse, grype, traduzione, LLM}) nell'ordine corretto &
+Metodi dell'helper chiamati in cascata &
+\Soddisfatto \\
+
+$TU_{C}-42$ &
+\texttt{scan}: popola correttamente l'oggetto finale \texttt{DepsReport} (\textit{happy path}) &
+Il report contiene lista SBOM, librerie, framework, vulnerabilità tradotte e l'analisi LLM &
+\Soddisfatto \\
+
+$TU_{C}-43$ &
+\texttt{scan}: continua l'esecuzione fornendo vulnerabilità vuote se il tool \texttt{grype} fallisce &
+Report senza vulnerabilità, ma l'analisi LLM prosegue &
+\Soddisfatto \\
+
+$TU_{C}-44$ &
+\texttt{scan}: restituisce report vuoto se \texttt{syft} o \texttt{analyzeDependencies} fallisce &
+Ritorna il \texttt{defaultReport} con array vuoti &
+\Soddisfatto \\
+
+$TU_{C}-45$ &
+\texttt{scan}: produce report vuoto ma coerente se il repository non contiene alcuna dipendenza &
+Tutti i passaggi restituiscono risultati vuoti senza generare eccezioni &
+\Soddisfatto \\
+
+% ============================================================
+% MODULO: DOCS
+% ============================================================
+\sectionrow{DocsModule}
+
+$TU_{C}-46$ &
+Compilazione del modulo: verifica che il \texttt{DocsModule} compili senza errori &
+Il modulo è definito e istanziato correttamente &
+\Soddisfatto \\
+
+$TU_{C}-47$ &
+Dependency Injection: verifica che \texttt{DOCS\_NODE\_SERVICE\_TOKEN} venga risolto &
+Il service ottenuto è definito ed è un'istanza corretta &
+\Soddisfatto \\
+
+$TU_{C}-48$ &
+Dependency Injection: verifica che \texttt{DocsNodeHelper} venga fornito internamente &
+L'helper ottenuto è definito ed è un'istanza corretta &
+\Soddisfatto \\
+
+\sectionrow{DocsNodeService}
+
+$TU_{C}-49$ &
+\texttt{scan}: compone correttamente lo stato del workflow con \texttt{docsReport} popolato &
+Restituisce il parziale del workflow contenente \texttt{readmeReport}, \texttt{commentReport} e \texttt{mark} &
+\Soddisfatto \\
+
+$TU_{C}-50$ &
+\texttt{scan}: delega la raccolta dei file all'helper passando il path corretto &
+\texttt{collectTextFiles} dell'helper viene invocato con il parametro \texttt{repoPath} &
+\Soddisfatto \\
+
+$TU_{C}-51$ &
+\texttt{scan}: invoca l'analisi della documentazione passando path e file raccolti &
+\texttt{analyzeRepoDocumentation} dell'helper invocato con parametri attesi &
+\Soddisfatto \\
+
+$TU_{C}-52$ &
+\texttt{scan}: propaga eventuali eccezioni lanciate durante l'analisi &
+Eccezione fa fallire la Promise del service &
+\Soddisfatto \\
+
+$TU_{C}-53$ &
+\texttt{scan}: gestisce ed elabora correttamente repository che non contengono file validi &
+Restituisce \texttt{docsReport} coerente (voto 0) se la lista file in input è vuota &
+\Soddisfatto \\
+
+\sectionrow{DocsNodeHelper}
+
+$TU_{C}-54$ &
+\texttt{createModel}: istanzia \texttt{ChatBedrockConverse} tramite default o env vars &
+Modello creato con configurazioni corrette &
+\Soddisfatto \\
+
+$TU_{C}-55$ &
+\texttt{buildSections}: formatta contenuti escludendo README e calcolandone il peso in byte &
+Genera array di \texttt{Section} calcolando la dimensione di ogni file text &
+\Soddisfatto \\
+
+$TU_{C}-56$ &
+\texttt{createBatches}: raggruppa sezioni per ottimizzare il prompt LLM &
+Array bidimensionale che non sfora \texttt{BATCH\_SIZE\_BYTES} &
+\Soddisfatto \\
+
+$TU_{C}-57$ &
+\texttt{processBatch}: interroga l'LLM con il payload concatenato &
+LLM invocato e restituisce il report; produce stringa di avviso su errore &
+\Soddisfatto \\
+
+$TU_{C}-58$ &
+\texttt{synthesizeReports}: riassume report parziali multipli tramite LLM &
+Unisce i batch LLM in caso successo, fallback a concatenazione stringhe in errore &
+\Soddisfatto \\
+
+$TU_{C}-59$ &
+\texttt{analyzeReadme}: analizza il \texttt{README.md} o restituisce messaggio d'assenza &
+Restituisce report LLM per il file letto o "README assente" &
+\Soddisfatto \\
+
+$TU_{C}-60$ &
+\texttt{extractMark}: intercetta il voto finale (intero o decimale) estraendolo dai report &
+Numerico corretto tramite Regex o fallback a 0 &
+\Soddisfatto \\
+
+$TU_{C}-61$ &
+\texttt{collectTextFiles}: scorre l'albero directory filtrando estensioni ignorate o file giganti &
+Array piatto di path risolti escludendo entry invalide in \texttt{statSync} &
+\Soddisfatto \\
+
+$TU_{C}-62$ &
+\texttt{analyzeRepoDocumentation}: esegue analisi README e commenti in parallelo &
+Estrae voto e popola il \texttt{DocsReport} finale in modalità asincrona &
+\Soddisfatto \\
+
+% ============================================================
+% MODULO: GITHUB
+% ============================================================
+\sectionrow{GithubModule}
+
+$TU_{C}-63$ &
+Compilazione del modulo: verifica che il \texttt{GithubModule} compili senza errori &
+Il modulo è definito e istanziato correttamente &
+\Soddisfatto \\
+
+$TU_{C}-64$ &
+Dependency Injection: verifica che \texttt{GITHUB\_NODE\_SERVICE\_TOKEN} venga risolto &
+Il service ottenuto è definito ed è un'istanza corretta &
+\Soddisfatto \\
+
+$TU_{C}-65$ &
+Dependency Injection: verifica che \texttt{GithubNodeHelper} venga risolto &
+L'helper ottenuto è definito ed è un'istanza corretta &
+\Soddisfatto \\
+
+\sectionrow{GithubNodeService}
+
+$TU_{C}-66$ &
+\texttt{scan}: mappa correttamente il dizionario dell'helper in array di oggetti &
+Restituisce array \texttt{\{ name, value \}} per ogni linguaggio &
+\Soddisfatto \\
+
+$TU_{C}-67$ &
+\texttt{scan}: gestisce e logga il fallimento dell'helper garantendo la continuazione &
+La Promise si risolve con \texttt{\{ languages: [] \}} &
+\Soddisfatto \\
+
+% ============================================================
+% MODULO: REMEDIATION
+% ============================================================
+\sectionrow{RemediationModule}
+
+$TU_{C}-68$ &
+Compilazione del modulo: verifica che il \texttt{RemediationModule} compili senza errori &
+Il modulo è definito e istanziato correttamente &
+\Soddisfatto \\
+
+$TU_{C}-69$ &
+Dependency Injection: verifica che \texttt{REMEDIATION\_NODE\_SERVICE\_TOKEN} venga risolto &
+Il service ottenuto è definito ed è un'istanza corretta &
+\Soddisfatto \\
+
+$TU_{C}-70$ &
+Dependency Injection: verifica che \texttt{RemediationNodeHelper} venga fornito &
+L'helper ottenuto è definito ed è un'istanza corretta &
+\Soddisfatto \\
+
+$TU_{C}-71$ &
+Export: verifica che \texttt{REMEDIATION\_NODE\_SERVICE\_TOKEN} venga esportato &
+Il service è recuperabile dal contesto d'esportazione del modulo &
+\Soddisfatto \\
+
+\sectionrow{RemediationNodeHelper}
+
+$TU_{C}-72$ &
+\texttt{createModel}: restituisce un'istanza di \texttt{ChatBedrockConverse} &
+L'oggetto ritornato è definito &
+\Soddisfatto \\
+
+$TU_{C}-73$ &
+\texttt{createModel}: usa parametri di default per modello e regione se env vars mancano &
+Configurato con \texttt{deepseek.v3.2} ed \texttt{eu-north-1} &
+\Soddisfatto \\
+
+$TU_{C}-74$ &
+\texttt{createModel}: utilizza le variabili d'ambiente per modello e regione &
+Configurato dinamicamente con valori custom &
+\Soddisfatto \\
+
+$TU_{C}-75$ &
+\texttt{createModel}: assegna il limite maggiorato di \texttt{maxTokens} rispetto agli altri nodi &
+\texttt{maxTokens} impostato a 15000 &
+\Soddisfatto \\
+
+% ============================================================
+% MODULO: SECURITY
+% ============================================================
+\sectionrow{SecurityModule}
+
+$TU_{C}-76$ &
+Compilazione del modulo: verifica che il \texttt{SecurityModule} compili senza errori &
+Il modulo è definito e istanziato correttamente &
+\Soddisfatto \\
+
+$TU_{C}-77$ &
+Dependency Injection: verifica che \texttt{SECURITY\_NODE\_SERVICE\_TOKEN} venga risolto &
+Il service ottenuto è definito ed è un'istanza corretta &
+\Soddisfatto \\
+
+$TU_{C}-78$ &
+Dependency Injection: verifica che \texttt{SecurityNodeHelper} venga risolto &
+L'helper ottenuto è definito ed è un'istanza corretta &
+\Soddisfatto \\
+
+\sectionrow{SecurityNodeHelper}
+
+$TU_{C}-79$ &
+\texttt{buildReportPath}: genera path del report contenente il nome della repository e timestamp &
+Stringa con path assoluto, estensione \texttt{.json} e prefisso \texttt{scan\_} &
+\Soddisfatto \\
+
+$TU_{C}-80$ &
+\texttt{isSemgrepInstalled}: verifica presenza del tool tramite comando \texttt{semgrep --version} &
+Esegue la CLI e restituisce \texttt{true} se successo &
+\Soddisfatto \\
+
+$TU_{C}-81$ &
+\texttt{isSemgrepInstalled}: gestisce l'assenza del tool o l'errore del comando CLI &
+Cattura l'eccezione lanciata da \texttt{exec} e restituisce \texttt{false} &
+\Soddisfatto \\
+
+$TU_{C}-82$ &
+\texttt{executeSemgrep}: invoca la CLI di semgrep con flag di scansione &
+\texttt{executeCli} chiamato con \texttt{--json}, \texttt{--output} e le esclusioni attese &
+\Soddisfatto \\
+
+$TU_{C}-83$ &
+\texttt{parseSeverity}: mappa severity testuali in punteggi numerici &
+Restituisce 10 per INFO, 5 per WARNING, 0 per ERROR &
+\Soddisfatto \\
+
+$TU_{C}-84$ &
+\texttt{parseSeverity}: gestisce stringhe di severity non riconosciute o undefined &
+Restituisce 0 in caso di fallimento del match &
+\Soddisfatto \\
+
+$TU_{C}-85$ &
+\texttt{getMark}: calcola media pesata dei punteggi di severity per voto finale &
+Restituisce la divisione esatta dei pesi &
+\Soddisfatto \\
+
+$TU_{C}-86$ &
+\texttt{getMark}: restituisce voto massimo (10) se non ci sono vulnerabilità &
+Restituisce 10 evitando divisioni per zero &
+\Soddisfatto \\
+
+$TU_{C}-87$ &
+\texttt{parseResults}: mappa JSON in array oggetti \texttt{VulnerabilityUnit} &
+Campi \texttt{id}, \texttt{severity}, \texttt{cwe} correttamente popolati &
+\Soddisfatto \\
+
+$TU_{C}-88$ &
+\texttt{parseResults}: gestisce output di semgrep privo di risultati (array vuoto o mancante) &
+Restituisce un array vuoto &
+\Soddisfatto \\
+
+$TU_{C}-89$ &
+\texttt{parseResults}: converte valori scalari OWASP in un array singolo elemento &
+Es. se stringa "A03:2021", restituisce \texttt{['A03:2021']} &
+\Soddisfatto \\
+
+$TU_{C}-90$ &
+\texttt{parseResults}: estrae il primo elemento se i tag CWE sono multipli &
+Se \texttt{cwe} è array, salva solo la prima stringa &
+\Soddisfatto \\
+
+\sectionrow{SecurityNodeService}
+
+$TU_{C}-91$ &
+\texttt{scan}: restituisce uno stato vuoto se semgrep non è installato &
+Logga errore, bypassa CLI e ritorna \texttt{\{\}} &
+\Soddisfatto \\
+
+$TU_{C}-92$ &
+\texttt{scan}: restituisce stato vuoto se esecuzione CLI di semgrep lancia eccezione &
+Eccezione catturata e Promise risolta con \texttt{\{\}} &
+\Soddisfatto \\
+
+$TU_{C}-93$ &
+\texttt{scan}: restituisce stato vuoto se parsing report JSON fallisce &
+Se \texttt{parseResults} lancia eccezione, la scansione ritorna \texttt{\{\}} &
+\Soddisfatto \\
+
+$TU_{C}-94$ &
+\texttt{scan}: compila con successo report delle vulnerabilità (\textit{happy path}) &
+Crea directory, esegue semgrep, parsa, calcola mark e restituisce output &
+\Soddisfatto \\
+
+% ============================================================
+% MODULO: SYNTHESIZER
+% ============================================================
+\sectionrow{SynthesizerModule}
+
+$TU_{C}-95$ &
+Compilazione del modulo: verifica che il \texttt{SynthesizerModule} compili senza errori &
+Il modulo è definito e istanziato correttamente &
+\Soddisfatto \\
+
+$TU_{C}-96$ &
+Dependency Injection: verifica che \texttt{SynthesizerNodeService} venga risolto &
+Il service ottenuto è definito ed è un'istanza corretta &
+\Soddisfatto \\
+
+$TU_{C}-97$ &
+Dependency Injection: verifica che \texttt{SynthesizerNodeHelper} venga risolto &
+L'helper ottenuto è definito ed è un'istanza corretta &
+\Soddisfatto \\
+
+\sectionrow{SynthesizerNodeService}
+
+$TU_{C}-98$ &
+\texttt{summarize}: delega la generazione del riassunto LLM all'helper passando lo stato &
+\texttt{helper.generateReportSummary} viene invocata con \texttt{WorkflowState} &
+\Soddisfatto \\
+
+$TU_{C}-99$ &
+\texttt{summarize}: delega l'assemblaggio finale all'helper &
+\texttt{helper.assembleReport} invocata con stato e \texttt{ReportSummary} &
+\Soddisfatto \\
+
+$TU_{C}-100$ &
+\texttt{summarize}: restituisce il report assemblato in via definitiva &
+Promise si risolve con l'oggetto \texttt{Report} finale &
+\Soddisfatto \\
+
+\sectionrow{SynthesizerNodeHelper}
+
+$TU_{C}-101$ &
+\texttt{createModel}: restituisce un'istanza di \texttt{ChatBedrockConverse} &
+L'oggetto ritornato è definito &
+\Soddisfatto \\
+
+$TU_{C}-102$ &
+\texttt{createModel}: utilizza variabili d'ambiente per regione e modello &
+Modello configurato dinamicamente con valori forniti &
+\Soddisfatto \\
+
+$TU_{C}-103$ &
+\texttt{createModel}: adotta fallback default se env vars sono assenti &
+Configurato con \texttt{deepseek.v3.2} ed \texttt{eu-north-1} &
+\Soddisfatto \\
+
+$TU_{C}-104$ &
+\texttt{generateReportSummary}: invoca Bedrock e parsa la risposta &
+Restituisce \texttt{ReportSummary} estraendo \texttt{summary} e \texttt{mark} &
+\Soddisfatto \\
+
+$TU_{C}-105$ &
+\texttt{generateReportSummary}: adotta meccanismo di emergenza in caso di crash LLM &
+Messaggio di errore e \texttt{mark} impostato a 1 per non rompere orchestrazione &
+\Soddisfatto \\
+
+$TU_{C}-106$ &
+\texttt{assembleReport}: unisce metadati e report parziali in unica struttura JSON &
+Restituisce oggetto \texttt{Report} con \texttt{data}, \texttt{summary} e \texttt{metadata} &
+\Soddisfatto \\
+
+$TU_{C}-107$ &
+\texttt{assembleReport}: popola il \texttt{techReport} separando \texttt{libraries} e \texttt{frameworks} &
+Dipendenze smistate, temp list omessa dal report finale &
+\Soddisfatto \\
+
+$TU_{C}-108$ &
+\texttt{assembleReport}: assicura integrità strutturale fornendo fallback ai frammenti assenti &
+Genera default (es. mark 10 vulnerabilità, array vuoti test) in caso di problemi worker &
+\Soddisfatto \\
+
+\end{longtable}
+
 
 \subsubsection{Frontend}
 I test del frontend coprono quattro strati architetturali: model (chiamate API), hook (logica di stato e business),

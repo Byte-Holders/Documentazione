@@ -156,7 +156,9 @@
 	\multicolumn{1}{c}{\textcolor{white}{\textbf{Verificatore}}} & 
 	\multicolumn{1}{c}{\textcolor{white}{\textbf{Descrizione (continua)}}} \\
 	\endhead
-    1.3.0 & 19/04/2026 & Giulia Romanato & Alessandro Frison & Aggiunta test di unità del frontend e dei moduli di backend Auth, Memebership, User, Workspace (WorkspaceManager, WorkspaceUser, WorkspaceRepository) \\
+    1.5.0 & 29/04/2026 & Giulia Romanato & Lorenzo Grolla & Aggiunta test di integrazione \\
+    1.4.0 & 29/04/2026 & Lorenzo Grolla & Giulia Romanato & Aggiornamento dei test di sistema \\
+    1.3.0 & 28/04/2026 & Giulia Romanato & Alessandro Frison & Aggiunta test di unità del frontend e dei moduli di backend Auth, Memebership, User, Workspace (WorkspaceManager, WorkspaceUser, WorkspaceRepository) \\
     1.2.0 & 19/04/2026 & Alessandro Frison & Giulia Romanato & Aggiornamento grafici del cruscotto di valutazione (MPC) \\
     1.1.0 & 09/03/2026 & Lorenzo Grolla & Alessandro Morabito & Aggiornamento grafici allo sprint 6, aggiornamento test \\
     1.0.0 & 24/02/2026 & Alessandro Frison & Alessandro Morabito & Versione finale del documento, con tutte le sezioni completate e revisionate. \\
@@ -3365,6 +3367,175 @@ Nessun elemento con ruolo \texttt{link} presente nel DOM &
 \Soddisfatto \\
 
 \end{longtable}
+
+% ============================================================
+%  1. TEST DI INTEGRAZIONE
+% ============================================================
+\section{Test di Integrazione}
+
+I test di integrazione verificano il corretto flusso di dati tra due o
+pi\`u moduli reali (service, repository, database) senza mockare le
+dipendenze interne.
+
+\renewcommand{\arraystretch}{1.5}
+\setlength{\LTleft}{0pt plus 1fill}
+\setlength{\LTright}{0pt plus 1fill}
+\newcommand{\sectionrow}[1]{
+\rowcolor{gray}
+\multicolumn{5}{l}{\textcolor{white}{#1}} \\
+\rowcolors{2}{LightGray}{white}
+\global\rownum=0
+}
+
+\begin{longtable}{
+>{\centering\arraybackslash}m{2cm}
+>{\raggedright\arraybackslash}p{6.5cm}
+>{\raggedright\arraybackslash}p{4cm}
+>{\centering\arraybackslash}m{2cm}
+>{\centering\arraybackslash}m{1.8cm}
+}
+
+\rowcolor{AccentColor}
+\textcolor{white}{\textbf{Codice}} &
+\textcolor{white}{\textbf{Descrizione}} &
+\textcolor{white}{\textbf{Valore atteso}} &
+\textcolor{white}{\textbf{Stato}} \\
+\endhead
+
+% ---- auth.int.spec.ts ----
+\sectionrow{Modulo Auth -- auth.int.spec.ts}
+
+TI-1&
+\texttt{JwtRegistrationStrategy.validate}: restituisce i dati utente
+(\texttt{sub}, \texttt{username}, \texttt{email}) per un ID token valido
+con \texttt{token\_use = "id"} &
+Oggetto con i tre campi estratti correttamente da payload Cognito &
+\Soddisfatto \\
+
+
+TI-2 &
+\texttt{JwtRegistrationStrategy.validate}: lancia
+\texttt{BadRequestException} per un access token
+(\texttt{token\_use = "access"}) &
+\texttt{BadRequestException} &
+\Soddisfatto \\
+
+TI-3 &
+\texttt{JwtStrategy.validate}: trova lo user nel DB reale (MongoMemoryServer)
+e restituisce \texttt{RequestUser} con \texttt{userId} uguale all'\texttt{\_id}
+del documento MongoDB &
+\texttt{sub}, \texttt{username}, \texttt{userId} corretti;
+\texttt{userId} corrispondente all'\texttt{\_id} persistito &
+\Soddisfatto \\
+
+
+TI-4 &
+\texttt{JwtStrategy.validate}: lancia errore se lo user non \`e presente
+nel DB &
+Eccezione propagata senza HTTP 500 &
+\Soddisfatto \\
+
+% ---- user.int.spec.ts ----
+\sectionrow{Modulo User -- user.int.spec.ts}
+
+TI-5 &
+\texttt{UserService.create}: verifica la persistenza reale nel DB
+(MongoMemoryServer) -- il documento \`e recuperabile con \texttt{findOne}
+dopo la creazione &
+Documento presente nel DB; \texttt{sub} e \texttt{email} corretti &
+\Soddisfatto \\
+
+
+TI-6 &
+\texttt{UserService.create}: lancia \texttt{ConflictException} se il
+\texttt{sub} \`e gi\`a registrato; il DB rimane con un solo documento &
+\texttt{ConflictException}; \texttt{countDocuments() === 1} &
+\Soddisfatto \\
+
+TI-7 &
+\texttt{UserService.create}: il risultato non contiene \texttt{\_\_v}
+(\texttt{versionKey: false} applicato) &
+Il campo \texttt{\_\_v} \`e \texttt{undefined} nel documento restituito &
+\Soddisfatto \\
+
+
+TI-8 &
+\texttt{UserService.findBySub}: trova un documento esistente nel DB
+reale e lo restituisce senza \texttt{\_\_v} &
+Documento corretto; \texttt{\_\_v} assente &
+\Soddisfatto \\
+
+TI-9 &
+\texttt{UserService.findBySub}: restituisce \texttt{null} per un
+\texttt{sub} inesistente &
+\texttt{null} &
+\Soddisfatto \\
+
+
+TI-10 &
+\texttt{UserService.findByUsername}: trova un documento esistente e lo
+restituisce &
+Documento con \texttt{sub} corretto &
+\Soddisfatto \\
+
+TI-11 &
+\texttt{UserService.findByUsername}: restituisce \texttt{null} per uno
+username inesistente &
+\texttt{null} &
+\Soddisfatto \\
+
+% ---- workspace.int-spec.ts ----
+\sectionrow{Modulo WorkspaceRepository -- workspace.int-spec.ts}
+
+
+TI-12 &
+\texttt{WorkspaceRepositoryService.addRepository}: aggiunge una repository
+a un workspace esistente; la repository \`e poi recuperabile tramite
+\texttt{getRepositories} &
+\texttt{getRepositories} restituisce almeno un elemento &
+\Soddisfatto \\
+
+TI-13 &
+\texttt{WorkspaceRepositoryService.removeRepository}: rimuove una
+repository precedentemente aggiunta; \texttt{getRepositories} restituisce
+0 elementi dopo la rimozione &
+\texttt{getRepositories.length === 0} &
+\Soddisfatto \\
+
+% ---- workspaceManager.int-spec.ts ----
+\sectionrow{Modulo WorkspaceManager -- workspaceManager.int-spec.ts}
+
+TI-14 &
+\texttt{WorkspaceManagerService.createWorkspace}: crea il workspace nel
+DB e assegna al creatore il ruolo \texttt{PROJECT\_MANAGER} nei members &
+Documento nel DB con \texttt{members[0].role === "Project Manager"}
+e \texttt{members[0].userId === ownerId} &
+\Soddisfatto \\
+
+TI-15 &
+\texttt{WorkspaceManagerService.createWorkspace}: lancia
+\texttt{ConflictException} se si crea un workspace con nome gi\`a
+esistente per lo stesso owner &
+Eccezione con messaggio ``Hai gi\`a un workspace chiamato \ldots'' &
+\Soddisfatto \\
+
+
+TI-16 &
+\texttt{WorkspaceManagerService.deleteWorkspace}: elimina il workspace dal
+DB se il richiedente \`e il proprietario; il documento non \`e pi\`u
+presente nel DB &
+\texttt{workspaceModel.findById(id) === null} &
+\Soddisfatto \\
+
+TI-17 &
+\texttt{WorkspaceManagerService.deleteWorkspace}: lancia
+\texttt{ForbiddenException} se un utente non proprietario prova a
+cancellarlo; il workspace rimane nel DB &
+\texttt{ForbiddenException} con messaggio ``Solo il proprietario\ldots'' &
+\Soddisfatto \\
+
+\end{longtable}
+
 
 
 \subsection{Test di Sistema}
